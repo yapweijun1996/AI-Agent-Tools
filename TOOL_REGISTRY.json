@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "standards_version": "1.0.0",
+  "tools": [
+    {
+      "id": "agent-code-slice",
+      "name": "Agent Code Slice",
+      "description": "Return bounded code context for explicit symbols or locations.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice",
+      "npm": {
+        "name": "agent-code-slice",
+        "url": "https://www.npmjs.com/package/agent-code-slice"
+      },
+      "release_version": "0.2.0",
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-change-impact",
+      "name": "Agent Change Impact",
+      "description": "Report change relationships with evidence and explicit coverage limits.",
+      "status": "Planned",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-project-profile",
+      "name": "Agent Project Profile",
+      "description": "Describe observed project structure, configuration, and available commands.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-test-scope",
+      "name": "Agent Test Scope",
+      "description": "Identify candidate tests from declared or observable relationships.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-error-lens",
+      "name": "Agent Error Lens",
+      "description": "Extract bounded structured diagnostics from supplied error output.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-patch-guard",
+      "name": "Agent Patch Guard",
+      "description": "Check proposed patches against explicit scope and safety constraints.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-contract-diff",
+      "name": "Agent Contract Diff",
+      "description": "Compare supported contract formats and report observable differences.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-rules-resolve",
+      "name": "Agent Rules Resolve",
+      "description": "Resolve supported rule sources using documented precedence.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-release-guard",
+      "name": "Agent Release Guard",
+      "description": "Check release prerequisites and evidence without publishing by default.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-context-pack",
+      "name": "Task-scoped Agent Context Pack",
+      "description": "Assemble bounded, provenance-bearing tool results for one explicit task.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    }
+  ]
+}
