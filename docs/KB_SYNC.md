@@ -3,6 +3,9 @@
 Scope: AI-Agent-Tools documentation and knowledge maintenance. Last reviewed:
 2026-09-07. The existing Company KB `AI Agent Tools` has ID
 `3e631a61-d63d-4c25-aaac-cd1557b063f2` and category family `ai-agent-tools.*`.
+The KB-MCP visibility was explicitly changed to `user` and read back as `user`
+before the successful synchronization. The logical KB remains the project's
+SSOT, but this run is user-visible rather than company-wide.
 
 ## Ownership and conflict handling
 
@@ -52,40 +55,44 @@ remain unknown until verified. Do not register planned designs as runnable KB to
    and commit. Update the Brain pointer with the actual commit only after Git
    confirms it. Do not claim a remote push from a local commit.
 
-Use company share tier as defined by this existing project's maintenance policy.
-Use stable idempotency keys for exact retries, and check an uncertain write before
-retrying. A failed KB write/readback leaves synchronization incomplete; local
-document success alone does not satisfy the task.
+The existing maintenance policy requires company share tier for company-wide SSOT.
+The owner explicitly changed this KB's visibility to `user`, so the first two
+company-tier attempts correctly failed with `above_scope`. The successful run used
+user-tier writes with new idempotency keys. Use stable idempotency keys for exact
+retries and check an uncertain write before retrying. User-tier synchronization is
+not evidence of company-wide visibility; that requires a separate Company-tier
+authorization and a deliberate visibility change.
 
 ## 2026-09-07 synchronization receipt
 
-Status: **Blocked**. The Company-tier `kb_ingest_document` call was rejected by
-the service with HTTP 403, `SHARE_TIER_DENIED`, message
-`share-tier write denied: above_scope`, and `write_committed: false`.
-Request ID: `req-b45ecb087ef7417cbf18357528bd356a`.
+Status: **Synchronized at User tier**. The current KB visibility was read back as
+`user`; all writes below returned `write_committed: true`, and all affected items
+were read back successfully. The earlier company-tier failures remain preserved as
+scope evidence: `req-b45ecb087ef7417cbf18357528bd356a` and
+`req-50b6e146a41c407894baf8c2ec8b9bc7` both returned 403
+`SHARE_TIER_DENIED`, `retryable: false`, `write_committed: false`.
 
-Readback after rejection confirmed 18 existing KB items, including 10 current
-tool-status records, and no new tool or expansion-design records. No existing
-Company KB item was changed by this task. Local documentation now describes 13
-registry entries; the KB remains on its preceding ten-tool state until authorized
-synchronization succeeds. This is an explicit synchronization gap, not evidence
-that either snapshot silently updated the other.
+The [synchronization manifest](KB_SYNC_PENDING.json) now records the applied
+user-tier item IDs and readback results. Document bodies remain in their owning
+Markdown files; the manifest records identity and digest evidence without creating
+a second project SSOT.
 
-The [pending synchronization payload](KB_SYNC_PENDING.json) contains four full-document
-source descriptors, three schema-conformant proposed status records, and three
-existing-record update plans. Document bodies remain in their owning Markdown
-files; the payload does not duplicate them or implement a synchronization runner.
-It preserves the required company tier rather than creating a competing private KB.
+| Local document | SHA-256 of UTF-8 LF content | User KB parent | Chunks | Readback |
+| --- | --- | --- | ---: | --- |
+| `docs/TOOL_EXPANSION.md` | `1ab2f39825b99159121a075c58f849226bec0c94cc6a3d0f57191f4a23c6a244` | `3e0f9dfa-e53a-463e-872d-6869aecc8802` | 3 | Exact |
+| `docs/tools/AGENT_CFML_CHECK.md` | `98b113c081934a1e7ecf0c506f2991c1d73fe5730ed13f0a5120f10433242dcb` | `63ddf381-7f18-426a-86eb-7a34a4c80a6b` | 5 | Exact |
+| `docs/tools/AGENT_RESULT_STORE.md` | `a54773386f99e9ffa598d985ff23268b1cdb065fc75942fb1c137d978fb19fd5` | `b7084e94-fa4b-4ac9-8941-f75448c6ed04` | 6 | Exact |
+| `docs/tools/AGENT_RUNTIME_TRACE.md` | `6186851e0c6484e6700b3fbe9144b47a82d421f460c77dc4a712fb5ed3c424ac` | `d489e96f-b1ef-4f16-894d-e5558539eac7` | 6 | Exact |
 
-| Local document | SHA-256 of UTF-8 LF content | Company KB write |
-| --- | --- | --- |
-| `docs/TOOL_EXPANSION.md` | `1ab2f39825b99159121a075c58f849226bec0c94cc6a3d0f57191f4a23c6a244` | Not written |
-| `docs/tools/AGENT_CFML_CHECK.md` | `98b113c081934a1e7ecf0c506f2991c1d73fe5730ed13f0a5120f10433242dcb` | Not written |
-| `docs/tools/AGENT_RESULT_STORE.md` | `a54773386f99e9ffa598d985ff23268b1cdb065fc75942fb1c137d978fb19fd5` | Not written |
-| `docs/tools/AGENT_RUNTIME_TRACE.md` | `6186851e0c6484e6700b3fbe9144b47a82d421f460c77dc4a712fb5ed3c424ac` | Not written |
+The new User-tier status records are `67898e2f-f74c-4701-b0c7-690b45d6dcdb`
+(`agent-cfml-check`), `0d4ef250-e841-4d79-8ed2-4d5b68dc2804`
+(`agent-result-store`), and `0d0acca2-62d7-4453-b657-547e8bf02287`
+(`agent-runtime-trace`). Each readback confirms `roadmap_state=queued`,
+`design_status=draft`, development/verification/release `not_started`, and
+`evidence_status=partial`.
 
-Resume with a connection authorized to write this Company KB. Reread records and
-verify the listed hashes before applying the pending payload. Then read back all
-affected content and status/index records, update this receipt and TASK/VALIDATION,
-and commit the synchronization result. A local commit of the current documents
-does not complete the denied Company KB write.
+The existing Canonical Ecosystem SSOT, Functional Map, and Tool Status Schema
+records were updated in place and read back at User tier. The canonical active
+status-record count is now 13, with no new implementation, release, or conformance
+claim. Company-wide sharing remains a separate follow-up because the current KB
+visibility is User.

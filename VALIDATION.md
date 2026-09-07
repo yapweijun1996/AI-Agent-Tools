@@ -92,7 +92,7 @@ external release or fix the compatibility gaps recorded in [TASK.md](TASK.md).
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
 | V-07 | Expansion design and Hub integrity | Three detailed drafts define CF-01 through CF-14, RS-01 through RS-13 and RT-01 through RT-13; registry/roadmap append three Planned entries while preserving the original ten; local validator and whitespace checks pass |
-| V-08 | Company KB synchronization | Read existing Company KB, maintenance skill/rule, status schema, ecosystem and functional map; initial company-tier document write returned 403 SHARE_TIER_DENIED with write_committed false; readback confirmed original 18 items/10 status records and no new expansion records; synchronization remains blocked |
+| V-08 | KB synchronization at explicit User scope | Read existing KB, maintenance skill/rule, status schema, ecosystem and functional map; two Company-tier attempts returned 403 SHARE_TIER_DENIED with retryable=false and write_committed=false; after KB visibility read back as user, four detailed design parents, three new status records, and three existing index records were written at User tier and read back with exact content/digests and 13 status records; company-wide visibility remains unverified |
 
 The [expansion review](docs/TOOL_EXPANSION.md) records SCMC design disposition,
 cross-tool boundaries, evidence references and the correction to two overbroad

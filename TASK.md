@@ -50,7 +50,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-06 | Implement a justified discovery CLI | Deferred | HUB-03, HUB-04 | E-04; identity/distribution/source/freshness design pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
-| HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Blocked | Owner request; HUB-03 | Local design/registry handoff verified under V-07; Company KB write denied under V-08; pending payload and resume instructions in docs/KB_SYNC.md |
+| HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08; company-wide visibility remains separate because the KB is intentionally User-visible |
 | HUB-10 | Hand off CFML Check lexical/structural feasibility | Planned | HUB-09; independent owner/repository | E-08; CF-01 through CF-14 proposed; no implementation or engine trial |
 | HUB-11 | Hand off Result Store persistence and producer integration | Planned | HUB-09; independent owner/repository | E-08; RS-01 through RS-13 proposed; no store or connector implemented |
 | HUB-12 | Hand off Runtime Trace event/readback correlation | Planned | HUB-09; independent owner/repository | E-08; RT-01 through RT-13 proposed; no instrumentation or runtime trial |
@@ -87,9 +87,10 @@ or an unimplemented feature is not automatically an external blocker.
 
 No external blocker prevents current Hub documentation maintenance. There is an
 unresolved protocol dependency before cross-tool composition and Hub conformance.
-Company KB synchronization for HUB-09 is blocked by HTTP 403
-`SHARE_TIER_DENIED: above_scope`; no Company write committed. Local documentation
-and registry updates can be committed independently, with this gap disclosed.
+User-tier synchronization for HUB-09 is complete and read back successfully. The
+KB visibility is intentionally `user`, so company-tier sharing remains a separate
+follow-up rather than an unreported assumption. The earlier Company-tier attempts
+were correctly rejected with `SHARE_TIER_DENIED: above_scope`.
 Active sibling working-tree development can stale observations quickly; dated
 evidence must not be mistaken for a released or continuously monitored state.
 Release credentials, CI availability, and publication permissions are unassessed,
@@ -97,9 +98,10 @@ not reported as failed or granted.
 
 ## Next steps
 
-First restore an appropriately authorized Company KB connection and apply the
-[pending synchronization](docs/KB_SYNC.md) for HUB-09, then read back and commit
-the receipt. The existing ecosystem work below keeps its original order.
+Keep the User-tier synchronization receipt and item IDs aligned with the local
+documents. If company-wide collaboration is later required, change visibility and
+authorization deliberately, then run a separate Company-tier readback. The
+existing ecosystem work below keeps its original order.
 
 1. Resolve HUB-04 with real native success, bounded/partial, ambiguity, unsupported,
    and error payloads; select a compatible versioning path before changing consumers.
