@@ -114,6 +114,39 @@
       "release_version": null,
       "verification": null,
       "deprecation": null
+    },
+    {
+      "id": "agent-cfml-check",
+      "name": "Agent CFML Check",
+      "description": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-result-store",
+      "name": "Agent Result Store",
+      "description": "Persist explicitly authorized sanitized results with bounded retrieval, provenance, and retention.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-runtime-trace",
+      "name": "Agent Runtime Trace",
+      "description": "Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages.",
+      "status": "Planned",
+      "repository_url": null,
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
     }
   ]
 }

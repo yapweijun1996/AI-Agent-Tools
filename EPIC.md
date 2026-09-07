@@ -17,6 +17,8 @@ separate work. [TASK.md](TASK.md) is the authoritative execution ledger.
 | E-04 | Future discovery CLI | HUB-06 | HUB-03, HUB-04, confirmed metadata demand | Explicit registry source, supported schema, freshness, bounded output, and no automatic installation/execution |
 | E-05 | Planned tool contract handoffs | HUB-07 | HUB-02 | Narrow first-version inputs/outputs/non-goals and acceptance fixtures in each independent repository; no source copied here |
 | E-06 | Conditional infrastructure review | HUB-08 | Roughly 3–5 mature tools with maintained releases and actual duplication | Reviewed ownership/cost/compatibility/migration/rollback decision; no assumed migration |
+| E-07 | Three-tool design and KB handoff | HUB-09 | Owner request; HUB-03 | Three detailed draft contracts, thirteen-entry registry/roadmap, KB status/design synchronization and verified readback |
+| E-08 | Independent feasibility and delivery of the three additions | HUB-10, HUB-11, HUB-12 | HUB-09; independent repositories and owners | CFML lexical fixtures, Result Store persistence/integration fixtures, Trace event/readback fixtures; no Hub implementation |
 
 ## Scope and handoff rules
 
@@ -38,6 +40,11 @@ inference and cannot assume a mandatory chain of installed tools.
 No work package here authorizes publishing, pushing, changing permissions, or
 modifying another repository's active implementation. There is no need for a shared
 runtime, framework, service, or new dependency to complete the current documentation.
+
+E-07 is documentation and KB delivery only. E-08 remains planned and does not
+reorder the original ten tools. Detailed contracts are linked from the
+[expansion review](docs/TOOL_EXPANSION.md); budgets and cases are proposed until
+executable evidence exists in an independent tool repository.
 
 ## Completion criteria
 

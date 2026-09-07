@@ -1,6 +1,7 @@
 # Validation and evidence
 
-Evidence date: 2026-09-06. This document owns the Hub's evidence scope. Individual
+Latest Hub review: 2026-09-07. The original source/release observations below are
+dated 2026-09-06 and remain historical. This document owns the Hub's evidence scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
 
 ## Current source observations
@@ -85,3 +86,31 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
 No new tool tests were necessary for this documentation-only reconciliation because
 Code Slice's inspected revision is unchanged. The Hub checks do not establish an
 external release or fix the compatibility gaps recorded in [TASK.md](TASK.md).
+
+## Three-tool documentation review - 2026-09-07
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-07 | Expansion design and Hub integrity | Three detailed drafts define CF-01 through CF-14, RS-01 through RS-13 and RT-01 through RT-13; registry/roadmap append three Planned entries while preserving the original ten; local validator and whitespace checks pass |
+| V-08 | Company KB synchronization | Read existing Company KB, maintenance skill/rule, status schema, ecosystem and functional map; initial company-tier document write returned 403 SHARE_TIER_DENIED with write_committed false; readback confirmed original 18 items/10 status records and no new expansion records; synchronization remains blocked |
+
+The [expansion review](docs/TOOL_EXPANSION.md) records SCMC design disposition,
+cross-tool boundaries, evidence references and the correction to two overbroad
+findings in the earlier conversational review. The validator source is unchanged.
+Its lack of a checked-in regression suite remains a separate maintenance gap.
+
+New external reference links were opened/reviewed: Lucee cfif/tag-island syntax,
+Adobe CFML comments, RFC 6901 JSON Pointer and OpenTelemetry trace concepts.
+These references support design choices; no dependency was installed and no tool
+runtime conformance was established. The retrieved Globe3 exact-draft readback
+record is historical evidence; this task did not execute a business write.
+
+The Company KB contains later Code Slice package observations; the Hub's recorded
+0.2.0 release remains unchanged because later artifact behavior was not reaudited.
+Change Impact and Project Profile status from the KB is explicitly scoped as
+knowledge evidence. No additional delivery completion is inferred.
+
+[KB synchronization](docs/KB_SYNC.md) and its pending payload record the exact
+Company target, failure, document digests, proposed status records and remaining
+updates. This is prepared data, not an applied KB migration. The 40 tool acceptance
+cases are design requirements only; none were run as implementation tests here.

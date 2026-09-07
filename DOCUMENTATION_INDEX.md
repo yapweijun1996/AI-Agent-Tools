@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-09-06. This index assigns document ownership; it is not a
+Last reconciled: 2026-09-07. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |
@@ -23,6 +23,11 @@ second task ledger or a tool release inventory.
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |
+| [Three-tool expansion](docs/TOOL_EXPANSION.md) | Addition rationale, cross-tool boundaries, design review and evidence scope |
+| [CFML Check](docs/tools/AGENT_CFML_CHECK.md) | Planned structural-checking contract and acceptance cases |
+| [Result Store](docs/tools/AGENT_RESULT_STORE.md) | Planned sanitized persistence, retrieval, retention and acceptance cases |
+| [Runtime Trace](docs/tools/AGENT_RUNTIME_TRACE.md) | Planned event correlation, readback decision rules and acceptance cases |
+| [KB synchronization](docs/KB_SYNC.md) | Company KB ownership, record mapping, synchronization and readback evidence |
 | [Validator](scripts/validate_hub.py) | Executable local authoring checks |
 
 Start with README for orientation or TASK for continued work; then SPEC, DESIGN,
