@@ -15,7 +15,11 @@ status. [TASK.md](../TASK.md) owns current Hub work and
 A subsequent owner notice confirms Code Slice delivery complete; npm metadata
 confirms its recorded 0.2.0 release. See VALIDATION for this newer evidence. The
 review below remains historical; protocol integration and artifact auditing are
-still pending, and other tools await owner completion notices.
+still pending, and other tools await owner completion notices. On 2026-09-07,
+Project Profile's current public source and npm artifact history were audited; its
+implementation is admissible for `Experimental`, but the published `0.1.1`
+executable has a known distribution defect and corrected source `0.1.2` remains
+unpublished. See [VALIDATION.md](../VALIDATION.md) for the current evidence.
 
 ## Conclusion and evidence boundary
 

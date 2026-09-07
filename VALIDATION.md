@@ -1,6 +1,6 @@
 # Validation and evidence
 
-Evidence date: 2026-09-06. This document owns the Hub's evidence scope. Individual
+Evidence date: 2026-09-07. This document owns the Hub's evidence scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
 
 ## Current source observations
@@ -10,6 +10,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tools | Initial baseline `2f2d46e`; documentation commits are recorded in Git history | Documentation foundation and local authoring checks; no root npm/runtime/discovery implementation |
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
+| AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
 
 At the bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
@@ -21,10 +22,11 @@ those declarations do not prove complete runtime enforcement. Snapshot code exis
 but its correctness/security tests were not executed in this Hub documentation task.
 This active working tree can change independently after inspection.
 
-The two canonical repository links were checked against local Git remotes and
-opened successfully during reconciliation:
+The three canonical repository links were checked and opened successfully during
+reconciliation:
 [Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice) and
-[Change Impact](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact).
+[Change Impact](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact), plus
+[Project Profile](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile).
 This establishes repository identity/accessibility, not npm publication or CI results.
 
 ## Code Slice completion and publication update
@@ -43,6 +45,35 @@ npm registry version endpoint above, not inferred from HTML link availability.
 Delivery completion is recorded as Done. Hub lifecycle remains Experimental and
 `verification` remains null because native/Hub contract conformance is unresolved.
 The other nine tools are not marked complete; further updates await the owner.
+
+## Project Profile implementation and release audit
+
+On 2026-09-07, the public [Project Profile commit
+`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d)
+was inspected from a source archive. Its manifest declares `agent-project-profile`
+version `0.1.2`, with the executable mapped to `dist/bin.js`; the repository
+documents bounded, read-only profiling and a cross-platform CI matrix. The
+[npm registry metadata](https://registry.npmjs.org/agent-project-profile) reports
+published `latest` version `0.1.1`; version `0.1.2` was not present. The exact
+published `0.1.1` package was installed into a clean consumer and its generated
+binary reproduced the documented P0 behavior: `--version` produced no output and
+returned exit code 0. This is a release defect, not evidence that the current
+source entry point is still broken.
+
+The exact source commit passed `npm ci --ignore-scripts`, `npm run typecheck`,
+`npm test` (31 passed), `npm run test:packaged-cli`, and
+`npm audit --omit=dev --audit-level=moderate` (zero vulnerabilities). A local
+`npm publish --dry-run --ignore-scripts` also produced a valid `0.1.2` artifact;
+no publish action was performed. These results establish an Experimental
+implementation snapshot, not a published `0.1.2` release or Hub protocol
+conformance.
+
+One residual security/robustness concern remains: the scanner reports
+`REPOSITORY_CHANGED` when file state differs across a read but still retains the
+read buffer. The race itself was not reproduced, so this is recorded as a
+fail-closed hardening and coverage item rather than a confirmed exploit. The
+package metadata declares MIT, but the repository and dry-run package did not
+include a `LICENSE` file; release readiness should address that packaging gap.
 
 ## Hub checks
 

@@ -8,11 +8,11 @@ This repository is the ecosystem **Hub**: registry, standards, discovery documen
 
 **1 of 10 tools completed: [Agent Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice).** The owner confirmed completion on 2026-09-06. The published [agent-code-slice@0.2.0](https://www.npmjs.com/package/agent-code-slice/v/0.2.0) package identity was checked against npm. It provides code outlines and symbol/line/range slicing through the `code-slice` CLI and JavaScript API; implementation stays in its independent repository.
 
-The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), and a local validator. The remaining nine tools await owner completion notices; their Hub entries remain `Planned`. Change Impact's observed scaffold does not count as another completed tool.
+The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), and a local validator. The remaining nine tools do not yet have owner-confirmed delivery completion notices. Project Profile now has a confirmed repository, published npm identity, and inspectable implementation, so its Hub lifecycle is `Experimental`; it is not counted as delivery `Done` because the published `0.1.1` package has a known CLI distribution defect and the corrected source `0.1.2` is not yet published. Change Impact's observed scaffold does not count as another completed tool.
 
 Delivery completion is separate from Hub standards conformance. Code Slice retains the registry lifecycle `Experimental` because native/Hub protocol compatibility has not been verified; this does **not** mean its delivered tool is unfinished. Its npm identity and recorded release are populated; its Hub verification snapshot remains `null`.
 
-The native Code Slice and draft Change Impact protocols differ from the Hub target JSON/exit/completeness contract. This foundation does not supply a compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
+The native Code Slice, draft Change Impact, and Project Profile protocols differ from the Hub target JSON/exit/completeness contract. This foundation does not supply a compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
 
 No `agent-tools` discovery CLI is implemented or published by this Hub. There is no Hub installation command. Future discovery is described in [Architecture](docs/ARCHITECTURE.md#future-discovery-cli).
 

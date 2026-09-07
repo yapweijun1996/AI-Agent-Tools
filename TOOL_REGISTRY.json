@@ -31,10 +31,13 @@
       "id": "agent-project-profile",
       "name": "Agent Project Profile",
       "description": "Describe observed project structure, configuration, and available commands.",
-      "status": "Planned",
-      "repository_url": null,
-      "npm": null,
-      "release_version": null,
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile",
+      "npm": {
+        "name": "agent-project-profile",
+        "url": "https://www.npmjs.com/package/agent-project-profile"
+      },
+      "release_version": "0.1.1",
       "verification": null,
       "deprecation": null
     },

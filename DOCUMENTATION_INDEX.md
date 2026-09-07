@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-09-06. This index assigns document ownership; it is not a
+Last reconciled: 2026-09-07. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |

@@ -1,8 +1,8 @@
 # Roadmap
 
-Last reconciled: 2026-09-06. The sequence below is the agreed product priority, not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
+Last reconciled: 2026-09-07. The sequence below is the agreed product priority, not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
 
-The documentation foundation is complete. **Delivery progress: 1 of 10 tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. The other nine tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
+The documentation foundation is complete. **Delivery progress: 1 of 10 tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has since received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains the defective `0.1.1`, while the corrected `0.1.2` source is not published. The other eight tools still await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
 
 ## Delivery sequence
 
@@ -33,7 +33,7 @@ release checks only for release tasks. No new feature is scheduled by a date her
 
 ## Open decisions
 
-- Confirm remaining independent repositories, published npm package identities, maintainers, and release history; the two inspected repository URLs are now registered.
+- Confirm remaining independent repositories, published npm package identities, maintainers, and release history; the three inspected repository URLs are now registered. Project Profile's published 0.1.1 artifact remains a known release gap until 0.1.2 is published and verified.
 - Resolve versioned protocol profiles versus explicit migration using real contract fixtures; no compatibility mechanism has been implemented.
 - Define tool-specific language/format support, resource limits, and minimum Node.js versions in each tool repository.
 - Select licenses before package publication; this Hub currently does not declare a license or grant package licensing rights.

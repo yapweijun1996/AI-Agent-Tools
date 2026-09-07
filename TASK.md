@@ -1,6 +1,6 @@
 # Task status
 
-Status date: 2026-09-06. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
+Status date: 2026-09-07. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
 execution ledger; independent tool repositories own their implementation tasks.
 
 ## Current situation
@@ -17,6 +17,10 @@ lifecycle stays Experimental only because protocol conformance is still pending.
 earlier documentation-only baseline. It remains Planned in the Hub until the
 implementation/test admission gate is evidenced. See [VALIDATION.md](VALIDATION.md)
 for snapshot scope; a manifest or type definition is not an implemented capability.
+Project Profile now has an inspectable implementation and published npm identity,
+but its corrected source release `0.1.2` is not published and its registry `0.1.1`
+executable has a known distribution defect; it remains Experimental and is not
+delivery Done.
 
 ## Task vocabulary
 
@@ -39,7 +43,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | Planned | HUB-02 | E-02; decision and executable consumer fixtures not implemented |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0 npm identity confirmed; independent artifact/remote CI and Hub conformance checks remain pending |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0 npm identity and Project Profile 0.1.1 npm identity confirmed; Project Profile 0.1.2 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
 | HUB-06 | Implement a justified discovery CLI | Deferred | HUB-03, HUB-04 | E-04; identity/distribution/source/freshness design pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
@@ -47,8 +51,10 @@ or an unimplemented feature is not automatically an external blocker.
 ## Delivery completion notices
 
 - Code Slice: **Done**, owner-confirmed 2026-09-06; recorded published version `0.2.0`.
-- Remaining nine tools: awaiting owner completion notices. The owner will provide
-  updates; no background polling or inferred completion is requested.
+- Remaining nine tools: awaiting owner completion notices. Project Profile has
+  review evidence but no delivery completion notice; it remains outside the
+  completed count. The owner will provide updates; no background polling or
+  inferred completion is requested.
 - On each notice, verify identity/evidence, synchronize Hub documentation and registry,
   run validation, and commit the resulting Hub documentation changes. Keep native
   delivery and Hub protocol conformance separate.
@@ -61,6 +67,11 @@ or an unimplemented feature is not automatically an external blocker.
   an implemented compatibility layer. Preserve current tool consumers meanwhile.
 - Code Slice npm publication identity for `0.2.0` is confirmed; its exact artifact
   behavior and Hub conformance remain unaudited here. Other package fields stay `null`.
+- Project Profile repository and npm identity are confirmed, and its source commit
+  passed the local implementation checks recorded in [VALIDATION.md](VALIDATION.md).
+  The published `0.1.1` package has a reproduced CLI distribution defect; the
+  source `0.1.2` correction remains unpublished. Its registry lifecycle is therefore
+  `Experimental`, with no verification snapshot.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
 - Hub license selection and future discovery package/distribution ownership remain
@@ -74,6 +85,8 @@ Active sibling working-tree development can stale observations quickly; dated
 evidence must not be mistaken for a released or continuously monitored state.
 Release credentials, CI availability, and publication permissions are unassessed,
 not reported as failed or granted.
+Project Profile's source and registry versions are currently split: local source is
+`0.1.2`, while npm `latest` is `0.1.1`.
 
 ## Next steps
 
