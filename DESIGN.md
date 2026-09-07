@@ -72,5 +72,6 @@ features in repositories that have not implemented them.
 each detailed draft. CFML Check uses an explicit supported lexical/structural
 profile; Result Store writes only through explicit scoped operations; Runtime
 Trace V1 analyzes supplied event artifacts and never executes a readback or retries
-a write. Current standards/schema versions stay unchanged. No tool implementation,
-root dependency, consumer adapter, or deployment is delivered by these documents.
+a write. Current standards/schema versions stay unchanged. The CFML implementation
+is delivered in its independent repository; no tool implementation, root dependency,
+consumer adapter, or deployment is delivered by this Hub.

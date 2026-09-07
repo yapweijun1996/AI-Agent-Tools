@@ -41,10 +41,11 @@ No work package here authorizes publishing, pushing, changing permissions, or
 modifying another repository's active implementation. There is no need for a shared
 runtime, framework, service, or new dependency to complete the current documentation.
 
-E-07 is documentation and KB delivery only. E-08 remains planned and does not
-reorder the original ten tools. Detailed contracts are linked from the
+E-07 is documentation and KB delivery only. E-08 is active for the CFML Check
+feasibility slice and remains planned for Result Store and Runtime Trace; it does
+not reorder the original ten tools. Detailed contracts are linked from the
 [expansion review](docs/TOOL_EXPANSION.md); budgets and cases are proposed until
-executable evidence exists in an independent tool repository.
+the applicable executable evidence exists in an independent tool repository.
 
 ## Completion criteria
 

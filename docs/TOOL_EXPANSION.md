@@ -1,8 +1,9 @@
 # Three-tool expansion
 
-Design review date: 2026-09-07. This is a documentation handoff for three new
-`Planned` tools, requested by the owner. It does not establish an implementation,
-published package, reserved executable, or passed tool test.
+Design review date: 2026-09-07. This is the Hub handoff for three new tools,
+requested by the owner. The Hub registry keeps all three at `Planned`. A local
+feasibility implementation now exists for CFML Check in an independent repository;
+it is not a published package, canonical remote identity, or Hub lifecycle promotion.
 
 ## Decision and priority
 
@@ -22,7 +23,20 @@ Detailed handoff contracts are owned by [CFML Check](tools/AGENT_CFML_CHECK.md),
 [Result Store](tools/AGENT_RESULT_STORE.md), and
 [Runtime Trace](tools/AGENT_RUNTIME_TRACE.md). They cover scope, operations, data,
 failure semantics, proposed budgets, responsibility, acceptance cases, and rollout.
-Implementation and executable fixtures belong in future independent repositories.
+Implementation and executable fixtures belong in independent repositories. The first
+CFML feasibility slice is recorded below; Result Store and Runtime Trace remain
+design-only in this Hub review.
+
+## Current CFML feasibility evidence
+
+The independent local repository `AI-Agent-Tool-CFML-Check` contains commit
+`9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. It implements a small TypeScript/Node.js
+lexer and stack checker, the Hub JSON envelope, explicit-root file loading, bounded
+limits, CLI stdout/stderr behavior, and fixtures/tests for CF-01 through CF-13. The
+repository is local-only at this point: no canonical remote URL, maintainer record,
+published npm artifact, Lucee/Adobe engine trial, or CF-14 comparison evidence is
+claimed. This is implementation and local test evidence, not release or engine
+compatibility evidence.
 
 ## Evidence and assumptions
 
@@ -33,10 +47,13 @@ Implementation and executable fixtures belong in future independent repositories
 | EXP-03 | KB item `080bc15a-dd20-40ab-8f81-f0d85c55546d:0d79311c-e83d-4b1c-8cfa-fa836aa564d2` | Historical Sales Quotation draft: one save, navigation timeout, independent exact-record readback; record retrieved on 2026-09-07, transaction not rerun |
 | EXP-04 | Existing Hub source and standards at baseline `93d82f2` | Hub is documentation/registry/validator; no implementation of these three tools |
 | EXP-05 | Company KB canonical ecosystem and maintenance records read on 2026-09-07 | Existing ten-tool order, Change Impact in progress, Project Profile next, and one current status record per tool |
+| EXP-06 | Independent local repository `AI-Agent-Tool-CFML-Check` at `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; `npm test`, `npm run typecheck`, and `npm pack --dry-run` passed on 2026-09-07 | CFML Check feasibility slice is implemented and locally exercised; remote identity, engine compatibility and CF-14 remain unverified |
 
-All fixture cases below are proposed tests, not executed results. Budget numbers
-are initial engineering proposals, not measured performance guarantees. No new
-maintainer, repository URL, npm identity, or release number is asserted.
+CF-01 through CF-13 now have executable local tests in the CFML Check repository.
+All Result Store and Runtime Trace fixture cases remain proposed tests. CF-14 is
+not executed. Budget numbers are initial engineering proposals, not measured
+performance guarantees. No new maintainer, repository URL, published npm identity,
+or release number is asserted by this Hub.
 
 ## Responsibility boundaries
 
@@ -75,10 +92,11 @@ These drafts do not introduce a consumer adapter or silently change native exits
 
 ## Delivery and acceptance gates
 
-1. Review the detailed draft and obtain an independent repository/maintainer.
+1. Review the detailed draft and establish an independent repository/maintainer.
 2. Freeze a fixture-backed V1 subset and operation/data schemas in that repository.
-3. Implement the smallest vertical slice with positive, negative, unsupported,
-   resource-limit, determinism, and read/write boundary tests.
+3. For CFML Check, review the implemented lexical slice and its CF-01 through CF-13
+   test evidence; for the other two tools, implement the smallest vertical slice
+   with positive, negative, unsupported, resource-limit, determinism, and boundary tests.
 4. Run a sanitized real-task trial against the existing manual workflow. Measure
    correctness first, then bytes returned, elapsed time, and manual investigation.
 5. Publish only through the owning release process. Register identities and promote
@@ -90,9 +108,10 @@ Documentation completion is tracked separately from those implementation steps i
 ## Review disposition
 
 SCMC result: Simple PASS; Clear PASS; Modular PASS; Consistent PASS for these
-bounded draft contracts. This is design review, not runtime verification. The
-largest unresolved implementation dependencies are the CFML lexer/profile,
-Result Store atomic retention behavior, and Trace producer/readback bindings.
+bounded contracts. The CFML local feasibility slice reduces, but does not remove,
+the lexer/profile risk. The largest unresolved implementation dependencies are
+CFML engine-specific behavior, Result Store atomic retention behavior, and Trace
+producer/readback bindings.
 
 The earlier conversational review overstated two validator findings: the current
 registry contract does not prohibit confirmed npm/release metadata on a Planned

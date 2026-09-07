@@ -105,7 +105,7 @@
       "kbcid": "ai-agent-tools.tool-status",
       "share_level": "user",
       "item_id": "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
-      "content": "Agent CFML Check is registered as Planned at roadmap position 11. A detailed draft design exists at docs/tools/AGENT_CFML_CHECK.md. Development, executable verification and release have not started. Documentation acceptance cases are proposed only. Validate lexical feasibility first among the three additions, without reordering the original ten tools.",
+      "content": "Agent CFML Check remains Planned at roadmap position 11. The detailed design and an independent local feasibility slice now exist. The local implementation and 17-test run are evidence for in-progress development only; engine compatibility, canonical repository identity, admission and release have not started. Validate the lexical slice before adding engine-specific coverage, without reordering the original ten tools.",
       "metadata": {
         "kind": "tool_status_record",
         "schema_version": "ai-agent-tools/tool-status/v1",
@@ -115,17 +115,17 @@
         "display_name": "Agent CFML Check",
         "roadmap_order": 11,
         "purpose": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
-        "roadmap_state": "queued",
+        "roadmap_state": "in_progress",
         "design_status": "draft",
-        "development_status": "not_started",
-        "verification_status": "not_started",
+        "development_status": "in_progress",
+        "verification_status": "partial",
         "release_status": "not_started",
         "evidence_status": "partial",
         "hub_lifecycle": "Planned",
         "repo": {
-          "name": null,
+          "name": "AI-Agent-Tool-CFML-Check",
           "url": null,
-          "head": null
+          "head": "9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837"
         },
         "package": {
           "name": null,
@@ -139,10 +139,10 @@
         "current_focus": "Documented V1 draft awaiting independent feasibility and implementation.",
         "blockers": [],
         "known_gaps": [
-          "Lexer/profile feasibility and CF-01 through CF-14 fixtures are not implemented.",
-          "Engine versions, parser dependencies, repository, maintainer and package identity remain unconfirmed."
+          "CF-14 engine comparison, cross-platform coverage, and engine-specific fixtures are not implemented.",
+          "Canonical remote repository, maintainer, engine versions, package publication and release evidence remain unconfirmed."
         ],
-        "next_action": "Validate lexical feasibility first among the three additions, without reordering the original ten tools.",
+        "next_action": "Review and harden the local lexical slice, then establish canonical repository identity and engine-backed CF-14 evidence before Experimental admission.",
         "prior_art_refs": [],
         "evidence": [
           {
@@ -156,12 +156,25 @@
             "ref": "chat:2026-09-07-three-tool-documentation-request",
             "status": "confirmed_scope",
             "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "implementation_source",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837",
+            "status": "local_feasibility_slice",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "test_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-test",
+            "status": "17_passed_windows_local",
+            "verified_at": "2026-09-07"
           }
         ],
         "source_refs": [
           "docs/tools/AGENT_CFML_CHECK.md",
           "docs/TOOL_EXPANSION.md",
-          "TOOL_REGISTRY.json"
+          "TOOL_REGISTRY.json",
+          "repo:AI-Agent-Tool-CFML-Check"
         ],
         "last_updated_at": "2026-09-07"
       }
@@ -310,7 +323,7 @@
       "action": "update_in_place_preserving_existing_evidence",
       "desired_changes": [
         "Preserve original ten-tool order, Code Slice completed, Change Impact in progress, and Project Profile next.",
-        "Append agent-cfml-check, agent-result-store and agent-runtime-trace at 11, 12, 13 as queued/design draft/development not_started.",
+        "Preserve agent-cfml-check at 11 with roadmap_state=in_progress and development_status=in_progress after local feasibility evidence; keep Result Store and Runtime Trace queued/not_started.",
         "Record thirteen registered tools with one owner-confirmed delivery; no new release or conformance claims.",
         "CFML Check is preferred first only within the three additions.",
         "Set tool_status_record_count to 13 only after all three records are read back; attach returned design/status IDs."

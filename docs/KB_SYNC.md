@@ -31,12 +31,14 @@ overwrite the KB's report, or attach it to the Hub's 0.2.0 verification field.
 | Maintenance Skill | `0fb4d79d-c9fa-4787-9e61-1ad037394875` | Existing workflow; no skill implementation change required |
 
 Each tool has one active status record with independent roadmap, design,
-development, verification, release and evidence axes. New designs use
-`roadmap_state: queued`, `design_status: draft`,
+development, verification, release and evidence axes. At the initial three-tool
+sync, all new records used `roadmap_state: queued`, `design_status: draft`,
 `development_status: not_started`, `verification_status: not_started`, and
-`release_status: not_started`. `evidence_status: partial` refers to documented
-need/design evidence only. Repository/package identities and release versions
-remain unknown until verified. Do not register planned designs as runnable KB tools.
+`release_status: not_started`. The later CFML Check follow-up records local
+development and test evidence without changing its Hub lifecycle. `evidence_status:
+partial` still refers to incomplete admission/release evidence. Repository/package
+identities and release versions remain unknown until verified. Do not register
+planned designs as runnable KB tools.
 
 ## Synchronization procedure
 
@@ -96,3 +98,17 @@ records were updated in place and read back at User tier. The canonical active
 status-record count is now 13, with no new implementation, release, or conformance
 claim. Company-wide sharing remains a separate follow-up because the current KB
 visibility is User.
+
+## 2026-09-07 CFML feasibility follow-up
+
+The local independent repository `AI-Agent-Tool-CFML-Check` was created and committed
+at `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. Its local `npm run typecheck`,
+`npm test` (17/17), CLI JSON scenarios, and `npm pack --dry-run` passed on Windows.
+The source repository has no confirmed canonical remote URL or maintainer record,
+and no engine-backed CF-14 trial was run.
+
+The existing User-tier status item `67898e2f-f74c-4701-b0c7-690b45d6dcdb` was updated
+in place after readback. Its Hub lifecycle remains `Planned`, `development_status`
+is `in_progress`, and `verification_status` is `partial`; the record points to the
+local commit and keeps release status `not_started`. This is local feasibility
+evidence, not Experimental admission, publication evidence, or company-wide sharing.

@@ -20,7 +20,7 @@ working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
 | H-10 | Keep future discovery metadata-only by default and fail on unsupported contracts | Architecture requirements exist; runtime acceptance remains future under E-04 |
 | H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | Known gaps documented; implementation acceptance pending E-02 |
 | H-12 | Consider shared packages/monorepo migration only after roughly 3–5 mature tools reveal real duplicated infrastructure | Architecture gate; no migration implemented |
-| H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; independent tool tests remain pending |
+| H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
 | H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
 
 Evidence definitions are in [VALIDATION.md](VALIDATION.md). Requirements for future

@@ -11,6 +11,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tools | Initial baseline `2f2d46e`; documentation commits are recorded in Git history | Documentation foundation and local authoring checks; no root npm/runtime/discovery implementation |
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
+| AI-Agent-Tool-CFML-Check | Local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; TypeScript implementation, fixtures and tests inspected | Local feasibility slice is inspectable; no canonical remote identity, engine compatibility, npm publication or cross-platform evidence inferred |
 
 At the bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
@@ -79,13 +80,15 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   HUB-05. Its 0.2.0 npm identity is now confirmed, but no Hub verification snapshot
   is populated. Other tools' publication identities remain pending.
 - Change Impact's active scaffold: no runtime verification performed here.
+- CFML Check's local feasibility slice: no canonical remote identity, engine compatibility,
+  CF-14 engine comparison, npm publication, or cross-platform evidence.
 - Eight other planned tools: no local repositories inspected; no remote-absence,
   capability, release, or availability conclusion follows.
 - Future discovery, shared infrastructure, and release automation: not implemented.
 
-No new tool tests were necessary for this documentation-only reconciliation because
-Code Slice's inspected revision is unchanged. The Hub checks do not establish an
-external release or fix the compatibility gaps recorded in [TASK.md](TASK.md).
+The CFML Check tests were run in its independent repository; the Hub checks do not
+establish an external release or engine compatibility and do not fix the remaining
+gaps recorded in [TASK.md](TASK.md).
 
 ## Three-tool documentation review - 2026-09-07
 
@@ -93,6 +96,7 @@ external release or fix the compatibility gaps recorded in [TASK.md](TASK.md).
 | --- | --- | --- |
 | V-07 | Expansion design and Hub integrity | Three detailed drafts define CF-01 through CF-14, RS-01 through RS-13 and RT-01 through RT-13; registry/roadmap append three Planned entries while preserving the original ten; local validator and whitespace checks pass |
 | V-08 | KB synchronization at explicit User scope | Read existing KB, maintenance skill/rule, status schema, ecosystem and functional map; two Company-tier attempts returned 403 SHARE_TIER_DENIED with retryable=false and write_committed=false; after KB visibility read back as user, four detailed design parents, three new status records, and three existing index records were written at User tier and read back with exact content/digests and 13 status records; company-wide visibility remains unverified |
+| V-09 | CFML Check feasibility slice | Independent local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; `npm run typecheck`, `npm test` (17/17), CLI valid/unsupported JSON scenarios, and `npm pack --dry-run` passed on Windows 2026-09-07; CF-14 and cross-platform/engine evidence remain pending |
 
 The [expansion review](docs/TOOL_EXPANSION.md) records SCMC design disposition,
 cross-tool boundaries, evidence references and the correction to two overbroad
@@ -111,6 +115,6 @@ Change Impact and Project Profile status from the KB is explicitly scoped as
 knowledge evidence. No additional delivery completion is inferred.
 
 [KB synchronization](docs/KB_SYNC.md) and its pending payload record the exact
-Company target, failure, document digests, proposed status records and remaining
-updates. This is prepared data, not an applied KB migration. The 40 tool acceptance
-cases are design requirements only; none were run as implementation tests here.
+User-tier target, historical Company-tier failures, document digests, status record
+updates and remaining scope. CFML Check's local tests do not change the Hub registry
+lifecycle or the 40-case design evidence boundary.
