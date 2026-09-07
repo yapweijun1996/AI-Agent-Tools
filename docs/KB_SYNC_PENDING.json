@@ -45,7 +45,7 @@
       "action": "find_or_ingest_document",
       "title": "AI-Agent-Tools Three-Tool Expansion - Detailed Design Review",
       "source_path": "docs/TOOL_EXPANSION.md",
-      "source_sha256": "1ab2f39825b99159121a075c58f849226bec0c94cc6a3d0f57191f4a23c6a244",
+      "source_sha256": "91fb6954afc0daca008250fd167f0ddc4956bf425377b40c0cef0077f78a1b80",
       "content_normalization": "UTF-8 LF",
       "design_revision": "2026-09-07",
       "kbcid": "ai-agent-tools.design",
@@ -53,7 +53,9 @@
       "auto_chunk": true,
       "max_chars": 3000,
       "overlap": 200,
-      "item_id": "3e0f9dfa-e53a-463e-872d-6869aecc8802"
+      "item_id": "3e0f9dfa-e53a-463e-872d-6869aecc8802",
+      "source_commit": "e6c49ca05a1990a8702a8bbfd3404aa62f2e3a4a",
+      "readback": "exact_user_tier_after_cfml_follow_up"
     },
     {
       "action": "find_or_ingest_document",
@@ -105,6 +107,7 @@
       "kbcid": "ai-agent-tools.tool-status",
       "share_level": "user",
       "item_id": "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
+      "readback": "exact_user_tier_after_cfml_follow_up",
       "content": "Agent CFML Check remains Planned at roadmap position 11. The detailed design and an independent local feasibility slice now exist. The local implementation and 17-test run are evidence for in-progress development only; engine compatibility, canonical repository identity, admission and release have not started. Validate the lexical slice before adding engine-specific coverage, without reordering the original ten tools.",
       "metadata": {
         "kind": "tool_status_record",

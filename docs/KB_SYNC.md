@@ -81,7 +81,7 @@ a second project SSOT.
 
 | Local document | SHA-256 of UTF-8 LF content | User KB parent | Chunks | Readback |
 | --- | --- | --- | ---: | --- |
-| `docs/TOOL_EXPANSION.md` | `1ab2f39825b99159121a075c58f849226bec0c94cc6a3d0f57191f4a23c6a244` | `3e0f9dfa-e53a-463e-872d-6869aecc8802` | 3 | Exact |
+| `docs/TOOL_EXPANSION.md` | `91fb6954afc0daca008250fd167f0ddc4956bf425377b40c0cef0077f78a1b80` | `3e0f9dfa-e53a-463e-872d-6869aecc8802` | 4 | Exact |
 | `docs/tools/AGENT_CFML_CHECK.md` | `98b113c081934a1e7ecf0c506f2991c1d73fe5730ed13f0a5120f10433242dcb` | `63ddf381-7f18-426a-86eb-7a34a4c80a6b` | 5 | Exact |
 | `docs/tools/AGENT_RESULT_STORE.md` | `a54773386f99e9ffa598d985ff23268b1cdb065fc75942fb1c137d978fb19fd5` | `b7084e94-fa4b-4ac9-8941-f75448c6ed04` | 6 | Exact |
 | `docs/tools/AGENT_RUNTIME_TRACE.md` | `6186851e0c6484e6700b3fbe9144b47a82d421f460c77dc4a712fb5ed3c424ac` | `d489e96f-b1ef-4f16-894d-e5558539eac7` | 6 | Exact |
