@@ -150,6 +150,17 @@
       "release_version": null,
       "verification": null,
       "deprecation": null
+    },
+    {
+      "id": "agent-symbol-search",
+      "name": "Agent Symbol Search",
+      "description": "Navigate bounded TypeScript symbol definitions, references, and relationships without returning full source bodies.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
     }
   ]
 }

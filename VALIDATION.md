@@ -1,6 +1,6 @@
 # Validation and evidence
 
-Latest Hub review: 2026-09-07. The original source/release observations below are
+Latest Hub review: 2026-09-08. The original source/release observations below are
 dated 2026-09-06 and remain historical. This document owns the Hub's evidence
 scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
@@ -14,6 +14,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
 | AI-Agent-Tool-CFML-Check | Local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; TypeScript implementation, fixtures and tests inspected; local capabilities/typecheck/test/CLI/package dry-run checks passed on Windows | Local feasibility slice is inspectable and exercised; no canonical remote identity, engine compatibility, npm publication or cross-platform evidence inferred |
+| AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); source manifest `agent-symbol-search@0.1.0` | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; npm package is not published |
 
 At the bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
@@ -25,11 +26,12 @@ those declarations do not prove complete runtime enforcement. Snapshot code exis
 but its correctness/security tests were not executed in this Hub documentation task.
 This active working tree can change independently after inspection.
 
-The three canonical repository links were checked and opened successfully during
+The four canonical repository links were checked and opened successfully during
 reconciliation:
 [Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice) and
 [Change Impact](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact), plus
-[Project Profile](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile).
+[Project Profile](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile) and
+[Symbol Search](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search).
 This establishes repository identity/accessibility, not npm publication or CI results.
 
 ## Code Slice completion and publication update
@@ -78,6 +80,27 @@ fail-closed hardening and coverage item rather than a confirmed exploit. The
 package metadata declares MIT, but the repository and dry-run package did not
 include a `LICENSE` file; release readiness should address that packaging gap.
 
+## Symbol Search implementation admission review
+
+On 2026-09-08, the public [Symbol Search commit
+`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14)
+was inspected from a source archive. Its TypeScript-only V1 implements bounded
+`search`, `symbols`, `definition`, `references`, `implementations`, and
+`capabilities` operations using the TypeScript compiler API. It documents explicit
+non-goals for JavaScript, Python, and CFML adapters, full-source return, code
+execution, network access, dependency installation during search, and repository
+mutation. The repository includes maintained request/result/capability schemas,
+security fixtures, and an MIT `LICENSE` file.
+
+The source archive passed `npm run verify` (lint, typecheck, and 30 tests),
+`npm run smoke:pack`, `npm run capability:check`, and
+`npm run benchmark:check`. `npm run docs:check` reached its final Git evidence
+check but could not inspect `HEAD` because the review used a source archive without
+`.git`; this is an evidence-environment limitation, not a reported runtime failure.
+The npm registry query for `agent-symbol-search` returned 404, so no npm identity
+or release version is recorded. These observations satisfy Experimental admission,
+not publication, Hub protocol conformance, or cross-platform certification.
+
 ## Hub checks
 
 | ID | Check | Evidence and limitation |
@@ -114,7 +137,10 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
 - Change Impact's active scaffold: no runtime verification performed here.
 - CFML Check's local feasibility slice: no canonical remote identity, engine compatibility,
   CF-14 engine comparison, npm publication, or cross-platform evidence.
-- Eight other planned tools: no local repositories inspected; no remote-absence,
+- Symbol Search: npm publication, Hub protocol conformance, and cross-platform
+  certification remain unverified; its docs check needs a Git checkout for the
+  final HEAD evidence step.
+- Seven other planned tools: no local repositories inspected; no remote-absence,
   capability, release, or availability conclusion follows.
 - Future discovery, shared infrastructure, and release automation: not implemented.
 
@@ -150,3 +176,14 @@ knowledge evidence. No additional delivery completion is inferred.
 User-tier target, historical Company-tier failures, document digests, status record
 updates and remaining scope. CFML Check's local tests do not change the Hub registry
 lifecycle or the 40-case design evidence boundary.
+
+## Symbol Search registration review - 2026-09-08
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-10 | Symbol Search Experimental admission | Public commit `303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14`; `npm run verify` passed with 30 tests, `npm run smoke:pack`, `npm run capability:check`, and `npm run benchmark:check` passed; npm lookup returned 404 and `npm run docs:check` could not inspect Git `HEAD` from the source archive |
+
+The repository is therefore registered with confirmed GitHub identity and
+`status: "Experimental"`, while `npm`, `release_version`, and `verification`
+remain `null`. This records inspectable implementation evidence without implying
+an npm release, Hub protocol conformance, or delivery completion.

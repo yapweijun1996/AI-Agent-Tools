@@ -1,6 +1,6 @@
 # Task status
 
-Status date: 2026-09-07. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
+Status date: 2026-09-08. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
 execution ledger; independent tool repositories own their implementation tasks.
 
 ## Current situation
@@ -23,9 +23,10 @@ executable has a known distribution defect; it remains Experimental and is not
 delivery Done.
 
 Three owner-requested tools are now registered as Planned, with detailed draft
-specifications: CFML Check, Result Store and Runtime Trace. The registry contains
-thirteen entries with one owner-confirmed completion. The original ten-tool order
-is unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
+specifications: CFML Check, Result Store and Runtime Trace. Symbol Search was
+appended as an Experimental implementation admission on 2026-09-08. The registry
+contains fourteen entries with one owner-confirmed completion. The original
+ten-tool order is unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
 in progress and Project Profile next with an approved V1 boundary; those records
 are knowledge evidence, not a new source/release audit by this Hub.
 
@@ -57,7 +58,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | Planned | HUB-02 | E-02; decision and executable consumer fixtures not implemented |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0 npm identity and Project Profile 0.1.1 npm identity confirmed; Project Profile 0.1.2 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile 0.1.1, and Symbol Search repository identities reviewed; Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
 | HUB-06 | Implement a justified discovery CLI | Deferred | HUB-03, HUB-04 | E-04; identity/distribution/source/freshness design pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
@@ -90,6 +91,10 @@ or an unimplemented feature is not automatically an external blocker.
   The published `0.1.1` package has a reproduced CLI distribution defect; the
   source `0.1.2` correction remains unpublished. Its registry lifecycle is therefore
   `Experimental`, with no verification snapshot.
+- Symbol Search repository identity and current source commit are confirmed. Its
+  TypeScript implementation passed the repository's local verification suite, but
+  package `0.1.0` is unpublished and Hub protocol conformance is unverified; its
+  lifecycle is `Experimental` with no npm or verification snapshot.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
 - Hub license selection and future discovery package/distribution ownership remain

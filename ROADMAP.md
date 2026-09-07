@@ -1,8 +1,8 @@
 # Roadmap
 
-Last reconciled: 2026-09-07. The sequence below preserves the original ten-tool priority and appends three owner-requested designs. It is not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
+Last reconciled: 2026-09-08. The sequence below preserves the original ten-tool priority and appends three owner-requested designs plus Symbol Search. It is not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
 
-The documentation foundation is complete. **Delivery progress: 1 of 13 registered tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has since received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains the defective `0.1.1`, while the corrected `0.1.2` source is not published. The other twelve tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
+The documentation foundation is complete. **Delivery progress: 1 of 14 registered tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains the defective `0.1.1`, while the corrected `0.1.2` source is not published. Symbol Search has also received an implementation admission review and is registered as `Experimental`; its package `0.1.0` is not published. The other thirteen tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
 
 ## Delivery sequence
 
@@ -21,12 +21,15 @@ The documentation foundation is complete. **Delivery progress: 1 of 13 registere
 | 11 | `agent-cfml-check` | Agent CFML Check | Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage. |
 | 12 | `agent-result-store` | Agent Result Store | Persist explicitly authorized sanitized results with bounded retrieval, provenance, and retention. |
 | 13 | `agent-runtime-trace` | Agent Runtime Trace | Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages. |
+| 14 | `agent-symbol-search` | Agent Symbol Search | Navigate bounded TypeScript symbol definitions, references, and relationships without returning full source bodies. |
 
 The Company KB records Change Impact in progress and Project Profile next; this
 update does not change that sequence. Among the three additions, CFML Check is
 the recommended first feasibility spike because its structural defects can be
 tested locally. Result Store and Runtime Trace need explicit producer integration.
 The [expansion review](docs/TOOL_EXPANSION.md) explains their bounded contracts.
+Symbol Search is a separate TypeScript-only implementation admission and remains
+Experimental until its owner supplies completion and release evidence.
 
 ## Milestones
 
@@ -42,7 +45,7 @@ release checks only for release tasks. No new feature is scheduled by a date her
 
 ## Open decisions
 
-- Confirm remaining independent repositories, published npm package identities, maintainers, and release history; the three inspected repository URLs are now registered. Project Profile's published 0.1.1 artifact remains a known release gap until 0.1.2 is published and verified.
+- Confirm remaining independent repositories, published npm package identities, maintainers, and release history; the four inspected repository URLs are now registered. Project Profile's published 0.1.1 artifact remains a known release gap until 0.1.2 is published and verified. Symbol Search has no published npm artifact yet.
 - Resolve versioned protocol profiles versus explicit migration using real contract fixtures; no compatibility mechanism has been implemented.
 - Define tool-specific language/format support, resource limits, and minimum Node.js versions in each tool repository.
 - Select licenses before package publication; this Hub currently does not declare a license or grant package licensing rights.
