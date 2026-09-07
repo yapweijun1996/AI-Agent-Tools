@@ -1,6 +1,8 @@
 # Validation and evidence
 
-Evidence date: 2026-09-07. This document owns the Hub's evidence scope. Individual
+Latest Hub review: 2026-09-07. The original source/release observations below are
+dated 2026-09-06 and remain historical. This document owns the Hub's evidence
+scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
 
 ## Current source observations
@@ -11,6 +13,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
+| AI-Agent-Tool-CFML-Check | Local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; TypeScript implementation, fixtures and tests inspected; local capabilities/typecheck/test/CLI/package dry-run checks passed on Windows | Local feasibility slice is inspectable and exercised; no canonical remote identity, engine compatibility, npm publication or cross-platform evidence inferred |
 
 At the bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
@@ -109,10 +112,41 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   HUB-05. Its 0.2.0 npm identity is now confirmed, but no Hub verification snapshot
   is populated. Other tools' publication identities remain pending.
 - Change Impact's active scaffold: no runtime verification performed here.
+- CFML Check's local feasibility slice: no canonical remote identity, engine compatibility,
+  CF-14 engine comparison, npm publication, or cross-platform evidence.
 - Eight other planned tools: no local repositories inspected; no remote-absence,
   capability, release, or availability conclusion follows.
 - Future discovery, shared infrastructure, and release automation: not implemented.
 
-No new tool tests were necessary for this documentation-only reconciliation because
-Code Slice's inspected revision is unchanged. The Hub checks do not establish an
-external release or fix the compatibility gaps recorded in [TASK.md](TASK.md).
+The CFML Check tests were run in its independent repository; the Hub checks do not
+establish an external release or engine compatibility and do not fix the remaining
+gaps recorded in [TASK.md](TASK.md).
+
+## Three-tool documentation review - 2026-09-07
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-07 | Expansion design and Hub integrity | Three detailed drafts define CF-01 through CF-14, RS-01 through RS-13 and RT-01 through RT-13; registry/roadmap append three Planned entries while preserving the original ten; local validator and whitespace checks pass |
+| V-08 | KB synchronization at explicit User scope | Read existing KB, maintenance skill/rule, status schema, ecosystem and functional map; two Company-tier attempts returned 403 SHARE_TIER_DENIED with retryable=false and write_committed=false; after KB visibility read back as user, four detailed design parents, three new status records, and three existing index records were written at User tier and read back with exact content/digests and 13 status records; company-wide visibility remains unverified |
+| V-09 | CFML Check feasibility slice | Independent local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; `capabilities --json`, `npm run typecheck`, `npm test` (17/17), CLI valid/misnested/unsupported JSON scenarios, and `npm pack --dry-run` passed on Windows 2026-09-07; CF-14 and cross-platform/engine evidence remain pending |
+
+The [expansion review](docs/TOOL_EXPANSION.md) records SCMC design disposition,
+cross-tool boundaries, evidence references and the correction to two overbroad
+findings in the earlier conversational review. The validator source is unchanged.
+Its lack of a checked-in regression suite remains a separate maintenance gap.
+
+New external reference links were opened/reviewed: Lucee cfif/tag-island syntax,
+Adobe CFML comments, RFC 6901 JSON Pointer and OpenTelemetry trace concepts.
+These references support design choices; no dependency was installed and no tool
+runtime conformance was established. The retrieved Globe3 exact-draft readback
+record is historical evidence; this task did not execute a business write.
+
+The Company KB contains later Code Slice package observations; the Hub's recorded
+0.2.0 release remains unchanged because later artifact behavior was not reaudited.
+Change Impact and Project Profile status from the KB is explicitly scoped as
+knowledge evidence. No additional delivery completion is inferred.
+
+[KB synchronization](docs/KB_SYNC.md) and its pending payload record the exact
+User-tier target, historical Company-tier failures, document digests, status record
+updates and remaining scope. CFML Check's local tests do not change the Hub registry
+lifecycle or the 40-case design evidence boundary.

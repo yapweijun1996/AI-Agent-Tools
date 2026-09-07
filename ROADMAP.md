@@ -1,8 +1,8 @@
 # Roadmap
 
-Last reconciled: 2026-09-07. The sequence below is the agreed product priority, not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
+Last reconciled: 2026-09-07. The sequence below preserves the original ten-tool priority and appends three owner-requested designs. It is not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
 
-The documentation foundation is complete. **Delivery progress: 1 of 10 tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has since received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains the defective `0.1.1`, while the corrected `0.1.2` source is not published. The other eight tools still await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
+The documentation foundation is complete. **Delivery progress: 1 of 13 registered tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has since received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains the defective `0.1.1`, while the corrected `0.1.2` source is not published. The other twelve tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. No discovery CLI or compatibility layer exists. See [Validation](VALIDATION.md) for evidence scope.
 
 ## Delivery sequence
 
@@ -18,6 +18,15 @@ The documentation foundation is complete. **Delivery progress: 1 of 10 tools com
 | 8 | `agent-rules-resolve` | Agent Rules Resolve | Resolve explicitly supported rule sources using documented precedence. |
 | 9 | `agent-release-guard` | Agent Release Guard | Check release prerequisites and evidence without publishing by default. |
 | 10 | `agent-context-pack` | Task-scoped Agent Context Pack | Assemble bounded, provenance-bearing tool results for one explicit task. |
+| 11 | `agent-cfml-check` | Agent CFML Check | Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage. |
+| 12 | `agent-result-store` | Agent Result Store | Persist explicitly authorized sanitized results with bounded retrieval, provenance, and retention. |
+| 13 | `agent-runtime-trace` | Agent Runtime Trace | Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages. |
+
+The Company KB records Change Impact in progress and Project Profile next; this
+update does not change that sequence. Among the three additions, CFML Check is
+the recommended first feasibility spike because its structural defects can be
+tested locally. Result Store and Runtime Trace need explicit producer integration.
+The [expansion review](docs/TOOL_EXPANSION.md) explains their bounded contracts.
 
 ## Milestones
 

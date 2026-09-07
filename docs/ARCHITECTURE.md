@@ -19,6 +19,11 @@ The normal flow is: a consumer reads registry metadata, selects an independently
 - Hub standards: ecosystem requirements. `standards_version` is currently `1.0.0`, the initial policy contract, not a claim of tool compliance.
 - Tool repository and immutable release artifacts: actual behavior, implementation, supported versions, and test evidence.
 
+The existing Company KB is the cross-session project knowledge source. Hub files
+remain the version-controlled contract and registry artifacts; synchronize approved
+changes rather than treating either stale copy as authoritative for every claim.
+[KB synchronization](KB_SYNC.md) records owners, item IDs, hashes and readback.
+
 If registry metadata contradicts a release, investigate and correct the metadata; do not silently infer conformance. Descriptions are intended purpose and must not be read as release guarantees. A recorded release is a reviewed snapshot, not a live npm `latest` lookup.
 
 Code Slice's native protocol and Change Impact's draft differ from the Hub target
@@ -58,3 +63,12 @@ Tool invocation remains under the agent/developer's control. If later approved, 
 Consider shared packages or monorepo migration only after roughly 3–5 mature tools (`Verified` or `Stable`, with maintained releases) demonstrate repeated infrastructure that is costly to maintain independently. Record concrete duplication, ownership, compatibility, migration cost, rollback, and independent-release impact in a reviewed decision before implementation.
 
 Small duplication is acceptable. There is no shared runtime, mandatory SDK, root workspace, or predetermined migration in this foundation. A migration would explicitly change the current independent-repository architecture and requires a separate approval; the threshold does not authorize it automatically.
+
+## Planned evidence tools
+
+The [three-tool expansion](TOOL_EXPANSION.md) adds structural checking, sanitized
+artifact persistence and supplied-event analysis as independent responsibilities.
+Result Store's explicit local writes stay inside its own allowed store; the Hub
+does not own that storage. Runtime Trace receives event files and caller-defined
+business evidence; application adapters own instrumentation and readback. No
+automatic retries, service orchestration or mandatory inter-tool dependency follows.

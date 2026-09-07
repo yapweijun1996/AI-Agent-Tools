@@ -1,6 +1,6 @@
 # Design decisions
 
-Last reconciled: 2026-09-06. Scope: the AI-Agent-Tools Hub. This document owns
+Last reconciled: 2026-09-07. Scope: the AI-Agent-Tools Hub. This document owns
 decision rationale; [Architecture](docs/ARCHITECTURE.md) owns structural contracts,
 [SPEC.md](SPEC.md) owns requirements, and [TASK.md](TASK.md) owns execution status.
 
@@ -30,6 +30,10 @@ consistency; the script cannot prove external tool conformance.
 | D-07 | Separate delivery priority from usage order | Tools remain independently useful; agents may read rules early and only use release checks for release tasks |
 | D-08 | Defer shared infrastructure until roughly 3–5 mature tools expose real duplication | Evidence, ownership, compatibility, migration cost, and rollback must justify a separately reviewed change |
 | D-09 | Preserve historical reviews and timestamp current observations | A changing sibling checkout is not a release snapshot; latest observations belong in TASK/VALIDATION, with historical review notices |
+| D-10 | Append three Planned tools without changing the original order | Owner requested detailed CFML Check, Result Store and Runtime Trace specifications; CFML Check is preferred first within this added group |
+| D-11 | Give each new tool a bounded local responsibility | Structural validation, sanitized evidence storage, and supplied-event correlation stay separate; no automatic instrumentation or agent runtime |
+| D-12 | Preserve source completeness and business outcome independently from operation success | A stored page can be complete while its upstream source is truncated; a trace summary can be complete while the business outcome is unknown |
+| D-13 | Synchronize reviewable Hub contracts with the existing Company KB | KB status/design records and repository documents retain source provenance and content digests; reconcile conflicts explicitly before claiming current state |
 
 ## Protocol reconciliation still pending
 
@@ -61,3 +65,13 @@ None owns agent reasoning, test execution by default, or universal safety guaran
 Detailed per-tool acceptance concerns remain in the
 [function review](docs/TOOL_FUNCTION_REVIEW.md). They are backlog input, not completed
 features in repositories that have not implemented them.
+
+## Three-tool handoff
+
+[Expansion review](docs/TOOL_EXPANSION.md) owns the design assessment and links to
+each detailed draft. CFML Check uses an explicit supported lexical/structural
+profile; Result Store writes only through explicit scoped operations; Runtime
+Trace V1 analyzes supplied event artifacts and never executes a readback or retries
+a write. Current standards/schema versions stay unchanged. The CFML implementation
+is delivered in its independent repository; no tool implementation, root dependency,
+consumer adapter, or deployment is delivered by this Hub.

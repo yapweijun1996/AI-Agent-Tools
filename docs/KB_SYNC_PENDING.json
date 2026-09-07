@@ -1,0 +1,385 @@
+{
+  "format": "ai-agent-tools-kb-sync-plan-v1",
+  "prepared_on": "2026-09-07",
+  "status": "synchronized_user_tier_company_follow_up",
+  "kb_id": "3e631a61-d63d-4c25-aaac-cd1557b063f2",
+  "required_share_level": "company",
+  "applied_share_level": "user",
+  "kb_visibility_readback": "user",
+  "synchronized_on": "2026-09-07",
+  "blocker": {
+    "http_status": 403,
+    "code": "SHARE_TIER_DENIED",
+    "message": "share-tier write denied: above_scope",
+    "write_committed": false,
+    "request_id": "req-50b6e146a41c407894baf8c2ec8b9bc7",
+    "scope": "company_follow_up"
+  },
+  "attempts": [
+    {
+      "request_id": "req-b45ecb087ef7417cbf18357528bd356a",
+      "http_status": 403,
+      "code": "SHARE_TIER_DENIED",
+      "retryable": false,
+      "write_committed": false
+    },
+    {
+      "request_id": "req-50b6e146a41c407894baf8c2ec8b9bc7",
+      "http_status": 403,
+      "code": "SHARE_TIER_DENIED",
+      "retryable": false,
+      "write_committed": false
+    }
+  ],
+  "resume_rules": [
+    "Company-tier follow-up requires an authorized Company KB connection; do not change permissions or lower the sharing tier to bypass that policy.",
+    "The current user-tier synchronization is complete and must not be treated as company-wide sharing.",
+    "Reread existing records and compare document digests before mutation.",
+    "Read full content from each source_path, normalize CRLF to LF and verify source_sha256.",
+    "Find/update existing design or status records before creating; preserve unrelated metadata.",
+    "Fill new item references only from confirmed writes; read back content, hashes, statuses, ecosystem and index.",
+    "Update TASK.md, VALIDATION.md and docs/KB_SYNC.md only after confirmed synchronization; commit the receipt."
+  ],
+  "documents": [
+    {
+      "action": "find_or_ingest_document",
+      "title": "AI-Agent-Tools Three-Tool Expansion - Detailed Design Review",
+      "source_path": "docs/TOOL_EXPANSION.md",
+      "source_sha256": "4d5a536bed5958ba513aeb80c63791161c3435663f0057799a106c8c0744ac39",
+      "content_normalization": "UTF-8 LF",
+      "design_revision": "2026-09-07",
+      "kbcid": "ai-agent-tools.design",
+      "share_level": "user",
+      "auto_chunk": true,
+      "max_chars": 3000,
+      "overlap": 200,
+      "item_id": "3e0f9dfa-e53a-463e-872d-6869aecc8802",
+      "source_commit": "5c468211ccc0a8fa769b2326c094a007156b3e7a",
+      "readback": "exact_user_tier_after_executable_verification"
+    },
+    {
+      "action": "find_or_ingest_document",
+      "title": "Agent CFML Check - Detailed V1 Design",
+      "source_path": "docs/tools/AGENT_CFML_CHECK.md",
+      "source_sha256": "ab200cf9640c103e07f19a563a65647694e47c96b91aba2fe821f3ae23d4cb3e",
+      "content_normalization": "UTF-8 LF",
+      "design_revision": "2026-09-07",
+      "kbcid": "ai-agent-tools.design",
+      "share_level": "user",
+      "auto_chunk": true,
+      "max_chars": 3000,
+      "overlap": 200,
+      "item_id": "63ddf381-7f18-426a-86eb-7a34a4c80a6b",
+      "source_commit": "5c468211ccc0a8fa769b2326c094a007156b3e7a",
+      "readback": "exact_user_tier_after_executable_verification"
+    },
+    {
+      "action": "find_or_ingest_document",
+      "title": "Agent Result Store - Detailed V1 Design",
+      "source_path": "docs/tools/AGENT_RESULT_STORE.md",
+      "source_sha256": "a54773386f99e9ffa598d985ff23268b1cdb065fc75942fb1c137d978fb19fd5",
+      "content_normalization": "UTF-8 LF",
+      "design_revision": "2026-09-07",
+      "kbcid": "ai-agent-tools.design",
+      "share_level": "user",
+      "auto_chunk": true,
+      "max_chars": 3000,
+      "overlap": 200,
+      "item_id": "b7084e94-fa4b-4ac9-8941-f75448c6ed04"
+    },
+    {
+      "action": "find_or_ingest_document",
+      "title": "Agent Runtime Trace - Detailed V1 Design",
+      "source_path": "docs/tools/AGENT_RUNTIME_TRACE.md",
+      "source_sha256": "6186851e0c6484e6700b3fbe9144b47a82d421f460c77dc4a712fb5ed3c424ac",
+      "content_normalization": "UTF-8 LF",
+      "design_revision": "2026-09-07",
+      "kbcid": "ai-agent-tools.design",
+      "share_level": "user",
+      "auto_chunk": true,
+      "max_chars": 3000,
+      "overlap": 200,
+      "item_id": "d489e96f-b1ef-4f16-894d-e5558539eac7"
+    }
+  ],
+  "status_records": [
+    {
+      "action": "find_or_create_single_active_status",
+      "title": "Tool Status - agent-cfml-check",
+      "kbcid": "ai-agent-tools.tool-status",
+      "share_level": "user",
+      "item_id": "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
+      "readback": "exact_user_tier_after_executable_verification",
+      "content": "Agent CFML Check remains Planned at roadmap position 11. The detailed design and an independent local feasibility slice now exist. On Windows, capabilities, typecheck, 17/17 tests, direct valid/misnested CLI checks, and npm pack dry-run all passed; this is in-progress development evidence only. Engine compatibility, canonical repository identity, admission and release remain unconfirmed.",
+      "metadata": {
+        "kind": "tool_status_record",
+        "schema_version": "ai-agent-tools/tool-status/v1",
+        "project": "AI-Agent-Tools",
+        "active": true,
+        "tool_id": "agent-cfml-check",
+        "display_name": "Agent CFML Check",
+        "roadmap_order": 11,
+        "purpose": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
+        "roadmap_state": "in_progress",
+        "design_status": "draft",
+        "development_status": "in_progress",
+        "verification_status": "partial",
+        "release_status": "not_started",
+        "evidence_status": "partial",
+        "hub_lifecycle": "Planned",
+        "repo": {
+          "name": "AI-Agent-Tool-CFML-Check",
+          "url": null,
+          "head": "9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837"
+        },
+        "package": {
+          "name": null,
+          "version": null
+        },
+        "versions": {
+          "repo": null,
+          "design": "2026-09-07",
+          "package": null
+        },
+        "current_focus": "Local feasibility slice implemented; capabilities, typecheck, tests, direct CLI fixtures and package dry-run verified; canonical repository identity and engine compatibility remain unconfirmed.",
+        "blockers": [],
+        "known_gaps": [
+          "CF-14 engine comparison, cross-platform coverage, and engine-specific fixtures are not implemented.",
+          "Canonical remote repository, maintainer, engine versions, package publication and release evidence remain unconfirmed."
+        ],
+        "next_action": "Review and harden the local lexical slice, then establish canonical repository identity and engine-backed CF-14 evidence before Experimental admission.",
+        "prior_art_refs": [],
+        "evidence": [
+          {
+            "kind": "design_document",
+            "ref": "docs/tools/AGENT_CFML_CHECK.md",
+            "status": "draft_not_runtime_verified",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "owner_request",
+            "ref": "chat:2026-09-07-three-tool-documentation-request",
+            "status": "confirmed_scope",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "implementation_source",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837",
+            "status": "local_feasibility_slice",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "capabilities_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:capabilities-json",
+            "status": "passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "typecheck_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-run-typecheck",
+            "status": "passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "test_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-test",
+            "status": "17_passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "cli_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:cli-fixtures",
+            "status": "valid_pass_misnested_violations_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "package_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-pack-dry-run",
+            "status": "25_files_dry_run_only_not_published",
+            "verified_at": "2026-09-07"
+          }
+        ],
+        "source_refs": [
+          "docs/tools/AGENT_CFML_CHECK.md",
+          "docs/TOOL_EXPANSION.md",
+          "TOOL_REGISTRY.json",
+          "repo:AI-Agent-Tool-CFML-Check"
+        ],
+        "last_updated_at": "2026-09-07"
+      }
+    },
+    {
+      "action": "find_or_create_single_active_status",
+      "title": "Tool Status - agent-result-store",
+      "kbcid": "ai-agent-tools.tool-status",
+      "share_level": "user",
+      "item_id": "0d4ef250-e841-4d79-8ed2-4d5b68dc2804",
+      "content": "Agent Result Store is registered as Planned at roadmap position 12. A detailed draft design exists at docs/tools/AGENT_RESULT_STORE.md. Development, executable verification and release have not started. Documentation acceptance cases are proposed only. Review storage and producer boundaries, then prototype sanitized ingestion and exact readback in an independent repository.",
+      "metadata": {
+        "kind": "tool_status_record",
+        "schema_version": "ai-agent-tools/tool-status/v1",
+        "project": "AI-Agent-Tools",
+        "active": true,
+        "tool_id": "agent-result-store",
+        "display_name": "Agent Result Store",
+        "roadmap_order": 12,
+        "purpose": "Persist explicitly authorized sanitized results with bounded retrieval, provenance, and retention.",
+        "roadmap_state": "queued",
+        "design_status": "draft",
+        "development_status": "not_started",
+        "verification_status": "not_started",
+        "release_status": "not_started",
+        "evidence_status": "partial",
+        "hub_lifecycle": "Planned",
+        "repo": {
+          "name": null,
+          "url": null,
+          "head": null
+        },
+        "package": {
+          "name": null,
+          "version": null
+        },
+        "versions": {
+          "repo": null,
+          "design": "2026-09-07",
+          "package": null
+        },
+        "current_focus": "Documented V1 draft awaiting independent feasibility and implementation.",
+        "blockers": [],
+        "known_gaps": [
+          "Atomic persistence, redaction, TTL, concurrency and RS-01 through RS-13 fixtures are not implemented.",
+          "Explicit producer integration and package/repository identity remain unconfirmed."
+        ],
+        "next_action": "Review storage and producer boundaries, then prototype sanitized ingestion and exact readback in an independent repository.",
+        "prior_art_refs": [],
+        "evidence": [
+          {
+            "kind": "design_document",
+            "ref": "docs/tools/AGENT_RESULT_STORE.md",
+            "status": "draft_not_runtime_verified",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "owner_request",
+            "ref": "chat:2026-09-07-three-tool-documentation-request",
+            "status": "confirmed_scope",
+            "verified_at": "2026-09-07"
+          }
+        ],
+        "source_refs": [
+          "docs/tools/AGENT_RESULT_STORE.md",
+          "docs/TOOL_EXPANSION.md",
+          "TOOL_REGISTRY.json"
+        ],
+        "last_updated_at": "2026-09-07"
+      }
+    },
+    {
+      "action": "find_or_create_single_active_status",
+      "title": "Tool Status - agent-runtime-trace",
+      "kbcid": "ai-agent-tools.tool-status",
+      "share_level": "user",
+      "item_id": "0d0acca2-62d7-4453-b657-547e8bf02287",
+      "content": "Agent Runtime Trace is registered as Planned at roadmap position 13. A detailed draft design exists at docs/tools/AGENT_RUNTIME_TRACE.md. Development, executable verification and release have not started. Documentation acceptance cases are proposed only. Implement offline event fixtures before any separately authorized browser/Lucee/runner integration.",
+      "metadata": {
+        "kind": "tool_status_record",
+        "schema_version": "ai-agent-tools/tool-status/v1",
+        "project": "AI-Agent-Tools",
+        "active": true,
+        "tool_id": "agent-runtime-trace",
+        "display_name": "Agent Runtime Trace",
+        "roadmap_order": 13,
+        "purpose": "Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages.",
+        "roadmap_state": "queued",
+        "design_status": "draft",
+        "development_status": "not_started",
+        "verification_status": "not_started",
+        "release_status": "not_started",
+        "evidence_status": "partial",
+        "hub_lifecycle": "Planned",
+        "repo": {
+          "name": null,
+          "url": null,
+          "head": null
+        },
+        "package": {
+          "name": null,
+          "version": null
+        },
+        "versions": {
+          "repo": null,
+          "design": "2026-09-07",
+          "package": null
+        },
+        "current_focus": "Documented V1 draft awaiting independent feasibility and implementation.",
+        "blockers": [],
+        "known_gaps": [
+          "Event validation, correlation and RT-01 through RT-13 fixtures are not implemented.",
+          "Trusted producer bindings and exact-write readback profiles remain to be validated."
+        ],
+        "next_action": "Implement offline event fixtures before any separately authorized browser/Lucee/runner integration.",
+        "prior_art_refs": [
+          "080bc15a-dd20-40ab-8f81-f0d85c55546d:0d79311c-e83d-4b1c-8cfa-fa836aa564d2"
+        ],
+        "evidence": [
+          {
+            "kind": "design_document",
+            "ref": "docs/tools/AGENT_RUNTIME_TRACE.md",
+            "status": "draft_not_runtime_verified",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "owner_request",
+            "ref": "chat:2026-09-07-three-tool-documentation-request",
+            "status": "confirmed_scope",
+            "verified_at": "2026-09-07"
+          }
+        ],
+        "source_refs": [
+          "docs/tools/AGENT_RUNTIME_TRACE.md",
+          "docs/TOOL_EXPANSION.md",
+          "TOOL_REGISTRY.json"
+        ],
+        "last_updated_at": "2026-09-07"
+      }
+    }
+  ],
+  "existing_updates": [
+    {
+      "item_id": "5e5c8c5e-c3e9-460d-a985-3165e0b83031",
+      "title": "Canonical Ecosystem SSOT",
+      "action": "update_in_place_preserving_existing_evidence",
+      "desired_changes": [
+        "Preserve original ten-tool order, Code Slice completed, Change Impact in progress, and Project Profile next.",
+        "Preserve agent-cfml-check at 11 with roadmap_state=in_progress and development_status=in_progress after local feasibility evidence; keep Result Store and Runtime Trace queued/not_started.",
+        "Record thirteen registered tools with one owner-confirmed delivery; no new release or conformance claims.",
+        "CFML Check is preferred first only within the three additions.",
+        "Set tool_status_record_count to 13 only after all three records are read back; attach returned design/status IDs."
+      ],
+      "verified_item_id": "5e5c8c5e-c3e9-460d-a985-3165e0b83031"
+    },
+    {
+      "item_id": "e360b621-3c4c-4a81-b7ce-f3d892015be8",
+      "title": "Functional Map",
+      "action": "update_in_place",
+      "desired_changes": [
+        "Add CFML Check structural profile, Result Store sanitized immutable capture/retrieval, and Runtime Trace supplied-event correlation boundaries.",
+        "Result Store is optional input to Error Lens/Context Pack; Trace retains application ownership of readback and never retries writes.",
+        "Clarify Context Pack is last within the original ten-tool sequence, not the expanded registry."
+      ],
+      "verified_item_id": "e360b621-3c4c-4a81-b7ce-f3d892015be8"
+    },
+    {
+      "item_id": "6c736cc3-756b-435c-9ae0-2f911143f4ad",
+      "title": "Tool Status Record Schema v1",
+      "action": "update_canonical_index_only",
+      "desired_changes": [
+        "Preserve current schema and existing canonical_record_ids.",
+        "Append the three returned status item IDs after readback.",
+        "Set canonical_record_count to 13 only after successful readback."
+      ],
+      "verified_item_id": "6c736cc3-756b-435c-9ae0-2f911143f4ad"
+    }
+  ]
+}

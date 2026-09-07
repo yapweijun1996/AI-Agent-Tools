@@ -1,6 +1,6 @@
 # Hub specification
 
-Last reconciled: 2026-09-06. This specification covers the Hub's observable
+Last reconciled: 2026-09-07. This specification covers the Hub's observable
 documentation and registry behavior. It does not specify tool internals or a
 working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
 
@@ -11,7 +11,7 @@ working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
 | H-01 | Keep independent tool source, package dependencies, and release pipelines outside the Hub | Repository inventory and architecture review; V-01 |
 | H-02 | Register each tool with one unique stable ID, intended purpose, lifecycle, and confirmed or explicitly unknown identity fields | Registry validation and source review; V-02 |
 | H-03 | Separate Planned, Experimental, Verified, Stable, and Deprecated using evidence gates | Tool standard and registry gate checks; V-02 |
-| H-04 | Preserve the agreed ten-tool delivery order without imposing execution dependencies | Roadmap/registry comparison; V-03 |
+| H-04 | Preserve the original ten-tool order, appending explicitly reviewed additions without imposing execution dependencies | Roadmap/registry comparison; V-03 |
 | H-05 | Define local-first, bounded, read-only, deterministic target CLI/JSON/security/release contracts | Standards and manual consistency review; V-05 |
 | H-06 | Distinguish implementation, local tests, published artifacts, and Hub standards conformance | TASK/VALIDATION and release-specific registry metadata; V-05, V-06 |
 | H-07 | Give design, architecture, requirements, work packages, task state, and evidence explicit owners | Documentation index and link checks; V-04 |
@@ -20,6 +20,8 @@ working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
 | H-10 | Keep future discovery metadata-only by default and fail on unsupported contracts | Architecture requirements exist; runtime acceptance remains future under E-04 |
 | H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | Known gaps documented; implementation acceptance pending E-02 |
 | H-12 | Consider shared packages/monorepo migration only after roughly 3–5 mature tools reveal real duplicated infrastructure | Architecture gate; no migration implemented |
+| H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
+| H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
 
 Evidence definitions are in [VALIDATION.md](VALIDATION.md). Requirements for future
 behavior are not marked implemented merely because prose exists.
