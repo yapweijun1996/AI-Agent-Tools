@@ -32,11 +32,14 @@ design-only in this Hub review.
 The independent local repository `AI-Agent-Tool-CFML-Check` contains commit
 `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. It implements a small TypeScript/Node.js
 lexer and stack checker, the Hub JSON envelope, explicit-root file loading, bounded
-limits, CLI stdout/stderr behavior, and fixtures/tests for CF-01 through CF-13. The
-repository is local-only at this point: no canonical remote URL, maintainer record,
-published npm artifact, Lucee/Adobe engine trial, or CF-14 comparison evidence is
-claimed. This is implementation and local test evidence, not release or engine
-compatibility evidence.
+limits, CLI stdout/stderr behavior, and fixtures/tests for CF-01 through CF-13.
+On Windows, the local checkout passed `capabilities --json`, `npm run typecheck`,
+`npm test` (17/17), and `npm pack --dry-run`. Direct CLI checks returned `pass`
+for `fixtures/valid.cfm` and `violations` with `UNCLOSED_TAG`/`MISMATCHED_CLOSE`
+for `fixtures/misnested.cfm`. The repository is local-only at this point: no
+canonical remote URL, maintainer record, published npm artifact, Lucee/Adobe engine
+trial, or CF-14 comparison evidence is claimed. This is implementation and local
+test evidence, not release or engine compatibility evidence.
 
 ## Evidence and assumptions
 
@@ -47,7 +50,8 @@ compatibility evidence.
 | EXP-03 | KB item `080bc15a-dd20-40ab-8f81-f0d85c55546d:0d79311c-e83d-4b1c-8cfa-fa836aa564d2` | Historical Sales Quotation draft: one save, navigation timeout, independent exact-record readback; record retrieved on 2026-09-07, transaction not rerun |
 | EXP-04 | Existing Hub source and standards at baseline `93d82f2` | Hub is documentation/registry/validator; no implementation of these three tools |
 | EXP-05 | Company KB canonical ecosystem and maintenance records read on 2026-09-07 | Existing ten-tool order, Change Impact in progress, Project Profile next, and one current status record per tool |
-| EXP-06 | Independent local repository `AI-Agent-Tool-CFML-Check` at `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; `npm test`, `npm run typecheck`, and `npm pack --dry-run` passed on 2026-09-07 | CFML Check feasibility slice is implemented and locally exercised; remote identity, engine compatibility and CF-14 remain unverified |
+| EXP-06 | Independent local repository `AI-Agent-Tool-CFML-Check` at `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; `capabilities --json`, `npm test` (17/17), `npm run typecheck`, and `npm pack --dry-run` passed on Windows 2026-09-07 | CFML Check feasibility slice and declared CLI/capability contract are locally exercised; remote identity, engine compatibility and CF-14 remain unverified |
+| EXP-07 | Direct CLI checks of `fixtures/valid.cfm` and `fixtures/misnested.cfm` | The valid fixture returned `pass`; the misnested fixture returned `violations` with line-local `UNCLOSED_TAG` and `MISMATCHED_CLOSE`; structural violations remain exit-0 completed checks |
 
 CF-01 through CF-13 now have executable local tests in the CFML Check repository.
 All Result Store and Runtime Trace fixture cases remain proposed tests. CF-14 is

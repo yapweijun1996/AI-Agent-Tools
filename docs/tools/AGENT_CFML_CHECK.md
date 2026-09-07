@@ -1,9 +1,10 @@
 # Agent CFML Check
 
 Registry ID: `agent-cfml-check`. Lifecycle: `Planned`. Design revision:
-2026-09-07, draft for independent implementation. Repository, maintainer, npm
-identity, executable name, and release version are unconfirmed. This document
-specifies intended behavior; examples and acceptance cases are not test results.
+2026-09-07, draft for independent implementation. The canonical repository,
+maintainer, npm identity, release version, and engine evidence remain unconfirmed.
+This document specifies the Hub contract; the observed local feasibility snapshot
+below records implementation evidence without promoting the Hub lifecycle.
 
 ## Problem and outcome
 
@@ -19,7 +20,8 @@ SQL correctness, valid HTML, include expansion, or successful Lucee execution.
 
 ## Interface and input
 
-Proposed operation names are interface design, not installed commands:
+The Hub operation contract is design-level; the independent local feasibility
+checkout currently exposes these operations through its CLI:
 
 | Operation | Required input | Effect |
 | --- | --- | --- |
@@ -140,6 +142,32 @@ Limits are configurable only inside hard caps. Reaching a findings/output cap
 must return incomplete instead of dropping diagnostics. Reserve a bounded failure
 envelope. Implementation must enforce deadlines during lexing, not merely check
 elapsed time after parsing. These numbers require measurement before release.
+
+## Observed local feasibility snapshot
+
+The independent local repository `AI-Agent-Tool-CFML-Check` was observed on
+Windows on 2026-09-07 at commit
+`9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. The checkout was clean after the
+checks. The following evidence is local feasibility evidence only:
+
+- `capabilities --json` returned `ok`, complete, schema `1.0.0`, profile
+  `cfml-structure-v1`, extensions `.cfm`/`.cfc`, the finite supported tag
+  catalog, and the declared limits.
+- `npm run typecheck` passed with exit 0.
+- `npm test` passed 17/17 tests with exit 0, covering the CF-01 through CF-13
+  feasibility cases and CLI scenarios.
+- `npm pack --dry-run` passed with exit 0 and listed the 25-file
+  `agent-cfml-check@0.1.0` package; this did not publish a package.
+- The direct CLI check of `fixtures/valid.cfm` returned `status: ok`,
+  `complete: true`, `verdict: pass`, and no findings.
+- The direct CLI check of `fixtures/misnested.cfm` returned `status: ok`,
+  `complete: true`, `verdict: violations`, with `UNCLOSED_TAG` at line 1 and
+  `MISMATCHED_CLOSE` at line 3. A structural violation is a successful check
+  with exit 0, not a tool failure.
+
+These results do not establish Lucee/Adobe compatibility, CF-14 engine evidence,
+cross-platform support, a canonical remote repository, npm publication, or Hub
+Experimental admission.
 
 ## Acceptance cases
 

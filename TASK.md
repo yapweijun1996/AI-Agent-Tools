@@ -27,9 +27,10 @@ are knowledge evidence, not a new source/release audit by this Hub.
 
 Option A has now produced a local independent CFML Check feasibility slice at
 `AI-Agent-Tool-CFML-Check` commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`.
-Its implementation and local tests are evidence for work in progress only. The
-Hub lifecycle remains Planned because canonical repository identity, maintainer
-review, engine compatibility and release evidence are still missing.
+Its implementation, capabilities response, typecheck, 17/17 test run, direct
+valid/misnested CLI checks, and pack dry-run are evidence for work in progress
+only. The Hub lifecycle remains Planned because canonical repository identity,
+maintainer review, engine compatibility and release evidence are still missing.
 
 ## Task vocabulary
 
@@ -57,7 +58,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08; company-wide visibility remains separate because the KB is intentionally User-visible |
-| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-09; local CF-01 through CF-13 implementation/tests; CF-14 engine trial and admission evidence remain pending |
+| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-09; local capabilities, typecheck, 17/17 tests, direct valid/misnested CLI checks and pack dry-run; CF-14 engine trial and admission evidence remain pending |
 | HUB-11 | Hand off Result Store persistence and producer integration | Planned | HUB-09; independent owner/repository | E-08; RS-01 through RS-13 proposed; no store or connector implemented |
 | HUB-12 | Hand off Runtime Trace event/readback correlation | Planned | HUB-09; independent owner/repository | E-08; RT-01 through RT-13 proposed; no instrumentation or runtime trial |
 
