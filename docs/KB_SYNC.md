@@ -112,3 +112,32 @@ in place after readback. Its Hub lifecycle remains `Planned`, `development_statu
 is `in_progress`, and `verification_status` is `partial`; the record points to the
 local commit and keeps release status `not_started`. This is local feasibility
 evidence, not Experimental admission, publication evidence, or company-wide sharing.
+
+## 2026-09-07 executable verification follow-up
+
+Hub commit `5c468211ccc0a8fa769b2326c094a007156b3e7a` records the next local
+verification tranche: `capabilities --json`, `npm run typecheck`, `npm test`
+(17/17), direct CLI checks for `valid.cfm` and `misnested.cfm`, and
+`npm pack --dry-run`. The package dry-run listed 25 files for
+`agent-cfml-check@0.1.0`; it did not publish an artifact. The valid fixture
+returned `pass`; the misnested fixture returned `violations` with
+`UNCLOSED_TAG` and `MISMATCHED_CLOSE`, both as completed exit-0 checks.
+
+The existing User-tier CFML design parent, single active status record, Canonical
+SSOT and Functional Map were updated in place and read back. All remain User-tier;
+the status axes remain `roadmap_state=in_progress`, `development_status=in_progress`,
+`verification_status=partial`, `release_status=not_started`, and
+`hub_lifecycle=Planned`. No package publication, engine compatibility, CF-14,
+cross-platform, canonical remote repository, or Experimental admission claim was
+added.
+
+| Read-back record | Item ID | Source/digest evidence |
+| --- | --- | --- |
+| `docs/TOOL_EXPANSION.md` | `3e0f9dfa-e53a-463e-872d-6869aecc8802` | SHA-256 `4d5a536bed5958ba513aeb80c63791161c3435663f0057799a106c8c0744ac39`; source commit `5c468211ccc0a8fa769b2326c094a007156b3e7a`; 9,684 chars |
+| `docs/tools/AGENT_CFML_CHECK.md` | `63ddf381-7f18-426a-86eb-7a34a4c80a6b` | SHA-256 `ab200cf9640c103e07f19a563a65647694e47c96b91aba2fe821f3ae23d4cb3e`; source commit `5c468211ccc0a8fa769b2326c094a007156b3e7a`; 12,805 chars |
+| `Tool Status - agent-cfml-check` | `67898e2f-f74c-4701-b0c7-690b45d6dcdb` | User-tier readback; local evidence refs expanded; 390 chars |
+| `AI-Agent-Tools Canonical Ecosystem SSOT` | `5e5c8c5e-c3e9-460d-a985-3165e0b83031` | User-tier readback; CFML implementation evidence expanded |
+| `AI-Agent-Tools Functional Map` | `e360b621-3c4c-4a81-b7ce-f3d892015be8` | User-tier readback; CFML boundary/evidence expanded |
+
+The pending manifest records these updates without creating duplicate design or
+status records. Company-wide sharing remains a separate authorization boundary.

@@ -45,7 +45,7 @@
       "action": "find_or_ingest_document",
       "title": "AI-Agent-Tools Three-Tool Expansion - Detailed Design Review",
       "source_path": "docs/TOOL_EXPANSION.md",
-      "source_sha256": "91fb6954afc0daca008250fd167f0ddc4956bf425377b40c0cef0077f78a1b80",
+      "source_sha256": "4d5a536bed5958ba513aeb80c63791161c3435663f0057799a106c8c0744ac39",
       "content_normalization": "UTF-8 LF",
       "design_revision": "2026-09-07",
       "kbcid": "ai-agent-tools.design",
@@ -54,14 +54,14 @@
       "max_chars": 3000,
       "overlap": 200,
       "item_id": "3e0f9dfa-e53a-463e-872d-6869aecc8802",
-      "source_commit": "e6c49ca05a1990a8702a8bbfd3404aa62f2e3a4a",
-      "readback": "exact_user_tier_after_cfml_follow_up"
+      "source_commit": "5c468211ccc0a8fa769b2326c094a007156b3e7a",
+      "readback": "exact_user_tier_after_executable_verification"
     },
     {
       "action": "find_or_ingest_document",
       "title": "Agent CFML Check - Detailed V1 Design",
       "source_path": "docs/tools/AGENT_CFML_CHECK.md",
-      "source_sha256": "98b113c081934a1e7ecf0c506f2991c1d73fe5730ed13f0a5120f10433242dcb",
+      "source_sha256": "ab200cf9640c103e07f19a563a65647694e47c96b91aba2fe821f3ae23d4cb3e",
       "content_normalization": "UTF-8 LF",
       "design_revision": "2026-09-07",
       "kbcid": "ai-agent-tools.design",
@@ -69,7 +69,9 @@
       "auto_chunk": true,
       "max_chars": 3000,
       "overlap": 200,
-      "item_id": "63ddf381-7f18-426a-86eb-7a34a4c80a6b"
+      "item_id": "63ddf381-7f18-426a-86eb-7a34a4c80a6b",
+      "source_commit": "5c468211ccc0a8fa769b2326c094a007156b3e7a",
+      "readback": "exact_user_tier_after_executable_verification"
     },
     {
       "action": "find_or_ingest_document",
@@ -107,8 +109,8 @@
       "kbcid": "ai-agent-tools.tool-status",
       "share_level": "user",
       "item_id": "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
-      "readback": "exact_user_tier_after_cfml_follow_up",
-      "content": "Agent CFML Check remains Planned at roadmap position 11. The detailed design and an independent local feasibility slice now exist. The local implementation and 17-test run are evidence for in-progress development only; engine compatibility, canonical repository identity, admission and release have not started. Validate the lexical slice before adding engine-specific coverage, without reordering the original ten tools.",
+      "readback": "exact_user_tier_after_executable_verification",
+      "content": "Agent CFML Check remains Planned at roadmap position 11. The detailed design and an independent local feasibility slice now exist. On Windows, capabilities, typecheck, 17/17 tests, direct valid/misnested CLI checks, and npm pack dry-run all passed; this is in-progress development evidence only. Engine compatibility, canonical repository identity, admission and release remain unconfirmed.",
       "metadata": {
         "kind": "tool_status_record",
         "schema_version": "ai-agent-tools/tool-status/v1",
@@ -139,7 +141,7 @@
           "design": "2026-09-07",
           "package": null
         },
-        "current_focus": "Documented V1 draft awaiting independent feasibility and implementation.",
+        "current_focus": "Local feasibility slice implemented; capabilities, typecheck, tests, direct CLI fixtures and package dry-run verified; canonical repository identity and engine compatibility remain unconfirmed.",
         "blockers": [],
         "known_gaps": [
           "CF-14 engine comparison, cross-platform coverage, and engine-specific fixtures are not implemented.",
@@ -167,9 +169,33 @@
             "verified_at": "2026-09-07"
           },
           {
+            "kind": "capabilities_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:capabilities-json",
+            "status": "passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "typecheck_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-run-typecheck",
+            "status": "passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
             "kind": "test_evidence",
             "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-test",
             "status": "17_passed_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "cli_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:cli-fixtures",
+            "status": "valid_pass_misnested_violations_windows_local",
+            "verified_at": "2026-09-07"
+          },
+          {
+            "kind": "package_evidence",
+            "ref": "repo:AI-Agent-Tool-CFML-Check@9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837:npm-pack-dry-run",
+            "status": "25_files_dry_run_only_not_published",
             "verified_at": "2026-09-07"
           }
         ],
