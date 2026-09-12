@@ -13,7 +13,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
-| AI-Agent-Tool-CFML-Check | Local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; TypeScript implementation, fixtures and tests inspected; local capabilities/typecheck/test/CLI/package dry-run checks passed on Windows | Local feasibility slice is inspectable and exercised; no canonical remote identity, engine compatibility, npm publication or cross-platform evidence inferred |
+| AI-Agent-Tool-CFML-Check | Public repository [README](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check); local feasibility commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837` | Repository identity is confirmed and the local feasibility slice is inspectable and exercised; engine compatibility, npm publication and cross-platform evidence remain unverified |
 | AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); source manifest `agent-symbol-search@0.1.0` | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; npm package is not published |
 | AI-Agent-Tool-Test-Scope | Public repository [README](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope) and published npm identity `agent-test-scope@0.1.1` | Repository identity and npm package metadata confirmed; implementation and release claims are recorded by the project, but Hub protocol conformance and an independent artifact audit remain unverified |
 
@@ -136,8 +136,8 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   HUB-05. Its 0.2.0 npm identity is now confirmed, but no Hub verification snapshot
   is populated. Other tools' publication identities remain pending.
 - Change Impact's active scaffold: no runtime verification performed here.
-- CFML Check's local feasibility slice: no canonical remote identity, engine compatibility,
-  CF-14 engine comparison, npm publication, or cross-platform evidence.
+- CFML Check: engine compatibility, CF-14 engine comparison, npm publication, and
+  cross-platform evidence remain unverified.
 - Symbol Search: npm publication, Hub protocol conformance, and cross-platform
   certification remain unverified; its docs check needs a Git checkout for the
   final HEAD evidence step.

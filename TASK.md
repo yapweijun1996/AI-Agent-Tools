@@ -117,8 +117,8 @@ follow-up rather than an unreported assumption. The earlier Company-tier attempt
 were correctly rejected with `SHARE_TIER_DENIED: above_scope`.
 Active sibling working-tree development can stale observations quickly; dated
 evidence must not be mistaken for a released or continuously monitored state.
-CFML Check's local implementation is not yet a canonical remote repository, an
-engine compatibility claim, or an Experimental lifecycle admission.
+CFML Check's public repository identity is now confirmed, but its engine
+compatibility claim and Experimental lifecycle admission remain unverified.
 Release credentials, CI availability, and publication permissions are unassessed,
 not reported as failed or granted.
 Project Profile's source and registry versions are currently split: local source is
@@ -135,8 +135,8 @@ existing ecosystem work below keeps its original order.
    and error payloads; select a compatible versioning path before changing consumers.
 2. Audit exact published artifacts and identities under HUB-05; update registry
    release/evidence fields only when their meaning is satisfied.
-3. Review and harden the local CFML Check slice, then obtain canonical repository
-   identity and engine-backed evidence before considering Experimental admission.
+3. Review and harden the CFML Check repository, then obtain engine-backed evidence
+   before considering Experimental admission.
    The owner still reports tool delivery completion; do not infer it from this spike.
 4. Consider discovery only when metadata consumers justify it. Keep infrastructure
    consolidation behind the existing maturity gate.

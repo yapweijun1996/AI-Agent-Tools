@@ -126,7 +126,7 @@
       "name": "Agent CFML Check",
       "description": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
       "status": "Planned",
-      "repository_url": null,
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check",
       "npm": null,
       "release_version": null,
       "verification": null,
