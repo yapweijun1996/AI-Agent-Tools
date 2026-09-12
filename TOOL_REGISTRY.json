@@ -46,9 +46,12 @@
       "name": "Agent Test Scope",
       "description": "Identify candidate tests from declared or observable relationships.",
       "status": "Planned",
-      "repository_url": null,
-      "npm": null,
-      "release_version": null,
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope",
+      "npm": {
+        "name": "agent-test-scope",
+        "url": "https://www.npmjs.com/package/agent-test-scope"
+      },
+      "release_version": "0.1.1",
       "verification": null,
       "deprecation": null
     },

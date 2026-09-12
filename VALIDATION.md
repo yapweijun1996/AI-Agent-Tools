@@ -1,6 +1,6 @@
 # Validation and evidence
 
-Latest Hub review: 2026-09-08. The original source/release observations below are
+Latest Hub review: 2026-09-12. The original source/release observations below are
 dated 2026-09-06 and remain historical. This document owns the Hub's evidence
 scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
@@ -15,6 +15,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
 | AI-Agent-Tool-CFML-Check | Local commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`; TypeScript implementation, fixtures and tests inspected; local capabilities/typecheck/test/CLI/package dry-run checks passed on Windows | Local feasibility slice is inspectable and exercised; no canonical remote identity, engine compatibility, npm publication or cross-platform evidence inferred |
 | AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); source manifest `agent-symbol-search@0.1.0` | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; npm package is not published |
+| AI-Agent-Tool-Test-Scope | Public repository [README](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope) and published npm identity `agent-test-scope@0.1.1` | Repository identity and npm package metadata confirmed; implementation and release claims are recorded by the project, but Hub protocol conformance and an independent artifact audit remain unverified |
 
 At the bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
@@ -187,3 +188,20 @@ The repository is therefore registered with confirmed GitHub identity and
 `status: "Experimental"`, while `npm`, `release_version`, and `verification`
 remain `null`. This records inspectable implementation evidence without implying
 an npm release, Hub protocol conformance, or delivery completion.
+
+## Test Scope registration review - 2026-09-12
+
+The public [Test Scope repository](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope)
+was read and its README, specification, design, task board, progress, epic and
+roadmap were reviewed. The repository documents a deterministic, read-only V0.1
+planner for JavaScript/TypeScript/JSX/TSX repositories with Vitest, Jest and the
+Node.js native test runner. It states that `0.1.1` is published with dual ESM/
+CommonJS entrypoints and provenance.
+
+The official [npm registry metadata](https://registry.npmjs.org/agent-test-scope)
+was queried directly and reports package name `agent-test-scope`, latest version
+`0.1.1`, a repository matching the GitHub project, and an MIT license. This is
+enough to record the canonical repository and package identities. The entry
+remains `Planned` because this Hub has not independently audited the packed
+artifact, native/Hub protocol conformance, or the claimed release checks; no
+`verification` snapshot is recorded.
