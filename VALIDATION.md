@@ -11,13 +11,13 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | --- | --- | --- |
 | AI-Agent-Tools | Initial baseline `2f2d46e`; documentation commits are recorded in Git history | Documentation foundation and local authoring checks; no root npm/runtime/discovery implementation |
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
-| AI-Agent-Tool-Change-Impact | Committed documentation baseline `81b9e62`; in-progress untracked scaffold observed during reconciliation | Implementation has started; no completed feature, test, package, or release gate inferred |
+| AI-Agent-Tool-Change-Impact | Public `main` commit [`f298328`](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/commit/f298328d7035adce57fc57fdc36ac30da70a2a68); clean clone `npm ci`, typecheck and 36 tests passed | Inspectable implementation with documented bounded impact analysis, read-only behavior and runnable tests; npm publication and Hub protocol conformance remain unverified |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
-| AI-Agent-Tool-CFML-Check | Public repository [README](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check); local feasibility commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837` | Repository identity is confirmed and the local feasibility slice is inspectable and exercised; engine compatibility, npm publication and cross-platform evidence remain unverified |
+| AI-Agent-Tool-CFML-Check | Public `main` commit [`d132a82`](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/commit/d132a82de4e2a764710e04968f8a480b8b6153c7); clean clone `npm ci`, typecheck and 22 tests passed | Inspectable bounded CFML structural checker with fixtures, schema and package-surface tests; engine compatibility, npm publication and full cross-platform evidence remain unverified |
 | AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); source manifest `agent-symbol-search@0.1.0` | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; npm package is not published |
-| AI-Agent-Tool-Test-Scope | Public repository [README](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope) and published npm identity `agent-test-scope@0.1.1` | Repository identity and npm package metadata confirmed; implementation and release claims are recorded by the project, but Hub protocol conformance and an independent artifact audit remain unverified |
+| AI-Agent-Tool-Test-Scope | Public `main` commit [`e3c4593`](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/commit/e3c4593fb9b12233280dffd801a3c153ef9b3b1c); clean clone `npm ci`, dual typecheck/build and 17 tests passed; npm `0.1.1` metadata confirmed | Inspectable bounded verification planner with shared CLI/library engine and documented limits; packed artifact, Hub protocol conformance and broader platform evidence remain unverified |
 
-At the bounded Change Impact inspection, the scaffold contained `package.json`,
+At the earlier bounded Change Impact inspection, the scaffold contained `package.json`,
 `tsconfig.json`, `.gitignore`, `LICENSE`, and `src/types.ts`, `src/errors.ts`,
 `src/util.ts`, `src/snapshot.ts`. The manifest declared CommonJS, Node `>=22`,
 TypeScript `5.9.3`, `@types/node` `22.15.30`, and package version `0.1.0`.
@@ -25,7 +25,8 @@ These are observed local declarations, not installed versions, tested compatibil
 or publication evidence. Types declare a `0.1-draft` envelope and limit defaults;
 those declarations do not prove complete runtime enforcement. Snapshot code exists,
 but its correctness/security tests were not executed in this Hub documentation task.
-This active working tree can change independently after inspection.
+That historical working tree could change independently after inspection; the
+current public commit and clean-clone audit are recorded above.
 
 The four canonical repository links were checked and opened successfully during
 reconciliation:
@@ -135,7 +136,8 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
 - Code Slice exact packed artifact behavior, current remote CI, and Hub conformance:
   HUB-05. Its 0.2.0 npm identity is now confirmed, but no Hub verification snapshot
   is populated. Other tools' publication identities remain pending.
-- Change Impact's active scaffold: no runtime verification performed here.
+- Change Impact: npm publication, Hub protocol conformance, and broader platform
+  evidence remain unverified; the clean-clone audit passed typecheck and 36 tests.
 - CFML Check: engine compatibility, CF-14 engine comparison, npm publication, and
   cross-platform evidence remain unverified.
 - Symbol Search: npm publication, Hub protocol conformance, and cross-platform
@@ -202,6 +204,24 @@ The official [npm registry metadata](https://registry.npmjs.org/agent-test-scope
 was queried directly and reports package name `agent-test-scope`, latest version
 `0.1.1`, a repository matching the GitHub project, and an MIT license. This is
 enough to record the canonical repository and package identities. The entry
-remains `Planned` because this Hub has not independently audited the packed
-artifact, native/Hub protocol conformance, or the claimed release checks; no
-`verification` snapshot is recorded.
+is now `Experimental` because its implementation, documented limits and basic
+tests were independently audited from a clean clone. The packed artifact,
+native/Hub protocol conformance, and broader platform evidence remain unverified;
+no `verification` snapshot is recorded.
+
+## Planned-tool implementation admission audit - 2026-09-12
+
+The three remaining Planned entries in the reviewed set were audited from clean
+shallow clones. Test Scope commit `e3c4593fb9b12233280dffd801a3c153ef9b3b1c`
+passed `npm ci --ignore-scripts`, dual TypeScript typechecks, build and 17/17
+tests. CFML Check commit `d132a82de4e2a764710e04968f8a480b8b6153c7` passed
+`npm ci --ignore-scripts`, typecheck, build and 22/22 tests. Change Impact
+commit `f298328d7035adce57fc57fdc36ac30da70a2a68` passed `npm ci --ignore-scripts`,
+typecheck, build and 36/36 tests; its test run took about 65 seconds and produced
+no intermediate output, then completed successfully.
+
+Each repository contains an inspectable implementation, documented scope and
+limits, and runnable basic tests. These observations satisfy the Hub's
+`Experimental` admission gate. They do not establish npm publication, Stable
+cross-platform support, or native/Hub protocol conformance, so all three retain
+`verification: null`.

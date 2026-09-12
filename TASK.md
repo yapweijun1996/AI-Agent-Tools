@@ -13,29 +13,30 @@ shared runtime, or tool implementation exists in this repository.
 **Code Slice delivery is Done**, confirmed by the owner on 2026-09-06. Published
 `agent-code-slice@0.2.0` metadata matches its repository and `code-slice` executable.
 Prior local tests at `7f2969f` remain separately scoped source evidence. Its Hub
-lifecycle stays Experimental only because protocol conformance is still pending. Change Impact now has an in-progress sibling scaffold beyond its
-earlier documentation-only baseline. It remains Planned in the Hub until the
-implementation/test admission gate is evidenced. See [VALIDATION.md](VALIDATION.md)
+lifecycles stay Experimental only because protocol conformance is still pending.
+Change Impact now has an inspectable implementation and is Experimental after the
+implementation/test admission audit, but is not delivery Done. See [VALIDATION.md](VALIDATION.md)
 for snapshot scope; a manifest or type definition is not an implemented capability.
 Project Profile now has an inspectable implementation and published npm identity,
 but its corrected source release `0.1.2` is not published and its registry `0.1.1`
 executable has a known distribution defect; it remains Experimental and is not
 delivery Done.
 
-Three owner-requested tools are now registered as Planned, with detailed draft
-specifications: CFML Check, Result Store and Runtime Trace. Symbol Search was
+Three owner-requested tools are now registered, with detailed draft
+specifications: CFML Check, Result Store and Runtime Trace. CFML Check is now
+Experimental after the implementation admission audit. Symbol Search was
 appended as an Experimental implementation admission on 2026-09-08. The registry
 contains fourteen entries with one owner-confirmed completion. The original
 ten-tool order is unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
 in progress and Project Profile next with an approved V1 boundary; those records
 are knowledge evidence, not a new source/release audit by this Hub.
 
-Option A has now produced a local independent CFML Check feasibility slice at
-`AI-Agent-Tool-CFML-Check` commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`.
-Its implementation, capabilities response, typecheck, 17/17 test run, direct
-valid/misnested CLI checks, and pack dry-run are evidence for work in progress
-only. The Hub lifecycle remains Planned because canonical repository identity,
-maintainer review, engine compatibility and release evidence are still missing.
+Option A has now produced a public independent CFML Check implementation at
+`AI-Agent-Tool-CFML-Check` commit `d132a82de4e2a764710e04968f8a480b8b6153c7`.
+Its implementation, capabilities response, typecheck, 22/22 test run, and
+package-surface checks are evidence for an Experimental implementation only.
+Engine compatibility, maintainer release evidence and Hub protocol conformance
+remain unverified.
 
 ## Task vocabulary
 
@@ -117,8 +118,8 @@ follow-up rather than an unreported assumption. The earlier Company-tier attempt
 were correctly rejected with `SHARE_TIER_DENIED: above_scope`.
 Active sibling working-tree development can stale observations quickly; dated
 evidence must not be mistaken for a released or continuously monitored state.
-CFML Check's public repository identity is now confirmed, but its engine
-compatibility claim and Experimental lifecycle admission remain unverified.
+CFML Check's public repository identity and Experimental lifecycle admission are
+now confirmed; its engine compatibility claim remains unverified.
 Release credentials, CI availability, and publication permissions are unassessed,
 not reported as failed or granted.
 Project Profile's source and registry versions are currently split: local source is
@@ -135,8 +136,8 @@ existing ecosystem work below keeps its original order.
    and error payloads; select a compatible versioning path before changing consumers.
 2. Audit exact published artifacts and identities under HUB-05; update registry
    release/evidence fields only when their meaning is satisfied.
-3. Review and harden the CFML Check repository, then obtain engine-backed evidence
-   before considering Experimental admission.
+3. Review and harden the three Experimental implementations, then obtain
+   engine/package/protocol evidence before considering further promotion.
    The owner still reports tool delivery completion; do not infer it from this spike.
 4. Consider discovery only when metadata consumers justify it. Keep infrastructure
    consolidation behind the existing maturity gate.
