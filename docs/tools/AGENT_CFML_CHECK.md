@@ -1,10 +1,11 @@
 # Agent CFML Check
 
-Registry ID: `agent-cfml-check`. Lifecycle: `Planned`. Design revision:
-2026-09-07, draft for independent implementation. The canonical repository,
-maintainer, npm identity, release version, and engine evidence remain unconfirmed.
-This document specifies the Hub contract; the observed local feasibility snapshot
-below records implementation evidence without promoting the Hub lifecycle.
+Registry ID: `agent-cfml-check`. Lifecycle: `Experimental` (admitted after the
+implementation audit recorded in [VALIDATION](../../VALIDATION.md)). Design
+revision: 2026-09-07, draft for independent implementation. The original design
+snapshot did not establish the canonical repository, release identity, or engine
+evidence. This document specifies the Hub contract; current admission and release
+evidence remain separately scoped in the Hub evidence ledger.
 
 ## Problem and outcome
 
@@ -165,9 +166,11 @@ checks. The following evidence is local feasibility evidence only:
   `MISMATCHED_CLOSE` at line 3. A structural violation is a successful check
   with exit 0, not a tool failure.
 
-These results do not establish Lucee/Adobe compatibility, CF-14 engine evidence,
-cross-platform support, a canonical remote repository, npm publication, or Hub
-Experimental admission.
+These historical feasibility results do not by themselves establish
+Lucee/Adobe compatibility, CF-14 engine evidence, cross-platform support, npm
+publication, or Hub protocol conformance. The later Experimental admission and
+current repository/release observations are recorded separately in
+[VALIDATION](../../VALIDATION.md).
 
 ## Acceptance cases
 

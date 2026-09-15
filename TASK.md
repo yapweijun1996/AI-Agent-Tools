@@ -1,6 +1,6 @@
 # Task status
 
-Status date: 2026-09-08. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
+Status date: 2026-09-15. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
 execution ledger; independent tool repositories own their implementation tasks.
 
 ## Current situation
@@ -59,19 +59,19 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; 2026-09-15 decision recorded in [CLI standard](docs/CLI_STANDARD.md#invocation-and-streams): exit codes are a coarse ok/not-ok signal only, never a cross-tool semantic key; consumers read JSON status/error fields instead — see [Validation](VALIDATION.md#hub-04-exit-code-comparison---2026-09-15) for the sourced comparison behind it. Remaining: apply this decision as executable consumer fixtures; completeness-contract semantics (`incomplete`/partial) still unresolved |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile 0.1.1, and Symbol Search repository identities reviewed; Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
 | HUB-06 | Implement a justified discovery CLI | Deferred | HUB-03, HUB-04 | E-04; identity/distribution/source/freshness design pending; 2026-09-15 unpublished spike gave feasibility evidence for a proposed broader `ait-tool/v1` contract that conflicts with the adopted architecture text — see [Validation](VALIDATION.md#ait-toolv1-dispatch-spike---2026-09-15) and [Architecture](docs/ARCHITECTURE.md#unreconciled-proposal-ait-toolv1-plugin-contract); status unchanged pending review |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
-| HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08; company-wide visibility remains separate because the KB is intentionally User-visible |
-| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-09; local capabilities, typecheck, 17/17 tests, direct valid/misnested CLI checks and pack dry-run; CF-14 engine trial and admission evidence remain pending |
+| HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
+| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-08; public implementation, capabilities, typecheck, 22/22 tests, and package-surface checks are recorded; CF-14 engine trial, package/release, and protocol evidence remain pending |
 | HUB-11 | Hand off Result Store persistence and producer integration | Planned | HUB-09; independent owner/repository | E-08; RS-01 through RS-13 proposed; no store or connector implemented |
 | HUB-12 | Hand off Runtime Trace event/readback correlation | Planned | HUB-09; independent owner/repository | E-08; RT-01 through RT-13 proposed; no instrumentation or runtime trial |
 
 ## Delivery completion notices
 
 - Code Slice: **Done**, owner-confirmed 2026-09-06; recorded published version `0.2.0`.
-- Remaining twelve tools: awaiting owner completion notices. The owner will provide
+- Remaining thirteen tools: awaiting owner completion notices. The owner will provide
   updates; no background polling or inferred completion is requested. Project
   Profile has review evidence but no delivery completion notice; it remains
   outside the completed count.
@@ -104,18 +104,22 @@ or an unimplemented feature is not automatically an external blocker.
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion
   review](docs/TOOL_EXPANSION.md).
-- Checked-in validator regression tests are a separate maintenance improvement.
-  The prior review's Planned-release and evidence-URL acceptance cases are not
-  established bugs against the current human-reviewed registry contract.
+- Checked-in validator regression tests now cover the current repository, JSON
+  parsing and malformed roadmap rows. The prior review's Planned-release and
+  evidence-URL acceptance cases are not established bugs against the current
+  human-reviewed registry contract.
 
 ## Blockers and risk
 
 No external blocker prevents current Hub documentation maintenance. There is an
 unresolved protocol dependency before cross-tool composition and Hub conformance.
-User-tier synchronization for HUB-09 is complete and read back successfully. The
-KB visibility is intentionally `user`, so company-tier sharing remains a separate
-follow-up rather than an unreported assumption. The earlier Company-tier attempts
-were correctly rejected with `SHARE_TIER_DENIED: above_scope`.
+User-tier synchronization for HUB-09 was completed and read back successfully at
+its 2026-09-15 reconciliation. The affected design, status, SSOT, functional-map
+and schema records were updated in place; the new Symbol Search status record was
+read back with its returned ID. The KB visibility is intentionally `user`, so
+company-tier sharing remains a separate follow-up rather than an unreported
+assumption. The earlier Company-tier attempts were correctly rejected with
+`SHARE_TIER_DENIED: above_scope`.
 Active sibling working-tree development can stale observations quickly; dated
 evidence must not be mistaken for a released or continuously monitored state.
 CFML Check's public repository identity and Experimental lifecycle admission are
@@ -127,10 +131,10 @@ Project Profile's source and registry versions are currently split: local source
 
 ## Next steps
 
-Keep the User-tier synchronization receipt and item IDs aligned with the local
-documents. If company-wide collaboration is later required, change visibility and
-authorization deliberately, then run a separate Company-tier readback. The
-existing ecosystem work below keeps its original order.
+Keep the 2026-09-15 User-tier reconciliation receipt and returned item IDs with
+this working-tree state. If company-wide collaboration is later required, change
+visibility and authorization deliberately, then run a separate Company-tier
+readback. The existing ecosystem work below keeps its original order.
 
 1. Resolve HUB-04 with real native success, bounded/partial, ambiguity, unsupported,
    and error payloads; select a compatible versioning path before changing consumers.

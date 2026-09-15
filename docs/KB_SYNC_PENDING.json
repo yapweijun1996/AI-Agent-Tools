@@ -7,6 +7,41 @@
   "applied_share_level": "user",
   "kb_visibility_readback": "user",
   "synchronized_on": "2026-09-07",
+  "last_reconciled_on": "2026-09-15",
+  "current_reconciliation": {
+    "status": "reconciled_user_tier",
+    "scope": "user",
+    "company_tier_promotion": false,
+    "design_parents_updated": [
+      {
+        "source_path": "docs/TOOL_EXPANSION.md",
+        "item_id": "3e0f9dfa-e53a-463e-872d-6869aecc8802",
+        "source_sha256": "139b0f4b8fdb3db10c833d2991649492f5885b7aa16add531d6920c5f6a81a52"
+      },
+      {
+        "source_path": "docs/tools/AGENT_CFML_CHECK.md",
+        "item_id": "63ddf381-7f18-426a-86eb-7a34a4c80a6b",
+        "source_sha256": "0606cc04dfa93f2891c9ba3289af132fb02881781b5540ee77ebc15938e590f0"
+      }
+    ],
+    "status_records_updated": [
+      "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
+      "032b3e5a-127f-47ce-a4b1-097e5160024d",
+      "2f632541-1891-45d1-8056-eccc83c295d1",
+      "9aa9a2f8-3453-476f-b8c9-b68791c4a775"
+    ],
+    "status_record_created": {
+      "tool_id": "agent-symbol-search",
+      "item_id": "a94dac3b-9619-4dcc-89fb-025272afeb09"
+    },
+    "index_records_updated": [
+      "5e5c8c5e-c3e9-460d-a985-3165e0b83031",
+      "e360b621-3c4c-4a81-b7ce-f3d892015be8",
+      "6c736cc3-756b-435c-9ae0-2f911143f4ad"
+    ],
+    "readback": "confirmed",
+    "company_tier_blocker": "SHARE_TIER_DENIED: above_scope for existing Company-tier Code Slice record"
+  },
   "blocker": {
     "http_status": 403,
     "code": "SHARE_TIER_DENIED",

@@ -28,13 +28,9 @@ but its correctness/security tests were not executed in this Hub documentation t
 That historical working tree could change independently after inspection; the
 current public commit and clean-clone audit are recorded above.
 
-The four canonical repository links were checked and opened successfully during
-reconciliation:
-[Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice) and
-[Change Impact](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact), plus
-[Project Profile](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile) and
-[Symbol Search](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search).
-This establishes repository identity/accessibility, not npm publication or CI results.
+The canonical repository links listed in the source-observation table were
+checked and opened successfully during their respective reviews. This establishes
+repository identity/accessibility, not npm publication or CI results.
 
 ## Code Slice completion and publication update
 
@@ -109,7 +105,7 @@ not publication, Hub protocol conformance, or cross-platform certification.
 | --- | --- | --- |
 | V-01 | Inventory and preservation | Hub contains no tool source, workspace, npm package, or runtime; original `.gitattributes` preserved; sibling source left untouched |
 | V-02 | Registry structure and lifecycle | Local validator checks exact authoring fields, unique IDs, lifecycle gates, versions, evidence/release matching, and replacement references; external behavioral evidence requires review |
-| V-03 | Roadmap consistency | Validator compares ordered IDs and names with registry and checks lifecycle vocabulary against Tool standard |
+| V-03 | Roadmap consistency | Validator parses the complete delivery table, rejects malformed rows, compares ordered IDs/names with the registry, and checks lifecycle vocabulary against Tool standard |
 | V-04 | Document integrity | Required documents, inline local links/anchors, and fenced JSON syntax checked; task/epic/requirement references reviewed and checked separately |
 | V-05 | Architecture and claim review | Human review separates current/target/future contracts, task status/lifecycle, local source/publication, and native/Hub protocol semantics |
 | V-06 | Code Slice local evidence | Prior review on unchanged `7f2969f`: 64 tests, typecheck, and eight source-CLI scenarios passed on local macOS/Node `v23.10.0`; not a package install or cross-platform rerun |
@@ -145,6 +141,8 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   final HEAD evidence step.
 - Seven other planned tools: no local repositories inspected; no remote-absence,
   capability, release, or availability conclusion follows.
+- Current User-tier KB parity for the reconciled 2026-09-15 records is verified by
+  content readback; Company-tier visibility remains unverified and is not claimed.
 - Future discovery, shared infrastructure, and release automation: not implemented.
 
 The CFML Check tests were run in its independent repository; the Hub checks do not
@@ -161,8 +159,9 @@ gaps recorded in [TASK.md](TASK.md).
 
 The [expansion review](docs/TOOL_EXPANSION.md) records SCMC design disposition,
 cross-tool boundaries, evidence references and the correction to two overbroad
-findings in the earlier conversational review. The validator source is unchanged.
-Its lack of a checked-in regression suite remains a separate maintenance gap.
+findings in the earlier conversational review. The validator now strictly parses
+the roadmap table, and its checked-in standard-library regression suite covers the
+current repository and the previously reproduced malformed-row gap.
 
 New external reference links were opened/reviewed: Lucee cfif/tag-island syntax,
 Adobe CFML comments, RFC 6901 JSON Pointer and OpenTelemetry trace concepts.
@@ -190,6 +189,28 @@ The repository is therefore registered with confirmed GitHub identity and
 `status: "Experimental"`, while `npm`, `release_version`, and `verification`
 remain `null`. This records inspectable implementation evidence without implying
 an npm release, Hub protocol conformance, or delivery completion.
+
+## Validator regression review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-11 | Validator regression suite | `python -m unittest discover -v` passed 7 tests covering the current repository, duplicate/non-finite JSON, and malformed roadmap rows; Python syntax compilation also passed |
+
+The suite is dependency-free and does not establish external URL availability,
+external repository behavior, or Company KB synchronization.
+
+## User-tier KB reconciliation review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-12 | KB reconciliation at explicit User scope | Read back the existing records, updated the two affected design parents, five status records (four existing plus the new Symbol Search record), Canonical SSOT, Functional Map and Tool Status Schema; all affected User-tier records read back with current content/statuses and the new ID `a94dac3b-9619-4dcc-89fb-025272afeb09`; Company-tier Code Slice update was denied with `SHARE_TIER_DENIED: above_scope` and was not retried or promoted |
+
+The current normalized hashes read back for `docs/TOOL_EXPANSION.md` and
+`docs/tools/AGENT_CFML_CHECK.md` are respectively
+`139b0f4b8fdb3db10c833d2991649492f5885b7aa16add531d6920c5f6a81a52` and
+`0606cc04dfa93f2891c9ba3289af132fb02881781b5540ee77ebc15938e590f0`.
+This is User-tier synchronization only; the historical Company-tier receipt and
+later independent package evidence remain separately scoped.
 
 ## Test Scope registration review - 2026-09-12
 
@@ -307,6 +328,7 @@ Two concrete, sourced findings, not an inference:
    but this is now backed by two real, disagreeing implementations rather than
    the hypothetical fixture in that document.
 
-This is comparison evidence for a future HUB-04 review, not a resolution: no
-mapping has been adopted, no tool's exit codes have changed, and `HUB-04`
-remains `Planned` in [TASK.md](TASK.md).
+This is comparison evidence for the ongoing HUB-04 work, not a completion claim:
+no mapping has been adopted, no tool's exit codes have changed, and `HUB-04`
+remains `In progress` in [TASK.md](TASK.md) until executable consumer fixtures and
+completeness semantics are resolved.

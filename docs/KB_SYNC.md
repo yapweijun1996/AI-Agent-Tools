@@ -1,7 +1,7 @@
 # Company KB synchronization
 
 Scope: AI-Agent-Tools documentation and knowledge maintenance. Last reviewed:
-2026-09-07. The existing Company KB `AI Agent Tools` has ID
+2026-09-15. The existing Company KB `AI Agent Tools` has ID
 `3e631a61-d63d-4c25-aaac-cd1557b063f2` and category family `ai-agent-tools.*`.
 The KB-MCP visibility was explicitly changed to `user` and read back as `user`
 before the successful synchronization. The logical KB remains the project's
@@ -64,6 +64,37 @@ user-tier writes with new idempotency keys. Use stable idempotency keys for exac
 retries and check an uncertain write before retrying. User-tier synchronization is
 not evidence of company-wide visibility; that requires a separate Company-tier
 authorization and a deliberate visibility change.
+
+## Historical local-source reconciliation gap - 2026-09-15
+
+The original receipt below recorded a prior User-tier readback, not the current
+working-tree state. Subsequent local documentation changes changed
+`docs/TOOL_EXPANSION.md` and `docs/tools/AGENT_CFML_CHECK.md`. Its old manifest
+hashes remain historical and are preserved below for traceability.
+
+## 2026-09-15 User-tier reconciliation
+
+Status: **Reconciled at User tier**. Existing User-tier records were reread before
+mutation. The two affected design parents were updated from the current local
+Markdown content; four existing status records were updated in place; one missing
+current status record for `agent-symbol-search` was created with returned item ID
+`a94dac3b-9619-4dcc-89fb-025272afeb09`; and the Canonical SSOT, Functional Map and
+Tool Status Schema were updated in place. All affected records were read back.
+
+| Local document | Current normalized SHA-256 | User KB parent | Readback |
+| --- | --- | --- | --- |
+| `docs/TOOL_EXPANSION.md` | `139b0f4b8fdb3db10c833d2991649492f5885b7aa16add531d6920c5f6a81a52` | `3e0f9dfa-e53a-463e-872d-6869aecc8802` | Exact content |
+| `docs/tools/AGENT_CFML_CHECK.md` | `0606cc04dfa93f2891c9ba3289af132fb02881781b5540ee77ebc15938e590f0` | `63ddf381-7f18-426a-86eb-7a34a4c80a6b` | Exact content |
+
+Updated status IDs: CFML Check `67898e2f-f74c-4701-b0c7-690b45d6dcdb`, Change
+Impact `032b3e5a-127f-47ce-a4b1-097e5160024d`, Test Scope
+`2f632541-1891-45d1-8056-eccc83c295d1`, Project Profile
+`9aa9a2f8-3453-476f-b8c9-b68791c4a775`, and Symbol Search
+`a94dac3b-9619-4dcc-89fb-025272afeb09`. Canonical records now state 14 tools and
+six Experimental lifecycle entries, with one delivery-complete tool. The KB
+remains intentionally User-visible; Company-tier sharing is not claimed. The
+existing Company-tier Code Slice record could not be updated because the API
+returned `SHARE_TIER_DENIED: above_scope`; no permission change or retry was made.
 
 ## 2026-09-07 synchronization receipt
 

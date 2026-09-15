@@ -1,9 +1,9 @@
 # Three-tool expansion
 
 Design review date: 2026-09-07. This is the Hub handoff for three new tools,
-requested by the owner. The Hub registry keeps all three at `Planned`. A local
-feasibility implementation now exists for CFML Check in an independent repository;
-it is not a published package or Hub lifecycle promotion.
+requested by the owner. At that review, all three registry entries were `Planned`.
+CFML Check was later admitted as `Experimental` after the implementation audit;
+the Hub registry still records no published package and no Hub protocol-conformance claim.
 
 ## Decision and priority
 
@@ -27,19 +27,25 @@ Implementation and executable fixtures belong in independent repositories. The f
 CFML feasibility slice is recorded below; Result Store and Runtime Trace remain
 design-only in this Hub review.
 
-## Current CFML feasibility evidence
+## Historical local CFML feasibility evidence
 
-The independent local repository `AI-Agent-Tool-CFML-Check` contains commit
-`9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. It implements a small TypeScript/Node.js
-lexer and stack checker, the Hub JSON envelope, explicit-root file loading, bounded
-limits, CLI stdout/stderr behavior, and fixtures/tests for CF-01 through CF-13.
-On Windows, the local checkout passed `capabilities --json`, `npm run typecheck`,
-`npm test` (17/17), and `npm pack --dry-run`. Direct CLI checks returned `pass`
-for `fixtures/valid.cfm` and `violations` with `UNCLOSED_TAG`/`MISMATCHED_CLOSE`
-for `fixtures/misnested.cfm`. The repository is local-only at this point: no
-canonical remote URL, maintainer record, published npm artifact, Lucee/Adobe engine
-trial, or CF-14 comparison evidence is claimed. This is implementation and local
-test evidence, not release or engine compatibility evidence.
+The original independent local repository `AI-Agent-Tool-CFML-Check` was observed at
+commit `9ce90e9b3c6e4ad03ee8171f31ce46c97a0f0837`. It implemented a small
+TypeScript/Node.js lexer and stack checker, the Hub JSON envelope, explicit-root
+file loading, bounded limits, CLI stdout/stderr behavior, and fixtures/tests for
+CF-01 through CF-13. On Windows, that local checkout passed `capabilities --json`,
+`npm run typecheck`, `npm test` (17/17), and `npm pack --dry-run`; direct CLI checks
+returned `pass` for `fixtures/valid.cfm` and `violations` with
+`UNCLOSED_TAG`/`MISMATCHED_CLOSE` for `fixtures/misnested.cfm`. This historical
+snapshot did not claim a canonical remote URL, maintainer record, published npm
+artifact, Lucee/Adobe engine trial, or CF-14 comparison evidence.
+
+The later public admission audit reviewed commit
+`d132a82de4e2a764710e04968f8a480b8b6153c7` from the canonical GitHub repository;
+clean-clone `npm ci`, typecheck, build and 22/22 tests passed. This supports the
+Hub `Experimental` lifecycle admission only. The registry intentionally keeps
+npm, release and verification fields unknown; separate KB evidence records later
+package and targeted Lucee observations without changing that Hub boundary.
 
 ## Evidence and assumptions
 
@@ -56,8 +62,9 @@ test evidence, not release or engine compatibility evidence.
 CF-01 through CF-13 now have executable local tests in the CFML Check repository.
 All Result Store and Runtime Trace fixture cases remain proposed tests. CF-14 is
 not executed. Budget numbers are initial engineering proposals, not measured
-performance guarantees. No new maintainer, repository URL, published npm identity,
-or release number is asserted by this Hub.
+performance guarantees. No new maintainer, engine-compatibility claim, npm
+publication or Hub protocol-conformance claim is asserted by this Hub; current
+registry identity and lifecycle facts remain in `TOOL_REGISTRY.json`.
 
 ## Responsibility boundaries
 
@@ -120,9 +127,9 @@ producer/readback bindings.
 The earlier conversational review overstated two validator findings: the current
 registry contract does not prohibit confirmed npm/release metadata on a Planned
 entry, and external evidence truth is explicitly a human review responsibility.
-Neither acceptance case alone establishes a validator bug. Missing checked-in
-validator regression tests remains a separate maintenance gap; no validator or
-CI implementation is included in this documentation change.
+Neither acceptance case alone establishes a validator bug. The Hub now strictly
+parses roadmap rows and includes a small standard-library regression suite for its
+registry, document, JSON and roadmap checks.
 
 ## Knowledge synchronization
 
