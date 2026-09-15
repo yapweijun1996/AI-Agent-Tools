@@ -4,8 +4,9 @@ This document owns the target result envelope, distinct from the registry schema
 
 Code Slice's native `schemaVersion`/`ok`/`result` envelope and Change Impact's
 `0.1-draft` types are not implementations of this envelope. No automatic mapping
-or contract-profile field exists in the registry. [DESIGN.md](../DESIGN.md) records
-the unresolved compatibility decision; preserve installed native contracts meanwhile.
+or contract-profile field exists in the registry. Preserve installed native
+contracts; the executable fixtures under `tests/hub_consumer.test.js` validate this
+Hub target only and do not claim external tool adoption.
 
 ## Envelope
 
@@ -23,6 +24,21 @@ All fields below are required. No tool-specific result fields belong at the enve
 | `meta` | Object containing `scope` (explicit bounded analysis description) and `limits` (object of effective tool-specific numeric caps). |
 
 `status: "ok"` requires `complete: true`. Other statuses require `complete: false`. Partial results are intentionally withheld in version 1 so a consumer cannot mistake them for safe evidence. A completed, narrowly scoped observation is allowed; its scope must be explicit.
+
+## Completeness matrix
+
+| Status | `complete` | `data` | Target exit | Consumer meaning |
+| --- | --- | --- | --- | --- |
+| `ok` | `true` | Non-null tool-specific object | `0` | The requested supported scope completed; findings may still be present in `data`. |
+| `incomplete` | `false` | `null` | `3` | The request was unsupported, ambiguous, evidence-limited, or stopped by a declared resource bound. |
+| `error` | `false` | `null` | `1`, `2`, or `4` | Execution/internal failure, invalid input/configuration, or explicit policy rejection. |
+
+There is no `partial` status in envelope version 1. A tool that gathered partial
+observations must withhold them from `data`, return `incomplete`, and provide a
+stable error code such as `INCOMPLETE_RESULT`, `UNSUPPORTED_INPUT`,
+`AMBIGUOUS_INPUT`, or `RESOURCE_LIMIT`. Warnings can explain the withheld result,
+but cannot make it complete. Exit codes are a consistency check for this target
+contract, not a semantic remapping for a native tool using another protocol.
 
 The following is a fictional protocol fixture, not a registered tool or release:
 

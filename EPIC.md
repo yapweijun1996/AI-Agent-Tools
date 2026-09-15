@@ -28,10 +28,11 @@ must not be presented as unfinished tool delivery. Further completion updates ar
 owner-triggered: inspect evidence, synchronize documentation/registry, validate,
 and commit the Hub update without installing or rebuilding unrelated tools.
 
-E-02 must resolve completeness semantics before a generic consumer can interpret
-multiple tools. Documenting differences is completed analysis, not completed
-integration. E-03 may verify npm identity before E-02, but cannot assert Hub protocol
-conformance until the compatibility decision and fixtures exist.
+E-02 now resolves the target completeness semantics with executable consumer
+fixtures before a generic consumer interprets multiple Hub-conformant tools.
+Documented native differences remain separate profile/migration work. E-03 may verify
+npm identity, but cannot assert an external tool's Hub protocol conformance without
+matching native-profile or migration evidence.
 
 E-05 follows the agreed [roadmap](ROADMAP.md). Change Impact implementation work
 belongs in its own repository and ledger; Hub tasks record only ecosystem decisions,

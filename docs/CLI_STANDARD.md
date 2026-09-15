@@ -5,7 +5,9 @@ This is the target CLI contract for conforming tools, not an assertion that list
 Known adoption gap: Code Slice uses its own versioned exit codes and can return a
 bounded outline with a warning and exit 0; Change Impact's draft also allows partial
 success. Do not reinterpret either as this contract. Compatibility work remains
-HUB-04 in [TASK.md](../TASK.md); this clarification changes no target exit semantics.
+Native compatibility remains tool-specific and is not changed by this target-contract
+clarification. The executable Hub fixtures validate target exit/status consistency
+without rewriting installed tools.
 
 **HUB-04 decision (2026-09-15):** a sourced comparison of the exit-code table
 above against `agent-code-slice`'s and `agent-project-profile`'s own documented

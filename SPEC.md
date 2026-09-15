@@ -19,7 +19,7 @@ Hub. [TASK.md](TASK.md) records completion status.
 | H-08 | Provide repeatable dependency-free authoring validation | `python3 scripts/validate_hub.py`; V-02 through V-04 |
 | H-09 | Make registration, promotion, downgrade, and deprecation reviewable | Adding-a-tool and release workflows; V-05 |
 | H-10 | Keep discovery local and metadata-first; make installation and execution explicit, pinned, and fail-closed | AIT commands, install-state tests, and runtime security contract; no automatic install/execute |
-| H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | AIT wraps native output without reinterpreting it; HUB-04 fixtures remain pending |
+| H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | AIT wraps native output without reinterpreting it; target-envelope completeness is locked by executable fixtures, while native profiles remain explicit |
 | H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `agent-tools` package; no shared tool source or mandatory SDK |
 | H-15 | Install and dispatch only registered packages with explicit lifecycle, approval, path, and output boundaries | AIT implementation, `docs/AIT_RUNTIME.md`, and Node test suite |
 | H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |

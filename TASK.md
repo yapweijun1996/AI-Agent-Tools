@@ -59,9 +59,9 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-01 | Establish Hub standards, registry, roadmap, and validator | Done | None | Existing foundation; V-01 through V-05 |
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
-| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; 2026-09-15 decision recorded in [CLI standard](docs/CLI_STANDARD.md#invocation-and-streams): exit codes are a coarse ok/not-ok signal only, never a cross-tool semantic key; consumers read JSON status/error fields instead — see [Validation](VALIDATION.md#hub-04-exit-code-comparison---2026-09-15) for the sourced comparison behind it. Remaining: apply this decision as executable consumer fixtures; completeness-contract semantics (`incomplete`/partial) still unresolved |
+| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`: complete findings use `ok`/exit 0, incomplete/partial/ambiguous/unsupported/limited outcomes use `incomplete`/null data/exit 3, and failures use `error`/null data. Remaining: choose explicit native consumer profiles or migration when cross-tool composition is required; no native contract is inferred |
 | HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
-| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch and `ait-result/v1`; npm publication, remote refresh, sandboxing, package-signature policy, and HUB-04 consumer fixtures remain pending |
+| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch and `ait-result/v1`; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
@@ -84,8 +84,9 @@ or an unimplemented feature is not automatically an external blocker.
 
 - Accepted boundaries and rationale are in [DESIGN.md](DESIGN.md); existing target
   standards and registry versions stay `1.0.0`.
-- Protocol profiles versus explicit migration remains an engineering decision, not
-  an implemented compatibility layer. Preserve current tool consumers meanwhile.
+- The Hub target envelope and completeness matrix are resolved by executable
+  fixtures. Native protocol profiles versus explicit migration remains an engineering
+  decision, not an implemented compatibility layer; preserve current consumers.
 - Code Slice npm publication identity for `0.2.0` is confirmed; its exact artifact
   behavior and Hub conformance remain unaudited here. Other package fields stay `null`.
 - Project Profile repository and npm identity are confirmed, and its source commit
@@ -106,14 +107,18 @@ or an unimplemented feature is not automatically an external blocker.
   sequence. Detailed contracts and current evidence are linked from [the expansion
   review](docs/TOOL_EXPANSION.md).
 - Checked-in validator regression tests now cover the current repository, JSON
-  parsing and malformed roadmap rows. The prior review's Planned-release and
+  parsing and malformed roadmap rows. Executable Hub consumer fixtures now cover
+  success-with-findings, partial/ambiguous/unsupported/limited incomplete outcomes,
+  invalid/internal errors, native-envelope rejection, and exit/status mismatches.
+  The prior review's Planned-release and
   evidence-URL acceptance cases are not established bugs against the current
   human-reviewed registry contract.
 
 ## Blockers and risk
 
 No external blocker prevents current Hub documentation maintenance. There is an
-unresolved protocol dependency before cross-tool composition and Hub conformance.
+unresolved native-profile dependency before cross-tool composition and external Hub
+conformance; the target Hub envelope semantics are now executable and verified.
 User-tier synchronization for HUB-09 was completed and read back successfully at
 its 2026-09-15 reconciliation. The affected design, status, SSOT, functional-map
 and schema records were updated in place; the new Symbol Search status record was
@@ -137,8 +142,8 @@ this working-tree state. If company-wide collaboration is later required, change
 visibility and authorization deliberately, then run a separate Company-tier
 readback. The existing ecosystem work below keeps its original order.
 
-1. Resolve HUB-04 with real native success, bounded/partial, ambiguity, unsupported,
-   and error payloads; select a compatible versioning path before changing consumers.
+1. Preserve native tool protocols and define explicit consumer profiles or migration
+   only when cross-tool composition is requested; do not change existing consumers.
 2. Audit exact published artifacts and identities under HUB-05; update registry
    release/evidence fields only when their meaning is satisfied.
 3. Review and harden the three Experimental implementations, then obtain

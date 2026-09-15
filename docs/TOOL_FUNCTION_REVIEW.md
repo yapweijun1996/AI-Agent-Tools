@@ -284,11 +284,11 @@ rules → Contract Diff; release evidence policy → Release Guard; artifact sel
 Context Pack. Share versioned evidence contracts before considering shared code.
 The existing roughly 3–5 mature-tool infrastructure gate remains appropriate.
 
-Next, reconcile protocol and completeness semantics using executable success,
-partial, ambiguity, and error fixtures. Preserve existing consumers through an
-explicit compatibility decision. Then register inspected identities and proceed
-with the Change Impact feasibility spike. This review does not silently promote
-tools, amend standards, or implement the planned repositories.
+At the time of this historical review, the next step was to reconcile protocol and
+completeness semantics using executable success, partial, ambiguity, and error
+fixtures. The later Hub review locked the target envelope with those fixtures;
+native consumers still require an explicit compatibility decision. This review does
+not silently promote tools, amend standards, or implement the planned repositories.
 
 ## Validation performed and limits
 

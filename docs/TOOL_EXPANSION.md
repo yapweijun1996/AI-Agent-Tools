@@ -99,7 +99,8 @@ while the artifact's source completeness is independently declared. Trace
 returns incomplete when it does not. These explicit operations avoid treating a
 successful evidence read as successful business execution.
 
-The existing native Code Slice/Hub compatibility decision stays under HUB-04.
+The target Hub completeness matrix is locked by HUB-04 fixtures. Native Code
+Slice/Hub compatibility remains a separate profile-or-migration decision.
 These drafts do not introduce a consumer adapter or silently change native exits.
 
 ## Delivery and acceptance gates

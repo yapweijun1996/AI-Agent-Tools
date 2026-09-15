@@ -29,8 +29,9 @@ If registry metadata contradicts a release, investigate and correct the metadata
 Code Slice's native protocol and Change Impact's draft differ from the Hub target
 envelope, exit meanings, and partial-result policy. AIT wraps captured native
 stdout/stderr in `ait-result/v1` but does not reinterpret native semantics or claim
-Hub conformance. Preserve native compatibility until HUB-04 resolves the versioned
-integration path; metadata registration and wrapping do not normalize tool output.
+Hub conformance. Preserve native compatibility; any versioned integration path must
+use an explicit consumer profile or reviewed migration. Metadata registration and
+wrapping do not normalize tool output.
 
 ## Registry contract
 

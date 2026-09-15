@@ -128,7 +128,7 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
 
 ## Unverified and pending
 
-- Native-to-Hub protocol compatibility and complete consumer fixtures: HUB-04.
+- Native-to-Hub profile/migration compatibility remains unverified; HUB-04 target-envelope consumer fixtures and completeness semantics are now checked in and passing.
 - Code Slice exact packed artifact behavior, current remote CI, and Hub conformance:
   HUB-05. Its 0.2.0 npm identity is now confirmed, but no Hub verification snapshot
   is populated. Other tools' publication identities remain pending.
@@ -279,8 +279,8 @@ in that repository) shows this was wrong: its exit `3` is documented as
 what those same numbers mean in the `ait-tool/v1` table (`3` = incomplete/
 insufficient evidence, `4` = policy/security denial). The two numbers lined up
 by coincidence; the categories they represent do not. See the dated comparison
-below for the full picture. HUB-04 native/Hub protocol reconciliation remains
-unresolved.
+below for the full picture. Native-to-Hub profile/migration reconciliation remains
+unresolved; the target-envelope semantics are covered separately by V-14.
 
 This historical spike established that the proposed dispatch mechanics were
 implementable. At that time, `ait` was not approved, published, or conformant.
@@ -293,7 +293,7 @@ or filesystem/network sandboxing beyond environment-variable filtering.
 
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
-| V-13 | AIT runtime acceptance | Local `agent-tools@0.1.0` implements `list`, `doctor`, pinned registry installation, controlled `--from-path` installation, explicit `--allow-experimental`, explicit `--allow-execution` dispatch, reduced environment, no-shell child process invocation, and `ait-result/v1`; Node's 7-test suite passed, and a temporary local package completed install/dispatch/doctor readback; real npm publication, remote refresh, signatures and OS sandboxing remain unverified |
+| V-13 | AIT runtime acceptance | Local `agent-tools@0.1.0` implements `list`, `doctor`, pinned registry installation, controlled `--from-path` installation, explicit `--allow-experimental`, explicit `--allow-execution` dispatch, reduced environment, no-shell child process invocation, and `ait-result/v1`; the 7 AIT-runtime tests passed, and a temporary local package completed install/dispatch/doctor readback; real npm publication, remote refresh, signatures and OS sandboxing remain unverified |
 
 The implementation keeps independent tool source and release ownership outside the
 Hub. The package is private and unlicensed pending a release decision; no network
@@ -335,7 +335,16 @@ Two concrete, sourced findings, not an inference:
    but this is now backed by two real, disagreeing implementations rather than
    the hypothetical fixture in that document.
 
-This is comparison evidence for the ongoing HUB-04 work, not a completion claim:
-no mapping has been adopted, no tool's exit codes have changed, and `HUB-04`
-remains `In progress` in [TASK.md](TASK.md) until executable consumer fixtures and
-completeness semantics are resolved.
+This comparison remains evidence that native tools need explicit profiles or
+migration; no mapping has been adopted and no tool's exit codes have changed. The
+target contract is resolved without changing those native tools.
+
+## HUB-04 target completeness review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-14 | Executable target-envelope consumer fixtures | `tests/hub_consumer.test.js` executes `tests/fixtures/hub-contract-tool.js` and verifies complete success with findings, partial/ambiguous/unsupported/limit outcomes, invalid/internal errors, null data for all non-`ok` statuses, malformed/missing/native envelope rejection, and exit/status mismatches; all 4 consumer tests passed as part of the 11-test Node suite. This verifies the Hub target contract only and does not establish external tool adoption or native protocol migration. |
+
+HUB-04 target completeness semantics are therefore complete. Native tool
+compatibility remains a separately scoped profile/migration decision under HUB-05
+and future integration work.

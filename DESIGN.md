@@ -36,24 +36,28 @@ consistency; the script cannot prove external tool conformance.
 | D-12 | Preserve source completeness and business outcome independently from operation success | A stored page can be complete while its upstream source is truncated; a trace summary can be complete while the business outcome is unknown |
 | D-13 | Synchronize reviewable Hub contracts with the existing Company KB | KB status/design records and repository documents retain source provenance and content digests; reconcile conflicts explicitly before claiming current state |
 | D-14 | Authorize a dependency-free AIT runtime in the Hub | `agent-tools@0.1.0` owns list/doctor/pinned install/approved dispatch and `ait-result/v1`; it is private, not a sandbox, and not a universal compatibility adapter |
+| D-15 | Lock Hub envelope completeness semantics with executable consumer fixtures | `ok`/complete data uses exit 0; `incomplete`/null data uses exit 3; `error`/null data uses exit 1, 2, or 4; native tools are not remapped |
 
-## Protocol reconciliation still pending
+## Protocol reconciliation boundary
 
 The Hub standard version and registry schema remain `1.0.0`. The target result
-envelope also remains `1.0.0`. AIT adds the separate local `ait-result/v1` wrapper
-for captured native output; it does not migrate or reinterpret external tool protocols.
+envelope also remains `1.0.0`. Executable consumer fixtures now lock its completeness
+matrix: successful findings remain `ok`/complete with exit 0; partial, ambiguous,
+unsupported, or resource-limited work is `incomplete`/null data with exit 3; invalid,
+policy, and internal failures are `error`/null data with exit 2, 4, or 1. AIT adds
+the separate local `ait-result/v1` wrapper for captured native output; it does not
+migrate or reinterpret external tool protocols.
 
 Code Slice uses `schemaVersion`, `ok`, and `result`/`error`, with separate CLI usage
 error schema and tool-specific exit codes. Its bounded outline can succeed with
 `OUTLINE_TRUNCATED`. Change Impact's draft and initial types distinguish useful
-results from analysis completeness. The Hub target instead uses `schema_version`,
-`status`, `complete`, and `data`, with exit 3 and no partial data for incomplete work.
+results from analysis completeness. These native contracts remain unchanged; no
+exit-code remapping or partial-data conversion is introduced by the Hub.
 
-The next decision must compare a versioned tool migration against explicit consumer
-contract profiles, using success, partial, ambiguity, unsupported, and limit fixtures.
-Preserve existing consumers and reject unsupported semantics. Neither alternative
-is silently selected by documenting the gap. This is an engineering dependency
-for composition/conformance, not a blocker for maintaining Hub documentation.
+Any future Hub conformance work must use an explicit versioned consumer profile or a
+reviewed migration for each native tool, preserving existing consumers and rejecting
+unsupported semantics. This native-profile decision remains separate from the now
+verified target-envelope semantics.
 
 ## Ownership after the function review
 
