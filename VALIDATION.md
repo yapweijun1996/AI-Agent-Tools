@@ -232,10 +232,11 @@ A proposed `ait-tool/v1` plugin contract (Company KB item
 `fb9b80fa-bcfd-42d7-a5f4-5a6973ca7b7f`, status `PROPOSED`) describes a future
 discovery/dispatch CLI that installs independently owned tools by manifest and
 runs them as isolated child processes. A local, unpublished spike repository
-(`AI-Agent-Tool-AIT`, first commit `9bebbd9`, outside this Hub and not
+(`AI-Agent-Tool-AIT`, first commit `9bebbd9`, outside this Hub and never
 registered in [TOOL_REGISTRY.json](TOOL_REGISTRY.json)) exercised that
 contract manually against `agent-code-slice` version `0.4.0` from a local
-checkout.
+checkout, then was deleted after producing this evidence; the Company KB
+record (`19883525-60d6-4fa2-ba74-d3b867a9b1d8`) preserves the same findings.
 
 Observed: manifest schema validation rejects a manifest missing required
 `ait-tool/v1` fields with exit `2`; `ait install --from-path` resolves the
@@ -246,10 +247,19 @@ caller's working directory preserved, captures its native JSON on stdout, and
 wraps it into an `ait-result/v1` envelope (`protocol`, `tool`, `ok`, `status`,
 `data`, `meta`). A file-not-found case produced envelope `status: incomplete`
 at exit `3`; an unsupported-language case produced `status: denied` at exit
-`4`. Both exit codes happened to already match the `ait-tool/v1` table, but
-`agent-code-slice` was not implemented against that table, so this is observed
-coincidence, not verified semantic conformance — HUB-04 native/Hub protocol
-reconciliation remains unresolved.
+`4`.
+
+**Correction**: the note originally recorded here said these two exit codes
+"happened to already match the `ait-tool/v1` table." Reading `agent-code-slice`'s
+own documented exit codes ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/blob/main/docs/CLI_CONTRACT.md)
+in that repository) shows this was wrong: its exit `3` is documented as
+"file/root/input error" (an invalid-input case) and its exit `4` as
+"unsupported/ambiguous language" (an unsupported-input case) — neither matches
+what those same numbers mean in the `ait-tool/v1` table (`3` = incomplete/
+insufficient evidence, `4` = policy/security denial). The two numbers lined up
+by coincidence; the categories they represent do not. See the dated comparison
+below for the full picture. HUB-04 native/Hub protocol reconciliation remains
+unresolved.
 
 This establishes that the proposed dispatch mechanics are implementable, not
 that `ait` is approved, published, installable by an end user or agent, or
@@ -261,3 +271,42 @@ already-adopted [Architecture](docs/ARCHITECTURE.md#future-discovery-cli)
 statement that "a discovery result never installs, imports, or executes a
 package" — that conflict is recorded, not resolved, in
 [Architecture](docs/ARCHITECTURE.md#future-discovery-cli).
+
+## HUB-04 exit-code comparison - 2026-09-15
+
+To make `HUB-04` ("Resolve native/Hub JSON, exit, and completeness contracts")
+concrete, this compares the target [CLI standard](docs/CLI_STANDARD.md#exit-codes)
+against the exit codes two `Experimental` tools already document for
+themselves, read directly from their own repositories (not inferred):
+
+| Exit | Hub target ([CLI_STANDARD.md](docs/CLI_STANDARD.md#exit-codes)) | `agent-code-slice` ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/blob/main/docs/CLI_CONTRACT.md)) | `agent-project-profile` (repository `README.md`) |
+| ---: | --- | --- | --- |
+| 0 | Complete supported analysis | Successful operation | Complete, usable profile |
+| 1 | Execution or internal failure | Unexpected internal failure | Fatal failure; no usable profile |
+| 2 | Invalid invocation, input, or configuration | Invalid CLI arguments | **Overloaded**: partial/unsupported profile, a strict-mode diagnostic, *or* invalid arguments all use this one code |
+| 3 | Unsupported input, insufficient evidence, or resource limit | File/root/input error (closer to Hub's `2`) | Not used |
+| 4 | Explicit policy or security boundary rejection | Unsupported/ambiguous language (closer to Hub's `3`) | Not used |
+| 5-8 | Not defined | Parse/grammar error; selector not found; selector ambiguous; output/resource limit | Not used |
+
+Two concrete, sourced findings, not an inference:
+
+1. **The three schemes disagree on how many exit-code classes exist** (5 for
+   the Hub target, 9 for `code-slice`, 3 for `project-profile`), and on what a
+   shared number means. A numeric remap table alone cannot reconcile this: at
+   least `code-slice`'s `3`/`4` need to swap categories relative to the Hub
+   target, and `project-profile`'s single `2` would have to split into the
+   Hub's `2` and `3` — but `project-profile`'s own JSON `status` field (not its
+   exit code) is what actually distinguishes those cases today.
+2. **`project-profile`'s exit `2` conflates "invalid input" and "incomplete
+   result."** A caller cannot tell "you typed a bad flag" from "we produced a
+   partial profile" by exit code alone; it must read the JSON body's `status`
+   field. This means any Hub-conformant consumer (including a future `ait`)
+   must treat exit code as a coarse ok/not-ok signal only and use the JSON
+   envelope's own status/error fields as the semantic authority — which is
+   already what [JSON_STANDARD.md](docs/JSON_STANDARD.md#consumer-rules) says,
+   but this is now backed by two real, disagreeing implementations rather than
+   the hypothetical fixture in that document.
+
+This is comparison evidence for a future HUB-04 review, not a resolution: no
+mapping has been adopted, no tool's exit codes have changed, and `HUB-04`
+remains `Planned` in [TASK.md](TASK.md).
