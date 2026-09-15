@@ -37,8 +37,9 @@ test('parses explicit install and dispatch approval flags', () => {
   assert.equal(options.allowExperimental, true);
   assert.equal(options.json, true);
 
-  const dispatch = ait.parseArgs(['dispatch', 'agent-code-slice', '--allow-execution', '--', '--help']);
+  const dispatch = ait.parseArgs(['dispatch', 'agent-code-slice', '--allow-execution', '--profile-index', './profiles.json', '--', '--help']);
   assert.equal(dispatch.allowExecution, true);
+  assert.equal(dispatch.profileIndex, './profiles.json');
   assert.deepEqual(dispatch.passthrough, ['--help']);
 });
 
@@ -69,6 +70,51 @@ test('rejects registry package names that could escape the install root', () => 
   const copy = structuredClone(registry);
   copy.tools[0].npm = { name: '../outside' };
   assert.throws(() => ait.validateRegistry(copy), /npm identity is invalid/);
+});
+
+test('validates exact profile catalog entries and rejects duplicate matches', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'docs', 'profiles', 'PROFILE_INDEX.json'), 'utf8'));
+  assert.equal(ait.validateProfileCatalog(catalog), catalog);
+  const duplicate = structuredClone(catalog);
+  duplicate.profiles.push(structuredClone(duplicate.profiles[0]));
+  assert.throws(() => ait.validateProfileCatalog(duplicate), /Duplicate profile id/);
+  const unsafePath = structuredClone(catalog);
+  unsafePath.profiles[0].document = '../outside.md';
+  assert.throws(() => ait.validateProfileCatalog(unsafePath), /Invalid profile document/);
+  assert.equal(ait.selectProfile(
+    { id: 'agent-code-slice' },
+    { package: 'agent-code-slice', version: '0.2.0', bin: { name: 'code-slice' } },
+    catalog,
+  ).profile_id, 'hub-consumer/agent-code-slice@0.1');
+  assert.equal(ait.selectProfile(
+    { id: 'agent-project-profile' },
+    { package: 'agent-project-profile', version: '0.1.1', bin: { name: 'agent-project-profile' } },
+    catalog,
+  ), null);
+  const testScopeProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-test-scope');
+  assert.deepEqual(ait.validateNativeProfile(testScopeProfile, JSON.stringify({
+    schemaVersion: '1',
+    status: 'partial',
+    data: {},
+    diagnostics: [],
+    truncation: { truncated: true, reasons: ['RESOURCE_LIMIT'] },
+    stats: {},
+  }), 0), { passed: true, classification: 'partial' });
+  const changeImpactProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-change-impact');
+  assert.deepEqual(ait.validateNativeProfile(changeImpactProfile, JSON.stringify({
+    schemaVersion: '0.1-draft',
+    ok: true,
+    operation: 'capabilities',
+    unresolved: [],
+    warnings: [],
+  }), 0), { passed: true, classification: 'capabilities' });
+  const projectProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-project-profile');
+  assert.deepEqual(ait.validateNativeProfile(projectProfile, JSON.stringify({
+    schemaVersion: '1.0',
+    status: 'partial',
+    coverage: { status: 'partial' },
+    warnings: [],
+  }), 2), { passed: true, classification: 'partial' });
 });
 
 test('list reads a local registry snapshot and does not write the home', () => {
@@ -120,4 +166,44 @@ test('dispatch requires a separate explicit execution approval', () => {
   const output = JSON.parse(captured.output);
   assert.equal(output.ok, false);
   assert.equal(output.meta.error, 'EXECUTION_REQUIRES_APPROVAL');
+});
+
+test('dispatch applies the exact native profile without rewriting its payload', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ait-profile-'));
+  const packagePath = path.join(root, 'package');
+  const home = path.join(root, 'home');
+  fs.mkdirSync(packagePath, { recursive: true });
+  fs.writeFileSync(path.join(packagePath, 'package.json'), JSON.stringify({
+    name: 'agent-code-slice',
+    version: '0.2.0',
+    bin: { 'code-slice': 'cli.js' },
+  }));
+  fs.writeFileSync(path.join(packagePath, 'cli.js'), [
+    '#!/usr/bin/env node',
+    'console.log(JSON.stringify({schemaVersion:"1.0",ok:true,operation:"symbol",result:{fixture:true},warnings:[],meta:{}}))',
+  ].join('\n'));
+  try {
+    const install = captureStdout(() => ait.main([
+      'install', 'agent-code-slice', '--from-path', packagePath, '--allow-experimental', '--json',
+      '--registry', registryPath, '--home', home,
+    ]));
+    assert.equal(install.value, 0);
+    const dispatch = captureStdout(() => ait.main([
+      'dispatch', 'agent-code-slice', '--allow-execution', '--json',
+      '--registry', registryPath, '--home', home, '--', '--fixture',
+    ]));
+    assert.equal(dispatch.value, 0);
+    const output = JSON.parse(dispatch.output);
+    assert.equal(output.ok, true);
+    assert.equal(output.data.result.fixture, true);
+    assert.deepEqual(output.meta.profile, {
+      id: 'hub-consumer/agent-code-slice@0.1',
+      protocol: 'code-slice-native-v1',
+      classification: 'complete',
+      validation: 'passed',
+      message: null,
+    });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });

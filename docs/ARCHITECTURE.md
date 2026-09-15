@@ -32,8 +32,8 @@ stdout/stderr in `ait-result/v1` but does not reinterpret native semantics or cl
 Hub conformance. Preserve native compatibility; any versioned integration path must
 use an explicit consumer profile or reviewed migration. Current profiles for [Code
 Slice](profiles/AGENT_CODE_SLICE.md), [Project Profile](profiles/AGENT_PROJECT_PROFILE.md),
-and [Change Impact](profiles/AGENT_CHANGE_IMPACT.md) preserve native envelopes and do
-not normalize tool output.
+[Change Impact](profiles/AGENT_CHANGE_IMPACT.md), and [Test Scope](profiles/AGENT_TEST_SCOPE.md)
+preserve native envelopes and do not normalize tool output.
 
 ## Registry contract
 
@@ -79,13 +79,14 @@ The runtime is intentionally explicit and fail-closed:
   treated as trusted instructions. No automatic install, upgrade, import, retry, or
   execution occurs.
 
-The AIT implementation does not add a compatibility layer to external tools. It
-preserves their package version and native output, records installation state under
-the user's AIT home, and leaves semantic interpretation to the caller. The proposed
-exact-version profile boundary is documented in [AIT profile selection](AIT_PROFILE_SELECTION.md)
-and is not implemented by the current runtime. Context Pack may consume explicit
-result artifacts with provenance and size limits; it does not own global state or
-route agent reasoning.
+The AIT implementation does not add a universal compatibility layer to external
+tools. It preserves their package version and native output, records installation
+state under the user's AIT home, and applies only the checked-in exact-version
+profiles and bounded validators described in [AIT profile selection](AIT_PROFILE_SELECTION.md).
+Unmatched tools remain native passthrough; profile selection does not authorize
+execution or reinterpret native status. Context Pack may consume explicit result
+artifacts with provenance and size limits; it does not own global state or route
+agent reasoning.
 
 ## Shared infrastructure gate
 

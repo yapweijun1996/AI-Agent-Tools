@@ -22,8 +22,11 @@
       "description": "Report change relationships with evidence and explicit coverage limits.",
       "status": "Experimental",
       "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact",
-      "npm": null,
-      "release_version": null,
+      "npm": {
+        "name": "agent-change-impact",
+        "url": "https://www.npmjs.com/package/agent-change-impact"
+      },
+      "release_version": "0.1.1",
       "verification": null,
       "deprecation": null
     },

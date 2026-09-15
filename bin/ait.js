@@ -10,6 +10,7 @@ const { spawnSync } = require('node:child_process');
 const VERSION = '0.1.0';
 const RESULT_PROTOCOL = 'ait-result/v1';
 const INSTALL_STATE_VERSION = 'ait-install-state/v1';
+const PROFILE_INDEX_VERSION = '1.0.0';
 const DEFAULT_TIMEOUT_MS = 120_000;
 const DEFAULT_OUTPUT_BYTES = 1_048_576;
 const LIFECYCLES = new Set(['Planned', 'Experimental', 'Verified', 'Stable', 'Deprecated']);
@@ -31,7 +32,7 @@ function usage() {
     '  ait doctor [--json] [--registry PATH] [--home PATH]',
     '  ait install TOOL_ID [--allow-experimental] [--json] [--registry PATH] [--home PATH]',
     '  ait install TOOL_ID --from-path PACKAGE_DIR [--allow-experimental] [--json] [--registry PATH] [--home PATH]',
-    '  ait dispatch TOOL_ID [--allow-execution] [--cwd PATH] [--json] [--registry PATH] [--home PATH] -- [ARGS...]',
+    '  ait dispatch TOOL_ID [--allow-execution] [--cwd PATH] [--json] [--registry PATH] [--home PATH] [--profile-index PATH] -- [ARGS...]',
     '',
     'Installation and execution are always explicit. Registry metadata is not trusted code.',
   ].join('\n');
@@ -44,6 +45,7 @@ function parseArgs(argv) {
     home: null,
     cwd: null,
     fromPath: null,
+    profileIndex: null,
     allowExperimental: false,
     allowExecution: false,
     command: null,
@@ -82,7 +84,7 @@ function parseArgs(argv) {
       options.command = 'version';
       continue;
     }
-    if (['--registry', '--home', '--cwd', '--from-path'].includes(arg)) {
+    if (['--registry', '--home', '--cwd', '--from-path', '--profile-index'].includes(arg)) {
       if (index + 1 >= argv.length) {
         throw new AitError(`${arg} requires a value`, 2, 'INVALID_ARGUMENT');
       }
@@ -91,6 +93,7 @@ function parseArgs(argv) {
         '--home': 'home',
         '--cwd': 'cwd',
         '--from-path': 'fromPath',
+        '--profile-index': 'profileIndex',
       }[arg];
       options[optionName] = argv[index + 1];
       index += 1;
@@ -184,6 +187,124 @@ function homePath(options) {
 
 function loadRegistry(options) {
   return validateRegistry(readJson(registryPath(options), 'registry'));
+}
+
+function profileIndexPath(options) {
+  return path.resolve(options.profileIndex || path.join(__dirname, '..', 'docs', 'profiles', 'PROFILE_INDEX.json'));
+}
+
+function safeRelativeCatalogPath(value, label) {
+  if (!nonEmpty(value) || path.isAbsolute(value) || path.posix.isAbsolute(value) || value.includes('\\') || value.split('/').some((segment) => segment === '' || segment === '.' || segment === '..')) {
+    throw new AitError(`Invalid ${label}: ${value}`, 2, 'INVALID_PROFILE_INDEX');
+  }
+  return value;
+}
+
+function validateProfileCatalog(catalog) {
+  if (!catalog || typeof catalog !== 'object' || catalog.schema_version !== PROFILE_INDEX_VERSION || !Array.isArray(catalog.profiles)) {
+    throw new AitError(`Profile catalog must use schema ${PROFILE_INDEX_VERSION}`, 2, 'INVALID_PROFILE_INDEX');
+  }
+  const ids = new Set();
+  const keys = new Set();
+  for (const profile of catalog.profiles) {
+    if (!profile || typeof profile !== 'object' || !nonEmpty(profile.profile_id) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(profile.tool_id)) {
+      throw new AitError('Profile catalog contains an invalid profile identity', 2, 'INVALID_PROFILE_INDEX');
+    }
+    if (ids.has(profile.profile_id)) throw new AitError(`Duplicate profile id: ${profile.profile_id}`, 2, 'INVALID_PROFILE_INDEX');
+    ids.add(profile.profile_id);
+    if (!isSafePackageName(profile.package_name) || !/^\d+\.\d+\.\d+$/.test(profile.package_version) || !nonEmpty(profile.executable)) {
+      throw new AitError(`Profile identity is incomplete: ${profile.profile_id}`, 2, 'INVALID_PROFILE_INDEX');
+    }
+    safeSegment(profile.executable, 'profile executable');
+    if (!nonEmpty(profile.protocol) || !nonEmpty(profile.document) || !Array.isArray(profile.tests) || profile.tests.length === 0) {
+      throw new AitError(`Profile metadata is incomplete: ${profile.profile_id}`, 2, 'INVALID_PROFILE_INDEX');
+    }
+    safeRelativeCatalogPath(profile.document, 'profile document');
+    profile.tests.forEach((testPath) => safeRelativeCatalogPath(testPath, 'profile test path'));
+    if (profile.evidence_status !== 'source_observed' && profile.evidence_status !== 'artifact_verified') {
+      throw new AitError(`Profile evidence status is invalid: ${profile.profile_id}`, 2, 'INVALID_PROFILE_INDEX');
+    }
+    if (profile.applicability !== 'exact_package_version') {
+      throw new AitError(`Profile applicability is not exact: ${profile.profile_id}`, 2, 'INVALID_PROFILE_INDEX');
+    }
+    const key = `${profile.tool_id}|${profile.package_name}|${profile.package_version}|${profile.executable}`;
+    if (keys.has(key)) throw new AitError(`Duplicate exact profile match: ${key}`, 2, 'INVALID_PROFILE_INDEX');
+    keys.add(key);
+  }
+  return catalog;
+}
+
+function loadProfileCatalog(options) {
+  const filePath = profileIndexPath(options);
+  if (!fs.existsSync(filePath)) return { schema_version: PROFILE_INDEX_VERSION, profiles: [] };
+  return validateProfileCatalog(readJson(filePath, 'profile catalog'));
+}
+
+function selectProfile(tool, record, catalog) {
+  const matches = catalog.profiles.filter((profile) => profile.tool_id === tool.id
+    && profile.package_name === record.package
+    && profile.package_version === record.version
+    && profile.executable === record.bin.name);
+  if (matches.length > 1) throw new AitError(`Multiple exact profiles match ${tool.id}`, 2, 'PROFILE_AMBIGUOUS');
+  return matches[0] || null;
+}
+
+function validationFailure(message) {
+  return { passed: false, classification: 'protocol_error', message };
+}
+
+function validateNativeProfile(profile, stdout, exitCode, args = []) {
+  let value;
+  try {
+    value = JSON.parse(stdout);
+  } catch {
+    return validationFailure('Native stdout is not exactly one JSON document');
+  }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return validationFailure('Native envelope is not an object');
+  if (profile.protocol === 'code-slice-native-v1') {
+    if (!['1.0', '1.1'].includes(value.schemaVersion) || typeof value.ok !== 'boolean' || !Array.isArray(value.warnings)) return validationFailure('Code Slice envelope is invalid');
+    if (value.schemaVersion === '1.1' && (value.operation !== 'cli' || value.ok !== false)) return validationFailure('Code Slice v1.1 is reserved for CLI errors');
+    if (value.schemaVersion === '1.0' && value.operation === 'cli') return validationFailure('Code Slice CLI errors require v1.1');
+    if (value.ok) {
+      if (exitCode !== 0 || (value.operation !== 'capabilities' && (!value.result || typeof value.result !== 'object'))) return validationFailure('Code Slice success has an invalid exit/status or result');
+      const bounded = value.warnings.some((warning) => warning && warning.code === 'OUTLINE_TRUNCATED') || Boolean(value.result && value.result.page && value.result.page.hasMore === true);
+      return { passed: true, classification: bounded ? 'bounded_success' : 'complete' };
+    }
+    if (exitCode === 0 || !value.error || typeof value.error.code !== 'string') return validationFailure('Code Slice failure has an invalid exit/status or error');
+    return { passed: true, classification: 'error' };
+  }
+  if (profile.protocol === 'project-profile-native-v1') {
+    if (value.schemaVersion !== '1.0' || !['complete', 'partial', 'unsupported', 'error'].includes(value.status) || !value.coverage || !['complete', 'partial'].includes(value.coverage.status) || !Array.isArray(value.warnings)) return validationFailure('Project Profile envelope is invalid');
+    if (value.status === 'complete') {
+      const strict = args.includes('--strict');
+      if (exitCode === 0 && value.coverage.status === 'complete') return { passed: true, classification: 'complete' };
+      if (strict && exitCode === 2 && value.warnings.some((warning) => warning && (warning.severity === 'warning' || warning.severity === 'error'))) return { passed: true, classification: 'strict_rejected' };
+      return validationFailure('Project Profile complete status has an invalid exit or coverage');
+    }
+    if (value.status === 'partial' && exitCode === 2 && value.coverage.status === 'partial') return { passed: true, classification: 'partial' };
+    if (value.status === 'unsupported' && exitCode === 2) return { passed: true, classification: 'unsupported' };
+    if (value.status === 'error' && exitCode === 1) return { passed: true, classification: 'error' };
+    return validationFailure('Project Profile status and exit code disagree');
+  }
+  if (profile.protocol === 'change-impact-native-v0.1-draft') {
+    if (value.schemaVersion !== '0.1-draft' || typeof value.ok !== 'boolean' || !Array.isArray(value.warnings)) return validationFailure('Change Impact envelope is invalid');
+    if (value.ok) {
+      if (exitCode !== 0 || typeof value.operation !== 'string' || !Array.isArray(value.unresolved)) return validationFailure('Change Impact success has an invalid exit/status');
+      if (value.operation === 'capabilities') return { passed: true, classification: 'capabilities' };
+      if (!value.analysis || !['complete', 'partial'].includes(value.analysis.status) || !Array.isArray(value.analysis.stopReasons)) return validationFailure('Change Impact analysis status is invalid');
+      return { passed: true, classification: value.analysis.status === 'partial' ? 'partial_success' : 'complete' };
+    }
+    if (![1, 2].includes(exitCode) || !value.error || typeof value.error.code !== 'string') return validationFailure('Change Impact failure has an invalid exit/status or error');
+    return { passed: true, classification: 'error' };
+  }
+  if (profile.protocol === 'test-scope-native-v1') {
+    if (value.schemaVersion !== '1' || !['complete', 'partial', 'error'].includes(value.status) || !value.data || typeof value.data !== 'object' || Array.isArray(value.data) || !Array.isArray(value.diagnostics) || !value.truncation || typeof value.truncation.truncated !== 'boolean' || !Array.isArray(value.truncation.reasons) || !value.stats || typeof value.stats !== 'object' || Array.isArray(value.stats)) return validationFailure('Test Scope envelope is invalid');
+    if (value.status === 'complete' && exitCode === 0) return { passed: true, classification: 'complete' };
+    if (value.status === 'partial' && exitCode === 0) return { passed: true, classification: 'partial' };
+    if (value.status === 'error' && [1, 2].includes(exitCode)) return { passed: true, classification: 'error' };
+    return validationFailure('Test Scope status and exit code disagree');
+  }
+  return validationFailure(`Unsupported profile protocol: ${profile.protocol}`);
 }
 
 function loadState(home) {
@@ -447,9 +568,15 @@ function dispatchTool(options) {
   }
   const id = options.positionals[0];
   if (!id) throw new AitError('dispatch requires a registry tool id', 2, 'MISSING_TOOL');
+  const registry = loadRegistry(options);
+  const tool = findTool(registry, id);
   const state = loadState(homePath(options));
   const record = state.installed.find((entry) => entry.id === id);
   if (!record) throw new AitError(`Tool is not installed: ${id}`, 4, 'NOT_INSTALLED');
+  if (!tool.npm || record.package !== tool.npm.name || record.version !== tool.release_version) {
+    throw new AitError(`Installed identity does not match the selected registry: ${id}`, 4, 'PACKAGE_IDENTITY_MISMATCH');
+  }
+  const profile = selectProfile(tool, record, loadProfileCatalog(options));
   const executable = resolveExecutable({ options, record });
   const cwd = path.resolve(options.cwd || process.cwd());
   if (!fs.existsSync(cwd) || !fs.statSync(cwd).isDirectory()) {
@@ -474,17 +601,32 @@ function dispatchTool(options) {
   if (trimmed) {
     try { data = JSON.parse(trimmed); } catch { /* Preserve non-JSON native output as bounded text. */ }
   }
-  const output = result(data, exitCode === 0 ? 'ok' : 'error', exitCode === 0, {
+  const profileValidation = profile
+    ? validateNativeProfile(profile, child.stdout || '', exitCode, options.passthrough)
+    : null;
+  const nativeOk = exitCode === 0;
+  const wrapperOk = nativeOk && (!profileValidation || profileValidation.passed);
+  const output = result(data, wrapperOk ? 'ok' : 'error', wrapperOk, {
     tool: id,
     package: record.package,
     version: record.version,
     exit_code: exitCode,
+    native_exit: exitCode,
     signal: child.signal || null,
     cwd,
     native_stdout: child.stdout || '',
     native_stderr: child.stderr || '',
+    ...(profile ? {
+      profile: {
+        id: profile.profile_id,
+        protocol: profile.protocol,
+        classification: profileValidation.classification,
+        validation: profileValidation.passed ? 'passed' : 'failed',
+        message: profileValidation.message || null,
+      },
+    } : {}),
   });
-  return { output, exitCode };
+  return { output, exitCode: profileValidation && !profileValidation.passed ? 4 : exitCode };
 }
 
 function textOutput(value) {
@@ -546,6 +688,9 @@ module.exports = {
   VERSION,
   parseArgs,
   validateRegistry,
+  validateProfileCatalog,
+  selectProfile,
+  validateNativeProfile,
   result,
   packageBin,
   safeEnvironment,

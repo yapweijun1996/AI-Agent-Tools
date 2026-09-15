@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "profiles": [
+    {
+      "profile_id": "hub-consumer/agent-code-slice@0.1",
+      "tool_id": "agent-code-slice",
+      "package_name": "agent-code-slice",
+      "package_version": "0.2.0",
+      "executable": "code-slice",
+      "protocol": "code-slice-native-v1",
+      "document": "docs/profiles/AGENT_CODE_SLICE.md",
+      "tests": ["tests/code_slice_profile.test.js"],
+      "evidence_status": "source_observed",
+      "applicability": "exact_package_version"
+    },
+    {
+      "profile_id": "hub-consumer/agent-project-profile@0.1",
+      "tool_id": "agent-project-profile",
+      "package_name": "agent-project-profile",
+      "package_version": "0.1.2",
+      "executable": "agent-project-profile",
+      "protocol": "project-profile-native-v1",
+      "document": "docs/profiles/AGENT_PROJECT_PROFILE.md",
+      "tests": ["tests/project_profile_profile.test.js"],
+      "evidence_status": "source_observed",
+      "applicability": "exact_package_version"
+    },
+    {
+      "profile_id": "hub-consumer/agent-change-impact@0.1",
+      "tool_id": "agent-change-impact",
+      "package_name": "agent-change-impact",
+      "package_version": "0.1.1",
+      "executable": "agent-impact",
+      "protocol": "change-impact-native-v0.1-draft",
+      "document": "docs/profiles/AGENT_CHANGE_IMPACT.md",
+      "tests": ["tests/change_impact_profile.test.js"],
+      "evidence_status": "source_observed",
+      "applicability": "exact_package_version"
+    },
+    {
+      "profile_id": "hub-consumer/agent-test-scope@0.1",
+      "tool_id": "agent-test-scope",
+      "package_name": "agent-test-scope",
+      "package_version": "0.1.1",
+      "executable": "agent-test-scope",
+      "protocol": "test-scope-native-v1",
+      "document": "docs/profiles/AGENT_TEST_SCOPE.md",
+      "tests": ["tests/test_scope_profile.test.js"],
+      "evidence_status": "artifact_verified",
+      "applicability": "exact_package_version"
+    }
+  ]
+}

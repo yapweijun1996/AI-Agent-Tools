@@ -9,6 +9,7 @@
   "files": [
     "bin/ait.js",
     "docs/AIT_RUNTIME.md",
+    "docs/profiles/PROFILE_INDEX.json",
     "README.md"
   ],
   "engines": {

@@ -60,9 +60,9 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-01 | Establish Hub standards, registry, roadmap, and validator | Done | None | Existing foundation; V-01 through V-05 |
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
-| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, and Change Impact now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
-| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch and `ait-result/v1`; exact-version profile selection is designed but not implemented; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
+| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, Change Impact, and Test Scope now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; Change Impact 0.1.1 and Project Profile 0.1.1 artifacts have bounded smoke evidence; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
+| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
@@ -86,7 +86,7 @@ or an unimplemented feature is not automatically an external blocker.
 - Accepted boundaries and rationale are in [DESIGN.md](DESIGN.md); existing target
   standards and registry versions stay `1.0.0`.
 - The Hub target envelope and completeness matrix are resolved by executable
-  fixtures. Code Slice, Project Profile, and Change Impact have explicit native
+  fixtures. Code Slice, Project Profile, Change Impact, and Test Scope have explicit
   consumer profiles; profiles for other native tools or explicit migration remain
   engineering decisions, not an automatic compatibility layer. Preserve current
   consumers.
@@ -107,7 +107,8 @@ or an unimplemented feature is not automatically an external blocker.
   test scope, and maintainers before expanding claims.
 - AIT package distribution and Hub licensing remain open; the current local package
   is private/UNLICENSED and is not a published tool release. Exact-version native
-  profile selection/application is documented as a proposal, not runtime behavior.
+  profile selection/application is implemented only for the checked-in catalog and
+  bounded validators; it is not a universal compatibility layer.
 - Within the three additions, CFML Check's bounded feasibility work is now the
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion

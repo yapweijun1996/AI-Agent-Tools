@@ -14,7 +14,7 @@ ait list [--json] [--registry PATH] [--home PATH]
 ait doctor [--json] [--registry PATH] [--home PATH]
 ait install TOOL_ID [--allow-experimental] [--json] [--registry PATH] [--home PATH]
 ait install TOOL_ID --from-path PACKAGE_DIR [--allow-experimental] [--json] [--registry PATH] [--home PATH]
-ait dispatch TOOL_ID --allow-execution [--cwd PATH] [--json] [--registry PATH] [--home PATH] -- [ARGS...]
+ait dispatch TOOL_ID --allow-execution [--cwd PATH] [--json] [--registry PATH] [--home PATH] [--profile-index PATH] -- [ARGS...]
 ```
 
 `list` reads the explicit local `TOOL_REGISTRY.json` snapshot. `doctor` checks
@@ -32,10 +32,12 @@ resolve to the registered package identity. Installation state is stored in
 `dispatch` requires a separate `--allow-execution` approval. It resolves the
 installed package's declared `bin`, starts it without a shell, passes a reduced
 environment, captures bounded stdout/stderr, and wraps the result as
-`ait-result/v1`. Native streams are retained in the wrapper metadata alongside any
-parsed stdout value. The wrapper preserves native output and exit information; it
-does not claim that a nonzero exit has a universal semantic meaning. AIT is not a
-sandbox: tool processes may still access resources available to the invoking user.
+`ait-result/v1`. When the exact package/version/executable match exists in
+`docs/profiles/PROFILE_INDEX.json` (or `--profile-index PATH`), AIT applies the
+profile's bounded native validator and adds optional `meta.profile` metadata.
+Native streams, payload, and `native_exit` are retained; profile validation never
+renames native fields or maps native statuses to a universal Hub status. AIT is not
+a sandbox: tool processes may still access resources available to the invoking user.
 
 ## Security boundaries
 
@@ -53,9 +55,8 @@ sandbox: tool processes may still access resources available to the invoking use
 
 The first implementation does not provide OS-level sandboxing, remote registry
 refresh, package signature verification, dependency policy enforcement beyond npm's
-explicit flags, uninstall/upgrade commands, native-profile selection/application, or
-a universal Hub protocol adapter. Profile selection is designed separately in
-[AIT profile selection](AIT_PROFILE_SELECTION.md) but is not implemented. Those
-features require separate reviewed contracts and evidence. Individual tool
-repositories remain responsible for implementation, releases, native contracts, and
-security reporting.
+explicit flags, uninstall/upgrade commands, or a universal Hub protocol adapter.
+Only the checked-in exact profiles and bounded validators are supported; adding a
+profile requires its catalog entry, native contract, fixtures, and review. Individual
+tool repositories remain responsible for implementation, releases, native
+contracts, and security reporting.

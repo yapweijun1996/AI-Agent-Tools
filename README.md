@@ -19,7 +19,7 @@ remains unresolved.
 
 Delivery completion is separate from Hub standards conformance. Code Slice retains the registry lifecycle `Experimental` because native/Hub protocol compatibility has not been verified; this does **not** mean its delivered tool is unfinished. Its npm identity and recorded release are populated; its Hub verification snapshot remains `null`.
 
-The native Code Slice, draft Change Impact, and Project Profile protocols differ from the Hub target JSON/exit/completeness contract. This foundation does not supply a compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
+The native Code Slice, draft Change Impact, Project Profile, and Test Scope protocols differ from the Hub target JSON/exit/completeness contract. AIT applies only explicit exact-version consumer profiles and does not provide a universal compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
 
 The three-tool and status reconciliation was synchronized at User tier and read
 back. Company-tier visibility remains blocked by the existing write-scope denial;
