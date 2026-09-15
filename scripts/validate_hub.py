@@ -202,14 +202,58 @@ def validate_docs(registry):
                 require(unquote(parsed.fragment) in anchors(target.read_text(encoding="utf-8")),
                         f"{document.name}: broken anchor {destination}")
     roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
-    rows = re.findall(r"^\| (\d+) \| `([^`]+)` \| ([^|]+) \|", roadmap, re.M)
-    expected = [(str(i), tool["id"], tool["name"]) for i, tool in enumerate(registry["tools"], 1)]
-    require([(i, tool_id, name.strip()) for i, tool_id, name in rows] == expected,
-            "Roadmap order/IDs/names differ from registry")
+    validate_roadmap(roadmap, registry)
     lifecycle = (ROOT / "docs/TOOL_STANDARD.md").read_text(encoding="utf-8")
     require(set(re.findall(r"^\| `([^`]+)` \|", lifecycle, re.M)) == STATUSES,
             "Documented lifecycle differs from registry validator")
     return len(documents), link_count, external_urls
+
+
+def split_table_row(line, label):
+    stripped = line.strip()
+    require(stripped.startswith("|") and stripped.endswith("|"),
+            f"{label}: malformed table row")
+    cells = [cell.strip() for cell in stripped[1:-1].split("|")]
+    require(cells and all(cells), f"{label}: empty table cell")
+    return cells
+
+
+def validate_roadmap(roadmap, registry):
+    lines = roadmap.splitlines()
+    header = ["Order", "Registry ID", "Tool", "Intended outcome"]
+    header_index = None
+    for index, line in enumerate(lines):
+        if line.strip().startswith("|"):
+            cells = split_table_row(line, "Roadmap")
+            if cells == header:
+                header_index = index
+                break
+    require(header_index is not None, "Roadmap delivery table missing")
+    require(header_index + 1 < len(lines), "Roadmap table separator missing")
+    separator = split_table_row(lines[header_index + 1], "Roadmap separator")
+    require(len(separator) == len(header)
+            and all(re.fullmatch(r":?-{3,}:?", cell) for cell in separator),
+            "Roadmap table separator malformed")
+
+    rows = []
+    index = header_index + 2
+    while index < len(lines) and lines[index].strip():
+        cells = split_table_row(lines[index], f"Roadmap row {index + 1}")
+        require(len(cells) == len(header),
+                f"Roadmap row {index + 1}: expected {len(header)} cells")
+        order, registry_id, name, outcome = cells
+        require(re.fullmatch(r"\d+", order),
+                f"Roadmap row {index + 1}: invalid order")
+        require(re.fullmatch(r"`[^`]+`", registry_id),
+                f"Roadmap row {index + 1}: invalid registry ID")
+        require(nonempty(name) and nonempty(outcome),
+                f"Roadmap row {index + 1}: empty tool/name or outcome")
+        rows.append((order, registry_id[1:-1], name))
+        index += 1
+
+    expected = [(str(i), tool["id"], tool["name"])
+                for i, tool in enumerate(registry["tools"], 1)]
+    require(rows == expected, "Roadmap order/IDs/names differ from registry")
 
 
 def main():
