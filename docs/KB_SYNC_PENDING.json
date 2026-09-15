@@ -42,6 +42,31 @@
     "readback": "confirmed",
     "company_tier_blocker": "SHARE_TIER_DENIED: above_scope for existing Company-tier Code Slice record"
   },
+  "latest_profile_artifact_reconciliation": {
+    "reconciled_on": "2026-09-15",
+    "scope": "user",
+    "company_tier_promotion": false,
+    "source_commit": "33d58f4",
+    "ait_runtime_commit": "0e6135a",
+    "profile_catalog_entries": 6,
+    "status_records_updated": [
+      "67898e2f-f74c-4701-b0c7-690b45d6dcdb",
+      "032b3e5a-127f-47ce-a4b1-097e5160024d",
+      "2f632541-1891-45d1-8056-eccc83c295d1",
+      "a94dac3b-9619-4dcc-89fb-025272afeb09"
+    ],
+    "index_records_updated": [
+      "5e5c8c5e-c3e9-460d-a985-3165e0b83031",
+      "e360b621-3c4c-4a81-b7ce-f3d892015be8"
+    ],
+    "artifact_audits": {
+      "agent-change-impact": "0.1.1/4f3e5102f521e2c6a2830604f6a127d8b84f9554",
+      "agent-test-scope": "0.1.1/4830019255560757357aace1dbabadcab0a46837",
+      "agent-cfml-check": "0.1.1/a86b3e18c3c156720ed6b34df176fbb03d0b1926",
+      "agent-symbol-search": "0.1.2/121d996f2fedee187cdfd7b56323ee533246a685"
+    },
+    "readback": "status records and canonical/functional index responses confirmed at User tier"
+  },
   "blocker": {
     "http_status": 403,
     "code": "SHARE_TIER_DENIED",

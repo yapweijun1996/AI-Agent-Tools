@@ -390,6 +390,12 @@ and future integration work.
 | V-22 | Exact CFML Check `0.1.1` artifact and profile | `npm pack --ignore-scripts agent-cfml-check@0.1.1` returned 25 files, shasum `a86b3e18c3c156720ed6b34df176fbb03d0b1926`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a valid check exit 0 with `status: ok`, and unsupported syntax exit 3 with `UNSUPPORTED_SYNTAX`. `docs/profiles/AGENT_CFML_CHECK.md` and its fixtures preserve the native envelope, structural-violation success, incomplete, and error semantics; the two native profile fixture tests passed; broader engine/platform and Hub conformance remain unverified. |
 | V-23 | Exact Symbol Search `0.1.2` artifact and profile | `npm pack --ignore-scripts agent-symbol-search@0.1.2` returned 50 files, shasum `121d996f2fedee187cdfd7b56323ee533246a685`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a complete TypeScript symbol search exit 0, and a missing project error exit 1 with `INVALID_REQUEST`. `docs/profiles/AGENT_SYMBOL_SEARCH.md` and its fixtures preserve complete/partial/error native semantics; the two native profile fixture tests passed; broader platform and Hub conformance remain unverified. |
 
+## User-tier KB profile and artifact reconciliation - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-24 | User-tier KB readback after profile/artifact updates | Existing User-tier status records for CFML Check, Change Impact, Test Scope and Symbol Search were updated in place; the Canonical SSOT and Functional Map were updated in place. Readback confirmed User visibility, published package versions, artifact/profile evidence and the exact native-profile boundary. No Company-tier write or promotion was attempted; the historical `SHARE_TIER_DENIED: above_scope` blocker remains. |
+
 ## AIT profile catalog and exact application review - 2026-09-15
 
 | ID | Check | Evidence and limitation |

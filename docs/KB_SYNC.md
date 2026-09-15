@@ -96,6 +96,29 @@ remains intentionally User-visible; Company-tier sharing is not claimed. The
 existing Company-tier Code Slice record could not be updated because the API
 returned `SHARE_TIER_DENIED: above_scope`; no permission change or retry was made.
 
+## 2026-09-15 User-tier profile and artifact reconciliation
+
+Status: **Reconciled at User tier**. Existing status records were updated in place
+for CFML Check, Change Impact, Test Scope, and Symbol Search. The Canonical SSOT
+and Functional Map were updated in place with the four published-artifact audits,
+the six-entry AIT native profile catalog, and the exact-match/native-preservation
+boundary. No Company-tier promotion was attempted.
+
+| Record | Item ID | Readback |
+| --- | --- | --- |
+| Tool Status - agent-cfml-check | `67898e2f-f74c-4701-b0c7-690b45d6dcdb` | User tier; published `0.1.1`, artifact audit and native profile evidence |
+| Tool Status — agent-change-impact | `032b3e5a-127f-47ce-a4b1-097e5160024d` | User tier; published `0.1.1`, artifact audit and native profile evidence |
+| Tool Status — agent-test-scope | `2f632541-1891-45d1-8056-eccc83c295d1` | User tier; published `0.1.1`, artifact audit and native profile evidence |
+| Tool Status - agent-symbol-search | `a94dac3b-9619-4dcc-89fb-025272afeb09` | User tier; published `0.1.2`, artifact audit and native profile evidence |
+| Canonical Ecosystem SSOT | `5e5c8c5e-c3e9-460d-a985-3165e0b83031` | Exact updated content read back |
+| Functional Map | `e360b621-3c4c-4a81-b7ce-f3d892015be8` | Exact updated content read back |
+
+Artifact evidence is recorded in `VALIDATION.md` V-19 through V-23.
+The Hub implementation commits are `0e6135a` (AIT exact profile application) and
+`33d58f4` (CFML Check and Symbol Search profiles). The catalog contains six exact
+native profiles; release, delivery, and Hub conformance remain separate status
+axes. The historical Company-tier denial remains unchanged.
+
 ## 2026-09-07 synchronization receipt
 
 Status: **Synchronized at User tier**. The current KB visibility was read back as
