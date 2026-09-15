@@ -14,8 +14,9 @@ Project Profile now has a confirmed repository, published npm identity, and
 inspectable implementation, so its Hub lifecycle is `Experimental`; it is not
 counted as delivery `Done` because the corrected source `0.1.2` is not published.
 A prior audit recorded a `0.1.1` CLI distribution defect, while the current exact
-artifact re-audit did not reproduce it on this host; the release/platform discrepancy
-remains unresolved.
+artifact re-audit did not reproduce it on this host. The exact published artifact
+omits its declared MIT `LICENSE` file, and the release/platform discrepancy remains
+unresolved.
 
 Delivery completion is separate from Hub standards conformance. Code Slice retains the registry lifecycle `Experimental` because native/Hub protocol compatibility has not been verified; this does **not** mean its delivered tool is unfinished. Its npm identity and recorded release are populated; its Hub verification snapshot remains `null`.
 
@@ -26,8 +27,10 @@ back. Company-tier visibility remains blocked by the existing write-scope denial
 see the [KB receipt](docs/KB_SYNC.md).
 
 The local `agent-tools` package provides the `ait` discovery, install, doctor, and
-dispatch CLI. It is not yet published. Installation and execution are explicit,
-version-pinned, and fail closed when registry identity or approval is missing; see
+dispatch CLI. Its packed default-registry omission was corrected, but it remains
+private/`UNLICENSED` and is not yet published. Installation and execution are
+explicit, version-pinned, and fail closed when registry identity or approval is
+missing; see [AIT runtime](docs/AIT_RUNTIME.md) and
 [Architecture](docs/ARCHITECTURE.md#ait-discovery-installation-and-dispatch-runtime).
 
 ## Principles

@@ -5,7 +5,12 @@ dated 2026-09-06 and remain historical. This document owns the Hub's evidence
 scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
 
-## Current source observations
+## Audited source/release snapshots
+
+The table below preserves the immutable source snapshots used for the recorded
+implementation and artifact reviews. A changing public `main` branch is not a
+replacement for those release-specific observations; the current remote-head and
+CI observation is recorded separately below.
 
 | Repository | Observed source state | What it establishes |
 | --- | --- | --- |
@@ -28,9 +33,29 @@ but its correctness/security tests were not executed in this Hub documentation t
 That historical working tree could change independently after inspection; the
 current public commit and clean-clone audit are recorded above.
 
-The canonical repository links listed in the source-observation table were
-checked and opened successfully during their respective reviews. This establishes
-repository identity/accessibility, not npm publication or CI results.
+The canonical repository links listed in the audited snapshot table were checked
+and opened successfully during their respective reviews. This establishes repository
+identity/accessibility, not npm publication or current CI results.
+
+## Current remote-head and CI observation - 2026-09-15
+
+This is a bounded read-only observation of public `main` heads, package manifests,
+and the GitHub Actions run associated with each exact head. It is not a release
+certificate and does not replace the immutable source or npm artifact evidence above.
+
+| Tool | Current public `main` | Manifest/package observation | Associated CI observation |
+| --- | --- | --- | --- |
+| Code Slice | `12411e9153282e0304a985c1007e0e4bad4fcf31` | Source package is `0.4.0`; npm `latest` is `0.4.0`, while the Hub's recorded reviewed release remains `0.2.0` | [Run 34551479033](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/actions/runs/34551479033) passed across its Windows/macOS/Linux Node matrix |
+| Change Impact | `f298328d7035adce57fc57fdc36ac30da70a2a68` | Source package remains `0.1.1` | [Run 34551478970](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/actions/runs/34551478970) passed on Windows/macOS/Linux with Node 22/24 |
+| Project Profile | `b711b7244e369e86038d8a6eb05de7de481c8f20` | Source package remains `0.1.2`; npm `latest` remains `0.1.1` | [Run 34826574214](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/actions/runs/34826574214) passed on Windows/macOS/Linux with Node 18.18/20/22 |
+| Test Scope | `aa39505d646d1ddf376c4413f294e8e67d913748` | Source package remains `0.1.1` | [Run 34805729863](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/actions/runs/34805729863) passed on Node 20/22; workflow matrix is not evidence for all three OS families |
+| CFML Check | `afda57d711b8e57e05e4a03a52cf13faa0bbcdfd` | Source package remains `0.1.1` | [Run 34805721849](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/actions/runs/34805721849) passed on Node 18.18/20/22; this does not establish CFML engine compatibility |
+| Symbol Search | `0e251c786edfd13e38f469289c5939e2acbdd39b` | Source package remains `0.1.2`; npm `latest` remains `0.1.2` | [Run 34805726939](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/actions/runs/34805726939) failed because the Documentation check failed on Ubuntu Node 22/24/26; package-smoke jobs passed on Ubuntu/macOS/Windows |
+
+The Symbol Search CI failure belongs to the current public `main` snapshot; it does
+not retroactively invalidate the separately audited published `0.1.2` artifact, but
+it prevents treating current source/CI as clean evidence. The Code Slice `0.4.0`
+observation likewise does not replace the Hub's exact `0.2.0` release snapshot.
 
 ## Code Slice completion and publication update
 
@@ -68,9 +93,10 @@ The exact source commit passed `npm ci --ignore-scripts`, `npm run typecheck`,
 `npm test` (31 passed), `npm run test:packaged-cli`, and
 `npm audit --omit=dev --audit-level=moderate` (zero vulnerabilities). A local
 `npm publish --dry-run --ignore-scripts` also produced a valid `0.1.2` artifact;
-no publish action was performed. These results establish an Experimental
-implementation snapshot, not a published `0.1.2` release or Hub protocol
-conformance.
+no publish action was performed. The exact published `0.1.1` tarball declares MIT
+but contains no `LICENSE` file, which is a release-packaging gap under the Hub
+Release standard. These results establish an Experimental implementation snapshot,
+not a published `0.1.2` release or Hub protocol conformance.
 
 ## Change Impact published artifact audit
 
@@ -389,6 +415,16 @@ and future integration work.
 | --- | --- | --- |
 | V-22 | Exact CFML Check `0.1.1` artifact and profile | `npm pack --ignore-scripts agent-cfml-check@0.1.1` returned 25 files, shasum `a86b3e18c3c156720ed6b34df176fbb03d0b1926`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a valid check exit 0 with `status: ok`, and unsupported syntax exit 3 with `UNSUPPORTED_SYNTAX`. `docs/profiles/AGENT_CFML_CHECK.md` and its fixtures preserve the native envelope, structural-violation success, incomplete, and error semantics; the two native profile fixture tests passed; broader engine/platform and Hub conformance remain unverified. |
 | V-23 | Exact Symbol Search `0.1.2` artifact and profile | `npm pack --ignore-scripts agent-symbol-search@0.1.2` returned 50 files, shasum `121d996f2fedee187cdfd7b56323ee533246a685`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a complete TypeScript symbol search exit 0, and a missing project error exit 1 with `INVALID_REQUEST`. `docs/profiles/AGENT_SYMBOL_SEARCH.md` and its fixtures preserve complete/partial/error native semantics; the two native profile fixture tests passed; broader platform and Hub conformance remain unverified. |
+
+## Published artifact and platform follow-up - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-25 | Unified exact npm packlist audit | Exact published artifacts were packed read-only for Code Slice `0.2.0` (58 files, shasum `73965ce77072b370370555c129fbde7f19499858`), Change Impact `0.1.1` (41 files, `4f3e5102f521e2c6a2830604f6a127d8b84f9554`), Project Profile `0.1.1` (37 files, `e837507faaa9dcbdfd97b70ddf00456cc985448a`), Test Scope `0.1.1` (88 files, `4830019255560757357aace1dbabadcab0a46837`), CFML Check `0.1.1` (25 files, `a86b3e18c3c156720ed6b34df176fbb03d0b1926`), and Symbol Search `0.1.2` (50 files, `121d996f2fedee187cdfd7b56323ee533246a685`). All six exposed a README, declared executable and package contract material (with schema files where the package publishes them); Project Profile's exact artifact declares MIT but omits a `LICENSE` file. Code Slice's extract-only CLI attempt was not treated as a runtime result because its declared `web-tree-sitter` dependency was not installed; dependency-installed artifact smoke remains unrun. This is packlist/identity evidence, not full runtime or security certification. |
+| V-26 | Current public source/platform observation | `git ls-remote`, package manifests, and associated GitHub Actions runs were checked for all six published identities. Five current heads had successful associated CI; Symbol Search current `main` failed its Documentation check on Ubuntu Node 22/24/26 while package-smoke jobs passed on all three OS families. Code Slice current `main`/npm latest is `0.4.0`, not the Hub's recorded reviewed `0.2.0`; Project Profile current source remains `0.1.2` while npm latest remains `0.1.1`. Current-head observations do not replace exact release evidence. |
+| V-27 | AIT packed-consumer release gate | The initial `agent-tools@0.1.0` dry-run contained five files and an extracted default `ait list --json` failed with exit 1/`READ_FAILED` because `TOOL_REGISTRY.json` was absent. `package.json` now includes that snapshot and a regression test protects the inclusion. A post-edit packed-consumer smoke packed six files and verified `ait list --json` exit 0 with 14 tools plus `ait doctor --json` exit 0. The package remains private/`UNLICENSED`, and no publication was performed. |
+
+| V-28 | Registry signature/provenance boundary | npm registry metadata exposed one `dist.signatures` entry and a `dist.integrity` value for each of the six audited tool versions. `npm audit signatures --json` on the dependency-free Hub returned `found no installed dependencies to audit`; no independent key-trust or provenance verification was claimed. AIT's policy therefore uses registry-native integrity/signature evidence when available and does not introduce a custom signature layer. |
 
 ## User-tier KB profile and artifact reconciliation - 2026-09-15
 

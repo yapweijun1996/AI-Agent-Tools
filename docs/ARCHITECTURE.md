@@ -87,7 +87,10 @@ profiles and bounded validators described in [AIT profile selection](AIT_PROFILE
 Unmatched tools remain native passthrough; profile selection does not authorize
 execution or reinterpret native status. Context Pack may consume explicit result
 artifacts with provenance and size limits; it does not own global state or route
-agent reasoning.
+agent reasoning. The current package is not publication-ready: its distribution
+must retain the default registry snapshot, and publication still requires an
+explicit license/ownership decision. The detailed policy gate for remote refresh,
+signatures, dependencies, and sandboxing is recorded in [AIT runtime](AIT_RUNTIME.md).
 
 ## Shared infrastructure gate
 

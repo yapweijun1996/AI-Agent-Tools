@@ -53,6 +53,12 @@ test('validates the current registry and keeps installability explicit', () => {
   assert.equal(resultStore.npm, null);
 });
 
+test('published package includes the default registry snapshot', () => {
+  const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
+  assert.equal(packageJson.files.includes('TOOL_REGISTRY.json'), true);
+  assert.equal(packageJson.files.includes('docs/profiles/PROFILE_INDEX.json'), true);
+});
+
 test('normalizes executable declarations without choosing an unsafe default', () => {
   assert.deepEqual(ait.packageBin({ bin: 'cli.js' }, '@scope/example'), {
     name: 'example',

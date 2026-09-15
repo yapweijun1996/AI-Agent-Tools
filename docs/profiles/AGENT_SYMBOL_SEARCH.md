@@ -62,7 +62,11 @@ integrity
 `sha512-d1dn/VtGhdQ4DwQk3AndtqaF8+EWg/iSquqs2PYZtGc1GXqsKL9wz7MN+eXyUGDb+qZswZeUGNZ7fiFGp/Vrkg==`.
 The package schema, README, and CLI were inspected. Artifact smoke checks
 covered capabilities, a complete symbol search, and a bounded invalid-project
-error.
+error. The current public `main` advanced to
+`0e251c786edfd13e38f469289c5939e2acbdd39b`; its associated CI run passed package
+smoke on Ubuntu/macOS/Windows but failed the Documentation check on Ubuntu Node
+22/24/26. That current-source result does not alter the published-artifact
+profile evidence or transfer current CI failure semantics to `0.1.2`.
 
 This profile does not read source bodies, execute recommendations, certify
 semantic correctness, or claim JavaScript/Python/CFML support. See the

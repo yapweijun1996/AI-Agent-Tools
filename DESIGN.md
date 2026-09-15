@@ -1,6 +1,6 @@
 # Design decisions
 
-Last reconciled: 2026-09-07. Scope: the AI-Agent-Tools Hub. This document owns
+Last reconciled: 2026-09-15. Scope: the AI-Agent-Tools Hub. This document owns
 decision rationale; [Architecture](docs/ARCHITECTURE.md) owns structural contracts,
 [SPEC.md](SPEC.md) owns requirements, and [TASK.md](TASK.md) owns execution status.
 
@@ -37,6 +37,7 @@ consistency; the script cannot prove external tool conformance.
 | D-13 | Synchronize reviewable Hub contracts with the existing Company KB | KB status/design records and repository documents retain source provenance and content digests; reconcile conflicts explicitly before claiming current state |
 | D-14 | Authorize a dependency-free AIT runtime in the Hub | `agent-tools@0.1.0` owns list/doctor/pinned install/approved dispatch and `ait-result/v1`; it is private, not a sandbox, and not a universal compatibility adapter |
 | D-15 | Lock Hub envelope completeness semantics with executable consumer fixtures | `ok`/complete data uses exit 0; `incomplete`/null data uses exit 3; `error`/null data uses exit 1, 2, or 4; native tools are not remapped |
+| D-16 | Keep AIT publication gated by packed-consumer behavior and explicit trust policy | The package must ship its default registry snapshot and pass a clean packed-consumer smoke test before publication; license/ownership, registry refresh, integrity/provenance, dependency and sandbox policies remain explicit decisions rather than inferred features |
 
 ## Protocol reconciliation boundary
 

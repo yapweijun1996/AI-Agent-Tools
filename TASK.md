@@ -21,8 +21,10 @@ for snapshot scope; a manifest or type definition is not an implemented capabili
 Project Profile now has an inspectable implementation and published npm identity,
 but its corrected source release `0.1.2` is not published. A prior audit recorded a
 registry `0.1.1` distribution defect; the current exact-artifact re-audit did not
-reproduce it on this host, so the release/platform discrepancy remains unresolved.
-It remains Experimental and is not delivery Done.
+reproduce it on this host, but the exact artifact omits its declared MIT `LICENSE`
+file. The release/platform discrepancy remains unresolved. Its current public main
+is `b711b724`, with a successful CI run; this does not publish `0.1.2`. It remains
+Experimental and is not delivery Done.
 
 Three owner-requested tools are now registered, with detailed draft
 specifications: CFML Check, Result Store and Runtime Trace. CFML Check is now
@@ -31,7 +33,10 @@ appended as an Experimental implementation admission on 2026-09-08. The registry
 contains fourteen entries with one owner-confirmed completion. The original
 ten-tool order is unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
 in progress and Project Profile next with an approved V1 boundary; those records
-are knowledge evidence, not a new source/release audit by this Hub.
+are knowledge evidence, not a new source/release audit by this Hub. The current
+Symbol Search main CI run fails its Documentation check on Ubuntu Node 22/24/26
+while package-smoke jobs pass; the published `0.1.2` artifact remains separately
+audited.
 
 Option A has now produced a public independent CFML Check implementation at
 `AI-Agent-Tool-CFML-Check` commit `d132a82de4e2a764710e04968f8a480b8b6153c7`.
@@ -61,8 +66,8 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and Symbol Search now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope, Change Impact, CFML Check, and Symbol Search package identities/artifacts reviewed; corrected Project Profile 0.1.2 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
-| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; exact packlists for six published versions and current remote-head/CI observations are recorded in V-25/V-26; Project Profile license/release gap, Symbol Search current-main CI failure, independent artifact/remote reconciliation, and Hub conformance remain pending |
+| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; the packed default-registry omission was corrected and is recorded in V-27, while publication, license/ownership, remote refresh, sandboxing, and provenance policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
@@ -95,22 +100,26 @@ or an unimplemented feature is not automatically an external blocker.
 - Project Profile repository and npm identity are confirmed, and its source commit
   passed the local implementation checks recorded in [VALIDATION.md](VALIDATION.md).
   A prior audit recorded a published `0.1.1` CLI distribution defect, while the
-  current exact-artifact re-audit did not reproduce it on this host. The source
-  `0.1.2` correction remains unpublished, so the release/platform discrepancy is
-  unresolved and its registry lifecycle remains `Experimental`, with no verification
-  snapshot.
+  current exact-artifact re-audit did not reproduce it on this host. The exact
+  published artifact omits its declared MIT `LICENSE` file; the source `0.1.2`
+  correction remains unpublished, so the release/platform discrepancy is unresolved
+  and its registry lifecycle remains `Experimental`, with no verification snapshot.
 - Symbol Search repository identity and current source commit are confirmed. Its
-  TypeScript implementation passed the repository's local verification suite, and
-  the published `0.1.2` artifact is now audited for native profile evidence; Hub
-  protocol conformance and a verification snapshot remain unverified.
+  TypeScript implementation passed the recorded repository verification suite, and
+  the published `0.1.2` artifact is audited for native profile evidence. The current
+  public main CI run fails its Documentation check on Ubuntu Node 22/24/26 while
+  package smoke passes on Ubuntu/macOS/Windows; Hub protocol conformance and a
+  verification snapshot remain unverified.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
 - AIT package distribution and Hub licensing remain open; the current local package
-  is private/UNLICENSED and is not a published tool release. Exact-version native
-  profile selection/application is implemented only for the checked-in catalog and
-  bounded validators; it is not a universal compatibility layer. CFML Check and
-  Symbol Search can now match the catalog only after their registry identities are
-  confirmed in the selected snapshot.
+  is private/UNLICENSED and is not a published tool release. The packed-consumer
+  gate exposed and corrected omission of the default `TOOL_REGISTRY.json`; the
+  package still requires an explicit license/ownership decision before publication.
+  Exact-version native profile selection/application is implemented only for the
+  checked-in catalog and bounded validators; it is not a universal compatibility
+  layer. CFML Check and Symbol Search can now match the catalog only after their
+  registry identities are confirmed in the selected snapshot.
 - Within the three additions, CFML Check's bounded feasibility work is now the
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion
@@ -141,8 +150,12 @@ CFML Check's public repository identity and Experimental lifecycle admission are
 now confirmed; its engine compatibility claim remains unverified.
 Release credentials, CI availability, and publication permissions are unassessed,
 not reported as failed or granted.
-Project Profile's source and registry versions are currently split: local source is
-`0.1.2`, while npm `latest` is `0.1.1`.
+Project Profile's source and registry versions are currently split: current public
+source is `0.1.2`, while npm `latest` is `0.1.1`; the published artifact also omits
+its declared MIT license file. Code Slice's current public/npm latest is `0.4.0`,
+while the Hub retains the separately reviewed `0.2.0` release snapshot. Symbol
+Search current-main CI has a documentation-check failure despite published-artifact
+smoke evidence.
 
 ## Next steps
 
@@ -154,10 +167,14 @@ readback. The existing ecosystem work below keeps its original order.
 1. Extend explicit native profiles only when cross-tool composition is requested;
    preserve existing consumers and do not infer migration from the existing profiles.
 2. Audit exact published artifacts and identities under HUB-05; update registry
-   release/evidence fields only when their meaning is satisfied.
+   release/evidence fields only when their meaning is satisfied. Resolve the Project
+   Profile package/license gap and current Symbol Search CI failure before any
+   promotion claim.
 3. Review and harden the three Experimental implementations, then obtain
    engine/package/protocol evidence before considering further promotion.
    The owner still reports tool delivery completion; do not infer it from this spike.
 4. Complete HUB-06 runtime acceptance, then decide whether to publish `agent-tools`
-   and document package-signature, sandbox, and remote-refresh policies. Keep shared
+   only after the packed-consumer gate, license/ownership decision, and explicit
+   provenance policy are satisfied. Keep remote refresh and OS sandboxing out of
+   the current runtime; document them as separate future decisions. Keep shared
    tool implementation consolidation behind the existing maturity gate.

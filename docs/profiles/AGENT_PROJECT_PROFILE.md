@@ -18,7 +18,12 @@ current exact-artifact re-audit did not reproduce that symptom on this host. Thi
 profile therefore records the native source contract without silently certifying
 cross-environment artifact behavior. A consumer must keep package identity, source
 version, and published artifact evidence separate; do not treat the corrected source
-as proof that `0.1.2` is published.
+as proof that `0.1.2` is published. The exact published `0.1.1` tarball was
+repacked on 2026-09-15 and its executable/version behavior passed the bounded
+smoke cases, but its MIT package metadata was not accompanied by a `LICENSE` file.
+The current public `main` source has advanced to `b711b7244e369e86038d8a6eb05de7de481c8f20`
+and its CI run passed; neither fact changes the registered artifact version or
+makes the unpublished `0.1.2` source applicable to AIT selection.
 
 ## Invocation and safety boundary
 
