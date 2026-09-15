@@ -343,8 +343,14 @@ target contract is resolved without changing those native tools.
 
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
-| V-14 | Executable target-envelope consumer fixtures | `tests/hub_consumer.test.js` executes `tests/fixtures/hub-contract-tool.js` and verifies complete success with findings, partial/ambiguous/unsupported/limit outcomes, invalid/internal errors, null data for all non-`ok` statuses, malformed/missing/native envelope rejection, and exit/status mismatches; all 4 consumer tests passed as part of the 11-test Node suite. This verifies the Hub target contract only and does not establish external tool adoption or native protocol migration. |
+| V-14 | Executable target-envelope consumer fixtures | `tests/hub_consumer.test.js` executes `tests/fixtures/hub-contract-tool.js` and verifies complete success with findings, partial/ambiguous/unsupported/limit outcomes, invalid/internal errors, null data for all non-`ok` statuses, malformed/missing/native envelope rejection, and exit/status mismatches; all 4 consumer tests passed as part of the 14-test Node suite. This verifies the Hub target contract only and does not establish external tool adoption or native protocol migration. |
 
 HUB-04 target completeness semantics are therefore complete. Native tool
 compatibility remains a separately scoped profile/migration decision under HUB-05
 and future integration work.
+
+## Code Slice native consumer profile review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-15 | Explicit Code Slice profile | `docs/profiles/AGENT_CODE_SLICE.md` records the registered `agent-code-slice@0.2.0` / `code-slice` identity, native v1.0/v1.1 envelopes, exit/error-code authority, bounded `outline` pagination, protocol-error conditions, and non-goals. `tests/code_slice_profile.test.js` executes a deterministic native-contract fixture for complete success, bounded success, CLI error, operation error, malformed/unknown output, and exit/status mismatch; all 3 profile tests passed. The source contract was observed at `7f2969ff04540d43c12b13bc863e4a745209ff28`; this does not certify the exact published artifact or promote Hub lifecycle. |

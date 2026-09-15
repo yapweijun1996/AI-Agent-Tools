@@ -59,7 +59,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-01 | Establish Hub standards, registry, roadmap, and validator | Done | None | Existing foundation; V-01 through V-05 |
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
-| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`: complete findings use `ok`/exit 0, incomplete/partial/ambiguous/unsupported/limited outcomes use `incomplete`/null data/exit 3, and failures use `error`/null data. Remaining: choose explicit native consumer profiles or migration when cross-tool composition is required; no native contract is inferred |
+| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice now has an explicit native profile under `docs/profiles/AGENT_CODE_SLICE.md`, including bounded outline semantics and error-code authority. Other native tools still require separate profiles or migration; no contract is inferred |
 | HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
 | HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch and `ait-result/v1`; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
@@ -85,8 +85,9 @@ or an unimplemented feature is not automatically an external blocker.
 - Accepted boundaries and rationale are in [DESIGN.md](DESIGN.md); existing target
   standards and registry versions stay `1.0.0`.
 - The Hub target envelope and completeness matrix are resolved by executable
-  fixtures. Native protocol profiles versus explicit migration remains an engineering
-  decision, not an implemented compatibility layer; preserve current consumers.
+  fixtures. Code Slice has an explicit native consumer profile; profiles for other
+  native tools or explicit migration remain engineering decisions, not an automatic
+  compatibility layer. Preserve current consumers.
 - Code Slice npm publication identity for `0.2.0` is confirmed; its exact artifact
   behavior and Hub conformance remain unaudited here. Other package fields stay `null`.
 - Project Profile repository and npm identity are confirmed, and its source commit
@@ -142,8 +143,8 @@ this working-tree state. If company-wide collaboration is later required, change
 visibility and authorization deliberately, then run a separate Company-tier
 readback. The existing ecosystem work below keeps its original order.
 
-1. Preserve native tool protocols and define explicit consumer profiles or migration
-   only when cross-tool composition is requested; do not change existing consumers.
+1. Extend explicit native profiles only when cross-tool composition is requested;
+   preserve existing consumers and do not infer migration from the Code Slice profile.
 2. Audit exact published artifacts and identities under HUB-05; update registry
    release/evidence fields only when their meaning is satisfied.
 3. Review and harden the three Experimental implementations, then obtain
