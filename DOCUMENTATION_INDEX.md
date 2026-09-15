@@ -26,6 +26,8 @@ second task ledger or a tool release inventory.
 | [Project Profile consumer profile](docs/profiles/AGENT_PROJECT_PROFILE.md) | Native complete/partial/unsupported/error and strict-mode rules |
 | [Change Impact consumer profile](docs/profiles/AGENT_CHANGE_IMPACT.md) | Native draft-envelope, partial-success, limit, and error rules |
 | [Test Scope consumer profile](docs/profiles/AGENT_TEST_SCOPE.md) | Native complete/partial/error verification-planning semantics |
+| [CFML Check consumer profile](docs/profiles/AGENT_CFML_CHECK.md) | Native structural-check envelope and incomplete/error semantics |
+| [Symbol Search consumer profile](docs/profiles/AGENT_SYMBOL_SEARCH.md) | Native bounded symbol-result and diagnostic semantics |
 | [AIT profile catalog](docs/profiles/PROFILE_INDEX.json) | Machine-readable exact package/version/executable profile identities |
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |

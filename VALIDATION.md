@@ -13,8 +13,8 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Public `main` commit [`f298328`](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/commit/f298328d7035adce57fc57fdc36ac30da70a2a68); clean clone `npm ci`, typecheck and 36 tests passed; published `0.1.1` artifact smoke-tested in V-19 | Inspectable implementation with documented bounded impact analysis, read-only behavior and runnable tests; broader platform evidence and Hub conformance remain unverified |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
-| AI-Agent-Tool-CFML-Check | Public `main` commit [`d132a82`](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/commit/d132a82de4e2a764710e04968f8a480b8b6153c7); clean clone `npm ci`, typecheck and 22 tests passed | Inspectable bounded CFML structural checker with fixtures, schema and package-surface tests; engine compatibility, npm publication and full cross-platform evidence remain unverified |
-| AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); source manifest `agent-symbol-search@0.1.0` | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; npm package is not published |
+| AI-Agent-Tool-CFML-Check | Public `main` commit [`d132a82`](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/commit/d132a82de4e2a764710e04968f8a480b8b6153c7); clean clone `npm ci`, typecheck and 22 tests passed; published `0.1.1` artifact audited in V-22 | Inspectable bounded CFML structural checker with fixtures, schema and package-surface tests; engine compatibility and full cross-platform evidence remain unverified |
+| AI-Agent-Tool-Symbol-Search | Public `main` commit [`303c3b5`](https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14); published `0.1.2` artifact audited in V-23 | TypeScript implementation, schemas, tests, packaging, capability, benchmark, and documentation checks inspected; Hub conformance and broader platform evidence remain unverified |
 | AI-Agent-Tool-Test-Scope | Public `main` commit [`e3c4593`](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/commit/e3c4593fb9b12233280dffd801a3c153ef9b3b1c); clean clone `npm ci`, dual typecheck/build and 17 tests passed; published `0.1.1` artifact audited in V-21 | Inspectable bounded verification planner with shared CLI/library engine and documented limits; Hub protocol conformance and broader platform evidence remain unverified |
 
 At the earlier bounded Change Impact inspection, the scaffold contained `package.json`,
@@ -153,11 +153,11 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   is populated. Other tools' publication identities remain pending.
 - Change Impact: broader platform evidence and Hub protocol conformance remain
   unverified; the clean-clone audit and V-19 published-artifact smoke passed.
-- CFML Check: engine compatibility, CF-14 engine comparison, npm publication, and
-  cross-platform evidence remain unverified.
-- Symbol Search: npm publication, Hub protocol conformance, and cross-platform
-  certification remain unverified; its docs check needs a Git checkout for the
-  final HEAD evidence step.
+- CFML Check: engine compatibility, CF-14 engine comparison, and full cross-platform
+  evidence remain unverified; V-22 audits the published artifact.
+- Symbol Search: Hub protocol conformance and cross-platform certification remain
+  unverified; V-23 audits the published artifact, while the earlier source admission
+  docs check limitation remains historical.
 - Seven other planned tools: no local repositories inspected; no remote-absence,
   capability, release, or availability conclusion follows.
 - Current User-tier KB parity for the reconciled 2026-09-15 records is verified by
@@ -383,11 +383,18 @@ and future integration work.
 | V-18 | Explicit Change Impact profile | `docs/profiles/AGENT_CHANGE_IMPACT.md` records the published `agent-change-impact@0.1.1` / `agent-impact` identity, `0.1-draft` envelope, complete-vs-partial native success, error-code authority, bounded read-only boundary, and non-goals. `tests/change_impact_profile.test.js` executes deterministic fixtures for capabilities, complete/partial usable results, invalid invocation, output failure, malformed/unknown output, and exit/status mismatch; all 3 profile tests passed. The contract was observed at source HEAD `b67c87e277af3a616ec64ff8c1f34992f71aed88`; the sibling worktree was dirty and its uncommitted changes were excluded. V-19 separately audits the published artifact. |
 | V-19 | Exact Change Impact `0.1.1` artifact audit | `npm pack --ignore-scripts agent-change-impact@0.1.1` returned 41 files, shasum `4f3e5102f521e2c6a2830604f6a127d8b84f9554`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a Git-backed TypeScript fixture's file impact exit 0 with `analysis.status: complete`, and bounded `PROJECT_CONFIG_NOT_FOUND`/`FILE_NOT_FOUND` exit-1 errors. The package identity and these native behaviors are verified; all operations, platforms, and Hub conformance are not. |
 
+## CFML Check and Symbol Search native profile/artifact review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-22 | Exact CFML Check `0.1.1` artifact and profile | `npm pack --ignore-scripts agent-cfml-check@0.1.1` returned 25 files, shasum `a86b3e18c3c156720ed6b34df176fbb03d0b1926`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a valid check exit 0 with `status: ok`, and unsupported syntax exit 3 with `UNSUPPORTED_SYNTAX`. `docs/profiles/AGENT_CFML_CHECK.md` and its fixtures preserve the native envelope, structural-violation success, incomplete, and error semantics; the two native profile fixture tests passed; broader engine/platform and Hub conformance remain unverified. |
+| V-23 | Exact Symbol Search `0.1.2` artifact and profile | `npm pack --ignore-scripts agent-symbol-search@0.1.2` returned 50 files, shasum `121d996f2fedee187cdfd7b56323ee533246a685`, and the recorded SHA-512 integrity. A clean consumer verified capabilities exit 0, a complete TypeScript symbol search exit 0, and a missing project error exit 1 with `INVALID_REQUEST`. `docs/profiles/AGENT_SYMBOL_SEARCH.md` and its fixtures preserve complete/partial/error native semantics; the two native profile fixture tests passed; broader platform and Hub conformance remain unverified. |
+
 ## AIT profile catalog and exact application review - 2026-09-15
 
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
-| V-20 | Exact catalog-backed profile application | `docs/profiles/PROFILE_INDEX.json` is validated for schema, identities, exact versions, executable names, safe relative evidence paths, duplicate matches, and evidence status. `bin/ait.js` selects only an exact tool/package/version/executable match and applies bounded native validators without rewriting the native payload. Node tests passed 24/24, including local install/dispatch evidence for Code Slice, no-match behavior for Project Profile `0.1.1`, malformed/unknown native fixtures, and profile metadata. The catalog remains local, exact, and non-networked; remote refresh and universal adaptation are not implemented. |
+| V-20 | Exact catalog-backed profile application | `docs/profiles/PROFILE_INDEX.json` is validated for schema, identities, exact versions, executable names, safe relative evidence paths, duplicate matches, and evidence status. `bin/ait.js` selects only an exact tool/package/version/executable match and applies bounded native validators without rewriting the native payload. Node tests passed 28/28, including local install/dispatch evidence for Code Slice, no-match behavior for Project Profile `0.1.1`, malformed/unknown native fixtures, and profile metadata. The catalog remains local, exact, and non-networked; remote refresh and universal adaptation are not implemented. |
 
 ## Test Scope native consumer profile and artifact review - 2026-09-15
 

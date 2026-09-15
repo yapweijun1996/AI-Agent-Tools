@@ -91,6 +91,16 @@ test('validates exact profile catalog entries and rejects duplicate matches', ()
     { package: 'agent-project-profile', version: '0.1.1', bin: { name: 'agent-project-profile' } },
     catalog,
   ), null);
+  assert.equal(ait.selectProfile(
+    { id: 'agent-cfml-check' },
+    { package: 'agent-cfml-check', version: '0.1.1', bin: { name: 'agent-cfml-check' } },
+    catalog,
+  ).profile_id, 'hub-consumer/agent-cfml-check@0.1');
+  assert.equal(ait.selectProfile(
+    { id: 'agent-symbol-search' },
+    { package: 'agent-symbol-search', version: '0.1.2', bin: { name: 'agent-symbol-search' } },
+    catalog,
+  ).profile_id, 'hub-consumer/agent-symbol-search@0.1');
   const testScopeProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-test-scope');
   assert.deepEqual(ait.validateNativeProfile(testScopeProfile, JSON.stringify({
     schemaVersion: '1',
@@ -115,6 +125,26 @@ test('validates exact profile catalog entries and rejects duplicate matches', ()
     coverage: { status: 'partial' },
     warnings: [],
   }), 2), { passed: true, classification: 'partial' });
+  const cfmlProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-cfml-check');
+  assert.deepEqual(ait.validateNativeProfile(cfmlProfile, JSON.stringify({
+    schema_version: '1.0.0',
+    tool: { id: 'agent-cfml-check', version: '0.1.1' },
+    status: 'incomplete',
+    complete: false,
+    data: null,
+    errors: [{ code: 'UNSUPPORTED_SYNTAX', message: 'fixture' }],
+    warnings: [],
+    meta: { scope: 'fixture', limits: {} },
+  }), 3, ['check']), { passed: true, classification: 'incomplete' });
+  const symbolProfile = catalog.profiles.find((profile) => profile.tool_id === 'agent-symbol-search');
+  assert.deepEqual(ait.validateNativeProfile(symbolProfile, JSON.stringify({
+    schemaVersion: '1',
+    status: 'complete',
+    data: { matches: [] },
+    diagnostics: [],
+    truncation: { truncated: false, reasons: [] },
+    stats: {},
+  }), 0, ['capabilities']), { passed: true, classification: 'capabilities' });
 });
 
 test('list reads a local registry snapshot and does not write the home', () => {

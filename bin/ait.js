@@ -304,6 +304,24 @@ function validateNativeProfile(profile, stdout, exitCode, args = []) {
     if (value.status === 'error' && [1, 2].includes(exitCode)) return { passed: true, classification: 'error' };
     return validationFailure('Test Scope status and exit code disagree');
   }
+  if (profile.protocol === 'cfml-check-native-v1') {
+    if (value.schema_version !== '1.0.0' || !value.tool || value.tool.id !== 'agent-cfml-check' || typeof value.tool.version !== 'string' || !['ok', 'incomplete', 'error'].includes(value.status) || typeof value.complete !== 'boolean' || !Array.isArray(value.errors) || !Array.isArray(value.warnings) || !value.meta || typeof value.meta !== 'object') return validationFailure('CFML Check envelope is invalid');
+    if (value.status === 'ok') {
+      if (exitCode !== 0 || value.complete !== true || value.errors.length !== 0 || !value.data || typeof value.data !== 'object') return validationFailure('CFML Check success has an invalid exit/status or data');
+      return { passed: true, classification: args[0] === 'capabilities' ? 'capabilities' : 'complete' };
+    }
+    if (value.complete !== false || value.data !== null || value.errors.length === 0) return validationFailure('CFML Check non-success has invalid completeness or data');
+    if (value.status === 'incomplete' && exitCode === 3) return { passed: true, classification: 'incomplete' };
+    if (value.status === 'error' && [1, 2, 4].includes(exitCode)) return { passed: true, classification: 'error' };
+    return validationFailure('CFML Check status and exit code disagree');
+  }
+  if (profile.protocol === 'symbol-search-native-v1') {
+    if (value.schemaVersion !== '1' || !['complete', 'partial', 'error'].includes(value.status) || !value.data || typeof value.data !== 'object' || Array.isArray(value.data) || !Array.isArray(value.data.matches) || !Array.isArray(value.diagnostics) || !value.truncation || typeof value.truncation.truncated !== 'boolean' || !Array.isArray(value.truncation.reasons) || !value.stats || typeof value.stats !== 'object' || Array.isArray(value.stats)) return validationFailure('Symbol Search envelope is invalid');
+    if (value.status === 'complete' && exitCode === 0) return { passed: true, classification: args[0] === 'capabilities' ? 'capabilities' : 'complete' };
+    if (value.status === 'partial' && exitCode === 0) return { passed: true, classification: 'partial' };
+    if (value.status === 'error' && [1, 2].includes(exitCode)) return { passed: true, classification: 'error' };
+    return validationFailure('Symbol Search status and exit code disagree');
+  }
   return validationFailure(`Unsupported profile protocol: ${profile.protocol}`);
 }
 

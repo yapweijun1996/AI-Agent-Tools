@@ -48,6 +48,30 @@
       "tests": ["tests/test_scope_profile.test.js"],
       "evidence_status": "artifact_verified",
       "applicability": "exact_package_version"
+    },
+    {
+      "profile_id": "hub-consumer/agent-cfml-check@0.1",
+      "tool_id": "agent-cfml-check",
+      "package_name": "agent-cfml-check",
+      "package_version": "0.1.1",
+      "executable": "agent-cfml-check",
+      "protocol": "cfml-check-native-v1",
+      "document": "docs/profiles/AGENT_CFML_CHECK.md",
+      "tests": ["tests/cfml_check_profile.test.js"],
+      "evidence_status": "artifact_verified",
+      "applicability": "exact_package_version"
+    },
+    {
+      "profile_id": "hub-consumer/agent-symbol-search@0.1",
+      "tool_id": "agent-symbol-search",
+      "package_name": "agent-symbol-search",
+      "package_version": "0.1.2",
+      "executable": "agent-symbol-search",
+      "protocol": "symbol-search-native-v1",
+      "document": "docs/profiles/AGENT_SYMBOL_SEARCH.md",
+      "tests": ["tests/symbol_search_profile.test.js"],
+      "evidence_status": "artifact_verified",
+      "applicability": "exact_package_version"
     }
   ]
 }

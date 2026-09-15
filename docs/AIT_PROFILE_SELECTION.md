@@ -107,6 +107,8 @@ profile, and regression fixtures.
 | Project Profile | Registry `0.1.1`; profile source contract `0.1.2` | No match for the registered artifact; preserve native output until exact version evidence aligns. |
 | Change Impact | `agent-change-impact@0.1.1` | Exact native profile is defined; artifact/conformance evidence remains independent. |
 | Test Scope | `agent-test-scope@0.1.1` | Exact profile is artifact-verified for the published package; broader conformance remains independent. |
+| CFML Check | `agent-cfml-check@0.1.1` | Exact profile is artifact-verified for the published package; engine/platform conformance remains independent. |
+| Symbol Search | `agent-symbol-search@0.1.2` | Exact profile is artifact-verified for the published package; broader conformance remains independent. |
 
 ## Failure and trust rules
 

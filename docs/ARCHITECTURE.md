@@ -32,7 +32,8 @@ stdout/stderr in `ait-result/v1` but does not reinterpret native semantics or cl
 Hub conformance. Preserve native compatibility; any versioned integration path must
 use an explicit consumer profile or reviewed migration. Current profiles for [Code
 Slice](profiles/AGENT_CODE_SLICE.md), [Project Profile](profiles/AGENT_PROJECT_PROFILE.md),
-[Change Impact](profiles/AGENT_CHANGE_IMPACT.md), and [Test Scope](profiles/AGENT_TEST_SCOPE.md)
+[Change Impact](profiles/AGENT_CHANGE_IMPACT.md), [Test Scope](profiles/AGENT_TEST_SCOPE.md),
+[CFML Check](profiles/AGENT_CFML_CHECK.md), and [Symbol Search](profiles/AGENT_SYMBOL_SEARCH.md)
 preserve native envelopes and do not normalize tool output.
 
 ## Registry contract

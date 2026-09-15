@@ -60,13 +60,13 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-01 | Establish Hub standards, registry, roadmap, and validator | Done | None | Existing foundation; V-01 through V-05 |
 | HUB-02 | Review all ten tool functions and Hub boundaries | Done | None | Dated function review; Code Slice local evidence V-06; planned tools assessed as designs |
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
-| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, Change Impact, and Test Scope now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
-| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; Change Impact 0.1.1 and Project Profile 0.1.1 artifacts have bounded smoke evidence; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
+| HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and Symbol Search now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
+| HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope, Change Impact, CFML Check, and Symbol Search package identities/artifacts reviewed; corrected Project Profile 0.1.2 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
 | HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; npm publication, remote refresh, sandboxing, and package-signature policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
-| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-08; public implementation, capabilities, typecheck, 22/22 tests, and package-surface checks are recorded; CF-14 engine trial, package/release, and protocol evidence remain pending |
+| HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-08; public implementation, capabilities, typecheck, 22/22 tests, package-surface checks, and published 0.1.1 artifact smoke are recorded; CF-14 engine trial, broader platform, and Hub protocol evidence remain pending |
 | HUB-11 | Hand off Result Store persistence and producer integration | Planned | HUB-09; independent owner/repository | E-08; RS-01 through RS-13 proposed; no store or connector implemented |
 | HUB-12 | Hand off Runtime Trace event/readback correlation | Planned | HUB-09; independent owner/repository | E-08; RT-01 through RT-13 proposed; no instrumentation or runtime trial |
 
@@ -86,8 +86,8 @@ or an unimplemented feature is not automatically an external blocker.
 - Accepted boundaries and rationale are in [DESIGN.md](DESIGN.md); existing target
   standards and registry versions stay `1.0.0`.
 - The Hub target envelope and completeness matrix are resolved by executable
-  fixtures. Code Slice, Project Profile, Change Impact, and Test Scope have explicit
-  consumer profiles; profiles for other native tools or explicit migration remain
+  fixtures. Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and
+  Symbol Search have explicit consumer profiles; profiles for other native tools or explicit migration remain
   engineering decisions, not an automatic compatibility layer. Preserve current
   consumers.
 - Code Slice npm publication identity for `0.2.0` is confirmed; its exact artifact
@@ -100,15 +100,17 @@ or an unimplemented feature is not automatically an external blocker.
   unresolved and its registry lifecycle remains `Experimental`, with no verification
   snapshot.
 - Symbol Search repository identity and current source commit are confirmed. Its
-  TypeScript implementation passed the repository's local verification suite, but
-  package `0.1.0` is unpublished and Hub protocol conformance is unverified; its
-  lifecycle is `Experimental` with no npm or verification snapshot.
+  TypeScript implementation passed the repository's local verification suite, and
+  the published `0.1.2` artifact is now audited for native profile evidence; Hub
+  protocol conformance and a verification snapshot remain unverified.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
 - AIT package distribution and Hub licensing remain open; the current local package
   is private/UNLICENSED and is not a published tool release. Exact-version native
   profile selection/application is implemented only for the checked-in catalog and
-  bounded validators; it is not a universal compatibility layer.
+  bounded validators; it is not a universal compatibility layer. CFML Check and
+  Symbol Search can now match the catalog only after their registry identities are
+  confirmed in the selected snapshot.
 - Within the three additions, CFML Check's bounded feasibility work is now the
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion

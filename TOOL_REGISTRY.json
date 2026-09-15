@@ -130,8 +130,11 @@
       "description": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
       "status": "Experimental",
       "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check",
-      "npm": null,
-      "release_version": null,
+      "npm": {
+        "name": "agent-cfml-check",
+        "url": "https://www.npmjs.com/package/agent-cfml-check"
+      },
+      "release_version": "0.1.1",
       "verification": null,
       "deprecation": null
     },
@@ -163,8 +166,11 @@
       "description": "Navigate bounded TypeScript symbol definitions, references, and relationships without returning full source bodies.",
       "status": "Experimental",
       "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search",
-      "npm": null,
-      "release_version": null,
+      "npm": {
+        "name": "agent-symbol-search",
+        "url": "https://www.npmjs.com/package/agent-symbol-search"
+      },
+      "release_version": "0.1.2",
       "verification": null,
       "deprecation": null
     }
