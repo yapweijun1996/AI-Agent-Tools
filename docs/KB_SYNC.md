@@ -119,6 +119,28 @@ The Hub implementation commits are `0e6135a` (AIT exact profile application) and
 native profiles; release, delivery, and Hub conformance remain separate status
 axes. The historical Company-tier denial remains unchanged.
 
+## 2026-09-15 User-tier audit follow-up
+
+Status: **Reconciled at User tier**. The Project Profile and Symbol Search status
+records were updated in place with the current exact artifact, source-head, CI, and
+release-gap observations. The Canonical SSOT and Functional Map were updated in
+place with the six-package packlist audit, current platform observation, and AIT
+packed-consumer/publication decisions. The Canonical SSOT metadata was also corrected
+to record Symbol Search `0.1.2` publication and the current CI documentation failure.
+Readback returned the updated content at User scope. No Company-tier promotion was
+attempted.
+
+| Record | Item ID | Readback |
+| --- | --- | --- |
+| Tool Status — agent-project-profile | `9aa9a2f8-3453-476f-b8c9-b68791c4a775` | Updated content returned; User tier |
+| Tool Status - agent-symbol-search | `a94dac3b-9619-4dcc-89fb-025272afeb09` | Updated content returned; User tier |
+| Canonical Ecosystem SSOT | `5e5c8c5e-c3e9-460d-a985-3165e0b83031` | Updated content returned; User tier |
+| Functional Map | `e360b621-3c4c-4a81-b7ce-f3d892015be8` | Updated content returned; User tier |
+
+The local source commit for this reconciliation is `8da9be6` (`Audit artifacts and
+gate AIT publication`). The existing Company-tier `SHARE_TIER_DENIED:
+above_scope` blocker remains unchanged.
+
 ## 2026-09-07 synchronization receipt
 
 Status: **Synchronized at User tier**. The current KB visibility was read back as

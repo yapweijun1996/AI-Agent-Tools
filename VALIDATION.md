@@ -426,6 +426,8 @@ and future integration work.
 
 | V-28 | Registry signature/provenance boundary | npm registry metadata exposed one `dist.signatures` entry and a `dist.integrity` value for each of the six audited tool versions. `npm audit signatures --json` on the dependency-free Hub returned `found no installed dependencies to audit`; no independent key-trust or provenance verification was claimed. AIT's policy therefore uses registry-native integrity/signature evidence when available and does not introduce a custom signature layer. |
 
+| V-29 | User-tier KB audit follow-up | Project Profile and Symbol Search status records, plus the Canonical SSOT and Functional Map, were updated in place with the current audit facts; the Canonical SSOT Symbol Search publication/current-CI metadata was corrected; readback returned updated content/metadata at User tier. No Company-tier promotion was attempted; `SHARE_TIER_DENIED: above_scope` remains the separate company-scope blocker. |
+
 ## User-tier KB profile and artifact reconciliation - 2026-09-15
 
 | ID | Check | Evidence and limitation |

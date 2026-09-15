@@ -67,6 +67,23 @@
     },
     "readback": "status records and canonical/functional index responses confirmed at User tier"
   },
+  "latest_audit_reconciliation": {
+    "reconciled_on": "2026-09-15",
+    "scope": "user",
+    "company_tier_promotion": false,
+    "source_commit": "8da9be6",
+    "status_records_updated": [
+      "9aa9a2f8-3453-476f-b8c9-b68791c4a775",
+      "a94dac3b-9619-4dcc-89fb-025272afeb09"
+    ],
+    "index_records_updated": [
+      "5e5c8c5e-c3e9-460d-a985-3165e0b83031",
+      "e360b621-3c4c-4a81-b7ce-f3d892015be8"
+    ],
+    "metadata_correction": "Canonical SSOT Symbol Search publication/current-CI fields reconciled",
+    "readback": "updated content and metadata returned at User tier",
+    "company_tier_blocker": "SHARE_TIER_DENIED: above_scope"
+  },
   "blocker": {
     "http_status": 403,
     "code": "SHARE_TIER_DENIED",
