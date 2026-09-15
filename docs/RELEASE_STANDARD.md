@@ -18,7 +18,7 @@ Before publication, the tool owner must:
 4. Record source commit/tag, version, commands, environments, results, limitations, and compatibility notes in durable release/test evidence.
 5. Publish through the owning repository's authorized process and verify the published package identity and version before claiming publication.
 
-Publication is an external action; this checklist is not publication authorization. Dependencies and package scripts must be reviewed in the owning repository, with no new Hub runtime introduced.
+Publication is an external action; this checklist is not publication authorization. Dependencies and package scripts must be reviewed in the owning repository, with no unapproved Hub runtime or shared package introduced.
 
 ## Updating the Hub
 

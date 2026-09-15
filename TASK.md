@@ -5,10 +5,11 @@ execution ledger; independent tool repositories own their implementation tasks.
 
 ## Current situation
 
-The Hub documentation, registry, function review, and local Python validator exist.
-The initial tracked baseline was `2f2d46e`; Git history records subsequent Hub
-documentation commits. A documentation commit is not a tool release or a push. No discovery CLI, root npm package,
-shared runtime, or tool implementation exists in this repository.
+The Hub documentation, registry, local Python validator, and dependency-free AIT
+runtime now exist. The initial tracked baseline was `2f2d46e`; Git history records
+subsequent Hub documentation and runtime commits. A commit is not a tool release or
+a push. AIT package version `0.1.0` is local/private and not published; it does not
+contain independent tool implementations.
 
 **Code Slice delivery is Done**, confirmed by the owner on 2026-09-06. Published
 `agent-code-slice@0.2.0` metadata matches its repository and `code-slice` executable.
@@ -60,7 +61,7 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; 2026-09-15 decision recorded in [CLI standard](docs/CLI_STANDARD.md#invocation-and-streams): exit codes are a coarse ok/not-ok signal only, never a cross-tool semantic key; consumers read JSON status/error fields instead — see [Validation](VALIDATION.md#hub-04-exit-code-comparison---2026-09-15) for the sourced comparison behind it. Remaining: apply this decision as executable consumer fixtures; completeness-contract semantics (`incomplete`/partial) still unresolved |
 | HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; Code Slice 0.2.0, Project Profile/Test Scope package identities, and Change Impact/CFML Check/Symbol Search repository identities reviewed; corrected Project Profile 0.1.2 and Symbol Search 0.1.0 publication, independent artifact/remote CI, and Hub conformance checks remain pending |
-| HUB-06 | Implement a justified discovery CLI | Deferred | HUB-03, HUB-04 | E-04; identity/distribution/source/freshness design pending; 2026-09-15 unpublished spike gave feasibility evidence for a proposed broader `ait-tool/v1` contract that conflicts with the adopted architecture text — see [Validation](VALIDATION.md#ait-toolv1-dispatch-spike---2026-09-15) and [Architecture](docs/ARCHITECTURE.md#unreconciled-proposal-ait-toolv1-plugin-contract); status unchanged pending review |
+| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch and `ait-result/v1`; npm publication, remote refresh, sandboxing, package-signature policy, and HUB-04 consumer fixtures remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
@@ -98,8 +99,8 @@ or an unimplemented feature is not automatically an external blocker.
   lifecycle is `Experimental` with no npm or verification snapshot.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
-- Hub license selection and future discovery package/distribution ownership remain
-  open; the license of a sibling tool does not license this Hub automatically.
+- AIT package distribution and Hub licensing remain open; the current local package
+  is private/UNLICENSED and is not a published tool release.
 - Within the three additions, CFML Check's bounded feasibility work is now the
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion
@@ -143,5 +144,6 @@ readback. The existing ecosystem work below keeps its original order.
 3. Review and harden the three Experimental implementations, then obtain
    engine/package/protocol evidence before considering further promotion.
    The owner still reports tool delivery completion; do not infer it from this spike.
-4. Consider discovery only when metadata consumers justify it. Keep infrastructure
-   consolidation behind the existing maturity gate.
+4. Complete HUB-06 runtime acceptance, then decide whether to publish `agent-tools`
+   and document package-signature, sandbox, and remote-refresh policies. Keep shared
+   tool implementation consolidation behind the existing maturity gate.

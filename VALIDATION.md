@@ -9,7 +9,7 @@ tool test plans, dependencies, and release artifacts belong to their repositorie
 
 | Repository | Observed source state | What it establishes |
 | --- | --- | --- |
-| AI-Agent-Tools | Initial baseline `2f2d46e`; documentation commits are recorded in Git history | Documentation foundation and local authoring checks; no root npm/runtime/discovery implementation |
+| AI-Agent-Tools | Initial baseline `2f2d46e`; documentation and AIT runtime commits are recorded in Git history | Documentation foundation, local authoring checks, and the dependency-free `agent-tools@0.1.0` runtime; no independent tool source is copied here |
 | AI-Agent-Tool-Code-Slice | Clean local `7f2969f`; manifest `agent-code-slice@0.2.0` | CLI/API and language adapters inspected; local tests from the preceding review apply to this same revision |
 | AI-Agent-Tool-Change-Impact | Public `main` commit [`f298328`](https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/commit/f298328d7035adce57fc57fdc36ac30da70a2a68); clean clone `npm ci`, typecheck and 36 tests passed | Inspectable implementation with documented bounded impact analysis, read-only behavior and runnable tests; npm publication and Hub protocol conformance remain unverified |
 | AI-Agent-Tool-Project-Profile | Public `main` commit [`c250438`](https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d); source manifest `agent-project-profile@0.1.2` | Implementation, tests, packaging, and local security checks inspected; npm `latest` remains published `0.1.1`, so the corrected source is not a released artifact |
@@ -103,7 +103,7 @@ not publication, Hub protocol conformance, or cross-platform certification.
 
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
-| V-01 | Inventory and preservation | Hub contains no tool source, workspace, npm package, or runtime; original `.gitattributes` preserved; sibling source left untouched |
+| V-01 | Inventory and preservation | Hub contains no copied independent tool source or workspace; the explicitly authorized private `agent-tools@0.1.0` runtime is present; original `.gitattributes` preserved and sibling source left untouched |
 | V-02 | Registry structure and lifecycle | Local validator checks exact authoring fields, unique IDs, lifecycle gates, versions, evidence/release matching, and replacement references; external behavioral evidence requires review |
 | V-03 | Roadmap consistency | Validator parses the complete delivery table, rejects malformed rows, compares ordered IDs/names with the registry, and checks lifecycle vocabulary against Tool standard |
 | V-04 | Document integrity | Required documents, inline local links/anchors, and fenced JSON syntax checked; task/epic/requirement references reviewed and checked separately |
@@ -143,7 +143,7 @@ registry/link/roadmap cases; those are historical checks, not a checked-in test 
   capability, release, or availability conclusion follows.
 - Current User-tier KB parity for the reconciled 2026-09-15 records is verified by
   content readback; Company-tier visibility remains unverified and is not claimed.
-- Future discovery, shared infrastructure, and release automation: not implemented.
+- AIT remote registry refresh, package signatures, OS-level sandboxing, release automation, and shared tool infrastructure: not implemented.
 
 The CFML Check tests were run in its independent repository; the Hub checks do not
 establish an external release or engine compatibility and do not fix the remaining
@@ -282,16 +282,23 @@ by coincidence; the categories they represent do not. See the dated comparison
 below for the full picture. HUB-04 native/Hub protocol reconciliation remains
 unresolved.
 
-This establishes that the proposed dispatch mechanics are implementable, not
-that `ait` is approved, published, installable by an end user or agent, or
-conformant. Not exercised: `--from <npm-spec>` installation from the real npm
-registry, any tool other than `agent-code-slice`, and filesystem/network
-sandboxing beyond environment-variable filtering. Separately, the proposed
-contract's install/dispatch/execute model appears to conflict with the
-already-adopted [Architecture](docs/ARCHITECTURE.md#future-discovery-cli)
-statement that "a discovery result never installs, imports, or executes a
-package" — that conflict is recorded, not resolved, in
-[Architecture](docs/ARCHITECTURE.md#future-discovery-cli).
+This historical spike established that the proposed dispatch mechanics were
+implementable. At that time, `ait` was not approved, published, or conformant.
+The Hub has since authorized and implemented a narrower dependency-free
+`agent-tools@0.1.0` runtime with explicit install/dispatch approval. The spike did
+not exercise real npm-registry installation, any tool other than `agent-code-slice`,
+or filesystem/network sandboxing beyond environment-variable filtering.
+
+## AIT runtime implementation review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-13 | AIT runtime acceptance | Local `agent-tools@0.1.0` implements `list`, `doctor`, pinned registry installation, controlled `--from-path` installation, explicit `--allow-experimental`, explicit `--allow-execution` dispatch, reduced environment, no-shell child process invocation, and `ait-result/v1`; Node's 7-test suite passed, and a temporary local package completed install/dispatch/doctor readback; real npm publication, remote refresh, signatures and OS sandboxing remain unverified |
+
+The implementation keeps independent tool source and release ownership outside the
+Hub. The package is private and unlicensed pending a release decision; no network
+installation was performed during this validation. AIT remains `HUB-06 In progress`
+until publication and the remaining security/compatibility policies are reviewed.
 
 ## HUB-04 exit-code comparison - 2026-09-15
 

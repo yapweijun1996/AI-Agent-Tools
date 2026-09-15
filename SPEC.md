@@ -1,8 +1,9 @@
 # Hub specification
 
-Last reconciled: 2026-09-07. This specification covers the Hub's observable
-documentation and registry behavior. It does not specify tool internals or a
-working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
+Last reconciled: 2026-09-15. This specification covers the Hub's observable
+documentation, registry, and the explicitly authorized dependency-free `agent-tools`
+/ `ait` install and dispatch runtime. Independent tool internals remain outside the
+Hub. [TASK.md](TASK.md) records completion status.
 
 ## Requirements and evidence
 
@@ -17,9 +18,10 @@ working `agent-tools` CLI. [TASK.md](TASK.md) records completion status.
 | H-07 | Give design, architecture, requirements, work packages, task state, and evidence explicit owners | Documentation index and link checks; V-04 |
 | H-08 | Provide repeatable dependency-free authoring validation | `python3 scripts/validate_hub.py`; V-02 through V-04 |
 | H-09 | Make registration, promotion, downgrade, and deprecation reviewable | Adding-a-tool and release workflows; V-05 |
-| H-10 | Keep future discovery metadata-only by default and fail on unsupported contracts | Architecture requirements exist; runtime acceptance remains future under E-04 |
-| H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | Known gaps documented; implementation acceptance pending E-02 |
-| H-12 | Consider shared packages/monorepo migration only after roughly 3–5 mature tools reveal real duplicated infrastructure | Architecture gate; no migration implemented |
+| H-10 | Keep discovery local and metadata-first; make installation and execution explicit, pinned, and fail-closed | AIT commands, install-state tests, and runtime security contract; no automatic install/execute |
+| H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | AIT wraps native output without reinterpreting it; HUB-04 fixtures remain pending |
+| H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `agent-tools` package; no shared tool source or mandatory SDK |
+| H-15 | Install and dispatch only registered packages with explicit lifecycle, approval, path, and output boundaries | AIT implementation, `docs/AIT_RUNTIME.md`, and Node test suite |
 | H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
 | H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
 
@@ -28,19 +30,19 @@ behavior are not marked implemented merely because prose exists.
 
 ## Current machine-readable interface
 
-`TOOL_REGISTRY.json` is the only current ecosystem discovery artifact. Its exact
+`TOOL_REGISTRY.json` remains the ecosystem discovery source of truth. Its exact
 fields, null semantics, versions, and consumer requirements are owned by
-[Architecture](docs/ARCHITECTURE.md#registry-contract). IDs do not reserve npm or
-binary names. Local `package.json` values alone do not populate published npm or
-release fields. Registry lifecycle is distinct from task status and external
-tool-specific language certification. Owner-confirmed delivery completion is recorded
-in TASK and summarized in README/ROADMAP; it does not automatically promote Hub
-lifecycle or claim protocol conformance.
+[Architecture](docs/ARCHITECTURE.md#registry-contract). AIT reads an explicit local
+snapshot; IDs do not reserve npm or binary names. Local `package.json` values alone
+do not populate published npm or release fields. Registry lifecycle is distinct from
+task status and external tool-specific language certification. Owner-confirmed
+delivery completion is recorded in TASK and summarized in README/ROADMAP; it does not
+automatically promote Hub lifecycle or claim protocol conformance.
 
 The validator exits 0 when its checks pass and 1 for handled invalid data or file
-errors. It prints a human-readable summary and external URLs requiring review;
-it is not a tool analysis CLI and does not implement the target JSON envelope.
-It does not access npm, execute packages, test external evidence, or perform CI.
+errors. AIT exits according to the CLI standard and returns `ait-result/v1` for JSON
+operations. The validator and AIT do not test external evidence or perform CI; AIT
+performs npm installation only after an explicit install command.
 
 ## Contract ownership
 
@@ -59,10 +61,12 @@ tool's versioned interface or justify treating native output as the Hub envelope
 
 ## Non-goals and acceptance limits
 
-No tool code copying, root npm workspace, Agent Runtime, LLM backend, shared parser,
-automatic publication, or redesign of Codex/Claude/AGRUN is in scope. Future tools
-must not promise minimum safe tests, automatic root-cause proof, or minimum sufficient
-task context without an explicit verifiable definition.
+No tool source copying, npm workspace, LLM backend, shared parser, automatic
+publication, or redesign of Codex/Claude/AGRUN is in scope. The narrow AIT runtime is
+in scope; it must not become a shared tool implementation, reasoning runtime, or
+unreviewed compatibility layer. Future tools must not promise minimum safe tests,
+automatic root-cause proof, or minimum sufficient task context without an explicit
+verifiable definition.
 
 Documentation acceptance requires valid local links, valid registry data, consistent
 IDs/status/versions, explicit remaining gaps, and preservation of unrelated work.

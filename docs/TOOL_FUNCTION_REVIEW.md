@@ -37,7 +37,7 @@ Local inspection found:
   final inspection found those documents committed at `81b9e62` with a clean
   checkout. This review did not create that commit. No package manifest, source,
   CLI, or test harness was found in either inventory.
-- `AI-Agent-Tools`: documentation foundation and local validator; no discovery CLI.
+- `AI-Agent-Tools`: at the time of this review, documentation foundation and local validator; the later AIT CLI is outside this historical inspection.
 - The other eight proposed tool repositories were not present in the inspected
   sibling directory. Their functions below are design recommendations based on
   the supplied proposal, not implementation findings or proof of remote absence.

@@ -78,10 +78,11 @@ registry identity and lifecycle facts remain in `TOOL_REGISTRY.json`.
 | Business predicate and authoritative readback | Owning application and caller | Trace reports scoped evidence; it never retries writes or invents application success |
 | Task-specific artifact selection | Context Pack | May consume store locators; does not own storage or retention |
 
-No Hub runtime, shared package, database service, automatic instrumentation, or
-global agent memory is introduced. Result Store's explicit `put`, `delete`, and
-`gc --apply` operations are scoped local writes under the existing CLI/security
-write-mode rules. Trace V1 is read-only analysis of supplied files.
+No additional Hub runtime, shared package, database service, automatic instrumentation,
+or global agent memory is introduced by these tool designs. The separately authorized
+AIT runtime only manages packages and explicit process dispatch. Result Store's explicit
+`put`, `delete`, and `gc --apply` operations are scoped local writes under the existing
+CLI/security write-mode rules. Trace V1 is read-only analysis of supplied files.
 
 ## Protocol decisions
 

@@ -37,8 +37,8 @@ Do not reopen historical review findings as if their current disposition were un
 - The ID is unique; repository and npm identities are confirmed or `null`.
 - Status meets its gate, and evidence version equals the recorded release.
 - Intended purpose is distinguished from tested capability; unsupported cases are visible.
-- No tool source, workspace, agent runtime, or unnecessary dependency was added to the Hub.
+- No tool source, workspace, unapproved runtime, or unnecessary dependency was added to the Hub.
 - Roadmap, registry, and links agree; standards have one owner document each.
 - The independent owner has documented compatibility, security reporting, licensing, and release responsibility before stable publication.
 
-Ongoing maintenance follows the same review path. Update links when projects move, retain IDs, and deprecate rather than silently removing discoverable history. Future discovery consumers will use this registry contract; registration does not currently install a tool or expose a new command.
+Ongoing maintenance follows the same review path. Update links when projects move, retain IDs, and deprecate rather than silently removing discoverable history. Registration alone does not install a tool or execute it; the separately reviewed AIT CLI owns explicit installation and dispatch.

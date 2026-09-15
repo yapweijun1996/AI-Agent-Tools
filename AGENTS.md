@@ -6,11 +6,11 @@ This file contains repository-specific rules. Keep modules focused and independe
 
 ## MODULE: PROJECT_CONTEXT
 
-AI-Agent-Tools is an ecosystem Hub for independent deterministic tools. Its responsibilities are registry, standards, discovery, documentation, roadmap, and governance. Read [README.md](README.md) before making changes.
+AI-Agent-Tools is an ecosystem Hub for independent deterministic tools. Its responsibilities are registry, standards, discovery, documentation, roadmap, governance, and the explicitly authorized dependency-free AIT install/dispatch runtime. Read [README.md](README.md) before making changes.
 
 ## MODULE: ARCHITECTURE
 
-Follow [Architecture](docs/ARCHITECTURE.md). Do not copy tool implementations here, create a monorepo, or introduce an Agent Runtime. Do not redesign Codex, Claude, or AGRUN reasoning or orchestration. Shared packages or migration require evidence from roughly 3–5 mature tools and a separately reviewed decision.
+Follow [Architecture](docs/ARCHITECTURE.md). Do not copy independent tool implementations here or redesign Codex, Claude, or AGRUN reasoning or orchestration. The owner authorized the Hub-owned, dependency-free AIT install/dispatch runtime; it may manage independently released packages but must not become a shared tool implementation or reasoning runtime. Shared tool packages or migration still require evidence from roughly 3–5 mature tools and a separately reviewed decision.
 
 ## MODULE: PROJECT_MAP
 
@@ -31,7 +31,7 @@ Hub maintainers approve registry and standards changes. Tool maintainers own sou
 
 ## MODULE: DEPENDENCIES
 
-Keep this foundation dependency-free. Do not add frameworks, a package workspace, tool runtime dependencies, or a root npm package merely to host documentation. The validator uses Python's standard library.
+Keep the AIT runtime dependency-free: do not add frameworks or third-party runtime dependencies. A root npm package is now authorized for the AIT CLI; do not add a package workspace or tool implementation dependencies. The validator uses Python's standard library.
 
 ## MODULE: VERIFICATION
 
@@ -39,7 +39,7 @@ Run `python3 scripts/validate_hub.py` and `git diff --check`; additionally inspe
 
 ## MODULE: PROJECT_DOD
 
-Changes are complete when relevant contracts agree, registry checks and links pass, claims have evidence or are clearly planned, and useful existing material and unrelated changes are preserved. Keep technical artifacts in English. Report unverified external claims explicitly.
+Changes are complete when relevant contracts agree, registry/runtime checks and links pass, claims have evidence or are clearly planned, and useful existing material and unrelated changes are preserved. Keep technical artifacts in English. Report unverified external claims explicitly.
 
 ## MODULE: COMPLETION_UPDATES
 

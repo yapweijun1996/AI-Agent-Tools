@@ -2,13 +2,13 @@
 
 Small, focused tools that help AI coding agents read less, guess less, execute more precisely, and verify more.
 
-This repository is the ecosystem **Hub**: registry, standards, discovery documentation, roadmap, and governance. Each tool belongs in its own repository and npm package, with independent tests, versions, and releases. The Hub is not a monorepo or an Agent Runtime.
+This repository is the ecosystem **Hub**: registry, standards, discovery, roadmap, governance, and the explicitly authorized dependency-free AIT install/dispatch runtime. Each tool remains in its own repository and npm package, with independent tests, versions, and releases. AIT manages packages but does not own tool implementations or agent reasoning.
 
 ## Current state
 
 **1 of 14 registered tools completed: [Agent Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice).** The owner confirmed completion on 2026-09-06. The published [agent-code-slice@0.2.0](https://www.npmjs.com/package/agent-code-slice/v/0.2.0) package identity was checked against npm. It provides code outlines and symbol/line/range slicing through the `code-slice` CLI and JavaScript API; implementation stays in its independent repository.
 
-The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), and a local validator. The remaining thirteen entries are not completed in the Hub. The original ten-tool order is preserved; CFML Check, Result Store, and Runtime Trace were appended on 2026-09-07 with [detailed specifications](docs/TOOL_EXPANSION.md). CFML Check, Change Impact, and Test Scope now have inspectable independent implementations and basic test evidence, so their Hub lifecycle is `Experimental`; their delivery completion and protocol conformance remain separate. Symbol Search was appended on 2026-09-08 after an implementation admission review and remains `Experimental`; its package `0.1.0` is not published. Result Store and Runtime Trace remain Planned.
+The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), a local validator, and the local `ait` CLI. The remaining thirteen entries are not completed in the Hub. The original ten-tool order is preserved; CFML Check, Result Store, and Runtime Trace were appended on 2026-09-07 with [detailed specifications](docs/TOOL_EXPANSION.md). CFML Check, Change Impact, and Test Scope now have inspectable independent implementations and basic test evidence, so their Hub lifecycle is `Experimental`; their delivery completion and protocol conformance remain separate. Symbol Search was appended on 2026-09-08 after an implementation admission review and remains `Experimental`; its package `0.1.0` is not published. Result Store and Runtime Trace remain Planned.
 
 Project Profile now has a confirmed repository, published npm identity, and
 inspectable implementation, so its Hub lifecycle is `Experimental`; it is not
@@ -19,11 +19,14 @@ Delivery completion is separate from Hub standards conformance. Code Slice retai
 
 The native Code Slice, draft Change Impact, and Project Profile protocols differ from the Hub target JSON/exit/completeness contract. This foundation does not supply a compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
 
-The three-tool Company KB synchronization is currently blocked by a write-scope
-denial. Local specifications and the [pending KB update](docs/KB_SYNC.md) are
-available; the KB has not yet received these additions.
+The three-tool and status reconciliation was synchronized at User tier and read
+back. Company-tier visibility remains blocked by the existing write-scope denial;
+see the [KB receipt](docs/KB_SYNC.md).
 
-No `agent-tools` discovery CLI is implemented or published by this Hub. There is no Hub installation command. Future discovery is described in [Architecture](docs/ARCHITECTURE.md#future-discovery-cli).
+The local `agent-tools` package provides the `ait` discovery, install, doctor, and
+dispatch CLI. It is not yet published. Installation and execution are explicit,
+version-pinned, and fail closed when registry identity or approval is missing; see
+[Architecture](docs/ARCHITECTURE.md#ait-discovery-installation-and-dispatch-runtime).
 
 ## Principles
 
@@ -69,4 +72,6 @@ python3 scripts/validate_hub.py
 git diff --check
 ```
 
-The validator checks registry structure, lifecycle gates, roadmap order, required documents, local Markdown links and anchors, and JSON examples. Remote evidence links must also be opened and reviewed when added or changed; HTTP success alone does not verify a capability. The Hub needs no npm dependencies or runtime framework. See [Validation](VALIDATION.md) for additional checks and limitations.
+The validator checks registry structure, lifecycle gates, roadmap order, required documents, local Markdown links and anchors, and JSON examples. Remote evidence links must also be opened and reviewed when added or changed; HTTP success alone does not verify a capability. The AIT runtime has no third-party npm dependencies or framework; the validator
+uses Python's standard library. See [Validation](VALIDATION.md) for additional
+checks and limitations.

@@ -4,11 +4,11 @@
 
 | Owner | Responsibility | Excluded responsibility |
 | --- | --- | --- |
-| Hub | Registry, standards, discovery documentation, roadmap, governance | Tool source, tool release pipelines, agent orchestration |
+| Hub | Registry, standards, discovery, roadmap, governance, and the explicit AIT install/dispatch runtime | Tool source, tool release pipelines, agent reasoning/orchestration |
 | Independent tool repository + npm package | Implementation, CLI/JSON contracts, tests, security handling, versions, releases | Controlling agent reasoning or owning other tools' release schedules |
 | Agent or developer | Choose tools, supply inputs, interpret evidence, authorize actions | Treating tool metadata or incomplete output as proof |
 
-The normal flow is: a consumer reads registry metadata, selects an independently published tool, invokes it explicitly, and evaluates its output and exit status. No Hub service is required. This repository currently supplies documents and registry data only, plus a local validation script.
+The normal flow is: a consumer reads the local registry snapshot, explicitly installs a pinned independently released package with `ait install`, invokes it with an explicit execution approval through `ait dispatch`, and evaluates the wrapped output and native exit status. AIT is a local process, not a hosted service or agent reasoning layer. Independently owned tool source, tests, packages, and release pipelines remain outside this repository.
 
 ## Sources of truth
 
@@ -27,9 +27,10 @@ changes rather than treating either stale copy as authoritative for every claim.
 If registry metadata contradicts a release, investigate and correct the metadata; do not silently infer conformance. Descriptions are intended purpose and must not be read as release guarantees. A recorded release is a reviewed snapshot, not a live npm `latest` lookup.
 
 Code Slice's native protocol and Change Impact's draft differ from the Hub target
-envelope, exit meanings, and partial-result policy. A uniform consumer is not
-implemented. Preserve native compatibility until HUB-04 in TASK resolves the
-versioned integration path; metadata registration does not normalize tool output.
+envelope, exit meanings, and partial-result policy. AIT wraps captured native
+stdout/stderr in `ait-result/v1` but does not reinterpret native semantics or claim
+Hub conformance. Preserve native compatibility until HUB-04 resolves the versioned
+integration path; metadata registration and wrapping do not normalize tool output.
 
 ## Registry contract
 
@@ -50,25 +51,46 @@ A verification snapshot contains `version` (equal to `release_version`), `standa
 
 Unknown values are `null`, never fabricated URLs or placeholder versions. Consumers must reject malformed data, duplicate IDs, invalid lifecycle values, and unsupported schema major versions. Same-major optional additions must be safe to ignore; incompatible changes require a schema major bump. This repository's validator checks the exact currently adopted schema to catch authoring mistakes.
 
-## Future discovery CLI
+## AIT discovery, installation, and dispatch runtime
 
-`agent-tools` is a proposed discovery interface, not an existing package or command. A future implementation should list tools, filter by lifecycle or capability description, and show confirmed repository/package links and verification metadata using stable JSON.
+`agent-tools` is the Hub-owned package and `ait` is its CLI. Version `0.1.0` is
+implemented locally and is not yet published. It reads an explicit local registry
+snapshot, lists lifecycle/package metadata, validates installed state, installs a
+pinned registry release with an explicit command, and dispatches an installed tool
+only after `--allow-execution` is supplied.
 
-It should read an explicit local registry snapshot first. Any remote refresh must be opt-in, bounded, validated, and report its source and freshness. Invalid or unavailable metadata must produce a clear error; stale cached data must be labeled. A discovery result never installs, imports, or executes a package, follows instructions in metadata, or upgrades a tool automatically. Package names, executable mappings, network policy, and distribution are future design decisions.
+The runtime is intentionally explicit and fail-closed:
 
-Tool invocation remains under the agent/developer's control. If later approved, adapters belong in explicitly owned projects and must preserve individual tool version and output contracts. Context Pack may consume explicit result artifacts with provenance and size limits; it does not own global state or route agent reasoning.
+- `ait install TOOL_ID` requires a confirmed npm identity and release version;
+  Experimental tools additionally require `--allow-experimental`.
+- `--from-path` is available for a local package fixture or controlled development
+  install; package identity must still match the registry entry.
+- npm installation uses `--ignore-scripts`, `--no-audit`, `--no-fund`, and no shell;
+  installation is the only operation that may use the network, and only because the
+  caller explicitly requested it.
+- `ait dispatch TOOL_ID --allow-execution -- ...` uses the installed package's
+  declared executable, passes a reduced environment, never invokes a shell, and
+  returns a bounded `ait-result/v1` wrapper around native output. This is process
+  isolation, not a sandbox or a claim of filesystem/network confinement.
+- No metadata, package lifecycle script, registry entry, or discovered command is
+  treated as trusted instructions. No automatic install, upgrade, import, retry, or
+  execution occurs.
 
-### Unreconciled proposal: ait-tool/v1 plugin contract
-
-A separate `ait-tool/v1` design (Company KB item `fb9b80fa-bcfd-42d7-a5f4-5a6973ca7b7f`, status `PROPOSED`, dated 2026-09-15) describes a fuller manifest-based install/dispatch/uninstall model: an `ait-tool.json` manifest per package, isolated child-process execution, a normalized `ait-result/v1` envelope, and an explicit safety/approval gate for non-read-only tools. This is broader than the paragraph above and has not been reconciled with it: that paragraph states a discovery result "never installs, imports, or executes a package," while the proposed contract's core purpose is exactly to install and execute independently owned tools under explicit safety declarations.
-
-A local, unpublished spike (not part of this Hub, not registered in [TOOL_REGISTRY.json](../TOOL_REGISTRY.json)) manually exercised the proposed manifest validation, install, and dispatch mechanics against `agent-code-slice`; see [Validation](../VALIDATION.md#ait-toolv1-dispatch-spike---2026-09-15) for what was and was not observed. That evidence supports feasibility only. Neither this conflict nor `HUB-04` (native/Hub protocol reconciliation, see [TASK.md](../TASK.md)) is resolved by it. Adopting the broader contract, amending this section, and promoting `HUB-06` out of `Deferred` all require explicit Hub maintainer review, not inference from spike evidence.
+The AIT implementation does not add a compatibility layer to external tools. It
+preserves their package version and native output, records installation state under
+the user's AIT home, and leaves semantic interpretation to the caller. Context Pack
+may consume explicit result artifacts with provenance and size limits; it does not
+own global state or route agent reasoning.
 
 ## Shared infrastructure gate
 
 Consider shared packages or monorepo migration only after roughly 3–5 mature tools (`Verified` or `Stable`, with maintained releases) demonstrate repeated infrastructure that is costly to maintain independently. Record concrete duplication, ownership, compatibility, migration cost, rollback, and independent-release impact in a reviewed decision before implementation.
 
-Small duplication is acceptable. There is no shared runtime, mandatory SDK, root workspace, or predetermined migration in this foundation. A migration would explicitly change the current independent-repository architecture and requires a separate approval; the threshold does not authorize it automatically.
+Small duplication is acceptable. AIT is the one explicitly authorized Hub runtime;
+it is not a shared implementation library, mandatory SDK, service, or tool source
+workspace. Independent tools remain independently implemented, versioned, tested,
+and released. Any future shared tool package still requires the maturity gate and a
+separate reviewed decision.
 
 ## Planned evidence tools
 

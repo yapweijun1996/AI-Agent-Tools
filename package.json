@@ -1,0 +1,21 @@
+{
+  "name": "agent-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Explicit registry, installation, and dispatch CLI for AI-Agent-Tools.",
+  "bin": {
+    "ait": "bin/ait.js"
+  },
+  "files": [
+    "bin/ait.js",
+    "docs/AIT_RUNTIME.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "UNLICENSED"
+}

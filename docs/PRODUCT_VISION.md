@@ -14,7 +14,7 @@ Read-only operation is the default. Tools distinguish observation from inference
 
 The Hub governs and documents the ecosystem. Individual repositories implement and ship tools. Agents retain responsibility for reasoning, selecting tools, approving actions, and deciding whether evidence is sufficient for their task.
 
-The ecosystem does not redesign Codex, Claude, or AGRUN. It does not provide autonomous planning, agent scheduling, session memory, a hosted control plane, or a unified runtime. A future task-scoped Context Pack is an explicit bounded artifact, not persistent agent memory or a decision engine.
+The ecosystem does not redesign Codex, Claude, or AGRUN. It does not provide autonomous planning, agent scheduling, session memory, a hosted control plane, or a unified reasoning runtime. The separate AIT package manages explicit local installation and process dispatch; it is not an agent runtime or decision engine. A future task-scoped Context Pack is an explicit bounded artifact, not persistent agent memory.
 
 ## Evidence of value
 

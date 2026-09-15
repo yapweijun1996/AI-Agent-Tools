@@ -15,11 +15,12 @@ second task ledger or a tool release inventory.
 | [VALIDATION.md](VALIDATION.md) | Dated observations, checks, and evidence limitations |
 | [TOOL_REGISTRY.json](TOOL_REGISTRY.json) | Tool identity, lifecycle, repository/package links, release evidence snapshot |
 | [Product vision](docs/PRODUCT_VISION.md) | User problem, product value, and non-goals |
-| [Architecture](docs/ARCHITECTURE.md) | Ownership boundaries, registry contract, future discovery constraints |
+| [Architecture](docs/ARCHITECTURE.md) | Ownership boundaries, registry contract, and AIT runtime constraints |
 | [Tool standard](docs/TOOL_STANDARD.md) | Scope/admission/lifecycle gates |
 | [CLI standard](docs/CLI_STANDARD.md) | Target command/stream/exit/limit semantics |
 | [JSON standard](docs/JSON_STANDARD.md) | Target result envelope and consumption rules |
 | [Security standard](docs/SECURITY_STANDARD.md) | Trust, filesystem, process, and network boundaries |
+| [AIT runtime](docs/AIT_RUNTIME.md) | Explicit discovery, installation, doctor, dispatch, and result-wrapper contract |
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |
