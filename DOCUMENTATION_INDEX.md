@@ -22,6 +22,7 @@ second task ledger or a tool release inventory.
 | [Security standard](docs/SECURITY_STANDARD.md) | Trust, filesystem, process, and network boundaries |
 | [AIT runtime](docs/AIT_RUNTIME.md) | Explicit discovery, installation, doctor, dispatch, and result-wrapper contract |
 | [Code Slice consumer profile](docs/profiles/AGENT_CODE_SLICE.md) | Explicit native invocation, error, bounded-success, and compatibility rules |
+| [Project Profile consumer profile](docs/profiles/AGENT_PROJECT_PROFILE.md) | Native complete/partial/unsupported/error and strict-mode rules |
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |

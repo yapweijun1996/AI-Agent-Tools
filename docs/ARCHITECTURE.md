@@ -30,9 +30,9 @@ Code Slice's native protocol and Change Impact's draft differ from the Hub targe
 envelope, exit meanings, and partial-result policy. AIT wraps captured native
 stdout/stderr in `ait-result/v1` but does not reinterpret native semantics or claim
 Hub conformance. Preserve native compatibility; any versioned integration path must
-use an explicit consumer profile or reviewed migration. The current Code Slice
-profile is [documented separately](profiles/AGENT_CODE_SLICE.md); it preserves the
-native envelope and does not normalize tool output.
+use an explicit consumer profile or reviewed migration. Current profiles for [Code
+Slice](profiles/AGENT_CODE_SLICE.md) and [Project Profile](profiles/AGENT_PROJECT_PROFILE.md)
+preserve their native envelopes and do not normalize tool output.
 
 ## Registry contract
 
