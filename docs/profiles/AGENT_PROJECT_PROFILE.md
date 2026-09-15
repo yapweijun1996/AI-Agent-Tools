@@ -13,11 +13,12 @@ V1 source contract `0.1.2`, executable `agent-project-profile`, and JSON schema
 The Hub registry currently records `agent-project-profile@0.1.1`. The corrected
 source snapshot observed at commit
 `c25043856cb4984e30d0a61672213e51b6c3758d` declares `0.1.2`, while npm `latest`
-was observed as `0.1.1` with a packaged executable defect. Therefore this profile
-records the native source contract but does **not** certify the registered `0.1.1`
-artifact. A consumer must keep package identity, source version, and published
-artifact evidence separate; do not treat the corrected source as proof that `0.1.2`
-is published.
+was observed as `0.1.1`. A prior audit recorded a packaged executable defect; the
+current exact-artifact re-audit did not reproduce that symptom on this host. This
+profile therefore records the native source contract without silently certifying
+cross-environment artifact behavior. A consumer must keep package identity, source
+version, and published artifact evidence separate; do not treat the corrected source
+as proof that `0.1.2` is published.
 
 ## Invocation and safety boundary
 
@@ -81,5 +82,5 @@ The executable fixtures in
 [`tests/project_profile_profile.test.js`](../../tests/project_profile_profile.test.js)
 cover complete, partial, unsupported, fatal error, strict-mode rejection, malformed
 or unknown profiles, and status/coverage mismatch. They are contract fixtures, not
-verification of the currently published `0.1.1` artifact or a promotion of the Hub
+verification of cross-environment artifact behavior or a promotion of the Hub
 lifecycle.

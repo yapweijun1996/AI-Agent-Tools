@@ -53,7 +53,9 @@ sandbox: tool processes may still access resources available to the invoking use
 
 The first implementation does not provide OS-level sandboxing, remote registry
 refresh, package signature verification, dependency policy enforcement beyond npm's
-explicit flags, uninstall/upgrade commands, or a universal Hub protocol adapter.
-Those require separate reviewed contracts and evidence. Individual tool repositories
-remain responsible for implementation, releases, native contracts, and security
-reporting.
+explicit flags, uninstall/upgrade commands, native-profile selection/application, or
+a universal Hub protocol adapter. Profile selection is designed separately in
+[AIT profile selection](AIT_PROFILE_SELECTION.md) but is not implemented. Those
+features require separate reviewed contracts and evidence. Individual tool
+repositories remain responsible for implementation, releases, native contracts, and
+security reporting.

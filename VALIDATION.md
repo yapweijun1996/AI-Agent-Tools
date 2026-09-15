@@ -57,11 +57,12 @@ was inspected from a source archive. Its manifest declares `agent-project-profil
 version `0.1.2`, with the executable mapped to `dist/bin.js`; the repository
 documents bounded, read-only profiling and a cross-platform CI matrix. The
 [npm registry metadata](https://registry.npmjs.org/agent-project-profile) reports
-published `latest` version `0.1.1`; version `0.1.2` was not present. The exact
-published `0.1.1` package was installed into a clean consumer and its generated
-binary reproduced the documented P0 behavior: `--version` produced no output and
-returned exit code 0. This is a release defect, not evidence that the current
-source entry point is still broken.
+published `latest` version `0.1.1`; version `0.1.2` was not present. A prior audit
+installed the exact published `0.1.1` package into a clean consumer and recorded a
+P0 distribution behavior: `--version` produced no output and returned exit code 0.
+The 2026-09-15 exact-artifact re-audit below did not reproduce that symptom on the
+current host; the discrepancy remains a release/platform evidence gap, not a reason
+to silently promote the package.
 
 The exact source commit passed `npm ci --ignore-scripts`, `npm run typecheck`,
 `npm test` (31 passed), `npm run test:packaged-cli`, and
@@ -354,4 +355,11 @@ and future integration work.
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
 | V-15 | Explicit Code Slice profile | `docs/profiles/AGENT_CODE_SLICE.md` records the registered `agent-code-slice@0.2.0` / `code-slice` identity, native v1.0/v1.1 envelopes, exit/error-code authority, bounded `outline` pagination, protocol-error conditions, and non-goals. `tests/code_slice_profile.test.js` executes a deterministic native-contract fixture for complete success, bounded success, CLI error, operation error, malformed/unknown output, and exit/status mismatch; all 3 profile tests passed. The source contract was observed at `7f2969ff04540d43c12b13bc863e4a745209ff28`; this does not certify the exact published artifact or promote Hub lifecycle. |
-| V-16 | Explicit Project Profile profile | `docs/profiles/AGENT_PROJECT_PROFILE.md` records the source-observed `0.1.2` native contract, the registry/published `0.1.1` release mismatch, `complete`/`partial`/`unsupported`/`error` statuses, `coverage`, strict-mode behavior, and no-execution boundary. `tests/project_profile_profile.test.js` executes deterministic fixtures for complete, partial, unsupported, fatal error, strict rejection, malformed/unknown output, and status/coverage mismatch; all 3 profile tests passed. The source contract was observed at `c25043856cb4984e30d0a61672213e51b6c3758d`; it does not certify the known defective `0.1.1` artifact or promote Hub lifecycle. |
+| V-16 | Explicit Project Profile profile | `docs/profiles/AGENT_PROJECT_PROFILE.md` records the source-observed `0.1.2` native contract, the registry/published `0.1.1` release mismatch, `complete`/`partial`/`unsupported`/`error` statuses, `coverage`, strict-mode behavior, and no-execution boundary. `tests/project_profile_profile.test.js` executes deterministic fixtures for complete, partial, unsupported, fatal error, strict rejection, malformed/unknown output, and status/coverage mismatch; all 3 profile tests passed. The source contract was observed at `c25043856cb4984e30d0a61672213e51b6c3758d`; it does not promote Hub lifecycle. |
+| V-17 | Exact Project Profile `0.1.1` artifact re-audit | `npm pack agent-project-profile@0.1.1` returned 37 files, shasum `e837507faaa9dcbdfd97b70ddf00456cc985448a`, and the declared `dist/cli.js` binary. A clean temporary consumer installed the tarball with scripts disabled: `--version` exited 0 with `0.1.1\n`; a valid target produced `status: complete`/exit 0, mixed lockfiles produced `status: partial`/exit 2, and a missing root produced `status: error`/exit 1. The previously recorded no-output defect was not reproduced on this host; cross-environment reconciliation and `0.1.2` publication remain unverified. |
+
+## Change Impact native consumer profile review - 2026-09-15
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-18 | Explicit Change Impact profile | `docs/profiles/AGENT_CHANGE_IMPACT.md` records the published `agent-change-impact@0.1.1` / `agent-impact` identity, `0.1-draft` envelope, complete-vs-partial native success, error-code authority, bounded read-only boundary, and non-goals. `tests/change_impact_profile.test.js` executes deterministic fixtures for capabilities, complete/partial usable results, invalid invocation, output failure, malformed/unknown output, and exit/status mismatch; all 3 profile tests passed. The contract was observed at source HEAD `b67c87e277af3a616ec64ff8c1f34992f71aed88`; the sibling worktree was dirty and its uncommitted changes were excluded. This does not promote Hub lifecycle or assert a new artifact audit. |

@@ -21,8 +21,10 @@ second task ledger or a tool release inventory.
 | [JSON standard](docs/JSON_STANDARD.md) | Target result envelope and consumption rules |
 | [Security standard](docs/SECURITY_STANDARD.md) | Trust, filesystem, process, and network boundaries |
 | [AIT runtime](docs/AIT_RUNTIME.md) | Explicit discovery, installation, doctor, dispatch, and result-wrapper contract |
+| [AIT profile selection](docs/AIT_PROFILE_SELECTION.md) | Proposed exact-version profile selection and native-output application boundary |
 | [Code Slice consumer profile](docs/profiles/AGENT_CODE_SLICE.md) | Explicit native invocation, error, bounded-success, and compatibility rules |
 | [Project Profile consumer profile](docs/profiles/AGENT_PROJECT_PROFILE.md) | Native complete/partial/unsupported/error and strict-mode rules |
+| [Change Impact consumer profile](docs/profiles/AGENT_CHANGE_IMPACT.md) | Native draft-envelope, partial-success, limit, and error rules |
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |
