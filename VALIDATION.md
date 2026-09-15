@@ -1,6 +1,6 @@
 # Validation and evidence
 
-Latest Hub review: 2026-09-12. The original source/release observations below are
+Latest Hub review: 2026-09-15. The original source/release observations below are
 dated 2026-09-06 and remain historical. This document owns the Hub's evidence
 scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
@@ -225,3 +225,39 @@ limits, and runnable basic tests. These observations satisfy the Hub's
 `Experimental` admission gate. They do not establish npm publication, Stable
 cross-platform support, or native/Hub protocol conformance, so all three retain
 `verification: null`.
+
+## ait-tool/v1 dispatch spike - 2026-09-15
+
+A proposed `ait-tool/v1` plugin contract (Company KB item
+`fb9b80fa-bcfd-42d7-a5f4-5a6973ca7b7f`, status `PROPOSED`) describes a future
+discovery/dispatch CLI that installs independently owned tools by manifest and
+runs them as isolated child processes. A local, unpublished spike repository
+(`AI-Agent-Tool-AIT`, first commit `9bebbd9`, outside this Hub and not
+registered in [TOOL_REGISTRY.json](TOOL_REGISTRY.json)) exercised that
+contract manually against `agent-code-slice` version `0.4.0` from a local
+checkout.
+
+Observed: manifest schema validation rejects a manifest missing required
+`ait-tool/v1` fields with exit `2`; `ait install --from-path` resolves the
+package's declared `bin` entry and registers it without executing the tool;
+`ait list` and `ait doctor` read that registration back; dispatching
+`ait slice outline <file>` spawns `code-slice` as a child process with the
+caller's working directory preserved, captures its native JSON on stdout, and
+wraps it into an `ait-result/v1` envelope (`protocol`, `tool`, `ok`, `status`,
+`data`, `meta`). A file-not-found case produced envelope `status: incomplete`
+at exit `3`; an unsupported-language case produced `status: denied` at exit
+`4`. Both exit codes happened to already match the `ait-tool/v1` table, but
+`agent-code-slice` was not implemented against that table, so this is observed
+coincidence, not verified semantic conformance — HUB-04 native/Hub protocol
+reconciliation remains unresolved.
+
+This establishes that the proposed dispatch mechanics are implementable, not
+that `ait` is approved, published, installable by an end user or agent, or
+conformant. Not exercised: `--from <npm-spec>` installation from the real npm
+registry, any tool other than `agent-code-slice`, and filesystem/network
+sandboxing beyond environment-variable filtering. Separately, the proposed
+contract's install/dispatch/execute model appears to conflict with the
+already-adopted [Architecture](docs/ARCHITECTURE.md#future-discovery-cli)
+statement that "a discovery result never installs, imports, or executes a
+package" — that conflict is recorded, not resolved, in
+[Architecture](docs/ARCHITECTURE.md#future-discovery-cli).

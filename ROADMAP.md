@@ -49,6 +49,6 @@ release checks only for release tasks. No new feature is scheduled by a date her
 - Resolve versioned protocol profiles versus explicit migration using real contract fixtures; no compatibility mechanism has been implemented.
 - Define tool-specific language/format support, resource limits, and minimum Node.js versions in each tool repository.
 - Select licenses before package publication; this Hub currently does not declare a license or grant package licensing rights.
-- Decide discovery CLI ownership, package identity, caching, and distribution only when implementation is approved.
+- Decide discovery CLI ownership, package identity, caching, and distribution only when implementation is approved. A 2026-09-15 unpublished spike tested a proposed `ait-tool/v1` install/dispatch contract's feasibility against one tool; it did not approve that contract and it conflicts with the currently adopted [Architecture](docs/ARCHITECTURE.md#unreconciled-proposal-ait-toolv1-plugin-contract) text, so this decision remains open.
 
 These decisions do not block the documentation foundation. They do block unsupported publication, compatibility, or readiness claims.

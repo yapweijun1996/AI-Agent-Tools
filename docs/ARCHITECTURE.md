@@ -58,6 +58,12 @@ It should read an explicit local registry snapshot first. Any remote refresh mus
 
 Tool invocation remains under the agent/developer's control. If later approved, adapters belong in explicitly owned projects and must preserve individual tool version and output contracts. Context Pack may consume explicit result artifacts with provenance and size limits; it does not own global state or route agent reasoning.
 
+### Unreconciled proposal: ait-tool/v1 plugin contract
+
+A separate `ait-tool/v1` design (Company KB item `fb9b80fa-bcfd-42d7-a5f4-5a6973ca7b7f`, status `PROPOSED`, dated 2026-09-15) describes a fuller manifest-based install/dispatch/uninstall model: an `ait-tool.json` manifest per package, isolated child-process execution, a normalized `ait-result/v1` envelope, and an explicit safety/approval gate for non-read-only tools. This is broader than the paragraph above and has not been reconciled with it: that paragraph states a discovery result "never installs, imports, or executes a package," while the proposed contract's core purpose is exactly to install and execute independently owned tools under explicit safety declarations.
+
+A local, unpublished spike (not part of this Hub, not registered in [TOOL_REGISTRY.json](../TOOL_REGISTRY.json)) manually exercised the proposed manifest validation, install, and dispatch mechanics against `agent-code-slice`; see [Validation](../VALIDATION.md#ait-toolv1-dispatch-spike---2026-09-15) for what was and was not observed. That evidence supports feasibility only. Neither this conflict nor `HUB-04` (native/Hub protocol reconciliation, see [TASK.md](../TASK.md)) is resolved by it. Adopting the broader contract, amending this section, and promoting `HUB-06` out of `Deferred` all require explicit Hub maintainer review, not inference from spike evidence.
+
 ## Shared infrastructure gate
 
 Consider shared packages or monorepo migration only after roughly 3–5 mature tools (`Verified` or `Stable`, with maintained releases) demonstrate repeated infrastructure that is costly to maintain independently. Record concrete duplication, ownership, compatibility, migration cost, rollback, and independent-release impact in a reviewed decision before implementation.
