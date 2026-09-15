@@ -7,6 +7,19 @@ bounded outline with a warning and exit 0; Change Impact's draft also allows par
 success. Do not reinterpret either as this contract. Compatibility work remains
 HUB-04 in [TASK.md](../TASK.md); this clarification changes no target exit semantics.
 
+**HUB-04 decision (2026-09-15):** a sourced comparison of the exit-code table
+above against `agent-code-slice`'s and `agent-project-profile`'s own documented
+exit codes (see [Validation](../VALIDATION.md#hub-04-exit-code-comparison---2026-09-15))
+found disagreeing class counts and one tool overloading a single code for both
+"invalid input" and "incomplete result." No universal numeric remapping can
+reconcile that. The resolution is: this table's numeric exit codes are a coarse
+ok/not-ok/needs-review signal only, never a cross-tool semantic key. Any
+consumer distinguishing finer outcomes (invalid input vs. unsupported vs.
+denied, etc.) must read the tool's own JSON envelope status/error fields, never
+infer them from the exit code number. Existing tools keep their own documented
+exit codes; the table above is binding only for a tool built directly against
+this standard.
+
 ## Invocation and streams
 
 - Provide `--help`, `--version`, and `--json`. Help/version requests are explicit text modes; analysis with `--json` produces exactly one [JSON envelope](JSON_STANDARD.md), including handled failures.
