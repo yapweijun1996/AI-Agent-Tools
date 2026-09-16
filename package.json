@@ -1,12 +1,18 @@
 {
   "name": "agent-tools",
   "version": "0.1.0",
-  "private": true,
   "description": "Explicit registry, installation, and dispatch CLI for AI-Agent-Tools.",
+  "keywords": [
+    "ai",
+    "agents",
+    "cli",
+    "developer-tools"
+  ],
   "bin": {
     "ait": "bin/ait.js"
   },
   "files": [
+    "LICENSE",
     "TOOL_REGISTRY.json",
     "bin/ait.js",
     "docs/AIT_RUNTIME.md",
@@ -16,8 +22,16 @@
   "engines": {
     "node": ">=18"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools#readme",
   "scripts": {
     "test": "node --test"
   },
-  "license": "UNLICENSED"
+  "license": "Apache-2.0"
 }

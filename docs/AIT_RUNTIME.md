@@ -1,7 +1,8 @@
 # AIT runtime
 
-Status: **Experimental local implementation**. Package name: `agent-tools`.
-Executable: `ait`. Version: `0.1.0`. The package is private and not published.
+Status: **Experimental public-release candidate**. Package name: `agent-tools`.
+Executable: `ait`. Version: `0.1.0`. The package is prepared for public npm
+publication under Apache-2.0; publication and registry read-back are pending.
 
 AIT is the Hub-owned install and dispatch runtime for independently released tools.
 It does not contain tool implementations, normalize their native semantics, or
@@ -9,13 +10,12 @@ control agent reasoning.
 
 ## Distribution status and release gate
 
-`agent-tools@0.1.0` remains private and `UNLICENSED`; no publication is authorized
-or claimed. The package now includes the checked-in `TOOL_REGISTRY.json` snapshot so
-its default `list` and `doctor` paths remain usable after packing. Before any future
-publication, a clean packed consumer must verify `list`, `doctor`, explicit local
-installation, and approved fixture dispatch without relying on the source checkout.
-The release must also choose an explicit package license and ownership/release
-process. This gate does not authorize publication.
+`agent-tools@0.1.0` is configured as a public package under Apache-2.0. The package
+includes the checked-in `TOOL_REGISTRY.json` snapshot so its default `list` and
+`doctor` paths remain usable after packing. A clean packed release preview contains
+the license, README, CLI, registry, and profile catalog; local tests and consumer
+checks pass. Actual publication and npm registry read-back remain pending npm
+authentication and the final release action.
 
 The following policies are decided for the current runtime boundary:
 

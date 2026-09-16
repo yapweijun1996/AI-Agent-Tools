@@ -428,6 +428,12 @@ and future integration work.
 
 | V-29 | User-tier KB audit follow-up | Project Profile and Symbol Search status records, plus the Canonical SSOT and Functional Map, were updated in place with the current audit facts; the Canonical SSOT Symbol Search publication/current-CI metadata was corrected; readback returned updated content/metadata at User tier. No Company-tier promotion was attempted; `SHARE_TIER_DENIED: above_scope` remains the separate company-scope blocker. |
 
+## AIT public-release candidate audit - 2026-09-16
+
+| ID | Check | Evidence |
+|---|---|---|
+| V-30 | AIT public-release candidate | `agent-tools@0.1.0` now removes the private flag, declares Apache-2.0, includes `LICENSE`, and records the verified GitHub repository metadata. `npm publish --dry-run --access public --ignore-scripts` passed with seven package files: LICENSE, README, registry snapshot, CLI, runtime documentation, profile catalog, and package manifest. Node tests passed 29/29, the Hub validator passed, the dependency tree is empty, and the CycloneDX SBOM reports no components. Actual npm authentication, publication, and post-publication registry read-back remain unverified. |
+
 ## User-tier KB profile and artifact reconciliation - 2026-09-15
 
 | ID | Check | Evidence and limitation |

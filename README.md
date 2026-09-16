@@ -26,11 +26,12 @@ The three-tool and status reconciliation was synchronized at User tier and read
 back. Company-tier visibility remains blocked by the existing write-scope denial;
 see the [KB receipt](docs/KB_SYNC.md).
 
-The local `agent-tools` package provides the `ait` discovery, install, doctor, and
-dispatch CLI. Its packed default-registry omission was corrected, but it remains
-private/`UNLICENSED` and is not yet published. Installation and execution are
-explicit, version-pinned, and fail closed when registry identity or approval is
-missing; see [AIT runtime](docs/AIT_RUNTIME.md) and
+The `agent-tools` package provides the `ait` discovery, install, doctor, and
+dispatch CLI. Version `0.1.0` is prepared for public npm publication under
+Apache-2.0; the packed release dry-run and local consumer checks pass, while
+actual npm publication and registry read-back remain pending npm authentication.
+Installation and execution are explicit, version-pinned, and fail closed when
+registry identity or approval is missing; see [AIT runtime](docs/AIT_RUNTIME.md) and
 [Architecture](docs/ARCHITECTURE.md#ait-discovery-installation-and-dispatch-runtime).
 
 ## Principles

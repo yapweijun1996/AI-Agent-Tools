@@ -1,6 +1,6 @@
 # Task status
 
-Status date: 2026-09-15. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
+Status date: 2026-09-16. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
 execution ledger; independent tool repositories own their implementation tasks.
 
 ## Current situation
@@ -8,8 +8,9 @@ execution ledger; independent tool repositories own their implementation tasks.
 The Hub documentation, registry, local Python validator, and dependency-free AIT
 runtime now exist. The initial tracked baseline was `2f2d46e`; Git history records
 subsequent Hub documentation and runtime commits. A commit is not a tool release or
-a push. AIT package version `0.1.0` is local/private and not published; it does not
-contain independent tool implementations.
+a push. AIT package version `0.1.0` is configured as a public Apache-2.0 release
+candidate; npm publication and registry read-back remain pending authentication.
+It does not contain independent tool implementations.
 
 **Code Slice delivery is Done**, confirmed by the owner on 2026-09-06. Published
 `agent-code-slice@0.2.0` metadata matches its repository and `code-slice` executable.
@@ -112,10 +113,10 @@ or an unimplemented feature is not automatically an external blocker.
   verification snapshot remain unverified.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
-- AIT package distribution and Hub licensing remain open; the current local package
-  is private/UNLICENSED and is not a published tool release. The packed-consumer
-  gate exposed and corrected omission of the default `TOOL_REGISTRY.json`; the
-  package still requires an explicit license/ownership decision before publication.
+- AIT package distribution is in its public-release step. Ownership and the
+  Apache-2.0 license decision are recorded; the packed-consumer gate exposed and
+  corrected omission of the default `TOOL_REGISTRY.json`. The remaining release
+  work is npm authentication, publication, and post-publication registry read-back.
   Exact-version native profile selection/application is implemented only for the
   checked-in catalog and bounded validators; it is not a universal compatibility
   layer. CFML Check and Symbol Search can now match the catalog only after their
