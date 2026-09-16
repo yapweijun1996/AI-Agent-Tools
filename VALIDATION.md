@@ -1,6 +1,6 @@
 # Validation and evidence
 
-Latest Hub review: 2026-09-15. The original source/release observations below are
+Latest Hub review: 2026-09-16. The original source/release observations below are
 dated 2026-09-06 and remain historical. This document owns the Hub's evidence
 scope. Individual
 tool test plans, dependencies, and release artifacts belong to their repositories.
@@ -433,6 +433,30 @@ and future integration work.
 | ID | Check | Evidence |
 |---|---|---|
 | V-30 | AIT public-release candidate | `agent-tools@0.1.0` now removes the private flag, declares Apache-2.0, includes `LICENSE`, and records the verified GitHub repository metadata. `npm publish --dry-run --access public --ignore-scripts` passed with seven package files: LICENSE, README, registry snapshot, CLI, runtime documentation, profile catalog, and package manifest. Node tests passed 29/29, the Hub validator passed, the dependency tree is empty, and the CycloneDX SBOM reports no components. Actual npm authentication, publication, and post-publication registry read-back remain unverified. |
+
+## AIT npm package identity update - 2026-09-16
+
+| ID | Check | Evidence |
+|---|---|---|
+| V-32 | AIT package rename for public publication | The public `agent-tools` name is owned by another npm account. The selected replacement `ai-agent-tools` returned 404 from the public registry, so `package.json` now uses `ai-agent-tools` at version `0.1.0` while retaining the `ait` executable. Apache-2.0 metadata, the seven-file packlist, local tests, and Hub validation remain applicable; publication and post-publication read-back are pending. |
+
+## AIT public npm release - 2026-09-16
+
+| ID | Check | Evidence |
+|---|---|---|
+| V-33 | Published AIT package and consumer read-back | `ai-agent-tools@0.1.0` published successfully with public access. npm read-back reports `latest: 0.1.0`, Apache-2.0, the verified GitHub repository, and integrity `sha512-RbXH0SApdawfbgsCPpO/R3kCvO93mxeY9naRvPESufYjDXlHkfpDPtUP3JVJtQPpf+O9Xooeo9yZc3O/15ZlFQ==`. A clean temporary consumer installed the package with scripts disabled; its packaged `ait list --json` reported 15 tools and `ait doctor --json` reported registry 15 and installed 0. |
+
+## AIT public npm patch release - 2026-09-16
+
+| ID | Check | Evidence |
+|---|---|---|
+| V-34 | Published AIT patch release and consumer read-back | `ai-agent-tools@0.1.1` published successfully with public access. npm read-back reports `latest: 0.1.1`, Apache-2.0, the verified GitHub repository, and integrity `sha512-rI/WlF013V6mKdCCVln2xGOa5ApbW7faKHhWRYhu+5QnxY35Ce0nIyg8tOQOeTVGhV83RJjgwSHWzvVOCB/06Q==`. A new temporary consumer installed the published package with scripts disabled; its packaged `ait list --json` reported 15 tools and `ait doctor --json` reported registry 15 and installed 0. |
+
+## CFML Policy Check registration review - 2026-09-16
+
+| ID | Check | Evidence and limitation |
+| --- | --- | --- |
+| V-31 | Independent policy-check repository and Hub registration | The owner-supplied local clone for [AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check) points to the confirmed GitHub remote and is at initial commit `24e0889657ac7da0fe752c4fb48c9e7f90fcaa4a`, whose tree contains only `.gitattributes`. The Hub records `agent-cfml-policy-check` as `Planned` with npm, release, verification, and deprecation fields `null`; no implementation, tests, package identity, release, or engine evidence is claimed. After registration, `python scripts/validate_hub.py`, `git diff --check`, the untracked-document whitespace check, and the AIT Node suite passed (29/29). |
 
 ## User-tier KB profile and artifact reconciliation - 2026-09-15
 

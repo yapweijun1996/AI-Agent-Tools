@@ -46,7 +46,7 @@ test('parses explicit install and dispatch approval flags', () => {
 test('validates the current registry and keeps installability explicit', () => {
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
   assert.equal(ait.validateRegistry(registry), registry);
-  assert.equal(registry.tools.length, 14);
+  assert.equal(registry.tools.length, 15);
   const codeSlice = registry.tools.find((tool) => tool.id === 'agent-code-slice');
   const resultStore = registry.tools.find((tool) => tool.id === 'agent-result-store');
   assert.equal(Boolean(codeSlice.npm && codeSlice.release_version), true);
@@ -167,7 +167,7 @@ test('list reads a local registry snapshot and does not write the home', () => {
   const output = JSON.parse(captured.output);
   assert.equal(output.protocol, 'ait-result/v1');
   assert.equal(output.ok, true);
-  assert.equal(output.data.tools.length, 14);
+  assert.equal(output.data.tools.length, 15);
   assert.equal(fs.existsSync(path.join(home, 'installed.json')), false);
 });
 

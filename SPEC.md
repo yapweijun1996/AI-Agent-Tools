@@ -1,6 +1,6 @@
 # Hub specification
 
-Last reconciled: 2026-09-15. This specification covers the Hub's observable
+Last reconciled: 2026-09-16. This specification covers the Hub's observable
 documentation, registry, and the explicitly authorized dependency-free `agent-tools`
 / `ait` install and dispatch runtime. Independent tool internals remain outside the
 Hub. [TASK.md](TASK.md) records completion status.
@@ -20,10 +20,11 @@ Hub. [TASK.md](TASK.md) records completion status.
 | H-09 | Make registration, promotion, downgrade, and deprecation reviewable | Adding-a-tool and release workflows; V-05 |
 | H-10 | Keep discovery local and metadata-first; make installation and execution explicit, pinned, and fail-closed | AIT commands, install-state tests, and runtime security contract; no automatic install/execute |
 | H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | AIT wraps native output without reinterpreting it; target-envelope completeness is locked by executable fixtures, Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and Symbol Search have explicit native profiles, and other native profiles remain explicit |
-| H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `agent-tools` package; no shared tool source or mandatory SDK |
+| H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `ai-agent-tools` package; no shared tool source or mandatory SDK |
 | H-15 | Install and dispatch only registered packages with explicit lifecycle, approval, path, and output boundaries | AIT implementation, `docs/AIT_RUNTIME.md`, and Node test suite |
 | H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
 | H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
+| H-16 | Keep configurable CFML/HTML/project policy checking independently scoped from CFML structural checking | CFML Policy Check handoff, registry/roadmap entry, boundary review, and V-31; implementation and release evidence remain owned by its independent repository |
 
 Evidence definitions are in [VALIDATION.md](VALIDATION.md). Requirements for future
 behavior are not marked implemented merely because prose exists.

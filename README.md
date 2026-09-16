@@ -6,9 +6,9 @@ This repository is the ecosystem **Hub**: registry, standards, discovery, roadma
 
 ## Current state
 
-**1 of 14 registered tools completed: [Agent Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice).** The owner confirmed completion on 2026-09-06. The published [agent-code-slice@0.2.0](https://www.npmjs.com/package/agent-code-slice/v/0.2.0) package identity was checked against npm. It provides code outlines and symbol/line/range slicing through the `code-slice` CLI and JavaScript API; implementation stays in its independent repository.
+**1 of 15 registered tools completed: [Agent Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice).** The owner confirmed completion on 2026-09-06. The published [agent-code-slice@0.2.0](https://www.npmjs.com/package/agent-code-slice/v/0.2.0) package identity was checked against npm. It provides code outlines and symbol/line/range slicing through the `code-slice` CLI and JavaScript API; implementation stays in its independent repository.
 
-The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), a local validator, and the local `ait` CLI. The remaining thirteen entries are not completed in the Hub. The original ten-tool order is preserved; CFML Check, Result Store, and Runtime Trace were appended on 2026-09-07 with [detailed specifications](docs/TOOL_EXPANSION.md). CFML Check, Change Impact, and Test Scope now have inspectable independent implementations and basic test evidence, so their Hub lifecycle is `Experimental`; their delivery completion and protocol conformance remain separate. Symbol Search was appended on 2026-09-08 after an implementation admission review and remains `Experimental`; its published `0.1.2` artifact is now audited, while delivery completion and protocol conformance remain separate. Result Store and Runtime Trace remain Planned.
+The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), a local validator, and the local `ait` CLI. The remaining fourteen entries are not completed in the Hub. The original ten-tool order is preserved; CFML Check, Result Store, and Runtime Trace were appended on 2026-09-07 with [detailed specifications](docs/TOOL_EXPANSION.md). CFML Check, Change Impact, and Test Scope now have inspectable independent implementations and basic test evidence, so their Hub lifecycle is `Experimental`; their delivery completion and protocol conformance remain separate. Symbol Search was appended on 2026-09-08 after an implementation admission review and remains `Experimental`; its published `0.1.2` artifact is now audited, while delivery completion and protocol conformance remain separate. The planned [CFML Policy Check](docs/tools/AGENT_CFML_POLICY_CHECK.md) was appended on 2026-09-16 as a separate repository for configurable CFML/HTML/project rules; its repository has no implementation, package, test, or release evidence yet. Result Store and Runtime Trace remain Planned.
 
 Project Profile now has a confirmed repository, published npm identity, and
 inspectable implementation, so its Hub lifecycle is `Experimental`; it is not
@@ -26,10 +26,9 @@ The three-tool and status reconciliation was synchronized at User tier and read
 back. Company-tier visibility remains blocked by the existing write-scope denial;
 see the [KB receipt](docs/KB_SYNC.md).
 
-The `agent-tools` package provides the `ait` discovery, install, doctor, and
-dispatch CLI. Version `0.1.0` is prepared for public npm publication under
-Apache-2.0; the packed release dry-run and local consumer checks pass, while
-actual npm publication and registry read-back remain pending npm authentication.
+The `ai-agent-tools` package provides the `ait` discovery, install, doctor, and
+dispatch CLI. It is publicly available on npm under Apache-2.0; the packed
+release dry-run, local consumer checks, and registry read-back pass.
 Installation and execution are explicit, version-pinned, and fail closed when
 registry identity or approval is missing; see [AIT runtime](docs/AIT_RUNTIME.md) and
 [Architecture](docs/ARCHITECTURE.md#ait-discovery-installation-and-dispatch-runtime).
@@ -53,7 +52,7 @@ registry identity or approval is missing; see [AIT runtime](docs/AIT_RUNTIME.md)
 | Understand ownership and discovery | [Architecture](docs/ARCHITECTURE.md) |
 | Find tools and delivery order | [Registry](TOOL_REGISTRY.json), [Roadmap](ROADMAP.md) |
 | Review tool responsibilities and integration gaps | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) |
-| Review the three new tools and acceptance cases | [Expansion review](docs/TOOL_EXPANSION.md), [CFML Check](docs/tools/AGENT_CFML_CHECK.md), [Result Store](docs/tools/AGENT_RESULT_STORE.md), [Runtime Trace](docs/tools/AGENT_RUNTIME_TRACE.md) |
+| Review the CFML expansion tools and acceptance cases | [Expansion review](docs/TOOL_EXPANSION.md), [CFML Check](docs/tools/AGENT_CFML_CHECK.md), [CFML Policy Check](docs/tools/AGENT_CFML_POLICY_CHECK.md), [Result Store](docs/tools/AGENT_RESULT_STORE.md), [Runtime Trace](docs/tools/AGENT_RUNTIME_TRACE.md) |
 | Reconcile repository documentation with Company KB | [KB synchronization](docs/KB_SYNC.md) |
 | Propose or register a tool | [Adding a tool](docs/ADDING_A_TOOL.md) |
 | Define capability and lifecycle | [Tool standard](docs/TOOL_STANDARD.md) |

@@ -1,6 +1,6 @@
 {
-  "name": "agent-tools",
-  "version": "0.1.0",
+  "name": "ai-agent-tools",
+  "version": "0.1.1",
   "description": "Explicit registry, installation, and dispatch CLI for AI-Agent-Tools.",
   "keywords": [
     "ai",

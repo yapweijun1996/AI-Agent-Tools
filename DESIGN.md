@@ -1,13 +1,13 @@
 # Design decisions
 
-Last reconciled: 2026-09-15. Scope: the AI-Agent-Tools Hub. This document owns
+Last reconciled: 2026-09-16. Scope: the AI-Agent-Tools Hub. This document owns
 decision rationale; [Architecture](docs/ARCHITECTURE.md) owns structural contracts,
 [SPEC.md](SPEC.md) owns requirements, and [TASK.md](TASK.md) owns execution status.
 
 ## Observed implementation
 
 The Hub contains Markdown documentation, `TOOL_REGISTRY.json`,
-`scripts/validate_hub.py`, and the dependency-free private `agent-tools@0.1.0`
+`scripts/validate_hub.py`, and the dependency-free public `ai-agent-tools@0.1.1`
 package with the `ait` CLI. The validator uses only the Python standard library.
 AIT manages explicit package installation and child-process dispatch but contains no
 independent tool implementation or agent reasoning. The initial tracked baseline is
@@ -35,9 +35,10 @@ consistency; the script cannot prove external tool conformance.
 | D-11 | Give each new tool a bounded local responsibility | Structural validation, sanitized evidence storage, and supplied-event correlation stay separate; no automatic instrumentation or agent runtime |
 | D-12 | Preserve source completeness and business outcome independently from operation success | A stored page can be complete while its upstream source is truncated; a trace summary can be complete while the business outcome is unknown |
 | D-13 | Synchronize reviewable Hub contracts with the existing Company KB | KB status/design records and repository documents retain source provenance and content digests; reconcile conflicts explicitly before claiming current state |
-| D-14 | Authorize a dependency-free AIT runtime in the Hub | `agent-tools@0.1.0` owns list/doctor/pinned install/approved dispatch and `ait-result/v1`; it is private, not a sandbox, and not a universal compatibility adapter |
+| D-14 | Authorize a dependency-free AIT runtime in the Hub | `ai-agent-tools@0.1.1` owns list/doctor/pinned install/approved dispatch and `ait-result/v1`; it is public, not a sandbox, and not a universal compatibility adapter |
 | D-15 | Lock Hub envelope completeness semantics with executable consumer fixtures | `ok`/complete data uses exit 0; `incomplete`/null data uses exit 3; `error`/null data uses exit 1, 2, or 4; native tools are not remapped |
 | D-16 | Keep AIT publication gated by packed-consumer behavior and explicit trust policy | The package must ship its default registry snapshot and pass a clean packed-consumer smoke test before publication; license/ownership, registry refresh, integrity/provenance, dependency and sandbox policies remain explicit decisions rather than inferred features |
+| D-17 | Keep CFML language checking separate from configurable project policy checking | `agent-cfml-check` owns its declared structural subset; `agent-cfml-policy-check` owns explicit CFML/HTML/project rule profiles such as table `colgroup`/`col` requirements |
 
 ## Protocol reconciliation boundary
 
@@ -73,7 +74,7 @@ Detailed per-tool acceptance concerns remain in the
 [function review](docs/TOOL_FUNCTION_REVIEW.md). They are backlog input, not completed
 features in repositories that have not implemented them.
 
-## Three-tool handoff
+## Tool handoff
 
 [Expansion review](docs/TOOL_EXPANSION.md) owns the design assessment and links to
 each detailed draft. CFML Check uses an explicit supported lexical/structural
@@ -82,3 +83,9 @@ Trace V1 analyzes supplied event artifacts and never executes a readback or retr
 a write. Current standards/schema versions stay unchanged. The CFML implementation
 is delivered in its independent repository; AIT provides only package management and
 explicit process dispatch, not tool source, a compatibility adapter, or deployment.
+
+The later CFML Policy Check addition follows the same boundary. Its independent
+repository owns configurable project and mixed CFML/HTML policy evaluation. It
+must not duplicate the CFML structural checker or claim to prove engine/runtime
+behavior. Its repository identity is recorded in the registry, while
+implementation, native schema, tests, and release evidence remain pending.

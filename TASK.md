@@ -8,8 +8,8 @@ execution ledger; independent tool repositories own their implementation tasks.
 The Hub documentation, registry, local Python validator, and dependency-free AIT
 runtime now exist. The initial tracked baseline was `2f2d46e`; Git history records
 subsequent Hub documentation and runtime commits. A commit is not a tool release or
-a push. AIT package version `0.1.0` is configured as a public Apache-2.0 release
-candidate; npm publication and registry read-back remain pending authentication.
+a push. AIT package `ai-agent-tools@0.1.1` is publicly published under Apache-2.0;
+npm registry read-back and clean consumer installation are verified.
 It does not contain independent tool implementations.
 
 **Code Slice delivery is Done**, confirmed by the owner on 2026-09-06. Published
@@ -30,9 +30,11 @@ Experimental and is not delivery Done.
 Three owner-requested tools are now registered, with detailed draft
 specifications: CFML Check, Result Store and Runtime Trace. CFML Check is now
 Experimental after the implementation admission audit. Symbol Search was
-appended as an Experimental implementation admission on 2026-09-08. The registry
-contains fourteen entries with one owner-confirmed completion. The original
-ten-tool order is unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
+appended as an Experimental implementation admission on 2026-09-08. CFML Policy
+Check was appended on 2026-09-16 as a separate Planned repository for configurable
+CFML/HTML/project rules. The registry contains fifteen entries with one
+owner-confirmed completion. The original ten-tool order and the prior appended
+sequence are unchanged. Company KB knowledge retrieved on 2026-09-07 records Change Impact
 in progress and Project Profile next with an approved V1 boundary; those records
 are knowledge evidence, not a new source/release audit by this Hub. The current
 Symbol Search main CI run fails its Documentation check on Ubuntu Node 22/24/26
@@ -68,18 +70,19 @@ or an unimplemented feature is not automatically an external blocker.
 | HUB-03 | Reconcile document ownership, task state, and confirmed registry facts | Done | HUB-01, HUB-02 | DESIGN/SPEC/EPIC/TASK/index/validation added; confirmed repository links and Code Slice Experimental; V-01 through V-05 |
 | HUB-04 | Resolve native/Hub JSON, exit, and completeness contracts | In progress | HUB-02 | E-02; target envelope semantics are locked by executable consumer fixtures under `tests/hub_consumer.test.js`. Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and Symbol Search now have explicit native profiles under `docs/profiles/`, including bounded/partial semantics and native error authority. Other native tools still require separate profiles or migration; no contract is inferred |
 | HUB-05 | Audit published identities/artifacts and collect Hub conformance evidence | In progress | HUB-03; HUB-04 for conformance | E-03; exact packlists for six published versions and current remote-head/CI observations are recorded in V-25/V-26; Project Profile license/release gap, Symbol Search current-main CI failure, independent artifact/remote reconciliation, and Hub conformance remain pending |
-| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `agent-tools@0.1.0` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; the packed default-registry omission was corrected and is recorded in V-27, while publication, license/ownership, remote refresh, sandboxing, and provenance policy remain pending |
+| HUB-06 | Implement the AIT discovery, installation, and dispatch runtime | In progress | HUB-03, HUB-04 | E-04; local `ai-agent-tools@0.1.1` implements list/doctor/pinned install/local-path install/explicit dispatch, `ait-result/v1`, and exact catalog-backed native profile selection/application; the packed default-registry omission was corrected and is recorded in V-27, while remote refresh, sandboxing, and provenance policy remain pending |
 | HUB-07 | Hand off bounded first-version contracts in roadmap order | Planned | HUB-02 | E-05; independent owners implement and validate tools |
 | HUB-08 | Evaluate shared infrastructure only at the maturity gate | Deferred | None | E-06; roughly 3–5 mature maintained tools and concrete duplication not evidenced |
 | HUB-09 | Specify three additions, reconcile Hub documents/registry, and synchronize Company KB | Done | Owner request; HUB-03 | Local design/registry handoff verified under V-07; User-tier KB synchronization and exact readback verified under V-08 and current reconciliation V-12; company-wide visibility remains separate because the KB is intentionally User-visible |
 | HUB-10 | Hand off CFML Check lexical/structural feasibility | In progress | HUB-09; independent owner/repository | E-08; public implementation, capabilities, typecheck, 22/22 tests, package-surface checks, and published 0.1.1 artifact smoke are recorded; CF-14 engine trial, broader platform, and Hub protocol evidence remain pending |
 | HUB-11 | Hand off Result Store persistence and producer integration | Planned | HUB-09; independent owner/repository | E-08; RS-01 through RS-13 proposed; no store or connector implemented |
 | HUB-12 | Hand off Runtime Trace event/readback correlation | Planned | HUB-09; independent owner/repository | E-08; RT-01 through RT-13 proposed; no instrumentation or runtime trial |
+| HUB-13 | Register CFML Policy Check policy-linting handoff and independent repository boundary | Done | Owner request; HUB-03 | Registry, roadmap, expansion boundary, and detailed handoff added; repository identity confirmed, while implementation/package/test/release evidence remains pending; V-31 |
 
 ## Delivery completion notices
 
 - Code Slice: **Done**, owner-confirmed 2026-09-06; recorded published version `0.2.0`.
-- Remaining thirteen tools: awaiting owner completion notices. The owner will provide
+- Remaining fourteen tools: awaiting owner completion notices. The owner will provide
   updates; no background polling or inferred completion is requested. Project
   Profile has review evidence but no delivery completion notice; it remains
   outside the completed count.
@@ -113,10 +116,11 @@ or an unimplemented feature is not automatically an external blocker.
   verification snapshot remain unverified.
 - Confirm later tools' repository identities, first formats/languages, budgets,
   test scope, and maintainers before expanding claims.
-- AIT package distribution is in its public-release step. Ownership and the
-  Apache-2.0 license decision are recorded; the packed-consumer gate exposed and
-  corrected omission of the default `TOOL_REGISTRY.json`. The remaining release
-  work is npm authentication, publication, and post-publication registry read-back.
+- AIT package distribution has completed its public-release step. The Apache-2.0
+  license decision is recorded, the packed-consumer gate exposed and corrected
+  omission of the default `TOOL_REGISTRY.json`, and the published package passed
+  registry read-back and clean consumer installation. Remote refresh, provenance,
+  and sandbox policies remain separate runtime work.
   Exact-version native profile selection/application is implemented only for the
   checked-in catalog and bounded validators; it is not a universal compatibility
   layer. CFML Check and Symbol Search can now match the catalog only after their
@@ -125,6 +129,10 @@ or an unimplemented feature is not automatically an external blocker.
   active first spike. Preserve the existing Change Impact / Project Profile
   sequence. Detailed contracts and current evidence are linked from [the expansion
   review](docs/TOOL_EXPANSION.md).
+- CFML Policy Check is a separate Planned tool for configurable CFML/HTML/project
+  rules. Freeze its rule-profile schema and fixture-backed V1 in its independent
+  repository; keep missing `#` expression delimiters and other language-structural
+  findings owned by CFML Check.
 - Checked-in validator regression tests now cover the current repository, JSON
   parsing and malformed roadmap rows. Executable Hub consumer fixtures now cover
   success-with-findings, partial/ambiguous/unsupported/limited incomplete outcomes,
@@ -179,3 +187,6 @@ readback. The existing ecosystem work below keeps its original order.
    provenance policy are satisfied. Keep remote refresh and OS sandboxing out of
    the current runtime; document them as separate future decisions. Keep shared
    tool implementation consolidation behind the existing maturity gate.
+5. Build the CFML Policy Check vertical slice in its independent repository only
+   after its rule profile, dynamic-source incomplete behavior, and path/resource
+   limits are frozen. Do not add its implementation to the Hub.

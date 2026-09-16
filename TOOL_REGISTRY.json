@@ -173,6 +173,17 @@
       "release_version": "0.1.2",
       "verification": null,
       "deprecation": null
+    },
+    {
+      "id": "agent-cfml-policy-check",
+      "name": "Agent CFML Policy Check",
+      "description": "Check configurable CFML, HTML, and project policy rules with explicit diagnostics and coverage limits.",
+      "status": "Planned",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
     }
   ]
 }

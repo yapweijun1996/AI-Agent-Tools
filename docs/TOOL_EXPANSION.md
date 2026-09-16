@@ -1,9 +1,13 @@
-# Three-tool expansion
+# Tool expansion
 
 Design review date: 2026-09-07. This is the Hub handoff for three new tools,
 requested by the owner. At that review, all three registry entries were `Planned`.
 CFML Check was later admitted as `Experimental` after the implementation audit;
 the Hub registry still records no published package and no Hub protocol-conformance claim.
+
+The original three-tool review remains historical. A separate CFML Policy Check
+addition is recorded below and does not change the original ten-tool order or the
+existing Result Store, Runtime Trace, or Symbol Search sequence.
 
 ## Decision and priority
 
@@ -26,6 +30,22 @@ failure semantics, proposed budgets, responsibility, acceptance cases, and rollo
 Implementation and executable fixtures belong in independent repositories. The first
 CFML feasibility slice is recorded below; Result Store and Runtime Trace remain
 design-only in this Hub review.
+
+## Additional CFML Policy Check design - 2026-09-16
+
+The owner requested a separate repository for configurable CFML/HTML/project
+policies after distinguishing language errors from project conventions. The new
+[CFML Policy Check handoff](tools/AGENT_CFML_POLICY_CHECK.md) covers rules such as
+requiring `<table>` to contain `<colgroup>` and `<col>`. It does not absorb
+CFML syntax diagnostics such as an unclosed `#` expression; those remain within
+the bounded structural responsibility of CFML Check.
+
+The repository identity is confirmed at
+[AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check),
+but its initial commit contains only `.gitattributes`. No implementation, tests,
+package metadata, npm identity, or release evidence is recorded. The registry
+therefore adds it as `Planned`, and the independent repository owns all future
+implementation and fixture evidence.
 
 ## Historical local CFML feasibility evidence
 
@@ -72,6 +92,7 @@ registry identity and lifecycle facts remain in `TOOL_REGISTRY.json`.
 | --- | --- | --- |
 | Exact source extraction | Code Slice | CFML Check may share evidence locators; parser reuse needs separate feasibility evidence |
 | CFML structural findings | CFML Check | Does not execute templates or certify SQL, HTML, or business behavior |
+| Configurable CFML/HTML/project policy findings | CFML Policy Check | Evaluates an explicit rule profile; does not own CFML grammar, execution, or automatic fixes |
 | Immutable sanitized capture, retention, retrieval | Result Store | Accepts explicit bytes and producer metadata; never intercepts all agent calls automatically |
 | Diagnostic classification | Error Lens | May inspect an explicitly retrieved log excerpt |
 | Operation event correlation and evidence report | Runtime Trace | Consumes supplied artifacts; browser/backend/runner adapters own event production |
@@ -108,8 +129,9 @@ These drafts do not introduce a consumer adapter or silently change native exits
 1. Review the detailed draft and establish an independent repository/maintainer.
 2. Freeze a fixture-backed V1 subset and operation/data schemas in that repository.
 3. For CFML Check, review the implemented lexical slice and its CF-01 through CF-13
-   test evidence; for the other two tools, implement the smallest vertical slice
-   with positive, negative, unsupported, resource-limit, determinism, and boundary tests.
+   test evidence; for the other tools, including CFML Policy Check, implement the
+   smallest vertical slice with positive, negative, unsupported, resource-limit,
+   determinism, and boundary tests.
 4. Run a sanitized real-task trial against the existing manual workflow. Measure
    correctness first, then bytes returned, elapsed time, and manual investigation.
 5. Publish only through the owning release process. Register identities and promote
@@ -121,10 +143,11 @@ Documentation completion is tracked separately from those implementation steps i
 ## Review disposition
 
 SCMC result: Simple PASS; Clear PASS; Modular PASS; Consistent PASS for these
-bounded contracts. The CFML local feasibility slice reduces, but does not remove,
-the lexer/profile risk. The largest unresolved implementation dependencies are
-CFML engine-specific behavior, Result Store atomic retention behavior, and Trace
-producer/readback bindings.
+bounded contracts and the separate Policy Check boundary. The CFML local
+feasibility slice reduces, but does not remove, the lexer/profile risk. The
+largest unresolved implementation dependencies are CFML engine-specific behavior,
+Policy Check handling of dynamic mixed markup, Result Store atomic retention
+behavior, and Trace producer/readback bindings.
 
 The earlier conversational review overstated two validator findings: the current
 registry contract does not prohibit confirmed npm/release metadata on a Planned

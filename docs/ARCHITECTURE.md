@@ -57,8 +57,8 @@ Unknown values are `null`, never fabricated URLs or placeholder versions. Consum
 
 ## AIT discovery, installation, and dispatch runtime
 
-`agent-tools` is the Hub-owned package and `ait` is its CLI. Version `0.1.0` is
-implemented locally and is not yet published. It reads an explicit local registry
+`ai-agent-tools` is the Hub-owned package and `ait` is its CLI. Version `0.1.1` is
+publicly published. It reads an explicit local registry
 snapshot, lists lifecycle/package metadata, validates installed state, installs a
 pinned registry release with an explicit command, and dispatches an installed tool
 only after `--allow-execution` is supplied.
@@ -104,9 +104,12 @@ separate reviewed decision.
 
 ## Planned evidence tools
 
-The [three-tool expansion](TOOL_EXPANSION.md) adds structural checking, sanitized
-artifact persistence and supplied-event analysis as independent responsibilities.
-Result Store's explicit local writes stay inside its own allowed store; the Hub
-does not own that storage. Runtime Trace receives event files and caller-defined
-business evidence; application adapters own instrumentation and readback. No
-automatic retries, service orchestration or mandatory inter-tool dependency follows.
+The [tool expansion](TOOL_EXPANSION.md) adds structural checking, sanitized
+artifact persistence, supplied-event analysis, and configurable CFML/HTML/project
+policy checking as independent responsibilities. CFML Policy Check owns explicit
+rule-profile evaluation; CFML Check remains the owner of its declared language
+structure subset. Result Store's explicit local writes stay inside its own
+allowed store; the Hub does not own that storage. Runtime Trace receives event
+files and caller-defined business evidence; application adapters own
+instrumentation and readback. No automatic retries, service orchestration or
+mandatory inter-tool dependency follows.

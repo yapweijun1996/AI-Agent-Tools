@@ -20,6 +20,7 @@ authoritative execution ledger.
 | E-06 | Conditional infrastructure review | HUB-08 | Roughly 3–5 mature tools with maintained releases and actual duplication | Reviewed ownership/cost/compatibility/migration/rollback decision; no assumed migration |
 | E-07 | Three-tool design and KB handoff | HUB-09 | Owner request; HUB-03 | Three detailed draft contracts, registry/roadmap additions, KB status/design synchronization and verified readback |
 | E-08 | Independent feasibility and delivery of the three additions | HUB-10, HUB-11, HUB-12 | HUB-09; independent repositories and owners | CFML lexical fixtures, Result Store persistence/integration fixtures, Trace event/readback fixtures; no Hub implementation |
+| E-09 | CFML Policy Check handoff | HUB-13 | Owner request; HUB-03; independent repository | Configurable CFML/HTML/project policy contract and boundary evidence; implementation, fixtures, package, and release remain outside the Hub |
 
 ## Scope and handoff rules
 

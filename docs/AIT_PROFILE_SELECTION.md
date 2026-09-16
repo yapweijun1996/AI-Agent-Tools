@@ -1,6 +1,6 @@
 # AIT profile selection and application
 
-Status: **Implemented exact-version selection/application in `agent-tools@0.1.0`; experimental catalog**.
+Status: **Implemented exact-version selection/application in `ai-agent-tools@0.1.1`; experimental catalog**.
 
 This document defines how AIT consumes the explicit native profiles under
 [`docs/profiles/`](profiles/AGENT_CODE_SLICE.md) without turning them into a generic
