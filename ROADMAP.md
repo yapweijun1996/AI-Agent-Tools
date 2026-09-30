@@ -19,7 +19,7 @@ The documentation foundation is complete. **Delivery progress: 1 of 18 registere
 | 6 | `agent-patch-guard` | Agent Patch Guard | Check proposed patches against explicit scope and safety constraints. |
 | 7 | `agent-contract-diff` | Agent Contract Diff | Compare supported contract formats and report observable differences. |
 | 8 | `agent-rules-resolve` | Agent Rules Resolve | Resolve explicitly supported rule sources using documented precedence. |
-| 9 | `agent-release-guard` | Agent Release Guard | Check release prerequisites and evidence without publishing by default. |
+| 9 | `agent-release-guard` | Agent Release Guard | Deploy Verify checks supplied deployment evidence; broader release preparation remains future scope. |
 | 10 | `agent-context-pack` | Task-scoped Agent Context Pack | Assemble bounded, provenance-bearing tool results for one explicit task. |
 | 11 | `agent-cfml-check` | Agent CFML Check | Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage. |
 | 12 | `agent-result-store` | Agent Result Store | Persist explicitly authorized sanitized results with bounded retrieval, provenance, and retention. |

@@ -1,6 +1,6 @@
 # AI-Agent-Tools
 
-Owned source for ten deterministic AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for thirteen deterministic AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
 ## Develop
 
@@ -38,3 +38,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 ## Two additional source MVPs
 
 [Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has twelve package folders; original ten source provenance remains unchanged.
+
+## Deployment evidence verification
+
+[Release Guard Deploy Verify](packages/release-guard/README.md) compares explicit deployment commit/build, CI, asset hashes and sanitized cache/browser evidence. It remains private source with no npm release or deployment service. It implements the existing Release Guard registry responsibility.

@@ -105,9 +105,9 @@
     {
       "id": "agent-release-guard",
       "name": "Agent Release Guard",
-      "description": "Check release prerequisites and evidence without publishing by default.",
-      "status": "Planned",
-      "repository_url": null,
+      "description": "Deploy Verify profile checks supplied deployment identity, asset hashes, CI, freshness and cache evidence.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/release-guard",
       "npm": null,
       "release_version": null,
       "verification": null,
