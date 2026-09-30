@@ -1,0 +1,15 @@
+{
+  "exitCode": 0,
+  "package": "ai-agent-tools",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "TOOL_REGISTRY.json",
+    "bin/ait.js",
+    "docs/AIT_RUNTIME.md",
+    "docs/profiles/PROFILE_INDEX.json",
+    "package.json"
+  ],
+  "no_bundled_tools": true,
+  "consumer_list_exit": 0
+}

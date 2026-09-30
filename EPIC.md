@@ -3,7 +3,7 @@
 ## Outcome
 
 Maintain a discoverable, evidence-backed ecosystem of independently released tools
-without turning this Hub into a tool monorepo or reasoning runtime. The owner has
+while consolidating owned source in package folders and keeping agent reasoning outside this repository. The owner has
 explicitly authorized a narrow dependency-free AIT install/dispatch runtime for
 package management and explicit process invocation. [TASK.md](TASK.md) is the
 authoritative execution ledger.
@@ -16,11 +16,11 @@ authoritative execution ledger.
 | E-02 | Protocol compatibility decision | HUB-04 | HUB-02 | Decide native protocol migration or explicit consumer profiles using versioned success/partial/error fixtures; preserve existing consumers |
 | E-03 | Release and conformance evidence | HUB-05 | HUB-03; HUB-04 for Hub conformance | Verify publication identity separately from exact artifact behavior and Hub standards; promote only with matching evidence |
 | E-04 | AIT discovery, installation, and dispatch runtime | HUB-06 | HUB-03, HUB-04, confirmed metadata demand | Explicit registry source, pinned installation, lifecycle/approval gates, bounded `ait-result/v1` output, and no automatic installation/execution |
-| E-05 | Planned tool contract handoffs | HUB-07 | HUB-02 | Narrow first-version inputs/outputs/non-goals and acceptance fixtures in each independent repository; no source copied here |
+| E-05 | Planned tool contract handoffs | HUB-07 | HUB-02 | Narrow first-version inputs/outputs/non-goals and acceptance fixtures in each independent repository; source preserved in package folders |
 | E-06 | Conditional infrastructure review | HUB-08 | Roughly 3–5 mature tools with maintained releases and actual duplication | Reviewed ownership/cost/compatibility/migration/rollback decision; no assumed migration |
 | E-07 | Three-tool design and KB handoff | HUB-09 | Owner request; HUB-03 | Three detailed draft contracts, registry/roadmap additions, KB status/design synchronization and verified readback |
 | E-08 | Independent feasibility and delivery of the three additions | HUB-10, HUB-11, HUB-12 | HUB-09; independent repositories and owners | CFML lexical fixtures, Result Store persistence/integration fixtures, Trace event/readback fixtures; no Hub implementation |
-| E-09 | CFML Policy Check handoff | HUB-13 | Owner request; HUB-03; independent repository | Configurable CFML/HTML/project policy contract and boundary evidence; implementation, fixtures, package, and release remain outside the Hub |
+| E-09 | CFML Policy Check handoff | HUB-13 | Owner request; HUB-03; independent repository | Configurable CFML/HTML/project policy contract and boundary evidence; implementation and fixtures live in the package folder; release approval remains independent |
 
 ## Scope and handoff rules
 
@@ -58,3 +58,7 @@ Each Hub task closes with the evidence required by [SPEC.md](SPEC.md) and
 [VALIDATION.md](VALIDATION.md). Documentation delivery does not close future tool,
 discovery, release, or shared-infrastructure work. Unassessed release access is a
 prerequisite to investigate later, not an invented current blocker.
+
+## E-10: Source consolidation
+
+Owner-authorized migration on 2026-09-30: complete tracked source, isolated dependencies, aggregate verification, recovery bundles and draft PR. See [migration](docs/migration/README.md).

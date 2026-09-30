@@ -6,11 +6,11 @@ This file contains repository-specific rules. Keep modules focused and independe
 
 ## MODULE: PROJECT_CONTEXT
 
-AI-Agent-Tools is an ecosystem Hub for independent deterministic tools. Its responsibilities are registry, standards, discovery, documentation, roadmap, governance, and the explicitly authorized dependency-free AIT install/dispatch runtime. Read [README.md](README.md) before making changes.
+AI-Agent-Tools is the owned source monorepo and ecosystem Hub for independently versioned deterministic tools. Its responsibilities are registry, standards, discovery, documentation, roadmap, governance, and the explicitly authorized dependency-free AIT install/dispatch runtime. Read [README.md](README.md) before making changes.
 
 ## MODULE: ARCHITECTURE
 
-Follow [Architecture](docs/ARCHITECTURE.md). Do not copy independent tool implementations here or redesign Codex, Claude, or AGRUN reasoning or orchestration. The owner authorized the Hub-owned, dependency-free AIT install/dispatch runtime; it may manage independently released packages but must not become a shared tool implementation or reasoning runtime. Shared tool packages or migration still require evidence from roughly 3–5 mature tools and a separately reviewed decision.
+Follow [Architecture](docs/ARCHITECTURE.md) and the owner-authorized [monorepo decision](docs/migration/DECISION.md) of 2026-09-30. Tool implementations, tests and docs now live in `packages/`; this explicitly supersedes the former source-import/migration prohibition and maturity gate for consolidation. Preserve each tool's package identity, native CLI/JSON contracts, module system, compiler version and license/private flags. Do not redesign Codex, Claude, or AGRUN reasoning or orchestration. AIT remains dependency-free and does not become a shared tool implementation or reasoning runtime. Shared implementation libraries still require separate evidence and review.
 
 ## MODULE: PROJECT_MAP
 
@@ -27,15 +27,15 @@ Follow [Architecture](docs/ARCHITECTURE.md). Do not copy independent tool implem
 
 ## MODULE: OWNERSHIP
 
-Hub maintainers approve registry and standards changes. Tool maintainers own source, package identity, tests, support, and releases in their independent repositories. Never invent maintainers, repository URLs, package names, version numbers, or verification evidence. Use `null` for unknown registry values.
+Hub maintainers approve registry and standards changes. Tool maintainers own source, package identity, tests, support, and independent releases in their package folders. Never invent maintainers, repository URLs, package names, version numbers, or verification evidence. Use `null` for unknown registry values.
 
 ## MODULE: DEPENDENCIES
 
-Keep the AIT runtime dependency-free: do not add frameworks or third-party runtime dependencies. A root npm package is now authorized for the AIT CLI; do not add a package workspace or tool implementation dependencies. The validator uses Python's standard library.
+Keep the AIT runtime dependency-free: do not add frameworks or third-party runtime dependencies. A root npm package is now authorized for the AIT CLI; keep tool dependencies isolated under their package folders and preserve their lockfiles. The validator uses Python's standard library.
 
 ## MODULE: VERIFICATION
 
-Run `python3 scripts/validate_hub.py` and `git diff --check`; additionally inspect whitespace in untracked files because Git's ordinary diff does not include them. Review changed external links and their evidence manually. Check terminology, current/planned/future distinctions, and architecture consistency across all affected documents. A valid link is not proof of tool behavior. Preserve historical review evidence and put current observations in VALIDATION/TASK; never infer release completion from a changing sibling worktree.
+Run `npm run verify`, `python3 scripts/validate_hub.py` and `git diff --check`; additionally inspect whitespace in untracked files because Git's ordinary diff does not include them. Review changed external links and their evidence manually. Check terminology, current/planned/future distinctions, and architecture consistency across all affected documents. A valid link is not proof of tool behavior. Preserve historical review evidence and put current observations in VALIDATION/TASK; never infer release completion from a changing sibling worktree.
 
 ## MODULE: PROJECT_DOD
 

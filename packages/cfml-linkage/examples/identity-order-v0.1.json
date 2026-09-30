@@ -1,0 +1,64 @@
+{
+  "contract": "agent-cfml-linkage-identity/v0.1",
+  "canonical_paths": [
+    {
+      "input": ".\\pages\\index.cfm",
+      "canonical": "pages/index.cfm"
+    },
+    {
+      "input": "shared/./header.cfm",
+      "canonical": "shared/header.cfm"
+    }
+  ],
+  "nodes": [
+    {
+      "kind": "CFM_PAGE",
+      "canonical_path": "index.cfm",
+      "canonical_symbol_or_semantic_name": "",
+      "expected_id": "node:7bca7f959443679609b7325aa087cdc45db33b28d30e0c2c45bd93d6ee5060ca"
+    },
+    {
+      "kind": "CFC_COMPONENT",
+      "canonical_path": "handlers/OrderHandler.cfc",
+      "canonical_symbol_or_semantic_name": "handlers.OrderHandler",
+      "expected_id": "node:66fb834f0c1126b6e810b4bf68fe374b121cc6c351b286a75ff75439144ddb08"
+    },
+    {
+      "kind": "CFC_METHOD",
+      "canonical_path": "handlers/OrderHandler.cfc",
+      "canonical_symbol_or_semantic_name": "handlers.OrderHandler.submit",
+      "expected_id": "node:51cca49404572869bc76bfc74f8388e6a53294db61af97d4d651cdf9af83f63e"
+    }
+  ],
+  "edges": [
+    {
+      "type": "INCLUDES",
+      "from": "node:7bca7f959443679609b7325aa087cdc45db33b28d30e0c2c45bd93d6ee5060ca",
+      "to": "node:e13d205354ed88a23833be5cfc6026de048341cfaaead5d294140e12640598cf",
+      "source_fact_ids": [
+        "fact:index.cfm:include:3"
+      ],
+      "condition_key": "",
+      "expected_id": "edge:3e95b8458df24b2c369b3ab9c7556d10dd5346b43b867658e00717fbca712a12"
+    }
+  ],
+  "expected_order": {
+    "nodes": [
+      "node:51cca49404572869bc76bfc74f8388e6a53294db61af97d4d651cdf9af83f63e",
+      "node:66fb834f0c1126b6e810b4bf68fe374b121cc6c351b286a75ff75439144ddb08",
+      "node:7bca7f959443679609b7325aa087cdc45db33b28d30e0c2c45bd93d6ee5060ca"
+    ],
+    "edges": [
+      "edge:3e95b8458df24b2c369b3ab9c7556d10dd5346b43b867658e00717fbca712a12"
+    ]
+  },
+  "freshness_separation": {
+    "identity_input": "kind + canonical path + canonical symbol",
+    "freshness_input": "source fingerprint + parser/extractor/resolver versions",
+    "identity_must_not_change_when_only": [
+      "source bytes change while semantic identity remains stable",
+      "snapshot timestamp changes",
+      "resolver evidence order changes"
+    ]
+  }
+}

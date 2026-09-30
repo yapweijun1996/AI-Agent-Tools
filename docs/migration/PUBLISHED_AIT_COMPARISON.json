@@ -1,0 +1,18 @@
+{
+  "artifact": "ai-agent-tools@0.1.1",
+  "files": [
+    "package/LICENSE",
+    "package/bin/ait.js",
+    "package/package.json",
+    "package/docs/profiles/PROFILE_INDEX.json",
+    "package/TOOL_REGISTRY.json",
+    "package/docs/AIT_RUNTIME.md",
+    "package/README.md"
+  ],
+  "runtime_sha256": "77e1ef7816db4b99cdd7ca3c7eec1e588c8e25cef9c575256c264bbaf0a05245",
+  "source_runtime_sha256": "1d578694bc698be52a984dbe151a4d78ee87d366f097e232d66c5ac069a8a737",
+  "bundled_tool_implementations": false,
+  "registry_note": "Published registry records older release snapshots; current source versions are separately recorded. Existing exact-version profiles are retained.",
+  "migration_base_runtime_identical": true,
+  "migration_runtime_change": "Local --from-path installs now request npm --install-links so packages are copied inside AIT home; containment checks and all approvals remain unchanged."
+}

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-check:result-v1",
+  "title": "Agent CFML Check Result",
+  "type": "object",
+  "required": ["schema_version", "tool", "status", "complete", "data", "errors", "warnings", "meta"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "tool": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "const": "agent-cfml-check" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      },
+      "additionalProperties": false
+    },
+    "status": { "enum": ["ok", "incomplete", "error"] },
+    "complete": { "type": "boolean" },
+    "data": {
+      "anyOf": [
+        { "$ref": "#/$defs/check_data" },
+        { "$ref": "#/$defs/capabilities_data" },
+        { "type": "null" }
+      ]
+    },
+    "errors": { "type": "array", "items": { "$ref": "#/$defs/message" } },
+    "warnings": { "type": "array", "items": { "$ref": "#/$defs/message" } },
+    "meta": { "$ref": "#/$defs/meta" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "ok" } } },
+      "then": { "properties": { "complete": { "const": true }, "errors": { "maxItems": 0 }, "data": { "not": { "type": "null" } } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["incomplete", "error"] } } },
+      "then": { "properties": { "complete": { "const": false }, "data": { "type": "null" }, "errors": { "minItems": 1 } } }
+    }
+  ],
+  "$defs": {
+    "message": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": { "code": { "type": "string" }, "message": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "position": {
+      "type": "object",
+      "required": ["line", "column"],
+      "properties": { "line": { "type": "integer", "minimum": 1 }, "column": { "type": "integer", "minimum": 1 } },
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "required": ["start", "end", "start_byte", "end_byte"],
+      "properties": {
+        "start": { "$ref": "#/$defs/position" },
+        "end": { "$ref": "#/$defs/position" },
+        "start_byte": { "type": "integer", "minimum": 0 },
+        "end_byte": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": ["code", "message", "location", "related_open"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "location": { "$ref": "#/$defs/location" },
+        "related_open": { "anyOf": [{ "$ref": "#/$defs/location" }, { "type": "null" }] }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["path", "sha256", "byte_size", "encoding", "bom"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "byte_size": { "type": "integer", "minimum": 0 },
+        "encoding": { "const": "utf-8" },
+        "bom": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "check_data": {
+      "type": "object",
+      "required": ["profile", "source", "verdict", "checks", "exclusions", "findings"],
+      "properties": {
+        "profile": { "const": "cfml-structure-v1" },
+        "source": { "$ref": "#/$defs/source" },
+        "verdict": { "enum": ["pass", "violations"] },
+        "checks": { "type": "array", "items": { "type": "string" } },
+        "exclusions": { "type": "array", "items": { "type": "string" } },
+        "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } }
+      },
+      "additionalProperties": false
+    },
+    "capabilities_data": {
+      "type": "object",
+      "required": ["profile", "operations", "extensions", "supported_tags", "limits", "exclusions"],
+      "properties": {
+        "profile": { "const": "cfml-structure-v1" },
+        "operations": { "type": "array", "items": { "type": "string" } },
+        "extensions": { "type": "array", "items": { "type": "string" } },
+        "supported_tags": { "type": "object" },
+        "limits": { "$ref": "#/$defs/limits" },
+        "exclusions": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "limits": {
+      "type": "object",
+      "required": ["max_source_bytes", "max_nesting", "max_findings", "max_output_bytes", "time_limit_ms"],
+      "properties": {
+        "max_source_bytes": { "type": "integer", "minimum": 1 },
+        "max_nesting": { "type": "integer", "minimum": 1 },
+        "max_findings": { "type": "integer", "minimum": 1 },
+        "max_output_bytes": { "type": "integer", "minimum": 1 },
+        "time_limit_ms": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "required": ["scope", "limits"],
+      "properties": { "scope": { "type": "string" }, "limits": { "$ref": "#/$defs/limits" } },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

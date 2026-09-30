@@ -1,0 +1,265 @@
+# Agent Code Slice
+
+Precise, language-aware code context for AI coding agents.
+
+> Status: **V0.1 core Verified**. Published package: `agent-code-slice@0.4.0` (npm `latest`). The cross-agent Code Slice Skill is implemented for Codex and Claude Code project workflows; vendor-version live E2E remains unverified.
+> npm publishing is guarded by `release:version-check`, `release:check`, and `prepack`: an already-published version fails before release, verification runs before publish, and `dist/` is rebuilt automatically before the tarball is created. No MCP server is planned; the CLI, JS API, and project-scoped Skills remain the supported integration surfaces.
+
+Agent Code Slice is a local-first, read-only developer tool that extracts the exact syntactic code unit an AI coding agent needs instead of forcing the agent to read an entire source file.
+
+The current product is designed to work with any AI coding agent that can use one or more of:
+
+- shell / terminal commands;
+- a JavaScript / Node.js API.
+
+Target integrations include Codex CLI, Claude Code, Gemini CLI, OpenCode, AGRUN, VM-MCP, and other coding agents. A future serverless adapter is a separate planned integration; support must be verified by real end-to-end tests before being marked as supported.
+
+## Install globally for Codex CLI
+
+Install the published CLI from any directory; no repository checkout or `cd` is required:
+
+```bash
+npm install --global agent-code-slice@latest
+code-slice capabilities --json
+```
+
+
+Codex can use the checked-in project skill from `.agents/skills/agent-code-slice/SKILL.md`. The global install provides the terminal CLI; it does not automatically register a host-specific skill.
+
+## Why
+
+AI coding agents frequently read large source files when they only need one function, method, class, query, or logical block. This increases context usage and makes navigation less precise.
+
+Agent Code Slice targets this flow:
+
+```text
+Large source file
+      |
+      v
+Language detection
+      |
+      v
+Tree-sitter WASM parser
+      |
+      v
+Language adapter
+      |
+      v
+Normalized symbol IR
+      |
+      v
+Exact code slice
+      |
+      v
+AI coding agent
+```
+
+The project is intentionally not a code search engine, repository indexer, RAG system, formatter, linter, or autonomous coding agent.
+
+## For AI coding agents
+
+If you are an AI coding agent and `code-slice` is installed (`npm install -D agent-code-slice`, or already a dependency of the project you're working in), prefer it over reading a whole file when you only need one symbol, one line's container, or one range.
+
+**Decision rule:** know the file and a symbol name → use `symbol`. Know the file and a line number (e.g. from a stack trace or lint error) → use `line`. Don't know what's in the file yet → start with `outline --compact`, follow `result.page.nextOffset` only when needed, then use `symbol` on what you find. Use full `outline` only when you actually need native kinds, byte/column coordinates, signatures, or the complete structural record. Don't know if this file's language is supported → check `capabilities` or just try; it fails closed with a machine-readable error rather than guessing.
+
+```bash
+# What can this tool do, and what languages does it support?
+code-slice capabilities --json
+
+# What's in this file? Compact discovery defaults to a 200-symbol page.
+code-slice outline src/app.ts --compact --json
+
+# Continue only when result.page.hasMore is true.
+code-slice outline src/app.ts --compact --offset 200 --json
+
+# For a high-level map only.
+code-slice outline src/app.ts --compact --top-level --json
+
+# Give me exactly this function/method/class/query — nothing else.
+code-slice symbol src/app.ts calculateTotal --json
+
+# Disambiguate a large class directly by owner + member.
+code-slice symbol src/oauth.ts OwnerOAuthProvider.commit --max-lines 120 --json
+
+# A stack trace or lint error points at a line — what's the enclosing unit?
+code-slice line src/app.ts 382 --json
+
+# I know roughly where, but not the exact boundaries — expand to a normalized symbol.
+code-slice range src/app.ts 380:390 --expand --json
+
+# Stay local inside a large method/class using the smallest named syntax node.
+code-slice range src/oauth.ts 920:940 --smallest --max-lines 120 --json
+```
+
+Every command above prints **exactly one JSON document to stdout** when `--json` is passed (Core results use `schemas/code-slice-result-v1.schema.json`; CLI usage errors use the additive `schemas/code-slice-result-v1.1.schema.json`, both described in `docs/JSON_SCHEMA.md`) — safe to pipe and parse directly, e.g. `code-slice symbol src/app.ts calculateTotal --json | jq -r .result.code`. Diagnostics go to stderr, never stdout.
+
+Compact outline is intentionally discovery-only: each entry keeps `kind`, `name`, a line-only range, parent identity when present, embedded-language identity, dynamic-name state, and warning codes. It omits signatures, native parser kinds, columns, and byte offsets; fetch the chosen symbol for those details. Full outline remains available and backward compatible. Every outline result includes `result.page` with `total`, `returned`, `offset`, `limit`, `truncated`, `hasMore`, and `nextOffset` when another page exists.
+
+Read `result.code` for the exact text; do not re-derive it from `result.range` yourself. On failure, check `error.code` (stable values like `SYMBOL_NOT_FOUND`, `SYMBOL_AMBIGUOUS`, `LANGUAGE_UNSUPPORTED` — full list in `docs/JSON_SCHEMA.md`) rather than parsing `error.message`, and fall back to reading the file normally — this tool never guesses a symbol, language, or boundary, so an error here is real signal, not a bug to route around. `SYMBOL_AMBIGUOUS` includes bounded `candidates`; either narrow with `--kind`, use a qualified `Owner.member` name when the parent is known, or pick a candidate and say which. `RANGE_INVALID` may include structured `error.details.suggestion`; `--clamp` only applies a safe overlapping end-of-file suggestion.
+
+`code-slice` is navigation, not correctness proof. A good coding-agent loop is: **code-slice → understand the target code → run the focused typecheck/test/runtime check → run the broader regression suite**. It does not validate filesystem semantics, network results, permissions, database transactions, or business correctness by itself.
+
+From Node.js/TypeScript, the same three operations are a JS API (`import { capabilities, outline, slice } from "agent-code-slice"` — see below) if shelling out isn't convenient.
+
+**Current honest limits, so you don't assume more than what's real:** No MCP server or MCP/stdio adapter is planned. The canonical project Skill and Codex/Claude Code entrypoints are provided under `integrations/agent-code-slice/`, `.agents/skills/`, and `.claude/skills/`; vendor-version-specific live E2E remains unverified. The future serverless adapter is still planned (see `ROADMAP.md`). Only JavaScript, TypeScript, TSX, Python, and CFML/CFScript/CFQuery are supported (`docs/LANGUAGE_SUPPORT_MATRIX.md`); TypeScript discovery includes enums, namespace/module declarations, callable class fields, and function-valued object properties; CFML `<script>`/`<style>` regions are re-parsed as JavaScript/CSS, while standalone CSS is not a registered host adapter. Anything else returns `LANGUAGE_UNSUPPORTED`. Core applies bounded file, symbol, serialized-output, and optional slice-line budgets; `maxOutputBytes` accepts 256 bytes through 8 MiB, `maxLines` can bound a resolved slice without truncating it, malformed limits fail closed with `INVALID_ARGUMENT`, and oversized valid results or error envelopes return `OUTPUT_LIMIT_EXCEEDED` rather than being silently truncated. Release CI covers the new CFML embedded paths, the declared Node floor, and `0.2.0` registry installation on Windows/macOS/Ubuntu; standalone CSS, serverless, vendor-specific agent certification, and broader performance guarantees remain outside the current evidence.
+
+## Product principles
+
+1. **Local-first** — source code is parsed on the user's machine.
+2. **No hosted backend required** — no cloud service, database, account, or API key is required for the core product.
+3. **Read-only** — V0.1 reads and parses files; it does not edit them.
+4. **Deterministic** — no LLM is required to decide code boundaries.
+5. **Fail closed** — ambiguous symbols produce explicit candidates instead of guessed results.
+6. **Multi-language** — one stable contract across languages.
+7. **On-demand integration** — CLI is the lowest common compatibility layer; JS API and any future serverless wrapper are thin adapters over Core, with no resident MCP server.
+8. **Small public contract** — stable CLI, JSON schema, and JS API; implementation details remain replaceable.
+
+## Language roadmap
+
+| Language | V0.1 target | Notes |
+|---|---:|---|
+| JavaScript | Yes | `.js`, `.jsx`, `.mjs`, `.cjs` |
+| TypeScript | Yes | `.ts`, `.tsx` |
+| Python | Yes | `.py` |
+| CFML | Yes | `.cfm`, `.cfc`; CFScript / CFQuery are first-class embedded languages |
+| Java | Later | V0.2 candidate |
+| C# | Later | V0.2 candidate |
+| Go | Later | V0.2 candidate |
+| Rust | Later | V0.2 candidate |
+| PHP | Later | V0.2 candidate |
+| C / C++ | Later | Later |
+| HTML / CSS / mixed frameworks | Later | Driven by injection support |
+
+See [docs/LANGUAGE_SUPPORT_MATRIX.md](docs/LANGUAGE_SUPPORT_MATRIX.md).
+
+## CLI
+
+```bash
+code-slice capabilities --json
+code-slice outline src/app.ts --compact --top-level --json
+code-slice symbol src/app.ts OwnerOAuthProvider.commit --max-lines 120 --json
+code-slice line src/app.ts 382 --max-lines 80 --json
+code-slice range src/app.ts 380:390 --smallest --max-lines 120 --json
+```
+
+For machine consumers:
+
+```text
+stdout = result data
+stderr = diagnostics
+exit code = execution status
+```
+
+No banners, progress prose, or logging may be mixed into `stdout` when `--json` is active.
+
+## JavaScript API
+
+```js
+import { capabilities, outline, slice } from "agent-code-slice";
+
+const result = await slice({
+  file: "src/app.ts",
+  selector: {
+    type: "symbol",
+    name: "calculateTotal"
+  }
+});
+```
+
+## Planned serverless adapter
+
+The future serverless adapter is intentionally stateless and read-only:
+
+- one request invokes `capabilities`, `outline`, or `slice`;
+- the response uses the same versioned JSON envelope and stable error codes;
+- the wrapper delegates to Core and does not duplicate parsing logic.
+
+It will not expose MCP/stdio or require a long-running process. A cloud
+function cannot access a caller's local path by default, so the source-input,
+authentication, privacy, size, timeout, and logging contract must be selected
+before implementation. See [Serverless integration](docs/SERVERLESS_INTEGRATION.md).
+
+## Agent compatibility model
+
+| Agent | Current integration | Future optional integration |
+|---|---|---|
+| Codex CLI | CLI + project Skill | Serverless wrapper |
+| Claude Code | CLI + project Skill | Serverless wrapper |
+| Gemini CLI | CLI | Serverless wrapper or Extension |
+| OpenCode | CLI | Serverless wrapper or Custom Tool |
+| AGRUN | JS API | Serverless wrapper |
+| VM-MCP | CLI | None provided by Code Slice |
+| Other agents | CLI if shell exists | JS API or serverless wrapper if supported |
+
+The public compatibility statement should be:
+
+> Works with AI coding agents that can use shell commands or JavaScript. Project
+> Skills are provided for Codex CLI and Claude Code; vendor-version live
+> compatibility remains unverified. A future serverless adapter is a separate
+> planned integration.
+
+Do not claim "supports all AI agents."
+
+## Parser foundation
+
+The default V0.1 design uses:
+
+```text
+web-tree-sitter
++
+pinned Tree-sitter WASM grammars
++
+per-language adapters
+```
+
+Why:
+
+- portable across Windows, macOS, and Linux;
+- avoids making native compilation a base install requirement;
+- suitable for Node.js now and possible browser use later;
+- preserves direct control over AST and mixed-language slicing.
+
+Native Tree-sitter may be evaluated later as an optional performance backend. `ast-grep` is treated as a complementary tool and benchmark competitor, not the core dependency.
+
+See [docs/PARSER_ENGINE_DECISION.md](docs/PARSER_ENGINE_DECISION.md).
+
+## Repository documentation
+
+Start with:
+
+- [Product specification](docs/PRODUCT_SPEC.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [CLI contract](docs/CLI_CONTRACT.md)
+- [JSON contract](docs/JSON_SCHEMA.md)
+- [Language adapter contract](docs/LANGUAGE_ADAPTER_CONTRACT.md)
+- [Serverless integration](docs/SERVERLESS_INTEGRATION.md)
+- [Agent integrations](docs/AGENT_INTEGRATIONS.md)
+- [Security and privacy](docs/SECURITY_PRIVACY.md)
+- [Testing and Golden Eval](docs/TESTING_GOLDEN_EVAL.md)
+- [Implementation plan](docs/IMPLEMENTATION_PLAN.md)
+- [Roadmap](ROADMAP.md)
+
+## V0.1 Definition of Done
+
+V0.1 is not complete until:
+
+- the Core API, CLI, and JSON schema are stable and versioned;
+- JavaScript, TypeScript/TSX, Python, and CFML fixtures pass language-specific golden tests;
+- ambiguous symbols fail closed;
+- line and range expansion return deterministic syntactic containers;
+- malformed input returns warnings/errors without invented symbols;
+- CLI JSON mode keeps stdout machine-clean;
+- no core path requires network access, a hosted service, an account, or an API key;
+- packaged WASM grammars pass load tests and integrity checks;
+- Windows, macOS, and Linux install/run smoke tests pass;
+- documented benchmark results are generated from frozen fixtures rather than marketing claims.
+
+## Licensing
+
+MIT. See [LICENSE](LICENSE) and [docs/LICENSE_DECISION.md](docs/LICENSE_DECISION.md) for how this was decided.
+
+## Project owner
+
+Initial project concept and direction: Yap Wei Jun.
+
+This documentation is intended to be repository-ready, but all implementation and compatibility claims must remain evidence-backed.

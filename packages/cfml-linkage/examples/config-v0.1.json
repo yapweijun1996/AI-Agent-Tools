@@ -1,0 +1,66 @@
+{
+  "schema_version": "agent-cfml-linkage-config/v0.1",
+  "root": "./fixture-project",
+  "path_policy": {
+    "reject_outside_root": true,
+    "follow_symlinks": false,
+    "allow_absolute_references": false,
+    "case_collision_policy": "diagnostic"
+  },
+  "ignore": {
+    "globs": [
+      ".git/**",
+      "node_modules/**",
+      "vendor/**",
+      "generated/**",
+      "cache/**",
+      "secrets/**"
+    ],
+    "hidden_files": "ignore",
+    "generated_files": "ignore"
+  },
+  "analysis": {
+    "languages": [
+      "cfml",
+      "html",
+      "javascript",
+      "css",
+      "sql"
+    ],
+    "mappings": {
+      "/app": "app"
+    },
+    "enabled_plugins": []
+  },
+  "limits": {
+    "max_files": 10000,
+    "max_file_bytes": 10485760,
+    "max_total_bytes": 1073741824,
+    "max_facts": 500000,
+    "max_edges": 500000,
+    "max_evidence": 1000000,
+    "max_traversal_depth": 32,
+    "max_output_bytes": 52428800,
+    "max_wall_time_ms": 120000,
+    "max_workers": 4
+  },
+  "output": {
+    "format": "json",
+    "diagnostics_stream": "stderr",
+    "include_raw_evidence": "bounded"
+  },
+  "prohibited_actions": {
+    "execute_source": false,
+    "network": false,
+    "database": false,
+    "shell": false,
+    "browser": false
+  },
+  "exit_codes": {
+    "completed": 0,
+    "internal_failure": 1,
+    "invalid_input": 2,
+    "incomplete": 3,
+    "path_rejected": 4
+  }
+}

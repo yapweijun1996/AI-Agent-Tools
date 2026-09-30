@@ -4,7 +4,7 @@
 | --- | --- |
 | Lifecycle | `Planned` |
 | Registry ID | `agent-cfml-policy-check` |
-| Repository | [AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check) |
+| Repository | [AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check) |
 | Package and release | Not recorded |
 
 This is the Hub design handoff for a configurable, read-only policy checker for
@@ -121,3 +121,7 @@ release evidence belong to the independent repository. A `docs/profiles` entry
 should be added only after a concrete package/version and native contract are
 verified. Shared parser or rule packages remain subject to the Hub maturity gate;
 the Hub must not become the implementation repository.
+
+## Source reconciliation — 2026-09-30
+
+The original scaffold-only observations above are historical. [Imported private prototype](../../packages/cfml-policy-check/README.md) now contains source, schema, profiles and 15 tests. It remains private/UNLICENSED; public release and engine behavior are unverified.

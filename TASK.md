@@ -1,7 +1,12 @@
 # Task status
 
+## Consolidation checkpoint — 2026-09-30
+
+All ten owned source heads are imported with hashes, local recovery bundles and preserved contracts/licenses/private flags. Root package orchestration retains per-package locks and compilers. See [migration](docs/migration/README.md) and [verification](docs/migration/VERIFICATION.md) for measured results and blockers. No original repository was changed/deleted; no npm publication or merge occurred. Prior entries below remain historical evidence.
+
+
 Status date: 2026-09-16. Scope: AI-Agent-Tools Hub. This is the authoritative Hub
-execution ledger; independent tool repositories own their implementation tasks.
+execution ledger; package folders own their implementation tasks.
 
 ## Current situation
 
@@ -10,7 +15,7 @@ runtime now exist. The initial tracked baseline was `2f2d46e`; Git history recor
 subsequent Hub documentation and runtime commits. A commit is not a tool release or
 a push. AIT package `ai-agent-tools@0.1.1` is publicly published under Apache-2.0;
 npm registry read-back and clean consumer installation are verified.
-It does not contain independent tool implementations.
+The published AIT artifact does not contain tool implementations; the source repository now contains ten independent package folders.
 
 **Code Slice delivery is Done**, confirmed by the owner on 2026-09-06. Published
 `agent-code-slice@0.2.0` metadata matches its repository and `code-slice` executable.

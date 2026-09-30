@@ -28,3 +28,10 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Monorepo local evidence, caches and generated test builds
+.cache/
+.test-dist/
+dist-test/
+*.tsbuildinfo
+*.bundle

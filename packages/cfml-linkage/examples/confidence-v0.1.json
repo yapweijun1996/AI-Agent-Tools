@@ -1,0 +1,120 @@
+{
+  "contract": "agent-cfml-linkage-confidence/v0.1",
+  "levels": [
+    {
+      "level": "confirmed",
+      "requires": [
+        "exact supported syntax",
+        "one unique in-root deterministic target",
+        "bounded evidence",
+        "dynamic is false"
+      ],
+      "score_alone_is_insufficient": true
+    },
+    {
+      "level": "strong",
+      "requires": [
+        "unique deterministic target",
+        "bounded mapping or type inference"
+      ],
+      "score_alone_is_insufficient": true
+    },
+    {
+      "level": "candidate",
+      "requires": [
+        "one or more plausible static targets or an unproven external binding"
+      ],
+      "authoritative_target": false
+    },
+    {
+      "level": "unresolved",
+      "requires": [
+        "insufficient evidence for a safe target"
+      ],
+      "authoritative_target": false
+    }
+  ],
+  "cases": [
+    {
+      "id": "literal-include-unique",
+      "evidence": "exact supported include syntax and one in-root path",
+      "dynamic": false,
+      "candidate_count": 1,
+      "expected_level": "confirmed"
+    },
+    {
+      "id": "mapped-component-unique",
+      "evidence": "unique statically recovered Application mapping",
+      "dynamic": false,
+      "candidate_count": 1,
+      "expected_level": "strong"
+    },
+    {
+      "id": "ambiguous-component",
+      "evidence": "two project components match the normalized name",
+      "dynamic": false,
+      "candidate_count": 2,
+      "expected_level": "candidate",
+      "reason_code": "AMBIGUOUS_COMPONENT"
+    },
+    {
+      "id": "dynamic-fetch",
+      "evidence": "fetch target depends on a runtime expression",
+      "dynamic": true,
+      "candidate_count": 0,
+      "expected_level": "unresolved",
+      "reason_code": "DYNAMIC_EXPRESSION"
+    },
+    {
+      "id": "partial-parser",
+      "evidence": "recoverable syntax error prevents complete fact coverage",
+      "dynamic": false,
+      "candidate_count": 0,
+      "expected_level": "unresolved",
+      "reason_code": "PARSE_PARTIAL",
+      "complete": false
+    },
+    {
+      "id": "dynamic-cannot-confirm",
+      "evidence": "otherwise plausible target is dynamic",
+      "dynamic": true,
+      "candidate_count": 1,
+      "proposed_level": "confirmed",
+      "expected_decision": "reject-promotion"
+    },
+    {
+      "id": "score-cannot-promote",
+      "evidence": "high numeric score without unique deterministic evidence",
+      "dynamic": false,
+      "candidate_count": 2,
+      "score": 0.99,
+      "proposed_level": "confirmed",
+      "expected_decision": "reject-promotion",
+      "expected_level": "candidate"
+    }
+  ],
+  "completeness_rules": {
+    "complete_may_include": [
+      "unresolved dynamic relationships",
+      "candidate relationships"
+    ],
+    "complete_must_be_false_for": [
+      "partial or unsupported requested parsing",
+      "snapshot drift",
+      "exhausted resource limit",
+      "unavailable required resolver coverage"
+    ],
+    "out_of_root": "distinct input/access rejection"
+  },
+  "diagnostic_codes": [
+    "PARSE_PARTIAL",
+    "UNSUPPORTED_SYNTAX",
+    "DYNAMIC_EXPRESSION",
+    "AMBIGUOUS_TARGET",
+    "OUTSIDE_ROOT",
+    "SNAPSHOT_DRIFT",
+    "RESOURCE_LIMIT",
+    "CACHE_REBUILT",
+    "INTERNAL_INVARIANT"
+  ]
+}

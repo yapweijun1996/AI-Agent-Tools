@@ -41,7 +41,7 @@ CFML syntax diagnostics such as an unclosed `#` expression; those remain within
 the bounded structural responsibility of CFML Check.
 
 The repository identity is confirmed at
-[AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check),
+[AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check),
 but its initial commit contains only `.gitattributes`. No implementation, tests,
 package metadata, npm identity, or release evidence is recorded. The registry
 therefore adds it as `Planned`, and the independent repository owns all future

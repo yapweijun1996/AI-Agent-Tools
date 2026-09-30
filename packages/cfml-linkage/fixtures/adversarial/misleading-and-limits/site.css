@@ -1,0 +1,2 @@
+/* url("/ignored-comment.css") */
+body { background-image: url("/real.png"); }

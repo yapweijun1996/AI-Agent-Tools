@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "profile": {
+    "id": "globe3-legacy-printform",
+    "version": "0.1.0"
+  },
+  "rules": [
+    {
+      "id": "html.table.requires-colgroup",
+      "enabled": true,
+      "severity": "error"
+    },
+    {
+      "id": "html.table.requires-col",
+      "enabled": true,
+      "severity": "error"
+    }
+  ]
+}

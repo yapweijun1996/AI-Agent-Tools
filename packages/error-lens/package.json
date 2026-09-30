@@ -1,0 +1,59 @@
+{
+  "name": "agent-error-lens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic, local-first diagnostic parsing for AI coding agents.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/error-lens"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/error-lens#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=20.11.0 <25"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./contract": "./contract/agent-error-lens-v1.schema.json"
+  },
+  "bin": {
+    "agent-error-lens": "./dist/src/cli.js"
+  },
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "dist",
+    "contract/agent-error-lens-v1.schema.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "node scripts/make-cli-executable.mjs",
+    "prepack": "npm run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "check:capabilities": "node scripts/check-capabilities.mjs",
+    "check:package": "node scripts/check-package.mjs",
+    "check:contract": "node contract/verify-contract.mjs && node scripts/check-contract-drift.mjs",
+    "check:fixtures": "node scripts/check-fixtures.mjs",
+    "test": "npm run check:contract && npm run check:fixtures && npm run check:capabilities && npm run typecheck && npm run lint && npm run build && npm run check:package && node --test",
+    "pack:check": "npm run build && npm run check:package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@typescript-eslint/parser": "8.40.0",
+    "eslint": "^9.35.0",
+    "typescript": "^5.9.2"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  }
+}

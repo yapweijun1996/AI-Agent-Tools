@@ -1,0 +1,64 @@
+{
+  "name": "ai-agent-tool-project-tree",
+  "version": "0.1.1",
+  "description": "Local-first deterministic project graph and context CLI for humans and AI coding agents.",
+  "type": "module",
+  "bin": {
+    "aptree": "./bin/aptree.js"
+  },
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./schema": "./schemas/aptree.schema.v1.json"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "types/",
+    "README.md",
+    "LICENSE",
+    "AGENTS.md",
+    "docs/",
+    "schemas/"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "smoke": "node scripts/smoke.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "ai-agent",
+    "project-graph",
+    "cli",
+    "context",
+    "static-analysis"
+  ],
+  "author": "Yap Wei Jun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/project-tree"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-tree#readme",
+  "engines": {
+    "node": ">=18.17"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1",
+  "status": "complete",
+  "producerOutcome": {
+    "command": "npm run typecheck",
+    "exitCode": 2,
+    "signal": null
+  },
+  "data": {
+    "producers": [
+      {
+        "id": "typescript",
+        "name": "typescript",
+        "version": null,
+        "evidence": [
+          {
+            "artifactId": "stderr",
+            "kind": "log-span",
+            "start": 0,
+            "end": 83,
+            "offsetUnit": "utf16-code-unit"
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "id": "diag_9a66640d5f7e000f80a0b6c6cc2f4eb8b896a32f60726230f9d566faf83d0d47",
+        "severity": "error",
+        "phase": "compile",
+        "message": "Property 'total' does not exist on type 'Order'",
+        "code": "TS2339",
+        "location": {
+          "file": "src/order.ts",
+          "line": 41,
+          "column": 18
+        },
+        "producerId": "typescript",
+        "confidence": "confirmed",
+        "evidence": [
+          {
+            "artifactId": "stderr",
+            "kind": "log-span",
+            "start": 0,
+            "end": 83,
+            "offsetUnit": "utf16-code-unit"
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "diagnosticCount": 1,
+      "errorCount": 1,
+      "warningCount": 0,
+      "infoCount": 0,
+      "unknownCount": 0,
+      "producerCount": 1
+    }
+  },
+  "toolIssues": [],
+  "warnings": [],
+  "truncation": {
+    "truncated": false,
+    "reasons": []
+  },
+  "stats": {
+    "artifactsReceived": 1,
+    "artifactsProcessed": 1,
+    "bytesReceived": 83,
+    "bytesProcessed": 83,
+    "linesProcessed": 1,
+    "parserMatches": 1,
+    "terminalSequences": 0,
+    "producerCandidates": 1,
+    "evidenceBytes": 83,
+    "diagnosticsBeforeLimit": 1
+  }
+}

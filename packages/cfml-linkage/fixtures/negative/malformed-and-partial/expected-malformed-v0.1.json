@@ -1,0 +1,21 @@
+{
+  "schema_version": "agent-cfml-linkage-malformed-fixtures/v0.1",
+  "source_execution": false,
+  "cases": [
+    {
+      "input": "comments-and-strings.cfm",
+      "expected_fact_kinds": ["FILE", "SCOPE_WRITE"],
+      "forbidden_fact_kinds": ["INCLUDE", "FORM", "INSTANTIATE", "JS_ASSET"]
+    },
+    {
+      "input": "malformed.cfm",
+      "expected_diagnostic_codes": ["PARSE_PARTIAL"],
+      "complete": false
+    },
+    {
+      "input": "unsupported.cfm",
+      "expected_diagnostic_codes": ["UNSUPPORTED_SYNTAX"],
+      "complete": false
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-linkage:analysis:v0.1",
+  "title": "agent-cfml-linkage bounded analysis result v0.1",
+  "description": "The composed result returned by the bounded read-only analysis pipeline.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "complete",
+    "fact_bundle",
+    "resolutions",
+    "graph",
+    "reverse_adjacency",
+    "diagnostics",
+    "stats"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agent-cfml-linkage-analysis/v0.1"
+    },
+    "tool": {
+      "$ref": "urn:agent-cfml-linkage:graph:v0.1#/$defs/tool"
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "fact_bundle": {
+      "$ref": "urn:agent-cfml-linkage:fact:v0.1"
+    },
+    "resolutions": {
+      "$ref": "#/$defs/resolutionBundle"
+    },
+    "graph": {
+      "$ref": "urn:agent-cfml-linkage:graph:v0.1"
+    },
+    "reverse_adjacency": {
+      "$ref": "#/$defs/reverseAdjacency"
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-cfml-linkage:graph:v0.1#/$defs/diagnostic"
+      }
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "resolutionBundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "resolver",
+        "complete",
+        "resolutions",
+        "unresolved",
+        "diagnostics",
+        "stats"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolver": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "version": { "type": "string", "minLength": 1 }
+          }
+        },
+        "complete": { "type": "boolean" },
+        "resolutions": { "type": "array", "items": { "type": "object" } },
+        "unresolved": { "type": "array", "items": { "type": "object" } },
+        "diagnostics": { "type": "array", "items": { "type": "object" } },
+        "stats": { "type": "object" }
+      }
+    },
+    "reverseAdjacency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["incoming", "outgoing"],
+      "properties": {
+        "incoming": { "$ref": "#/$defs/adjacencyMap" },
+        "outgoing": { "$ref": "#/$defs/adjacencyMap" }
+      }
+    },
+    "adjacencyMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string", "minLength": 1 }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file_count",
+        "node_count",
+        "edge_count",
+        "unresolved_count",
+        "diagnostic_count",
+        "evidence_count",
+        "fact_count",
+        "resolution_count",
+        "resolver_unresolved_count",
+        "resolver_diagnostic_count",
+        "parsed_file_count"
+      ],
+      "properties": {
+        "file_count": { "type": "integer", "minimum": 0 },
+        "node_count": { "type": "integer", "minimum": 0 },
+        "edge_count": { "type": "integer", "minimum": 0 },
+        "unresolved_count": { "type": "integer", "minimum": 0 },
+        "diagnostic_count": { "type": "integer", "minimum": 0 },
+        "evidence_count": { "type": "integer", "minimum": 0 },
+        "fact_count": { "type": "integer", "minimum": 0 },
+        "resolution_count": { "type": "integer", "minimum": 0 },
+        "resolver_unresolved_count": { "type": "integer", "minimum": 0 },
+        "resolver_diagnostic_count": { "type": "integer", "minimum": 0 },
+        "parsed_file_count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

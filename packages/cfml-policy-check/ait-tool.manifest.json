@@ -1,0 +1,24 @@
+{
+  "manifest_version": "1.0.0",
+  "tool_id": "agent-cfml-policy-check",
+  "version": "0.1.0",
+  "runtime": "node",
+  "entrypoint": "src/cli.js",
+  "operation_mode": "ait",
+  "safety_level": "read_only",
+  "requires_approval": false,
+  "network_required": false,
+  "writes_files": false,
+  "input": {
+    "operation": "capabilities | check",
+    "check_required": ["root", "file", "profile"],
+    "profile": "root-relative local JSON profile",
+    "limits": "optional bounded integer map"
+  },
+  "output": {
+    "schema_version": "1.0.0",
+    "format": "one UTF-8 JSON document plus newline",
+    "statuses": ["ok", "incomplete", "error"]
+  },
+  "registration_status": "local-contract-only"
+}

@@ -1,0 +1,29 @@
+{
+  "version": "0.1",
+  "input": "page.cfm",
+  "expected_dynamic_facts": [
+    { "source_kind": "INCLUDE", "reason": "DYNAMIC_EXPRESSION" },
+    { "source_kind": "CUSTOM_TAG", "reason": "DYNAMIC_EXPRESSION" },
+    { "source_kind": "INSTANTIATE", "reason": "DYNAMIC_EXPRESSION" },
+    { "source_kind": "INVOKE", "reason": "DYNAMIC_EXPRESSION" },
+    { "source_kind": "SCOPE_WRITE", "reason": "GENERATED_SYMBOL" },
+    { "source_kind": "SCOPE_WRITE", "reason": "GENERATED_SYMBOL" },
+    { "source_kind": "GENERATED_SYMBOL", "reason": "GENERATED_SYMBOL" },
+    { "source_kind": "FORM", "reason": "DYNAMIC_EXPRESSION" }
+  ],
+  "expected_dynamic_expressions": {
+    "FORM": "#url.target#"
+  },
+  "expected_sql": {
+    "dynamic_tables": ["#otherTable#", "#tableName#"],
+    "datasource_expression": "#application.datasource#",
+    "datasource_dynamic": true
+  },
+  "expected_graph_sql_unresolved_count": 2,
+  "expected_graph_unresolved": [
+    "DYNAMIC_EXPRESSION",
+    "GENERATED_SYMBOL",
+    "SQL_DYNAMIC_IDENTIFIER"
+  ],
+  "source_execution": false
+}

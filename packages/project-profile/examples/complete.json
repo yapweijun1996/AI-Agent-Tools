@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0",
+  "toolVersion": "0.1.2",
+  "status": "complete",
+  "project": {
+    "root": ".",
+    "name": "example-app",
+    "kind": "single-package",
+    "repository": { "kind": "unknown", "evidence": [] },
+    "evidence": ["ev-000001"]
+  },
+  "ecosystems": [
+    { "name": "node", "support": "first-class", "evidence": ["ev-000001"] }
+  ],
+  "packageManager": {
+    "name": "npm",
+    "version": "10.0.0",
+    "confidence": "confirmed",
+    "invocationAvailable": true,
+    "evidence": ["ev-000002"]
+  },
+  "runtimes": [
+    {
+      "name": "node",
+      "cwd": ".",
+      "value": ">=20",
+      "role": "supported-constraint",
+      "confidence": "confirmed",
+      "evidence": ["ev-000003"]
+    }
+  ],
+  "workspace": {
+    "enabled": false,
+    "manager": null,
+    "declarations": [],
+    "packages": [],
+    "total": null,
+    "returned": 0,
+    "truncated": false
+  },
+  "commands": {
+    "build": [
+      {
+        "cwd": ".",
+        "script": "build",
+        "argv": ["npm", "run", "build"],
+        "source": "package.json#/scripts/build",
+        "confidence": "confirmed",
+        "declaredByProject": true,
+        "execution": "not_run",
+        "evidence": ["ev-000004"]
+      }
+    ],
+    "test": [],
+    "lint": [],
+    "typecheck": [],
+    "dev": [],
+    "start": [],
+    "format": []
+  },
+  "scripts": [
+    { "cwd": ".", "names": ["build"], "evidence": ["ev-000004"] }
+  ],
+  "entrypoints": [],
+  "configs": [],
+  "instructions": [],
+  "ci": [],
+  "evidence": [
+    { "id": "ev-000001", "kind": "manifest", "path": "package.json", "pointer": "/name" },
+    { "id": "ev-000002", "kind": "manifest", "path": "package.json", "pointer": "/packageManager" },
+    { "id": "ev-000003", "kind": "manifest", "path": "package.json", "pointer": "/engines/node" },
+    { "id": "ev-000004", "kind": "manifest", "path": "package.json", "pointer": "/scripts/build" }
+  ],
+  "warnings": [],
+  "coverage": {
+    "status": "complete",
+    "strategies": ["root-sentinels", "package-roots"],
+    "budgets": {
+      "workspacePackages": 100,
+      "directoryDepth": 12,
+      "directoryEntries": 10000,
+      "metadataFiles": 1000,
+      "metadataFileBytes": 262144,
+      "metadataTotalBytes": 8388608,
+      "outputBytes": 1048576,
+      "sourceStringBytes": 4096
+    },
+    "usage": { "directoryEntries": 2, "metadataFiles": 1, "metadataBytes": 420 },
+    "categories": {
+      "repository": "complete",
+      "ecosystems": "complete",
+      "packageManager": "complete",
+      "runtimes": "complete",
+      "workspace": "not_applicable",
+      "commands": "complete",
+      "scripts": "complete",
+      "entrypoints": "complete",
+      "configs": "complete",
+      "instructions": "complete",
+      "ci": "complete"
+    },
+    "truncated": {
+      "workspace": false,
+      "output": false,
+      "directoryEntries": false,
+      "metadataFiles": false,
+      "metadataBytes": false,
+      "depth": false
+    }
+  }
+}

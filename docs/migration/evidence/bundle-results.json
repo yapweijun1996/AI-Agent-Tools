@@ -1,0 +1,52 @@
+[
+  {
+    "repository": "AI-Agent-Tool-CFML-Check",
+    "exitCode": 0,
+    "sha256": "c7d94961c7baa0a07f26ee5eecfe8cc5842652849ea372a0f80e7c52ab289d66"
+  },
+  {
+    "repository": "AI-Agent-Tool-CFML-Linkage",
+    "exitCode": 0,
+    "sha256": "a09b322bb4a614053f8ac747473cb144aefff3ccce72ef9700706acdd1604fea"
+  },
+  {
+    "repository": "AI-Agent-Tool-CFML-Policy-Check",
+    "exitCode": 0,
+    "sha256": "7671772324754276ef32ea607d2452b5600442053181f30b56a6683710cc4963"
+  },
+  {
+    "repository": "AI-Agent-Tool-Change-Impact",
+    "exitCode": 0,
+    "sha256": "ac97f338e4694be365bf4adf6ed45568295933b0a5401ba4cc7145cc0339eb2f"
+  },
+  {
+    "repository": "AI-Agent-Tool-Code-Slice",
+    "exitCode": 0,
+    "sha256": "792f270d4bdb150429e4cbdef18e7ac070d160b652b3397923e6e47662be45b6"
+  },
+  {
+    "repository": "AI-Agent-Tool-Error-Lens",
+    "exitCode": 0,
+    "sha256": "3403ac700f5f4b08356455e3423ed10a1f2c78be2326c3b09286fdedfeece82f"
+  },
+  {
+    "repository": "AI-Agent-Tool-Project-Profile",
+    "exitCode": 0,
+    "sha256": "f5b2bf74c9e0550f76f4a9a25a46e113ca8f527d1d486c38c2ef390c83f2be4d"
+  },
+  {
+    "repository": "AI-Agent-Tool-Project-Tree",
+    "exitCode": 0,
+    "sha256": "042e9296fc143b58dc8fa0a972d69bcca747f250a63cb6fb1cc91787705d2ab8"
+  },
+  {
+    "repository": "AI-Agent-Tool-Symbol-Search",
+    "exitCode": 0,
+    "sha256": "22a876df8c1f927c4e2f001424e2b3bca440f06eee26a18102a1ff2549d7b46a"
+  },
+  {
+    "repository": "AI-Agent-Tool-Test-Scope",
+    "exitCode": 0,
+    "sha256": "3ff319e1b6ad37337822eb56500fd02ba61a72c2b2a7ee9178645b5627b49d0f"
+  }
+]

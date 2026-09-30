@@ -1,0 +1,65 @@
+{
+  "node": "v23.10.0",
+  "results": [
+    {
+      "package": "agent-cfml-check",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-linkage",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-policy-check",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-change-impact",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-code-slice",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-error-lens",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-project-profile",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "ai-agent-tool-project-tree",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-symbol-search",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-test-scope",
+      "action": "bootstrap",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ]
+}

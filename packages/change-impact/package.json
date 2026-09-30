@@ -1,0 +1,67 @@
+{
+  "name": "agent-change-impact",
+  "version": "0.1.1",
+  "description": "Bounded, evidence-backed change impact analysis for AI coding agents",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/change-impact"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/change-impact#readme",
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "keywords": [
+    "ai-agent",
+    "change-impact",
+    "static-analysis",
+    "typescript",
+    "cli"
+  ],
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agent-impact": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "skills",
+    "AGENT_GUIDE.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/*.test.cjs",
+    "docs:check": "node scripts/docs-check.cjs",
+    "release:check": "node scripts/release-check.cjs",
+    "pack:check": "npm run build && npm pack --dry-run --ignore-scripts",
+    "pack:smoke": "npm run build && node scripts/pack-smoke.cjs",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "typescript": "5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "ajv": "8.20.0"
+  }
+}

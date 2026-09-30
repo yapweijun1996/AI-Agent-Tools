@@ -1,0 +1,5 @@
+
+> agent-test-scope@0.1.1 release:check
+> node scripts/release-check.mjs
+
+Release configuration baseline passed; CI execution remains an external gate

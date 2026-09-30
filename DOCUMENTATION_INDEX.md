@@ -47,3 +47,7 @@ Verified source and scoped executable results establish implementation. Registry
 metadata records reviewed facts; requirements describe intended behavior. If they
 disagree, preserve the mismatch as pending work until its cause is understood.
 Do not use an old review or a mutable sibling checkout as evidence of a new release.
+
+## Monorepo source ownership (2026-09-30)
+
+[Tool index](migration-tools.md) maps all ten package folders. [Migration](docs/migration/README.md) owns import coverage and deletion gates; [decision](docs/migration/DECISION.md) owns the superseding source-location decision. Package READMEs and local AGENTS own tool behavior. Historical Hub audits remain dated evidence.

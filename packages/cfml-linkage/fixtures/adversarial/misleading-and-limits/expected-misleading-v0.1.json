@@ -1,0 +1,28 @@
+{
+  "schema_version": "agent-cfml-linkage-misleading-fixtures/v0.1",
+  "source_execution": false,
+  "cases": [
+    {
+      "input": "page.cfm",
+      "expected_facts": [
+        { "kind": "INCLUDE", "normalized_expression": "cycle-a.cfm" }
+      ],
+      "forbidden_expressions": ["comment-only.cfm", "string-only.cfm", "string-only.js"]
+    },
+    {
+      "input": "client.js",
+      "expected_facts": [
+        { "kind": "FETCH", "normalized_expression": "/real.cfm" }
+      ],
+      "forbidden_expressions": ["/ignored-comment.cfm", "/ignored-string.cfm", "/ignored-block.cfm"]
+    },
+    {
+      "input": "site.css",
+      "expected_facts": [
+        { "kind": "CSS_ASSET", "normalized_expression": "/real.png" }
+      ],
+      "forbidden_expressions": ["/ignored-comment.css"]
+    }
+  ],
+  "expected_scope_diagnostic": "SCOPE_INCLUDE_CYCLE"
+}

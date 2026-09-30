@@ -1,0 +1,82 @@
+[
+  {
+    "package": "CFML-Check",
+    "exitCode": 0,
+    "tests": 22,
+    "pass": 22,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "CFML-Linkage",
+    "exitCode": 1,
+    "tests": 95,
+    "pass": 77,
+    "fail": 18,
+    "skipped": 0
+  },
+  {
+    "package": "CFML-Policy-Check",
+    "exitCode": 0,
+    "tests": 15,
+    "pass": 15,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Change-Impact",
+    "exitCode": 0,
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Code-Slice",
+    "exitCode": 0,
+    "tests": 80,
+    "pass": 80,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Error-Lens",
+    "exitCode": 1,
+    "tests": 0,
+    "pass": 0,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Project-Profile",
+    "exitCode": 0,
+    "tests": 31,
+    "pass": 31,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Project-Tree",
+    "exitCode": 0,
+    "tests": 12,
+    "pass": 12,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Symbol-Search",
+    "exitCode": 0,
+    "tests": 43,
+    "pass": 43,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "package": "Test-Scope",
+    "exitCode": 0,
+    "tests": 17,
+    "pass": 17,
+    "fail": 0,
+    "skipped": 0
+  }
+]

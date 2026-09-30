@@ -37,7 +37,7 @@ Do not reopen historical review findings as if their current disposition were un
 - The ID is unique; repository and npm identities are confirmed or `null`.
 - Status meets its gate, and evidence version equals the recorded release.
 - Intended purpose is distinguished from tested capability; unsupported cases are visible.
-- No tool source, workspace, unapproved runtime, or unnecessary dependency was added to the Hub.
+- New tool source follows the authorized package-folder structure; no unapproved reasoning runtime or unnecessary shared dependency was added.
 - Roadmap, registry, and links agree; standards have one owner document each.
 - The independent owner has documented compatibility, security reporting, licensing, and release responsibility before stable publication.
 

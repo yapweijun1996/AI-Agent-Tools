@@ -7,7 +7,7 @@
       "name": "Agent Code Slice",
       "description": "Return bounded code context for explicit symbols or locations.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/code-slice",
       "npm": {
         "name": "agent-code-slice",
         "url": "https://www.npmjs.com/package/agent-code-slice"
@@ -21,7 +21,7 @@
       "name": "Agent Change Impact",
       "description": "Report change relationships with evidence and explicit coverage limits.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/change-impact",
       "npm": {
         "name": "agent-change-impact",
         "url": "https://www.npmjs.com/package/agent-change-impact"
@@ -35,7 +35,7 @@
       "name": "Agent Project Profile",
       "description": "Describe observed project structure, configuration, and available commands.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-profile",
       "npm": {
         "name": "agent-project-profile",
         "url": "https://www.npmjs.com/package/agent-project-profile"
@@ -49,7 +49,7 @@
       "name": "Agent Test Scope",
       "description": "Identify candidate tests from declared or observable relationships.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope",
       "npm": {
         "name": "agent-test-scope",
         "url": "https://www.npmjs.com/package/agent-test-scope"
@@ -62,8 +62,8 @@
       "id": "agent-error-lens",
       "name": "Agent Error Lens",
       "description": "Extract bounded structured diagnostics from supplied error output.",
-      "status": "Planned",
-      "repository_url": null,
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/error-lens",
       "npm": null,
       "release_version": null,
       "verification": null,
@@ -129,7 +129,7 @@
       "name": "Agent CFML Check",
       "description": "Check a declared CFML structural subset with exact diagnostics and explicit unsupported coverage.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-check",
       "npm": {
         "name": "agent-cfml-check",
         "url": "https://www.npmjs.com/package/agent-cfml-check"
@@ -165,7 +165,7 @@
       "name": "Agent Symbol Search",
       "description": "Navigate bounded TypeScript symbol definitions, references, and relationships without returning full source bodies.",
       "status": "Experimental",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/symbol-search",
       "npm": {
         "name": "agent-symbol-search",
         "url": "https://www.npmjs.com/package/agent-symbol-search"
@@ -178,8 +178,30 @@
       "id": "agent-cfml-policy-check",
       "name": "Agent CFML Policy Check",
       "description": "Check configurable CFML, HTML, and project policy rules with explicit diagnostics and coverage limits.",
-      "status": "Planned",
-      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-cfml-linkage",
+      "name": "Agent CFML Linkage",
+      "description": "Analyze bounded CFML-first linkage with explicit evidence and unresolved records.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-linkage",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
+    },
+    {
+      "id": "agent-project-tree",
+      "name": "Agent Project Tree",
+      "description": "Return a bounded deterministic project tree with explicit filtering and limits.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-tree",
       "npm": null,
       "release_version": null,
       "verification": null,

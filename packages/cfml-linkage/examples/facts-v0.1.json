@@ -1,0 +1,268 @@
+{
+  "schema_version": "agent-cfml-linkage-fact/v0.1",
+  "tool": {
+    "name": "agent-cfml-linkage",
+    "version": "0.1.0"
+  },
+  "source_files": [
+    {
+      "file": "index.cfm",
+      "language": "cfml",
+      "fingerprint": "sha256:example-index",
+      "bytes": 812
+    },
+    {
+      "file": "handlers/OrderHandler.cfc",
+      "language": "cfml",
+      "fingerprint": "sha256:example-handler",
+      "bytes": 604
+    },
+    {
+      "file": "assets/orders.js",
+      "language": "javascript",
+      "fingerprint": "sha256:example-orders-js",
+      "bytes": 391
+    }
+  ],
+  "parser": {
+    "name": "cfml-parser-adapter",
+    "version": "0.1.0",
+    "completeness": "complete"
+  },
+  "complete": true,
+  "facts": [
+    {
+      "fact_id": "fact:index.cfm:file",
+      "kind": "FILE",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 24,
+        "end_col": 1
+      },
+      "normalized_expression": "cfm_page index.cfm",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "file-kind-v0.1",
+      "attributes": {
+        "file_kind": "cfm_page"
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:include:3",
+      "kind": "INCLUDE",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 3,
+        "end_col": 34
+      },
+      "normalized_expression": "shared/header.cfm",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "cfinclude-path-v0.1",
+      "attributes": {
+        "template": "shared/header.cfm",
+        "include_phase": "page",
+        "order_index": 1
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:form:8",
+      "kind": "FORM",
+      "file": "index.cfm",
+      "language": "html",
+      "span": {
+        "start_line": 8,
+        "start_col": 0,
+        "end_line": 12,
+        "end_col": 8
+      },
+      "normalized_expression": "form action orders/submit.cfm",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "html-form-v0.1",
+      "attributes": {
+        "id": "order-form",
+        "method": "post",
+        "action": "orders/submit.cfm"
+      }
+    },
+    {
+      "fact_id": "fact:handlers/OrderHandler.cfc:component:1",
+      "kind": "COMPONENT",
+      "file": "handlers/OrderHandler.cfc",
+      "language": "cfml",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 18,
+        "end_col": 1
+      },
+      "normalized_expression": "component handlers.OrderHandler",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "cfc-component-v0.1",
+      "attributes": {
+        "component_name": "handlers.OrderHandler",
+        "extends": null,
+        "implements": []
+      }
+    },
+    {
+      "fact_id": "fact:handlers/OrderHandler.cfc:method:3",
+      "kind": "METHOD",
+      "file": "handlers/OrderHandler.cfc",
+      "language": "cfml",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 16,
+        "end_col": 1
+      },
+      "normalized_expression": "method handlers.OrderHandler.submit",
+      "enclosing_symbol": "handlers.OrderHandler",
+      "condition": null,
+      "extraction_rule_id": "cfc-method-v0.1",
+      "attributes": {
+        "method_name": "submit",
+        "access": "public"
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:invoke:4",
+      "kind": "INVOKE",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 4,
+        "start_col": 0,
+        "end_line": 4,
+        "end_col": 61
+      },
+      "normalized_expression": "handlers.OrderHandler.submit",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "cfinvoke-component-method-v0.1",
+      "attributes": {
+        "component": "handlers.OrderHandler",
+        "method": "submit"
+      }
+    },
+    {
+      "fact_id": "fact:assets/orders.js:function:1",
+      "kind": "FETCH",
+      "file": "assets/orders.js",
+      "language": "javascript",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 3,
+        "end_col": 52
+      },
+      "normalized_expression": "/orders/submit.cfm",
+      "enclosing_symbol": "submitOrder",
+      "condition": null,
+      "extraction_rule_id": "javascript-fetch-path-v0.1",
+      "attributes": {
+        "method": "POST",
+        "dynamic": false
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:query:18",
+      "kind": "QUERY",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 18,
+        "start_col": 0,
+        "end_line": 21,
+        "end_col": 1
+      },
+      "normalized_expression": "select id from orders",
+      "enclosing_symbol": null,
+      "condition": null,
+      "extraction_rule_id": "cfquery-sql-v0.1",
+      "attributes": {
+        "operation": "read",
+        "datasource": "orders"
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:scope-write:5",
+      "kind": "SCOPE_WRITE",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 5,
+        "start_col": 0,
+        "end_line": 5,
+        "end_col": 26
+      },
+      "normalized_expression": "request.orderId",
+      "enclosing_symbol": null,
+      "condition": {
+        "expression_normalized": "form.usage eq \"order\"",
+        "source_span": {
+          "start_line": 4,
+          "start_col": 0,
+          "end_line": 6,
+          "end_col": 1
+        },
+        "variables": [
+          "form.usage"
+        ],
+        "branch_kind": "if",
+        "evaluation": "runtime"
+      },
+      "extraction_rule_id": "scope-write-v0.1",
+      "attributes": {
+        "scope": "request",
+        "name": "orderId"
+      }
+    },
+    {
+      "fact_id": "fact:index.cfm:condition:4",
+      "kind": "CONDITION",
+      "file": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 4,
+        "start_col": 0,
+        "end_line": 6,
+        "end_col": 1
+      },
+      "normalized_expression": "form.usage eq \"order\"",
+      "enclosing_symbol": null,
+      "condition": {
+        "expression_normalized": "form.usage eq \"order\"",
+        "source_span": {
+          "start_line": 4,
+          "start_col": 0,
+          "end_line": 6,
+          "end_col": 1
+        },
+        "variables": [
+          "form.usage"
+        ],
+        "branch_kind": "if",
+        "evaluation": "runtime"
+      },
+      "extraction_rule_id": "condition-if-v0.1",
+      "attributes": {
+        "branch_id": "condition:4"
+      }
+    }
+  ],
+  "diagnostics": [],
+  "stats": {
+    "source_file_count": 3,
+    "fact_count": 10,
+    "diagnostic_count": 0
+  }
+}

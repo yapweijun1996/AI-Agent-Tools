@@ -1,0 +1,275 @@
+{
+  "schema_version": "agent-cfml-linkage-prompt-to-artifact-audit/v0.1",
+  "audit_status": "incomplete",
+  "goal_achieved": false,
+  "audited_source": {
+    "head": "3de60e2",
+    "branch": "main",
+    "worktree": "clean before audit",
+    "remote_state": "main is 26 commits ahead of origin/main and no local tag is present; remote publication and pull-request state was not queried because network access is prohibited"
+  },
+  "objective": {
+    "summary": "Advance the CFML-first static linkage library/CLI/evidence provider through the smallest dependency-ready task, with deterministic bounded non-executing behavior, evidence-backed verification, synchronized documentation, and one focused local commit.",
+    "completion_rule": "Do not claim completion until every explicit requirement is mapped to current repository evidence and no required deliverable, gate, or environment proof remains missing."
+  },
+  "repository_premise_check": {
+    "status": "contradicted_by_current_repository",
+    "claim": "The supplied premise says that source, manifest, tests, CI, runtime, package, and release are absent.",
+    "observed": "Source, a private manifest, tests, a read-only CI workflow, and bounded local package/CLI evidence are present; runtime compatibility and release evidence remain partial or absent.",
+    "evidence": [
+      "package.json",
+      "src/",
+      "test/",
+      ".github/workflows/ci.yml",
+      "PROGRESS.md",
+      "RELEASE.md"
+    ],
+    "remaining_gap": "There is no full parser/runtime, hosted CI run, public package, tag, deployment, or release."
+  },
+  "core_ssot_checklist": [
+    {
+      "id": "ssot-goal",
+      "artifact": "GOAL.md",
+      "status": "inspected",
+      "evidence": "Purpose, constraints, six measurable release criteria, state model, and bounded/unreleased status are recorded."
+    },
+    {
+      "id": "ssot-design",
+      "artifact": "DESIGN.md",
+      "status": "inspected",
+      "evidence": "Stage ownership, parser boundary, graph/query boundary, limits, and open runtime stages are recorded."
+    },
+    {
+      "id": "ssot-spec",
+      "artifact": "SPEC.md",
+      "status": "inspected",
+      "evidence": "Proposed input, Fact/Graph/query/analysis contracts, safety constraints, and acceptance criteria are recorded."
+    },
+    {
+      "id": "ssot-epic",
+      "artifact": "EPIC.md",
+      "status": "inspected",
+      "evidence": "Milestones, epic acceptance criteria, risks, and bounded implementation state are recorded."
+    },
+    {
+      "id": "ssot-roadmap",
+      "artifact": "ROADMAP.md",
+      "status": "inspected",
+      "evidence": "Dependency-aware delivery sequence, exit evidence, and unresolved release/runtime work are recorded."
+    },
+    {
+      "id": "ssot-task",
+      "artifact": "TASK.md",
+      "status": "inspected",
+      "evidence": "Task states, dependencies, bounded evidence, and the T-037–T-039 blocker are recorded."
+    },
+    {
+      "id": "ssot-progress",
+      "artifact": "PROGRESS.md",
+      "status": "inspected",
+      "evidence": "Current implementation, verification, limitations, blockers, and resume point are recorded."
+    },
+    {
+      "id": "ssot-goal-prompt",
+      "artifact": "GOAL_PROMPT.md",
+      "status": "inspected",
+      "evidence": "The repeatable execution loop, constraints, and stop rule are recorded; the prompt remains under its 2,000-character limit according to the retained check."
+    }
+  ],
+  "explicit_execution_loop": [
+    {
+      "id": "loop-1",
+      "requirement": "Inspect rules, diff, contracts, callers, dependencies, and the highest-priority open task.",
+      "status": "verified_bounded",
+      "evidence": ["AGENTS.md", "TASK.md", "PROGRESS.md", "package.json", "src/", "test/", "git status/log/branch evidence", "src/index.js", "src/analyzer.js", "src/cli.js"]
+    },
+    {
+      "id": "loop-2",
+      "requirement": "Choose the smallest dependency-ready task with clear acceptance evidence.",
+      "status": "completed_for_audit_task",
+      "evidence": ["TASK.md", "docs/audits/prompt-to-artifact-v0.1.json"],
+      "decision": "The documentation-only prompt-to-artifact audit is the smallest currently authorized task; implementation tasks requiring T-037–T-039 definitions, a parser backend, hosted infrastructure, or a public-release contract remain blocked."
+    },
+    {
+      "id": "loop-3",
+      "requirement": "Preserve root containment, deterministic IDs/order, evidence, confidence, unresolved records, bounded output, and non-execution.",
+      "status": "verified_bounded_product_slice",
+      "evidence": ["AGENTS.md", "schema/agent-cfml-linkage-*.schema.json", "src/root-guard.js", "src/snapshot.js", "src/graph.js", "src/graph-query.js", "test/root-guard.test.js", "test/graph.test.js", "test/graph-query.test.js", "SECURITY.md"],
+      "gap": "The full parser/resolver and all library-wide budgets are not implemented; the audit task itself changes documentation only."
+    },
+    {
+      "id": "loop-4",
+      "requirement": "Run focused, broader, and artifact/consumer checks when applicable.",
+      "status": "partial_retained_evidence",
+      "evidence": ["PROGRESS.md", "TEST_PLAN.md", "RELEASE.md", "docs/audits/release-security-parity-v0.1.json"],
+      "passed_or_recorded": ["79 bounded Node tests at the audited baseline", "schema/fixture/static checks", "npm pack --dry-run", "private package self-import", "offline packed-artifact consumer smoke", "git diff --check"],
+      "unrun_or_unavailable": ["full parser/runtime suite", "configured lint/type scripts", "hosted CI execution", "Lucee/Adobe/browser/database/runtime compatibility"],
+      "limitation": "This audit does not execute project JavaScript or application code; retained records are distinguished from checks rerun in this pass."
+    },
+    {
+      "id": "loop-5",
+      "requirement": "Self-review scope, security, compatibility, and docs; use independent review when useful.",
+      "status": "verified_bounded",
+      "evidence": ["AGENTS.md", "SECURITY.md", "RELEASE.md", "PROGRESS.md", "docs/audits/release-security-parity-v0.1.json", "git status/diff inspection"],
+      "gap": "No independent reviewer or hosted compatibility environment is available in this local pass."
+    },
+    {
+      "id": "loop-6",
+      "requirement": "Reproduce/fix valid findings or record blocker, impact, evidence, and unblock input.",
+      "status": "recorded",
+      "evidence": ["TASK.md", "PROGRESS.md", "RELEASE.md", "SECURITY.md"],
+      "blockers": ["T-037–T-039 have no executable definitions or acceptance criteria.", "Full parser/backend and broader resolver evidence are absent.", "Hosted CI, compatibility environments, public packaging, and release authorization are absent."]
+    },
+    {
+      "id": "loop-7",
+      "requirement": "Update TASK, PROGRESS, affected contracts, changelog, security, and release docs.",
+      "status": "completed_for_audit_task",
+      "evidence": ["TASK.md", "PROGRESS.md", "CHANGELOG.md", "SECURITY.md", "RELEASE.md", "docs/audits/prompt-to-artifact-v0.1.json"],
+      "note": "No behavior or contract changed, so SPEC.md and DESIGN.md require no semantic change; the audit is linked from the affected status documents."
+    },
+    {
+      "id": "loop-8",
+      "requirement": "Create one focused local commit after verification; never push, publish, merge, or create a pull request.",
+      "status": "completed",
+      "evidence": ["The documentation audit was committed locally as e9aa6c6; its baseline metadata was refreshed in the focused local documentation commit 91bef02. No push, publish, merge, or pull request was performed."],
+      "prohibited_actions": ["push", "publish", "merge", "pull request"]
+    },
+    {
+      "id": "loop-9",
+      "requirement": "Continue from the next dependency-ready task.",
+      "status": "blocked_after_audit",
+      "evidence": ["TASK.md", "PROGRESS.md"],
+      "next_input": "Executable acceptance criteria for T-037–T-039, an approved full parser/backend, or an explicitly defined library output/time-budget contract."
+    }
+  ],
+  "goal_success_criteria": [
+    {
+      "id": "goal-1",
+      "requirement": "Reviewed and versioned Graph IR, Fact IR, CLI/library, diagnostics, and configuration contracts.",
+      "status": "partial_bounded",
+      "evidence": ["schema/agent-cfml-linkage-graph-v0.1.schema.json", "schema/agent-cfml-linkage-fact-v0.1.schema.json", "schema/agent-cfml-linkage-config-v0.1.schema.json", "schema/agent-cfml-linkage-analysis-v0.1.schema.json", "src/cli.js", "src/index.js", "docs/decisions/ADR-008-stable-cli-envelope.md"],
+      "gap": "The contracts remain proposed/private and full parser/runtime coverage is absent."
+    },
+    {
+      "id": "goal-2",
+      "requirement": "Deterministic golden output for priority CFML/CFC, web-flow, scope, SQL, CSS, ambiguity, dynamic, malformed, and safety fixtures.",
+      "status": "partial_bounded",
+      "evidence": ["fixtures/manifest-v0.1.json", "fixtures/golden/", "fixtures/negative/", "fixtures/adversarial/", "PROGRESS.md"],
+      "gap": "Bounded fixture-backed output exists, but complete grammar and broader resolver coverage are not evidenced."
+    },
+    {
+      "id": "goal-3",
+      "requirement": "Stable IDs/order across repeat runs and explicit partial/unresolved behavior.",
+      "status": "verified_bounded",
+      "evidence": ["docs/decisions/ADR-002-deterministic-identity-and-ordering.md", "docs/decisions/ADR-003-confidence-and-completeness.md", "src/graph.js", "src/graph-query.js", "test/analyzer.test.js", "test/graph.test.js", "test/graph-query.test.js"],
+      "gap": "The evidence applies to the bounded implementation slice, not an unimplemented full analyzer."
+    },
+    {
+      "id": "goal-4",
+      "requirement": "Verified root containment, no-execution, no-network/database, resource-limit, cache, and bounded-output behavior.",
+      "status": "partial_bounded",
+      "evidence": ["src/root-guard.js", "src/snapshot.js", "src/cache.js", "src/cli.js", "test/root-guard.test.js", "test/cache.test.js", "test/cli.test.js", "SECURITY.md"],
+      "gap": "Library serialized-output and wall-time enforcement, full runtime instrumentation, and complete analyzer security review remain open."
+    },
+    {
+      "id": "goal-5",
+      "requirement": "Package/library/CLI artifact smoke evidence tied to the exact source commit.",
+      "status": "partial_bounded",
+      "evidence": ["package.json", "bin/agent-cfml-linkage.js", "RELEASE.md", "docs/audits/release-security-parity-v0.1.json", "PROGRESS.md"],
+      "gap": "Dry-run and offline smoke evidence are retained, but no retained release artifact, public package, tag, or release exists."
+    },
+    {
+      "id": "goal-6",
+      "requirement": "Compatibility claims limited to tested engines/platforms.",
+      "status": "verified_bounded",
+      "evidence": ["docs/compatibility/node-v25.2.1-win32-x64.json", "docs/decisions/ADR-023-bounded-node-compatibility-evidence.md", "RELEASE.md"],
+      "gap": "Only Node v25.2.1 on win32/x64 is evidenced; other engines/platforms remain unclaimed."
+    }
+  ],
+  "named_deliverables_and_gates": [
+    {
+      "id": "contract-artifacts",
+      "requirement": "Core contracts, examples, schemas, and fixture manifest",
+      "status": "verified_bounded",
+      "evidence": ["schema/", "examples/", "fixtures/manifest-v0.1.json", "docs/decisions/ADR-002-deterministic-identity-and-ordering.md", "docs/decisions/ADR-003-confidence-and-completeness.md", "docs/decisions/ADR-004-root-policy-and-limits.md"]
+    },
+    {
+      "id": "implementation-artifacts",
+      "requirement": "Private library, CLI, parser boundary, graph/query stages, and tests",
+      "status": "verified_bounded",
+      "evidence": ["package.json", "src/", "bin/", "test/"]
+    },
+    {
+      "id": "automation-artifact",
+      "requirement": "Least-privilege CI workflow",
+      "status": "implemented_host_unverified",
+      "evidence": [".github/workflows/ci.yml", "TASK.md"],
+      "gap": "No hosted workflow run is retained."
+    },
+    {
+      "id": "security-release-artifacts",
+      "requirement": "Security, release, compatibility, changelog, and audit evidence",
+      "status": "partial_bounded",
+      "evidence": ["SECURITY.md", "RELEASE.md", "CHANGELOG.md", "docs/compatibility/node-v25.2.1-win32-x64.json", "docs/audits/release-security-parity-v0.1.json", "docs/audits/prompt-to-artifact-v0.1.json"],
+      "gap": "The release checklist remains open by design."
+    },
+    {
+      "id": "required-checks",
+      "requirement": "Focused, broader, artifact/consumer, security, compatibility, and release gates",
+      "status": "partial",
+      "evidence": ["TEST_PLAN.md", "RELEASE.md", "PROGRESS.md"],
+      "passed_or_recorded": ["79 bounded Node tests at the audited baseline", "schema and fixture checks", "package dry-run", "offline packed-artifact consumer smoke", "private import/CLI smoke", "bounded Node host evidence", "local release/security/parity audit"],
+      "missing": ["full parser/runtime tests", "hosted CI run", "cross-engine compatibility", "public release gates"]
+    }
+  ],
+  "verification_readback": {
+    "current_read_only_checks": [
+      "git status/log/branch/tag inspection",
+      "Core SSOT and repository-guidance inspection",
+      "bounded source, caller, schema, test, dependency, CI, security, and release surface inspection",
+      "repository tree and tracked-file inspection"
+    ],
+    "retained_checks_not_rerun": [
+      "npm test at the audited baseline: 79 passed, 0 failed",
+      "JavaScript syntax, JSON, fixture, Markdown-link, prompt-length, package, and diff checks",
+      "npm pack --dry-run and offline packed-artifact consumer smoke"
+    ],
+    "prohibited_or_unavailable": [
+      "CFML, JavaScript, SQL, shell, application, browser, database, network, or runtime application execution",
+      "hosted CI execution",
+      "Lucee/Adobe ColdFusion and broader platform compatibility"
+    ],
+    "interpretation": "Retained passing checks support bounded historical evidence; they do not prove the incomplete full product or a release."
+  },
+  "blockers": [
+    {
+      "id": "undefined-reserved-tasks",
+      "impact": "No defensible implementation scope can be selected for T-037–T-039.",
+      "evidence": ["TASK.md", "PROGRESS.md"],
+      "unblock": "Provide executable definitions and acceptance criteria."
+    },
+    {
+      "id": "full-parser",
+      "impact": "Full-language grammar and broader resolver claims cannot be made.",
+      "evidence": ["DESIGN.md", "SPEC.md", "PROGRESS.md"],
+      "unblock": "Approve and verify a parser backend/grammar."
+    },
+    {
+      "id": "library-budgets",
+      "impact": "The configured library serialized-output and wall-time contract remains open.",
+      "evidence": ["SPEC.md", "DESIGN.md", "SECURITY.md", "RELEASE.md"],
+      "unblock": "Define the contract and authorize implementation/tests."
+    },
+    {
+      "id": "release-environments",
+      "impact": "Hosted CI, broader compatibility, public packaging, and release evidence remain unavailable.",
+      "evidence": [".github/workflows/ci.yml", "RELEASE.md", "docs/compatibility/node-v25.2.1-win32-x64.json"],
+      "unblock": "Provide approved hosted/environment/release evidence and authorization."
+    }
+  ],
+  "decision": {
+    "status": "not_achieved",
+    "reason": "The audit finds a verified bounded implementation and documentation baseline, but missing full parser/resolver coverage, library output/time enforcement, hosted CI evidence, broader compatibility, public packaging, and release gates.",
+    "resume_point": "T-037–T-039 remain reserved without executable definitions; no further implementation is authorized without new acceptance criteria or an approved dependency/environment."
+  }
+}

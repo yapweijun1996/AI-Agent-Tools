@@ -1,0 +1,79 @@
+{
+  "name": "agent-symbol-search",
+  "version": "0.1.2",
+  "description": "Deterministic, local-first, read-only symbol navigation for AI coding agents.",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0 || ^25.0.0 || ^26.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/symbol-search"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/symbol-search#readme",
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "keywords": [
+    "symbol-search",
+    "typescript",
+    "code-navigation",
+    "ai-coding-agents",
+    "static-analysis",
+    "developer-tools"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agent-symbol-search": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "README.md",
+    "DESIGN.md",
+    "SPEC.md",
+    "CHANGELOG.md",
+    "BENCHMARK.md",
+    "skills",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "node scripts/lint.mjs",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test --test-concurrency=1 \"dist-test/test/**/*.test.js\"",
+    "coverage": "npm run build && tsc -p tsconfig.test.json && node --experimental-test-coverage --test-concurrency=1 --test-coverage-include=dist-test/src/**/*.js --test-coverage-exclude=dist-test/test/** --test-coverage-lines=85 --test-coverage-functions=80 --test-coverage-branches=75 --test \"dist-test/test/**/*.test.js\"",
+    "schema:check": "npm run build && node scripts/schema-check.mjs",
+    "verify": "npm run lint && npm run typecheck && npm run test",
+    "smoke:pack": "node scripts/smoke-pack.mjs",
+    "capability:check": "npm run build && node scripts/capability-check.mjs",
+    "benchmark:check": "npm run build && node scripts/benchmark.mjs --check",
+    "docs:check": "npm run build && node scripts/docs-check.mjs",
+    "release:check": "npm run verify && npm run coverage && npm run smoke:pack && npm run capability:check && npm run benchmark:check && npm run docs:check",
+    "prepublishOnly": "npm run release:check"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ignore": "7.0.5",
+    "minimatch": "10.2.6",
+    "typescript": "5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10"
+  }
+}

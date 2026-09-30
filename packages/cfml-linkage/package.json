@@ -1,0 +1,32 @@
+{
+  "name": "agent-cfml-linkage",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CFML-first static linkage evidence provider foundation",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "agent-cfml-linkage": "bin/agent-cfml-linkage.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "optionalDependencies": {
+    "@cfmleditor/tree-sitter-cfml": "0.26.2",
+    "tree-sitter": "0.25.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/cfml-linkage"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-linkage#readme"
+}

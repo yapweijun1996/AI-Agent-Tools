@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "toolVersion": "0.1.2",
+  "status": "error",
+  "project": {
+    "root": ".",
+    "name": null,
+    "kind": "unknown",
+    "repository": { "kind": "unknown", "evidence": [] },
+    "evidence": []
+  },
+  "ecosystems": [],
+  "packageManager": {
+    "name": null,
+    "version": null,
+    "confidence": "unknown",
+    "invocationAvailable": false,
+    "evidence": []
+  },
+  "runtimes": [],
+  "workspace": {
+    "enabled": null,
+    "manager": null,
+    "declarations": [],
+    "packages": [],
+    "total": null,
+    "returned": 0,
+    "truncated": false
+  },
+  "commands": {
+    "build": [],
+    "test": [],
+    "lint": [],
+    "typecheck": [],
+    "dev": [],
+    "start": [],
+    "format": []
+  },
+  "scripts": [],
+  "entrypoints": [],
+  "configs": [],
+  "instructions": [],
+  "ci": [],
+  "evidence": [],
+  "warnings": [
+    {
+      "code": "ROOT_UNREADABLE",
+      "severity": "error",
+      "message": "The selected inspection root is not readable.",
+      "path": null,
+      "evidence": []
+    }
+  ],
+  "coverage": {
+    "status": "partial",
+    "strategies": [],
+    "budgets": {
+      "workspacePackages": 100,
+      "directoryDepth": 12,
+      "directoryEntries": 10000,
+      "metadataFiles": 1000,
+      "metadataFileBytes": 262144,
+      "metadataTotalBytes": 8388608,
+      "outputBytes": 1048576,
+      "sourceStringBytes": 4096
+    },
+    "usage": { "directoryEntries": 0, "metadataFiles": 0, "metadataBytes": 0 },
+    "categories": {
+      "repository": "partial",
+      "ecosystems": "partial",
+      "packageManager": "not_applicable",
+      "runtimes": "not_applicable",
+      "workspace": "not_applicable",
+      "commands": "not_applicable",
+      "scripts": "not_applicable",
+      "entrypoints": "not_applicable",
+      "configs": "partial",
+      "instructions": "partial",
+      "ci": "partial"
+    },
+    "truncated": {
+      "workspace": false,
+      "output": false,
+      "directoryEntries": false,
+      "metadataFiles": false,
+      "metadataBytes": false,
+      "depth": false
+    }
+  }
+}

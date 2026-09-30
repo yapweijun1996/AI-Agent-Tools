@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1",
+  "status": "partial",
+  "producerOutcome": {
+    "command": "vitest run",
+    "exitCode": 1,
+    "signal": null
+  },
+  "data": {
+    "producers": [
+      {
+        "id": "generic-text",
+        "name": "generic-text",
+        "version": null,
+        "evidence": [
+          {
+            "artifactId": "stdout",
+            "kind": "log-span",
+            "start": 0,
+            "end": 18,
+            "offsetUnit": "utf16-code-unit"
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "id": "diag_7b7fd31c369189dede7df67304d7cfc07c147d28611ead617d9d2d8c21df38ae",
+        "severity": "unknown",
+        "phase": "unknown",
+        "message": "verification output was truncated",
+        "code": null,
+        "location": null,
+        "producerId": "generic-text",
+        "confidence": "unknown",
+        "evidence": [
+          {
+            "artifactId": "stdout",
+            "kind": "log-span",
+            "start": 0,
+            "end": 18,
+            "offsetUnit": "utf16-code-unit"
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "diagnosticCount": 1,
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "unknownCount": 1,
+      "producerCount": 1
+    }
+  },
+  "toolIssues": [],
+  "warnings": [],
+  "truncation": {
+    "truncated": true,
+    "reasons": [
+      "diagnostics"
+    ]
+  },
+  "stats": {
+    "artifactsReceived": 1,
+    "artifactsProcessed": 1,
+    "bytesReceived": 18,
+    "bytesProcessed": 18,
+    "linesProcessed": 1,
+    "parserMatches": 1,
+    "terminalSequences": 0,
+    "producerCandidates": 1,
+    "evidenceBytes": 18,
+    "diagnosticsBeforeLimit": 1
+  }
+}

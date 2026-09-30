@@ -1,0 +1,14 @@
+{
+  "schema_version": "agent-cfml-linkage-negative-fixtures/v0.1",
+  "source_execution": false,
+  "cases": [
+    {
+      "input": "page.cfm",
+      "expected_unresolved": [
+        { "expression": "Order", "relation_type": "INSTANTIATES", "reason": "AMBIGUOUS_COMPONENT" },
+        { "expression": "app.Order", "relation_type": "INSTANTIATES", "reason": "AMBIGUOUS_COMPONENT" },
+        { "expression": "../outside.cfm", "relation_type": "INCLUDES", "reason": "OUTSIDE_ROOT" }
+      ]
+    }
+  ]
+}

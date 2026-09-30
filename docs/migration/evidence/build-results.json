@@ -1,0 +1,65 @@
+{
+  "node": "v22.23.3",
+  "results": [
+    {
+      "package": "agent-cfml-check",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-linkage",
+      "action": "build",
+      "status": "not-applicable",
+      "reason": "No build script in source package"
+    },
+    {
+      "package": "agent-cfml-policy-check",
+      "action": "build",
+      "status": "not-applicable",
+      "reason": "No build script in source package"
+    },
+    {
+      "package": "agent-change-impact",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-code-slice",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-error-lens",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-project-profile",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "ai-agent-tool-project-tree",
+      "action": "build",
+      "status": "not-applicable",
+      "reason": "No build script in source package"
+    },
+    {
+      "package": "agent-symbol-search",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-test-scope",
+      "action": "build",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ]
+}

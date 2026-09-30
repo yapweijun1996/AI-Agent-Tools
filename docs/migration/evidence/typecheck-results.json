@@ -1,0 +1,65 @@
+{
+  "node": "v22.23.3",
+  "results": [
+    {
+      "package": "agent-cfml-check",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-linkage",
+      "action": "typecheck",
+      "status": "not-applicable",
+      "reason": "No typecheck script in source package"
+    },
+    {
+      "package": "agent-cfml-policy-check",
+      "action": "typecheck",
+      "status": "not-applicable",
+      "reason": "No typecheck script in source package"
+    },
+    {
+      "package": "agent-change-impact",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-code-slice",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-error-lens",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-project-profile",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "ai-agent-tool-project-tree",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-symbol-search",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-test-scope",
+      "action": "typecheck",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ]
+}

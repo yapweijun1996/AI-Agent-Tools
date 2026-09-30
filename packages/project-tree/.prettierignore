@@ -1,0 +1,3 @@
+docs/
+schemas/*.json
+package-lock.json

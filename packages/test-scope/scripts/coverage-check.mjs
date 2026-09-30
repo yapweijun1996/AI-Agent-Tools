@@ -1,0 +1,20 @@
+import assert from "node:assert/strict";
+import { readdirSync } from "node:fs";
+import { resolve } from "node:path";
+import { spawnSync } from "node:child_process";
+
+const root = resolve(new URL("..", import.meta.url).pathname);
+const tests = readdirSync(resolve(root, "test")).filter(file => file.endsWith(".test.mjs")).sort().map(file => `test/${file}`);
+const result = spawnSync(process.execPath, ["--experimental-test-coverage", "--test", ...tests], { cwd: root, encoding: "utf8" });
+process.stdout.write(result.stdout ?? "");
+process.stderr.write(result.stderr ?? "");
+assert.equal(result.status, 0, "test process failed during coverage run");
+const match = (result.stdout ?? "").match(/all files\s+\|\s+([\d.]+)\s+\|\s+([\d.]+)\s+\|\s+([\d.]+)/);
+assert.ok(match, "Node coverage summary was not found");
+const lines = Number(match[1]);
+const branches = Number(match[2]);
+const functions = Number(match[3]);
+assert.ok(lines >= 85, `line coverage ${lines} is below 85%`);
+assert.ok(functions >= 80, `function coverage ${functions} is below 80%`);
+assert.ok(branches >= 75, `branch coverage ${branches} is below 75%`);
+console.log(`Coverage gate passed: lines ${lines}%, branches ${branches}%, functions ${functions}%`);

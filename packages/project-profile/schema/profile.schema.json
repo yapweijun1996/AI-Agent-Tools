@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-agent-tools.invalid/agent-project-profile/profile-1.0.schema.json",
+  "title": "agent-project-profile V1 profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "toolVersion",
+    "status",
+    "project",
+    "ecosystems",
+    "packageManager",
+    "runtimes",
+    "workspace",
+    "commands",
+    "scripts",
+    "entrypoints",
+    "configs",
+    "instructions",
+    "ci",
+    "evidence",
+    "warnings",
+    "coverage"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "toolVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "enum": ["complete", "partial", "unsupported", "error"] },
+    "project": { "$ref": "#/$defs/project" },
+    "ecosystems": { "type": "array", "items": { "$ref": "#/$defs/ecosystem" } },
+    "packageManager": { "$ref": "#/$defs/packageManager" },
+    "runtimes": { "type": "array", "items": { "$ref": "#/$defs/runtime" } },
+    "workspace": { "$ref": "#/$defs/workspace" },
+    "commands": { "$ref": "#/$defs/commands" },
+    "scripts": { "type": "array", "items": { "$ref": "#/$defs/scripts" } },
+    "entrypoints": { "type": "array", "items": { "$ref": "#/$defs/entrypoint" } },
+    "configs": { "type": "array", "items": { "$ref": "#/$defs/config" } },
+    "instructions": { "type": "array", "items": { "$ref": "#/$defs/instruction" } },
+    "ci": { "type": "array", "items": { "$ref": "#/$defs/ci" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "warnings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+    "coverage": { "$ref": "#/$defs/coverage" }
+  },
+  "$defs": {
+    "confidence": { "enum": ["confirmed", "strong", "weak", "unknown"] },
+    "evidenceRef": { "type": "array", "items": { "type": "string", "pattern": "^ev-[0-9]{6}$" } },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "path"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^ev-[0-9]{6}$" },
+        "kind": { "enum": ["manifest", "file"] },
+        "path": { "type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)" },
+        "pointer": { "type": "string" }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "name", "kind", "repository", "evidence"],
+      "properties": {
+        "root": { "const": "." },
+        "name": { "type": ["string", "null"] },
+        "kind": { "enum": ["single-package", "workspace", "unknown"] },
+        "repository": { "$ref": "#/$defs/repository" },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "evidence"],
+      "properties": {
+        "kind": { "enum": ["git-marker", "unknown"] },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "ecosystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "support", "evidence"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "support": { "enum": ["first-class", "detected_only"] },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "packageManager": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "confidence", "invocationAvailable", "evidence"],
+      "properties": {
+        "name": { "enum": ["npm", "pnpm", "yarn", null] },
+        "version": { "type": ["string", "null"] },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "invocationAvailable": { "type": "boolean" },
+        "evidence": { "$ref": "#/$defs/evidenceRef" },
+        "inherited": { "type": "boolean" }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "cwd", "value", "role", "confidence", "evidence"],
+      "properties": {
+        "name": { "const": "node" },
+        "cwd": { "type": "string", "minLength": 1 },
+        "value": { "type": ["string", "null"] },
+        "role": { "enum": ["supported-constraint", "development-pin"] },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "workspaceDeclaration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manager", "path", "pointer", "evidence"],
+      "properties": {
+        "manager": { "enum": ["npm", "pnpm", "yarn", null] },
+        "path": { "type": "string", "minLength": 1 },
+        "pointer": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "workspacePackage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "path", "packageManager", "evidence"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "path": { "type": "string", "minLength": 1 },
+        "packageManager": { "$ref": "#/$defs/packageManager" },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "workspace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "manager", "declarations", "packages", "total", "returned", "truncated"],
+      "properties": {
+        "enabled": { "type": ["boolean", "null"] },
+        "manager": { "enum": ["npm", "pnpm", "yarn", null] },
+        "declarations": { "type": "array", "items": { "$ref": "#/$defs/workspaceDeclaration" } },
+        "packages": { "type": "array", "items": { "$ref": "#/$defs/workspacePackage" } },
+        "total": { "type": ["integer", "null"], "minimum": 0 },
+        "returned": { "type": "integer", "minimum": 0 },
+        "truncated": { "type": "boolean" }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cwd", "script", "argv", "source", "confidence", "declaredByProject", "execution", "evidence"],
+      "properties": {
+        "cwd": { "type": "string", "minLength": 1 },
+        "script": { "type": "string", "minLength": 1 },
+        "argv": { "type": ["array", "null"], "items": { "type": "string", "minLength": 1 } },
+        "source": { "type": "string", "minLength": 1 },
+        "confidence": { "const": "confirmed" },
+        "declaredByProject": { "const": true },
+        "execution": { "const": "not_run" },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["build", "test", "lint", "typecheck", "dev", "start", "format"],
+      "properties": {
+        "build": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "test": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "lint": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "typecheck": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "dev": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "start": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+        "format": { "type": "array", "items": { "$ref": "#/$defs/command" } }
+      }
+    },
+    "scripts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cwd", "names", "evidence"],
+      "properties": {
+        "cwd": { "type": "string", "minLength": 1 },
+        "names": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "entrypoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cwd", "kind", "path", "pointer", "evidence", "existence"],
+      "properties": {
+        "cwd": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["main", "module", "bin", "export"] },
+        "path": { "type": ["string", "null"] },
+        "pointer": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidenceRef" },
+        "existence": { "enum": ["present", "missing", "not_checked"] }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "path", "evidence"],
+      "properties": {
+        "type": { "enum": ["tsconfig", "vite", "vitest", "jest", "eslint", "prettier", "turbo", "nx", "webpack", "rollup"] },
+        "path": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "instruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "path", "scope", "evidence"],
+      "properties": {
+        "type": { "enum": ["AGENTS.md", "CLAUDE.md", "copilot-instructions.md"] },
+        "path": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "ci": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "path", "evidence"],
+      "properties": {
+        "provider": { "enum": ["github-actions", "gitlab", "jenkins", "circleci", "azure"] },
+        "path": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "message", "path", "evidence"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "message": { "type": "string", "minLength": 1, "maxLength": 4096 },
+        "path": { "type": ["string", "null"] },
+        "evidence": { "$ref": "#/$defs/evidenceRef" }
+      }
+    },
+    "coverageState": { "enum": ["complete", "partial", "not_applicable"] },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "strategies", "budgets", "usage", "categories", "truncated"],
+      "properties": {
+        "status": { "enum": ["complete", "partial"] },
+        "strategies": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "budgets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["workspacePackages", "directoryDepth", "directoryEntries", "metadataFiles", "metadataFileBytes", "metadataTotalBytes", "outputBytes", "sourceStringBytes"],
+          "properties": {
+            "workspacePackages": { "const": 100 },
+            "directoryDepth": { "const": 12 },
+            "directoryEntries": { "const": 10000 },
+            "metadataFiles": { "const": 1000 },
+            "metadataFileBytes": { "const": 262144 },
+            "metadataTotalBytes": { "const": 8388608 },
+            "outputBytes": { "const": 1048576 },
+            "sourceStringBytes": { "const": 4096 }
+          }
+        },
+        "usage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["directoryEntries", "metadataFiles", "metadataBytes"],
+          "properties": {
+            "directoryEntries": { "type": "integer", "minimum": 0 },
+            "metadataFiles": { "type": "integer", "minimum": 0 },
+            "metadataBytes": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "categories": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["repository", "ecosystems", "packageManager", "runtimes", "workspace", "commands", "scripts", "entrypoints", "configs", "instructions", "ci"],
+          "properties": {
+            "repository": { "$ref": "#/$defs/coverageState" },
+            "ecosystems": { "$ref": "#/$defs/coverageState" },
+            "packageManager": { "$ref": "#/$defs/coverageState" },
+            "runtimes": { "$ref": "#/$defs/coverageState" },
+            "workspace": { "$ref": "#/$defs/coverageState" },
+            "commands": { "$ref": "#/$defs/coverageState" },
+            "scripts": { "$ref": "#/$defs/coverageState" },
+            "entrypoints": { "$ref": "#/$defs/coverageState" },
+            "configs": { "$ref": "#/$defs/coverageState" },
+            "instructions": { "$ref": "#/$defs/coverageState" },
+            "ci": { "$ref": "#/$defs/coverageState" }
+          }
+        },
+        "truncated": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["workspace", "output", "directoryEntries", "metadataFiles", "metadataBytes", "depth"],
+          "properties": {
+            "workspace": { "type": "boolean" },
+            "output": { "type": "boolean" },
+            "directoryEntries": { "type": "boolean" },
+            "metadataFiles": { "type": "boolean" },
+            "metadataBytes": { "type": "boolean" },
+            "depth": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

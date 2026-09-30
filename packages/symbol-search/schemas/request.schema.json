@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-symbol-search.dev/schema/request-v1.json",
+  "title": "agent-symbol-search request",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/capabilitiesRequest"
+    },
+    {
+      "$ref": "#/$defs/searchRequest"
+    },
+    {
+      "$ref": "#/$defs/definitionRequest"
+    },
+    {
+      "$ref": "#/$defs/referencesRequest"
+    },
+    {
+      "$ref": "#/$defs/implementationsRequest"
+    },
+    {
+      "$ref": "#/$defs/symbolsRequest"
+    }
+  ],
+  "$defs": {
+    "root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "line", "column"],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "column": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "capabilitiesRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "root"],
+      "properties": {
+        "operation": {
+          "const": "capabilities"
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        }
+      }
+    },
+    "searchRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "root", "symbol"],
+      "properties": {
+        "operation": {
+          "const": "search"
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "symbol": {
+          "$ref": "#/$defs/symbol"
+        },
+        "match": {
+          "enum": ["exact", "prefix", "substring"]
+        },
+        "project": {
+          "$ref": "#/$defs/project"
+        },
+        "limit": {
+          "$ref": "#/$defs/limit"
+        },
+        "include": {
+          "$ref": "#/$defs/patterns"
+        },
+        "exclude": {
+          "$ref": "#/$defs/patterns"
+        }
+      }
+    },
+    "semanticCommon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "root", "symbol"],
+      "properties": {
+        "operation": {
+          "enum": ["definition", "references", "implementations"]
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "symbol": {
+          "$ref": "#/$defs/symbol"
+        },
+        "from": {
+          "$ref": "#/$defs/from"
+        },
+        "project": {
+          "$ref": "#/$defs/project"
+        },
+        "limit": {
+          "$ref": "#/$defs/limit"
+        },
+        "include": {
+          "$ref": "#/$defs/patterns"
+        },
+        "exclude": {
+          "$ref": "#/$defs/patterns"
+        }
+      }
+    },
+    "definitionRequest": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/semanticCommon"
+        },
+        {
+          "properties": {
+            "operation": {
+              "const": "definition"
+            }
+          }
+        }
+      ]
+    },
+    "referencesRequest": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/semanticCommon"
+        },
+        {
+          "properties": {
+            "operation": {
+              "const": "references"
+            }
+          }
+        }
+      ]
+    },
+    "implementationsRequest": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/semanticCommon"
+        },
+        {
+          "properties": {
+            "operation": {
+              "const": "implementations"
+            }
+          }
+        }
+      ]
+    },
+    "symbolsRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "root", "path"],
+      "properties": {
+        "operation": {
+          "const": "symbols"
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "project": {
+          "$ref": "#/$defs/project"
+        },
+        "limit": {
+          "$ref": "#/$defs/limit"
+        },
+        "include": {
+          "$ref": "#/$defs/patterns"
+        },
+        "exclude": {
+          "$ref": "#/$defs/patterns"
+        }
+      }
+    }
+  }
+}

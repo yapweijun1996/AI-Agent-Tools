@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-symbol-search.dev/schema/result-v1.json",
+  "title": "agent-symbol-search result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "status", "data", "diagnostics", "truncation", "stats"],
+  "properties": {
+    "schemaVersion": {
+      "const": "1"
+    },
+    "status": {
+      "enum": ["complete", "partial", "error"]
+    },
+    "data": {
+      "type": "object",
+      "required": ["matches"],
+      "properties": {
+        "matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/match"
+          }
+        },
+        "ambiguous": {
+          "type": "boolean"
+        },
+        "capabilities": {
+          "$ref": "#/$defs/capabilities"
+        }
+      },
+      "additionalProperties": true
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    },
+    "truncation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["truncated", "reasons"],
+      "properties": {
+        "truncated": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/failureCode"
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "filesScanned": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bytesParsed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "matches": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "compilerVersion": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["line", "column"],
+      "properties": {
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "column": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/position"
+        },
+        "end": {
+          "$ref": "#/$defs/position"
+        }
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "symbolId",
+        "name",
+        "qualifiedName",
+        "kind",
+        "relation",
+        "language",
+        "path",
+        "range",
+        "resolver",
+        "confidence"
+      ],
+      "properties": {
+        "symbolId": {
+          "type": "string",
+          "pattern": "^sha256-v1:[a-f0-9]{64}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qualifiedName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "module",
+            "namespace",
+            "class",
+            "interface",
+            "type",
+            "enum",
+            "function",
+            "method",
+            "constructor",
+            "variable",
+            "constant",
+            "property",
+            "field",
+            "component",
+            "parameter",
+            "unknown"
+          ]
+        },
+        "relation": {
+          "enum": [
+            "definition",
+            "declaration",
+            "reference",
+            "import_alias",
+            "implementation",
+            "inheritance"
+          ]
+        },
+        "language": {
+          "const": "typescript"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^(?!/)(?![A-Za-z]:[/\\\\])[^\\\\]*$"
+        },
+        "range": {
+          "$ref": "#/$defs/range"
+        },
+        "nameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "container": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolver": {
+          "const": "typescript-semantic"
+        },
+        "confidence": {
+          "enum": ["confirmed", "strong", "candidate", "unknown"]
+        },
+        "exported": {
+          "type": "boolean"
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "severity"],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/failureCode"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "enum": ["error", "warning", "info"]
+        },
+        "path": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "failureCode": {
+      "enum": [
+        "SYMBOL_NOT_FOUND",
+        "AMBIGUOUS_SYMBOL",
+        "UNSUPPORTED_LANGUAGE",
+        "UNSUPPORTED_OPERATION",
+        "SEMANTIC_RESOLUTION_UNAVAILABLE",
+        "PARSE_ERROR",
+        "INVALID_ROOT",
+        "PATH_OUTSIDE_ROOT",
+        "MAX_FILES_REACHED",
+        "MAX_BYTES_REACHED",
+        "MAX_RESULTS_REACHED",
+        "TIMEOUT",
+        "INVALID_REQUEST"
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "required": ["schemaVersion", "languages"],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1"
+        },
+        "languages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/languageCapability"
+          }
+        }
+      }
+    },
+    "languageCapability": {
+      "type": "object",
+      "required": ["operations", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "operations": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": ["full", "partial", "candidate", "unsupported", "proposed"]
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

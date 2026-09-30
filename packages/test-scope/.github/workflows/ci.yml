@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20.x', '22.x']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          package-manager-cache: false
+      - name: Install locked development dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify
+        run: npm run verify
+      - name: Coverage
+        # Node 20.x has a known built-in test coverage regression with source maps; enforce coverage on Node 22.x while keeping verification on Node 20.x.
+        if: matrix.node-version == '22.x'
+        run: npm run coverage
+      - name: Contract and release checks
+        run: |
+          npm run schema:check
+          npm run capability:check
+          npm run smoke:pack
+          npm run benchmark:check
+          npm run docs:check
+          npm run release:check

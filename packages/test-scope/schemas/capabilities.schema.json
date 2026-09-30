@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/schemas/capabilities.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "languages", "frameworks", "operations", "confidence", "risk", "limits", "readOnly", "network", "execution"],
+  "properties": {
+    "schemaVersion": { "const": "1" },
+    "languages": { "type": "array", "items": { "enum": ["javascript", "typescript", "jsx", "tsx"] } },
+    "frameworks": { "type": "array", "items": { "enum": ["vitest", "jest", "node"] } },
+    "operations": { "type": "array", "items": { "enum": ["capabilities", "discover", "plan", "explain"] } },
+    "confidence": { "type": "array", "items": { "enum": ["confirmed", "strong", "candidate", "unknown"] } },
+    "risk": { "type": "array", "items": { "enum": ["low", "medium", "high", "critical", "unknown"] } },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxDiscoveredFiles", "maxTestCandidates", "maxReturnedTests", "maxSingleFileBytes", "maxParsedBytes", "timeoutMs"],
+      "properties": {
+        "maxDiscoveredFiles": { "type": "integer", "minimum": 1 },
+        "maxTestCandidates": { "type": "integer", "minimum": 1 },
+        "maxReturnedTests": { "type": "integer", "minimum": 1 },
+        "maxSingleFileBytes": { "type": "integer", "minimum": 1 },
+        "maxParsedBytes": { "type": "integer", "minimum": 1 },
+        "timeoutMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "readOnly": { "const": true },
+    "network": { "const": "disabled" },
+    "execution": { "const": "disabled" }
+  }
+}
