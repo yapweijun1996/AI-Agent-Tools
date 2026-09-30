@@ -34,3 +34,4 @@ jobs:
         with:
           name: verification-${{ matrix.os }}-node${{ matrix.node }}
           path: .cache/*-results.json
+          include-hidden-files: true

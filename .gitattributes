@@ -1,2 +1,3 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Keep source coverage hashes and frozen fixtures stable on all checkout platforms.
+* text=auto eol=lf
+*.wasm binary
