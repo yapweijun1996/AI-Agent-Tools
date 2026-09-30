@@ -18,3 +18,10 @@ Source versions below come from imported manifests. They are not claims of publi
 Build before invoking TypeScript-backed binaries. Run package tests with `npm --prefix packages/TOOL test`. JS API entrypoints and `exports` remain as originally declared. Each package directory retains its schemas, fixtures, skills, docs and local guidance.
 
 There are no mandatory inter-tool source dependencies. Dependencies resolve within each package from its own lockfile. If a future inter-tool dependency is required, declare an exact compatible published package version or explicitly reviewed local link; do not silently rewrite native imports. Versions remain independent. Tag future releases with `package-name/vX.Y.Z` after explicit publication approval. Historical unprefixed tags remain in local recovery bundles.
+
+## New native monorepo tools
+
+| Package | CLI | Registry | Status |
+|---|---|---|---|
+| [ai-agent-tool-environment-doctor](packages/environment-doctor/README.md) | agent-env-doctor | agent-environment-doctor | Experimental, private source |
+| [agent-contract-check](packages/contract-check/README.md) | agent-contract-check | agent-contract-diff | Experimental, private source |

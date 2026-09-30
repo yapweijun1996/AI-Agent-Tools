@@ -479,3 +479,7 @@ and future integration work.
 ## V-32: Owned source consolidation — 2026-09-30
 
 [Migration verification](docs/migration/VERIFICATION.md) records all ten imported heads and hash coverage, 409 passing Node tests plus 7 Python tests, package checks, license preservation and limits. This source import does not promote Hub conformance or imply new npm releases. Older source/CI/npm observations above remain dated snapshots.
+
+## Environment Doctor and Contract Check MVPs (2026-09-30)
+
+See [scoped verification](docs/mvp/VERIFICATION.md) for checks, limits and platform CI scope. These packages remain private and unpublished; exact-head CI evidence is tracked in their draft PR.

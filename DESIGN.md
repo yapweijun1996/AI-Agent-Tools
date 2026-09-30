@@ -91,3 +91,7 @@ private prototype source, native schema and tests are imported; public release a
 ## D-18: Owner-authorized source consolidation
 
 [Decision and rollback](docs/migration/DECISION.md) supersede the D-01 source-location restriction and D-08 maturity gate for this migration only. Shared implementation libraries still require separate review.
+
+## Source MVP design additions (2026-09-30)
+
+Two independent ESM packages use source execution, declaration consumer checks and frozen regression fixtures. Doctor uses semver for npm range semantics. Contract Check has no runtime dependency and isolates regex sample evaluation in a bounded subprocess. No shared SDK/framework was introduced. See package READMEs for privacy boundaries and limits.

@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bounded JSON Schema input; source validation adds subset/budget checks",
+  "anyOf": [
+    {
+      "type": "boolean"
+    },
+    {
+      "type": "object"
+    }
+  ]
+}

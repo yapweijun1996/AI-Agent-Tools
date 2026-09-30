@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "tool",
+    "operation",
+    "status",
+    "complete",
+    "data",
+    "diagnostics"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "tool": {
+      "const": "agent-contract-check"
+    },
+    "operation": {
+      "enum": [
+        "capabilities",
+        "compare"
+      ]
+    },
+    "status": {
+      "enum": [
+        "compatible",
+        "potential-breaking",
+        "unknown",
+        "error"
+      ]
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "direction",
+            "sources",
+            "changes"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "direction": {
+              "type": "string"
+            },
+            "sources": {
+              "type": "object",
+              "required": [
+                "before",
+                "after"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "before": {
+                  "type": "string"
+                },
+                "after": {
+                  "type": "string"
+                }
+              }
+            },
+            "changes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "pointer",
+                  "keyword",
+                  "classification",
+                  "before",
+                  "after",
+                  "reason"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "pointer": {
+                    "type": "string"
+                  },
+                  "keyword": {
+                    "type": "string"
+                  },
+                  "classification": {
+                    "enum": [
+                      "compatible",
+                      "potential-breaking",
+                      "unknown"
+                    ]
+                  },
+                  "before": {},
+                  "after": {},
+                  "reason": {
+                    "type": "string"
+                  },
+                  "samples": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "sampleEvidence": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "operations",
+            "limits"
+          ],
+          "properties": {
+            "operations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "limits": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}
