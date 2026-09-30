@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import { realpathSync } from "node:fs";
 import {
   capabilities,
   compareContracts,
@@ -89,5 +90,8 @@ export function runCli(args = process.argv.slice(2)) {
   );
   return exitCode(JSON.parse(output));
 }
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
+if (
+  process.argv[1] &&
+  fileURLToPath(import.meta.url) === realpathSync(process.argv[1])
+)
   process.exitCode = runCli();

@@ -23,7 +23,6 @@ try {
     "--prefix",
     dir,
     join(dir, packed[0].filename),
-    "--offline",
     "--ignore-scripts",
     "--no-audit",
     "--no-fund",
@@ -48,6 +47,17 @@ try {
   );
   if (caps.schemaVersion !== "1.0" || !caps.complete)
     throw new Error("Invalid packed capabilities");
+  if (process.platform !== "win32") {
+    const cli = Object.keys(manifest.bin)[0];
+    const linked = JSON.parse(
+      run(process.execPath, [
+        join(dir, "node_modules/.bin", cli),
+        "capabilities",
+        "--json",
+      ]),
+    );
+    if (!linked.complete) throw new Error("Linked packed CLI failed");
+  }
   const doctor = manifest.name === "ai-agent-tool-environment-doctor";
   const args = doctor
     ? [

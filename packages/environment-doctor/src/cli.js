@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { fileURLToPath } from "node:url";
+import { realpathSync } from "node:fs";
 import path from "node:path";
 import {
   capabilities,
@@ -110,7 +111,7 @@ export function runCli(args) {
 }
 if (
   process.argv[1] &&
-  path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+  realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
   const out = runCli(process.argv.slice(2));
   process.stdout.write(out.stdout);
