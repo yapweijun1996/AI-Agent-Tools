@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "profile": "ui-regression-v1",
+  "asOf": "2026-09-30T12:00:00Z",
+  "maxEvidenceAgeSeconds": 3600,
+  "cases": [
+    {
+      "id": "mobile-390",
+      "producer": "synthetic-fixture",
+      "observedAt": "2026-09-30T11:59:00Z",
+      "required": [
+        "overflow",
+        "overlap",
+        "focus",
+        "back"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "scrollWidth": 430
+      },
+      "rectangles": [
+        {
+          "id": "save",
+          "x": 16,
+          "y": 700,
+          "width": 170,
+          "height": 44,
+          "visible": true
+        },
+        {
+          "id": "cancel",
+          "x": 160,
+          "y": 700,
+          "width": 170,
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "pairs": [
+        {
+          "id": "footer-buttons",
+          "first": "save",
+          "second": "cancel",
+          "allowOverlap": false
+        }
+      ],
+      "focus": {
+        "expected": [
+          "save",
+          "cancel"
+        ],
+        "observed": [
+          "cancel",
+          "save"
+        ],
+        "complete": true
+      },
+      "back": {
+        "expectedRouteId": "list",
+        "observedRouteId": "detail",
+        "outcome": "settled",
+        "complete": true
+      }
+    }
+  ]
+}

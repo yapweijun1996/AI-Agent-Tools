@@ -1,3 +1,9 @@
+# Implemented UI profile — 2026-09-30
+
+The existing registry responsibility now has an Experimental private source UI profile in [packages/runtime-trace](../../packages/runtime-trace/README.md). `agent-runtime-trace ui-regression-check` analyzes supplied geometry/focus/Back evidence. It does not implement the general business trace operations described in the historical design below. Package identity is `ai-agent-tool-runtime-trace`; no public npm release is claimed.
+
+---
+
 # Agent Runtime Trace
 
 Registry ID: `agent-runtime-trace`. Lifecycle: `Planned`. Design revision:

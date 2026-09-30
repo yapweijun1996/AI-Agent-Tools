@@ -1,24 +1,24 @@
 {
-  "name": "ai-agent-tool-release-guard",
+  "name": "ai-agent-tool-runtime-trace",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
-  "description": "Release Guard offline Deploy Verify evidence consistency checks.",
+  "description": "Runtime Trace offline UI regression evidence profile.",
   "engines": {
     "node": "^22.13.0 || ^24.0.0"
   },
   "bin": {
-    "agent-release-guard": "src/cli.js"
+    "agent-runtime-trace": "src/cli.js"
   },
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
       "import": "./src/index.js"
     },
-    "./collector": {
-      "types": "./types/collector.d.ts",
-      "import": "./src/collector.js"
+    "./playwright-export": {
+      "types": "./types/playwright-export.d.ts",
+      "import": "./src/playwright-export.js"
     }
   },
   "files": [
@@ -27,8 +27,7 @@
     "schema",
     "examples",
     "README.md",
-    "LICENSE",
-    "COLLECTION.md"
+    "LICENSE"
   ],
   "scripts": {
     "build": "node scripts/check.mjs",
@@ -44,7 +43,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
-    "directory": "packages/release-guard"
+    "directory": "packages/runtime-trace"
   },
   "bugs": {
     "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
