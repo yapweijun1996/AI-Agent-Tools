@@ -1,5 +1,10 @@
 # Task status
 
+## Deploy Verify — 2026-09-30
+
+Owner authorizes implementation through merge after exact-head required CI/review gates. Release Guard now owns the offline Deploy Verify profile in `packages/release-guard`; no duplicate registry entry or live deployment/publishing service is introduced. Source/local CLI installation is documented. Implementation and checks are tracked in ticket TKT-20260930-003 and the PR. Registry stays 18 entries; source now contains 13 tool folders. Original imported ten packages remain unchanged.
+
+
 ## Environment Doctor and Contract Check — 2026-09-30
 
 Implementation and local package/root verification are complete in the feature branch, awaiting draft PR review and exact-head CI evidence tracked in the PR. [Usage and limits](docs/mvp/VERIFICATION.md), [Doctor](packages/environment-doctor/README.md), [Contract Check](packages/contract-check/README.md). Both are private source MVPs, no npm publication. Contract Check implements the existing Contract Diff responsibility; registry now has 18 entries and source has 12 package folders. Existing ten packages and source provenance remain unchanged.

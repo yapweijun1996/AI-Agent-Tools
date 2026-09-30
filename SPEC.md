@@ -80,3 +80,7 @@ The owner decision of 2026-09-30 supersedes the former source-copying exclusion.
 ## Approved source MVP additions (2026-09-30)
 
 Environment Doctor and Contract Check specifications, bounded contracts, exit statuses and non-goals are authoritative in their package READMEs. They preserve existing tool contracts and do not assert universal Hub protocol conformance.
+
+## Deploy Verify (2026-09-30)
+
+Deploy Verify defines an offline evidence-consistency profile under Release Guard. Package README/input/result schemas specify bounded inputs, freshness and retry semantics, provenance and pass/fail/unknown. Installed-device update remains unknown.

@@ -55,3 +55,7 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 - [Environment Doctor implementation and usage](packages/environment-doctor/README.md)
 - [Contract Check implementation and limitations](packages/contract-check/README.md)
 - [MVP verification scope](docs/mvp/VERIFICATION.md)
+
+## Deploy Verify (2026-09-30)
+
+[Release Guard Deploy Verify usage, evidence contract and limits](packages/release-guard/README.md)

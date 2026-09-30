@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "tool",
+    "operation",
+    "status",
+    "complete",
+    "data",
+    "diagnostics"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "tool": {
+      "const": "agent-release-guard"
+    },
+    "operation": {
+      "enum": [
+        "capabilities",
+        "deploy-verify"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown",
+        "error"
+      ]
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "type": "array",
+              "maxItems": 4096,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "unknown"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "expected": {},
+                  "observed": {},
+                  "evidence": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "artifactSha256": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "pointers": {
+                        "type": "array",
+                        "maxItems": 1024,
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "artifactSha256",
+                      "pointers"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "status",
+                  "reason",
+                  "expected",
+                  "observed",
+                  "evidence"
+                ]
+              }
+            },
+            "scope": {
+              "enum": [
+                "supplied-server-evidence",
+                "supplied-server-and-browser-snapshot"
+              ]
+            },
+            "installedDeviceUpdate": {
+              "const": "unknown"
+            },
+            "summary": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "pass": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "fail": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "unknown": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "pass",
+                "fail",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "checks",
+            "scope",
+            "installedDeviceUpdate",
+            "summary"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operations": {
+              "type": "array"
+            },
+            "network": {
+              "const": false
+            },
+            "limits": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "operations",
+            "network",
+            "limits"
+          ]
+        }
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

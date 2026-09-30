@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "expected": {
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "buildId": "build-20260930",
+    "origin": "https://example.invalid",
+    "assets": [
+      {
+        "path": "/app.js",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ]
+  },
+  "policy": {
+    "asOf": "2026-09-30T12:00:00Z",
+    "maxEvidenceAgeSeconds": 3600,
+    "requiredChecks": [
+      "verify-linux22"
+    ],
+    "requireBrowser": false
+  },
+  "ci": [
+    {
+      "id": "ci-run-1",
+      "observedAt": "2026-09-30T11:30:00Z",
+      "check": "verify-linux22",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "buildId": "build-20260930",
+      "conclusion": "pass"
+    }
+  ],
+  "http": [
+    {
+      "id": "http-1",
+      "observedAt": "2026-09-30T11:59:00Z",
+      "assetPath": "/app.js",
+      "finalUrl": "https://example.invalid/app.js",
+      "status": 200,
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "buildId": "build-20260930",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "cache": {
+        "source": "network",
+        "ageSeconds": 0
+      }
+    }
+  ]
+}

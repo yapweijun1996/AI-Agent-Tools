@@ -483,3 +483,7 @@ and future integration work.
 ## Environment Doctor and Contract Check MVPs (2026-09-30)
 
 See [scoped verification](docs/mvp/VERIFICATION.md) for checks, limits and platform CI scope. These packages remain private and unpublished; exact-head CI evidence is tracked in their draft PR.
+
+## Deploy Verify (2026-09-30)
+
+Deploy Verify validation scope, exact test counts and platform results are recorded in its PR; package fixtures are synthetic, not a production deployment audit. Source/local installation is the distribution path; no npm release or service deployment occurs.
