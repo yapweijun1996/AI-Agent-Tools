@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/schemas/result-v0.1-draft.schema.json",
+  "title": "Agent Change Impact result",
+  "description": "Draft machine-readable envelope for bounded local change impact analysis.",
+  "oneOf": [
+    { "$ref": "#/$defs/success" },
+    { "$ref": "#/$defs/error" }
+  ],
+  "$defs": {
+    "snapshot": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "enum": ["working-tree", "revision"] },
+        "id": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "position": {
+      "type": "object",
+      "required": ["line", "column"],
+      "properties": {
+        "line": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "range": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "$ref": "#/$defs/position" },
+        "end": { "$ref": "#/$defs/position" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["provider", "level"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "level": { "enum": ["resolved", "syntactic", "heuristic"] },
+        "location": {
+          "type": "object",
+          "required": ["snapshot", "file", "range"],
+          "properties": {
+            "snapshot": { "$ref": "#/$defs/snapshot" },
+            "file": { "type": "string", "minLength": 1 },
+            "range": { "$ref": "#/$defs/range" }
+          },
+          "additionalProperties": false
+        },
+        "detail": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "kind", "snapshot", "file"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["file", "symbol"] },
+        "snapshot": { "$ref": "#/$defs/snapshot" },
+        "file": { "type": "string", "minLength": 1 },
+        "symbol": { "type": "string", "minLength": 1 },
+        "declaration": { "$ref": "#/$defs/range" }
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "from", "to", "relation", "evidence"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "relation": { "enum": ["imports", "reexports", "references", "calls", "extends", "implements"] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      },
+      "additionalProperties": false
+    },
+    "seed": {
+      "type": "object",
+      "required": ["node", "reason"],
+      "properties": {
+        "node": { "type": "string", "minLength": 1 },
+        "reason": { "enum": ["requested-target", "changed-symbol", "changed-file", "configuration-change"] }
+      },
+      "additionalProperties": false
+    },
+    "impact": {
+      "type": "object",
+      "required": ["node", "seed", "distance", "relations", "path", "evidenceLevels", "granularity"],
+      "properties": {
+        "node": { "type": "string", "minLength": 1 },
+        "seed": { "type": "string", "minLength": 1 },
+        "distance": { "type": "integer", "minimum": 1 },
+        "relations": { "type": "array", "items": { "enum": ["imports", "reexports", "references", "calls", "extends", "implements"] } },
+        "path": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+        "evidenceLevels": { "type": "array", "items": { "enum": ["resolved", "syntactic", "heuristic"] } },
+        "granularity": { "enum": ["file", "symbol"] }
+      },
+      "additionalProperties": false
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "message", "severity"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string", "minLength": 1 },
+        "snapshot": { "$ref": "#/$defs/snapshot" },
+        "file": { "type": "string", "minLength": 1 },
+        "range": { "$ref": "#/$defs/range" },
+        "severity": { "enum": ["warning", "info"] }
+      },
+      "additionalProperties": false
+    },
+    "limits": {
+      "type": "object",
+      "required": ["depth", "maxNodes", "maxEdges", "maxPathsPerTarget", "maxOutputBytes", "maxFiles", "maxFileBytes", "maxTotalFileBytes", "maxDiagnostics"],
+      "properties": {
+        "depth": { "type": "integer", "minimum": 1 },
+        "maxNodes": { "type": "integer", "minimum": 1 },
+        "maxEdges": { "type": "integer", "minimum": 1 },
+        "maxPathsPerTarget": { "type": "integer", "minimum": 1 },
+        "maxOutputBytes": { "type": "integer", "minimum": 1 },
+        "maxFiles": { "type": "integer", "minimum": 1 },
+        "maxFileBytes": { "type": "integer", "minimum": 1 },
+        "maxTotalFileBytes": { "type": "integer", "minimum": 1 },
+        "maxDiagnostics": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "analysisScope": {
+      "type": "object",
+      "required": ["status", "project", "limits", "includedFiles", "excludedFiles", "limitations", "stopReasons", "returnedNodes", "returnedEdges"],
+      "properties": {
+        "status": { "enum": ["complete", "partial"] },
+        "project": {
+          "type": "object",
+          "required": ["configPath", "files"],
+          "properties": {
+            "configPath": { "type": "string", "minLength": 1 },
+            "files": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          },
+          "additionalProperties": false
+        },
+        "limits": { "$ref": "#/$defs/limits" },
+        "includedFiles": { "type": "integer", "minimum": 0 },
+        "excludedFiles": { "type": "integer", "minimum": 0 },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "stopReasons": { "type": "array", "items": { "type": "string" } },
+        "observedNodes": { "type": "integer", "minimum": 0 },
+        "returnedNodes": { "type": "integer", "minimum": 0 },
+        "observedEdges": { "type": "integer", "minimum": 0 },
+        "returnedEdges": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "success": {
+      "type": "object",
+      "required": ["schemaVersion", "ok", "operation", "unresolved", "warnings"],
+      "properties": {
+        "schemaVersion": { "const": "0.1-draft" },
+        "ok": { "const": true },
+        "operation": { "enum": ["capabilities", "file-impact", "symbol-impact", "changed-impact"] },
+        "context": { "type": "object" },
+        "target": { "type": "object" },
+        "changed": { "type": "array" },
+        "seeds": { "type": "array", "items": { "$ref": "#/$defs/seed" } },
+        "graph": {
+          "type": "object",
+          "required": ["nodes", "edges"],
+          "properties": {
+            "nodes": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+            "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } }
+          },
+          "additionalProperties": false
+        },
+        "impact": {
+          "type": "object",
+          "required": ["direct", "transitive"],
+          "properties": {
+            "direct": { "type": "array", "items": { "$ref": "#/$defs/impact" } },
+            "transitive": { "type": "array", "items": { "$ref": "#/$defs/impact" } }
+          },
+          "additionalProperties": false
+        },
+        "tests": { "type": "array" },
+        "unresolved": { "type": "array" },
+        "analysis": { "$ref": "#/$defs/analysisScope" },
+        "warnings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+        "capabilities": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "error": {
+      "type": "object",
+      "required": ["schemaVersion", "ok", "error", "warnings"],
+      "properties": {
+        "schemaVersion": { "const": "0.1-draft" },
+        "ok": { "const": false },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "properties": {
+            "code": { "type": "string", "minLength": 1 },
+            "message": { "type": "string", "minLength": 1 },
+            "details": { "type": "object" }
+          },
+          "additionalProperties": true
+        },
+        "warnings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } }
+      },
+      "additionalProperties": true
+    }
+  }
+}

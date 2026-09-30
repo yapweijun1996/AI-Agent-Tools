@@ -20,7 +20,7 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=18"
+    "node": "^22.13.0 || ^24.0.0"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,14 @@
   },
   "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools#readme",
   "scripts": {
-    "test": "node --test"
+    "test": "node scripts/monorepo.mjs test",
+    "bootstrap": "node scripts/monorepo.mjs bootstrap",
+    "build": "node scripts/monorepo.mjs build",
+    "typecheck": "node scripts/monorepo.mjs typecheck",
+    "lint": "node scripts/monorepo.mjs lint",
+    "pack": "node scripts/monorepo.mjs pack",
+    "test:hub": "node scripts/monorepo.mjs test:hub",
+    "verify": "npm run build && npm run typecheck && npm run lint && npm test && npm run pack"
   },
   "license": "Apache-2.0"
 }

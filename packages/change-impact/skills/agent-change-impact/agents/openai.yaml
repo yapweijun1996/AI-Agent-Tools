@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Change Impact"
+  short_description: "Bounded static impact checks for code changes"
+  default_prompt: "Use $agent-change-impact to identify files, symbols, and tests affected by this change."
+
+policy:
+  allow_implicit_invocation: true

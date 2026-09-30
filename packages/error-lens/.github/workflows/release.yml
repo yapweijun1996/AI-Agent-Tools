@@ -1,0 +1,80 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to verify and publish, for example v0.1.0"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify and publish ${{ inputs.tag }}
+    runs-on: ubuntu-latest
+    environment: npm-release
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AGENT_ERROR_LENS_RELEASE: "1"
+    steps:
+      - name: Check out the selected release tag
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag }}
+          fetch-depth: 0
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Verify release identity and package guard
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REF_TYPE" != "tag" || "$GITHUB_REF_NAME" != "$RELEASE_TAG" ]]; then
+            echo "workflow must run from the selected release tag" >&2
+            exit 1
+          fi
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "release tag is not a supported SemVer tag: $RELEASE_TAG" >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "checked-out commit does not match the workflow commit" >&2
+            exit 1
+          fi
+          node <<'NODE'
+          import { readFile } from "node:fs/promises";
+
+          const packageJson = JSON.parse(await readFile("package.json", "utf8"));
+          const expectedTag = `v${packageJson.version}`;
+          if (process.env.RELEASE_TAG !== expectedTag) throw new Error(`tag ${process.env.RELEASE_TAG} does not match package version ${packageJson.version}`);
+          if (packageJson.private !== false) throw new Error("package.json must set private=false for an authorized release commit");
+          if (packageJson.name !== "agent-error-lens") throw new Error("package name changed without a release decision");
+          if (packageJson.repository?.url !== "https://github.com/yapweijun1996/AI-Agent-Tool-Error-Lens.git") throw new Error("repository URL does not match the trusted publisher configuration");
+          if (packageJson.publishConfig?.registry !== "https://registry.npmjs.org/" || packageJson.publishConfig?.access !== "public") throw new Error("publishConfig does not target the approved public npm registry");
+          NODE
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Run release verification suite
+        run: npm test
+
+      - name: Publish exact verified artifact through npm trusted publishing
+        run: npm publish --access public

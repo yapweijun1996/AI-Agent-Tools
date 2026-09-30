@@ -1,0 +1,246 @@
+
+> ai-agent-tools@0.1.1 test:hub
+> node scripts/monorepo.mjs test:hub
+
+
+[test:hub] ai-agent-tools
+TAP version 13
+# Subtest: parses explicit install and dispatch approval flags
+ok 1 - parses explicit install and dispatch approval flags
+  ---
+  duration_ms: 3.18775
+  type: 'test'
+  ...
+# Subtest: validates the current registry and keeps installability explicit
+ok 2 - validates the current registry and keeps installability explicit
+  ---
+  duration_ms: 1.253542
+  type: 'test'
+  ...
+# Subtest: published package includes the default registry snapshot
+ok 3 - published package includes the default registry snapshot
+  ---
+  duration_ms: 0.202083
+  type: 'test'
+  ...
+# Subtest: normalizes executable declarations without choosing an unsafe default
+ok 4 - normalizes executable declarations without choosing an unsafe default
+  ---
+  duration_ms: 0.472667
+  type: 'test'
+  ...
+# Subtest: rejects registry package names that could escape the install root
+ok 5 - rejects registry package names that could escape the install root
+  ---
+  duration_ms: 5.451708
+  type: 'test'
+  ...
+# Subtest: validates exact profile catalog entries and rejects duplicate matches
+ok 6 - validates exact profile catalog entries and rejects duplicate matches
+  ---
+  duration_ms: 3.174375
+  type: 'test'
+  ...
+# Subtest: list reads a local registry snapshot and does not write the home
+ok 7 - list reads a local registry snapshot and does not write the home
+  ---
+  duration_ms: 1.593833
+  type: 'test'
+  ...
+# Subtest: planned tools fail closed before any installation side effect
+ok 8 - planned tools fail closed before any installation side effect
+  ---
+  duration_ms: 0.458334
+  type: 'test'
+  ...
+# Subtest: dispatch requires a separate explicit execution approval
+ok 9 - dispatch requires a separate explicit execution approval
+  ---
+  duration_ms: 1.789584
+  type: 'test'
+  ...
+# Subtest: dispatch applies the exact native profile without rewriting its payload
+ok 10 - dispatch applies the exact native profile without rewriting its payload
+  ---
+  duration_ms: 705.851541
+  type: 'test'
+  ...
+# Subtest: preserves capabilities, completed violations, incomplete, and error semantics
+ok 11 - preserves capabilities, completed violations, incomplete, and error semantics
+  ---
+  duration_ms: 267.162125
+  type: 'test'
+  ...
+# Subtest: rejects malformed and status/exit-mismatched envelopes
+ok 12 - rejects malformed and status/exit-mismatched envelopes
+  ---
+  duration_ms: 88.369333
+  type: 'test'
+  ...
+# Subtest: accepts capabilities and preserves complete/partial analyses as native success
+ok 13 - accepts capabilities and preserves complete/partial analyses as native success
+  ---
+  duration_ms: 167.017167
+  type: 'test'
+  ...
+# Subtest: uses native error codes for invalid and operation failures
+ok 14 - uses native error codes for invalid and operation failures
+  ---
+  duration_ms: 71.325458
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and exit/status-mismatched output
+ok 15 - rejects malformed, unknown, and exit/status-mismatched output
+  ---
+  duration_ms: 173.918917
+  type: 'test'
+  ...
+# Subtest: accepts complete and bounded-success native Code Slice results
+ok 16 - accepts complete and bounded-success native Code Slice results
+  ---
+  duration_ms: 118.315209
+  type: 'test'
+  ...
+# Subtest: uses native error codes as the semantic authority
+ok 17 - uses native error codes as the semantic authority
+  ---
+  duration_ms: 80.613167
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and exit/status-mismatched native output
+ok 18 - rejects malformed, unknown, and exit/status-mismatched native output
+  ---
+  duration_ms: 170.806875
+  type: 'test'
+  ...
+# Subtest: accepts complete success even when the completed check reports findings
+ok 19 - accepts complete success even when the completed check reports findings
+  ---
+  duration_ms: 115.685708
+  type: 'test'
+  ...
+# Subtest: accepts bounded incomplete outcomes without exposing partial data
+ok 20 - accepts bounded incomplete outcomes without exposing partial data
+  ---
+  duration_ms: 176.810625
+  type: 'test'
+  ...
+# Subtest: distinguishes invalid input and internal failure from incomplete analysis
+ok 21 - distinguishes invalid input and internal failure from incomplete analysis
+  ---
+  duration_ms: 87.441166
+  type: 'test'
+  ...
+# Subtest: rejects partial data, exit/status mismatches, malformed output, and missing output
+ok 22 - rejects partial data, exit/status mismatches, malformed output, and missing output
+  ---
+  duration_ms: 167.840292
+  type: 'test'
+  ...
+# Subtest: distinguishes complete, partial, and unsupported project profiles
+ok 23 - distinguishes complete, partial, and unsupported project profiles
+  ---
+  duration_ms: 167.926708
+  type: 'test'
+  ...
+# Subtest: preserves fatal error status and strict-mode policy separately
+ok 24 - preserves fatal error status and strict-mode policy separately
+  ---
+  duration_ms: 82.806667
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and status/coverage-mismatched profiles
+ok 25 - rejects malformed, unknown, and status/coverage-mismatched profiles
+  ---
+  duration_ms: 194.556334
+  type: 'test'
+  ...
+# Subtest: preserves capabilities, complete, partial, and error native semantics
+ok 26 - preserves capabilities, complete, partial, and error native semantics
+  ---
+  duration_ms: 241.074333
+  type: 'test'
+  ...
+# Subtest: rejects malformed and unknown status envelopes
+ok 27 - rejects malformed and unknown status envelopes
+  ---
+  duration_ms: 139.622875
+  type: 'test'
+  ...
+# Subtest: preserves complete, partial, and error native semantics
+ok 28 - preserves complete, partial, and error native semantics
+  ---
+  duration_ms: 200.355166
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and status/exit-mismatched results
+ok 29 - rejects malformed, unknown, and status/exit-mismatched results
+  ---
+  duration_ms: 135.178417
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 790.475583
+
+[test:hub] hub-python-tests
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.023s
+
+OK
+
+[test:hub] hub-validator
+PASS: 17 tools, 35 documents, 226 links; registry gates, roadmap, lifecycle, local anchors, and JSON syntax valid.
+External URLs requiring human evidence review: 37
+  https://docs.lucee.org/recipes/tag-islands.html
+  https://docs.lucee.org/reference/tags/if.html
+  https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/actions/runs/34805721849
+  https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/commit/d132a82de4e2a764710e04968f8a480b8b6153c7
+  https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/actions/runs/34551478970
+  https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/commit/f298328d7035adce57fc57fdc36ac30da70a2a68
+  https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/actions/runs/34551479033
+  https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/actions/runs/34826574214
+  https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d
+  https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/actions/runs/34805726939
+  https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14
+  https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/actions/runs/34805729863
+  https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/commit/e3c4593fb9b12233280dffd801a3c153ef9b3b1c
+  https://github.com/yapweijun1996/AI-Agent-Tools/blob/main/packages/code-slice/docs/CLI_CONTRACT.md
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-check
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-linkage
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/change-impact
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/code-slice
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/error-lens
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-profile
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-tree
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/symbol-search
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope
+  https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html
+  https://opentelemetry.io/docs/concepts/signals/traces/
+  https://registry.npmjs.org/agent-code-slice/0.2.0
+  https://registry.npmjs.org/agent-project-profile
+  https://registry.npmjs.org/agent-test-scope
+  https://www.npmjs.com/package/agent-cfml-check
+  https://www.npmjs.com/package/agent-change-impact
+  https://www.npmjs.com/package/agent-code-slice
+  https://www.npmjs.com/package/agent-code-slice/v/0.2.0
+  https://www.npmjs.com/package/agent-project-profile
+  https://www.npmjs.com/package/agent-symbol-search
+  https://www.npmjs.com/package/agent-test-scope
+  https://www.rfc-editor.org/rfc/rfc6901
+
+[test:hub] source-coverage
+Migration coverage: 698 imported files across 10 source repositories verified
+
+ai-agent-tools: passed
+hub-python-tests: passed
+hub-validator: passed
+source-coverage: passed

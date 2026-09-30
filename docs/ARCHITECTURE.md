@@ -4,20 +4,20 @@
 
 | Owner | Responsibility | Excluded responsibility |
 | --- | --- | --- |
-| Hub | Registry, standards, discovery, roadmap, governance, and the explicit AIT install/dispatch runtime | Tool source, tool release pipelines, agent reasoning/orchestration |
-| Independent tool repository + npm package | Implementation, CLI/JSON contracts, tests, security handling, versions, releases | Controlling agent reasoning or owning other tools' release schedules |
+| Hub | Registry, standards, discovery, roadmap, governance, and the explicit AIT install/dispatch runtime | Agent reasoning/orchestration |
+| Tool package folder + npm package | Implementation, CLI/JSON contracts, tests, security handling, versions, releases | Controlling agent reasoning or owning other tools' release schedules |
 | Agent or developer | Choose tools, supply inputs, interpret evidence, authorize actions | Treating tool metadata or incomplete output as proof |
 
-The normal flow is: a consumer reads the local registry snapshot, explicitly installs a pinned independently released package with `ait install`, invokes it with an explicit execution approval through `ait dispatch`, and evaluates the wrapped output and native exit status. AIT is a local process, not a hosted service or agent reasoning layer. Independently owned tool source, tests, packages, and release pipelines remain outside this repository.
+The normal flow is: a consumer reads the local registry snapshot, explicitly installs a pinned independently released package with `ait install`, invokes it with an explicit execution approval through `ait dispatch`, and evaluates the wrapped output and native exit status. AIT is a local process, not a hosted service or agent reasoning layer. Tool source, tests and documentation live in package folders in this repository; packages retain independent versions, interfaces and release approval.
 
 ## Sources of truth
 
 - [Registry](../TOOL_REGISTRY.json): tool identity, lifecycle, confirmed locations, and recorded verification snapshot.
 - [Roadmap](../ROADMAP.md): delivery order and intended scope.
-- [TASK.md](../TASK.md) and [VALIDATION.md](../VALIDATION.md): current Hub execution state and dated evidence; sibling implementation tasks stay in their owning repositories.
+- [TASK.md](../TASK.md) and [VALIDATION.md](../VALIDATION.md): current Hub execution state and dated evidence; package implementation tasks stay in their owning package folders.
 - [DESIGN.md](../DESIGN.md) and [SPEC.md](../SPEC.md): decision rationale and Hub requirements; [documentation index](../DOCUMENTATION_INDEX.md) maps all owners.
 - Hub standards: ecosystem requirements. `standards_version` is currently `1.0.0`, the initial policy contract, not a claim of tool compliance.
-- Tool repository and immutable release artifacts: actual behavior, implementation, supported versions, and test evidence.
+- Tool package source and immutable release artifacts: actual behavior, implementation, supported versions, and test evidence.
 
 The existing Company KB is the cross-session project knowledge source. Hub files
 remain the version-controlled contract and registry artifacts; synchronize approved
@@ -87,20 +87,14 @@ profiles and bounded validators described in [AIT profile selection](AIT_PROFILE
 Unmatched tools remain native passthrough; profile selection does not authorize
 execution or reinterpret native status. Context Pack may consume explicit result
 artifacts with provenance and size limits; it does not own global state or route
-agent reasoning. The current package is not publication-ready: its distribution
-must retain the default registry snapshot, and publication still requires an
-explicit license/ownership decision. The detailed policy gate for remote refresh,
+agent reasoning. The published 0.1.1 distribution retains its default registry snapshot under Apache-2.0. Any future publication requires explicit approval and packed-consumer verification. The detailed policy gate for remote refresh,
 signatures, dependencies, and sandboxing is recorded in [AIT runtime](AIT_RUNTIME.md).
 
 ## Shared infrastructure gate
 
-Consider shared packages or monorepo migration only after roughly 3–5 mature tools (`Verified` or `Stable`, with maintained releases) demonstrate repeated infrastructure that is costly to maintain independently. Record concrete duplication, ownership, compatibility, migration cost, rollback, and independent-release impact in a reviewed decision before implementation.
+The owner explicitly authorized source consolidation on 2026-09-30. [Decision](migration/DECISION.md) supersedes the former monorepo maturity gate. Ten imported package folders preserve independent dependency locks, compiler versions, interfaces and licensing. Root commands orchestrate package scripts without hoisting or creating a mandatory shared SDK. The dependency-free AIT published distribution still includes only its explicit `files` allowlist; it does not bundle or publish the imported packages.
 
-Small duplication is acceptable. AIT is the one explicitly authorized Hub runtime;
-it is not a shared implementation library, mandatory SDK, service, or tool source
-workspace. Independent tools remain independently implemented, versioned, tested,
-and released. Any future shared tool package still requires the maturity gate and a
-separate reviewed decision.
+Shared implementation libraries still require concrete duplication evidence, ownership, compatibility, migration cost, rollback and independent-release review. No agent reasoning runtime is authorized.
 
 ## Planned evidence tools
 

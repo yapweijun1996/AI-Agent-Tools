@@ -1,0 +1,270 @@
+# Testing and Golden Eval
+
+## Principle
+
+The project must prove:
+
+> Less context, same required code evidence.
+
+Do not evaluate only whether output "looks useful."
+
+## Test layers
+
+### Unit
+
+- path/range validation;
+- selector validation;
+- normalized kind mapping;
+- error mapping;
+- JSON serialization;
+- output limits.
+
+### Grammar load
+
+Every packaged WASM grammar:
+
+- loads;
+- reports expected language identity;
+- matches recorded hash;
+- parses a minimal fixture.
+
+### Language certification
+
+Per language:
+
+- outline;
+- symbol;
+- line;
+- range;
+- nested container;
+- overloaded/ambiguous symbol;
+- malformed source;
+- comments/strings containing fake syntax;
+- Unicode.
+
+### Mixed-language
+
+CFML first:
+
+- CFML host;
+- CFScript;
+- CFQuery;
+- JavaScript `<script>` region;
+- CSS `<style>` region;
+- SQL-level CFQuery clauses/functions;
+- malformed injection;
+- dynamic query name.
+
+## Frozen Golden Eval
+
+Each case stores:
+
+```json
+{
+  "id": "ts-symbol-001",
+  "file": "fixtures/typescript/basic.ts",
+  "operation": "symbol",
+  "selector": {
+    "name": "calculateTotal"
+  },
+  "expected": {
+    "kind": "function",
+    "startLine": 10,
+    "endLine": 14
+  }
+}
+```
+
+The candidate implementation must not redefine expected results after seeing failures without versioning/reviewing the evaluator.
+
+## Current declarative runner
+
+The repository now runs frozen case files from `test/golden/cases/*.json` through
+the public Core API. Run the evaluator directly with:
+
+```bash
+npm run test:golden
+```
+
+The same cases are also exercised by `npm test` through
+`test/unit/golden-eval.test.ts`. Case files are loaded in deterministic filename
+order and then evaluated in `id` order. A case failure reports its case ID and
+does not rewrite or regenerate the expected result. Every actual Core envelope
+is validated against `schemas/code-slice-result-v1.schema.json` before its case
+assertions run. CLI argument-shape failures are covered separately by the
+agent-facing E2E suite and validate against the additive v1.1 CLI envelope.
+
+The runner accepts the four delivery-level operations below. `symbol`, `line`,
+and `range` are mapped to the corresponding Core `slice()` selector; `outline`
+calls Core `outline()`.
+
+```json
+{
+  "id": "ts-symbol-001",
+  "file": "test/fixtures/typescript/basic.ts",
+  "operation": "symbol",
+  "selector": {
+    "name": "calculateTotal"
+  },
+  "expected": {
+    "kind": "function",
+    "name": "calculateTotal",
+    "startLine": 10,
+    "endLine": 12,
+    "codeIncludes": ["export function calculateTotal"]
+  }
+}
+```
+
+Success cases may assert `kind`, `name`, `embeddedLanguage`, `signature`, any
+range fields, exact `code`, `codeIncludes`, envelope `warningCodes`, or an
+outline's exact `symbols`/`symbolCount`. Failure cases set `"ok": false` and
+assert `errorCode`, with optional `recoverable`, `candidateCount`, and
+`warningCodes`. Files must be repository-relative and stay inside the
+repository; malformed case definitions fail closed before execution.
+
+The checked-in cases cover all current adapters, all four selector operations,
+exact range text, BOM byte coordinates, whitespace-aware line/range container
+selection, TypeScript enum/namespace/class-field/object-callable symbols, CFML
+JavaScript/CSS embedding, SQL-level CFQuery symbols, ambiguity, not-found
+behavior, and malformed-source warnings. Explicitly
+unsupported/dynamic HTML region types are covered by the CFML unit fixture and
+are skipped rather than guessed.
+
+### Cross-platform evidence
+
+CI run
+[33888822744](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/33888822744)
+passed the then-current 12 cases on Windows, macOS, and Ubuntu with Node 20 and
+Node 22. The run also passed the then-current 39-test unit suite, grammar
+integrity check, CLI smoke test, and `npm pack --dry-run` step. The checked-in set now has **23 cases**. The 0.4.0 release path has three
+separate evidence layers: PR-head CI run
+[34096967717](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/34096967717)
+passed 80 unit tests, 23 Golden cases, 6 agent-facing E2E cases, all nine
+Windows/macOS/Ubuntu × Node 18.18.0/20/22 test jobs, and all three Node 20
+benchmark jobs; exact merge-commit CI run
+[34099721362](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/34099721362)
+passed the same matrix at the published npm gitHead
+`512479fa702f6bb694c44815534302459f449745`; and post-publication workflow
+run 34109729432, dispatched on the automation fork but pinned to that exact
+release commit and using the same checked-in CI workflow, installed
+`agent-code-slice@0.4.0` from npm on Windows, macOS, and Ubuntu with Node 20
+and passed the public API/CLI plus CFML embedding smoke on all three platforms.
+
+The V0.2 release CI run
+[33936169516](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/33936169516)
+passed the previous 16 cases, 47-test suite, grammar integrity check, CLI smoke
+test, and `npm pack --dry-run` on all nine Windows/macOS/Ubuntu × Node 18.18.0/20/22
+jobs. This covers the new CFML embedded JS/CSS/SQL paths and the declared Node
+floor. Hardening CI run
+[33972164494](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/33972164494)
+passed the 55-test suite, 16 Golden cases, 3 agent-facing E2E cases, and the
+three Node 20 benchmark jobs. Release CI run
+[33937790994](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/33937790994)
+also passed the core checks and completed registry installation plus CFML
+embedding verification on Windows, macOS, and Ubuntu with Node 20.
+
+## Metrics
+
+### Exact target accuracy
+
+Correct requested unit selected.
+
+Target before V1.0: define from baseline; do not publish arbitrary percentages as facts before the suite exists.
+
+### Boundary accuracy
+
+Correct start/end line and byte range.
+
+### Ambiguity precision
+
+Ambiguous cases must not become guessed successes.
+
+### Invented-symbol rate
+
+Required: `0`.
+
+### Context reduction
+
+Compare returned code bytes/lines/tokens against full source.
+
+### Parser warning integrity
+
+Malformed fixtures must surface expected warning/error state.
+
+### Schema validity
+
+Every Core operation result and future serverless JSON result validates against
+the v1 schema; CLI usage errors validate against the additive v1.1 schema.
+
+## Benchmark cohorts
+
+At minimum:
+
+- 5 KB;
+- 50 KB;
+- 500 KB;
+- 1 MB where realistic.
+
+Measure separately:
+
+- cold grammar startup;
+- warm parse;
+- outline;
+- symbol resolution.
+
+## Cross-platform
+
+Before stable release:
+
+- Windows;
+- macOS;
+- Linux.
+
+Record Node versions, architecture, and package version.
+
+## Agent-facing contract E2E
+
+The deterministic agent-facing suite runs the built package across its actual
+integration boundaries:
+
+```bash
+npm run test:e2e
+```
+
+It uses an isolated temporary workspace and verifies this representative agent
+journey:
+
+1. call the CLI `outline` on a large fixture;
+2. call the CLI `symbol` operation for the discovered symbol;
+3. verify the returned code exactly matches its byte range and reduces context;
+4. verify an ambiguous symbol returns exit code `7`, candidates, and a safe
+   normal-read fallback;
+5. call the built public JS API for the same contract;
+6. validate every machine envelope against the published schema and verify the
+   authorized workspace is unchanged, including file content and metadata.
+
+This is protocol-level agent E2E: it proves the package boundary an agent can
+invoke through shell or JavaScript, without making model calls. It must not be
+reported as Codex, Claude, Gemini, or OpenCode behavioral certification. Those
+vendor-specific live runs remain opt-in and are tracked separately in
+`docs/AGENT_INTEGRATIONS.md`.
+
+The CI test matrix is configured to run this suite on Windows, macOS, and
+Ubuntu across the declared Node versions. Hardening CI run
+[33972164494](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/33972164494)
+passed the suite on all nine matrix jobs. This is package-level cross-platform
+evidence, not Codex, Claude, Gemini, or OpenCode behavioral certification. Do
+not combine its result with parser accuracy or latency metrics.
+
+## Runtime hardening coverage
+
+The unit suite also covers runtime request validation, bounded symbol/output
+budgets, parser/tree cleanup after successful and throwing visitors, and
+coalescing concurrent first grammar loads. These checks protect the local
+agent process from malformed requests and native WASM resource retention; they
+do not replace cross-platform CI or an OS-level memory profile.
+
+## Regression rule
+
+Every parser defect fixed must preserve the original failing fixture.

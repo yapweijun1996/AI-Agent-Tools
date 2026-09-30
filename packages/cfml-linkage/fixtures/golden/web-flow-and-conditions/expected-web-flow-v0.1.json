@@ -1,0 +1,19 @@
+{
+  "version": "0.1",
+  "input": "page.cfm",
+  "expected_facts": [
+    { "kind": "FORM", "normalized_expression": "/orders/save", "conditioned": true },
+    { "kind": "FETCH", "normalized_expression": "/api/orders", "conditioned": true },
+    { "kind": "AJAX", "normalized_expression": "/orders/search", "conditioned": true, "wrapper": "jquery-ajax" },
+    { "kind": "AJAX", "normalized_expression": "/orders/xhr", "conditioned": true, "wrapper": "xhr-open" },
+    { "kind": "REDIRECT", "normalized_expression": "/orders/done", "conditioned": false }
+  ],
+  "expected_routes": [
+    { "relation_type": "FORM_SUBMITS_TO", "to_file": "orders/save.cfm" },
+    { "relation_type": "FETCHES", "to_file": "api/orders.cfm" },
+    { "relation_type": "AJAX_CALLS", "to_file": "orders/search.cfm" },
+    { "relation_type": "AJAX_CALLS", "to_file": "orders/xhr.cfm" },
+    { "relation_type": "REDIRECTS_TO", "to_file": "orders/done.cfm" }
+  ],
+  "expected_condition_edges": 4
+}

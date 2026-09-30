@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "2",
+  "artifacts": [
+    {
+      "id": "stderr",
+      "stream": "console",
+      "content": 42
+    }
+  ],
+  "unexpected": true
+}

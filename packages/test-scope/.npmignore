@@ -1,0 +1,8 @@
+src/
+test/
+fixtures/
+scripts/
+*.test.*
+*.spec.*
+coverage/
+.tmp/

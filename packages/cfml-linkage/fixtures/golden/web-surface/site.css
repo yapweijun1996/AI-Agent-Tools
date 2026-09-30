@@ -1,0 +1,4 @@
+/* Inert asset fixture. */
+@import "base.css";
+.order-icon { background-image: url(icons.svg); }
+/* url("ignored.svg") */

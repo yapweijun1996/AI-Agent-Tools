@@ -259,7 +259,7 @@ later independent package evidence remain separately scoped.
 
 ## Test Scope registration review - 2026-09-12
 
-The public [Test Scope repository](https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope)
+The public [Test Scope repository](https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope)
 was read and its README, specification, design, task board, progress, epic and
 roadmap were reviewed. The repository documents a deterministic, read-only V0.1
 planner for JavaScript/TypeScript/JSX/TSX repositories with Vitest, Jest and the
@@ -317,7 +317,7 @@ at exit `3`; an unsupported-language case produced `status: denied` at exit
 
 **Correction**: the note originally recorded here said these two exit codes
 "happened to already match the `ait-tool/v1` table." Reading `agent-code-slice`'s
-own documented exit codes ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/blob/main/docs/CLI_CONTRACT.md)
+own documented exit codes ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tools/blob/main/packages/code-slice/docs/CLI_CONTRACT.md)
 in that repository) shows this was wrong: its exit `3` is documented as
 "file/root/input error" (an invalid-input case) and its exit `4` as
 "unsupported/ambiguous language" (an unsupported-input case) — neither matches
@@ -352,7 +352,7 @@ concrete, this compares the target [CLI standard](docs/CLI_STANDARD.md#exit-code
 against the exit codes two `Experimental` tools already document for
 themselves, read directly from their own repositories (not inferred):
 
-| Exit | Hub target ([CLI_STANDARD.md](docs/CLI_STANDARD.md#exit-codes)) | `agent-code-slice` ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/blob/main/docs/CLI_CONTRACT.md)) | `agent-project-profile` (repository `README.md`) |
+| Exit | Hub target ([CLI_STANDARD.md](docs/CLI_STANDARD.md#exit-codes)) | `agent-code-slice` ([CLI_CONTRACT.md](https://github.com/yapweijun1996/AI-Agent-Tools/blob/main/packages/code-slice/docs/CLI_CONTRACT.md)) | `agent-project-profile` (repository `README.md`) |
 | ---: | --- | --- | --- |
 | 0 | Complete supported analysis | Successful operation | Complete, usable profile |
 | 1 | Execution or internal failure | Unexpected internal failure | Fatal failure; no usable profile |
@@ -456,7 +456,7 @@ and future integration work.
 
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
-| V-31 | Independent policy-check repository and Hub registration | The owner-supplied local clone for [AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Policy-Check) points to the confirmed GitHub remote and is at initial commit `24e0889657ac7da0fe752c4fb48c9e7f90fcaa4a`, whose tree contains only `.gitattributes`. The Hub records `agent-cfml-policy-check` as `Planned` with npm, release, verification, and deprecation fields `null`; no implementation, tests, package identity, release, or engine evidence is claimed. After registration, `python scripts/validate_hub.py`, `git diff --check`, the untracked-document whitespace check, and the AIT Node suite passed (29/29). |
+| V-31 | Independent policy-check repository and Hub registration | The owner-supplied local clone for [AI-Agent-Tool-CFML-Policy-Check](https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check) points to the confirmed GitHub remote and is at initial commit `24e0889657ac7da0fe752c4fb48c9e7f90fcaa4a`, whose tree contains only `.gitattributes`. The Hub records `agent-cfml-policy-check` as `Planned` with npm, release, verification, and deprecation fields `null`; no implementation, tests, package identity, release, or engine evidence is claimed. After registration, `python scripts/validate_hub.py`, `git diff --check`, the untracked-document whitespace check, and the AIT Node suite passed (29/29). |
 
 ## User-tier KB profile and artifact reconciliation - 2026-09-15
 
@@ -475,3 +475,7 @@ and future integration work.
 | ID | Check | Evidence and limitation |
 | --- | --- | --- |
 | V-21 | Exact Test Scope profile and artifact | The published `agent-test-scope@0.1.1` tarball had 88 files, shasum `4830019255560757357aace1dbabadcab0a46837`, and the recorded SHA-512 integrity. Its README, SPEC, schema, and CLI were inspected. `docs/profiles/AGENT_TEST_SCOPE.md` preserves `complete`/`partial` exit-0 semantics, engine-error exit-1, invalid-argument exit-2, and the no-execution boundary; `tests/test_scope_profile.test.js` passed 2/2 native fixture tests. AIT's built-in validator covers the same envelope and exact catalog entry; this does not establish Hub conformance or broader platform evidence. |
+
+## V-32: Owned source consolidation — 2026-09-30
+
+[Migration verification](docs/migration/VERIFICATION.md) records all ten imported heads and hash coverage, 409 passing Node tests plus 7 Python tests, package checks, license preservation and limits. This source import does not promote Hub conformance or imply new npm releases. Older source/CI/npm observations above remain dated snapshots.

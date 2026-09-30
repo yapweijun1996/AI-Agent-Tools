@@ -1,0 +1,702 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-linkage:graph:v0.1",
+  "title": "agent-cfml-linkage Graph IR v0.1",
+  "description": "Proposed evidence-first graph contract for deterministic CFML-first linkage analysis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "project",
+    "snapshot",
+    "capabilities",
+    "complete",
+    "nodes",
+    "edges",
+    "unresolved",
+    "diagnostics",
+    "stats"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agent-cfml-linkage-graph/v0.1"
+    },
+    "tool": {
+      "$ref": "#/$defs/tool"
+    },
+    "project": {
+      "$ref": "#/$defs/project"
+    },
+    "snapshot": {
+      "$ref": "#/$defs/snapshot"
+    },
+    "capabilities": {
+      "$ref": "#/$defs/capabilities"
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unresolved"
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "boundedString": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start_line",
+        "start_col",
+        "end_line",
+        "end_col"
+      ],
+      "properties": {
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_col": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_col": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "file",
+        "span",
+        "normalized",
+        "rule_id"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "syntax",
+            "path_resolution",
+            "symbol_resolution",
+            "scope_flow",
+            "sql_parse",
+            "mapping",
+            "condition",
+            "corroboration"
+          ]
+        },
+        "file": {
+          "$ref": "#/$defs/boundedString",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "raw": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "normalized": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "rule_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "const": "agent-cfml-linkage"
+        },
+        "version": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_id",
+        "root_name"
+      ],
+      "properties": {
+        "root_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "root_name": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "source_fingerprint",
+        "file_count"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_fingerprint": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "file_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported_languages",
+        "node_kinds",
+        "edge_types",
+        "resolvers"
+      ],
+      "properties": {
+        "supported_languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cfml",
+              "html",
+              "javascript",
+              "css",
+              "sql",
+              "unknown"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "node_kinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodeKind"
+          },
+          "uniqueItems": true
+        },
+        "edge_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edgeType"
+          },
+          "uniqueItems": true
+        },
+        "resolvers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "nodeKind": {
+      "type": "string",
+      "enum": [
+        "FILE",
+        "CFM_PAGE",
+        "CFC_COMPONENT",
+        "CFC_METHOD",
+        "CUSTOM_TAG",
+        "APPLICATION",
+        "FORM",
+        "JS_FUNCTION",
+        "QUERY",
+        "DATABASE_TABLE",
+        "DATASOURCE",
+        "REPOSITORY_ACTION",
+        "SCOPE_VARIABLE",
+        "ROUTE_CONDITION",
+        "CONTROL_FLOW",
+        "EXTERNAL_TARGET",
+        "UNRESOLVED_TARGET"
+      ]
+    },
+    "edgeType": {
+      "type": "string",
+      "enum": [
+        "INCLUDES",
+        "CUSTOM_TAG_CALL",
+        "EXTENDS",
+        "IMPLEMENTS",
+        "INSTANTIATES",
+        "CFINVOKES",
+        "CALLS_METHOD",
+        "FORM_SUBMITS_TO",
+        "REDIRECTS_TO",
+        "AJAX_CALLS",
+        "FETCHES",
+        "QUERY_READS_TABLE",
+        "QUERY_WRITES_TABLE",
+        "QUERY_USES_DATASOURCE",
+        "CALLS_REPOSITORY",
+        "APPLICATION_GOVERNS",
+        "REQUEST_HOOK_APPLIES_TO",
+        "ROUTES_WHEN",
+        "SCOPE_PRODUCES",
+        "SCOPE_CONSUMES",
+        "SCOPE_OVERRIDES",
+        "DYNAMIC_REFERENCE",
+        "CSS_ASSET_REFERENCES"
+      ]
+    },
+    "symbol": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "owner_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "canonical_name",
+        "language",
+        "evidence",
+        "attributes",
+        "fingerprint"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "kind": {
+          "$ref": "#/$defs/nodeKind"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "canonical_name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "path": {
+          "$ref": "#/$defs/boundedString",
+          "minLength": 1
+        },
+        "symbol": {
+          "$ref": "#/$defs/symbol"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "cfml",
+            "html",
+            "javascript",
+            "css",
+            "sql",
+            "unknown"
+          ]
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "attributes": {
+          "type": "object"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "resolver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "version": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reason"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "strong",
+            "candidate",
+            "unresolved"
+          ]
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression_normalized",
+        "source_span",
+        "variables",
+        "branch_kind",
+        "evaluation"
+      ],
+      "properties": {
+        "expression_normalized": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "source_span": {
+          "$ref": "#/$defs/span"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          },
+          "uniqueItems": true
+        },
+        "branch_kind": {
+          "type": "string",
+          "enum": [
+            "if",
+            "switch",
+            "case",
+            "ternary",
+            "mapping",
+            "runtime"
+          ]
+        },
+        "evaluation": {
+          "type": "string",
+          "enum": [
+            "static_true",
+            "static_false",
+            "runtime",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_fingerprint"
+      ],
+      "properties": {
+        "source_fingerprint": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "from",
+        "to",
+        "direction",
+        "span",
+        "evidence",
+        "resolver",
+        "confidence",
+        "dynamic",
+        "freshness",
+        "attributes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "type": {
+          "$ref": "#/$defs/edgeType"
+        },
+        "from": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "to": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "direction": {
+          "const": "forward"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "resolver": {
+          "$ref": "#/$defs/resolver"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "condition": {
+          "$ref": "#/$defs/condition"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dynamic": {
+          "type": "boolean"
+        },
+        "freshness": {
+          "$ref": "#/$defs/freshness"
+        },
+        "attributes": {
+          "type": "object"
+        }
+      }
+    },
+    "unresolvedReason": {
+      "type": "string",
+      "enum": [
+        "DYNAMIC_EXPRESSION",
+        "AMBIGUOUS_PATH",
+        "AMBIGUOUS_COMPONENT",
+        "AMBIGUOUS_METHOD",
+        "MAPPING_UNKNOWN",
+        "OUTSIDE_ROOT",
+        "PATH_NOT_FOUND",
+        "EXTERNAL_TARGET",
+        "GENERATED_SYMBOL",
+        "SQL_DYNAMIC_IDENTIFIER",
+        "UNSUPPORTED_SYNTAX",
+        "PARSE_PARTIAL"
+      ]
+    },
+    "unresolved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_node",
+        "relation_type",
+        "expression",
+        "span",
+        "reason_code",
+        "candidates",
+        "evidence",
+        "suggested_resolution"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "source_node": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "relation_type": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "expression": {
+          "$ref": "#/$defs/boundedString",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/unresolvedReason"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          },
+          "uniqueItems": true
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "suggested_resolution": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2048
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "code",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "code": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file_count",
+        "node_count",
+        "edge_count",
+        "unresolved_count",
+        "diagnostic_count",
+        "evidence_count"
+      ],
+      "properties": {
+        "file_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "node_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edge_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unresolved_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "diagnostic_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

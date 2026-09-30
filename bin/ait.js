@@ -480,6 +480,8 @@ function installTool(options) {
     'install',
     '--prefix', target,
     '--ignore-scripts',
+    // Local source installs must be copied inside AIT home, not linked outside it.
+    ...(options.fromPath ? ['--install-links'] : []),
     '--no-audit',
     '--no-fund',
     '--no-package-lock',

@@ -1,0 +1,47 @@
+[
+  {
+    "package": "code-slice",
+    "script": "test:golden",
+    "exitCode": 0
+  },
+  {
+    "package": "code-slice",
+    "script": "test:e2e",
+    "exitCode": 0
+  },
+  {
+    "package": "code-slice",
+    "script": "grammars:verify",
+    "exitCode": 0
+  },
+  {
+    "package": "project-profile",
+    "script": "test:golden",
+    "exitCode": 0
+  },
+  {
+    "package": "project-profile",
+    "script": "test:packaged-cli",
+    "exitCode": 0
+  },
+  {
+    "package": "project-tree",
+    "script": "smoke",
+    "exitCode": 0
+  },
+  {
+    "package": "symbol-search",
+    "script": "smoke:pack",
+    "exitCode": 1
+  },
+  {
+    "package": "test-scope",
+    "script": "smoke:pack",
+    "exitCode": 0
+  },
+  {
+    "package": "change-impact",
+    "script": "pack:smoke",
+    "exitCode": 1
+  }
+]

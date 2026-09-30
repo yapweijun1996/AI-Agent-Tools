@@ -46,7 +46,7 @@ test('parses explicit install and dispatch approval flags', () => {
 test('validates the current registry and keeps installability explicit', () => {
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
   assert.equal(ait.validateRegistry(registry), registry);
-  assert.equal(registry.tools.length, 15);
+  assert.equal(registry.tools.length, 17);
   const codeSlice = registry.tools.find((tool) => tool.id === 'agent-code-slice');
   const resultStore = registry.tools.find((tool) => tool.id === 'agent-result-store');
   assert.equal(Boolean(codeSlice.npm && codeSlice.release_version), true);
@@ -167,7 +167,7 @@ test('list reads a local registry snapshot and does not write the home', () => {
   const output = JSON.parse(captured.output);
   assert.equal(output.protocol, 'ait-result/v1');
   assert.equal(output.ok, true);
-  assert.equal(output.data.tools.length, 15);
+  assert.equal(output.data.tools.length, 17);
   assert.equal(fs.existsSync(path.join(home, 'installed.json')), false);
 });
 
@@ -224,6 +224,8 @@ test('dispatch applies the exact native profile without rewriting its payload', 
       '--registry', registryPath, '--home', home,
     ]));
     assert.equal(install.value, 0);
+    const installed = path.join(home, 'packages', 'agent-code-slice', '0.2.0', 'node_modules', 'agent-code-slice');
+    assert.equal(fs.lstatSync(installed).isSymbolicLink(), false);
     const dispatch = captureStdout(() => ait.main([
       'dispatch', 'agent-code-slice', '--allow-execution', '--json',
       '--registry', registryPath, '--home', home, '--', '--fixture',

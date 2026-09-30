@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "artifacts": [
+    {
+      "id": "stderr",
+      "stream": "stderr",
+      "content": "src/order.ts(41,18): error TS2339: Property 'total' does not exist on type 'Order'\n",
+      "encoding": "utf-8"
+    }
+  ],
+  "producerOutcome": {
+    "command": "npm run typecheck",
+    "exitCode": 2,
+    "signal": null
+  },
+  "options": {
+    "root": "/workspace/project"
+  }
+}

@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-linkage:fact:v0.1",
+  "title": "agent-cfml-linkage Fact IR v0.1",
+  "description": "Proposed parser-independent fact contract produced before cross-file resolution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "source_files",
+    "parser",
+    "complete",
+    "facts",
+    "diagnostics",
+    "stats"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agent-cfml-linkage-fact/v0.1"
+    },
+    "tool": {
+      "$ref": "#/$defs/tool"
+    },
+    "source_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sourceFile"
+      }
+    },
+    "parser": {
+      "$ref": "#/$defs/parser"
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fact"
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "boundedString": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start_line",
+        "start_col",
+        "end_line",
+        "end_col"
+      ],
+      "properties": {
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_col": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_col": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "const": "agent-cfml-linkage"
+        },
+        "version": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "sourceLanguage": {
+      "type": "string",
+      "enum": [
+        "cfml",
+        "html",
+        "javascript",
+        "css",
+        "sql",
+        "unknown"
+      ]
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "language",
+        "fingerprint"
+      ],
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "language": {
+          "$ref": "#/$defs/sourceLanguage"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "parser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "completeness"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "completeness": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "unsupported"
+          ]
+        }
+      }
+    },
+    "factKind": {
+      "type": "string",
+      "enum": [
+        "FILE",
+        "INCLUDE",
+        "CUSTOM_TAG",
+        "COMPONENT",
+        "METHOD",
+        "INSTANTIATE",
+        "INVOKE",
+        "FORM",
+        "REDIRECT",
+        "AJAX",
+        "FETCH",
+        "QUERY",
+        "SCOPE_READ",
+        "SCOPE_WRITE",
+        "CONDITION",
+        "CONTROL_FLOW",
+        "MAPPING",
+        "APPLICATION_HOOK",
+        "REPOSITORY_ACTION",
+        "DYNAMIC_REFERENCE",
+        "CSS_ASSET"
+      ]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression_normalized",
+        "source_span",
+        "variables",
+        "branch_kind",
+        "evaluation"
+      ],
+      "properties": {
+        "expression_normalized": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "source_span": {
+          "$ref": "#/$defs/span"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          },
+          "uniqueItems": true
+        },
+        "branch_kind": {
+          "type": "string",
+          "enum": [
+            "if",
+            "switch",
+            "case",
+            "ternary",
+            "mapping",
+            "runtime"
+          ]
+        },
+        "evaluation": {
+          "type": "string",
+          "enum": [
+            "static_true",
+            "static_false",
+            "runtime",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_id",
+        "kind",
+        "file",
+        "language",
+        "span",
+        "normalized_expression",
+        "enclosing_symbol",
+        "condition",
+        "extraction_rule_id",
+        "attributes"
+      ],
+      "properties": {
+        "fact_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "kind": {
+          "$ref": "#/$defs/factKind"
+        },
+        "file": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "language": {
+          "$ref": "#/$defs/sourceLanguage"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "normalized_expression": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "enclosing_symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2048
+        },
+        "condition": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extraction_rule_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "attributes": {
+          "type": "object"
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "code",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "code": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_file_count",
+        "fact_count",
+        "diagnostic_count"
+      ],
+      "properties": {
+        "source_file_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "diagnostic_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

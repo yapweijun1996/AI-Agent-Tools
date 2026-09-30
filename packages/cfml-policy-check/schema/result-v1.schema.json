@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-cfml-policy-check/result-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool", "status", "complete", "data", "errors", "warnings", "meta"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "tool": { "const": "agent-cfml-policy-check" },
+    "status": { "enum": ["ok", "incomplete", "error"] },
+    "complete": { "type": "boolean" },
+    "data": { "type": ["object", "null"] },
+    "errors": { "type": "array" },
+    "warnings": { "type": "array" },
+    "meta": { "type": "object" }
+  }
+}

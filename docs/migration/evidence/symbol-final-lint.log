@@ -1,0 +1,5 @@
+
+> agent-symbol-search@0.1.2 lint
+> node scripts/lint.mjs
+
+lint: 28 source and test files checked

@@ -1,0 +1,54 @@
+{
+  "schema_version": "agent-cfml-linkage-release-audit/v0.1",
+  "status": "bounded-pre-release-audit",
+  "audited_source_commit": "428feb76c77bec1c865bf6963d67f7cb932e8e9f",
+  "package": {
+    "name": "agent-cfml-linkage",
+    "version": "0.1.0",
+    "private": true,
+    "engine_requirement": ">=20",
+    "artifact_command": "npm pack --dry-run --json",
+    "artifact_status": "dry-run-only-not-retained",
+    "artifact_filename": "agent-cfml-linkage-0.1.0.tgz",
+    "artifact_size_bytes": 145676,
+    "artifact_unpacked_size_bytes": 610225,
+    "artifact_shasum": "4862072d2bbb9c72c2cea36f5570f2b999f64fe9",
+    "artifact_integrity": "sha512-11F69mG6jswVhgEtb2FGDGfajPHa6OzBV1KC8JZvWUNQCgKm/z/PTeQj1XXAw3Y+L0QTbckWKsgD4jJcen65XA==",
+    "artifact_entry_count": 136,
+    "artifact_identity_scope": "Single dry-run observation for audited_source_commit; tarball was not retained and reproducibility is not claimed. Later packaging of the post-audit tree is a different input because this audit document is included."
+  },
+  "checks": {
+    "tests": "npm test: 68 passed, 0 failed",
+    "node_host": "v25.2.1 on win32/x64",
+    "javascript_syntax": "passed",
+    "json_parse": "passed",
+    "fixture_manifest_and_source_execution": "passed",
+    "markdown_links": "passed",
+    "goal_prompt_limit": "passed: 1933 characters",
+    "conservative_credential_scan": "passed: 0 matches",
+    "secretlint": "unavailable locally",
+    "lint_scripts": "not configured",
+    "typecheck_scripts": "not configured",
+    "git_diff_check": "passed"
+  },
+  "documentation_parity": {
+    "required_ssot_and_release_security_files": 16,
+    "relative_markdown_files_checked": 51,
+    "status": "passed"
+  },
+  "security_boundary": {
+    "application_source_execution": false,
+    "network_access": false,
+    "database_access": false,
+    "browser_access": false,
+    "production_write": false,
+    "publication": false
+  },
+  "remaining_gates": [
+    "full parser and analyzer orchestration",
+    "CI and dependency audit workflow",
+    "packed-artifact installation/public API smoke",
+    "Lucee and Adobe ColdFusion environment evidence",
+    "public release authorization and release metadata"
+  ]
+}

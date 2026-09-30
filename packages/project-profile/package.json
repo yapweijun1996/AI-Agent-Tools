@@ -1,0 +1,54 @@
+{
+  "name": "agent-project-profile",
+  "version": "0.1.2",
+  "description": "Deterministic, read-only repository profiles for AI coding agents.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/project-profile"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-profile#readme",
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "keywords": [
+    "ai-agent",
+    "repository-profile",
+    "project-intelligence",
+    "static-analysis",
+    "cli"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "bin": {
+    "agent-project-profile": "dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "examples",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test .test-dist/test/runner.test.js",
+    "test:golden": "npm run build && tsc -p tsconfig.test.json && node --test .test-dist/test/golden.test.js",
+    "test:benchmark": "npm run build && node test/benchmark.mjs",
+    "test:smoke": "npm run build && node dist/bin.js . --format json",
+    "prepack": "npm run build",
+    "test:packaged-cli": "node test/packaged-cli-e2e.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ajv": "^8.17.1",
+    "typescript": "^5.7.0"
+  }
+}

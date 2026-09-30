@@ -1,0 +1,839 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-error-lens:contract:v1",
+  "title": "Agent Error Lens V0.1 request or result",
+  "description": "The single shape source of truth for the V0.1 request and canonical result envelopes.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/ParseRequest"
+    },
+    {
+      "$ref": "#/$defs/ParseResult"
+    },
+    {
+      "$ref": "#/$defs/CapabilitiesResult"
+    }
+  ],
+  "x-agent-error-lens": {
+    "schemaVersion": "1",
+    "sourceOfTruth": "json-schema",
+    "typePolicy": "TypeScript declarations are a checked projection and may not add public fields absent from this schema.",
+    "modulePolicy": "esm-only",
+    "nodeRange": ">=20.11.0 <25",
+    "runtimeDependencies": 0,
+    "diagnosticId": {
+      "algorithm": "sha256",
+      "prefix": "diag_",
+      "hexLength": 64,
+      "collision": "emit DIAGNOSTIC_ID_COLLISION and do not silently merge distinct identity tuples"
+    },
+    "canonicalJson": {
+      "encoding": "utf-8",
+      "newline": "lf",
+      "trailingNewline": true,
+      "keyOrder": "schema-defined order; arrays use the deterministic order defined by SPEC.md",
+      "objectKeyOrder": {
+        "request": [
+          "schemaVersion",
+          "artifacts",
+          "producerOutcome",
+          "options"
+        ],
+        "result": [
+          "schemaVersion",
+          "status",
+          "producerOutcome",
+          "data",
+          "toolIssues",
+          "warnings",
+          "truncation",
+          "stats"
+        ],
+        "result.data": [
+          "producers",
+          "diagnostics",
+          "summary"
+        ],
+        "diagnostic": [
+          "id",
+          "severity",
+          "phase",
+          "message",
+          "code",
+          "location",
+          "producerId",
+          "confidence",
+          "evidence"
+        ],
+        "evidence": [
+          "artifactId",
+          "kind",
+          "start",
+          "end",
+          "offsetUnit"
+        ]
+      },
+      "severityRank": [
+        "error",
+        "warning",
+        "info",
+        "unknown"
+      ],
+      "nullSort": "after-non-null"
+    },
+    "unicode": {
+      "input": "well-formed Unicode only; lone UTF-16 surrogates are invalid",
+      "canonicalStrings": "NFC",
+      "lengthUnits": "unicode-code-point",
+      "evidenceOffsets": "utf16-code-unit"
+    },
+    "redaction": {
+      "replacement": "[REDACTED]",
+      "keyNamePolicy": "case-insensitive bounded key-name matching",
+      "keyNames": [
+        "api-key",
+        "api_key",
+        "apikey",
+        "access-token",
+        "access_token",
+        "access-key",
+        "access_key",
+        "refresh-token",
+        "refresh_token",
+        "client-secret",
+        "client_secret",
+        "private-key",
+        "private_key",
+        "secret-key",
+        "secret_key",
+        "secret-access-key",
+        "secret_access_key",
+        "session-token",
+        "session_token",
+        "id-token",
+        "id_token",
+        "oauth-token",
+        "oauth_token",
+        "token",
+        "authorization",
+        "password",
+        "passwd",
+        "secret",
+        "database-url",
+        "database_url",
+        "db-url",
+        "signed-url"
+      ],
+      "valueFamilies": [
+        "Authorization scheme values",
+        "common provider token prefixes",
+        "credential-bearing database URLs",
+        "signed URLs with credential query parameters"
+      ],
+      "benignKeys": [
+        "inputTokens",
+        "outputTokens",
+        "totalTokens"
+      ],
+      "identityInput": "sanitized canonical fields only"
+    },
+    "limits": {
+      "maxArtifactBytes": 2097152,
+      "maxRequestBytes": 20971520,
+      "maxDiagnostics": 200,
+      "maxEvidenceSpanBytes": 65536,
+      "maxLineBytes": 16384,
+      "maxProcessedLines": 200000,
+      "maxParserMatches": 10000,
+      "maxTerminalSequences": 10000,
+      "maxProducerCandidates": 256,
+      "maxAggregateEvidenceBytes": 1048576,
+      "maxProducers": 64,
+      "maxToolIssues": 200,
+      "maxWarnings": 200,
+      "maxEvidencePerRecord": 32
+    },
+    "package": {
+      "name": "agent-error-lens",
+      "license": "MIT",
+      "packageContents": "allowlist-before-release"
+    }
+  },
+  "$defs": {
+    "SchemaVersion": {
+      "type": "string",
+      "const": "1"
+    },
+    "ArtifactId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "ParseRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "artifacts"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "$ref": "#/$defs/SchemaVersion"
+        },
+        "artifacts": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/InputArtifact"
+          }
+        },
+        "producerOutcome": {
+          "$ref": "#/$defs/ProducerOutcome"
+        },
+        "options": {
+          "$ref": "#/$defs/ParseOptions"
+        }
+      }
+    },
+    "InputArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "stream",
+        "content"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ArtifactId"
+        },
+        "stream": {
+          "type": "string",
+          "enum": [
+            "stdout",
+            "stderr",
+            "combined",
+            "unknown"
+          ]
+        },
+        "content": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string",
+          "const": "utf-8"
+        }
+      }
+    },
+    "ProducerOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "maxLength": 8192
+        },
+        "exitCode": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "signal": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        }
+      }
+    },
+    "ParseOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        }
+      }
+    },
+    "ParseResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "status",
+        "data",
+        "toolIssues",
+        "warnings",
+        "truncation",
+        "stats"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "$ref": "#/$defs/SchemaVersion"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "error"
+          ]
+        },
+        "producerOutcome": {
+          "$ref": "#/$defs/ProducerOutcome"
+        },
+        "data": {
+          "$ref": "#/$defs/ResultData"
+        },
+        "toolIssues": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "$ref": "#/$defs/ToolIssue"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "$ref": "#/$defs/Warning"
+          }
+        },
+        "truncation": {
+          "$ref": "#/$defs/Truncation"
+        },
+        "stats": {
+          "$ref": "#/$defs/ParseStats"
+        }
+      }
+    },
+    "CapabilitiesResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "operations",
+        "producers"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "$ref": "#/$defs/SchemaVersion"
+        },
+        "operations": {
+          "type": "array",
+          "const": [
+            "parse",
+            "capabilities"
+          ]
+        },
+        "producers": {
+          "type": "array",
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "typescript",
+              "vitest",
+              "eslint",
+              "generic-structured",
+              "generic-text"
+            ]
+          }
+        }
+      }
+    },
+    "ResultData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "producers",
+        "diagnostics",
+        "summary"
+      ],
+      "properties": {
+        "producers": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/Producer"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "$ref": "#/$defs/Diagnostic"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/Summary"
+        }
+      }
+    },
+    "Diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "phase",
+        "message",
+        "code",
+        "location",
+        "producerId",
+        "confidence",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^diag_[0-9a-f]{64}$"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "phase": {
+          "$ref": "#/$defs/Phase"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Location"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "producerId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z][a-z0-9-]{0,63}$"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      }
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "error",
+        "warning",
+        "info",
+        "unknown"
+      ]
+    },
+    "Phase": {
+      "type": "string",
+      "enum": [
+        "compile",
+        "test",
+        "lint",
+        "build",
+        "cli",
+        "unknown"
+      ]
+    },
+    "Confidence": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "strong",
+        "candidate",
+        "unknown"
+      ]
+    },
+    "Location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "line",
+        "column"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "column": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactId",
+        "kind",
+        "start",
+        "end",
+        "offsetUnit"
+      ],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/ArtifactId"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "log-span",
+            "structured-field"
+          ]
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "offsetUnit": {
+          "type": "string",
+          "const": "utf16-code-unit"
+        }
+      }
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "version",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,63}$"
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "typescript",
+            "vitest",
+            "eslint",
+            "generic-structured",
+            "generic-text",
+            "unknown"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      }
+    },
+    "ToolIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "stage",
+        "message",
+        "artifactId",
+        "evidence"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/IssueCode"
+        },
+        "stage": {
+          "$ref": "#/$defs/IssueStage"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "artifactId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "evidence": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      }
+    },
+    "Warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "stage",
+        "message",
+        "diagnosticId",
+        "artifactId",
+        "evidence"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/IssueCode"
+        },
+        "stage": {
+          "$ref": "#/$defs/IssueStage"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "diagnosticId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^diag_[0-9a-f]{64}$"
+        },
+        "artifactId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "evidence": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      }
+    },
+    "IssueCode": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+    },
+    "IssueStage": {
+      "type": "string",
+      "enum": [
+        "request",
+        "bounds",
+        "encoding",
+        "normalize",
+        "detect",
+        "parse",
+        "mapping",
+        "path",
+        "redact",
+        "canonicalize",
+        "serialize",
+        "cli",
+        "unknown"
+      ]
+    },
+    "Truncation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "truncated",
+        "reasons"
+      ],
+      "properties": {
+        "truncated": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/TruncationReason"
+          }
+        }
+      }
+    },
+    "TruncationReason": {
+      "type": "string",
+      "enum": [
+        "artifact-bytes",
+        "request-bytes",
+        "line-length",
+        "processed-lines",
+        "parser-matches",
+        "terminal-sequences",
+        "producer-candidates",
+        "evidence-bytes",
+        "diagnostics",
+        "unsupported-format",
+        "mapping-failure"
+      ]
+    },
+    "Summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticCount",
+        "errorCount",
+        "warningCount",
+        "infoCount",
+        "unknownCount",
+        "producerCount"
+      ],
+      "properties": {
+        "diagnosticCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "errorCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "warningCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "infoCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "unknownCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "producerCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        }
+      }
+    },
+    "ParseStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactsReceived",
+        "artifactsProcessed",
+        "bytesReceived",
+        "bytesProcessed",
+        "linesProcessed",
+        "parserMatches",
+        "terminalSequences",
+        "producerCandidates",
+        "evidenceBytes",
+        "diagnosticsBeforeLimit"
+      ],
+      "properties": {
+        "artifactsReceived": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "artifactsProcessed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "bytesReceived": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20971520
+        },
+        "bytesProcessed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20971520
+        },
+        "linesProcessed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200000
+        },
+        "parserMatches": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "terminalSequences": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "producerCandidates": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "evidenceBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1048576
+        },
+        "diagnosticsBeforeLimit": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      }
+    }
+  }
+}

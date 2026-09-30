@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "toolVersion": "0.1.2",
+  "status": "unsupported",
+  "project": {
+    "root": ".",
+    "name": null,
+    "kind": "unknown",
+    "repository": { "kind": "unknown", "evidence": [] },
+    "evidence": []
+  },
+  "ecosystems": [
+    { "name": "python", "support": "detected_only", "evidence": ["ev-000001"] }
+  ],
+  "packageManager": {
+    "name": null,
+    "version": null,
+    "confidence": "unknown",
+    "invocationAvailable": false,
+    "evidence": []
+  },
+  "runtimes": [],
+  "workspace": {
+    "enabled": null,
+    "manager": null,
+    "declarations": [],
+    "packages": [],
+    "total": null,
+    "returned": 0,
+    "truncated": false
+  },
+  "commands": {
+    "build": [],
+    "test": [],
+    "lint": [],
+    "typecheck": [],
+    "dev": [],
+    "start": [],
+    "format": []
+  },
+  "scripts": [],
+  "entrypoints": [],
+  "configs": [],
+  "instructions": [],
+  "ci": [],
+  "evidence": [
+    { "id": "ev-000001", "kind": "file", "path": "pyproject.toml" }
+  ],
+  "warnings": [
+    {
+      "code": "UNSUPPORTED_ECOSYSTEM",
+      "severity": "warning",
+      "message": "This ecosystem is detected by a sentinel file only; commands and runtime details are not inferred.",
+      "path": "pyproject.toml",
+      "evidence": ["ev-000001"]
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "strategies": ["root-sentinels"],
+    "budgets": {
+      "workspacePackages": 100,
+      "directoryDepth": 12,
+      "directoryEntries": 10000,
+      "metadataFiles": 1000,
+      "metadataFileBytes": 262144,
+      "metadataTotalBytes": 8388608,
+      "outputBytes": 1048576,
+      "sourceStringBytes": 4096
+    },
+    "usage": { "directoryEntries": 1, "metadataFiles": 0, "metadataBytes": 0 },
+    "categories": {
+      "repository": "complete",
+      "ecosystems": "complete",
+      "packageManager": "not_applicable",
+      "runtimes": "not_applicable",
+      "workspace": "not_applicable",
+      "commands": "not_applicable",
+      "scripts": "not_applicable",
+      "entrypoints": "not_applicable",
+      "configs": "complete",
+      "instructions": "complete",
+      "ci": "complete"
+    },
+    "truncated": {
+      "workspace": false,
+      "output": false,
+      "directoryEntries": false,
+      "metadataFiles": false,
+      "metadataBytes": false,
+      "depth": false
+    }
+  }
+}

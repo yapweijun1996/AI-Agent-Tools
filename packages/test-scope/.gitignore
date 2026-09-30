@@ -1,0 +1,21 @@
+node_modules/
+dist/
+coverage/
+.tmp/
+*.tsbuildinfo
+.DS_Store
+
+# Local agent/runtime state
+.pi-glla/
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Tool and package-manager logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

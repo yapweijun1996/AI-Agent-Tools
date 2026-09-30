@@ -1,82 +1,36 @@
 # AI-Agent-Tools
 
-Small, focused tools that help AI coding agents read less, guess less, execute more precisely, and verify more.
+Owned source for ten deterministic AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
-This repository is the ecosystem **Hub**: registry, standards, discovery, roadmap, governance, and the explicitly authorized dependency-free AIT install/dispatch runtime. Each tool remains in its own repository and npm package, with independent tests, versions, and releases. AIT manages packages but does not own tool implementations or agent reasoning.
+## Develop
 
-## Current state
-
-**1 of 15 registered tools completed: [Agent Code Slice](https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice).** The owner confirmed completion on 2026-09-06. The published [agent-code-slice@0.2.0](https://www.npmjs.com/package/agent-code-slice/v/0.2.0) package identity was checked against npm. It provides code outlines and symbol/line/range slicing through the `code-slice` CLI and JavaScript API; implementation stays in its independent repository.
-
-The Hub provides documentation, a machine-readable [tool registry](TOOL_REGISTRY.json), a local validator, and the local `ait` CLI. The remaining fourteen entries are not completed in the Hub. The original ten-tool order is preserved; CFML Check, Result Store, and Runtime Trace were appended on 2026-09-07 with [detailed specifications](docs/TOOL_EXPANSION.md). CFML Check, Change Impact, and Test Scope now have inspectable independent implementations and basic test evidence, so their Hub lifecycle is `Experimental`; their delivery completion and protocol conformance remain separate. Symbol Search was appended on 2026-09-08 after an implementation admission review and remains `Experimental`; its published `0.1.2` artifact is now audited, while delivery completion and protocol conformance remain separate. The planned [CFML Policy Check](docs/tools/AGENT_CFML_POLICY_CHECK.md) was appended on 2026-09-16 as a separate repository for configurable CFML/HTML/project rules; its repository has no implementation, package, test, or release evidence yet. Result Store and Runtime Trace remain Planned.
-
-Project Profile now has a confirmed repository, published npm identity, and
-inspectable implementation, so its Hub lifecycle is `Experimental`; it is not
-counted as delivery `Done` because the corrected source `0.1.2` is not published.
-A prior audit recorded a `0.1.1` CLI distribution defect, while the current exact
-artifact re-audit did not reproduce it on this host. The exact published artifact
-omits its declared MIT `LICENSE` file, and the release/platform discrepancy remains
-unresolved.
-
-Delivery completion is separate from Hub standards conformance. Code Slice retains the registry lifecycle `Experimental` because native/Hub protocol compatibility has not been verified; this does **not** mean its delivered tool is unfinished. Its npm identity and recorded release are populated; its Hub verification snapshot remains `null`.
-
-The native Code Slice, draft Change Impact, Project Profile, and Test Scope protocols differ from the Hub target JSON/exit/completeness contract. AIT applies only explicit exact-version consumer profiles and does not provide a universal compatibility layer. [TASK.md](TASK.md) tracks the remaining work; [VALIDATION.md](VALIDATION.md) separates source observations from release evidence.
-
-The three-tool and status reconciliation was synchronized at User tier and read
-back. Company-tier visibility remains blocked by the existing write-scope denial;
-see the [KB receipt](docs/KB_SYNC.md).
-
-The `ai-agent-tools` package provides the `ait` discovery, install, doctor, and
-dispatch CLI. It is publicly available on npm under Apache-2.0; the packed
-release dry-run, local consumer checks, and registry read-back pass.
-Installation and execution are explicit, version-pinned, and fail closed when
-registry identity or approval is missing; see [AIT runtime](docs/AIT_RUNTIME.md) and
-[Architecture](docs/ARCHITECTURE.md#ait-discovery-installation-and-dispatch-runtime).
-
-## Principles
-
-- Local-first; no LLM, API key, or backend required for core operation.
-- Deterministic where possible, with bounded input and output.
-- CLI-first; stable JSON on stdout, diagnostics on stderr.
-- Read-only by default; fail closed when evidence is insufficient.
-- Cross-platform support demonstrated by tests.
-- Independent releases and evidence-backed capability claims.
-
-## Find your starting point
-
-| Need | Read |
-| --- | --- |
-| Understand the product and scope | [Product vision](docs/PRODUCT_VISION.md) |
-| Navigate documentation and current work | [Documentation index](DOCUMENTATION_INDEX.md), [Task status](TASK.md) |
-| Review requirements and delivery decisions | [Specification](SPEC.md), [Design](DESIGN.md), [Epic](EPIC.md) |
-| Understand ownership and discovery | [Architecture](docs/ARCHITECTURE.md) |
-| Find tools and delivery order | [Registry](TOOL_REGISTRY.json), [Roadmap](ROADMAP.md) |
-| Review tool responsibilities and integration gaps | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) |
-| Review the CFML expansion tools and acceptance cases | [Expansion review](docs/TOOL_EXPANSION.md), [CFML Check](docs/tools/AGENT_CFML_CHECK.md), [CFML Policy Check](docs/tools/AGENT_CFML_POLICY_CHECK.md), [Result Store](docs/tools/AGENT_RESULT_STORE.md), [Runtime Trace](docs/tools/AGENT_RUNTIME_TRACE.md) |
-| Reconcile repository documentation with Company KB | [KB synchronization](docs/KB_SYNC.md) |
-| Propose or register a tool | [Adding a tool](docs/ADDING_A_TOOL.md) |
-| Define capability and lifecycle | [Tool standard](docs/TOOL_STANDARD.md) |
-| Design a CLI and its output | [CLI standard](docs/CLI_STANDARD.md), [JSON standard](docs/JSON_STANDARD.md) |
-| Review security and release readiness | [Security standard](docs/SECURITY_STANDARD.md), [Release standard](docs/RELEASE_STANDARD.md) |
-| Work in this repository as an agent | [AGENTS.md](AGENTS.md) |
-
-## Maintain the Hub
-
-The owner will notify this Hub when another tool is completed. On each notice,
-verify the supplied repository and any claimed package/release identity, update
-completion documentation and applicable registry fields, validate the changes,
-and commit the Hub documentation. Do not infer completion from a scaffold or
-start background monitoring. Remaining tools stay pending until notified.
-
-Edit the smallest relevant document and update the registry when a tool's recorded facts change. Submit changes for repository maintainer review; status promotion requires evidence, not a roadmap date. The standards are adopted Hub policy, not a claim that any external tool already conforms.
-
-Run the dependency-free validator with Python 3.9 or newer:
+Use Node 22.13+ or Node 24 and Python 3.9+. From a fresh clone:
 
 ```sh
-python3 scripts/validate_hub.py
-git diff --check
+npm run bootstrap
+npm run verify
 ```
 
-The validator checks registry structure, lifecycle gates, roadmap order, required documents, local Markdown links and anchors, and JSON examples. Remote evidence links must also be opened and reviewed when added or changed; HTTP success alone does not verify a capability. The AIT runtime has no third-party npm dependencies or framework; the validator
-uses Python's standard library. See [Validation](VALIDATION.md) for additional
-checks and limitations.
+Bootstrap runs `npm ci --ignore-scripts` for each package using its own lockfile. No hoisting or shared TypeScript version is imposed. Root `build`, `typecheck`, `lint`, `test` and `pack` commands orchestrate the applicable native scripts; missing scripts are reported as not applicable. `npm test` also checks AIT, Hub documents and source coverage. Tests use a canonical local temporary directory and writable npm cache.
+
+Run a tool independently, for example:
+
+```sh
+npm --prefix packages/code-slice test
+npm --prefix packages/code-slice run build
+node packages/code-slice/dist/cli/index.js capabilities --json
+node packages/project-tree/bin/aptree.js --help
+node bin/ait.js --help
+```
+
+[Tool index and usage](migration-tools.md) lists every package, executable and source version. [Migration evidence and deletion checklist](docs/migration/README.md) records source commits, licenses, history recovery, validation and remaining external dependencies. The owner authorized consolidation on 2026-09-30; [architecture decision](docs/migration/DECISION.md) supersedes the previous independent-repository source restriction.
+
+## Contracts and releases
+
+AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
+
+MIT notices remain with their packages. CFML Linkage remains private with no package license declaration, and CFML Policy Check remains private/UNLICENSED. Root Apache-2.0 does not relicense imported source. Error Lens remains private. No package was published during consolidation.
+
+[Registry](TOOL_REGISTRY.json) records ecosystem lifecycle and published evidence; [source manifest](docs/migration/SOURCE_MANIFEST.json) records imported source versions. Lifecycle conformance, owner-confirmed delivery and publication are distinct. The previous Hub observations remain in Git history and dated [validation](VALIDATION.md).
+
+[Architecture](docs/ARCHITECTURE.md), [documentation index](DOCUMENTATION_INDEX.md), [task status](TASK.md), [roadmap](ROADMAP.md), and [AGENTS.md](AGENTS.md) describe repository responsibilities. Tools remain local-first, bounded and read-only within their declared scopes; no LLM, API key or agent reasoning runtime is introduced.

@@ -1,0 +1,442 @@
+{
+  "corpusVersion": "1",
+  "description": "Golden and adversarial inputs for the frozen Agent Error Lens V0.1 contract. Expected values are assertions for the future parser; this corpus is not parser-pass evidence.",
+  "cases": [
+    {
+      "id": "producer-typescript-basic",
+      "family": "producer",
+      "producer": "typescript",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "stderr",
+            "stream": "stderr",
+            "content": "src/order.ts(41,18): error TS2339: Property 'total' does not exist on type 'Order'\n"
+          }
+        ],
+        "producerOutcome": {
+          "command": "npm run typecheck",
+          "exitCode": 2
+        }
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["typescript"],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "phase": "compile",
+            "code": "TS2339",
+            "message": "Property 'total' does not exist on type 'Order'",
+            "location": {"file": "src/order.ts", "line": 41, "column": 18},
+            "confidence": "confirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "producer-vitest-assertion",
+      "family": "producer",
+      "producer": "vitest",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "stdout",
+            "stream": "stdout",
+            "content": " FAIL  src/order.test.ts\nAssertionError: expected 500 to be 200\n ❯ src/order.test.ts:42:17\nTests: 1 failed, 42 passed\n"
+          }
+        ],
+        "producerOutcome": {"command": "vitest run", "exitCode": 1}
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["vitest"],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "phase": "test",
+            "code": null,
+            "message": "expected 500 to be 200",
+            "location": {"file": "src/order.test.ts", "line": 42, "column": 17},
+            "confidence": "confirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "producer-eslint-rule",
+      "family": "producer",
+      "producer": "eslint",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "stdout",
+            "stream": "stdout",
+            "content": "/workspace/project/src/order.ts\n  7:3  error  Unexpected console statement  no-console\n\n✖ 1 problem (1 error, 0 warnings)\n"
+          }
+        ],
+        "producerOutcome": {"command": "eslint .", "exitCode": 1}
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["eslint"],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "phase": "lint",
+            "code": "no-console",
+            "message": "Unexpected console statement",
+            "location": {"file": "/workspace/project/src/order.ts", "line": 7, "column": 3},
+            "confidence": "confirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "producer-generic-structured",
+      "family": "producer",
+      "producer": "generic-structured",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "diagnostic-json",
+            "stream": "combined",
+            "content": "{\"diagnostics\":[{\"message\":\"order is invalid\",\"severity\":\"error\",\"file\":\"src/order.ts\",\"line\":12,\"column\":4,\"code\":\"E_ORDER\"}]}"
+          }
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["generic-structured"],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "phase": "unknown",
+            "code": "E_ORDER",
+            "message": "order is invalid",
+            "location": {"file": "src/order.ts", "line": 12, "column": 4},
+            "confidence": "confirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "producer-generic-text-candidate",
+      "family": "producer",
+      "producer": "generic-text",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "ERROR at src/unknown.ts:9:2 unable to continue\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["generic-text"],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "phase": "unknown",
+            "code": null,
+            "message": "unable to continue",
+            "location": {"file": "src/unknown.ts", "line": 9, "column": 2},
+            "confidence": "candidate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "producer-vitest-multiple-failures",
+      "family": "producer",
+      "producer": "vitest",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "stderr",
+            "stream": "stderr",
+            "content": " FAIL  src/first.test.ts > suite > first failure\nAssertionError: first failure\n FAIL  src/second.test.ts > suite > second failure\nError: second failure\n"
+          }
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["vitest"],
+        "diagnostics": [
+          {"message": "first failure", "location": {"file": "src/first.test.ts", "line": null, "column": null}, "confidence": "strong"},
+          {"message": "second failure", "location": {"file": "src/second.test.ts", "line": null, "column": null}, "confidence": "strong"}
+        ]
+      }
+    },
+    {
+      "id": "producer-eslint-slash-rule",
+      "family": "producer",
+      "producer": "eslint",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {
+            "id": "stdout",
+            "stream": "stdout",
+            "content": "/workspace/project/src/order.ts\n  7:3  error  Unexpected import  import/no-unresolved\n"
+          }
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["eslint"],
+        "diagnostics": [
+          {"message": "Unexpected import", "code": "import/no-unresolved", "location": {"file": "/workspace/project/src/order.ts", "line": 7, "column": 3}, "confidence": "confirmed"}
+        ]
+      }
+    },
+    {
+      "id": "structural-ansi-crlf",
+      "family": "structural",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "\u001b[31merror\u001b[0m TS2339: bad\r\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["typescript"],
+        "requiresRawEvidenceMapping": true,
+        "diagnostics": [{"code": "TS2339", "confidence": "confirmed"}]
+      }
+    },
+    {
+      "id": "structural-mixed-streams",
+      "family": "structural",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": "> npm run typecheck\n"},
+          {"id": "stderr", "stream": "stderr", "content": "src/order.ts(2,1): error TS7006: Parameter 'x' implicitly has an 'any' type.\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["typescript"],
+        "artifactOrder": ["stdout", "stderr"],
+        "diagnostics": [{"code": "TS7006", "confidence": "confirmed"}]
+      }
+    },
+    {
+      "id": "structural-windows-rooted-path",
+      "family": "structural",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "C:\\workspace\\project\\src\\order.ts(4,2): error TS2322: Type mismatch\r\n"}
+        ],
+        "options": {"root": "C:\\workspace\\project"}
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["typescript"],
+        "diagnostics": [{"code": "TS2322", "location": {"file": "src/order.ts", "line": 4, "column": 2}}]
+      }
+    },
+    {
+      "id": "structural-multiline-diagnostic",
+      "family": "structural",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": " FAIL  src/order.test.ts\nAssertionError: expected response.status toBe 200\n  at src/order.test.ts:42:17\n  at processTicksAndRejections (node:internal/process/task_queues:95:5)\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["vitest"],
+        "diagnostics": [{"location": {"file": "src/order.test.ts", "line": 42, "column": 17}, "confidence": "confirmed"}],
+        "requiresSingleDiagnosticForTrace": true
+      }
+    },
+    {
+      "id": "structural-nested-producers",
+      "family": "structural",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": "> npm test\n"},
+          {"id": "stderr", "stream": "stderr", "content": " FAIL  src/order.test.ts\nAssertionError: expected 500 to be 200\n ❯ src/order.test.ts:42:17\n"}
+        ],
+        "producerOutcome": {"command": "npm test", "exitCode": 1}
+      },
+      "expected": {
+        "status": "complete",
+        "producerNames": ["vitest"],
+        "mustPreserveNestedProducer": "vitest",
+        "mustNotClaimProducer": "npm"
+      }
+    },
+    {
+      "id": "failure-malformed-structured",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "diagnostic-json", "stream": "stderr", "content": "{\"diagnostics\":["}
+        ]
+      },
+      "expected": {
+        "status": "partial",
+        "toolIssueCodes": ["STRUCTURED_INPUT_INVALID"],
+        "truncationReasons": ["unsupported-format"]
+      }
+    },
+    {
+      "id": "failure-unsupported-format",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": "[runner metadata unavailable]\nno structured diagnostic here\n"}
+        ]
+      },
+      "expected": {
+        "status": "partial",
+        "diagnosticCount": 0,
+        "truncationReasons": ["unsupported-format"]
+      }
+    },
+    {
+      "id": "failure-truncated-output",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": " FAIL  src/order.test.ts\nTests: 1 failed, 42 passed\n[output truncated by runner]\n"}
+        ]
+      },
+      "expected": {
+        "status": "partial",
+        "truncationReasons": ["diagnostics"],
+        "mustSignalPossibleAdditionalFailures": true
+      }
+    },
+    {
+      "id": "failure-long-line",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "generator": {"type": "repeat", "value": "x", "count": 16385}}
+        ]
+      },
+      "expected": {
+        "status": "partial",
+        "truncationReasons": ["line-length"]
+      }
+    },
+    {
+      "id": "failure-excess-diagnostics",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "generator": {"type": "repeat-lines", "line": "src/item.ts(1,1): error TS7006: repeated diagnostic", "count": 201}}
+        ]
+      },
+      "expected": {
+        "status": "partial",
+        "truncationReasons": ["diagnostics"],
+        "maxReturnedDiagnostics": 200
+      }
+    },
+    {
+      "id": "failure-incomplete-stack",
+      "family": "failure",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "Error: request failed\n    at handler (unknown)\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "diagnostics": [{"severity": "error", "phase": "unknown", "location": null, "confidence": "candidate"}],
+        "mustNotInventFile": true
+      }
+    },
+    {
+      "id": "security-redaction-families",
+      "family": "security",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "Authorization: Bearer EXAMPLE_TOKEN_VALUE\nAuthorization: Basic EXAMPLE_BASIC_CREDENTIAL_VALUE\nAuthorization: \"Bearer EXAMPLE_QUOTED_AUTH_VALUE\"\nAuthorization=\"Basic EXAMPLE_QUOTED_BASIC_VALUE\"\nHTTP_AUTHORIZATION=Bearer EXAMPLE_HTTP_AUTH_VALUE\napiKey=EXAMPLE_SECRET_VALUE\nOPENAI_API_KEY=EXAMPLE_OPENAI_ENV_KEY_VALUE\nGITHUB_TOKEN=EXAMPLE_GITHUB_TOKEN_VALUE\nrefresh_token=EXAMPLE_REFRESH_TOKEN_VALUE\nclient_secret=EXAMPLE_CLIENT_SECRET_VALUE\nprivate_key=EXAMPLE_PRIVATE_KEY_VALUE\nAWS_SECRET_ACCESS_KEY=EXAMPLE_AWS_SECRET_VALUE\ndatabaseUrl=postgres://user:EXAMPLE_PASSWORD@example.test/db\nhttps://example.test/callback?X-Amz-Signature=EXAMPLE_SIGNATURE\nError: {\"Authorization\":\"Bearer EXAMPLE_JSON_AUTH_VALUE\",\"apiKey\":\"EXAMPLE_JSON_KEY_VALUE\",\"AWS_SECRET_ACCESS_KEY\":\"EXAMPLE_JSON_AWS_KEY_VALUE\"}\nError: sk-proj-EXAMPLE_OPENAI_TOKEN_VALUE_1234567890\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "redactionReplacement": "[REDACTED]",
+        "forbidOutput": ["EXAMPLE_TOKEN_VALUE", "EXAMPLE_BASIC_CREDENTIAL_VALUE", "EXAMPLE_QUOTED_AUTH_VALUE", "EXAMPLE_QUOTED_BASIC_VALUE", "EXAMPLE_HTTP_AUTH_VALUE", "EXAMPLE_SECRET_VALUE", "EXAMPLE_OPENAI_ENV_KEY_VALUE", "EXAMPLE_GITHUB_TOKEN_VALUE", "EXAMPLE_REFRESH_TOKEN_VALUE", "EXAMPLE_CLIENT_SECRET_VALUE", "EXAMPLE_PRIVATE_KEY_VALUE", "EXAMPLE_AWS_SECRET_VALUE", "EXAMPLE_PASSWORD", "EXAMPLE_SIGNATURE", "EXAMPLE_JSON_AUTH_VALUE", "EXAMPLE_JSON_KEY_VALUE", "EXAMPLE_JSON_AWS_KEY_VALUE", "sk-proj-EXAMPLE_OPENAI_TOKEN_VALUE_1234567890"],
+        "idsMustUseSanitizedFields": true
+      }
+    },
+    {
+      "id": "security-benign-token-metrics",
+      "family": "security",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stdout", "stream": "stdout", "content": "inputTokens=42 outputTokens=17 totalTokens=59\n"}
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "requiredOutput": ["inputTokens=42", "outputTokens=17", "totalTokens=59"],
+        "mustNotRedactMetricNames": true
+      }
+    },
+    {
+      "id": "determinism-basic-a",
+      "family": "determinism",
+      "determinismGroup": "typescript-basic-repeat",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "src/order.ts(41,18): error TS2339: Property 'total' does not exist on type 'Order'\n"}
+        ]
+      },
+      "expected": {"status": "complete", "byteStableWith": "determinism-basic-b"}
+    },
+    {
+      "id": "determinism-basic-b",
+      "family": "determinism",
+      "determinismGroup": "typescript-basic-repeat",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "src/order.ts(41,18): error TS2339: Property 'total' does not exist on type 'Order'\n"}
+        ]
+      },
+      "expected": {"status": "complete", "byteStableWith": "determinism-basic-a"}
+    },
+    {
+      "id": "agent-facing-location-evidence",
+      "family": "agent-facing",
+      "input": {
+        "schemaVersion": "1",
+        "artifacts": [
+          {"id": "stderr", "stream": "stderr", "content": "src/services/order.ts(81,14): error TS2339: Property 'total' does not exist on type 'Order'\n"}
+        ],
+        "options": {"root": "/workspace/project"}
+      },
+      "expected": {
+        "status": "complete",
+        "diagnostics": [{"location": {"file": "src/services/order.ts", "line": 81, "column": 14}, "confidence": "confirmed"}],
+        "requiresEvidence": true,
+        "downstreamLocator": "src/services/order.ts:81:14"
+      }
+    }
+  ]
+}

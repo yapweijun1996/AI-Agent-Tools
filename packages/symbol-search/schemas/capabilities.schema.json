@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-symbol-search.dev/schema/capabilities-v1.json",
+  "title": "agent-symbol-search capabilities",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "languages"],
+  "properties": {
+    "schemaVersion": {
+      "const": "1"
+    },
+    "languages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["operations", "notes"],
+        "properties": {
+          "operations": {
+            "type": "object",
+            "additionalProperties": {
+              "enum": ["full", "partial", "candidate", "unsupported", "proposed"]
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

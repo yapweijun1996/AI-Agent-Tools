@@ -1,0 +1,47 @@
+name: Publish npm package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish tagged package
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: npm-publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Install locked development dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify package version matches tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: >-
+          node -e 'const p=require("./package.json"); if (process.env.RELEASE_TAG !== "v" + p.version) { throw new Error("Tag must match package version: v" + p.version); }'
+      - name: Verify
+        run: npm run verify
+      - name: Coverage
+        run: npm run coverage
+      - name: Package and release checks
+        run: |
+          npm run schema:check
+          npm run capability:check
+          npm run smoke:pack
+          npm run benchmark:check
+          npm run docs:check
+          npm run release:check
+      - name: Publish with npm trusted publishing
+        run: npm publish --provenance --access public

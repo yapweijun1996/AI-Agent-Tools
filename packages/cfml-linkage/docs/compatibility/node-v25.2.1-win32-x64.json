@@ -1,0 +1,37 @@
+{
+  "schema_version": "agent-cfml-linkage-compatibility/v0.1",
+  "status": "bounded-local-evidence",
+  "target": {
+    "runtime": "Node.js",
+    "declared_requirement": ">=20",
+    "observed_version": "v25.2.1",
+    "platform": "win32",
+    "architecture": "x64",
+    "v8_version": "14.1.146.11-node.14"
+  },
+  "checks": [
+    {
+      "command": "node --version",
+      "observed": "v25.2.1",
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "observed": "95 passed, 0 failed",
+      "status": "passed"
+    }
+  ],
+  "claims": [
+    "The bounded repository test suite runs on the observed Node.js runtime and host platform."
+  ],
+  "not_claimed": [
+    "Node.js versions other than the observed runtime",
+    "Lucee or Adobe ColdFusion compatibility",
+    "browser, database, network, or application runtime behavior",
+    "public package installation or release compatibility"
+  ],
+  "application_source_execution": false,
+  "network_access": false,
+  "database_access": false,
+  "runtime_service_access": false
+}

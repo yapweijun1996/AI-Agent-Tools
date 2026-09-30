@@ -1,0 +1,814 @@
+{
+  "schema_version": "agent-cfml-linkage-graph/v0.1",
+  "tool": {
+    "name": "agent-cfml-linkage",
+    "version": "0.1.0"
+  },
+  "project": {
+    "root_id": "root:example-order-app",
+    "root_name": "example-order-app"
+  },
+  "snapshot": {
+    "created_at": "2026-09-14T00:00:00Z",
+    "source_fingerprint": "sha256:example-project",
+    "file_count": 7
+  },
+  "capabilities": {
+    "supported_languages": [
+      "cfml",
+      "html",
+      "javascript",
+      "css",
+      "sql"
+    ],
+    "node_kinds": [
+      "CFM_PAGE",
+      "CFC_COMPONENT",
+      "CFC_METHOD",
+      "APPLICATION",
+      "FORM",
+      "JS_FUNCTION",
+      "FILE",
+      "QUERY",
+      "DATABASE_TABLE",
+      "DATASOURCE",
+      "EXTERNAL_TARGET"
+    ],
+    "edge_types": [
+      "APPLICATION_GOVERNS",
+      "INCLUDES",
+      "FORM_SUBMITS_TO",
+      "FETCHES",
+      "CFINVOKES",
+      "QUERY_READS_TABLE",
+      "QUERY_USES_DATASOURCE",
+      "DYNAMIC_REFERENCE"
+    ],
+    "resolvers": [
+      "application-v0.1",
+      "path-v0.1",
+      "cfc-v0.1",
+      "web-flow-v0.1",
+      "sql-v0.1",
+      "css-v0.1"
+    ]
+  },
+  "complete": true,
+  "nodes": [
+    {
+      "id": "node:page:index.cfm",
+      "kind": "CFM_PAGE",
+      "name": "index.cfm",
+      "canonical_name": "index.cfm",
+      "path": "index.cfm",
+      "language": "cfml",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 24,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "cfm_page",
+          "rule_id": "file-kind-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-index"
+    },
+    {
+      "id": "node:page:header.cfm",
+      "kind": "CFM_PAGE",
+      "name": "header.cfm",
+      "canonical_name": "shared/header.cfm",
+      "path": "shared/header.cfm",
+      "language": "cfml",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "shared/header.cfm",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "cfm_page",
+          "rule_id": "file-kind-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-header"
+    },
+    {
+      "id": "node:page:orders/submit.cfm",
+      "kind": "CFM_PAGE",
+      "name": "submit.cfm",
+      "canonical_name": "orders/submit.cfm",
+      "path": "orders/submit.cfm",
+      "language": "cfml",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "orders/submit.cfm",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "cfm_page",
+          "rule_id": "file-kind-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-submit"
+    },
+    {
+      "id": "node:application:Application.cfc",
+      "kind": "APPLICATION",
+      "name": "Application.cfc",
+      "canonical_name": "Application.cfc",
+      "path": "Application.cfc",
+      "language": "cfml",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "Application.cfc",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "application_component",
+          "rule_id": "application-kind-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-application"
+    },
+    {
+      "id": "node:cfc:handlers/OrderHandler.cfc",
+      "kind": "CFC_COMPONENT",
+      "name": "OrderHandler",
+      "canonical_name": "handlers.OrderHandler",
+      "path": "handlers/OrderHandler.cfc",
+      "symbol": {
+        "kind": "component",
+        "name": "handlers.OrderHandler"
+      },
+      "language": "cfml",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 18,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "handlers/OrderHandler.cfc",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "component handlers.OrderHandler",
+          "rule_id": "cfc-component-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-handler"
+    },
+    {
+      "id": "node:method:handlers/OrderHandler.submit",
+      "kind": "CFC_METHOD",
+      "name": "submit",
+      "canonical_name": "handlers.OrderHandler.submit",
+      "path": "handlers/OrderHandler.cfc",
+      "symbol": {
+        "kind": "method",
+        "name": "submit",
+        "owner_id": "node:cfc:handlers/OrderHandler.cfc"
+      },
+      "language": "cfml",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 16,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "handlers/OrderHandler.cfc",
+          "span": {
+            "start_line": 3,
+            "start_col": 0,
+            "end_line": 3,
+            "end_col": 1
+          },
+          "normalized": "method submit",
+          "rule_id": "cfc-method-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-submit-method"
+    },
+    {
+      "id": "node:form:index.order-form",
+      "kind": "FORM",
+      "name": "order-form",
+      "canonical_name": "index.cfm#order-form",
+      "path": "index.cfm",
+      "language": "html",
+      "span": {
+        "start_line": 8,
+        "start_col": 0,
+        "end_line": 12,
+        "end_col": 8
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 8,
+            "start_col": 0,
+            "end_line": 8,
+            "end_col": 36
+          },
+          "raw": "<form id=\"order-form\" action=\"orders/submit.cfm\">",
+          "normalized": "form action orders/submit.cfm",
+          "rule_id": "html-form-v0.1"
+        }
+      ],
+      "attributes": {
+        "method": "post"
+      },
+      "fingerprint": "sha256:example-form"
+    },
+    {
+      "id": "node:js:assets/orders.js#submitOrder",
+      "kind": "JS_FUNCTION",
+      "name": "submitOrder",
+      "canonical_name": "assets/orders.js#submitOrder",
+      "path": "assets/orders.js",
+      "symbol": {
+        "kind": "function",
+        "name": "submitOrder"
+      },
+      "language": "javascript",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 7,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "assets/orders.js",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 28
+          },
+          "normalized": "function submitOrder",
+          "rule_id": "javascript-function-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-orders-js"
+    },
+    {
+      "id": "node:file:assets/orders.css",
+      "kind": "FILE",
+      "name": "orders.css",
+      "canonical_name": "assets/orders.css",
+      "path": "assets/orders.css",
+      "language": "css",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "assets/orders.css",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "css_file",
+          "rule_id": "file-kind-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "sha256:example-orders-css"
+    },
+    {
+      "id": "node:query:index.order-query",
+      "kind": "QUERY",
+      "name": "order-query",
+      "canonical_name": "index.cfm#order-query",
+      "path": "index.cfm",
+      "language": "sql",
+      "span": {
+        "start_line": 18,
+        "start_col": 0,
+        "end_line": 21,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "sql_parse",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 18,
+            "start_col": 0,
+            "end_line": 21,
+            "end_col": 1
+          },
+          "normalized": "select id from orders",
+          "rule_id": "cfquery-sql-v0.1"
+        }
+      ],
+      "attributes": {
+        "operation": "read"
+      },
+      "fingerprint": "sha256:example-query"
+    },
+    {
+      "id": "node:table:orders",
+      "kind": "DATABASE_TABLE",
+      "name": "orders",
+      "canonical_name": "orders",
+      "language": "sql",
+      "evidence": [
+        {
+          "kind": "sql_parse",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 19,
+            "start_col": 20,
+            "end_line": 19,
+            "end_col": 26
+          },
+          "normalized": "table orders",
+          "rule_id": "sql-table-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "semantic:table-orders"
+    },
+    {
+      "id": "node:datasource:orders",
+      "kind": "DATASOURCE",
+      "name": "orders",
+      "canonical_name": "orders",
+      "language": "sql",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 18,
+            "start_col": 0,
+            "end_line": 18,
+            "end_col": 1
+          },
+          "normalized": "datasource orders",
+          "rule_id": "datasource-v0.1"
+        }
+      ],
+      "attributes": {},
+      "fingerprint": "semantic:datasource-orders"
+    },
+    {
+      "id": "node:external:/static/logo.svg",
+      "kind": "EXTERNAL_TARGET",
+      "name": "/static/logo.svg",
+      "canonical_name": "/static/logo.svg",
+      "path": "/static/logo.svg",
+      "language": "unknown",
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "assets/orders.css",
+          "span": {
+            "start_line": 4,
+            "start_col": 0,
+            "end_line": 4,
+            "end_col": 28
+          },
+          "normalized": "url /static/logo.svg",
+          "rule_id": "css-asset-v0.1"
+        }
+      ],
+      "attributes": {
+        "external": true
+      },
+      "fingerprint": "semantic:external-logo"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:application:governs:index",
+      "type": "APPLICATION_GOVERNS",
+      "from": "node:application:Application.cfc",
+      "to": "node:page:index.cfm",
+      "direction": "forward",
+      "span": {
+        "start_line": 1,
+        "start_col": 0,
+        "end_line": 1,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "mapping",
+          "file": "Application.cfc",
+          "span": {
+            "start_line": 1,
+            "start_col": 0,
+            "end_line": 1,
+            "end_col": 1
+          },
+          "normalized": "nearest application governs index.cfm",
+          "rule_id": "application-governance-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "application-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "strong",
+        "reason": "Unique nearest Application.cfc under the project root."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "edge:include:index:header",
+      "type": "INCLUDES",
+      "from": "node:page:index.cfm",
+      "to": "node:page:header.cfm",
+      "direction": "forward",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 3,
+        "end_col": 34
+      },
+      "evidence": [
+        {
+          "kind": "path_resolution",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 3,
+            "start_col": 0,
+            "end_line": 3,
+            "end_col": 34
+          },
+          "raw": "<cfinclude template=\"shared/header.cfm\">",
+          "normalized": "shared/header.cfm",
+          "rule_id": "cfinclude-path-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "path-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "confirmed",
+        "reason": "Literal include path resolves to one in-root file."
+      },
+      "order": 1,
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {
+        "phase": "page"
+      }
+    },
+    {
+      "id": "edge:form:order:submit",
+      "type": "FORM_SUBMITS_TO",
+      "from": "node:form:index.order-form",
+      "to": "node:page:orders/submit.cfm",
+      "direction": "forward",
+      "span": {
+        "start_line": 8,
+        "start_col": 0,
+        "end_line": 8,
+        "end_col": 36
+      },
+      "evidence": [
+        {
+          "kind": "path_resolution",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 8,
+            "start_col": 0,
+            "end_line": 8,
+            "end_col": 36
+          },
+          "normalized": "orders/submit.cfm",
+          "rule_id": "html-form-action-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "web-flow-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "confirmed",
+        "reason": "Literal form action resolves to one in-root page."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {
+        "method": "post"
+      }
+    },
+    {
+      "id": "edge:fetch:submit-order",
+      "type": "FETCHES",
+      "from": "node:js:assets/orders.js#submitOrder",
+      "to": "node:page:orders/submit.cfm",
+      "direction": "forward",
+      "span": {
+        "start_line": 3,
+        "start_col": 0,
+        "end_line": 3,
+        "end_col": 52
+      },
+      "evidence": [
+        {
+          "kind": "path_resolution",
+          "file": "assets/orders.js",
+          "span": {
+            "start_line": 3,
+            "start_col": 0,
+            "end_line": 3,
+            "end_col": 52
+          },
+          "raw": "fetch(\"/orders/submit.cfm\")",
+          "normalized": "/orders/submit.cfm",
+          "rule_id": "javascript-fetch-path-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "web-flow-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "strong",
+        "reason": "Literal fetch target is normalized under the configured web root."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {
+        "method": "POST"
+      }
+    },
+    {
+      "id": "edge:invoke:submit-handler",
+      "type": "CFINVOKES",
+      "from": "node:page:orders/submit.cfm",
+      "to": "node:method:handlers/OrderHandler.submit",
+      "direction": "forward",
+      "span": {
+        "start_line": 4,
+        "start_col": 0,
+        "end_line": 4,
+        "end_col": 61
+      },
+      "evidence": [
+        {
+          "kind": "symbol_resolution",
+          "file": "orders/submit.cfm",
+          "span": {
+            "start_line": 4,
+            "start_col": 0,
+            "end_line": 4,
+            "end_col": 61
+          },
+          "normalized": "handlers.OrderHandler.submit",
+          "rule_id": "cfinvoke-component-method-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "cfc-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "confirmed",
+        "reason": "Component mapping and method name resolve uniquely."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "edge:query:orders:read",
+      "type": "QUERY_READS_TABLE",
+      "from": "node:query:index.order-query",
+      "to": "node:table:orders",
+      "direction": "forward",
+      "span": {
+        "start_line": 19,
+        "start_col": 20,
+        "end_line": 19,
+        "end_col": 26
+      },
+      "evidence": [
+        {
+          "kind": "sql_parse",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 19,
+            "start_col": 20,
+            "end_line": 19,
+            "end_col": 26
+          },
+          "normalized": "read table orders",
+          "rule_id": "sql-select-table-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "sql-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "strong",
+        "reason": "Table identifier is statically visible in the query."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "edge:query:orders:datasource",
+      "type": "QUERY_USES_DATASOURCE",
+      "from": "node:query:index.order-query",
+      "to": "node:datasource:orders",
+      "direction": "forward",
+      "span": {
+        "start_line": 18,
+        "start_col": 0,
+        "end_line": 18,
+        "end_col": 1
+      },
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "index.cfm",
+          "span": {
+            "start_line": 18,
+            "start_col": 0,
+            "end_line": 18,
+            "end_col": 1
+          },
+          "normalized": "datasource orders",
+          "rule_id": "cfquery-datasource-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "sql-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "candidate",
+        "reason": "Datasource expression is statically visible but deployment binding is external."
+      },
+      "dynamic": false,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "edge:css:logo",
+      "type": "DYNAMIC_REFERENCE",
+      "from": "node:file:assets/orders.css",
+      "to": "node:external:/static/logo.svg",
+      "direction": "forward",
+      "span": {
+        "start_line": 4,
+        "start_col": 0,
+        "end_line": 4,
+        "end_col": 28
+      },
+      "evidence": [
+        {
+          "kind": "path_resolution",
+          "file": "assets/orders.css",
+          "span": {
+            "start_line": 4,
+            "start_col": 0,
+            "end_line": 4,
+            "end_col": 28
+          },
+          "normalized": "/static/logo.svg",
+          "rule_id": "css-asset-v0.1"
+        }
+      ],
+      "resolver": {
+        "name": "css-v0.1",
+        "version": "0.1.0"
+      },
+      "confidence": {
+        "level": "candidate",
+        "reason": "CSS asset reference is visible but browser/build resolution is not proven."
+      },
+      "dynamic": true,
+      "freshness": {
+        "source_fingerprint": "sha256:example-project"
+      },
+      "attributes": {
+        "reference_kind": "css_asset"
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved:route:order-endpoint",
+      "source_node": "node:js:assets/orders.js#submitOrder",
+      "relation_type": "FETCHES",
+      "expression": "fetch(buildEndpoint(routeName))",
+      "span": {
+        "start_line": 6,
+        "start_col": 0,
+        "end_line": 6,
+        "end_col": 38
+      },
+      "reason_code": "DYNAMIC_EXPRESSION",
+      "candidates": [],
+      "evidence": [
+        {
+          "kind": "syntax",
+          "file": "assets/orders.js",
+          "span": {
+            "start_line": 6,
+            "start_col": 0,
+            "end_line": 6,
+            "end_col": 38
+          },
+          "normalized": "fetch(buildEndpoint(routeName))",
+          "rule_id": "javascript-fetch-dynamic-v0.1"
+        }
+      ],
+      "suggested_resolution": "Provide an explicit route mapping or retain the dynamic expression as runtime-only."
+    }
+  ],
+  "diagnostics": [
+    {
+      "id": "diagnostic:dynamic-fetch",
+      "severity": "warning",
+      "code": "DYNAMIC_EXPRESSION",
+      "message": "The fetch endpoint depends on a runtime expression and was not guessed.",
+      "span": {
+        "start_line": 6,
+        "start_col": 0,
+        "end_line": 6,
+        "end_col": 38
+      },
+      "details": {
+        "source_node": "node:js:assets/orders.js#submitOrder"
+      }
+    }
+  ],
+  "stats": {
+    "file_count": 7,
+    "node_count": 13,
+    "edge_count": 8,
+    "unresolved_count": 1,
+    "diagnostic_count": 1,
+    "evidence_count": 22
+  }
+}

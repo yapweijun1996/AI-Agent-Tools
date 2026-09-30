@@ -2,14 +2,13 @@
 
 Last reconciled: 2026-09-16. This specification covers the Hub's observable
 documentation, registry, and the explicitly authorized dependency-free `agent-tools`
-/ `ait` install and dispatch runtime. Independent tool internals remain outside the
-Hub. [TASK.md](TASK.md) records completion status.
+/ `ait` install and dispatch runtime. Tool internals live in independently versioned package folders under the owner-authorized monorepo decision. [TASK.md](TASK.md) records completion status.
 
 ## Requirements and evidence
 
 | ID | Requirement | Evidence or acceptance |
 | --- | --- | --- |
-| H-01 | Keep independent tool source, package dependencies, and release pipelines outside the Hub | Repository inventory and architecture review; V-01 |
+| H-01 | Keep tool source and dependency locks isolated in package folders with independent releases | Repository inventory and architecture review; V-01 |
 | H-02 | Register each tool with one unique stable ID, intended purpose, lifecycle, and confirmed or explicitly unknown identity fields | Registry validation and source review; V-02 |
 | H-03 | Separate Planned, Experimental, Verified, Stable, and Deprecated using evidence gates | Tool standard and registry gate checks; V-02 |
 | H-04 | Preserve the original ten-tool order, appending explicitly reviewed additions without imposing execution dependencies | Roadmap/registry comparison; V-03 |
@@ -20,11 +19,11 @@ Hub. [TASK.md](TASK.md) records completion status.
 | H-09 | Make registration, promotion, downgrade, and deprecation reviewable | Adding-a-tool and release workflows; V-05 |
 | H-10 | Keep discovery local and metadata-first; make installation and execution explicit, pinned, and fail-closed | AIT commands, install-state tests, and runtime security contract; no automatic install/execute |
 | H-11 | Preserve compatibility until explicit protocol reconciliation is reviewed and tested | AIT wraps native output without reinterpreting it; target-envelope completeness is locked by executable fixtures, Code Slice, Project Profile, Change Impact, Test Scope, CFML Check, and Symbol Search have explicit native profiles, and other native profiles remain explicit |
-| H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `ai-agent-tools` package; no shared tool source or mandatory SDK |
+| H-12 | Keep AIT as a narrow Hub runtime while preserving independent tool implementations and releases | Dependency-free `ai-agent-tools` package; no mandatory shared SDK |
 | H-15 | Install and dispatch only registered packages with explicit lifecycle, approval, path, and output boundaries | AIT implementation, `docs/AIT_RUNTIME.md`, and Node test suite |
 | H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
 | H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
-| H-16 | Keep configurable CFML/HTML/project policy checking independently scoped from CFML structural checking | CFML Policy Check handoff, registry/roadmap entry, boundary review, and V-31; implementation and release evidence remain owned by its independent repository |
+| H-16 | Keep configurable CFML/HTML/project policy checking independently scoped from CFML structural checking | CFML Policy Check handoff, registry/roadmap entry, boundary review, and V-31; implementation and release evidence remain owned by its package folder |
 
 Evidence definitions are in [VALIDATION.md](VALIDATION.md). Requirements for future
 behavior are not marked implemented merely because prose exists.
@@ -62,7 +61,7 @@ tool's versioned interface or justify treating native output as the Hub envelope
 
 ## Non-goals and acceptance limits
 
-No tool source copying, npm workspace, LLM backend, shared parser, automatic
+No LLM backend, shared parser, automatic
 publication, or redesign of Codex/Claude/AGRUN is in scope. The narrow AIT runtime is
 in scope; it must not become a shared tool implementation, reasoning runtime, or
 unreviewed compatibility layer. Future tools must not promise minimum safe tests,
@@ -73,3 +72,7 @@ Documentation acceptance requires valid local links, valid registry data, consis
 IDs/status/versions, explicit remaining gaps, and preservation of unrelated work.
 External repository existence, publication, artifact correctness, and behavioral
 conformance are separate claims with separate evidence.
+
+## Source consolidation acceptance
+
+The owner decision of 2026-09-30 supersedes the former source-copying exclusion. [Migration](docs/migration/README.md) defines coverage, package isolation, history recovery, verification and deletion gates.

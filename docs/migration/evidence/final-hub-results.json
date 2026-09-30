@@ -1,0 +1,29 @@
+{
+  "node": "v22.23.3",
+  "results": [
+    {
+      "package": "ai-agent-tools",
+      "action": "test:hub",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "hub-python-tests",
+      "action": "test:hub",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "hub-validator",
+      "action": "test:hub",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "source-coverage",
+      "action": "test:hub",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ]
+}

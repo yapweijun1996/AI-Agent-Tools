@@ -1,0 +1,133 @@
+{
+  "schema_version": "agent-cfml-linkage-fixtures/v0.1",
+  "status": "bounded-fact-baseline",
+  "categories": [
+    "golden",
+    "negative",
+    "adversarial"
+  ],
+  "cases": [
+    {
+      "id": "golden-core-cfml-web-surface",
+      "category": "golden",
+      "path": "golden/core-cfml-web-surface",
+      "covers": [
+        "includes",
+        "mappings",
+        "invokes",
+        "instantiation",
+        "conditions",
+        "scope-writes"
+      ],
+      "expected": "golden-graph-and-facts",
+      "source_execution": false
+    },
+    {
+      "id": "golden-cfc-inheritance-and-scope",
+      "category": "golden",
+      "path": "golden/cfc-inheritance-and-scope",
+      "covers": [
+        "cfc-inheritance",
+        "method-calls",
+        "ordered-includes",
+        "scope-flow",
+        "conditions"
+      ],
+      "expected": "golden-graph-and-facts",
+      "source_execution": false
+    },
+    {
+      "id": "golden-web-surface",
+      "category": "golden",
+      "path": "golden/web-surface",
+      "covers": [
+        "forms",
+        "javascript-fetch",
+        "javascript-ajax",
+        "css-assets",
+        "visible-sql"
+      ],
+      "expected": "golden-facts",
+      "source_execution": false
+    },
+    {
+      "id": "golden-web-flow-and-conditions",
+      "category": "golden",
+      "path": "golden/web-flow-and-conditions",
+      "covers": [
+        "web-flow",
+        "known-wrappers",
+        "conditions",
+        "conditional-routes",
+        "redirects"
+      ],
+      "expected": "golden-web-flow",
+      "source_execution": false
+    },
+    {
+      "id": "golden-sql-and-repository",
+      "category": "golden",
+      "path": "golden/sql-and-repository",
+      "covers": [
+        "visible-sql",
+        "queryExecute",
+        "datasource",
+        "repository-actions",
+        "filename-only-non-evidence"
+      ],
+      "expected": "sql-repository-v0.1",
+      "source_execution": false
+    },
+    {
+      "id": "negative-ambiguity-and-out-of-root",
+      "category": "negative",
+      "path": "negative/ambiguity-and-out-of-root",
+      "covers": [
+        "ambiguous-components",
+        "ambiguous-mappings",
+        "path-escape"
+      ],
+      "expected": "negative-v0.1",
+      "source_execution": false
+    },
+    {
+      "id": "negative-malformed-and-partial",
+      "category": "negative",
+      "path": "negative/malformed-and-partial",
+      "covers": [
+        "malformed-cfml",
+        "partial-parse",
+        "unsupported-syntax"
+      ],
+      "expected": "malformed-v0.1",
+      "source_execution": false
+    },
+    {
+      "id": "adversarial-dynamic-and-generated",
+      "category": "adversarial",
+      "path": "adversarial/dynamic-and-generated",
+      "covers": [
+        "evaluate",
+        "generated-symbols",
+        "dynamic-url",
+        "dynamic-sql",
+        "runtime-mapping"
+      ],
+      "expected": "adversarial-dynamic-v0.1",
+      "source_execution": false
+    },
+    {
+      "id": "adversarial-misleading-and-limits",
+      "category": "adversarial",
+      "path": "adversarial/misleading-and-limits",
+      "covers": [
+        "comments-and-strings",
+        "include-cycles",
+        "resource-limits",
+        "snapshot-drift"
+      ],
+      "expected": "misleading-and-limits-v0.1",
+      "source_execution": false
+    }
+  ]
+}

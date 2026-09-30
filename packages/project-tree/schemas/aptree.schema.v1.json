@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/earendil-works/ai-agent-tool-project-tree/schemas/aptree.schema.v1.json",
+  "title": "AI Agent Tool Project Tree public JSON envelope",
+  "description": "Versioned compatibility schema for aptree graph and query JSON envelopes.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/graphEnvelope" },
+    { "$ref": "#/$defs/queryEnvelope" }
+  ],
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "type": "string" },
+        "path": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "freshness": {
+      "type": "object",
+      "required": ["scannedAt"],
+      "properties": { "scannedAt": { "type": "string" } },
+      "additionalProperties": true
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "plane", "kind", "provenance", "freshness"],
+      "properties": {
+        "id": { "type": "string" },
+        "plane": { "type": "string" },
+        "kind": { "type": "string" },
+        "path": { "type": "string" },
+        "language": { "type": "string" },
+        "bytes": { "type": "number" },
+        "lines": { "type": ["number", "null"] },
+        "digest": { "type": ["string", "null"] },
+        "metadata": { "type": "object" },
+        "signals": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "provenance": { "$ref": "#/$defs/provenance" },
+        "freshness": { "$ref": "#/$defs/freshness" }
+      },
+      "additionalProperties": true
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from", "to", "kind", "provenance"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "kind": { "type": "string" },
+        "specifier": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      },
+      "additionalProperties": true
+    },
+    "meta": {
+      "type": "object",
+      "required": ["tool", "version", "root", "generatedAt", "deterministic", "truncated"],
+      "properties": {
+        "tool": { "const": "aptree" },
+        "version": { "type": "string" },
+        "root": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "deterministic": { "type": "boolean" },
+        "truncated": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "change": {
+      "type": "object",
+      "required": ["vcs", "available", "changed", "freshness"],
+      "properties": {
+        "vcs": { "type": "string" },
+        "available": { "type": "boolean" },
+        "changed": { "type": "array", "items": { "type": "object", "required": ["path", "status", "provenance"], "additionalProperties": true } },
+        "freshness": { "$ref": "#/$defs/freshness" }
+      },
+      "additionalProperties": true
+    },
+    "query": {
+      "type": "object",
+      "required": ["command"],
+      "properties": {
+        "command": { "type": "string", "enum": ["context", "impact", "changed", "tests-for", "evidence", "goals", "progress", "path-to-done"] },
+        "path": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "graphEnvelope": {
+      "type": "object",
+      "required": ["schema", "meta", "graph"],
+      "properties": {
+        "schema": { "const": "aptree.graph.v1" },
+        "meta": { "$ref": "#/$defs/meta" },
+        "graph": {
+          "type": "object",
+          "required": ["nodes", "edges"],
+          "properties": {
+            "nodes": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+            "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } }
+          },
+          "additionalProperties": true
+        },
+        "change": { "$ref": "#/$defs/change" },
+        "query": { "$ref": "#/$defs/query" }
+      },
+      "additionalProperties": true
+    },
+    "queryEnvelope": {
+      "type": "object",
+      "required": ["schema", "query"],
+      "properties": {
+        "schema": { "const": "aptree.query.v1" },
+        "query": { "$ref": "#/$defs/query" },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "tests": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "impacted": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "changed": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "adapter": { "$ref": "#/$defs/change" },
+        "goals": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "progress": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "steps": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    }
+  }
+}

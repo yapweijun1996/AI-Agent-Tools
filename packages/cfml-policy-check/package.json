@@ -1,0 +1,35 @@
+{
+  "name": "agent-cfml-policy-check",
+  "version": "0.1.0",
+  "description": "Deterministic read-only policy checks for mixed CFML and HTML templates.",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "src",
+    "schema",
+    "profiles",
+    "ait-tool.manifest.json",
+    "README.md"
+  ],
+  "bin": {
+    "agent-cfml-policy-check": "src/cli.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node src/cli.js capabilities --json",
+    "check:fixture": "node src/cli.js check --root . --file test/fixtures/pass.cfm --profile profiles/example.json --json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/cfml-policy-check"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check#readme"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "agent-cfml-check",
+  "version": "0.1.1",
+  "description": "Deterministic, read-only structural checks for a bounded CFML subset.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/cfml-check"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-check#readme",
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "bin": {
+    "agent-cfml-check": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SPEC.md",
+    "schema",
+    "fixtures"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test .test-dist/test/check.test.js .test-dist/test/cli.test.js .test-dist/test/package.test.js .test-dist/test/schema.test.js",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ajv": "^8.20.0",
+    "typescript": "^5.7.0"
+  }
+}

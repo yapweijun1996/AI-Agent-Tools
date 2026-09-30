@@ -1,0 +1,65 @@
+{
+  "node": "v22.23.3",
+  "results": [
+    {
+      "package": "agent-cfml-check",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "agent-cfml-linkage",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "agent-cfml-policy-check",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "agent-change-impact",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "agent-code-slice",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "agent-error-lens",
+      "action": "lint",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-project-profile",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    },
+    {
+      "package": "ai-agent-tool-project-tree",
+      "action": "lint",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-symbol-search",
+      "action": "lint",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-test-scope",
+      "action": "lint",
+      "status": "not-applicable",
+      "reason": "No lint script in source package"
+    }
+  ]
+}

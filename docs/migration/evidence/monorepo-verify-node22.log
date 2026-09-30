@@ -1,0 +1,5948 @@
+
+> ai-agent-tools@0.1.1 verify
+> npm run build && npm run typecheck && npm run lint && npm test && npm run pack
+
+
+> ai-agent-tools@0.1.1 build
+> node scripts/monorepo.mjs build
+
+
+[build] agent-cfml-check
+
+> agent-cfml-check@0.1.1 build
+> tsc -p tsconfig.build.json
+
+
+[build] agent-change-impact
+
+> agent-change-impact@0.1.1 build
+> tsc -p tsconfig.json
+
+
+[build] agent-code-slice
+
+> agent-code-slice@0.4.0 build
+> tsc -p tsconfig.build.json
+
+
+[build] agent-error-lens
+
+> agent-error-lens@0.1.0 build
+> tsc -p tsconfig.build.json
+
+
+> agent-error-lens@0.1.0 postbuild
+> node scripts/make-cli-executable.mjs
+
+CLI executable bit: set
+
+[build] agent-project-profile
+
+> agent-project-profile@0.1.2 build
+> tsc -p tsconfig.build.json
+
+
+[build] agent-symbol-search
+
+> agent-symbol-search@0.1.2 build
+> tsc -p tsconfig.json
+
+
+[build] agent-test-scope
+
+> agent-test-scope@0.1.1 build
+> npm run build:esm && npm run build:cjs
+
+
+> agent-test-scope@0.1.1 build:esm
+> tsc -p tsconfig.json
+
+
+> agent-test-scope@0.1.1 build:cjs
+> tsc -p tsconfig.cjs.json && node scripts/build-cjs.mjs
+
+
+agent-cfml-check: passed
+agent-cfml-linkage: not-applicable
+agent-cfml-policy-check: not-applicable
+agent-change-impact: passed
+agent-code-slice: passed
+agent-error-lens: passed
+agent-project-profile: passed
+ai-agent-tool-project-tree: not-applicable
+agent-symbol-search: passed
+agent-test-scope: passed
+
+> ai-agent-tools@0.1.1 typecheck
+> node scripts/monorepo.mjs typecheck
+
+
+[typecheck] agent-cfml-check
+
+> agent-cfml-check@0.1.1 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+[typecheck] agent-change-impact
+
+> agent-change-impact@0.1.1 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+[typecheck] agent-code-slice
+
+> agent-code-slice@0.4.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+[typecheck] agent-error-lens
+
+> agent-error-lens@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+[typecheck] agent-project-profile
+
+> agent-project-profile@0.1.2 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+[typecheck] ai-agent-tool-project-tree
+
+> ai-agent-tool-project-tree@0.1.1 typecheck
+> tsc --noEmit
+
+
+[typecheck] agent-symbol-search
+
+> agent-symbol-search@0.1.2 typecheck
+> tsc --noEmit -p tsconfig.json
+
+
+[typecheck] agent-test-scope
+
+> agent-test-scope@0.1.1 typecheck
+> npm run typecheck:esm && npm run typecheck:cjs
+
+
+> agent-test-scope@0.1.1 typecheck:esm
+> tsc --noEmit -p tsconfig.json
+
+
+> agent-test-scope@0.1.1 typecheck:cjs
+> tsc --noEmit -p tsconfig.cjs.json
+
+
+agent-cfml-check: passed
+agent-cfml-linkage: not-applicable
+agent-cfml-policy-check: not-applicable
+agent-change-impact: passed
+agent-code-slice: passed
+agent-error-lens: passed
+agent-project-profile: passed
+ai-agent-tool-project-tree: passed
+agent-symbol-search: passed
+agent-test-scope: passed
+
+> ai-agent-tools@0.1.1 lint
+> node scripts/monorepo.mjs lint
+
+
+[lint] agent-error-lens
+
+> agent-error-lens@0.1.0 lint
+> eslint .
+
+
+[lint] ai-agent-tool-project-tree
+
+> ai-agent-tool-project-tree@0.1.1 lint
+> eslint .
+
+
+[lint] agent-symbol-search
+
+> agent-symbol-search@0.1.2 lint
+> node scripts/lint.mjs
+
+lint: 28 source and test files checked
+
+agent-cfml-check: not-applicable
+agent-cfml-linkage: not-applicable
+agent-cfml-policy-check: not-applicable
+agent-change-impact: not-applicable
+agent-code-slice: not-applicable
+agent-error-lens: passed
+agent-project-profile: not-applicable
+ai-agent-tool-project-tree: passed
+agent-symbol-search: passed
+agent-test-scope: not-applicable
+
+> ai-agent-tools@0.1.1 test
+> node scripts/monorepo.mjs test
+
+
+[test] ai-agent-tools
+TAP version 13
+# Subtest: parses explicit install and dispatch approval flags
+ok 1 - parses explicit install and dispatch approval flags
+  ---
+  duration_ms: 2.2145
+  type: 'test'
+  ...
+# Subtest: validates the current registry and keeps installability explicit
+ok 2 - validates the current registry and keeps installability explicit
+  ---
+  duration_ms: 1.043916
+  type: 'test'
+  ...
+# Subtest: published package includes the default registry snapshot
+ok 3 - published package includes the default registry snapshot
+  ---
+  duration_ms: 0.245959
+  type: 'test'
+  ...
+# Subtest: normalizes executable declarations without choosing an unsafe default
+ok 4 - normalizes executable declarations without choosing an unsafe default
+  ---
+  duration_ms: 0.513083
+  type: 'test'
+  ...
+# Subtest: rejects registry package names that could escape the install root
+ok 5 - rejects registry package names that could escape the install root
+  ---
+  duration_ms: 0.32775
+  type: 'test'
+  ...
+# Subtest: validates exact profile catalog entries and rejects duplicate matches
+ok 6 - validates exact profile catalog entries and rejects duplicate matches
+  ---
+  duration_ms: 1.730167
+  type: 'test'
+  ...
+# Subtest: list reads a local registry snapshot and does not write the home
+ok 7 - list reads a local registry snapshot and does not write the home
+  ---
+  duration_ms: 3.800792
+  type: 'test'
+  ...
+# Subtest: planned tools fail closed before any installation side effect
+ok 8 - planned tools fail closed before any installation side effect
+  ---
+  duration_ms: 0.920792
+  type: 'test'
+  ...
+# Subtest: dispatch requires a separate explicit execution approval
+ok 9 - dispatch requires a separate explicit execution approval
+  ---
+  duration_ms: 0.931709
+  type: 'test'
+  ...
+# Subtest: dispatch applies the exact native profile without rewriting its payload
+ok 10 - dispatch applies the exact native profile without rewriting its payload
+  ---
+  duration_ms: 1150.491209
+  type: 'test'
+  ...
+# Subtest: preserves capabilities, completed violations, incomplete, and error semantics
+ok 11 - preserves capabilities, completed violations, incomplete, and error semantics
+  ---
+  duration_ms: 335.863583
+  type: 'test'
+  ...
+# Subtest: rejects malformed and status/exit-mismatched envelopes
+ok 12 - rejects malformed and status/exit-mismatched envelopes
+  ---
+  duration_ms: 129.834708
+  type: 'test'
+  ...
+# Subtest: accepts capabilities and preserves complete/partial analyses as native success
+ok 13 - accepts capabilities and preserves complete/partial analyses as native success
+  ---
+  duration_ms: 181.314292
+  type: 'test'
+  ...
+# Subtest: uses native error codes for invalid and operation failures
+ok 14 - uses native error codes for invalid and operation failures
+  ---
+  duration_ms: 129.093625
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and exit/status-mismatched output
+ok 15 - rejects malformed, unknown, and exit/status-mismatched output
+  ---
+  duration_ms: 251.426791
+  type: 'test'
+  ...
+# Subtest: accepts complete and bounded-success native Code Slice results
+ok 16 - accepts complete and bounded-success native Code Slice results
+  ---
+  duration_ms: 131.178958
+  type: 'test'
+  ...
+# Subtest: uses native error codes as the semantic authority
+ok 17 - uses native error codes as the semantic authority
+  ---
+  duration_ms: 114.943125
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and exit/status-mismatched native output
+ok 18 - rejects malformed, unknown, and exit/status-mismatched native output
+  ---
+  duration_ms: 246.506958
+  type: 'test'
+  ...
+# Subtest: accepts complete success even when the completed check reports findings
+ok 19 - accepts complete success even when the completed check reports findings
+  ---
+  duration_ms: 125.167
+  type: 'test'
+  ...
+# Subtest: accepts bounded incomplete outcomes without exposing partial data
+ok 20 - accepts bounded incomplete outcomes without exposing partial data
+  ---
+  duration_ms: 239.212042
+  type: 'test'
+  ...
+# Subtest: distinguishes invalid input and internal failure from incomplete analysis
+ok 21 - distinguishes invalid input and internal failure from incomplete analysis
+  ---
+  duration_ms: 124.690833
+  type: 'test'
+  ...
+# Subtest: rejects partial data, exit/status mismatches, malformed output, and missing output
+ok 22 - rejects partial data, exit/status mismatches, malformed output, and missing output
+  ---
+  duration_ms: 271.275042
+  type: 'test'
+  ...
+# Subtest: distinguishes complete, partial, and unsupported project profiles
+ok 23 - distinguishes complete, partial, and unsupported project profiles
+  ---
+  duration_ms: 186.36875
+  type: 'test'
+  ...
+# Subtest: preserves fatal error status and strict-mode policy separately
+ok 24 - preserves fatal error status and strict-mode policy separately
+  ---
+  duration_ms: 120.643125
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and status/coverage-mismatched profiles
+ok 25 - rejects malformed, unknown, and status/coverage-mismatched profiles
+  ---
+  duration_ms: 309.979208
+  type: 'test'
+  ...
+# Subtest: preserves capabilities, complete, partial, and error native semantics
+ok 26 - preserves capabilities, complete, partial, and error native semantics
+  ---
+  duration_ms: 336.177916
+  type: 'test'
+  ...
+# Subtest: rejects malformed and unknown status envelopes
+ok 27 - rejects malformed and unknown status envelopes
+  ---
+  duration_ms: 196.625833
+  type: 'test'
+  ...
+# Subtest: preserves complete, partial, and error native semantics
+ok 28 - preserves complete, partial, and error native semantics
+  ---
+  duration_ms: 257.375875
+  type: 'test'
+  ...
+# Subtest: rejects malformed, unknown, and status/exit-mismatched results
+ok 29 - rejects malformed, unknown, and status/exit-mismatched results
+  ---
+  duration_ms: 195.369916
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1253.782458
+
+[test] hub-python-tests
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.035s
+
+OK
+
+[test] hub-validator
+PASS: 15 tools, 35 documents, 216 links; registry gates, roadmap, lifecycle, local anchors, and JSON syntax valid.
+External URLs requiring human evidence review: 35
+  https://docs.lucee.org/recipes/tag-islands.html
+  https://docs.lucee.org/reference/tags/if.html
+  https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/actions/runs/34805721849
+  https://github.com/yapweijun1996/AI-Agent-Tool-CFML-Check/commit/d132a82de4e2a764710e04968f8a480b8b6153c7
+  https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/actions/runs/34551478970
+  https://github.com/yapweijun1996/AI-Agent-Tool-Change-Impact/commit/f298328d7035adce57fc57fdc36ac30da70a2a68
+  https://github.com/yapweijun1996/AI-Agent-Tool-Code-Slice/actions/runs/34551479033
+  https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/actions/runs/34826574214
+  https://github.com/yapweijun1996/AI-Agent-Tool-Project-Profile/commit/c25043856cb4984e30d0a61672213e51b6c3758d
+  https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/actions/runs/34805726939
+  https://github.com/yapweijun1996/AI-Agent-Tool-Symbol-Search/commit/303c3b5004cfdbd2eb7fb09eeebe64b3e4895f14
+  https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/actions/runs/34805729863
+  https://github.com/yapweijun1996/AI-Agent-Tool-Test-Scope/commit/e3c4593fb9b12233280dffd801a3c153ef9b3b1c
+  https://github.com/yapweijun1996/AI-Agent-Tools/blob/main/packages/code-slice/docs/CLI_CONTRACT.md
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-check
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/cfml-policy-check
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/change-impact
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/code-slice
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/error-lens
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/project-profile
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/symbol-search
+  https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope
+  https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html
+  https://opentelemetry.io/docs/concepts/signals/traces/
+  https://registry.npmjs.org/agent-code-slice/0.2.0
+  https://registry.npmjs.org/agent-project-profile
+  https://registry.npmjs.org/agent-test-scope
+  https://www.npmjs.com/package/agent-cfml-check
+  https://www.npmjs.com/package/agent-change-impact
+  https://www.npmjs.com/package/agent-code-slice
+  https://www.npmjs.com/package/agent-code-slice/v/0.2.0
+  https://www.npmjs.com/package/agent-project-profile
+  https://www.npmjs.com/package/agent-symbol-search
+  https://www.npmjs.com/package/agent-test-scope
+  https://www.rfc-editor.org/rfc/rfc6901
+
+[test] source-coverage
+Migration coverage: 698 imported files across 10 source repositories verified
+
+[test] agent-cfml-check
+
+> agent-cfml-check@0.1.1 test
+> npm run build && tsc -p tsconfig.test.json && node --test .test-dist/test/check.test.js .test-dist/test/cli.test.js .test-dist/test/package.test.js .test-dist/test/schema.test.js
+
+
+> agent-cfml-check@0.1.1 build
+> tsc -p tsconfig.build.json
+
+TAP version 13
+# Subtest: CF-01 reports an extra closing tag without inventing an opener
+ok 1 - CF-01 reports an extra closing tag without inventing an opener
+  ---
+  duration_ms: 5.755333
+  type: 'test'
+  ...
+# Subtest: CF-02 reports misnesting even when counts are equal
+ok 2 - CF-02 reports misnesting even when counts are equal
+  ---
+  duration_ms: 1.626667
+  type: 'test'
+  ...
+# Subtest: CF-03 ignores nested fake tags in a CFML comment
+ok 3 - CF-03 ignores nested fake tags in a CFML comment
+  ---
+  duration_ms: 1.200416
+  type: 'test'
+  ...
+# Subtest: CF-04 respects quoted tag values and CFScript strings
+ok 4 - CF-04 respects quoted tag values and CFScript strings
+  ---
+  duration_ms: 1.582667
+  type: 'test'
+  ...
+# Subtest: CF-05 validates branch ownership and order
+ok 5 - CF-05 validates branch ownership and order
+  ---
+  duration_ms: 1.282584
+  type: 'test'
+  ...
+# Subtest: CF-06 accepts bodyless and mixed-case paired tags
+ok 6 - CF-06 accepts bodyless and mixed-case paired tags
+  ---
+  duration_ms: 0.907167
+  type: 'test'
+  ...
+# Subtest: CF-07 does not hide CFML in an HTML comment or query body
+ok 7 - CF-07 does not hide CFML in an HTML comment or query body
+  ---
+  duration_ms: 1.051917
+  type: 'test'
+  ...
+# Subtest: CF-08 reports unterminated strings and ignores delimiters in script comments
+ok 8 - CF-08 reports unterminated strings and ignores delimiters in script comments
+  ---
+  duration_ms: 0.999291
+  type: 'test'
+  ...
+# Subtest: CF-09 fails closed for unknown tags and tag islands
+ok 9 - CF-09 fails closed for unknown tags and tag islands
+  ---
+  duration_ms: 2.254417
+  type: 'test'
+  ...
+# Subtest: CF-10 preserves UTF-8 byte coordinates for non-ASCII input
+ok 10 - CF-10 preserves UTF-8 byte coordinates for non-ASCII input
+  ---
+  duration_ms: 1.676542
+  type: 'test'
+  ...
+# Subtest: CF-11 returns incomplete when the findings cap is reached
+ok 11 - CF-11 returns incomplete when the findings cap is reached
+  ---
+  duration_ms: 3.183417
+  type: 'test'
+  ...
+# Subtest: CF-12 rejects a path outside the explicit root
+ok 12 - CF-12 rejects a path outside the explicit root
+  ---
+  duration_ms: 3.125709
+  type: 'test'
+  ...
+# Subtest: CF-13 repeated checks are deterministic and read-only
+ok 13 - CF-13 repeated checks are deterministic and read-only
+  ---
+  duration_ms: 2.856667
+  type: 'test'
+  ...
+# Subtest: pure-script CFCs use the script delimiter checker
+ok 14 - pure-script CFCs use the script delimiter checker
+  ---
+  duration_ms: 2.452042
+  type: 'test'
+  ...
+# Subtest: CLI JSON mode keeps stdout to one parseable envelope
+ok 15 - CLI JSON mode keeps stdout to one parseable envelope
+  ---
+  duration_ms: 95.775792
+  type: 'test'
+  ...
+# Subtest: CLI reports unsupported input as a bounded JSON failure
+ok 16 - CLI reports unsupported input as a bounded JSON failure
+  ---
+  duration_ms: 82.31
+  type: 'test'
+  ...
+# Subtest: CLI capabilities is available without a source file
+ok 17 - CLI capabilities is available without a source file
+  ---
+  duration_ms: 67.121083
+  type: 'test'
+  ...
+# Subtest: package metadata exposes the TypeScript library entry and CLI
+ok 18 - package metadata exposes the TypeScript library entry and CLI
+  ---
+  duration_ms: 1.388291
+  type: 'test'
+  ...
+# Subtest: package self-reference resolves the exported library entry
+ok 19 - package self-reference resolves the exported library entry
+  ---
+  duration_ms: 88.549625
+  type: 'test'
+  ...
+# Subtest: JSON Schema validates capabilities and completed check envelopes
+ok 20 - JSON Schema validates capabilities and completed check envelopes
+  ---
+  duration_ms: 6.448625
+  type: 'test'
+  ...
+# Subtest: JSON Schema validates incomplete and error envelopes
+ok 21 - JSON Schema validates incomplete and error envelopes
+  ---
+  duration_ms: 1.773875
+  type: 'test'
+  ...
+# Subtest: JSON Schema rejects an envelope with an inconsistent completion flag
+ok 22 - JSON Schema rejects an envelope with an inconsistent completion flag
+  ---
+  duration_ms: 0.134083
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 355.005666
+
+[test] agent-cfml-linkage
+
+> agent-cfml-linkage@0.1.0 test
+> node --test
+
+TAP version 13
+# Subtest: keeps ambiguous components and path escapes unresolved in the negative fixture
+ok 1 - keeps ambiguous components and path escapes unresolved in the negative fixture
+  ---
+  duration_ms: 42.878541
+  type: 'test'
+  ...
+# Subtest: retains malformed and unsupported evidence without inventing facts
+ok 2 - retains malformed and unsupported evidence without inventing facts
+  ---
+  duration_ms: 34.394959
+  type: 'test'
+  ...
+# Subtest: filters syntax-like comments and strings while preserving include cycles
+ok 3 - filters syntax-like comments and strings while preserving include cycles
+  ---
+  duration_ms: 14.777959
+  type: 'test'
+  ...
+# Subtest: runs the bounded stages in order and exposes graph evidence
+ok 4 - runs the bounded stages in order and exposes graph evidence
+  ---
+  duration_ms: 87.595583
+  type: 'test'
+  ...
+# Subtest: preserves deterministic combined budgets and the serialization boundary
+ok 5 - preserves deterministic combined budgets and the serialization boundary
+  ---
+  duration_ms: 99.683084
+  type: 'test'
+  ...
+# Subtest: enforces the configured library evidence budget deterministically
+ok 6 - enforces the configured library evidence budget deterministically
+  ---
+  duration_ms: 27.86875
+  type: 'test'
+  ...
+# Subtest: enforces the configured library graph-edge budget deterministically
+ok 7 - enforces the configured library graph-edge budget deterministically
+  ---
+  duration_ms: 29.327375
+  type: 'test'
+  ...
+# Subtest: forwards configured discovery policies to deterministic snapshot discovery
+ok 8 - forwards configured discovery policies to deterministic snapshot discovery
+  ---
+  duration_ms: 14.1405
+  type: 'test'
+  ...
+# Subtest: applies configured component mappings without filename inference
+ok 9 - applies configured component mappings without filename inference
+  ---
+  duration_ms: 14.484416
+  type: 'test'
+  ...
+# Subtest: keeps the parser boundary fail-closed when no backend is selected
+ok 10 - keeps the parser boundary fail-closed when no backend is selected
+  ---
+  duration_ms: 2.1115
+  type: 'test'
+  ...
+# Subtest: applies the configured language and fact limits without executing source
+ok 11 - applies the configured language and fact limits without executing source
+  ---
+  duration_ms: 40.968792
+  type: 'test'
+  ...
+# Subtest: marks source mutation and wall-time limit results incomplete
+ok 12 - marks source mutation and wall-time limit results incomplete
+  ---
+  duration_ms: 7.826375
+  type: 'test'
+  ...
+# Subtest: fingerprints configuration independent of object key insertion order
+ok 13 - fingerprints configuration independent of object key insertion order
+  ---
+  duration_ms: 1.547375
+  type: 'test'
+  ...
+# Subtest: reports sorted added, changed, and removed source files
+ok 14 - reports sorted added, changed, and removed source files
+  ---
+  duration_ms: 4.441209
+  type: 'test'
+  ...
+# Subtest: classifies fresh and stale cache contexts with file-level invalidation
+ok 15 - classifies fresh and stale cache contexts with file-level invalidation
+  ---
+  duration_ms: 1.253666
+  type: 'test'
+  ...
+# Subtest: writes and reloads a root-contained disposable cache without storing source text
+ok 16 - writes and reloads a root-contained disposable cache without storing source text
+  ---
+  duration_ms: 12.146292
+  type: 'test'
+  ...
+# Subtest: reports corrupt cache JSON and rejects cache paths outside the root
+ok 17 - reports corrupt cache JSON and rejects cache paths outside the root
+  ---
+  duration_ms: 9.273333
+  type: 'test'
+  ...
+# Subtest: resolves unique CFC inheritance, instantiation, invoke, and method edges
+ok 18 - resolves unique CFC inheritance, instantiation, invoke, and method edges
+  ---
+  duration_ms: 3.940458
+  type: 'test'
+  ...
+# Subtest: resolves an explicitly declared import mapping without filename heuristics
+ok 19 - resolves an explicitly declared import mapping without filename heuristics
+  ---
+  duration_ms: 0.725
+  type: 'test'
+  ...
+# Subtest: retains ambiguous component candidates and does not guess a target
+ok 20 - retains ambiguous component candidates and does not guess a target
+  ---
+  duration_ms: 6.003542
+  type: 'test'
+  ...
+# Subtest: emits a stable JSON capabilities envelope without stderr noise
+ok 21 - emits a stable JSON capabilities envelope without stderr noise
+  ---
+  duration_ms: 174.56075
+  type: 'test'
+  ...
+# Subtest: returns machine-readable invalid-input diagnostics and human stderr diagnostics
+ok 22 - returns machine-readable invalid-input diagnostics and human stderr diagnostics
+  ---
+  duration_ms: 133.345125
+  type: 'test'
+  ...
+# Subtest: runs the bounded analysis pipeline after validating the root
+ok 23 - runs the bounded analysis pipeline after validating the root
+  ---
+  duration_ms: 1409.41525
+  type: 'test'
+  ...
+# Subtest: applies configured discovery policies before CLI analysis
+ok 24 - applies configured discovery policies before CLI analysis
+  ---
+  duration_ms: 188.920458
+  type: 'test'
+  ...
+# Subtest: runs a bounded query against the freshly analyzed graph
+ok 25 - runs a bounded query against the freshly analyzed graph
+  ---
+  duration_ms: 172.948125
+  type: 'test'
+  ...
+# Subtest: maps a rejected analysis root to the configured path-rejected exit code
+ok 26 - maps a rejected analysis root to the configured path-rejected exit code
+  ---
+  duration_ms: 61.212667
+  type: 'test'
+  ...
+# Subtest: rejects malformed JSON and unsafe configuration before analysis
+ok 27 - rejects malformed JSON and unsafe configuration before analysis
+  ---
+  duration_ms: 1060.696333
+  type: 'test'
+  ...
+# Subtest: preserves dynamic, generated, and SQL-dynamic evidence without guessing
+ok 28 - preserves dynamic, generated, and SQL-dynamic evidence without guessing
+  ---
+  duration_ms: 62.268708
+  type: 'test'
+  ...
+# Subtest: extracts deterministic structural Fact IR from inert golden inputs
+ok 29 - extracts deterministic structural Fact IR from inert golden inputs
+  ---
+  duration_ms: 56.750542
+  type: 'test'
+  ...
+# Subtest: preserves dynamic references and parser incompleteness without guessing targets
+ok 30 - preserves dynamic references and parser incompleteness without guessing targets
+  ---
+  duration_ms: 2.829667
+  type: 'test'
+  ...
+# Subtest: extracts switch and case conditions for common CFML control flow
+ok 31 - extracts switch and case conditions for common CFML control flow
+  ---
+  duration_ms: 3.564375
+  type: 'test'
+  ...
+# Subtest: extracts bounded control-flow Facts without evaluating CFML
+ok 32 - extracts bounded control-flow Facts without evaluating CFML
+  ---
+  duration_ms: 3.229375
+  type: 'test'
+  ...
+# Subtest: keeps condition state within one source file
+ok 33 - keeps condition state within one source file
+  ---
+  duration_ms: 5.651708
+  type: 'test'
+  ...
+# Subtest: keeps cfelse flow facts explicitly conditioned
+ok 34 - keeps cfelse flow facts explicitly conditioned
+  ---
+  duration_ms: 2.089042
+  type: 'test'
+  ...
+# Subtest: extracts literal cfparam names as bounded scope writes
+ok 35 - extracts literal cfparam names as bounded scope writes
+  ---
+  duration_ms: 1.948541
+  type: 'test'
+  ...
+# Subtest: reports missing parser results and fact limits as incomplete evidence
+ok 36 - reports missing parser results and fact limits as incomplete evidence
+  ---
+  duration_ms: 9.859
+  type: 'test'
+  ...
+# Subtest: queries an immutable GraphSnapshot with deterministic evidence slices
+ok 37 - queries an immutable GraphSnapshot with deterministic evidence slices
+  ---
+  duration_ms: 23.800791
+  type: 'test'
+  ...
+# Subtest: keeps query output bounded and reports incomplete traversal evidence
+ok 38 - keeps query output bounded and reports incomplete traversal evidence
+  ---
+  duration_ms: 3.165709
+  type: 'test'
+  ...
+# Subtest: does not guess an ambiguous exact node selector and rejects invalid query options
+ok 39 - does not guess an ambiguous exact node selector and rejects invalid query options
+  ---
+  duration_ms: 2.124833
+  type: 'test'
+  ...
+# Subtest: builds deterministic Graph IR while preserving resolved and unresolved evidence
+ok 40 - builds deterministic Graph IR while preserving resolved and unresolved evidence
+  ---
+  duration_ms: 20.563042
+  type: 'test'
+  ...
+# Subtest: materializes semantic CFC component and method targets in Graph IR
+ok 41 - materializes semantic CFC component and method targets in Graph IR
+  ---
+  duration_ms: 4.352833
+  type: 'test'
+  ...
+# Subtest: marks graph incomplete and reports invariant failures without dropping evidence
+ok 42 - marks graph incomplete and reports invariant failures without dropping evidence
+  ---
+  duration_ms: 4.205375
+  type: 'test'
+  ...
+# Subtest: returns explicit unavailable evidence when no parser backend is selected
+ok 43 - returns explicit unavailable evidence when no parser backend is selected
+  ---
+  duration_ms: 1.8165
+  type: 'test'
+  ...
+# Subtest: stops at strict decoding failure before calling the parser backend
+ok 44 - stops at strict decoding failure before calling the parser backend
+  ---
+  duration_ms: 0.315167
+  type: 'test'
+  ...
+# Subtest: normalizes a backend result while preserving partial and source-span evidence
+ok 45 - normalizes a backend result while preserving partial and source-span evidence
+  ---
+  duration_ms: 1.532667
+  type: 'test'
+  ...
+# Subtest: converts backend failures to bounded parser diagnostics
+ok 46 - converts backend failures to bounded parser diagnostics
+  ---
+  duration_ms: 0.394291
+  type: 'test'
+  ...
+# Subtest: caps parser diagnostics and marks the result incomplete
+ok 47 - caps parser diagnostics and marks the result incomplete
+  ---
+  duration_ms: 0.231333
+  type: 'test'
+  ...
+# Subtest: scans a bounded CFML tag subset without parsing comments or executing script content
+ok 48 - scans a bounded CFML tag subset without parsing comments or executing script content
+  ---
+  duration_ms: 2.481375
+  type: 'test'
+  ...
+# Subtest: recognizes common switch, control, transport, and mail tags
+ok 49 - recognizes common switch, control, transport, and mail tags
+  ---
+  duration_ms: 2.72275
+  type: 'test'
+  ...
+# Subtest: reports malformed tags, unsupported tags, field limits, and node limits
+ok 50 - reports malformed tags, unsupported tags, field limits, and node limits
+  ---
+  duration_ms: 3.173041
+  type: 'test'
+  ...
+# Subtest: rejects invalid adapter options, scanner options, and unsafe spans
+ok 51 - rejects invalid adapter options, scanner options, and unsafe spans
+  ---
+  duration_ms: 7.099625
+  type: 'test'
+  ...
+# Subtest: resolves literal relative and root-relative paths while preserving application governance
+ok 52 - resolves literal relative and root-relative paths while preserving application governance
+  ---
+  duration_ms: 21.564125
+  type: 'test'
+  ...
+# Subtest: keeps dynamic, external, missing, and unsafe paths unresolved
+ok 53 - keeps dynamic, external, missing, and unsafe paths unresolved
+  ---
+  duration_ms: 15.638959
+  type: 'test'
+  ...
+# Subtest: builds deterministic immutable indexes from normalized facts
+ok 54 - builds deterministic immutable indexes from normalized facts
+  ---
+  duration_ms: 4.847458
+  type: 'test'
+  ...
+# Subtest: retains ambiguous candidates instead of selecting a component
+ok 55 - retains ambiguous candidates instead of selecting a component
+  ---
+  duration_ms: 0.984541
+  type: 'test'
+  ...
+# Subtest: marks facts outside the source index incomplete without dropping evidence
+ok 56 - marks facts outside the source index incomplete without dropping evidence
+  ---
+  duration_ms: 0.485
+  type: 'test'
+  ...
+# Subtest: resolves visible SQL and structural repository actions without filename inference
+ok 57 - resolves visible SQL and structural repository actions without filename inference
+  ---
+  duration_ms: 54.21375
+  type: 'test'
+  ...
+# Subtest: bounds structural repository records and requires the CFC method resolution
+ok 58 - bounds structural repository records and requires the CFC method resolution
+  ---
+  duration_ms: 11.9175
+  type: 'test'
+  ...
+# Subtest: admits an existing in-root file and returns its canonical path
+ok 59 - admits an existing in-root file and returns its canonical path
+  ---
+  duration_ms: 15.105458
+  type: 'test'
+  ...
+# Subtest: rejects parent traversal even when it normalizes back inside the root
+ok 60 - rejects parent traversal even when it normalizes back inside the root
+  ---
+  duration_ms: 2.680167
+  type: 'test'
+  ...
+# Subtest: rejects absolute references
+ok 61 - rejects absolute references
+  ---
+  duration_ms: 4.272333
+  type: 'test'
+  ...
+# Subtest: rejects symlink segments
+ok 62 - rejects symlink segments
+  ---
+  duration_ms: 9.669375
+  type: 'test'
+  ...
+# Subtest: rejects a missing required reference and a non-directory root
+ok 63 - rejects a missing required reference and a non-directory root
+  ---
+  duration_ms: 2.218291
+  type: 'test'
+  ...
+# Subtest: rejects a missing root
+ok 64 - rejects a missing root
+  ---
+  duration_ms: 0.516959
+  type: 'test'
+  ...
+# Subtest: resolves ordered scope production, consumption, and overrides across includes
+ok 65 - resolves ordered scope production, consumption, and overrides across includes
+  ---
+  duration_ms: 16.29525
+  type: 'test'
+  ...
+# Subtest: materializes scope-flow resolutions as ordered Graph IR edges
+ok 66 - materializes scope-flow resolutions as ordered Graph IR edges
+  ---
+  duration_ms: 8.556042
+  type: 'test'
+  ...
+# Subtest: bounds scope expansion and record output without throwing
+ok 67 - bounds scope expansion and record output without throwing
+  ---
+  duration_ms: 0.908167
+  type: 'test'
+  ...
+# Subtest: marks scope coverage incomplete when a static include has no bounded resolution
+ok 68 - marks scope coverage incomplete when a static include has no bounded resolution
+  ---
+  duration_ms: 13.826042
+  type: 'test'
+  ...
+# Subtest: discovers supported files in sorted order and ignores configured default directories
+ok 69 - discovers supported files in sorted order and ignores configured default directories
+  ---
+  duration_ms: 25.521375
+  type: 'test'
+  ...
+# Subtest: applies the bounded generated-directory policy before source admission
+ok 70 - applies the bounded generated-directory policy before source admission
+  ---
+  duration_ms: 20.367166
+  type: 'test'
+  ...
+# Subtest: applies configured ignore policies without changing deterministic discovery
+ok 71 - applies configured ignore policies without changing deterministic discovery
+  ---
+  duration_ms: 17.477667
+  type: 'test'
+  ...
+# Subtest: does not execute source while hashing it and produces repeatable fingerprints
+ok 72 - does not execute source while hashing it and produces repeatable fingerprints
+  ---
+  duration_ms: 10.250875
+  type: 'test'
+  ...
+# Subtest: changes the content fingerprint without changing the relative file identity
+ok 73 - changes the content fingerprint without changing the relative file identity
+  ---
+  duration_ms: 8.380916
+  type: 'test'
+  ...
+# Subtest: records and skips symlink entries instead of following them
+ok 74 - records and skips symlink entries instead of following them
+  ---
+  duration_ms: 9.541542
+  type: 'test'
+  ...
+# Subtest: returns an incomplete snapshot when a file limit is reached
+ok 75 - returns an incomplete snapshot when a file limit is reached
+  ---
+  duration_ms: 5.164916
+  type: 'test'
+  ...
+# Subtest: decodes strict UTF-8 and maps ASCII line positions
+ok 76 - decodes strict UTF-8 and maps ASCII line positions
+  ---
+  duration_ms: 5.224292
+  type: 'test'
+  ...
+# Subtest: maps UTF-8 byte offsets while columns count UTF-16 code units
+ok 77 - maps UTF-8 byte offsets while columns count UTF-16 code units
+  ---
+  duration_ms: 2.062333
+  type: 'test'
+  ...
+# Subtest: preserves a UTF-8 BOM in the decoded text and byte map
+ok 78 - preserves a UTF-8 BOM in the decoded text and byte map
+  ---
+  duration_ms: 0.37275
+  type: 'test'
+  ...
+# Subtest: rejects invalid UTF-8 without fallback repair
+ok 79 - rejects invalid UTF-8 without fallback repair
+  ---
+  duration_ms: 0.259167
+  type: 'test'
+  ...
+# Subtest: rejects inconsistent byte lengths, invalid positions, and unordered byte spans
+ok 80 - rejects inconsistent byte lengths, invalid positions, and unordered byte spans
+  ---
+  duration_ms: 0.288125
+  type: 'test'
+  ...
+# Subtest: normalizes Tree-sitter CFML tags into the existing structural tree
+ok 81 - normalizes Tree-sitter CFML tags into the existing structural tree
+  ---
+  duration_ms: 3.406917
+  type: 'test'
+  ...
+# Subtest: recognizes common switch tags without adding unsupported diagnostics
+ok 82 - recognizes common switch tags without adding unsupported diagnostics
+  ---
+  duration_ms: 0.603042
+  type: 'test'
+  ...
+# Subtest: preserves script regions as incomplete opaque evidence
+ok 83 - preserves script regions as incomplete opaque evidence
+  ---
+  duration_ms: 0.395666
+  type: 'test'
+  ...
+# Subtest: reports syntax errors and parser node limits without guessing evidence
+ok 84 - reports syntax errors and parser node limits without guessing evidence
+  ---
+  duration_ms: 0.397417
+  type: 'test'
+  ...
+# Subtest: fails closed for non-CFML files
+ok 85 - fails closed for non-CFML files
+  ---
+  duration_ms: 0.152166
+  type: 'test'
+  ...
+# Subtest: rejects invalid backend limits
+ok 86 - rejects invalid backend limits
+  ---
+  duration_ms: 0.405458
+  type: 'test'
+  ...
+# Subtest: resolves fixture-backed web flows, known wrappers, and explicit conditions
+ok 87 - resolves fixture-backed web flows, known wrappers, and explicit conditions
+  ---
+  duration_ms: 56.802958
+  type: 'test'
+  ...
+# Subtest: materializes condition and wrapper flow evidence without executing source
+ok 88 - materializes condition and wrapper flow evidence without executing source
+  ---
+  duration_ms: 25.188
+  type: 'test'
+  ...
+# Subtest: bounds web-flow records without hiding incomplete coverage
+ok 89 - bounds web-flow records without hiding incomplete coverage
+  ---
+  duration_ms: 19.774584
+  type: 'test'
+  ...
+# Subtest: preserves an explicitly conditioned flow with no condition source as unresolved
+ok 90 - preserves an explicitly conditioned flow with no condition source as unresolved
+  ---
+  duration_ms: 0.389209
+  type: 'test'
+  ...
+# Subtest: scans inert mixed-language web fixtures without executing source
+ok 91 - scans inert mixed-language web fixtures without executing source
+  ---
+  duration_ms: 23.401292
+  type: 'test'
+  ...
+# Subtest: enforces the node limit across mixed scanner output
+ok 92 - enforces the node limit across mixed scanner output
+  ---
+  duration_ms: 1.385
+  type: 'test'
+  ...
+# Subtest: extracts bounded CFML redirect and visible query facts
+ok 93 - extracts bounded CFML redirect and visible query facts
+  ---
+  duration_ms: 7.324083
+  type: 'test'
+  ...
+# Subtest: extracts bounded static CFScript linkage calls and SQL evidence
+ok 94 - extracts bounded static CFScript linkage calls and SQL evidence
+  ---
+  duration_ms: 54.031625
+  type: 'test'
+  ...
+# Subtest: retains dynamic web targets and bounds scanner output
+ok 95 - retains dynamic web targets and bounds scanner output
+  ---
+  duration_ms: 1.947583
+  type: 'test'
+  ...
+1..95
+# tests 95
+# suites 0
+# pass 95
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3335.169041
+
+[test] agent-cfml-policy-check
+
+> agent-cfml-policy-check@0.1.0 test
+> node --test
+
+TAP version 13
+# Subtest: capabilities exposes the AIT-callable contract
+ok 1 - capabilities exposes the AIT-callable contract
+  ---
+  duration_ms: 1.383875
+  type: 'test'
+  ...
+# Subtest: static table with direct colgroup and col passes
+ok 2 - static table with direct colgroup and col passes
+  ---
+  duration_ms: 2.213958
+  type: 'test'
+  ...
+# Subtest: missing colgroup produces a stable finding
+ok 3 - missing colgroup produces a stable finding
+  ---
+  duration_ms: 0.854
+  type: 'test'
+  ...
+# Subtest: empty colgroup produces the col finding
+ok 4 - empty colgroup produces the col finding
+  ---
+  duration_ms: 1.806667
+  type: 'test'
+  ...
+# Subtest: comments do not create active table findings
+ok 5 - comments do not create active table findings
+  ---
+  duration_ms: 0.7245
+  type: 'test'
+  ...
+# Subtest: static markup inside cfoutput remains checkable
+ok 6 - static markup inside cfoutput remains checkable
+  ---
+  duration_ms: 1.138583
+  type: 'test'
+  ...
+# Subtest: Globe3 profile covers stable legacy table regions and nesting
+ok 7 - Globe3 profile covers stable legacy table regions and nesting
+  ---
+  duration_ms: 0.87575
+  type: 'test'
+  ...
+# Subtest: Globe3 dynamic row fails closed
+ok 8 - Globe3 dynamic row fails closed
+  ---
+  duration_ms: 0.6515
+  type: 'test'
+  ...
+# Subtest: Globe3 profile ignores commented layout examples
+ok 9 - Globe3 profile ignores commented layout examples
+  ---
+  duration_ms: 0.971167
+  type: 'test'
+  ...
+# Subtest: Globe3 profile reports an empty colgroup
+ok 10 - Globe3 profile reports an empty colgroup
+  ---
+  duration_ms: 0.988792
+  type: 'test'
+  ...
+# Subtest: output limit returns an incomplete result with exit code 3
+ok 11 - output limit returns an incomplete result with exit code 3
+  ---
+  duration_ms: 47.210083
+  type: 'test'
+  ...
+# Subtest: dynamic CFML affecting a table fails closed
+ok 12 - dynamic CFML affecting a table fails closed
+  ---
+  duration_ms: 1.091125
+  type: 'test'
+  ...
+# Subtest: path escape is rejected without reading outside the root
+ok 13 - path escape is rejected without reading outside the root
+  ---
+  duration_ms: 0.259083
+  type: 'test'
+  ...
+# Subtest: malformed profile is rejected
+ok 14 - malformed profile is rejected
+  ---
+  duration_ms: 1.333583
+  type: 'test'
+  ...
+# Subtest: repeated runs are byte-stable and source is unchanged
+ok 15 - repeated runs are byte-stable and source is unchanged
+  ---
+  duration_ms: 0.87925
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 155.933959
+
+[test] agent-change-impact
+
+> agent-change-impact@0.1.1 test
+> npm run build && node --test test/*.test.cjs
+
+
+> agent-change-impact@0.1.1 build
+> tsc -p tsconfig.json
+
+TAP version 13
+# Subtest: capabilities are explicit and read-only
+ok 1 - capabilities are explicit and read-only
+  ---
+  duration_ms: 1.793791
+  type: 'test'
+  ...
+# Subtest: JavaScript API rejects malformed request objects
+ok 2 - JavaScript API rejects malformed request objects
+  ---
+  duration_ms: 212.882084
+  type: 'test'
+  ...
+# Subtest: file impact returns reverse dependency paths and candidate tests
+ok 3 - file impact returns reverse dependency paths and candidate tests
+  ---
+  duration_ms: 2763.902042
+  type: 'test'
+  ...
+# Subtest: symbol impact classifies calls, imports, reexports, and remains deterministic
+ok 4 - symbol impact classifies calls, imports, reexports, and remains deterministic
+  ---
+  duration_ms: 1134.141167
+  type: 'test'
+  ...
+# Subtest: file traversal terminates on cycles and retains a deterministic diamond path
+ok 5 - file traversal terminates on cycles and retains a deterministic diamond path
+  ---
+  duration_ms: 2047.551708
+  type: 'test'
+  ...
+# Subtest: analyzeFile returns a complete empty impact for an isolated target
+ok 6 - analyzeFile returns a complete empty impact for an isolated target
+  ---
+  duration_ms: 624.953833
+  type: 'test'
+  ...
+# Subtest: JavaScript and TypeScript JSX project files are analyzed
+ok 7 - JavaScript and TypeScript JSX project files are analyzed
+  ---
+  duration_ms: 1174.887458
+  type: 'test'
+  ...
+# Subtest: interface implementation evidence is classified separately from calls
+ok 8 - interface implementation evidence is classified separately from calls
+  ---
+  duration_ms: 669.147042
+  type: 'test'
+  ...
+# Subtest: dynamic dependencies are reported as unresolved observations
+ok 9 - dynamic dependencies are reported as unresolved observations
+  ---
+  duration_ms: 690.303334
+  type: 'test'
+  ...
+# Subtest: changed analysis preserves snapshot identity on unresolved diagnostics
+ok 10 - changed analysis preserves snapshot identity on unresolved diagnostics
+  ---
+  duration_ms: 2190.196042
+  type: 'test'
+  ...
+# Subtest: unresolved literal modules are visible instead of becoming an empty edge set
+ok 11 - unresolved literal modules are visible instead of becoming an empty edge set
+  ---
+  duration_ms: 734.391958
+  type: 'test'
+  ...
+# Subtest: unresolved provider observations stay within the edge-derived cap
+ok 12 - unresolved provider observations stay within the edge-derived cap
+  ---
+  duration_ms: 734.985333
+  type: 'test'
+  ...
+# Subtest: diagnostics stay within the explicit diagnostic cap
+ok 13 - diagnostics stay within the explicit diagnostic cap
+  ---
+  duration_ms: 316.636458
+  type: 'test'
+  ...
+# Subtest: permitted external declarations honor the file budget before decoding
+ok 14 - permitted external declarations honor the file budget before decoding
+  ---
+  duration_ms: 270.765291
+  type: 'test'
+  ...
+# Subtest: ambiguous symbols fail closed and support location disambiguation
+ok 15 - ambiguous symbols fail closed and support location disambiguation
+  ---
+  duration_ms: 1227.498459
+  type: 'test'
+  ...
+# Subtest: location selectors reject columns beyond the requested line
+ok 16 - location selectors reject columns beyond the requested line
+  ---
+  duration_ms: 731.802709
+  type: 'test'
+  ...
+# Subtest: changed analysis retains base and head snapshots for modifications
+ok 17 - changed analysis retains base and head snapshots for modifications
+  ---
+  duration_ms: 2230.67375
+  type: 'test'
+  ...
+# Subtest: revision snapshots classify oversized blobs as file-budget diagnostics
+ok 18 - revision snapshots classify oversized blobs as file-budget diagnostics
+  ---
+  duration_ms: 1263.684834
+  type: 'test'
+  ...
+# Subtest: changed analysis handles deleted symbols using the base snapshot
+ok 19 - changed analysis handles deleted symbols using the base snapshot
+  ---
+  duration_ms: 1888.059875
+  type: 'test'
+  ...
+# Subtest: changed analysis records renames with old and new paths
+ok 20 - changed analysis records renames with old and new paths
+  ---
+  duration_ms: 2017.045709
+  type: 'test'
+  ...
+# Subtest: configuration changes remain visible and produce a partial analysis
+ok 21 - configuration changes remain visible and produce a partial analysis
+  ---
+  duration_ms: 2067.155333
+  type: 'test'
+  ...
+# Subtest: package metadata changes remain visible as configuration seeds
+ok 22 - package metadata changes remain visible as configuration seeds
+  ---
+  duration_ms: 2251.501417
+  type: 'test'
+  ...
+# Subtest: worktree includes non-ignored untracked source and does not mutate Git
+ok 23 - worktree includes non-ignored untracked source and does not mutate Git
+  ---
+  duration_ms: 2510.460292
+  type: 'test'
+  ...
+# Subtest: worktree skips symlink escapes outside the repository
+ok 24 - worktree skips symlink escapes outside the repository
+  ---
+  duration_ms: 726.442209
+  type: 'test'
+  ...
+# Subtest: worktree retains internal symlinked source files
+ok 25 - worktree retains internal symlinked source files
+  ---
+  duration_ms: 685.645916
+  type: 'test'
+  ...
+# Subtest: repository root can be addressed through an internal symlink
+ok 26 - repository root can be addressed through an internal symlink
+  ---
+  duration_ms: 619.258166
+  type: 'test'
+  ...
+# Subtest: worktree combines staged and unstaged tracked changes
+ok 27 - worktree combines staged and unstaged tracked changes
+  ---
+  duration_ms: 2557.492542
+  type: 'test'
+  ...
+# Subtest: conflicted worktrees are reported as partial
+ok 28 - conflicted worktrees are reported as partial
+  ---
+  duration_ms: 2572.808208
+  type: 'test'
+  ...
+# Subtest: worktree content changes during capture are reported as partial
+ok 29 - worktree content changes during capture are reported as partial
+  ---
+  duration_ms: 3607.059042
+  type: 'test'
+  ...
+# Subtest: changed analysis disables configured external diff, textconv, and fsmonitor helpers
+ok 30 - changed analysis disables configured external diff, textconv, and fsmonitor helpers
+  ---
+  duration_ms: 2867.682292
+  type: 'test'
+  ...
+# Subtest: output and argument limits fail with machine-readable errors
+ok 31 - output and argument limits fail with machine-readable errors
+  ---
+  duration_ms: 2788.353375
+  type: 'test'
+  ...
+# Subtest: CLI pretty output honors the serialized output limit after formatting
+ok 32 - CLI pretty output honors the serialized output limit after formatting
+  ---
+  duration_ms: 2296.016584
+  type: 'test'
+  ...
+# Subtest: invalid invocations return exit code 2 and one JSON document
+ok 33 - invalid invocations return exit code 2 and one JSON document
+  ---
+  duration_ms: 474.75925
+  type: 'test'
+  ...
+# Subtest: CLI inline values preserve equals signs and changed revisions trim whitespace
+ok 34 - CLI inline values preserve equals signs and changed revisions trim whitespace
+  ---
+  duration_ms: 3260.919084
+  type: 'test'
+  ...
+# Subtest: changed analysis rejects missing comparison endpoints and missing roots
+ok 35 - changed analysis rejects missing comparison endpoints and missing roots
+  ---
+  duration_ms: 245.362125
+  type: 'test'
+  ...
+# Subtest: draft JSON schema validates success and error envelopes
+ok 36 - draft JSON schema validates success and error envelopes
+  ---
+  duration_ms: 1813.1925
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 54634.335125
+
+[test] agent-code-slice
+
+> agent-code-slice@0.4.0 test
+> node scripts/run-tests.mjs
+
+TAP version 13
+# Subtest: CFML outline resolves component/function nesting despite the grammar's flat open/close tags
+ok 1 - CFML outline resolves component/function nesting despite the grammar's flat open/close tags
+  ---
+  duration_ms: 1704.436625
+  type: 'test'
+  ...
+# Subtest: cfquery is a query symbol tagged with embeddedLanguage cfquery and nests under its cffunction
+ok 2 - cfquery is a query symbol tagged with embeddedLanguage cfquery and nests under its cffunction
+  ---
+  duration_ms: 4.365959
+  type: 'test'
+  ...
+# Subtest: a function declared inside a <cfscript> block is re-parsed with the cfscript grammar and offset back into host coordinates
+ok 3 - a function declared inside a <cfscript> block is re-parsed with the cfscript grammar and offset back into host coordinates
+  ---
+  duration_ms: 3.584958
+  type: 'test'
+  ...
+# Subtest: a dynamic (hash-expression) cfquery name is reported as null with a DYNAMIC_NAME warning, never guessed
+ok 4 - a dynamic (hash-expression) cfquery name is reported as null with a DYNAMIC_NAME warning, never guessed
+  ---
+  duration_ms: 3.56775
+  type: 'test'
+  ...
+# Subtest: CFML <script> is re-parsed as JavaScript with exact host coordinates
+ok 5 - CFML <script> is re-parsed as JavaScript with exact host coordinates
+  ---
+  duration_ms: 369.177667
+  type: 'test'
+  ...
+# Subtest: CFML <style> is re-parsed as CSS and exposes selector/property symbols
+ok 6 - CFML <style> is re-parsed as CSS and exposes selector/property symbols
+  ---
+  duration_ms: 2.006291
+  type: 'test'
+  ...
+# Subtest: cfquery content is deep-parsed into SQL clauses and function symbols
+ok 7 - cfquery content is deep-parsed into SQL clauses and function symbols
+  ---
+  duration_ms: 5.295375
+  type: 'test'
+  ...
+# Subtest: explicit non-JavaScript and non-CSS region types are skipped instead of guessed
+ok 8 - explicit non-JavaScript and non-CSS region types are skipped instead of guessed
+  ---
+  duration_ms: 1.89875
+  type: 'test'
+  ...
+# Subtest: recoverable JavaScript errors in a CFML <script> region remain visible as warnings
+ok 9 - recoverable JavaScript errors in a CFML <script> region remain visible as warnings
+  ---
+  duration_ms: 1.996875
+  type: 'test'
+  ...
+# Subtest: root containment rejects lexical escapes before filesystem probing
+ok 10 - root containment rejects lexical escapes before filesystem probing
+  ---
+  duration_ms: 4.146291
+  type: 'test'
+  ...
+# Subtest: root containment rejects a symlink or junction that resolves outside the root
+ok 11 - root containment rejects a symlink or junction that resolves outside the root
+  ---
+  duration_ms: 7.333792
+  type: 'test'
+  ...
+# Subtest: file loading enforces byte limits, rejects invalid UTF-8, and stays read-only
+ok 12 - file loading enforces byte limits, rejects invalid UTF-8, and stays read-only
+  ---
+  duration_ms: 4.113666
+  type: 'test'
+  ...
+# Subtest: file loading preserves a leading UTF-8 BOM for byte-accurate coordinates
+ok 13 - file loading preserves a leading UTF-8 BOM for byte-accurate coordinates
+  ---
+  duration_ms: 0.959791
+  type: 'test'
+  ...
+# Subtest: declarative Golden Eval cases pass through the public Core API
+ok 14 - declarative Golden Eval cases pass through the public Core API
+  ---
+  duration_ms: 1929.838583
+  type: 'test'
+  ...
+# Subtest: Golden Eval case parsing fails closed for unsupported operations
+ok 15 - Golden Eval case parsing fails closed for unsupported operations
+  ---
+  duration_ms: 0.651792
+  type: 'test'
+  ...
+# Subtest: Golden Eval case parsing rejects escaped files and error-only success fields
+ok 16 - Golden Eval case parsing rejects escaped files and error-only success fields
+  ---
+  duration_ms: 0.238709
+  type: 'test'
+  ...
+# Subtest: every built grammar WASM file matches its recorded sha256 (packaged grammar integrity check)
+ok 17 - every built grammar WASM file matches its recorded sha256 (packaged grammar integrity check)
+  ---
+  duration_ms: 25.775708
+  type: 'test'
+  ...
+# Subtest: all four V0.1 language families plus their embedded CFML grammars are present
+ok 18 - all four V0.1 language families plus their embedded CFML grammars are present
+  ---
+  duration_ms: 19.333916
+  type: 'test'
+  ...
+# Subtest: every grammar in the manifest actually loads via web-tree-sitter and parses a minimal fixture
+ok 19 - every grammar in the manifest actually loads via web-tree-sitter and parses a minimal fixture
+  ---
+  duration_ms: 411.097708
+  type: 'test'
+  ...
+# Subtest: capabilities lists the V0.1 host language families and CFML embedded grammars
+ok 20 - capabilities lists the V0.1 host language families and CFML embedded grammars
+  ---
+  duration_ms: 8.836625
+  type: 'test'
+  ...
+# Subtest: outline finds every top-level symbol in basic.js
+ok 21 - outline finds every top-level symbol in basic.js
+  ---
+  duration_ms: 199.506
+  type: 'test'
+  ...
+# Subtest: symbol slice includes the export keyword in the range (export widening)
+ok 22 - symbol slice includes the export keyword in the range (export widening)
+  ---
+  duration_ms: 19.029167
+  type: 'test'
+  ...
+# Subtest: arrow function export is reported as kind function, not variable
+ok 23 - arrow function export is reported as kind function, not variable
+  ---
+  duration_ms: 26.162667
+  type: 'test'
+  ...
+# Subtest: ambiguous symbol name fails closed with bounded candidates
+ok 24 - ambiguous symbol name fails closed with bounded candidates
+  ---
+  duration_ms: 6.64725
+  type: 'test'
+  ...
+# Subtest: occurrence disambiguates deterministically instead of guessing
+ok 25 - occurrence disambiguates deterministically instead of guessing
+  ---
+  duration_ms: 2.23725
+  type: 'test'
+  ...
+# Subtest: unknown symbol name fails closed with SYMBOL_NOT_FOUND
+ok 26 - unknown symbol name fails closed with SYMBOL_NOT_FOUND
+  ---
+  duration_ms: 9.18175
+  type: 'test'
+  ...
+# Subtest: line selector resolves to the smallest enclosing container
+ok 27 - line selector resolves to the smallest enclosing container
+  ---
+  duration_ms: 5.556667
+  type: 'test'
+  ...
+# Subtest: line selector out of file bounds fails closed
+ok 28 - line selector out of file bounds fails closed
+  ---
+  duration_ms: 2.131667
+  type: 'test'
+  ...
+# Subtest: line and expanded range selectors do not guess between same-line siblings
+ok 29 - line and expanded range selectors do not guess between same-line siblings
+  ---
+  duration_ms: 5.334833
+  type: 'test'
+  ...
+# Subtest: range without --expand returns the exact requested text, not a container
+ok 30 - range without --expand returns the exact requested text, not a container
+  ---
+  duration_ms: 1.265208
+  type: 'test'
+  ...
+# Subtest: range with --expand returns the minimal enclosing container
+ok 31 - range with --expand returns the minimal enclosing container
+  ---
+  duration_ms: 0.895709
+  type: 'test'
+  ...
+# Subtest: malformed source returns a warning and does not crash or invent symbols
+ok 32 - malformed source returns a warning and does not crash or invent symbols
+  ---
+  duration_ms: 2.127833
+  type: 'test'
+  ...
+# Subtest: syntax-shaped text inside comments, strings, and template literals is never mistaken for a real symbol
+ok 33 - syntax-shaped text inside comments, strings, and template literals is never mistaken for a real symbol
+  ---
+  duration_ms: 1.333542
+  type: 'test'
+  ...
+# Subtest: byte offsets account for multi-byte characters (UTF-16 vs UTF-8 divergence)
+ok 34 - byte offsets account for multi-byte characters (UTF-16 vs UTF-8 divergence)
+  ---
+  duration_ms: 2.060292
+  type: 'test'
+  ...
+# Subtest: UTF-8 BOM byte ranges match the original file bytes
+ok 35 - UTF-8 BOM byte ranges match the original file bytes
+  ---
+  duration_ms: 1.117042
+  type: 'test'
+  ...
+# Subtest: capabilities envelope validates against the v1 schema
+ok 36 - capabilities envelope validates against the v1 schema
+  ---
+  duration_ms: 2.469084
+  type: 'test'
+  ...
+# Subtest: outline success envelope validates against the v1 schema
+ok 37 - outline success envelope validates against the v1 schema
+  ---
+  duration_ms: 80.9165
+  type: 'test'
+  ...
+# Subtest: slice success envelope validates against the v1 schema
+ok 38 - slice success envelope validates against the v1 schema
+  ---
+  duration_ms: 3.418459
+  type: 'test'
+  ...
+# Subtest: slice ambiguous-error envelope validates against the v1 schema
+ok 39 - slice ambiguous-error envelope validates against the v1 schema
+  ---
+  duration_ms: 1.998875
+  type: 'test'
+  ...
+# Subtest: slice not-found-error envelope validates against the v1 schema
+ok 40 - slice not-found-error envelope validates against the v1 schema
+  ---
+  duration_ms: 4.478667
+  type: 'test'
+  ...
+# Subtest: file-not-found error envelope validates against the v1 schema
+ok 41 - file-not-found error envelope validates against the v1 schema
+  ---
+  duration_ms: 5.212709
+  type: 'test'
+  ...
+# Subtest: the checked-in example fixtures all validate against the v1 schema
+ok 42 - the checked-in example fixtures all validate against the v1 schema
+  ---
+  duration_ms: 11.479708
+  type: 'test'
+  ...
+# Subtest: CLI usage error envelope validates against the additive v1.1 schema
+ok 43 - CLI usage error envelope validates against the additive v1.1 schema
+  ---
+  duration_ms: 0.579292
+  type: 'test'
+  ...
+# Subtest: bounded output-limit fallback validates against the v1 schema
+ok 44 - bounded output-limit fallback validates against the v1 schema
+  ---
+  duration_ms: 0.788541
+  type: 'test'
+  ...
+# Subtest: runtime request validation rejects invalid limits and selector shapes
+ok 45 - runtime request validation rejects invalid limits and selector shapes
+  ---
+  duration_ms: 3.030042
+  type: 'test'
+  ...
+# Subtest: output limits fail closed without truncating a symbol slice
+ok 46 - output limits fail closed without truncating a symbol slice
+  ---
+  duration_ms: 192.538875
+  type: 'test'
+  ...
+# Subtest: output finalization preserves fitting errors and replaces oversized details intact
+ok 47 - output finalization preserves fitting errors and replaces oversized details intact
+  ---
+  duration_ms: 2.639834
+  type: 'test'
+  ...
+# Subtest: bounded limit normalizers preserve defaults and reject values outside the contract
+ok 48 - bounded limit normalizers preserve defaults and reject values outside the contract
+  ---
+  duration_ms: 10.469041
+  type: 'test'
+  ...
+# Subtest: symbol budget fails before an extraction result can exceed its hard cap
+ok 49 - symbol budget fails before an extraction result can exceed its hard cap
+  ---
+  duration_ms: 0.527333
+  type: 'test'
+  ...
+# Subtest: compact outline is discovery-only and bounded below source context by default
+ok 50 - compact outline is discovery-only and bounded below source context by default
+  ---
+  duration_ms: 556.087125
+  type: 'test'
+  ...
+# Subtest: compact outline pagination is deterministic and exposes structured page metadata
+ok 51 - compact outline pagination is deterministic and exposes structured page metadata
+  ---
+  duration_ms: 174.952084
+  type: 'test'
+  ...
+# Subtest: outline offset is applied after filters and fails closed when malformed
+ok 52 - outline offset is applied after filters and fails closed when malformed
+  ---
+  duration_ms: 290.938542
+  type: 'test'
+  ...
+# Subtest: Python outline distinguishes module-level functions from methods
+ok 53 - Python outline distinguishes module-level functions from methods
+  ---
+  duration_ms: 128.346458
+  type: 'test'
+  ...
+# Subtest: decorated method inside a class is still classified as a method, not a function
+ok 54 - decorated method inside a class is still classified as a method, not a function
+  ---
+  duration_ms: 20.167042
+  type: 'test'
+  ...
+# Subtest: lambda assignment is reported as kind function
+ok 55 - lambda assignment is reported as kind function
+  ---
+  duration_ms: 7.267875
+  type: 'test'
+  ...
+# Subtest: ambiguous method name across Python classes fails closed
+ok 56 - ambiguous method name across Python classes fails closed
+  ---
+  duration_ms: 11.914709
+  type: 'test'
+  ...
+# Subtest: literal dotted symbol names take precedence over Owner.member fallback
+ok 57 - literal dotted symbol names take precedence over Owner.member fallback
+  ---
+  duration_ms: 1.286834
+  type: 'test'
+  ...
+# Subtest: TypeScript practical coverage exposes enum, namespace/module, callable class fields, and object callables
+ok 58 - TypeScript practical coverage exposes enum, namespace/module, callable class fields, and object callables
+  ---
+  duration_ms: 64.207833
+  type: 'test'
+  ...
+# Subtest: TypeScript enum and namespace/module symbols are directly sliceable
+ok 59 - TypeScript enum and namespace/module symbols are directly sliceable
+  ---
+  duration_ms: 15.92075
+  type: 'test'
+  ...
+# Subtest: qualified lookup selects class-field arrows/functions and namespace members
+ok 60 - qualified lookup selects class-field arrows/functions and namespace members
+  ---
+  duration_ms: 15.231166
+  type: 'test'
+  ...
+# Subtest: qualified lookup selects object arrow/function values while bare names stay fail-closed
+ok 61 - qualified lookup selects object arrow/function values while bare names stay fail-closed
+  ---
+  duration_ms: 13.161875
+  type: 'test'
+  ...
+# Subtest: TypeScript outline covers interface, type alias, function, arrow export, and classes
+ok 62 - TypeScript outline covers interface, type alias, function, arrow export, and classes
+  ---
+  duration_ms: 64.120667
+  type: 'test'
+  ...
+# Subtest: TypeScript symbol slice preserves the export keyword and type annotations in the signature
+ok 63 - TypeScript symbol slice preserves the export keyword and type annotations in the signature
+  ---
+  duration_ms: 3.486083
+  type: 'test'
+  ...
+# Subtest: ambiguous method name across TypeScript classes fails closed
+ok 64 - ambiguous method name across TypeScript classes fails closed
+  ---
+  duration_ms: 3.333167
+  type: 'test'
+  ...
+# Subtest: line selector trims indentation before choosing the smallest TypeScript container
+ok 65 - line selector trims indentation before choosing the smallest TypeScript container
+  ---
+  duration_ms: 4.507292
+  type: 'test'
+  ...
+# Subtest: expanded ranges trim blank boundary lines without changing the returned symbol
+ok 66 - expanded ranges trim blank boundary lines without changing the returned symbol
+  ---
+  duration_ms: 1.726625
+  type: 'test'
+  ...
+# Subtest: class closing lines still resolve to the class after content trimming
+ok 67 - class closing lines still resolve to the class after content trimming
+  ---
+  duration_ms: 1.324416
+  type: 'test'
+  ...
+# Subtest: whitespace-only selections use a safe enclosing container
+ok 68 - whitespace-only selections use a safe enclosing container
+  ---
+  duration_ms: 1.713084
+  type: 'test'
+  ...
+# Subtest: TSX adapter parses JSX and finds the component function
+ok 69 - TSX adapter parses JSX and finds the component function
+  ---
+  duration_ms: 107.013042
+  type: 'test'
+  ...
+# Subtest: qualified class member lookup resolves Owner.member without occurrence guessing
+ok 70 - qualified class member lookup resolves Owner.member without occurrence guessing
+  ---
+  duration_ms: 3.757208
+  type: 'test'
+  ...
+# Subtest: outline hides function and method locals by default and can opt them back in
+ok 71 - outline hides function and method locals by default and can opt them back in
+  ---
+  duration_ms: 3.494125
+  type: 'test'
+  ...
+# Subtest: topLevel outline exposes only parentless structural entries
+ok 72 - topLevel outline exposes only parentless structural entries
+  ---
+  duration_ms: 1.245833
+  type: 'test'
+  ...
+# Subtest: smallest range mode returns a local syntax node instead of widening to the method or class
+ok 73 - smallest range mode returns a local syntax node instead of widening to the method or class
+  ---
+  duration_ms: 2.338417
+  type: 'test'
+  ...
+# Subtest: maxLines fails closed instead of truncating a resolved slice
+ok 74 - maxLines fails closed instead of truncating a resolved slice
+  ---
+  duration_ms: 1.144166
+  type: 'test'
+  ...
+# Subtest: range beyond EOF returns structured suggestion and clamp can apply it safely
+ok 75 - range beyond EOF returns structured suggestion and clamp can apply it safely
+  ---
+  duration_ms: 1.78625
+  type: 'test'
+  ...
+# Subtest: range rejects simultaneous expand and smallest modes
+ok 76 - range rejects simultaneous expand and smallest modes
+  ---
+  duration_ms: 0.188
+  type: 'test'
+  ...
+# Subtest: qualified member lookup still fails closed when the owner has ambiguous matching members
+ok 77 - qualified member lookup still fails closed when the owner has ambiguous matching members
+  ---
+  duration_ms: 1.566792
+  type: 'test'
+  ...
+# Subtest: withParse releases the native tree after the visitor settles
+ok 78 - withParse releases the native tree after the visitor settles
+  ---
+  duration_ms: 51.226833
+  type: 'test'
+  ...
+# Subtest: withParse releases the native tree when the visitor throws
+ok 79 - withParse releases the native tree when the visitor throws
+  ---
+  duration_ms: 33.665291
+  type: 'test'
+  ...
+# Subtest: concurrent first grammar loads resolve to one cached language identity
+ok 80 - concurrent first grammar loads resolve to one cached language identity
+  ---
+  duration_ms: 28.384333
+  type: 'test'
+  ...
+1..80
+# tests 80
+# suites 0
+# pass 80
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3088.466417
+
+[test] agent-error-lens
+
+> agent-error-lens@0.1.0 test
+> npm run check:contract && npm run check:fixtures && npm run check:capabilities && npm run typecheck && npm run lint && npm run build && npm run check:package && node --test
+
+
+> agent-error-lens@0.1.0 check:contract
+> node contract/verify-contract.mjs && node scripts/check-contract-drift.mjs
+
+valid-request: accepted
+valid-empty-request: accepted
+valid-complete-result: accepted
+valid-partial-result: accepted
+valid-capabilities: accepted
+invalid-request: rejected
+invalid-result: rejected
+cross-field invariants: passed
+canonical key order: passed
+contract verification: passed
+contract/type drift check: passed (15 interfaces, 60 properties)
+
+> agent-error-lens@0.1.0 check:fixtures
+> node scripts/check-fixtures.mjs
+
+fixture corpus check: passed (23 cases, 6 families)
+
+> agent-error-lens@0.1.0 check:capabilities
+> node scripts/check-capabilities.mjs
+
+core capability audit: passed (15 source files)
+
+> agent-error-lens@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+> agent-error-lens@0.1.0 lint
+> eslint .
+
+
+> agent-error-lens@0.1.0 build
+> tsc -p tsconfig.build.json
+
+
+> agent-error-lens@0.1.0 postbuild
+> node scripts/make-cli-executable.mjs
+
+CLI executable bit: set
+
+> agent-error-lens@0.1.0 check:package
+> node scripts/check-package.mjs
+
+package allowlist and packed consumer audit: passed (73 files; private boundary)
+TAP version 13
+# Subtest: CLI output supports a downstream agent locator and raw evidence handoff
+ok 1 - CLI output supports a downstream agent locator and raw evidence handoff
+  ---
+  duration_ms: 128.5835
+  type: 'test'
+  ...
+# Subtest: duplicate identities are deduplicated with a deterministic evidence union
+ok 2 - duplicate identities are deduplicated with a deterministic evidence union
+  ---
+  duration_ms: 6.141291
+  type: 'test'
+  ...
+# Subtest: canonical serialization normalizes strings and preserves schema key order
+ok 3 - canonical serialization normalizes strings and preserves schema key order
+  ---
+  duration_ms: 2.173875
+  type: 'test'
+  ...
+# Subtest: CLI and library emit byte-identical canonical results with independent exit semantics
+ok 4 - CLI and library emit byte-identical canonical results with independent exit semantics
+  ---
+  duration_ms: 345.064625
+  type: 'test'
+  ...
+# Subtest: CLI usage errors exit 2 and capabilities use the same serializer
+ok 5 - CLI usage errors exit 2 and capabilities use the same serializer
+  ---
+  duration_ms: 133.980958
+  type: 'test'
+  ...
+# Subtest: CLI root injection does not hide malformed request options
+ok 6 - CLI root injection does not hide malformed request options
+  ---
+  duration_ms: 281.765834
+  type: 'test'
+  ...
+# Subtest: CLI input is bounded and rejects invalid UTF-8 before JSON parsing
+ok 7 - CLI input is bounded and rejects invalid UTF-8 before JSON parsing
+  ---
+  duration_ms: 70.487
+  type: 'test'
+  ...
+# Subtest: generic structured diagnostics preserve evidence and normalize a rooted path
+ok 8 - generic structured diagnostics preserve evidence and normalize a rooted path
+  ---
+  duration_ms: 6.152666
+  type: 'test'
+  ...
+# Subtest: producer outcome is sanitized and kept in canonical envelope order
+ok 9 - producer outcome is sanitized and kept in canonical envelope order
+  ---
+  duration_ms: 0.389375
+  type: 'test'
+  ...
+# Subtest: ANSI removal and CRLF normalization retain a raw evidence span
+ok 10 - ANSI removal and CRLF normalization retain a raw evidence span
+  ---
+  duration_ms: 0.569709
+  type: 'test'
+  ...
+# Subtest: outside-root paths are withheld and reported as a warning
+ok 11 - outside-root paths are withheld and reported as a warning
+  ---
+  duration_ms: 2.769542
+  type: 'test'
+  ...
+# Subtest: malformed structured input fails closed with partial status
+ok 12 - malformed structured input fails closed with partial status
+  ---
+  duration_ms: 0.518292
+  type: 'test'
+  ...
+# Subtest: structured records reject malformed Unicode and unsafe coordinates
+ok 13 - structured records reject malformed Unicode and unsafe coordinates
+  ---
+  duration_ms: 1.085042
+  type: 'test'
+  ...
+# Subtest: structured string limits use Unicode code points consistently
+ok 14 - structured string limits use Unicode code points consistently
+  ---
+  duration_ms: 2.150291
+  type: 'test'
+  ...
+# Subtest: line and request validation remain bounded
+ok 15 - line and request validation remain bounded
+  ---
+  duration_ms: 11.895292
+  type: 'test'
+  ...
+# Subtest: incomplete terminal sequences fail closed as mapping truncation
+ok 16 - incomplete terminal sequences fail closed as mapping truncation
+  ---
+  duration_ms: 1.636708
+  type: 'test'
+  ...
+# Subtest: redaction masks secrets but preserves benign token metrics
+ok 17 - redaction masks secrets but preserves benign token metrics
+  ---
+  duration_ms: 2.988292
+  type: 'test'
+  ...
+# Subtest: redaction expansion cannot make exported fields exceed contract bounds
+ok 18 - redaction expansion cannot make exported fields exceed contract bounds
+  ---
+  duration_ms: 15.551042
+  type: 'test'
+  ...
+# Subtest: library exposes the frozen capabilities contract
+ok 19 - library exposes the frozen capabilities contract
+  ---
+  duration_ms: 1.436291
+  type: 'test'
+  ...
+# Subtest: library parse returns a complete result for an empty valid request
+ok 20 - library parse returns a complete result for an empty valid request
+  ---
+  duration_ms: 0.85275
+  type: 'test'
+  ...
+# Subtest: CLI capabilities and parse use the shared entry points
+ok 21 - CLI capabilities and parse use the shared entry points
+  ---
+  duration_ms: 201.2355
+  type: 'test'
+  ...
+# Subtest: approved producer fixtures return evidence-backed diagnostics
+ok 22 - approved producer fixtures return evidence-backed diagnostics
+  ---
+  duration_ms: 16.613333
+  type: 'test'
+  ...
+# Subtest: structural and nested producer fixtures preserve the relevant producer
+ok 23 - structural and nested producer fixtures preserve the relevant producer
+  ---
+  duration_ms: 3.86075
+  type: 'test'
+  ...
+# Subtest: failure fixtures stay explicit and bounded
+ok 24 - failure fixtures stay explicit and bounded
+  ---
+  duration_ms: 41.728375
+  type: 'test'
+  ...
+# Subtest: security, determinism, and agent-facing fixtures preserve their contracts
+ok 25 - security, determinism, and agent-facing fixtures preserve their contracts
+  ---
+  duration_ms: 3.870916
+  type: 'test'
+  ...
+# Subtest: artifact and aggregate request byte ceilings fail closed
+ok 26 - artifact and aggregate request byte ceilings fail closed
+  ---
+  duration_ms: 146.159792
+  type: 'test'
+  ...
+# Subtest: normalization and parser work budgets expose deterministic truncation
+ok 27 - normalization and parser work budgets expose deterministic truncation
+  ---
+  duration_ms: 325.685125
+  type: 'test'
+  ...
+# Subtest: evidence span budget stays bounded and explicit
+ok 28 - evidence span budget stays bounded and explicit
+  ---
+  duration_ms: 6.9825
+  type: 'test'
+  ...
+# Subtest: aggregate evidence budget stops export without unbounded growth
+ok 29 - aggregate evidence budget stops export without unbounded growth
+  ---
+  duration_ms: 192.336917
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 959.284791
+
+[test] agent-project-profile
+
+> agent-project-profile@0.1.2 test
+> npm run build && tsc -p tsconfig.test.json && node --test .test-dist/test/runner.test.js
+
+
+> agent-project-profile@0.1.2 build
+> tsc -p tsconfig.build.json
+
+TAP version 13
+# Subtest: schema and semantic validators reject no dangling evidence
+ok 1 - schema and semantic validators reject no dangling evidence
+  ---
+  duration_ms: 112.850583
+  type: 'test'
+  ...
+# Subtest: CLI JSON, text, strict mode, and fatal argument behavior are stable
+ok 2 - CLI JSON, text, strict mode, and fatal argument behavior are stable
+  ---
+  duration_ms: 501.651458
+  type: 'test'
+  ...
+# Subtest: deterministic ordering is independent of file creation order
+ok 3 - deterministic ordering is independent of file creation order
+  ---
+  duration_ms: 10.03975
+  type: 'test'
+  ...
+# Subtest: workspace return cap and output remain bounded
+ok 4 - workspace return cap and output remain bounded
+  ---
+  duration_ms: 282.559959
+  type: 'test'
+  ...
+# Subtest: metadata, source-string, and depth limits remain fail-closed
+ok 5 - metadata, source-string, and depth limits remain fail-closed
+  ---
+  duration_ms: 119.13325
+  type: 'test'
+  ...
+# Subtest: metadata-file and serialized-output caps are deterministic
+ok 6 - metadata-file and serialized-output caps are deterministic
+  ---
+  duration_ms: 12141.193958
+  type: 'test'
+  ...
+# Subtest: malformed YAML, traversal, and outside symlinks fail closed
+ok 7 - malformed YAML, traversal, and outside symlinks fail closed
+  ---
+  duration_ms: 58.1605
+  type: 'test'
+  ...
+# Subtest: protected directories cannot become inspection roots
+ok 8 - protected directories cannot become inspection roots
+  ---
+  duration_ms: 27.324959
+  type: 'test'
+  ...
+# Subtest: profiler source has no target process or network execution path
+ok 9 - profiler source has no target process or network execution path
+  ---
+  duration_ms: 4.593958
+  type: 'test'
+  ...
+# Subtest: manager conflicts, runtime roles, and declared entrypoint boundaries are explicit
+ok 10 - manager conflicts, runtime roles, and declared entrypoint boundaries are explicit
+  ---
+  duration_ms: 55.885125
+  type: 'test'
+  ...
+# Subtest: schema example: complete
+ok 11 - schema example: complete
+  ---
+  duration_ms: 24.991417
+  type: 'test'
+  ...
+# Subtest: schema example: partial
+ok 12 - schema example: partial
+  ---
+  duration_ms: 27.052166
+  type: 'test'
+  ...
+# Subtest: schema example: unsupported
+ok 13 - schema example: unsupported
+  ---
+  duration_ms: 25.675417
+  type: 'test'
+  ...
+# Subtest: schema example: error
+ok 14 - schema example: error
+  ---
+  duration_ms: 25.190959
+  type: 'test'
+  ...
+# Subtest: golden: 01-npm-single-package
+ok 15 - golden: 01-npm-single-package
+  ---
+  duration_ms: 33.209208
+  type: 'test'
+  ...
+# Subtest: golden: 02-pnpm-single-package
+ok 16 - golden: 02-pnpm-single-package
+  ---
+  duration_ms: 26.587459
+  type: 'test'
+  ...
+# Subtest: golden: 03-yarn-single-package
+ok 17 - golden: 03-yarn-single-package
+  ---
+  duration_ms: 27.523583
+  type: 'test'
+  ...
+# Subtest: golden: 04-npm-workspace
+ok 18 - golden: 04-npm-workspace
+  ---
+  duration_ms: 32.996125
+  type: 'test'
+  ...
+# Subtest: golden: 05-pnpm-workspace
+ok 19 - golden: 05-pnpm-workspace
+  ---
+  duration_ms: 35.461041
+  type: 'test'
+  ...
+# Subtest: golden: 06-typescript-vite
+ok 20 - golden: 06-typescript-vite
+  ---
+  duration_ms: 25.902125
+  type: 'test'
+  ...
+# Subtest: golden: 07-vitest
+ok 21 - golden: 07-vitest
+  ---
+  duration_ms: 24.983334
+  type: 'test'
+  ...
+# Subtest: golden: 08-jest
+ok 22 - golden: 08-jest
+  ---
+  duration_ms: 27.143041
+  type: 'test'
+  ...
+# Subtest: golden: 09-conflicting-lockfiles
+ok 23 - golden: 09-conflicting-lockfiles
+  ---
+  duration_ms: 25.519917
+  type: 'test'
+  ...
+# Subtest: golden: 10-missing-package-manager
+ok 24 - golden: 10-missing-package-manager
+  ---
+  duration_ms: 39.633959
+  type: 'test'
+  ...
+# Subtest: golden: 11-invalid-package-json
+ok 25 - golden: 11-invalid-package-json
+  ---
+  duration_ms: 26.2945
+  type: 'test'
+  ...
+# Subtest: golden: 12-no-test-script
+ok 26 - golden: 12-no-test-script
+  ---
+  duration_ms: 20.606292
+  type: 'test'
+  ...
+# Subtest: golden: 13-nested-agents
+ok 27 - golden: 13-nested-agents
+  ---
+  duration_ms: 27.193375
+  type: 'test'
+  ...
+# Subtest: golden: 14-github-actions
+ok 28 - golden: 14-github-actions
+  ---
+  duration_ms: 25.449125
+  type: 'test'
+  ...
+# Subtest: golden: 15-huge-workspace
+ok 29 - golden: 15-huge-workspace
+  ---
+  duration_ms: 2752.851958
+  type: 'test'
+  ...
+# Subtest: golden: 16-unsupported-python
+ok 30 - golden: 16-unsupported-python
+  ---
+  duration_ms: 24.39125
+  type: 'test'
+  ...
+# Subtest: golden: representative command and evidence details
+ok 31 - golden: representative command and evidence details
+  ---
+  duration_ms: 7.307708
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16758.021125
+
+[test] ai-agent-tool-project-tree
+
+> ai-agent-tool-project-tree@0.1.1 test
+> node --test
+
+TAP version 13
+# Subtest: package evidence extracts inert package metadata, dependencies, explicit manager, and lockfiles
+ok 1 - package evidence extracts inert package metadata, dependencies, explicit manager, and lockfiles
+  ---
+  duration_ms: 28.110292
+  type: 'test'
+  ...
+# Subtest: package manager conflicts and malformed package.json are deterministic evidence, not scan failures
+ok 2 - package manager conflicts and malformed package.json are deterministic evidence, not scan failures
+  ---
+  duration_ms: 11.954875
+  type: 'test'
+  ...
+# Subtest: test framework evidence is static-signal backed and tests-for import links remain compatible
+ok 3 - test framework evidence is static-signal backed and tests-for import links remain compatible
+  ---
+  duration_ms: 8.642584
+  type: 'test'
+  ...
+# Subtest: static package and test evidence never executes target scripts or tools
+ok 4 - static package and test evidence never executes target scripts or tools
+  ---
+  duration_ms: 5.582708
+  type: 'test'
+  ...
+# Subtest: published JSON schema validates current public envelopes and rejects incompatible shapes
+ok 5 - published JSON schema validates current public envelopes and rejects incompatible shapes
+  ---
+  duration_ms: 6.561209
+  type: 'test'
+  ...
+# Subtest: changed query resolves Git HEAD from a fully packed repository (post git gc / fresh clone shape)
+ok 6 - changed query resolves Git HEAD from a fully packed repository (post git gc / fresh clone shape)
+  ---
+  duration_ms: 237.352417
+  type: 'test'
+  ...
+# Subtest: changed query resolves packed objects behind OFS_DELTA/REF_DELTA chains
+ok 7 - changed query resolves packed objects behind OFS_DELTA/REF_DELTA chains
+  ---
+  duration_ms: 259.384833
+  type: 'test'
+  ...
+# Subtest: buildProjectGraph emits deterministic envelope and stable paths
+ok 8 - buildProjectGraph emits deterministic envelope and stable paths
+  ---
+  duration_ms: 28.0735
+  type: 'test'
+  ...
+# Subtest: buildProjectGraph extracts deterministic local JS import edges
+ok 9 - buildProjectGraph extracts deterministic local JS import edges
+  ---
+  duration_ms: 5.864334
+  type: 'test'
+  ...
+# Subtest: path-scoped impact and tests-for follow reverse import/test edges
+ok 10 - path-scoped impact and tests-for follow reverse import/test edges
+  ---
+  duration_ms: 7.137208
+  type: 'test'
+  ...
+# Subtest: queryGraph returns evidence and rejects escaping paths
+ok 11 - queryGraph returns evidence and rejects escaping paths
+  ---
+  duration_ms: 6.483791
+  type: 'test'
+  ...
+# Subtest: changed query uses read-only Git HEAD objects without executing git
+ok 12 - changed query uses read-only Git HEAD objects without executing git
+  ---
+  duration_ms: 13.377917
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 588.113958
+
+[test] agent-symbol-search
+
+> agent-symbol-search@0.1.2 test
+> npm run build && tsc -p tsconfig.test.json && node --test --test-concurrency=1 "dist-test/test/**/*.test.js"
+
+
+> agent-symbol-search@0.1.2 build
+> tsc -p tsconfig.json
+
+TAP version 13
+# Subtest: CLI keeps JSON on stdout and human diagnostics on stderr
+ok 1 - CLI keeps JSON on stdout and human diagnostics on stderr
+  ---
+  duration_ms: 2282.837625
+  type: 'test'
+  ...
+# Subtest: CLI reports invalid requests with valid JSON and a non-zero exit
+ok 2 - CLI reports invalid requests with valid JSON and a non-zero exit
+  ---
+  duration_ms: 723.84875
+  type: 'test'
+  ...
+# Subtest: CLI main accepts injected streams and project-scoped recovery commands
+ok 3 - CLI main accepts injected streams and project-scoped recovery commands
+  ---
+  duration_ms: 1444.251917
+  type: 'test'
+  ...
+# Subtest: public request schemas accept every V1 operation
+ok 4 - public request schemas accept every V1 operation
+  ---
+  duration_ms: 3.491209
+  type: 'test'
+  ...
+# Subtest: invalid public requests are rejected before repository access
+ok 5 - invalid public requests are rejected before repository access
+  ---
+  duration_ms: 2.749125
+  type: 'test'
+  ...
+# Subtest: product defaults keep the five-second search budget
+ok 6 - product defaults keep the five-second search budget
+  ---
+  duration_ms: 0.195833
+  type: 'test'
+  ...
+# Subtest: result and capability envelopes validate against maintained schemas
+ok 7 - result and capability envelopes validate against maintained schemas
+  ---
+  duration_ms: 745.98775
+  type: 'test'
+  ...
+# Subtest: library operation wrappers share the canonical operation contract
+ok 8 - library operation wrappers share the canonical operation contract
+  ---
+  duration_ms: 3050.706083
+  type: 'test'
+  ...
+# Subtest: no-config projects use the documented fixed fallback
+ok 9 - no-config projects use the documented fixed fallback
+  ---
+  duration_ms: 415.371084
+  type: 'test'
+  ...
+# Subtest: multiple configs fail deterministically instead of selecting the first
+ok 10 - multiple configs fail deterministically instead of selecting the first
+  ---
+  duration_ms: 3.018541
+  type: 'test'
+  ...
+# Subtest: configured path aliases resolve through the selected TypeScript project
+ok 11 - configured path aliases resolve through the selected TypeScript project
+  ---
+  duration_ms: 236.48475
+  type: 'test'
+  ...
+# Subtest: an explicit project resolves ambiguity and stays inside the root
+ok 12 - an explicit project resolves ambiguity and stays inside the root
+  ---
+  duration_ms: 294.931791
+  type: 'test'
+  ...
+# Subtest: invalid project selectors remain bounded and deterministic
+ok 13 - invalid project selectors remain bounded and deterministic
+  ---
+  duration_ms: 3.955792
+  type: 'test'
+  ...
+# Subtest: project references are explicit and do not escape the selected project
+ok 14 - project references are explicit and do not escape the selected project
+  ---
+  duration_ms: 201.22375
+  type: 'test'
+  ...
+# Subtest: outside-root project files are sanitized and produce partial evidence
+ok 15 - outside-root project files are sanitized and produce partial evidence
+  ---
+  duration_ms: 164.512583
+  type: 'test'
+  ...
+# Subtest: gitignore, include, exclude, and secret precedence are deterministic
+ok 16 - gitignore, include, exclude, and secret precedence are deterministic
+  ---
+  duration_ms: 812.363125
+  type: 'test'
+  ...
+# Subtest: nested include globs reach matching generated paths without widening discovery
+ok 17 - nested include globs reach matching generated paths without widening discovery
+  ---
+  duration_ms: 728.064709
+  type: 'test'
+  ...
+# Subtest: adversarial include globs stay fast and cannot bypass timeout
+ok 18 - adversarial include globs stay fast and cannot bypass timeout
+  ---
+  duration_ms: 3.392834
+  type: 'test'
+  ...
+# Subtest: external package files remain outside repository results
+ok 19 - external package files remain outside repository results
+  ---
+  duration_ms: 189.800042
+  type: 'test'
+  ...
+# Subtest: outside-root paths and external symlinks are rejected
+ok 20 - outside-root paths and external symlinks are rejected
+  ---
+  duration_ms: 384.698
+  type: 'test'
+  ...
+# Subtest: directory symlinks are never followed and searches do not execute source
+ok 21 - directory symlinks are never followed and searches do not execute source
+  ---
+  duration_ms: 196.425291
+  type: 'test'
+  ...
+# Subtest: malformed source remains usable with an explicit parse diagnostic
+ok 22 - malformed source remains usable with an explicit parse diagnostic
+  ---
+  duration_ms: 193.097459
+  type: 'test'
+  ...
+# Subtest: file and byte budgets return partial results with explicit reasons
+ok 23 - file and byte budgets return partial results with explicit reasons
+  ---
+  duration_ms: 13.652583
+  type: 'test'
+  ...
+# Subtest: cooperative timeout is surfaced as partial evidence
+ok 24 - cooperative timeout is surfaced as partial evidence
+  ---
+  duration_ms: 4.684083
+  type: 'test'
+  ...
+# Subtest: searches are read-only
+ok 25 - searches are read-only
+  ---
+  duration_ms: 242.400583
+  type: 'test'
+  ...
+# Subtest: compiler standard libraries use the canonical installation path
+ok 26 - compiler standard libraries use the canonical installation path
+  ---
+  duration_ms: 531.267667
+  type: 'test'
+  ...
+# Subtest: compiler imports cannot read excluded, secret, symlink, or outside-root sources
+ok 27 - compiler imports cannot read excluded, secret, symlink, or outside-root sources
+  ---
+  duration_ms: 18.896042
+  type: 'test'
+  ...
+# Subtest: compiler dependencies obey file and byte limits without becoming result matches
+ok 28 - compiler dependencies obey file and byte limits without becoming result matches
+  ---
+  duration_ms: 17.760375
+  type: 'test'
+  ...
+# Subtest: nested gitignore rules are relative and preserve negation and include precedence
+ok 29 - nested gitignore rules are relative and preserve negation and include precedence
+  ---
+  duration_ms: 500.575583
+  type: 'test'
+  ...
+# Subtest: instance methods normalize transient symbols and literal element-access references
+ok 30 - instance methods normalize transient symbols and literal element-access references
+  ---
+  duration_ms: 1015.231375
+  type: 'test'
+  ...
+# Subtest: constructor positions resolve the keyword, parameter type, and body independently
+ok 31 - constructor positions resolve the keyword, parameter type, and body independently
+  ---
+  duration_ms: 769.263125
+  type: 'test'
+  ...
+# Subtest: native TypeScript module and declaration extensions work with NodeNext
+ok 32 - native TypeScript module and declaration extensions work with NodeNext
+  ---
+  duration_ms: 1005.416917
+  type: 'test'
+  ...
+# Subtest: operation-specific helpers reject conflicting operations before repository access
+ok 33 - operation-specific helpers reject conflicting operations before repository access
+  ---
+  duration_ms: 0.552584
+  type: 'test'
+  ...
+# Subtest: configuration inheritance shares the compiler read policy and budget
+ok 34 - configuration inheritance shares the compiler read policy and budget
+  ---
+  duration_ms: 134.5245
+  type: 'test'
+  ...
+# Subtest: bounded readers and nested ignore files fail safely at their limits
+ok 35 - bounded readers and nested ignore files fail safely at their limits
+  ---
+  duration_ms: 3.99275
+  type: 'test'
+  ...
+# Subtest: search returns normalized TypeScript declarations with deterministic ranges and IDs
+ok 36 - search returns normalized TypeScript declarations with deterministic ranges and IDs
+  ---
+  duration_ms: 1347.039125
+  type: 'test'
+  ...
+# Subtest: symbols lists nested declarations, normalized kinds, and UTF-16 positions
+ok 37 - symbols lists nested declarations, normalized kinds, and UTF-16 positions
+  ---
+  duration_ms: 2733.631416
+  type: 'test'
+  ...
+# Subtest: definitions return all overload declarations and mark context-free ambiguity
+ok 38 - definitions return all overload declarations and mark context-free ambiguity
+  ---
+  duration_ms: 395.227167
+  type: 'test'
+  ...
+# Subtest: a source position resolves an import alias to its semantic definition
+ok 39 - a source position resolves an import alias to its semantic definition
+  ---
+  duration_ms: 437.226291
+  type: 'test'
+  ...
+# Subtest: references use compiler symbols and ignore comments and string literals
+ok 40 - references use compiler symbols and ignore comments and string literals
+  ---
+  duration_ms: 1684.269667
+  type: 'test'
+  ...
+# Subtest: explicit inheritance and implementation relationships are distinct
+ok 41 - explicit inheritance and implementation relationships are distinct
+  ---
+  duration_ms: 5496.830542
+  type: 'test'
+  ...
+# Subtest: default exports and declaration merging have stable, path-independent identities
+ok 42 - default exports and declaration merging have stable, path-independent identities
+  ---
+  duration_ms: 857.265583
+  type: 'test'
+  ...
+# Subtest: result limits are bounded and explicitly reported
+ok 43 - result limits are bounded and explicitly reported
+  ---
+  duration_ms: 444.8655
+  type: 'test'
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31747.567709
+
+[test] agent-test-scope
+
+> agent-test-scope@0.1.1 test
+> npm run build && node --test test/*.test.mjs
+
+
+> agent-test-scope@0.1.1 build
+> npm run build:esm && npm run build:cjs
+
+
+> agent-test-scope@0.1.1 build:esm
+> tsc -p tsconfig.json
+
+
+> agent-test-scope@0.1.1 build:cjs
+> tsc -p tsconfig.cjs.json && node scripts/build-cjs.mjs
+
+TAP version 13
+# Subtest: capabilities and discovery expose the bounded contract
+ok 1 - capabilities and discovery expose the bounded contract
+  ---
+  duration_ms: 8.764958
+  type: 'test'
+  ...
+# Subtest: plan maps direct tests, preserves evidence, and never executes commands
+ok 2 - plan maps direct tests, preserves evidence, and never executes commands
+  ---
+  duration_ms: 12.266541
+  type: 'test'
+  ...
+# Subtest: invalid boundaries and malformed external evidence fail before analysis
+ok 3 - invalid boundaries and malformed external evidence fail before analysis
+  ---
+  duration_ms: 4.183125
+  type: 'test'
+  ...
+# Subtest: explain returns the evidence for a selected recommendation
+ok 4 - explain returns the evidence for a selected recommendation
+  ---
+  duration_ms: 4.951667
+  type: 'test'
+  ...
+# Subtest: framework detection covers Vitest, Jest, and node:test
+ok 5 - framework detection covers Vitest, Jest, and node:test
+  ---
+  duration_ms: 15.675709
+  type: 'test'
+  ...
+# Subtest: test-file, spec-file, and test-directory conventions are discovered
+ok 6 - test-file, spec-file, and test-directory conventions are discovered
+  ---
+  duration_ms: 4.210292
+  type: 'test'
+  ...
+# Subtest: literal CommonJS require contributes static import evidence
+ok 7 - literal CommonJS require contributes static import evidence
+  ---
+  duration_ms: 5.703334
+  type: 'test'
+  ...
+# Subtest: CLI and library use the same result contract
+ok 8 - CLI and library use the same result contract
+  ---
+  duration_ms: 6.824333
+  type: 'test'
+  ...
+# Subtest: dynamic loading is surfaced as partial instead of confirmed reachability
+ok 9 - dynamic loading is surfaced as partial instead of confirmed reachability
+  ---
+  duration_ms: 4.749833
+  type: 'test'
+  ...
+# Subtest: result limits are explicit and bounded
+ok 10 - result limits are explicit and bounded
+  ---
+  duration_ms: 5.390208
+  type: 'test'
+  ...
+# Subtest: equally strong test mappings are reported as ambiguous
+ok 11 - equally strong test mappings are reported as ambiguous
+  ---
+  duration_ms: 4.30625
+  type: 'test'
+  ...
+# Subtest: include and exclude precedence is deterministic
+ok 12 - include and exclude precedence is deterministic
+  ---
+  duration_ms: 7.026959
+  type: 'test'
+  ...
+# Subtest: symlinks, resource limits, and timeout remain bounded
+ok 13 - symlinks, resource limits, and timeout remain bounded
+  ---
+  duration_ms: 3.164833
+  type: 'test'
+  ...
+# Subtest: path helpers enforce canonical roots and bounded reads
+ok 14 - path helpers enforce canonical roots and bounded reads
+  ---
+  duration_ms: 4.834416
+  type: 'test'
+  ...
+# Subtest: unsupported, secret, deleted, renamed, and symlink changes are explicit
+ok 15 - unsupported, secret, deleted, renamed, and symlink changes are explicit
+  ---
+  duration_ms: 18.131375
+  type: 'test'
+  ...
+# Subtest: external evidence and configuration signals change bounded risk
+ok 16 - external evidence and configuration signals change bounded risk
+  ---
+  duration_ms: 8.051208
+  type: 'test'
+  ...
+# Subtest: validation and CLI parse failures remain structured
+ok 17 - validation and CLI parse failures remain structured
+  ---
+  duration_ms: 6.630417
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 196.951125
+
+ai-agent-tools: passed
+hub-python-tests: passed
+hub-validator: passed
+source-coverage: passed
+agent-cfml-check: passed
+agent-cfml-linkage: passed
+agent-cfml-policy-check: passed
+agent-change-impact: passed
+agent-code-slice: passed
+agent-error-lens: passed
+agent-project-profile: passed
+ai-agent-tool-project-tree: passed
+agent-symbol-search: passed
+agent-test-scope: passed
+
+> ai-agent-tools@0.1.1 pack
+> node scripts/monorepo.mjs pack
+
+
+[pack] agent-cfml-check
+[
+  {
+    "id": "agent-cfml-check@0.1.1",
+    "name": "agent-cfml-check",
+    "version": "0.1.1",
+    "size": 16656,
+    "unpackedSize": 60902,
+    "shasum": "9f145d67a03d7592fc7ef0967aa712d0fd890a0a",
+    "integrity": "sha512-JErTXpYlYAM4a6eNtFdc14F4P4firsDhE+3H5uhudnVUENRjE0zQL87vgal3iGdFdBC0COH+OAG0+JRqOzSKMw==",
+    "filename": "agent-cfml-check-0.1.1.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 1068,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 5974,
+        "mode": 420
+      },
+      {
+        "path": "SPEC.md",
+        "size": 7329,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli/index.d.ts",
+        "size": 84,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli/index.js",
+        "size": 7096,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/checker.d.ts",
+        "size": 342,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/checker.js",
+        "size": 4717,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/lexer.d.ts",
+        "size": 811,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/lexer.js",
+        "size": 16359,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/limits.d.ts",
+        "size": 251,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/limits.js",
+        "size": 1083,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/source-index.d.ts",
+        "size": 370,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/source-index.js",
+        "size": 2252,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/source-reader.d.ts",
+        "size": 194,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/source-reader.js",
+        "size": 3084,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 182,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 142,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/errors.d.ts",
+        "size": 189,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/errors.js",
+        "size": 235,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/types.d.ts",
+        "size": 2313,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/types.js",
+        "size": 127,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/misnested.cfm",
+        "size": 60,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/valid.cfm",
+        "size": 56,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1428,
+        "mode": 420
+      },
+      {
+        "path": "schema/agent-cfml-check-result-v1.schema.json",
+        "size": 5156,
+        "mode": 420
+      }
+    ],
+    "entryCount": 25,
+    "bundled": []
+  }
+]
+
+[pack] agent-cfml-linkage
+[
+  {
+    "id": "agent-cfml-linkage@0.1.0",
+    "name": "agent-cfml-linkage",
+    "version": "0.1.0",
+    "size": 205457,
+    "unpackedSize": 868222,
+    "shasum": "20c5f3edfa4764ff005909071a3bc15fc3590517",
+    "integrity": "sha512-xuHEpY1g0fJU/fOcgiVhQA2HZlFzPcpL1bIOl/VrvQZA12+Qv7AQkZOLHN+oVjxiWmYpyplJaLEyDlnWDb2DDA==",
+    "filename": "agent-cfml-linkage-0.1.0.tgz",
+    "files": [
+      {
+        "path": ".gitattributes",
+        "size": 66,
+        "mode": 420
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "size": 529,
+        "mode": 420
+      },
+      {
+        "path": "AGENTS.md",
+        "size": 3977,
+        "mode": 420
+      },
+      {
+        "path": "ARCHITECTURE.md",
+        "size": 11568,
+        "mode": 420
+      },
+      {
+        "path": "CHANGELOG.md",
+        "size": 13357,
+        "mode": 420
+      },
+      {
+        "path": "DESIGN.md",
+        "size": 21457,
+        "mode": 420
+      },
+      {
+        "path": "EPIC.md",
+        "size": 9127,
+        "mode": 420
+      },
+      {
+        "path": "GOAL_PROMPT.md",
+        "size": 1972,
+        "mode": 420
+      },
+      {
+        "path": "GOAL.md",
+        "size": 5655,
+        "mode": 420
+      },
+      {
+        "path": "PROGRESS.md",
+        "size": 29566,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 18593,
+        "mode": 420
+      },
+      {
+        "path": "RELEASE.md",
+        "size": 6947,
+        "mode": 420
+      },
+      {
+        "path": "ROADMAP.md",
+        "size": 11255,
+        "mode": 420
+      },
+      {
+        "path": "SECURITY.md",
+        "size": 7325,
+        "mode": 420
+      },
+      {
+        "path": "SPEC.md",
+        "size": 23248,
+        "mode": 420
+      },
+      {
+        "path": "TASK.md",
+        "size": 24465,
+        "mode": 420
+      },
+      {
+        "path": "TEST_PLAN.md",
+        "size": 10045,
+        "mode": 420
+      },
+      {
+        "path": "bin/agent-cfml-linkage.js",
+        "size": 222,
+        "mode": 420
+      },
+      {
+        "path": "docs/audits/prompt-to-artifact-v0.1.json",
+        "size": 15812,
+        "mode": 420
+      },
+      {
+        "path": "docs/audits/release-security-parity-v0.1.json",
+        "size": 2188,
+        "mode": 420
+      },
+      {
+        "path": "docs/compatibility/node-v25.2.1-win32-x64.json",
+        "size": 1037,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-001-project-boundary.md",
+        "size": 4182,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-002-deterministic-identity-and-ordering.md",
+        "size": 4404,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-003-confidence-and-completeness.md",
+        "size": 4037,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-004-root-policy-and-limits.md",
+        "size": 4711,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-005-node-foundation-runtime.md",
+        "size": 2190,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-006-deterministic-source-snapshot.md",
+        "size": 2554,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-007-strict-decoding-and-source-maps.md",
+        "size": 1983,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-008-stable-cli-envelope.md",
+        "size": 2962,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-009-disposable-cache-invalidation.md",
+        "size": 2347,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-010-parser-adapter-boundary.md",
+        "size": 3238,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-011-bounded-fact-extraction.md",
+        "size": 2526,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-012-bounded-web-fact-extraction.md",
+        "size": 3198,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-013-immutable-project-indexes.md",
+        "size": 2426,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-014-conservative-literal-path-resolution.md",
+        "size": 2687,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-015-bounded-graph-construction.md",
+        "size": 3038,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-016-bounded-cfc-resolution.md",
+        "size": 2390,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-017-bounded-shared-scope-resolution.md",
+        "size": 2465,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-018-bounded-web-flow-and-condition-resolution.md",
+        "size": 2238,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-019-bounded-dynamic-generated-and-sql-evidence.md",
+        "size": 2424,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-020-bounded-sql-and-repository-linkage.md",
+        "size": 3122,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-021-bounded-graph-queries-and-evidence.md",
+        "size": 3515,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-022-adversarial-fixture-safe-failure.md",
+        "size": 2007,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-023-bounded-node-compatibility-evidence.md",
+        "size": 1320,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-024-bounded-analysis-orchestration.md",
+        "size": 2290,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-025-bounded-library-evidence-budget.md",
+        "size": 2332,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-026-bounded-library-edge-budget.md",
+        "size": 2360,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-027-configured-ignore-glob-discovery.md",
+        "size": 2064,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-028-hidden-file-policy-discovery.md",
+        "size": 1993,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-029-library-output-and-wall-time-budget-scope.md",
+        "size": 3753,
+        "mode": 420
+      },
+      {
+        "path": "docs/decisions/ADR-030-tree-sitter-cfml-backend.md",
+        "size": 3483,
+        "mode": 420
+      },
+      {
+        "path": "examples/confidence-v0.1.json",
+        "size": 3249,
+        "mode": 420
+      },
+      {
+        "path": "examples/config-v0.1.json",
+        "size": 1377,
+        "mode": 420
+      },
+      {
+        "path": "examples/facts-v0.1.json",
+        "size": 6752,
+        "mode": 420
+      },
+      {
+        "path": "examples/graph-v0.1.json",
+        "size": 20549,
+        "mode": 420
+      },
+      {
+        "path": "examples/identity-order-v0.1.json",
+        "size": 2189,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/dynamic-and-generated/expected-dynamic-v0.1.json",
+        "size": 1048,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/dynamic-and-generated/page.cfm",
+        "size": 640,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/dynamic-and-generated/README.md",
+        "size": 469,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/client.js",
+        "size": 146,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/cycle-a.cfm",
+        "size": 65,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/cycle-b.cfm",
+        "size": 65,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/expected-misleading-v0.1.json",
+        "size": 848,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/page.cfm",
+        "size": 277,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/README.md",
+        "size": 507,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/misleading-and-limits/site.css",
+        "size": 79,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/adversarial/README.md",
+        "size": 895,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/cfc-inheritance-and-scope/OrderHandler.cfc",
+        "size": 221,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/cfc-inheritance-and-scope/README.md",
+        "size": 371,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/core-cfml-web-surface/index.cfm",
+        "size": 371,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/core-cfml-web-surface/README.md",
+        "size": 402,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/expected-facts-v0.1.json",
+        "size": 1420,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/README.md",
+        "size": 1434,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/sql-and-repository/expected-sql-repository-v0.1.json",
+        "size": 509,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/sql-and-repository/NamedOnlyRepository.cfc",
+        "size": 148,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/sql-and-repository/OrderRepository.cfc",
+        "size": 519,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/sql-and-repository/page.cfm",
+        "size": 210,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/sql-and-repository/README.md",
+        "size": 888,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/api/orders.cfm",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/expected-web-flow-v0.1.json",
+        "size": 966,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/orders/done.cfm",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/orders/save.cfm",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/orders/search.cfm",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/orders/xhr.cfm",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/page.cfm",
+        "size": 341,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-flow-and-conditions/README.md",
+        "size": 558,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/client.js",
+        "size": 187,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/expected-web-facts-v0.1.json",
+        "size": 1431,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/index.html",
+        "size": 239,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/query.sql",
+        "size": 90,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/README.md",
+        "size": 932,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/golden/web-surface/site.css",
+        "size": 122,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/manifest-v0.1.json",
+        "size": 3311,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/expected-negative-v0.1.json",
+        "size": 497,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/mapped-one/Order.cfc",
+        "size": 107,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/mapped-two/Order.cfc",
+        "size": 107,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/one/Order.cfc",
+        "size": 103,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/page.cfm",
+        "size": 277,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/README.md",
+        "size": 418,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/ambiguity-and-out-of-root/two/Order.cfc",
+        "size": 103,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/malformed-and-partial/comments-and-strings.cfm",
+        "size": 325,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/malformed-and-partial/expected-malformed-v0.1.json",
+        "size": 555,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/malformed-and-partial/malformed.cfm",
+        "size": 39,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/malformed-and-partial/README.md",
+        "size": 401,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/malformed-and-partial/unsupported.cfm",
+        "size": 31,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/negative/README.md",
+        "size": 885,
+        "mode": 420
+      },
+      {
+        "path": "fixtures/README.md",
+        "size": 1703,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 821,
+        "mode": 420
+      },
+      {
+        "path": "schema/agent-cfml-linkage-analysis-v0.1.schema.json",
+        "size": 3843,
+        "mode": 420
+      },
+      {
+        "path": "schema/agent-cfml-linkage-config-v0.1.schema.json",
+        "size": 9208,
+        "mode": 420
+      },
+      {
+        "path": "schema/agent-cfml-linkage-fact-v0.1.schema.json",
+        "size": 7666,
+        "mode": 420
+      },
+      {
+        "path": "schema/agent-cfml-linkage-graph-v0.1.schema.json",
+        "size": 14989,
+        "mode": 420
+      },
+      {
+        "path": "src/analyzer.js",
+        "size": 20549,
+        "mode": 420
+      },
+      {
+        "path": "src/cache.js",
+        "size": 12294,
+        "mode": 420
+      },
+      {
+        "path": "src/cfc-resolver.js",
+        "size": 11166,
+        "mode": 420
+      },
+      {
+        "path": "src/cfml-scanner.js",
+        "size": 15381,
+        "mode": 420
+      },
+      {
+        "path": "src/cli.js",
+        "size": 17643,
+        "mode": 420
+      },
+      {
+        "path": "src/fact-extractor.js",
+        "size": 37661,
+        "mode": 420
+      },
+      {
+        "path": "src/graph-query.js",
+        "size": 25844,
+        "mode": 420
+      },
+      {
+        "path": "src/graph.js",
+        "size": 28331,
+        "mode": 420
+      },
+      {
+        "path": "src/index.js",
+        "size": 379,
+        "mode": 420
+      },
+      {
+        "path": "src/output.js",
+        "size": 2137,
+        "mode": 420
+      },
+      {
+        "path": "src/parser-adapter.js",
+        "size": 5162,
+        "mode": 420
+      },
+      {
+        "path": "src/path-resolver.js",
+        "size": 12839,
+        "mode": 420
+      },
+      {
+        "path": "src/project-index.js",
+        "size": 7883,
+        "mode": 420
+      },
+      {
+        "path": "src/repository-resolver.js",
+        "size": 5430,
+        "mode": 420
+      },
+      {
+        "path": "src/root-guard.js",
+        "size": 6829,
+        "mode": 420
+      },
+      {
+        "path": "src/scope-resolver.js",
+        "size": 13198,
+        "mode": 420
+      },
+      {
+        "path": "src/snapshot.js",
+        "size": 10636,
+        "mode": 420
+      },
+      {
+        "path": "src/source-map.js",
+        "size": 6961,
+        "mode": 420
+      },
+      {
+        "path": "src/tree-sitter-backend.js",
+        "size": 15396,
+        "mode": 420
+      },
+      {
+        "path": "src/web-flow-resolver.js",
+        "size": 7269,
+        "mode": 420
+      },
+      {
+        "path": "src/web-scanner.js",
+        "size": 53347,
+        "mode": 420
+      },
+      {
+        "path": "test/adversarial-fixtures.test.js",
+        "size": 5602,
+        "mode": 420
+      },
+      {
+        "path": "test/analyzer.test.js",
+        "size": 11434,
+        "mode": 420
+      },
+      {
+        "path": "test/cache.test.js",
+        "size": 5267,
+        "mode": 420
+      },
+      {
+        "path": "test/cfc-resolver.test.js",
+        "size": 6810,
+        "mode": 420
+      },
+      {
+        "path": "test/cli.test.js",
+        "size": 15478,
+        "mode": 420
+      },
+      {
+        "path": "test/dynamic-evidence.test.js",
+        "size": 5101,
+        "mode": 420
+      },
+      {
+        "path": "test/fact-extractor.test.js",
+        "size": 12207,
+        "mode": 420
+      },
+      {
+        "path": "test/graph-query.test.js",
+        "size": 7869,
+        "mode": 420
+      },
+      {
+        "path": "test/graph.test.js",
+        "size": 7773,
+        "mode": 420
+      },
+      {
+        "path": "test/parser-adapter.test.js",
+        "size": 8636,
+        "mode": 420
+      },
+      {
+        "path": "test/path-resolver.test.js",
+        "size": 6143,
+        "mode": 420
+      },
+      {
+        "path": "test/project-index.test.js",
+        "size": 4437,
+        "mode": 420
+      },
+      {
+        "path": "test/repository-resolver.test.js",
+        "size": 6454,
+        "mode": 420
+      },
+      {
+        "path": "test/root-guard.test.js",
+        "size": 3412,
+        "mode": 420
+      },
+      {
+        "path": "test/scope-resolver.test.js",
+        "size": 7556,
+        "mode": 420
+      },
+      {
+        "path": "test/snapshot.test.js",
+        "size": 7246,
+        "mode": 420
+      },
+      {
+        "path": "test/source-map.test.js",
+        "size": 3240,
+        "mode": 420
+      },
+      {
+        "path": "test/tree-sitter-backend.test.js",
+        "size": 5669,
+        "mode": 420
+      },
+      {
+        "path": "test/web-flow-resolver.test.js",
+        "size": 5871,
+        "mode": 420
+      },
+      {
+        "path": "test/web-scanner.test.js",
+        "size": 17129,
+        "mode": 420
+      }
+    ],
+    "entryCount": 153,
+    "bundled": []
+  }
+]
+
+[pack] agent-cfml-policy-check
+[
+  {
+    "id": "agent-cfml-policy-check@0.1.0",
+    "name": "agent-cfml-policy-check",
+    "version": "0.1.0",
+    "size": 8111,
+    "unpackedSize": 26391,
+    "shasum": "499500774af133e1332b84cdd677ca253fb01b8e",
+    "integrity": "sha512-ugDNpiysV4rYVAnCi1WLlEn0CU+44rghEym2Smi5DDk2wzFY4t9v+Liu37b4nJnWfXEcUYXZt3Iz3ToHeaqOXQ==",
+    "filename": "agent-cfml-policy-check-0.1.0.tgz",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 3411,
+        "mode": 420
+      },
+      {
+        "path": "ait-tool.manifest.json",
+        "size": 693,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 999,
+        "mode": 420
+      },
+      {
+        "path": "profiles/example.json",
+        "size": 332,
+        "mode": 420
+      },
+      {
+        "path": "profiles/globe3-legacy-printform.json",
+        "size": 336,
+        "mode": 420
+      },
+      {
+        "path": "schema/policy-profile-v1.schema.json",
+        "size": 1000,
+        "mode": 420
+      },
+      {
+        "path": "schema/result-v1.schema.json",
+        "size": 641,
+        "mode": 420
+      },
+      {
+        "path": "src/cli.js",
+        "size": 18979,
+        "mode": 420
+      }
+    ],
+    "entryCount": 8,
+    "bundled": []
+  }
+]
+
+[pack] agent-change-impact
+[
+  {
+    "id": "agent-change-impact@0.1.1",
+    "name": "agent-change-impact",
+    "version": "0.1.1",
+    "size": 67078,
+    "unpackedSize": 328386,
+    "shasum": "00e2d3b0e53eae3d109b3f746f936dead49691a2",
+    "integrity": "sha512-SFQ5KZiNvtD6w2Z+3Mklx5LbdX/QZIKBXOIZyXdwEkhhDIGXU2/ET1npf43LibeRJzuEnJsVkKWTkKiMrLk8WQ==",
+    "filename": "agent-change-impact-0.1.1.tgz",
+    "files": [
+      {
+        "path": "AGENT_GUIDE.md",
+        "size": 8235,
+        "mode": 420
+      },
+      {
+        "path": "CHANGELOG.md",
+        "size": 4499,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 1068,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 12259,
+        "mode": 420
+      },
+      {
+        "path": "dist/analysis.d.ts",
+        "size": 531,
+        "mode": 420
+      },
+      {
+        "path": "dist/analysis.js",
+        "size": 24370,
+        "mode": 420
+      },
+      {
+        "path": "dist/analysis.js.map",
+        "size": 23517,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts",
+        "size": 84,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js",
+        "size": 9107,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js.map",
+        "size": 9001,
+        "mode": 420
+      },
+      {
+        "path": "dist/errors.d.ts",
+        "size": 402,
+        "mode": 420
+      },
+      {
+        "path": "dist/errors.js",
+        "size": 778,
+        "mode": 420
+      },
+      {
+        "path": "dist/errors.js.map",
+        "size": 725,
+        "mode": 420
+      },
+      {
+        "path": "dist/git.d.ts",
+        "size": 736,
+        "mode": 420
+      },
+      {
+        "path": "dist/git.js",
+        "size": 18933,
+        "mode": 420
+      },
+      {
+        "path": "dist/git.js.map",
+        "size": 20439,
+        "mode": 420
+      },
+      {
+        "path": "dist/graph.d.ts",
+        "size": 560,
+        "mode": 420
+      },
+      {
+        "path": "dist/graph.js",
+        "size": 4616,
+        "mode": 420
+      },
+      {
+        "path": "dist/graph.js.map",
+        "size": 5521,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 515,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 930,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js.map",
+        "size": 235,
+        "mode": 420
+      },
+      {
+        "path": "dist/project.d.ts",
+        "size": 953,
+        "mode": 420
+      },
+      {
+        "path": "dist/project.js",
+        "size": 13105,
+        "mode": 420
+      },
+      {
+        "path": "dist/project.js.map",
+        "size": 11243,
+        "mode": 420
+      },
+      {
+        "path": "dist/provider.d.ts",
+        "size": 1713,
+        "mode": 420
+      },
+      {
+        "path": "dist/provider.js",
+        "size": 36365,
+        "mode": 420
+      },
+      {
+        "path": "dist/provider.js.map",
+        "size": 33618,
+        "mode": 420
+      },
+      {
+        "path": "dist/snapshot.d.ts",
+        "size": 2720,
+        "mode": 420
+      },
+      {
+        "path": "dist/snapshot.js",
+        "size": 23932,
+        "mode": 420
+      },
+      {
+        "path": "dist/snapshot.js.map",
+        "size": 21866,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts",
+        "size": 5615,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js",
+        "size": 407,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js.map",
+        "size": 375,
+        "mode": 420
+      },
+      {
+        "path": "dist/util.d.ts",
+        "size": 1476,
+        "mode": 420
+      },
+      {
+        "path": "dist/util.js",
+        "size": 6518,
+        "mode": 420
+      },
+      {
+        "path": "dist/util.js.map",
+        "size": 6103,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1696,
+        "mode": 420
+      },
+      {
+        "path": "schemas/result-v0.1-draft.schema.json",
+        "size": 8726,
+        "mode": 420
+      },
+      {
+        "path": "skills/agent-change-impact/agents/openai.yaml",
+        "size": 269,
+        "mode": 420
+      },
+      {
+        "path": "skills/agent-change-impact/SKILL.md",
+        "size": 4625,
+        "mode": 420
+      }
+    ],
+    "entryCount": 41,
+    "bundled": []
+  }
+]
+
+[pack] agent-code-slice
+[
+  {
+    "id": "agent-code-slice@0.4.0",
+    "name": "agent-code-slice",
+    "version": "0.4.0",
+    "size": 1051475,
+    "unpackedSize": 14090106,
+    "shasum": "11020cc8611c1156858b7c68e511c40d34c13de0",
+    "integrity": "sha512-QaEu9CSUXbkmrKhoEfL9lLoJK55JKOaGyts7Izfg0ig4U4fXguDjJrVFpvWTwbnlgXQsBgJOZhutMkkDE3uvdw==",
+    "filename": "agent-code-slice-0.4.0.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 1068,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 13834,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli/index.d.ts",
+        "size": 31,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli/index.js",
+        "size": 14004,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/capabilities.d.ts",
+        "size": 115,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/capabilities.js",
+        "size": 2600,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/file-loader.d.ts",
+        "size": 531,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/file-loader.js",
+        "size": 3877,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/index.d.ts",
+        "size": 1606,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/index.js",
+        "size": 11225,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/limits.d.ts",
+        "size": 2333,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/limits.js",
+        "size": 4932,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/slice-engine.d.ts",
+        "size": 1411,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/slice-engine.js",
+        "size": 7094,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.d.ts",
+        "size": 288,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.js",
+        "size": 6192,
+        "mode": 420
+      },
+      {
+        "path": "dist/engine/parser-engine.d.ts",
+        "size": 943,
+        "mode": 420
+      },
+      {
+        "path": "dist/engine/parser-engine.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/engine/wasm-engine.d.ts",
+        "size": 593,
+        "mode": 420
+      },
+      {
+        "path": "dist/engine/wasm-engine.js",
+        "size": 7917,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/cfml.d.ts",
+        "size": 102,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/cfml.js",
+        "size": 13593,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/javascript.d.ts",
+        "size": 108,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/javascript.js",
+        "size": 583,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/python.d.ts",
+        "size": 104,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/python.js",
+        "size": 2877,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/registry.d.ts",
+        "size": 514,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/registry.js",
+        "size": 1528,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/cfquery-rules.d.ts",
+        "size": 679,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/cfquery-rules.js",
+        "size": 4153,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/cfscript-rules.d.ts",
+        "size": 95,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/cfscript-rules.js",
+        "size": 2128,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/containment.d.ts",
+        "size": 732,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/containment.js",
+        "size": 1537,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/css-rules.d.ts",
+        "size": 373,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/css-rules.js",
+        "size": 1967,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/js-family-rules.d.ts",
+        "size": 181,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/js-family-rules.js",
+        "size": 6186,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/walk.d.ts",
+        "size": 1973,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/shared/walk.js",
+        "size": 4346,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/types.d.ts",
+        "size": 1426,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/types.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/typescript.d.ts",
+        "size": 158,
+        "mode": 420
+      },
+      {
+        "path": "dist/languages/typescript.js",
+        "size": 1073,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/coordinates.d.ts",
+        "size": 3828,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/coordinates.js",
+        "size": 5922,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/envelope.d.ts",
+        "size": 1871,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/envelope.js",
+        "size": 1695,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/errors.d.ts",
+        "size": 1291,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/errors.js",
+        "size": 1245,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/types.d.ts",
+        "size": 2278,
+        "mode": 420
+      },
+      {
+        "path": "dist/schema/types.js",
+        "size": 465,
+        "mode": 420
+      },
+      {
+        "path": "grammars/wasm/cfml.wasm",
+        "size": 3389480,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/cfquery.wasm",
+        "size": 2938093,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/cfscript.wasm",
+        "size": 3750115,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/css.wasm",
+        "size": 128821,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/javascript.wasm",
+        "size": 413064,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/manifest.json",
+        "size": 2901,
+        "mode": 420
+      },
+      {
+        "path": "grammars/wasm/python.wasm",
+        "size": 456723,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/tsx.wasm",
+        "size": 1447323,
+        "mode": 493
+      },
+      {
+        "path": "grammars/wasm/typescript.wasm",
+        "size": 1415400,
+        "mode": 493
+      },
+      {
+        "path": "package.json",
+        "size": 2559,
+        "mode": 420
+      }
+    ],
+    "entryCount": 62,
+    "bundled": []
+  }
+]
+
+[pack] agent-error-lens
+[
+  {
+    "id": "agent-error-lens@0.1.0",
+    "name": "agent-error-lens",
+    "version": "0.1.0",
+    "size": 37698,
+    "unpackedSize": 181867,
+    "shasum": "3eb0bad99f23e3ee02d9097a311823defcc28b62",
+    "integrity": "sha512-M9wNSykHCN5w/LYJ9XRWZuRpsIWXO4IkRQMlSzOS+vuUUOUJ0u5BiT2Z6dQH7dfJscLFCiW1MrnXzkMyvKDHHA==",
+    "filename": "agent-error-lens-0.1.0.tgz",
+    "files": [
+      {
+        "path": "CHANGELOG.md",
+        "size": 1053,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 1068,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 4336,
+        "mode": 420
+      },
+      {
+        "path": "contract/agent-error-lens-v1.schema.json",
+        "size": 18523,
+        "mode": 420
+      },
+      {
+        "path": "dist/contract/agent-error-lens-v1.types.d.ts",
+        "size": 3640,
+        "mode": 420
+      },
+      {
+        "path": "dist/contract/agent-error-lens-v1.types.d.ts.map",
+        "size": 3652,
+        "mode": 420
+      },
+      {
+        "path": "dist/contract/agent-error-lens-v1.types.js",
+        "size": 257,
+        "mode": 420
+      },
+      {
+        "path": "dist/contract/agent-error-lens-v1.types.js.map",
+        "size": 217,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/cli.d.ts",
+        "size": 64,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/cli.d.ts.map",
+        "size": 103,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/cli.js",
+        "size": 4146,
+        "mode": 493
+      },
+      {
+        "path": "dist/src/cli.js.map",
+        "size": 4303,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/adapters.d.ts",
+        "size": 553,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/adapters.d.ts.map",
+        "size": 579,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/adapters.js",
+        "size": 13338,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/adapters.js.map",
+        "size": 13814,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/cli-input.d.ts",
+        "size": 423,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/cli-input.d.ts.map",
+        "size": 506,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/cli-input.js",
+        "size": 1330,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/cli-input.js.map",
+        "size": 1346,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostic-factory.d.ts",
+        "size": 630,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostic-factory.d.ts.map",
+        "size": 731,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostic-factory.js",
+        "size": 2690,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostic-factory.js.map",
+        "size": 2729,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostics.d.ts",
+        "size": 876,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostics.d.ts.map",
+        "size": 885,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostics.js",
+        "size": 6925,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/diagnostics.js.map",
+        "size": 7624,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/evidence.d.ts",
+        "size": 374,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/evidence.d.ts.map",
+        "size": 429,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/evidence.js",
+        "size": 1084,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/evidence.js.map",
+        "size": 1271,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/limits.d.ts",
+        "size": 1161,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/limits.d.ts.map",
+        "size": 620,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/limits.js",
+        "size": 1197,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/limits.js.map",
+        "size": 1109,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/normalize.d.ts",
+        "size": 542,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/normalize.d.ts.map",
+        "size": 536,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/normalize.js",
+        "size": 4399,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/normalize.js.map",
+        "size": 4961,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/paths.d.ts",
+        "size": 206,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/paths.d.ts.map",
+        "size": 282,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/paths.js",
+        "size": 2697,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/paths.js.map",
+        "size": 3337,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/redact.d.ts",
+        "size": 95,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/redact.d.ts.map",
+        "size": 169,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/redact.js",
+        "size": 2379,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/redact.js.map",
+        "size": 1263,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/result.d.ts",
+        "size": 1234,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/result.d.ts.map",
+        "size": 609,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/result.js",
+        "size": 2187,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/result.js.map",
+        "size": 2140,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/serialize.d.ts",
+        "size": 290,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/serialize.d.ts.map",
+        "size": 294,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/serialize.js",
+        "size": 4537,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/serialize.js.map",
+        "size": 4885,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/structured.d.ts",
+        "size": 577,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/structured.d.ts.map",
+        "size": 591,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/structured.js",
+        "size": 6130,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/structured.js.map",
+        "size": 6538,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/text.d.ts",
+        "size": 180,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/text.d.ts.map",
+        "size": 271,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/text.js",
+        "size": 415,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/text.js.map",
+        "size": 633,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/validation.d.ts",
+        "size": 702,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/validation.d.ts.map",
+        "size": 737,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/validation.js",
+        "size": 6209,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/core/validation.js.map",
+        "size": 5999,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.d.ts",
+        "size": 254,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.d.ts.map",
+        "size": 256,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.js",
+        "size": 5049,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.js.map",
+        "size": 4757,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1941,
+        "mode": 420
+      }
+    ],
+    "entryCount": 73,
+    "bundled": []
+  }
+]
+
+[pack] agent-project-profile
+[
+  {
+    "id": "agent-project-profile@0.1.2",
+    "name": "agent-project-profile",
+    "version": "0.1.2",
+    "size": 31333,
+    "unpackedSize": 144532,
+    "shasum": "fb0cc6be02a3f793c596ba265b671b7644784196",
+    "integrity": "sha512-XDkCwTTPrp2UF/GJGpv+VEQzC1cxSL37H3bK8uQpco7PGuOtwP0A+x/lxioYKj+crQ07qUbkYz2ImWs7P1K5Ow==",
+    "filename": "agent-project-profile-0.1.2.tgz",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 9850,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin.d.ts",
+        "size": 31,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin.js",
+        "size": 80,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts",
+        "size": 64,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js",
+        "size": 6078,
+        "mode": 420
+      },
+      {
+        "path": "dist/constants.d.ts",
+        "size": 1213,
+        "mode": 420
+      },
+      {
+        "path": "dist/constants.js",
+        "size": 2684,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/diagnostics.d.ts",
+        "size": 727,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/diagnostics.js",
+        "size": 1816,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/evidence.d.ts",
+        "size": 927,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/evidence.js",
+        "size": 2673,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/normalize.d.ts",
+        "size": 348,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/normalize.js",
+        "size": 2188,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/profiler.d.ts",
+        "size": 245,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/profiler.js",
+        "size": 18644,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/scanner.d.ts",
+        "size": 2064,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/scanner.js",
+        "size": 15521,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/semantic.d.ts",
+        "size": 122,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/semantic.js",
+        "size": 3860,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/inventory.d.ts",
+        "size": 756,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/inventory.js",
+        "size": 6359,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/manifest.d.ts",
+        "size": 925,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/manifest.js",
+        "size": 2022,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/node.d.ts",
+        "size": 802,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/node.js",
+        "size": 10845,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/package-manager.d.ts",
+        "size": 675,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/package-manager.js",
+        "size": 7325,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/workspace.d.ts",
+        "size": 1084,
+        "mode": 420
+      },
+      {
+        "path": "dist/detectors/workspace.js",
+        "size": 14916,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 106,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 56,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts",
+        "size": 4624,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "examples/complete.json",
+        "size": 2938,
+        "mode": 420
+      },
+      {
+        "path": "examples/error.json",
+        "size": 2045,
+        "mode": 420
+      },
+      {
+        "path": "examples/partial.json",
+        "size": 2941,
+        "mode": 420
+      },
+      {
+        "path": "examples/unsupported.json",
+        "size": 2311,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1597,
+        "mode": 420
+      },
+      {
+        "path": "schema/profile.schema.json",
+        "size": 13059,
+        "mode": 420
+      }
+    ],
+    "entryCount": 39,
+    "bundled": []
+  }
+]
+
+[pack] ai-agent-tool-project-tree
+[
+  {
+    "id": "ai-agent-tool-project-tree@0.1.1",
+    "name": "ai-agent-tool-project-tree",
+    "version": "0.1.1",
+    "size": 22629,
+    "unpackedSize": 73950,
+    "shasum": "62c03920391b319b235abb7a09231c6ff270e1da",
+    "integrity": "sha512-IcHQuZFu3bhosI3MBvW3lB0LkOWN84jwEIYM1fYL6LJRJp79tARr2+rRJ/VwDNtRoSMVJOYBgRMz9IuPnpEt5g==",
+    "filename": "ai-agent-tool-project-tree-0.1.1.tgz",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "size": 488,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 1068,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 3101,
+        "mode": 420
+      },
+      {
+        "path": "bin/aptree.js",
+        "size": 342,
+        "mode": 420
+      },
+      {
+        "path": "docs/ACCEPTANCE.md",
+        "size": 1161,
+        "mode": 420
+      },
+      {
+        "path": "docs/DESIGN.md",
+        "size": 1016,
+        "mode": 420
+      },
+      {
+        "path": "docs/EPIC.md",
+        "size": 177,
+        "mode": 420
+      },
+      {
+        "path": "docs/GOAL.md",
+        "size": 275,
+        "mode": 420
+      },
+      {
+        "path": "docs/PROGRESS.md",
+        "size": 1763,
+        "mode": 420
+      },
+      {
+        "path": "docs/ROADMAP.md",
+        "size": 876,
+        "mode": 420
+      },
+      {
+        "path": "docs/SPEC.md",
+        "size": 4368,
+        "mode": 420
+      },
+      {
+        "path": "docs/TASK.md",
+        "size": 14302,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1566,
+        "mode": 420
+      },
+      {
+        "path": "schemas/aptree.schema.v1.json",
+        "size": 4787,
+        "mode": 420
+      },
+      {
+        "path": "src/cli.js",
+        "size": 1724,
+        "mode": 420
+      },
+      {
+        "path": "src/evidence.js",
+        "size": 9685,
+        "mode": 420
+      },
+      {
+        "path": "src/git.js",
+        "size": 13454,
+        "mode": 420
+      },
+      {
+        "path": "src/index.js",
+        "size": 190,
+        "mode": 420
+      },
+      {
+        "path": "src/query.js",
+        "size": 2743,
+        "mode": 420
+      },
+      {
+        "path": "src/safety.js",
+        "size": 812,
+        "mode": 420
+      },
+      {
+        "path": "src/scanner.js",
+        "size": 7250,
+        "mode": 420
+      },
+      {
+        "path": "types/index.d.ts",
+        "size": 2802,
+        "mode": 420
+      }
+    ],
+    "entryCount": 22,
+    "bundled": []
+  }
+]
+
+[pack] agent-symbol-search
+[
+  {
+    "id": "agent-symbol-search@0.1.2",
+    "name": "agent-symbol-search",
+    "version": "0.1.2",
+    "size": 59629,
+    "unpackedSize": 267085,
+    "shasum": "f269ecb189f543d5f62e952945846f0a4a2bf9a6",
+    "integrity": "sha512-hsIecllFbmBQceYwh0Hb+76fFQLnQfAJnMyG0h0sgnpq0RiRDIem4zkMMrXq/qWuOTCPQVWdgfLvbhtm8CFf3w==",
+    "filename": "agent-symbol-search-0.1.2.tgz",
+    "files": [
+      {
+        "path": "BENCHMARK.md",
+        "size": 1862,
+        "mode": 420
+      },
+      {
+        "path": "CHANGELOG.md",
+        "size": 6102,
+        "mode": 420
+      },
+      {
+        "path": "DESIGN.md",
+        "size": 12283,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 1076,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 8668,
+        "mode": 420
+      },
+      {
+        "path": "SPEC.md",
+        "size": 17474,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts",
+        "size": 331,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js",
+        "size": 4985,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js.map",
+        "size": 5364,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.d.ts",
+        "size": 215,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.js",
+        "size": 1497,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.js.map",
+        "size": 1411,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/compiler-files.d.ts",
+        "size": 1135,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/compiler-files.js",
+        "size": 8506,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/compiler-files.js.map",
+        "size": 6502,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.d.ts",
+        "size": 663,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.js",
+        "size": 11110,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.js.map",
+        "size": 10823,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.d.ts",
+        "size": 480,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.js",
+        "size": 27831,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.js.map",
+        "size": 25859,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/extensions.d.ts",
+        "size": 151,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/extensions.js",
+        "size": 401,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/extensions.js.map",
+        "size": 353,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.d.ts",
+        "size": 774,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.js",
+        "size": 3490,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.js.map",
+        "size": 3376,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/project.d.ts",
+        "size": 808,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/project.js",
+        "size": 12815,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/project.js.map",
+        "size": 10600,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/ranking.d.ts",
+        "size": 147,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/ranking.js",
+        "size": 2256,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/ranking.js.map",
+        "size": 2604,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/symbols.d.ts",
+        "size": 1701,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/symbols.js",
+        "size": 18291,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/symbols.js.map",
+        "size": 17559,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.d.ts",
+        "size": 433,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.js",
+        "size": 2435,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.js.map",
+        "size": 2184,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 1460,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 3521,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js.map",
+        "size": 1785,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts",
+        "size": 3868,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js",
+        "size": 411,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js.map",
+        "size": 360,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 2714,
+        "mode": 420
+      },
+      {
+        "path": "schemas/capabilities.schema.json",
+        "size": 920,
+        "mode": 420
+      },
+      {
+        "path": "schemas/request.schema.json",
+        "size": 4675,
+        "mode": 420
+      },
+      {
+        "path": "schemas/result.schema.json",
+        "size": 6204,
+        "mode": 420
+      },
+      {
+        "path": "skills/agent-symbol-search/SKILL.md",
+        "size": 6612,
+        "mode": 420
+      }
+    ],
+    "entryCount": 50,
+    "bundled": []
+  }
+]
+
+[pack] agent-test-scope
+[
+  {
+    "id": "agent-test-scope@0.1.1",
+    "name": "agent-test-scope",
+    "version": "0.1.1",
+    "size": 56488,
+    "unpackedSize": 384568,
+    "shasum": "3e9a50e922667490598beab55a6db08043fd2415",
+    "integrity": "sha512-zdg+H8oio/eGVIUvyfkUBYzwK93Oux8n7/7VTNkNv4BnQt4i0q5LP0G0z1q4q83X4t4gggEkJ/U6RIAGSb0Nyw==",
+    "filename": "agent-test-scope-0.1.1.tgz",
+    "files": [
+      {
+        "path": "DESIGN.md",
+        "size": 8673,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 1070,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "SPEC.md",
+        "size": 7054,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/bounded-reader.js",
+        "size": 1385,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/bounded-reader.js.map",
+        "size": 1405,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/discovery.js",
+        "size": 11359,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/discovery.js.map",
+        "size": 11891,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/engine.js",
+        "size": 13875,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/engine.js.map",
+        "size": 13346,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/frameworks.js",
+        "size": 9528,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/frameworks.js.map",
+        "size": 9420,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/imports.js",
+        "size": 5651,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/imports.js.map",
+        "size": 5812,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/mapping.js",
+        "size": 8235,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/mapping.js.map",
+        "size": 9313,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/paths.js",
+        "size": 5479,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/paths.js.map",
+        "size": 5263,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/planner.js",
+        "size": 8715,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/planner.js.map",
+        "size": 8601,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/risk.js",
+        "size": 4640,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/risk.js.map",
+        "size": 4686,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/validation.js",
+        "size": 7089,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/core/validation.js.map",
+        "size": 7172,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/index.js",
+        "size": 2983,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/index.js.map",
+        "size": 1415,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/package.json",
+        "size": 25,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/types.js",
+        "size": 433,
+        "mode": 420
+      },
+      {
+        "path": "dist/cjs/types.js.map",
+        "size": 370,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts",
+        "size": 361,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts.map",
+        "size": 397,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js",
+        "size": 4963,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js.map",
+        "size": 5499,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.d.ts",
+        "size": 259,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.d.ts.map",
+        "size": 359,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.js",
+        "size": 1214,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/bounded-reader.js.map",
+        "size": 1431,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.d.ts",
+        "size": 1021,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.d.ts.map",
+        "size": 1075,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.js",
+        "size": 10983,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/discovery.js.map",
+        "size": 11936,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.d.ts",
+        "size": 473,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.d.ts.map",
+        "size": 471,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.js",
+        "size": 13163,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/engine.js.map",
+        "size": 13468,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/frameworks.d.ts",
+        "size": 813,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/frameworks.d.ts.map",
+        "size": 761,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/frameworks.js",
+        "size": 9197,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/frameworks.js.map",
+        "size": 9382,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/imports.d.ts",
+        "size": 912,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/imports.d.ts.map",
+        "size": 946,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/imports.js",
+        "size": 5341,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/imports.js.map",
+        "size": 5834,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/mapping.d.ts",
+        "size": 668,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/mapping.d.ts.map",
+        "size": 679,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/mapping.js",
+        "size": 7947,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/mapping.js.map",
+        "size": 9376,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.d.ts",
+        "size": 1268,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.d.ts.map",
+        "size": 1312,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.js",
+        "size": 4832,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/paths.js.map",
+        "size": 5217,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/planner.d.ts",
+        "size": 712,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/planner.d.ts.map",
+        "size": 713,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/planner.js",
+        "size": 8508,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/planner.js.map",
+        "size": 8713,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/risk.d.ts",
+        "size": 532,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/risk.d.ts.map",
+        "size": 519,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/risk.js",
+        "size": 4512,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/risk.js.map",
+        "size": 4693,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.d.ts",
+        "size": 543,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.d.ts.map",
+        "size": 590,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.js",
+        "size": 6882,
+        "mode": 420
+      },
+      {
+        "path": "dist/core/validation.js.map",
+        "size": 7136,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 1138,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts.map",
+        "size": 1012,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 1363,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js.map",
+        "size": 1385,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts",
+        "size": 6414,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts.map",
+        "size": 6011,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js",
+        "size": 308,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js.map",
+        "size": 384,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 2301,
+        "mode": 420
+      },
+      {
+        "path": "schemas/.gitkeep",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "schemas/capabilities.schema.json",
+        "size": 1688,
+        "mode": 420
+      },
+      {
+        "path": "schemas/request.schema.json",
+        "size": 4479,
+        "mode": 420
+      },
+      {
+        "path": "schemas/result.schema.json",
+        "size": 787,
+        "mode": 420
+      },
+      {
+        "path": "skills/.gitkeep",
+        "size": 0,
+        "mode": 420
+      },
+      {
+        "path": "skills/agent-test-scope/SKILL.md",
+        "size": 3113,
+        "mode": 420
+      }
+    ],
+    "entryCount": 88,
+    "bundled": []
+  }
+]
+
+agent-cfml-check: passed
+agent-cfml-linkage: passed
+agent-cfml-policy-check: passed
+agent-change-impact: passed
+agent-code-slice: passed
+agent-error-lens: passed
+agent-project-profile: passed
+ai-agent-tool-project-tree: passed
+agent-symbol-search: passed
+agent-test-scope: passed

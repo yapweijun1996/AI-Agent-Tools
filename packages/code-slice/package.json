@@ -1,0 +1,73 @@
+{
+  "name": "agent-code-slice",
+  "version": "0.4.0",
+  "description": "Precise, language-aware code context for AI coding agents.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Yap Wei Jun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/code-slice"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/code-slice#readme",
+  "keywords": [
+    "tree-sitter",
+    "ai-agent",
+    "code-context",
+    "cli",
+    "code-slicing"
+  ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "bin": {
+    "code-slice": "dist/cli/index.js"
+  },
+  "main": "dist/core/index.js",
+  "types": "dist/core/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core/index.d.ts",
+      "default": "./dist/core/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "grammars/wasm"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node scripts/run-tests.mjs",
+    "test:golden": "node scripts/run-ts.mjs test/golden/run.ts",
+    "test:e2e": "npm run build && node scripts/run-e2e.mjs",
+    "test:watch": "node scripts/run-tests.mjs --watch",
+    "grammars:setup": "npm install --no-save --ignore-scripts @cfmleditor/tree-sitter-cfml@0.26.34 tree-sitter-cli@0.27.0 tree-sitter-css@0.25.0 tree-sitter-javascript@0.25.0 tree-sitter-python@0.25.0 tree-sitter-typescript@0.23.2 && cd node_modules/tree-sitter-cli && node install.js",
+    "grammars:build": "node scripts/run-ts.mjs grammars/build.ts",
+    "grammars:verify": "node scripts/run-ts.mjs grammars/verify.ts",
+    "benchmark:fixtures": "node scripts/run-ts.mjs test/benchmark/generate-fixtures.ts",
+    "benchmark": "node scripts/run-ts.mjs test/benchmark/run.ts",
+    "cli": "node scripts/run-ts.mjs src/cli/index.ts",
+    "release:version-check": "node scripts/check-release-version.mjs",
+    "release:check": "npm run release:version-check && npm run typecheck && npm test && npm run test:golden && npm run test:e2e && npm run grammars:verify && npm pack --dry-run",
+    "prepublishOnly": "npm run release:check",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "web-tree-sitter": "0.27.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ajv": "^8.20.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

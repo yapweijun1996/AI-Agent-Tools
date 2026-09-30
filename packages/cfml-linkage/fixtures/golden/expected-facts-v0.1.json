@@ -1,0 +1,30 @@
+{
+  "schema_version": "agent-cfml-linkage-fact-fixture/v0.1",
+  "source_execution": false,
+  "cases": [
+    {
+      "input": "core-cfml-web-surface/index.cfm",
+      "expected_complete": true,
+      "expected_facts": [
+        { "kind": "CONDITION", "normalized_expression": "form.usage eq \"order\"" },
+        { "kind": "CUSTOM_TAG", "normalized_expression": "custom tag custom/order.cfm" },
+        { "kind": "FILE", "normalized_expression": "cfm_page core-cfml-web-surface/index.cfm" },
+        { "kind": "INCLUDE", "normalized_expression": "shared/header.cfm" },
+        { "kind": "INSTANTIATE", "normalized_expression": "handlers.OrderHandler" },
+        { "kind": "INVOKE", "normalized_expression": "handlers.OrderHandler.submit" },
+        { "kind": "MAPPING", "normalized_expression": "app" },
+        { "kind": "SCOPE_WRITE", "normalized_expression": "request.orderId" }
+      ]
+    },
+    {
+      "input": "cfc-inheritance-and-scope/OrderHandler.cfc",
+      "expected_complete": true,
+      "expected_facts": [
+        { "kind": "COMPONENT", "normalized_expression": "component handlers.OrderHandler" },
+        { "kind": "FILE", "normalized_expression": "cfc_component cfc-inheritance-and-scope/OrderHandler.cfc" },
+        { "kind": "METHOD", "normalized_expression": "method handlers.OrderHandler.submit" },
+        { "kind": "SCOPE_WRITE", "normalized_expression": "request.orderId" }
+      ]
+    }
+  ]
+}

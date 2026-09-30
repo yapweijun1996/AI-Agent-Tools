@@ -1,0 +1,76 @@
+{
+  "name": "agent-test-scope",
+  "version": "0.1.1",
+  "description": "Deterministic, local-first verification planning for AI coding agents",
+  "keywords": [
+    "ai-agents",
+    "verification",
+    "test-planning",
+    "vitest",
+    "jest",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/test-scope"
+  },
+  "bugs": {
+    "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues"
+  },
+  "homepage": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope#readme",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agent-test-scope": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "skills",
+    "LICENSE",
+    "README.md",
+    "SPEC.md",
+    "DESIGN.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && node scripts/build-cjs.mjs",
+    "build": "npm run build:esm && npm run build:cjs",
+    "typecheck:esm": "tsc --noEmit -p tsconfig.json",
+    "typecheck:cjs": "tsc --noEmit -p tsconfig.cjs.json",
+    "typecheck": "npm run typecheck:esm && npm run typecheck:cjs",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "coverage": "npm run build && node scripts/coverage-check.mjs",
+    "schema:check": "node scripts/schema-check.mjs",
+    "capability:check": "npm run build && node scripts/capability-check.mjs",
+    "smoke:pack": "npm run build && node scripts/smoke-pack.mjs",
+    "benchmark:check": "npm run build && node scripts/benchmark-check.mjs",
+    "docs:check": "node scripts/docs-check.mjs",
+    "release:check": "node scripts/release-check.mjs",
+    "verify": "npm run typecheck && npm test",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run verify && npm run release:check"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  }
+}

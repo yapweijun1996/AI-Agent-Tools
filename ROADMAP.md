@@ -1,8 +1,11 @@
 # Roadmap
 
+Current source location is the owner-authorized monorepo; [tool index](migration-tools.md) and [migration evidence](docs/migration/README.md) supersede historical repository-location and source-version observations below. Recorded publication/delivery claims retain their dated scope.
+
+
 Last reconciled: 2026-09-16. The sequence below preserves the original ten-tool priority and appends three owner-requested designs, Symbol Search, and the CFML Policy Check design. It is not a release calendar or a dependency graph. Tools remain independently useful and independently released. The [registry](TOOL_REGISTRY.json) owns lifecycle; [TASK.md](TASK.md) owns Hub task status. Outcome descriptions are intended scope, not universal verified capabilities.
 
-The documentation foundation is complete. **Delivery progress: 1 of 15 registered tools completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains `0.1.1`, the corrected `0.1.2` source is not published, the exact artifact omits its declared MIT `LICENSE` file, and a prior `0.1.1` distribution defect was not reproduced by the current exact-artifact re-audit; the discrepancy remains unresolved. Symbol Search has also received an implementation admission review and is registered as `Experimental`; its published `0.1.2` artifact is audited, while current `main` CI fails its Documentation check. The other fourteen tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. The AIT runtime is publicly published as `ai-agent-tools@0.1.1` under Apache-2.0; its registry read-back and clean consumer checks pass. AIT is not a universal compatibility layer. See [Validation](VALIDATION.md) for evidence scope.
+The documentation foundation is complete. **Delivery progress: 1 of 17 registered tools owner-confirmed completed.** The owner confirmed Code Slice complete on 2026-09-06, and npm metadata confirms the recorded `0.2.0` release. Project Profile has received an implementation and release audit and is registered as `Experimental`, but it is not delivery `Done`: npm `latest` remains `0.1.1`, the corrected `0.1.2` source is not published, the exact artifact omits its declared MIT `LICENSE` file, and a prior `0.1.1` distribution defect was not reproduced by the current exact-artifact re-audit; the discrepancy remains unresolved. Symbol Search has also received an implementation admission review and is registered as `Experimental`; its published `0.1.2` artifact is audited, while current `main` CI fails its Documentation check. The other registered tools await owner completion notices. Code Slice's separate Hub lifecycle remains Experimental pending protocol conformance; delivery completion does not close that integration work. The AIT runtime is publicly published as `ai-agent-tools@0.1.1` under Apache-2.0; its registry read-back and clean consumer checks pass. AIT is not a universal compatibility layer. See [Validation](VALIDATION.md) for evidence scope.
 
 ## Delivery sequence
 
@@ -23,6 +26,8 @@ The documentation foundation is complete. **Delivery progress: 1 of 15 registere
 | 13 | `agent-runtime-trace` | Agent Runtime Trace | Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages. |
 | 14 | `agent-symbol-search` | Agent Symbol Search | Navigate bounded TypeScript symbol definitions, references, and relationships without returning full source bodies. |
 | 15 | `agent-cfml-policy-check` | Agent CFML Policy Check | Check configurable CFML, HTML, and project policy rules with explicit diagnostics and coverage limits. |
+| 16 | `agent-cfml-linkage` | Agent CFML Linkage | Analyze bounded CFML-first linkage with explicit evidence and unresolved records. |
+| 17 | `agent-project-tree` | Agent Project Tree | Return a bounded deterministic project tree with explicit filtering and limits. |
 
 The 2026-09-07 Company KB snapshot records Change Impact in progress and Project
 Profile next; this update does not change the delivery sequence. Among the three
@@ -33,9 +38,7 @@ The [expansion review](docs/TOOL_EXPANSION.md) explains their bounded contracts.
 Symbol Search is a separate TypeScript-only implementation admission and remains
 Experimental until its owner supplies completion and release evidence. CFML Policy
 Check was appended on 2026-09-16 as a separate Planned design for configurable
-CFML/HTML/project rules such as table `colgroup`/`col` requirements. Its repository
-identity is confirmed, but its initial commit contains no implementation, tests,
-package metadata, or release evidence. It does not change the CFML Check structural
+CFML/HTML/project rules such as table `colgroup`/`col` requirements. Its initial scaffold observation is historical. The 2026-09-30 import contains a private 0.1.0 prototype and 15 tests; public release and Hub conformance are still unverified. It does not change the CFML Check structural
 scope or create a dependency between the two tools.
 
 ## Milestones

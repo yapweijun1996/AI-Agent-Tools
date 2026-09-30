@@ -1,0 +1,20 @@
+{
+  "version": "0.1",
+  "expected_query": {
+    "tables": ["orders"],
+    "datasource": "main",
+    "query_execute_tables": ["orders"],
+    "query_execute_datasource": "main",
+    "dynamic_query_execute": true
+  },
+  "expected_repository_actions": [
+    "repository.OrderRepository.findOrders"
+  ],
+  "expected_edges": [
+    "CALLS_REPOSITORY",
+    "QUERY_READS_TABLE",
+    "QUERY_USES_DATASOURCE"
+  ],
+  "filename_only_is_not_evidence": "repository.NamedOnlyRepository.health",
+  "source_execution": false
+}

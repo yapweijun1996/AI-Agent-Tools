@@ -1,0 +1,12 @@
+[
+  {
+    "package": "change-impact",
+    "script": "pack:smoke",
+    "exitCode": 0
+  },
+  {
+    "package": "symbol-search",
+    "script": "smoke:pack",
+    "exitCode": 0
+  }
+]

@@ -9,8 +9,7 @@ decision rationale; [Architecture](docs/ARCHITECTURE.md) owns structural contrac
 The Hub contains Markdown documentation, `TOOL_REGISTRY.json`,
 `scripts/validate_hub.py`, and the dependency-free public `ai-agent-tools@0.1.1`
 package with the `ait` CLI. The validator uses only the Python standard library.
-AIT manages explicit package installation and child-process dispatch but contains no
-independent tool implementation or agent reasoning. The initial tracked baseline is
+AIT manages explicit package installation and child-process dispatch but does not bundle tool implementations in its published package or own agent reasoning. The initial tracked baseline is
 `2f2d46e`; subsequent delivery is recorded in Git history, independently of tool releases.
 
 The validator reads the registry, checks authoring structure and lifecycle gates,
@@ -22,7 +21,7 @@ consistency; the script cannot prove external tool conformance.
 
 | ID | Decision | Reason and consequence |
 | --- | --- | --- |
-| D-01 | Keep tool implementations separate while allowing a narrow Hub-owned AIT runtime | Source, dependencies, tests, versions, and releases stay with each tool; AIT manages explicit package installation/dispatch without owning tool logic or agent reasoning |
+| D-01 | Preserve tool package boundaries within the owner-authorized monorepo | Superseded source-location decision on 2026-09-30: packages own source, locks, tests and independent releases; AIT keeps its narrow runtime boundary |
 | D-02 | Give each fact one document owner | Registry owns lifecycle/identities; TASK owns work status; SPEC owns requirements; Architecture and individual standards own their contracts |
 | D-03 | Record delivery completion separately from Hub conformance | Code Slice is owner-confirmed complete and published at 0.2.0; its Experimental Hub lifecycle denotes pending protocol conformance, not unfinished delivery |
 | D-04 | Preserve existing tool interfaces during documentation reconciliation | Document JSON/exit/completeness gaps; do not silently rewrite Code Slice consumers or declare a draft migration implemented |
@@ -81,11 +80,14 @@ each detailed draft. CFML Check uses an explicit supported lexical/structural
 profile; Result Store writes only through explicit scoped operations; Runtime
 Trace V1 analyzes supplied event artifacts and never executes a readback or retries
 a write. Current standards/schema versions stay unchanged. The CFML implementation
-is delivered in its independent repository; AIT provides only package management and
-explicit process dispatch, not tool source, a compatibility adapter, or deployment.
+is maintained in its package folder; AIT provides only package management and
+explicit process dispatch, not a universal compatibility adapter or deployment.
 
-The later CFML Policy Check addition follows the same boundary. Its independent
-repository owns configurable project and mixed CFML/HTML policy evaluation. It
+The later CFML Policy Check addition follows the same boundary. Its package folder owns configurable project and mixed CFML/HTML policy evaluation. It
 must not duplicate the CFML structural checker or claim to prove engine/runtime
 behavior. Its repository identity is recorded in the registry, while
-implementation, native schema, tests, and release evidence remain pending.
+private prototype source, native schema and tests are imported; public release and Hub conformance remain pending.
+
+## D-18: Owner-authorized source consolidation
+
+[Decision and rollback](docs/migration/DECISION.md) supersede the D-01 source-location restriction and D-08 maturity gate for this migration only. Shared implementation libraries still require separate review.

@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-linkage:config:v0.1",
+  "title": "agent-cfml-linkage configuration v0.1",
+  "description": "Proposed explicit policy contract for safe, bounded local analysis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "root",
+    "path_policy",
+    "ignore",
+    "analysis",
+    "limits",
+    "output",
+    "prohibited_actions",
+    "exit_codes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agent-cfml-linkage-config/v0.1"
+    },
+    "root": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "path_policy": {
+      "$ref": "#/$defs/pathPolicy"
+    },
+    "ignore": {
+      "$ref": "#/$defs/ignore"
+    },
+    "analysis": {
+      "$ref": "#/$defs/analysis"
+    },
+    "limits": {
+      "$ref": "#/$defs/limits"
+    },
+    "query": {
+      "$ref": "#/$defs/query"
+    },
+    "output": {
+      "$ref": "#/$defs/output"
+    },
+    "prohibited_actions": {
+      "$ref": "#/$defs/prohibitedActions"
+    },
+    "exit_codes": {
+      "$ref": "#/$defs/exitCodes"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "queryString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pathPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reject_outside_root",
+        "follow_symlinks",
+        "allow_absolute_references",
+        "case_collision_policy"
+      ],
+      "properties": {
+        "reject_outside_root": {
+          "const": true
+        },
+        "follow_symlinks": {
+          "const": false
+        },
+        "allow_absolute_references": {
+          "const": false
+        },
+        "case_collision_policy": {
+          "type": "string",
+          "enum": [
+            "diagnostic",
+            "reject"
+          ]
+        }
+      }
+    },
+    "ignore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "globs",
+        "hidden_files",
+        "generated_files"
+      ],
+      "properties": {
+        "globs": {
+          "type": "array",
+          "maxItems": 256,
+          "description": "Unique root-relative patterns; separators may be written as slash or backslash and the bounded matcher supports literal segments, *, ?, and recursive **.",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^(?![/\\\\])(?![A-Za-z]:[/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$"
+          },
+          "uniqueItems": true
+        },
+        "hidden_files": {
+          "type": "string",
+          "description": "Whether dot-prefixed files and directories are included or ignored during discovery.",
+          "enum": [
+            "include",
+            "ignore"
+          ]
+        },
+        "generated_files": {
+          "type": "string",
+          "description": "Bounded generated-file policy: ignore or include the directory named generated; explicit ignore globs still take precedence. Other generated-file forms are not inferred.",
+          "enum": [
+            "include",
+            "ignore"
+          ]
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "languages",
+        "mappings",
+        "enabled_plugins"
+      ],
+      "properties": {
+        "languages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "cfml",
+              "html",
+              "javascript",
+              "css",
+              "sql"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "mappings": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "enabled_plugins": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_files",
+        "max_file_bytes",
+        "max_total_bytes",
+        "max_facts",
+        "max_edges",
+        "max_evidence",
+        "max_traversal_depth",
+        "max_output_bytes",
+        "max_wall_time_ms",
+        "max_workers"
+      ],
+      "properties": {
+        "max_files": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_file_bytes": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_total_bytes": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_facts": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_edges": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_evidence": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_traversal_depth": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_output_bytes": {
+          "type": "integer",
+          "minimum": 300
+        },
+        "max_wall_time_ms": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "max_workers": {
+          "$ref": "#/$defs/positiveInteger",
+          "description": "Upper bound for analyzer concurrency; the current implementation is synchronous and uses at most one worker."
+        }
+      }
+    },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "node_id": { "$ref": "#/$defs/queryString" },
+        "path": { "$ref": "#/$defs/queryString" },
+        "canonical_name": { "$ref": "#/$defs/queryString" },
+        "name": { "$ref": "#/$defs/queryString" },
+        "kind": { "$ref": "#/$defs/queryString" },
+        "edge_id": { "$ref": "#/$defs/queryString" },
+        "relation_type": { "$ref": "#/$defs/queryString" },
+        "reason_code": { "$ref": "#/$defs/queryString" },
+        "edge_types": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "INCLUDES",
+              "CUSTOM_TAG_CALL",
+              "EXTENDS",
+              "IMPLEMENTS",
+              "INSTANTIATES",
+              "CFINVOKES",
+              "CALLS_METHOD",
+              "FORM_SUBMITS_TO",
+              "REDIRECTS_TO",
+              "AJAX_CALLS",
+              "FETCHES",
+              "QUERY_READS_TABLE",
+              "QUERY_WRITES_TABLE",
+              "QUERY_USES_DATASOURCE",
+              "CALLS_REPOSITORY",
+              "APPLICATION_GOVERNS",
+              "REQUEST_HOOK_APPLIES_TO",
+              "ROUTES_WHEN",
+              "SCOPE_PRODUCES",
+              "SCOPE_CONSUMES",
+              "SCOPE_OVERRIDES",
+              "DYNAMIC_REFERENCE",
+              "CSS_ASSET_REFERENCES"
+            ]
+          }
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["incoming", "outgoing", "both"]
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "max_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "max_visited": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "diagnostics_stream",
+        "include_raw_evidence"
+      ],
+      "properties": {
+        "format": {
+          "const": "json"
+        },
+        "diagnostics_stream": {
+          "const": "stderr"
+        },
+        "include_raw_evidence": {
+          "type": "string",
+          "enum": [
+            "never",
+            "bounded"
+          ]
+        }
+      }
+    },
+    "prohibitedActions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execute_source",
+        "network",
+        "database",
+        "shell",
+        "browser"
+      ],
+      "properties": {
+        "execute_source": {
+          "const": false
+        },
+        "network": {
+          "const": false
+        },
+        "database": {
+          "const": false
+        },
+        "shell": {
+          "const": false
+        },
+        "browser": {
+          "const": false
+        }
+      }
+    },
+    "exitCodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "completed",
+        "internal_failure",
+        "invalid_input",
+        "incomplete",
+        "path_rejected"
+      ],
+      "properties": {
+        "completed": {
+          "const": 0
+        },
+        "internal_failure": {
+          "const": 1
+        },
+        "invalid_input": {
+          "const": 2
+        },
+        "incomplete": {
+          "const": 3
+        },
+        "path_rejected": {
+          "const": 4
+        }
+      }
+    }
+  }
+}

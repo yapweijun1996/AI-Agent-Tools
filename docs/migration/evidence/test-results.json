@@ -1,0 +1,89 @@
+{
+  "node": "v22.23.3",
+  "results": [
+    {
+      "package": "ai-agent-tools",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "hub-python-tests",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "hub-validator",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "source-coverage",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-check",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-linkage",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-cfml-policy-check",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-change-impact",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-code-slice",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-error-lens",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-project-profile",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "ai-agent-tool-project-tree",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-symbol-search",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "package": "agent-test-scope",
+      "action": "test",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ]
+}

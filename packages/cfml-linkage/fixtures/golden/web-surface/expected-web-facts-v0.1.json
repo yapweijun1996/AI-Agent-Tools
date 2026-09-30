@@ -1,0 +1,42 @@
+{
+  "version": "0.1",
+  "cases": [
+    {
+      "input": "client.js",
+      "expected_complete": false,
+      "expected_facts": [
+        { "kind": "AJAX", "normalized_expression": "/orders/search" },
+        { "kind": "DYNAMIC_REFERENCE", "normalized_expression": "fetch(dynamicUrl)" },
+        { "kind": "FETCH", "normalized_expression": "/api/orders" },
+        { "kind": "FILE", "normalized_expression": "source_file client.js" }
+      ]
+    },
+    {
+      "input": "index.html",
+      "expected_complete": false,
+      "expected_facts": [
+        { "kind": "CSS_ASSET", "normalized_expression": "site.css" },
+        { "kind": "FILE", "normalized_expression": "source_file index.html" },
+        { "kind": "FORM", "normalized_expression": "/orders/save" },
+        { "kind": "INCLUDE", "normalized_expression": "client.js" }
+      ]
+    },
+    {
+      "input": "query.sql",
+      "expected_complete": false,
+      "expected_facts": [
+        { "kind": "FILE", "normalized_expression": "source_file query.sql" },
+        { "kind": "QUERY", "normalized_expression": "orders, users" }
+      ]
+    },
+    {
+      "input": "site.css",
+      "expected_complete": false,
+      "expected_facts": [
+        { "kind": "CSS_ASSET", "normalized_expression": "base.css" },
+        { "kind": "CSS_ASSET", "normalized_expression": "icons.svg" },
+        { "kind": "FILE", "normalized_expression": "source_file site.css" }
+      ]
+    }
+  ]
+}
