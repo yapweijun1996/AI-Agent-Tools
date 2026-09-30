@@ -59,3 +59,8 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 ## Deploy Verify (2026-09-30)
 
 [Release Guard Deploy Verify usage, evidence contract and limits](packages/release-guard/README.md)
+
+- [Optional local CLI installation and rollback](docs/workflow/LOCAL_CLI.md)
+- [Need-driven workflow skill](skills/ai-agent-tools-workflow/SKILL.md)
+- [Legacy deletion readiness audit](docs/migration/DELETION_READINESS_2026-09-30.md)
+- [Runtime Trace UI profile](packages/runtime-trace/README.md)

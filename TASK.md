@@ -1,5 +1,10 @@
 # Task status
 
+## Optional workflow, deployment collection and UI evidence — 2026-09-30
+
+Owner authorizes scoped implementation/install/merge. Acceptance matrix: [TKT-20260930-004](tickets/TKT-20260930-004-evidence-ui-workflow.md). Existing Release Guard and Runtime Trace responsibilities are reused. Personal configurations and Shop remain untouched; legacy repository audit is read-only. No npm publication.
+
+
 ## Deploy Verify — 2026-09-30
 
 Owner authorizes implementation through merge after exact-head required CI/review gates. Release Guard now owns the offline Deploy Verify profile in `packages/release-guard`; no duplicate registry entry or live deployment/publishing service is introduced. Source/local CLI installation is documented. Implementation and checks are tracked in ticket TKT-20260930-003 and the PR. Registry stays 18 entries; source now contains 13 tool folders. Original imported ten packages remain unchanged.

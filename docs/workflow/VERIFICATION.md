@@ -1,0 +1,7 @@
+# Evidence workflow verification — 2026-09-30
+
+Local verified runtime: Node22.23.3. Full root verify passed: 621 Node tests plus 7 Python tests. The additional installer preservation test was added after the aggregate Hub snapshot and passed in the final Hub run (30 Hub tests rather than29); total current suite is622 Node tests plus7 Python tests. Release Guard75 (56 existing +19 new), Runtime Trace70. Build11passed/3not applicable; typecheck12passed/2not applicable; lint3passed/11not applicable; test18runner checks passed; pack18checks (14dry packs +4 clean consumers). Source coverage698paths/10repos remains verified. These counts do not imply scripts exist where reported not applicable.
+
+CI on the PR/main is authoritative for exact commit platform results; links and installation verification will be recorded in the PR. Local CLI package installation uses ignored lifecycle scripts and cannot certify the optional CFML Linkage native parser. UI tests include synthetic evidence and a fixed exporter harness; they do not certify a production site's responsive UX. CI/browser deployment snapshots remain supplied sanitized artifacts, while the collector automates scoped asset GET/hash/header observations. Installed-device PWA freshness always remains unknown.
+
+Deletion readiness is separately audited; all ten old repositories remain blocked pending preservation/external dependencies, not declared unused. Private package flags/licenses are unchanged, and no npm artifact is published.

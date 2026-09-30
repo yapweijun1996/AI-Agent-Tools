@@ -21,7 +21,8 @@
     "operation": {
       "enum": [
         "capabilities",
-        "deploy-verify"
+        "deploy-verify",
+        "collect"
       ]
     },
     "status": {
@@ -129,6 +130,12 @@
                 "fail",
                 "unknown"
               ]
+            },
+            "bundle": {
+              "type": "object"
+            },
+            "collectionProvenance": {
+              "type": "object"
             }
           },
           "required": [
@@ -146,7 +153,7 @@
               "type": "array"
             },
             "network": {
-              "const": false
+              "type": "boolean"
             },
             "limits": {
               "type": "object"

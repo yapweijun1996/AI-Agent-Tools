@@ -44,3 +44,15 @@ Result [schema](schema/result.schema.json) includes sorted checks, pass/fail/unk
 `data.installedDeviceUpdate` is **always `unknown`**, including when server and supplied browser hashes match. HTTP cannot prove installed-device PWA update, activation, offline behavior or correct UX. More device-level evidence and separately approved adapters would be needed; they are outside this MVP. Runtime Trace remains responsible for broader operation/business-event correlation.
 
 ESM API: `verifyDeployment(bundle)`, `capabilities()`, `encodeResult(result)`, `exitCode(result)`. Declarations: `types/index.d.ts`. File CLI reads and stdout serialization enforce byte budgets; direct API callers must use bounded JSON input and `encodeResult` when serializing. Tests: `npm test`; build checks JS syntax/schema JSON; `npm run typecheck` checks declaration consumers, not every JS statement; `npm run smoke:pack` installs a private temporary packed consumer with lifecycle scripts disabled and executes its CLI/examples. This native envelope does not assert universal Hub protocol conformance.
+
+## Optional read-only collection
+
+See [collector scope and budgets](COLLECTION.md). This operation performs explicit bounded bodyless GETs; the existing `deploy-verify` remains offline by default.
+
+```sh
+agent-release-guard collect --input request.json --json
+agent-release-guard collect --input request.json --bundle > collected.json
+agent-release-guard deploy-verify --input collected.json --json
+```
+
+The collection verdict follows the verifier: pass0/fail1/error2/unknown3. Save output even when exit3, then inspect missing evidence. `--bundle` produces normalized evidence for the offline verifier; `--json` includes collection provenance. For explicitly opted-in literal loopback HTTP, verification also requires `--allow-localhost`. CI/browser artifacts are supplied sanitized snapshots; no authenticated account/browser session is accessed. Missing response version headers cannot establish deployed commit identity.

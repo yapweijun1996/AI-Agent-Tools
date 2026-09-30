@@ -51,7 +51,7 @@ const time = (x) =>
   Number.isFinite(Date.parse(x)) &&
   new Date(x).toISOString() ===
     x.replace(/Z$/, x.includes(".") ? "Z" : ".000Z");
-function url(value) {
+function url(value, options = {}) {
   if (typeof value !== "string" || value.length > 2048)
     throw invalid("Invalid sanitized URL");
   let u;
@@ -61,7 +61,7 @@ function url(value) {
     throw invalid("Invalid sanitized URL");
   }
   if (
-    u.protocol !== "https:" ||
+    (u.protocol !== "https:" && !(options.allowLocalhost === true && u.protocol === "http:" && ["127.0.0.1", "[::1]"].includes(u.hostname))) ||
     u.username ||
     u.password ||
     u.search ||
@@ -134,7 +134,7 @@ export function readJson(file) {
     if (fd !== undefined) closeSync(fd);
   }
 }
-export function validateBundle(input) {
+export function validateBundle(input, options = {}) {
   keys(input, ["schemaVersion", "expected", "policy", "ci", "http", "browser"]);
   if (input.schemaVersion !== "1.0") throw invalid();
   keys(input.expected, ["commit", "buildId", "origin", "assets"]);
@@ -142,7 +142,7 @@ export function validateBundle(input) {
   if (
     !commit(e.commit) ||
     !id(e.buildId) ||
-    url(e.origin).origin !== e.origin ||
+    url(e.origin, options).origin !== e.origin ||
     !Array.isArray(e.assets) ||
     !e.assets.length ||
     e.assets.length > LIMITS.assets
@@ -220,7 +220,7 @@ export function validateBundle(input) {
     ]);
     record(r);
     assetPath(r.assetPath);
-    url(r.finalUrl);
+    url(r.finalUrl, options);
     if (!Number.isInteger(r.status) || r.status < 100 || r.status > 599)
       throw invalid();
     for (const [key, test] of [
@@ -250,7 +250,7 @@ export function validateBundle(input) {
       for (const d of r.redirects) {
         keys(d, ["status", "url"]);
         if (![301, 302, 303, 307, 308].includes(d.status)) throw invalid();
-        url(d.url);
+        url(d.url, options);
       }
     }
   }
@@ -267,7 +267,7 @@ export function validateBundle(input) {
       "assets",
     ]);
     record(b);
-    url(b.origin);
+    url(b.origin, options);
     for (const [key, test] of [
       ["commit", commit],
       ["buildId", id],
@@ -303,15 +303,15 @@ export function capabilities() {
     status: "pass",
     complete: true,
     data: {
-      operations: ["deploy-verify", "capabilities"],
-      network: false,
+      operations: ["deploy-verify", "collect", "capabilities"],
+      network: true,
       limits: LIMITS,
     },
     diagnostics: [],
   };
 }
-export function verifyDeployment(input) {
-  validateBundle(input);
+export function verifyDeployment(input, options = {}) {
+  validateBundle(input, options);
   const { expected: e, policy: p } = input,
     checks = [],
     artifactSha256 = digest(input);
@@ -433,11 +433,11 @@ export function verifyDeployment(input) {
     );
     if (!selected) continue;
     const { row: r, pointer: q } = selected;
-    const final = url(r.finalUrl);
+    const final = url(r.finalUrl, options);
     const scoped =
       final.origin === e.origin &&
       final.pathname === a.path &&
-      (r.redirects ?? []).every((d) => url(d.url).origin === e.origin);
+      (r.redirects ?? []).every((d) => url(d.url, options).origin === e.origin);
     add(
       "http:" + a.path + ":scope",
       scoped ? "pass" : "fail",

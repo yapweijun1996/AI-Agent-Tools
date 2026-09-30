@@ -105,7 +105,7 @@
     {
       "id": "agent-release-guard",
       "name": "Agent Release Guard",
-      "description": "Deploy Verify profile checks supplied deployment identity, asset hashes, CI, freshness and cache evidence.",
+      "description": "Deploy Verify checks deployment evidence; bounded read-only collection observes explicit public/local asset URLs.",
       "status": "Experimental",
       "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/release-guard",
       "npm": null,
@@ -152,9 +152,9 @@
     {
       "id": "agent-runtime-trace",
       "name": "Agent Runtime Trace",
-      "description": "Correlate supplied operation events and report transport outcomes, readback evidence, and unknown stages.",
-      "status": "Planned",
-      "repository_url": null,
+      "description": "UI regression profile analyzes supplied viewport, declared overlap, focus and Back evidence; general business-event correlation remains planned.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/runtime-trace",
       "npm": null,
       "release_version": null,
       "verification": null,

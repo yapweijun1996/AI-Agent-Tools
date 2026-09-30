@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "tool": {
+      "const": "agent-runtime-trace"
+    },
+    "operation": {
+      "enum": [
+        "ui-regression-check",
+        "capabilities"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown",
+        "error"
+      ]
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "profile": {
+              "const": "ui-regression-v1"
+            },
+            "scope": {
+              "const": "supplied-declared-ui-evidence"
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "caseId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                    "maxLength": 128
+                  },
+                  "kind": {
+                    "enum": [
+                      "overflow",
+                      "overlap",
+                      "focus",
+                      "back"
+                    ]
+                  },
+                  "status": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "unknown"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^/"
+                    },
+                    "maxItems": 4,
+                    "minItems": 0
+                  },
+                  "measurements": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "caseId",
+                  "kind",
+                  "status",
+                  "reason",
+                  "evidence"
+                ]
+              },
+              "maxItems": 4192,
+              "minItems": 0
+            },
+            "summary": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "pass": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "fail": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "unknown": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "pass",
+                "fail",
+                "unknown"
+              ]
+            },
+            "provenance": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "inputSha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "inputSha256"
+              ]
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 8,
+              "minItems": 0
+            }
+          },
+          "required": [
+            "profile",
+            "scope",
+            "checks",
+            "summary",
+            "provenance",
+            "limitations"
+          ]
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "operations",
+            "profiles",
+            "limits",
+            "exitCodes"
+          ],
+          "properties": {
+            "operations": {
+              "type": "array"
+            },
+            "profiles": {
+              "type": "array"
+            },
+            "limits": {
+              "type": "object"
+            },
+            "exitCodes": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "maxItems": 8,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "tool",
+    "operation",
+    "status",
+    "complete",
+    "data",
+    "diagnostics"
+  ]
+}
