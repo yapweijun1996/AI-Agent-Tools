@@ -34,3 +34,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 [Registry](TOOL_REGISTRY.json) records ecosystem lifecycle and published evidence; [source manifest](docs/migration/SOURCE_MANIFEST.json) records imported source versions. Lifecycle conformance, owner-confirmed delivery and publication are distinct. The previous Hub observations remain in Git history and dated [validation](VALIDATION.md).
 
 [Architecture](docs/ARCHITECTURE.md), [documentation index](DOCUMENTATION_INDEX.md), [task status](TASK.md), [roadmap](ROADMAP.md), and [AGENTS.md](AGENTS.md) describe repository responsibilities. Tools remain local-first, bounded and read-only within their declared scopes; no LLM, API key or agent reasoning runtime is introduced.
+
+## Two additional source MVPs
+
+[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has twelve package folders; original ten source provenance remains unchanged.

@@ -76,3 +76,7 @@ conformance are separate claims with separate evidence.
 ## Source consolidation acceptance
 
 The owner decision of 2026-09-30 supersedes the former source-copying exclusion. [Migration](docs/migration/README.md) defines coverage, package isolation, history recovery, verification and deletion gates.
+
+## Approved source MVP additions (2026-09-30)
+
+Environment Doctor and Contract Check specifications, bounded contracts, exit statuses and non-goals are authoritative in their package READMEs. They preserve existing tool contracts and do not assert universal Hub protocol conformance.

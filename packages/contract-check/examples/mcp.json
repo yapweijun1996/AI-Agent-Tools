@@ -1,0 +1,18 @@
+{
+  "tools": [
+    {
+      "name": "example",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  ]
+}

@@ -51,3 +51,7 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 ## Monorepo source ownership (2026-09-30)
 
 [Tool index](migration-tools.md) maps all ten package folders. [Migration](docs/migration/README.md) owns import coverage and deletion gates; [decision](docs/migration/DECISION.md) owns the superseding source-location decision. Package READMEs and local AGENTS own tool behavior. Historical Hub audits remain dated evidence.
+
+- [Environment Doctor implementation and usage](packages/environment-doctor/README.md)
+- [Contract Check implementation and limitations](packages/contract-check/README.md)
+- [MVP verification scope](docs/mvp/VERIFICATION.md)
