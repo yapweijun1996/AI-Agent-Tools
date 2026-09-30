@@ -17,8 +17,17 @@ export const LIMITS = {
   changes: 512,
 };
 const object = (x) => x !== null && typeof x === "object" && !Array.isArray(x);
-const hash = (x) =>
-  createHash("sha256").update(JSON.stringify(x)).digest("hex");
+const canonical = (value) =>
+  JSON.stringify(value, (_key, item) =>
+    object(item)
+      ? Object.fromEntries(
+          Object.keys(item)
+            .sort()
+            .map((key) => [key, item[key]]),
+        )
+      : item,
+  );
+const hash = (x) => createHash("sha256").update(canonical(x)).digest("hex");
 const escape = (x) => x.replace(/~/g, "~0").replace(/\//g, "~1");
 export function invalid(message = "Invalid bounded JSON Schema input") {
   const e = new Error(message);
@@ -295,7 +304,7 @@ export function compareContracts(before, after, options = {}) {
         "REQUIRED_FIELDS_CHANGE",
       );
     for (const key of ["enum", "const"])
-      if (JSON.stringify(a[key]) !== JSON.stringify(b[key])) {
+      if (canonical(a[key]) !== canonical(b[key])) {
         let restrictive = b[key] !== undefined;
         if (key === "enum" && a.enum && b.enum)
           restrictive = a.enum.some(

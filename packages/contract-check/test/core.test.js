@@ -168,3 +168,12 @@ test("unsupported semantics in newly added branch remain incomplete", () => {
   assert.equal(r.status, "unknown");
   assert.equal(r.complete, false);
 });
+test("enum and const object key order is semantically stable", () => {
+  for (const keyword of ["enum", "const"]) {
+    const a = keyword === "enum" ? [{ a: 1, b: 2 }] : { a: 1, b: 2 };
+    const b = keyword === "enum" ? [{ b: 2, a: 1 }] : { b: 2, a: 1 };
+    const result = compareContracts({ [keyword]: a }, { [keyword]: b });
+    assert.equal(result.status, "compatible");
+    assert.equal(result.data.changes.length, 0);
+  }
+});
