@@ -332,16 +332,19 @@ test("real Git output supports modifications, renames, deletion, modes, binary m
     fs.writeFileSync(path.join(directory, "binary.dat"), Buffer.from([0, 1, 2, 3]));
     fs.writeFileSync(path.join(directory, "space name.txt"), "old\n");
     git("add", ".");
+    git("update-index", "--chmod=-x", "run.sh");
     git("-c", "user.name=Patch Guard Tests", "-c", "user.email=patch-guard@example.invalid", "-c", "commit.gpgsign=false", "commit", "-q", "-m", "fixture");
     fs.writeFileSync(path.join(directory, "modify.js"), "new\nnext\n");
     fs.renameSync(path.join(directory, "rename.js"), path.join(directory, "renamed.js"));
     fs.unlinkSync(path.join(directory, "delete.js"));
-    fs.chmodSync(path.join(directory, "run.sh"), 0o755);
     fs.writeFileSync(path.join(directory, "no-newline.js"), "new");
     fs.writeFileSync(path.join(directory, "binary.dat"), Buffer.from([0, 1, 3, 4]));
     fs.writeFileSync(path.join(directory, "space name.txt"), "new\n");
     git("add", "-A");
+    // Index modes keep the fixture independent of host executable-bit support.
+    git("update-index", "--chmod=+x", "run.sh");
     const diff = git("diff", "--cached", "--no-ext-diff", "--no-color", "--find-renames");
+    assert.match(diff, /diff --git a\/run\.sh b\/run\.sh\nold mode 100644\nnew mode 100755/);
     const data = ok(checkPatch(diff, policy({ allow_deletions: true, allow_renames: true, allow_binary: true }), { origin: "staged" }));
     assert.equal(data.files.length, 7);
     assert.ok(data.files.some((file) => file.kind === "renamed" && file.previous_path === "rename.js"));
