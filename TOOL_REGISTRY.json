@@ -72,9 +72,9 @@
     {
       "id": "agent-patch-guard",
       "name": "Agent Patch Guard",
-      "description": "Check proposed patches against explicit scope and safety constraints.",
-      "status": "Planned",
-      "repository_url": null,
+      "description": "Check supplied Git patches against explicit path, change-size and literal content policy with bounded redacted findings.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools",
       "npm": null,
       "release_version": null,
       "verification": null,

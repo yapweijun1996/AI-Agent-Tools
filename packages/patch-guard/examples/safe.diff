@@ -1,0 +1,7 @@
+diff --git a/src/total.js b/src/total.js
+index 1111111..2222222 100644
+--- a/src/total.js
++++ b/src/total.js
+@@ -1 +1 @@
+-export const total = 1;
++export const total = 2;

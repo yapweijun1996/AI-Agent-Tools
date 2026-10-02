@@ -9,6 +9,8 @@ The documentation foundation is complete. **Delivery progress: 1 of 18 registere
 
 ## Delivery sequence
 
+Current implementation addition (2026-10-03): [Patch Guard](packages/patch-guard/README.md) now implements supplied Git patch policy checks as a private source MVP. Its registry lifecycle is Experimental; publication, cross-platform evidence and owner-confirmed delivery completion remain separate. The delivery order below is preserved.
+
 | Order | Registry ID | Tool | Intended outcome |
 | --- | --- | --- | --- |
 | 1 | `agent-code-slice` | Agent Code Slice | Return bounded code context for explicit symbols or locations. |
