@@ -1,5 +1,11 @@
 # Task status
 
+## Agent Patch Guard — 2026-10-03
+
+The owner requested a new Patch Guard implementation in this project. The existing `agent-patch-guard` registry responsibility is implemented in [packages/patch-guard](packages/patch-guard/README.md) as a private source MVP with no runtime dependencies. Its scope is explicit supplied Git patch artifacts plus JSON policy; no worktree collection, patch application or project-command execution. Root verification includes the new package and its packed-consumer smoke check. Registry remains 18 tools and source now has 15 package folders. Lifecycle is Experimental; npm identity/release/evidence remain `null`. Current check results are recorded in [Validation](VALIDATION.md); historical entries below retain their dates and scope.
+
+Local acceptance passed on macOS Node `v24.21.0`: 50 package tests, schemas/declarations, packed consumers and the complete root `npm run verify` gate. Root verification needed execution approval for existing Release Guard loopback HTTP fixtures. Source coverage and final documentation/whitespace checks passed. The owner subsequently authorized commit and merge; exact-head remote CI and merge evidence are tracked in the pull request. npm publication and global CLI installation remain separate, unperformed actions.
+
 ## Optional workflow, deployment collection and UI evidence — 2026-09-30
 
 Owner authorizes scoped implementation/install/merge. Acceptance matrix: [TKT-20260930-004](tickets/TKT-20260930-004-evidence-ui-workflow.md). Existing Release Guard and Runtime Trace responsibilities are reused. Personal configurations and Shop remain untouched; legacy repository audit is read-only. No npm publication.

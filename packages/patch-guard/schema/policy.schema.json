@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Patch Guard policy 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "allowed_paths"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "allowed_paths": { "$ref": "#/$defs/selectors" },
+    "protected_paths": { "$ref": "#/$defs/optionalSelectors", "default": [] },
+    "generated_paths": { "$ref": "#/$defs/optionalSelectors", "default": [] },
+    "lockfile_paths": { "$ref": "#/$defs/optionalSelectors", "default": [] },
+    "max_files": { "type": "integer", "minimum": 1, "maximum": 256 },
+    "max_added_lines": { "type": "integer", "minimum": 0, "maximum": 20000 },
+    "max_deleted_lines": { "type": "integer", "minimum": 0, "maximum": 20000 },
+    "allow_deletions": { "type": "boolean", "default": false },
+    "allow_renames": { "type": "boolean", "default": false },
+    "allow_binary": { "type": "boolean", "default": false },
+    "allow_symlinks": { "type": "boolean", "default": false },
+    "allow_generated": { "type": "boolean", "default": false },
+    "allow_lockfiles": { "type": "boolean", "default": false },
+    "content_rules": {
+      "type": "array",
+      "maxItems": 256,
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "needle", "severity"],
+        "properties": {
+          "id": { "$ref": "#/$defs/ruleId" },
+          "needle": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[^\\u0000\\r\\n]+$" },
+          "severity": { "enum": ["error", "warning"] }
+        }
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "maxItems": 256,
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "paths"],
+        "properties": {
+          "rule_id": { "allOf": [{ "$ref": "#/$defs/ruleId" }, { "not": { "enum": ["MAX_FILES", "MAX_ADDED_LINES", "MAX_DELETED_LINES"] } }] },
+          "paths": { "$ref": "#/$defs/selectors" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "selector": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^(?:\\*|(?!/)(?!.*[:\\\\\\u0000-\\u001f\\u007f*?\\[\\]{}])(?!.*\")(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//).+)$",
+      "description": "Root-relative exact path, trailing-slash directory prefix, or '*' for the entire supplied root. Runtime rejects unsafe or unsupported paths; arbitrary globs are unsupported."
+    },
+    "selectors": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/selector" }
+    },
+    "optionalSelectors": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/selector" }
+    },
+    "ruleId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+    }
+  },
+  "description": "Policy shape. Runtime also checks the serialized 65536-byte policy cap, safe selectors, unique content IDs, built-in ID conflicts, and path-local exception references. Each array is bounded to 256 entries. Thresholds are separate from parser resource caps."
+}

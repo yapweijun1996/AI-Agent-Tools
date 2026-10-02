@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "allowed_paths": ["src/"],
+  "protected_paths": ["src/credentials.js"],
+  "generated_paths": ["dist/"],
+  "lockfile_paths": ["package-lock.json"],
+  "max_files": 8,
+  "max_added_lines": 40,
+  "max_deleted_lines": 40,
+  "content_rules": [
+    {
+      "id": "DEBUG_OUTPUT",
+      "needle": "console.log(",
+      "severity": "warning"
+    }
+  ]
+}

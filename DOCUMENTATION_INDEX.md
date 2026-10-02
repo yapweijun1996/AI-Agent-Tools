@@ -64,3 +64,4 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 - [Need-driven workflow skill](skills/ai-agent-tools-workflow/SKILL.md)
 - [Legacy deletion readiness audit](docs/migration/DELETION_READINESS_2026-09-30.md)
 - [Runtime Trace UI profile](packages/runtime-trace/README.md)
+- [Patch Guard policy, supported diff formats and limits](packages/patch-guard/README.md)

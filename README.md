@@ -1,6 +1,6 @@
 # AI-Agent-Tools
 
-Owned source for fourteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for fifteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
 ## Develop
 
@@ -37,7 +37,15 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 ## Two additional source MVPs
 
-[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has fourteen package folders; original ten source provenance remains unchanged.
+[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has fifteen package folders; original ten source provenance remains unchanged.
+
+## Patch policy checks
+
+[Agent Patch Guard](packages/patch-guard/README.md) checks explicit Git patch artifacts against machine-readable path, deletion/rename, size and literal content policy. It reports bounded redacted findings and withholds results for unsupported or incomplete evidence. The private, dependency-free source package is included by root verification and packed-consumer checks; the registry entry is Experimental with no npm release. Completed analysis can contain violations: consumers must inspect `data.verdict`.
+
+```sh
+node packages/patch-guard/src/cli.js check --diff packages/patch-guard/examples/safe.diff --policy packages/patch-guard/examples/policy.json --json
+```
 
 ## Deployment evidence verification
 

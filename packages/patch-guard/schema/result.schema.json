@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Patch Guard result 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool", "status", "complete", "data", "errors", "warnings", "meta"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "const": "agent-patch-guard" },
+        "version": { "const": "0.1.0" }
+      }
+    },
+    "status": { "enum": ["ok", "incomplete", "error"] },
+    "complete": { "type": "boolean" },
+    "data": {
+      "oneOf": [
+        { "$ref": "#/$defs/checkData" },
+        { "$ref": "#/$defs/capabilitiesData" },
+        { "type": "null" }
+      ]
+    },
+    "errors": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+    "warnings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "limits"],
+      "properties": {
+        "scope": { "type": "string" },
+        "limits": { "$ref": "#/$defs/limits" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "ok" } } },
+      "then": {
+        "properties": {
+          "complete": { "const": true },
+          "data": { "not": { "type": "null" } },
+          "errors": { "type": "array", "maxItems": 0 }
+        }
+      },
+      "else": {
+        "properties": {
+          "complete": { "const": false },
+          "data": { "type": "null" },
+          "errors": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "origin": { "enum": ["staged", "unstaged", "untracked", "snapshot"] },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_input_bytes", "max_files", "max_changed_lines", "max_findings", "max_output_bytes"],
+      "properties": {
+        "max_input_bytes": { "type": "integer", "minimum": 1, "maximum": 1048576 },
+        "max_files": { "type": "integer", "minimum": 1, "maximum": 256 },
+        "max_changed_lines": { "type": "integer", "minimum": 1, "maximum": 20000 },
+        "max_findings": { "type": "integer", "minimum": 1, "maximum": 256 },
+        "max_output_bytes": { "type": "integer", "minimum": 1024, "maximum": 65536 }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "severity", "path", "line", "diff_line"],
+      "properties": {
+        "rule_id": { "type": "string" },
+        "severity": { "enum": ["error", "warning"] },
+        "path": { "type": ["string", "null"] },
+        "line": { "type": ["integer", "null"], "minimum": 1 },
+        "diff_line": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "fileChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "previous_path", "kind", "binary", "symlink", "added_lines", "deleted_lines"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "previous_path": { "type": ["string", "null"] },
+        "kind": { "enum": ["added", "modified", "deleted", "renamed"] },
+        "binary": { "type": "boolean" },
+        "symlink": { "type": "boolean" },
+        "added_lines": { "type": "integer", "minimum": 0 },
+        "deleted_lines": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "checkData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verdict", "origin", "summary", "files", "findings", "exceptions_applied"],
+      "properties": {
+        "verdict": { "enum": ["pass", "violations"] },
+        "origin": { "$ref": "#/$defs/origin" },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["files", "added_lines", "deleted_lines"],
+          "properties": {
+            "files": { "type": "integer", "minimum": 0, "maximum": 256 },
+            "added_lines": { "type": "integer", "minimum": 0 },
+            "deleted_lines": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "files": { "type": "array", "maxItems": 256, "items": { "$ref": "#/$defs/fileChange" } },
+        "findings": { "type": "array", "maxItems": 256, "items": { "$ref": "#/$defs/finding" } },
+        "exceptions_applied": { "type": "array", "maxItems": 256, "items": { "$ref": "#/$defs/finding" } }
+      }
+    },
+    "capabilitiesData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operations", "origins", "policy_schema_version", "rule_ids", "limits", "supports", "limitations"],
+      "properties": {
+        "operations": { "type": "array", "items": { "enum": ["check", "capabilities"] } },
+        "origins": { "type": "array", "items": { "$ref": "#/$defs/origin" } },
+        "policy_schema_version": { "const": "1.0.0" },
+        "rule_ids": { "type": "array", "items": { "type": "string" } },
+        "limits": { "$ref": "#/$defs/limits" },
+        "supports": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["git_unified_diff", "renames", "mode_changes", "binary_markers", "symlink_metadata"],
+          "properties": {
+            "git_unified_diff": { "type": "boolean" },
+            "renames": { "type": "boolean" },
+            "mode_changes": { "type": "boolean" },
+            "binary_markers": { "type": "boolean" },
+            "symlink_metadata": { "type": "boolean" }
+          }
+        },
+        "limitations": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
