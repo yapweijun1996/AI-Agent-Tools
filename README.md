@@ -1,6 +1,28 @@
 # AI-Agent-Tools
 
-Owned source for fifteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for sixteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+
+## Install all CLIs
+
+Use Node 22.13+ or Node 24, npm and Git. The source installer builds and installs every implemented CLI, including private source MVPs, into a new isolated directory:
+
+```sh
+npm exec --yes --ignore-scripts --package=git+https://github.com/yapweijun1996/AI-Agent-Tools.git -- ait install-all --github https://github.com/yapweijun1996/AI-Agent-Tools --prefix ./ai-agent-tools-cli --allow-build --allow-experimental
+```
+
+This convenience command follows the repository default branch; use the same pinned commit in the bootstrap package and `--ref` for reproducible installation. It uses the source version of AIT from GitHub; published `ai-agent-tools@0.1.1` does not contain this new command. See [installation options, pinned revisions, PATH selection and rollback](docs/workflow/INSTALL_ALL.md). Planned registry entries are not installed. The result includes all installed CLI names, their source provenance and executable directory.
+
+## Use from an AI agent
+
+Point the agent to this repository's README, [tool index](migration-tools.md), and [optional workflow skill](skills/ai-agent-tools-workflow/SKILL.md). For example:
+
+```text
+Read https://github.com/yapweijun1996/AI-Agent-Tools and its workflow skill.
+Install all implemented CLIs into a new isolated directory using the installation guide.
+Report the installed CLI names and executable directory, then use only the tools relevant to my task.
+```
+
+The agent should inspect each tool's help/capabilities and native contract before use. Installation and ongoing task execution are separate operations.
 
 ## Develop
 
@@ -37,7 +59,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 ## Two additional source MVPs
 
-[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has fifteen package folders; original ten source provenance remains unchanged.
+[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has sixteen package folders; original ten source provenance remains unchanged.
 
 ## Patch policy checks
 
@@ -45,6 +67,14 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 ```sh
 node packages/patch-guard/src/cli.js check --diff packages/patch-guard/examples/safe.diff --policy packages/patch-guard/examples/policy.json --json
+```
+
+## Local instruction discovery
+
+[Agent Rules Resolve](packages/rules-resolve/README.md) discovers a complete local ancestor instruction chain for an explicit root, target and `agents-chain-v1` profile. It returns ordered source provenance, ignored-file reasons and optional full rule text. References are not followed; semantic conflicts and hidden/global agent instructions remain outside its scope. The private, dependency-free package has no npm release.
+
+```sh
+node packages/rules-resolve/src/cli.js resolve --root . --target packages/rules-resolve/src/cli.js --target-kind file --profile agents-chain-v1 --json
 ```
 
 ## Deployment evidence verification

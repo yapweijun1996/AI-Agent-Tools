@@ -28,5 +28,6 @@ There are no mandatory inter-tool source dependencies. Dependencies resolve with
 | [ai-agent-tool-release-guard](packages/release-guard/README.md) | agent-release-guard deploy-verify | agent-release-guard | Experimental, private source |
 | [ai-agent-tool-runtime-trace](packages/runtime-trace/README.md) | agent-runtime-trace ui-regression-check | agent-runtime-trace | Experimental UI profile, private source |
 | [agent-patch-guard](packages/patch-guard/README.md) | agent-patch-guard check | agent-patch-guard | Experimental, private source |
+| [agent-rules-resolve](packages/rules-resolve/README.md) | agent-rules-resolve resolve | agent-rules-resolve | Experimental, private source |
 
 Optional source installation: [local CLI workflow](docs/workflow/LOCAL_CLI.md). Release Guard additionally supports bounded explicit evidence collection; see its package README.

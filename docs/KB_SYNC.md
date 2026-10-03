@@ -7,6 +7,26 @@ The KB-MCP visibility was explicitly changed to `user` and read back as `user`
 before the successful synchronization. The logical KB remains the project's
 SSOT, but this run is user-visible rather than company-wide.
 
+## 2026-10-03 Rules Resolve and install-all User-tier reconciliation
+
+Live identity, project KB scope and existing User-tier records were read before
+writes. Rules Resolve's existing status, Canonical Ecosystem SSOT and Functional
+Map were updated in place with dated local source acceptance; their historical
+content and unrelated metadata were preserved. Two full source contracts were
+ingested with source paths, revision, lifecycle and normalized SHA-256. Exact
+full parent content and all three updated summaries were read back at User tier.
+The earlier Company-tier policy does not override the owner's User visibility.
+
+| Source contract | Normalized SHA-256 | User KB parent | Readback |
+| --- | --- | --- | --- |
+| `packages/rules-resolve/README.md` | `cbef3c4040f820a0a23be7fbdac064add84972e80ca2eb67748814a6d64079ea` | `484f970f-a8d8-4cff-acbd-791ae066d682` | Exact full content |
+| `docs/workflow/INSTALL_ALL.md` | `2f20ef49e78ea056e4fd3cfe399cd826ce1d4d42d26b9f9482ec9d307e46d8ad` | `6615ef91-ad03-4167-b2f6-784929029988` | Exact full content |
+
+Rules status ID remains `a485f7ae-b140-4ea0-a487-729839c3eda2`. Local checks
+passed; immutable GitHub bootstrap, exact-head CI and merge provenance are
+recorded in the delivery PR. No new current-status record, company promotion,
+npm publication or owner-confirmed delivery notice was created.
+
 ## Ownership and conflict handling
 
 The Company KB holds cross-session project knowledge; repository files hold

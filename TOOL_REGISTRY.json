@@ -94,9 +94,9 @@
     {
       "id": "agent-rules-resolve",
       "name": "Agent Rules Resolve",
-      "description": "Resolve supported rule sources using documented precedence.",
-      "status": "Planned",
-      "repository_url": null,
+      "description": "Discover explicit local ancestor instruction chains with a versioned profile, ordering and source provenance.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools",
       "npm": null,
       "release_version": null,
       "verification": null,

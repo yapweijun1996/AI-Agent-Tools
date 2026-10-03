@@ -1,5 +1,13 @@
 # Task status
 
+## Rules Resolve and explicit install-all — 2026-10-03
+
+The owner selected Rules Resolve and requested agent-readable GitHub onboarding plus a single npm command to install all implemented CLIs. [Rules Resolve](packages/rules-resolve/README.md) implements bounded local ancestor discovery under the fixed `agents-chain-v1` profile in a private, dependency-free source package. Registry remains 18 entries; source now has 16 tool packages. Its lifecycle is Experimental; npm identity, release and published verification remain `null`. It discovers rule provenance, not semantic conflicts or hidden/global instructions.
+
+[Install all](docs/workflow/INSTALL_ALL.md) adds an explicit source-install route to dependency-free AIT, retaining the existing individual registry install/dispatch contracts. Local checkout or the fixed owned GitHub repository is copied to an isolated build snapshot, then all implemented CLIs are installed into a new prefix. Build/Experimental approval flags are required; private tools are not represented as published packages. The workflow skill now routes agents to this guide and native contracts. Current validation is recorded in [Validation](VALIDATION.md); remote availability and cross-platform CI remain separate from local implementation.
+
+Local acceptance passed on macOS Node `v24.21.0`: 58 Rules Resolve tests, 11 installer regressions, complete root verification and packed consumers. One packed-bootstrap npm command installed all 17 CLIs into an isolated prefix; every launcher started and installed production versions matched source locks. GitHub bootstrap, exact-head CI and the authorized merge are verified in the PR before completion. No npm publication or personal/global configuration change is part of this delivery.
+
 ## Agent Patch Guard — 2026-10-03
 
 The owner requested a new Patch Guard implementation in this project. The existing `agent-patch-guard` registry responsibility is implemented in [packages/patch-guard](packages/patch-guard/README.md) as a private source MVP with no runtime dependencies. Its scope is explicit supplied Git patch artifacts plus JSON policy; no worktree collection, patch application or project-command execution. Root verification includes the new package and its packed-consumer smoke check. Registry remains 18 tools and source now has 15 package folders. Lifecycle is Experimental; npm identity/release/evidence remain `null`. Current check results are recorded in [Validation](VALIDATION.md); historical entries below retain their dates and scope.

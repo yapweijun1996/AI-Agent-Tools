@@ -1,5 +1,7 @@
 # Optional source CLI workflow
 
+For automatic source acquisition, builds and isolated installation in one explicit command, use [Install all](INSTALL_ALL.md). The manual checkout route below remains available.
+
 Use Node 22 (>=22.13) or 24; verify `node -p 'process.version + " " + process.execPath'`. Source installation preserves each package's license/private flag and does not publish anything.
 
 ```sh
