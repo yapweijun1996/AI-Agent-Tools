@@ -86,3 +86,7 @@ Only the checked-in exact profiles and bounded validators are supported; adding 
 profile requires its catalog entry, native contract, fixtures, and review. Individual
 tool repositories remain responsible for implementation, releases, native
 contracts, and security reporting.
+
+## Explicit install-all source workflow (2026-10-03)
+
+The current owned source adds `ait install-all` for caller-authorized batch installation from a local checkout or the fixed GitHub repository. [Install all](workflow/INSTALL_ALL.md) owns the command, build authorization, isolated prefix, provenance, dependency and rollback contract. It remains separate from registry-installed state and exact native profiles. Root packing includes its dependency-free installer module and guide, never tool implementations. Published `ai-agent-tools@0.1.1` has not been republished with this command.

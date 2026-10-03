@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Rules Resolve result envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "const": "agent-rules-resolve"
+        },
+        "version": {
+          "const": "0.1.0"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "incomplete",
+        "error"
+      ]
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "data": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/resolve"
+        },
+        {
+          "$ref": "#/$defs/capabilities"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z_]+$"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z_]+$"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "string"
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "max_depth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "max_files": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 128
+            },
+            "max_file_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65536
+            },
+            "max_total_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 262144
+            },
+            "max_output_bytes": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 524288
+            },
+            "max_duration_ms": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5000
+            }
+          },
+          "required": [
+            "max_depth",
+            "max_files",
+            "max_file_bytes",
+            "max_total_bytes",
+            "max_output_bytes",
+            "max_duration_ms"
+          ]
+        }
+      },
+      "required": [
+        "scope",
+        "limits"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "tool",
+    "status",
+    "complete",
+    "data",
+    "errors",
+    "warnings",
+    "meta"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "complete": {
+            "const": true
+          },
+          "data": {
+            "not": {
+              "type": "null"
+            }
+          },
+          "errors": {
+            "maxItems": 0,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "else": {
+        "properties": {
+          "complete": {
+            "const": false
+          },
+          "data": {
+            "type": "null"
+          },
+          "errors": {
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "directory",
+        "order",
+        "sha256",
+        "bytes",
+        "lines"
+      ]
+    },
+    "resolve": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile": {
+          "const": "agents-chain-v1"
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "file",
+                "directory"
+              ]
+            },
+            "directory": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "kind",
+            "directory"
+          ]
+        },
+        "precedence": {
+          "const": "root-to-target"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "maxItems": 128
+        },
+        "ignored": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "reason": {
+                "enum": [
+                  "empty",
+                  "shadowed"
+                ]
+              },
+              "selected_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "path",
+              "reason",
+              "selected_by"
+            ]
+          },
+          "maxItems": 130
+        },
+        "directories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 65
+        },
+        "include_content": {
+          "type": "boolean"
+        },
+        "references": {
+          "const": "not-followed"
+        }
+      },
+      "required": [
+        "profile",
+        "target",
+        "precedence",
+        "sources",
+        "ignored",
+        "directories",
+        "include_content",
+        "references"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "include_content": {
+                "const": true
+              }
+            },
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "sources": {
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "content"
+                  ]
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "else": {
+            "properties": {
+              "sources": {
+                "items": {
+                  "type": "object",
+                  "not": {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "content"
+                    ]
+                  }
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "const": "agents-chain-v1"
+              },
+              "filenames": {
+                "const": [
+                  "AGENTS.override.md",
+                  "AGENTS.md"
+                ]
+              },
+              "selection": {
+                "const": "first-nonempty-per-directory"
+              },
+              "order": {
+                "const": "root-to-target"
+              },
+              "references": {
+                "const": "not-followed"
+              }
+            },
+            "required": [
+              "id",
+              "filenames",
+              "selection",
+              "order",
+              "references"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "read_only": {
+          "const": true
+        },
+        "content_opt_in": {
+          "const": true
+        }
+      },
+      "required": [
+        "profiles",
+        "read_only",
+        "content_opt_in"
+      ]
+    }
+  }
+}

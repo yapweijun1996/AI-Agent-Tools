@@ -32,6 +32,7 @@ function usage() {
     '  ait doctor [--json] [--registry PATH] [--home PATH]',
     '  ait install TOOL_ID [--allow-experimental] [--json] [--registry PATH] [--home PATH]',
     '  ait install TOOL_ID --from-path PACKAGE_DIR [--allow-experimental] [--json] [--registry PATH] [--home PATH]',
+    '  ait install-all (--github URL [--ref REF] | --from-path CHECKOUT) --prefix NEW_DIR --allow-build --allow-experimental [--json]',
     '  ait dispatch TOOL_ID [--allow-execution] [--cwd PATH] [--json] [--registry PATH] [--home PATH] [--profile-index PATH] -- [ARGS...]',
     '',
     'Installation and execution are always explicit. Registry metadata is not trusted code.',
@@ -48,6 +49,10 @@ function parseArgs(argv) {
     profileIndex: null,
     allowExperimental: false,
     allowExecution: false,
+    allowBuild: false,
+    github: null,
+    ref: null,
+    prefix: null,
     command: null,
     positionals: [],
     passthrough: [],
@@ -76,6 +81,10 @@ function parseArgs(argv) {
       options.allowExecution = true;
       continue;
     }
+    if (arg === '--allow-build') {
+      options.allowBuild = true;
+      continue;
+    }
     if (arg === '--help' || arg === '-h') {
       options.command = 'help';
       continue;
@@ -84,7 +93,7 @@ function parseArgs(argv) {
       options.command = 'version';
       continue;
     }
-    if (['--registry', '--home', '--cwd', '--from-path', '--profile-index'].includes(arg)) {
+    if (['--registry', '--home', '--cwd', '--from-path', '--profile-index', '--github', '--ref', '--prefix'].includes(arg)) {
       if (index + 1 >= argv.length) {
         throw new AitError(`${arg} requires a value`, 2, 'INVALID_ARGUMENT');
       }
@@ -94,6 +103,9 @@ function parseArgs(argv) {
         '--cwd': 'cwd',
         '--from-path': 'fromPath',
         '--profile-index': 'profileIndex',
+        '--github': 'github',
+        '--ref': 'ref',
+        '--prefix': 'prefix',
       }[arg];
       options[optionName] = argv[index + 1];
       index += 1;
@@ -675,6 +687,10 @@ function main(argv = process.argv.slice(2)) {
     if (options.command === 'list') output = listTools(options);
     else if (options.command === 'doctor') output = doctor(options);
     else if (options.command === 'install') output = installTool(options);
+    else if (options.command === 'install-all') {
+      const { installAll } = require('./install-all.js');
+      output = result(installAll(options, { AitError }));
+    }
     else if (options.command === 'dispatch') {
       const dispatched = dispatchTool(options);
       output = dispatched.output;

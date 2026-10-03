@@ -90,6 +90,10 @@ artifacts with provenance and size limits; it does not own global state or route
 agent reasoning. The published 0.1.1 distribution retains its default registry snapshot under Apache-2.0. Any future publication requires explicit approval and packed-consumer verification. The detailed policy gate for remote refresh,
 signatures, dependencies, and sandboxing is recorded in [AIT runtime](AIT_RUNTIME.md).
 
+## Explicit batch source installation
+
+The source version of `ait install-all` is a separately explicit, opt-in installation workflow. It accepts a caller-selected local checkout or the fixed owned GitHub source repository and installs implemented packages into a new isolated prefix. Unlike registry `install`, it can install private/unpublished source packages without inventing npm registry identities. It records a source commit or labelled local worktree snapshot, package artifact integrity and CLI inventory; it does not update `ait installed.json` or native consumer profiles. Package build scripts require `--allow-build`, Experimental source requires `--allow-experimental`, and install/pack lifecycle scripts remain disabled. Each tool retains its independent runtime dependency closure. [Installation contract](workflow/INSTALL_ALL.md) owns acquisition, bounds, receipt, PATH and rollback. Published AIT 0.1.1 does not imply this newer source command is available.
+
 ## Shared infrastructure gate
 
 The owner explicitly authorized source consolidation on 2026-09-30. [Decision](migration/DECISION.md) supersedes the former monorepo maturity gate. Ten imported package folders preserve independent dependency locks, compiler versions, interfaces and licensing. Root commands orchestrate package scripts without hoisting or creating a mandatory shared SDK. The dependency-free AIT published distribution still includes only its explicit `files` allowlist; it does not bundle or publish the imported packages.

@@ -1,0 +1,27 @@
+{
+  "name": "agent-rules-resolve",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Bounded read-only discovery of local instruction chains with explicit profile and provenance.",
+  "engines": { "node": "^22.13.0 || ^24.0.0" },
+  "bin": { "agent-rules-resolve": "src/cli.js" },
+  "exports": { ".": { "types": "./types/index.d.ts", "import": "./src/index.js" } },
+  "files": ["src", "types", "schema", "examples", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "node scripts/check.mjs",
+    "lint": "node scripts/check.mjs",
+    "typecheck": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext --target es2022 --skipLibCheck test/type-contract.ts",
+    "test": "node --test test/*.test.js",
+    "smoke:pack": "node scripts/pack-smoke.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": { "ajv": "8.20.0", "typescript": "5.9.3" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yapweijun1996/AI-Agent-Tools.git",
+    "directory": "packages/rules-resolve"
+  },
+  "bugs": { "url": "https://github.com/yapweijun1996/AI-Agent-Tools/issues" }
+}
