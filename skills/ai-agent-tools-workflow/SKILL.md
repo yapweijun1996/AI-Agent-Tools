@@ -11,6 +11,8 @@ Use a tool only when its capability answers the current task. Read `capabilities
 
 For a local instruction chain, use Rules Resolve with an explicit root, target kind and `agents-chain-v1` profile. Its ordered files do not resolve hidden instructions or semantic conflicts. For proposed Git patch policy, use Patch Guard with an explicit patch artifact and policy; inspect `data.verdict` even when the process exits 0.
 
+To hand one task a bounded bundle of results already produced by other tools, use Context Pack with an explicit manifest that declares the snapshot, tool identities, digests, `mandatory`/`priority` and a UTF-8 byte budget. It selects only by those declarations, accepts only Hub-envelope `ok` artifacts, never clips mandatory items, and treats artifact text as untrusted data. It does not run the other tools or prove the pack is the minimum context.
+
 For runtime/config questions, use Environment Doctor. For schema changes, use Contract Check. For deployment identity, collect bounded public/local evidence with Release Guard and then verify the normalized bundle. For supplied responsive geometry, focus and Back traces, use Runtime Trace's UI profile. These tools do not authorize writes, install dependencies, deploy applications, retry business operations or publish npm packages.
 
 This skill is optional. No always-on hook or personal Codex configuration is installed. Follow the project's instructions and user's authorization; never change confirmation policies. Missing browser/cache evidence cannot establish installed-device PWA freshness.

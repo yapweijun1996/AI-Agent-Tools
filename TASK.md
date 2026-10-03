@@ -1,5 +1,11 @@
 # Task status
 
+## Agent Context Pack — 2026-10-03
+
+The owner requested implementation of the existing `agent-context-pack` registry responsibility. It is implemented in [packages/context-pack](packages/context-pack/README.md) as a private, dependency-free source MVP. Scope: explicit supplied Hub-envelope artifacts and one JSON manifest declaring snapshot, tool identity, optional digests, `mandatory`/`priority` and a UTF-8 byte budget; deterministic ordering, exact artifact-digest and exact-locator deduplication, mandatory-overflow failure and stable omission reasons. Out of scope: running other tools, execution graphs, relevance scoring, span merging, native-contract adapters, Result Store locators, persistent memory and any network/LLM use. Snapshot identity is caller-declared and verified only for consistency. Registry remains 18 entries; source now has 17 package folders. Lifecycle is Experimental; npm identity, release and published verification remain `null`. Current check results are recorded in [Validation](VALIDATION.md). KB synchronization, npm publication and owner-confirmed delivery completion are not part of this change.
+
+Local acceptance passed on macOS Node `v24.21.0`: 41 package tests, strict schemas, declarations, packed consumer, nine selection mutations caught, byte-reproducible example artifacts and the complete root `npm run verify` gate, plus Hub validation and whitespace checks. Windows/Linux, remote CI and the owner's commit/merge decision are pending.
+
 ## Rules Resolve and explicit install-all — 2026-10-03
 
 The owner selected Rules Resolve and requested agent-readable GitHub onboarding plus a single npm command to install all implemented CLIs. [Rules Resolve](packages/rules-resolve/README.md) implements bounded local ancestor discovery under the fixed `agents-chain-v1` profile in a private, dependency-free source package. Registry remains 18 entries; source now has 16 tool packages. Its lifecycle is Experimental; npm identity, release and published verification remain `null`. It discovers rule provenance, not semantic conflicts or hidden/global instructions.

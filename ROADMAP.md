@@ -9,6 +9,8 @@ The documentation foundation is complete. **Delivery progress: 1 of 18 registere
 
 ## Delivery sequence
 
+Current implementation addition (2026-10-03): [Context Pack](packages/context-pack/README.md) implements bounded assembly of supplied Hub result artifacts under a declared UTF-8 byte budget as a private source MVP. Its registry lifecycle is Experimental; publication, cross-platform evidence and owner-confirmed delivery completion remain separate. It selects by caller-declared relevance only; Result Store locators remain out of scope while Result Store is Planned. The delivery order below is preserved.
+
 Current implementation addition (2026-10-03): [Rules Resolve](packages/rules-resolve/README.md) implements bounded local instruction discovery under `agents-chain-v1` as a private source MVP. Registry lifecycle is Experimental; published release and owner-confirmed delivery completion remain separate.
 
 Current implementation addition (2026-10-03): [Patch Guard](packages/patch-guard/README.md) now implements supplied Git patch policy checks as a private source MVP. Its registry lifecycle is Experimental; publication, cross-platform evidence and owner-confirmed delivery completion remain separate. The delivery order below is preserved.

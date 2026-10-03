@@ -1,0 +1,62 @@
+{
+  "manifest_version": "1.0.0",
+  "profile": "context-pack-v1",
+  "task": {
+    "id": "add-backend-module",
+    "target": "src/backend/new.js"
+  },
+  "snapshot": "fixture:examples-v1",
+  "budget": {
+    "unit": "utf8-bytes",
+    "max": 8192
+  },
+  "items": [
+    {
+      "id": "rules",
+      "artifact": "examples/artifacts/rules-resolve.json",
+      "tool": {
+        "id": "agent-rules-resolve",
+        "version": "0.1.0"
+      },
+      "snapshot": "fixture:examples-v1",
+      "sha256": "974af0f2af48a9f3ec946500b500a018321dfa9ce0a58c6987f9a8fff36fbf0e",
+      "mandatory": true,
+      "priority": 100,
+      "locators": [
+        {
+          "path": "AGENTS.md",
+          "start_line": 1,
+          "end_line": 3
+        },
+        {
+          "path": "src/AGENTS.md",
+          "start_line": 1,
+          "end_line": 3
+        },
+        {
+          "path": "src/backend/AGENTS.md",
+          "start_line": 1,
+          "end_line": 3
+        }
+      ]
+    },
+    {
+      "id": "patch",
+      "artifact": "examples/artifacts/patch-guard.json",
+      "tool": {
+        "id": "agent-patch-guard",
+        "version": "0.1.0"
+      },
+      "snapshot": "fixture:examples-v1",
+      "sha256": "875ebc22d1a40aa902b47386d69d8df72799da598cc4044022f8ad46ed2b3558",
+      "priority": 50,
+      "locators": [
+        {
+          "path": "src/total.js",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  ]
+}

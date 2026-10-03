@@ -116,9 +116,9 @@
     {
       "id": "agent-context-pack",
       "name": "Task-scoped Agent Context Pack",
-      "description": "Assemble bounded, provenance-bearing tool results for one explicit task.",
-      "status": "Planned",
-      "repository_url": null,
+      "description": "Assemble supplied Hub result artifacts for one explicit task under a declared UTF-8 byte budget with caller-declared relevance, exact duplicate removal and omission reasons.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools",
       "npm": null,
       "release_version": null,
       "verification": null,
