@@ -1,6 +1,6 @@
 # AI-Agent-Tools
 
-Owned source for sixteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for seventeen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
 ## Install all CLIs
 
@@ -59,7 +59,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 ## Two additional source MVPs
 
-[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has sixteen package folders; original ten source provenance remains unchanged.
+[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has seventeen package folders; original ten source provenance remains unchanged.
 
 ## Patch policy checks
 
@@ -75,6 +75,14 @@ node packages/patch-guard/src/cli.js check --diff packages/patch-guard/examples/
 
 ```sh
 node packages/rules-resolve/src/cli.js resolve --root . --target packages/rules-resolve/src/cli.js --target-kind file --profile agents-chain-v1 --json
+```
+
+## Task context assembly
+
+[Agent Context Pack](packages/context-pack/README.md) assembles supplied Hub result artifacts from other tools into one provenance-bearing pack under a declared UTF-8 byte budget. Relevance is declared by the caller (`mandatory`, `priority`); it removes only exact duplicates, never clips a mandatory item and lists every omission with a reason. Snapshot identity is caller-declared and checked for consistency only. The private, dependency-free package has no npm release.
+
+```sh
+node packages/context-pack/src/cli.js pack --manifest examples/manifest.json --root packages/context-pack --json
 ```
 
 ## Deployment evidence verification
