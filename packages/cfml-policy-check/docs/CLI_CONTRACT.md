@@ -57,6 +57,15 @@ AIT mode reads exactly one JSON request from stdin. The request uses
 
 Limit exhaustion returns `incomplete` with exit code 3.
 
+Source and profile files are checked for oversized regular-file metadata before
+their bodies are read. Reading uses a verified regular-file descriptor and is
+capped at the admitted size plus one byte to detect growth; it cannot exceed the
+selected byte limit plus one. Oversized or over-limit growing input returns
+`RESOURCE_LIMIT` before UTF-8 decoding. Other observed read-time changes use the
+existing `FILE_READ_ERROR` or `PROFILE_READ_ERROR` result, and descriptors are
+closed on success and rejection. This bounds the selected file bodies; it does
+not make filesystem inspection an atomic snapshot.
+
 ## Exit codes
 
 | Code | Meaning |

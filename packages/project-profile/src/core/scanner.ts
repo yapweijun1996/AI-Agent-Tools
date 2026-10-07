@@ -211,14 +211,25 @@ export class Scanner {
     }
     const before = probe.stat;
     const noFollow = (constants as typeof constants & { O_NOFOLLOW?: number }).O_NOFOLLOW ?? 0;
+    const nonBlock = (constants as typeof constants & { O_NONBLOCK?: number }).O_NONBLOCK ?? 0;
     let descriptor: number | undefined;
     let buffer: Buffer | undefined;
     try {
-      descriptor = openSync(absolute, constants.O_RDONLY | noFollow);
+      // A substituted FIFO must not block before descriptor validation.
+      descriptor = openSync(absolute, constants.O_RDONLY | noFollow | nonBlock);
       const opened = fstatSync(descriptor);
       const maxReadable = Math.min(BUDGETS.metadataFileBytes, totalRemaining);
-      if (!opened.isFile() || opened.size > maxReadable) {
-        if (opened.size > maxReadable) this.truncatedState.metadataBytes = opened.size > totalRemaining;
+      if (!opened.isFile()) {
+        this.diagnostics.add("METADATA_UNREADABLE", "warning", "A metadata path was not a regular file when opened.", normalized);
+        return null;
+      }
+      if (before.dev !== opened.dev || before.ino !== opened.ino || !sameFileState(before, opened) ||
+          !this.pathsEquivalent(realpathSync(absolute), absolute)) {
+        this.diagnostics.add("REPOSITORY_CHANGED", "warning", "The inspected repository changed before metadata could be read.", normalized);
+        return null;
+      }
+      if (opened.size > maxReadable) {
+        this.truncatedState.metadataBytes = opened.size > totalRemaining;
         this.diagnostics.add("METADATA_TOO_LARGE", "warning", "A metadata file exceeded the bounded read budget.", normalized);
         return null;
       }

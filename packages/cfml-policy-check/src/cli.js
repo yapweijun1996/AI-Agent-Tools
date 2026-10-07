@@ -145,13 +145,36 @@ function resolveChild(root, childInput, label) {
 
 function readUtf8Bounded(filePath, maximum, label) {
   let bytes;
+  let descriptor;
+  const readError = () => new PolicyError(label === "source" ? "FILE_READ_ERROR" : "PROFILE_READ_ERROR", `The selected ${label} could not be read.`);
+  const resourceLimit = () => new PolicyError("RESOURCE_LIMIT", `${label} exceeds the configured byte limit.`, EXIT_CODES.incomplete);
   try {
-    bytes = fs.readFileSync(filePath);
-  } catch {
-    throw new PolicyError(label === "source" ? "FILE_READ_ERROR" : "PROFILE_READ_ERROR", `The selected ${label} could not be read.`);
-  }
-  if (bytes.length > maximum) {
-    throw new PolicyError("RESOURCE_LIMIT", `${label} exceeds the configured byte limit.`, EXIT_CODES.incomplete);
+    const expected = fs.statSync(filePath, { bigint: true });
+    if (!expected.isFile()) throw readError();
+    if (expected.size > BigInt(maximum)) throw resourceLimit();
+    descriptor = fs.openSync(filePath, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW ?? 0) | (fs.constants.O_NONBLOCK ?? 0));
+    const opened = fs.fstatSync(descriptor, { bigint: true });
+    if (!opened.isFile() || opened.dev !== expected.dev || opened.ino !== expected.ino) throw readError();
+    if (opened.size > BigInt(maximum)) throw resourceLimit();
+    // Reserve one byte beyond the observed size to detect growth without a full read.
+    const buffer = Buffer.alloc(Number(opened.size) + 1);
+    let length = 0;
+    while (length < buffer.length) {
+      const count = fs.readSync(descriptor, buffer, length, buffer.length - length, length);
+      if (count === 0) break;
+      length += count;
+      if (length > maximum) throw resourceLimit();
+    }
+    const after = fs.fstatSync(descriptor, { bigint: true });
+    if (after.size > BigInt(maximum)) throw resourceLimit();
+    if (after.size !== BigInt(length) || opened.size !== after.size ||
+        opened.mtimeNs !== after.mtimeNs || opened.ctimeNs !== after.ctimeNs) throw readError();
+    bytes = buffer.subarray(0, length);
+  } catch (error) {
+    if (error instanceof PolicyError) throw error;
+    throw readError();
+  } finally {
+    if (descriptor !== undefined) fs.closeSync(descriptor);
   }
   try {
     return new TextDecoder("utf-8", { fatal: true }).decode(bytes);

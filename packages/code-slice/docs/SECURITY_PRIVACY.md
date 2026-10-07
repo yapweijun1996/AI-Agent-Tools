@@ -51,6 +51,17 @@ Current implementation:
 - reject lexical and realpath symlink escapes;
 - reject on uncertainty.
 
+Source reads use a verified regular-file descriptor. Where the platform exposes
+the flags, opens reject leaf symlinks and avoid blocking on substituted special
+files. Descriptor identity, canonical path and file state are checked before
+reading and again afterwards; ancestor or leaf replacement observed at open is
+rejected before source bytes are consumed. Reads are bounded by the admitted
+size plus one byte for growth detection and never exceed the selected byte limit
+plus one. Growth beyond the limit during reading returns `FILE_TOO_LARGE`;
+other observed changes or unsafe opens return `FILE_NOT_FOUND`. Existing static
+root escapes remain `FILE_OUTSIDE_ROOT`.
+These checks do not make the tool an atomic filesystem snapshot or OS sandbox.
+
 ## Untrusted source
 
 Source code is data, not instructions.

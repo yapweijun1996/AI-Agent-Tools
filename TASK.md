@@ -1,5 +1,13 @@
 # Task status
 
+## Read boundary corrections — 2026-10-08
+
+The owner selected all three continued-review findings for correction. Code Slice binds bounded source reads to an admitted regular-file descriptor and rejects observed leaf/ancestor substitutions. Project Profile opens nonblocking where supported and rejects substituted nonregular or different metadata before reading. CFML Policy Check rejects observed oversized source/profile files before body reads and bounds descriptor reads with growth detection. All thirteen targeted regressions passed locally. Full native suites passed 85 Code Slice, 34 Project Profile and 20 CFML Policy Check tests; Code Slice's six public-entrypoint E2E checks and Project Profile's installed packaged-CLI check also passed. Combined root verification passed 844 Node and twelve Python tests, with all remaining configured gates. Evidence and platform limits are recorded in [Validation](VALIDATION.md#read-boundary-corrections--2026-10-08). Package identities, native result fields, dependencies and release status are unchanged. These corrections are local and have not been committed or pushed.
+
+## Continued read-only review — 2026-10-08
+
+The owner selected further source review. At main commit `46ad8a2947b955646131f31ac763b1cebc3d1a17`, three unfixed findings were reproduced with synthetic local inputs: P1 Code Slice returns source outside an explicit root when a checked file is replaced with a symlink before the read; P2 Project Profile blocks opening a real FIFO substituted after its regular-file probe; P2 CFML Policy Check reads entire oversized source/profile files before enforcing their byte limits. Ordinary-input and rejection controls passed. The implementation remains unchanged; evidence and proposed acceptance checks are recorded in [Validation](VALIDATION.md#continued-read-only-review--2026-10-08). This review does not authorize fixes, a new package release or a new remote integration.
+
 ## Main integration and hosted correction verification — 2026-10-07
 
 The owner requested commit and integration into main. The three focused correction commits (`2e6b9f4`, `afd8a76`, `79ba4d7`) were already committed on local main and are confirmed on `origin/main`. The exact-source-head [Actions run](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/37646804459) passed Linux Node 22/24, macOS Node 22 and Windows Node 22 at `79ba4d7fff8caec275e7134fe4332aebac6c397e`. All seventeen new regressions ran on all four jobs. Current platform counts and limits are recorded in [Validation](VALIDATION.md#main-integration-and-hosted-correction-verification--2026-10-07). This final evidence update changes only Hub documentation; no package release or workflow change is included.

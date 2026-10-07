@@ -185,6 +185,13 @@ Budget handling must reserve room for the envelope, coverage, and diagnostics. O
 
 The profiler is not an atomic filesystem snapshot. Detect changes during reads where practical and report `REPOSITORY_CHANGED`; undetectable concurrent changes cannot be ruled out. Repeatability is promised for unchanged supported input trees under the same tool version, configuration, and platform-independent file semantics.
 
+Metadata opens use nonblocking mode where supported so a FIFO substituted after
+the regular-file probe cannot stall descriptor validation. An opened nonregular
+file is rejected with `METADATA_UNREADABLE`; an observed identity, file-state or
+canonical-path change before reading is rejected with `REPOSITORY_CHANGED`.
+Rejected descriptors are closed and their bodies do not count as read metadata.
+The existing partial-profile and deterministic coverage rules still apply.
+
 ## 12. Security and filesystem behavior
 
 Read bodies only of allowlisted manifests, workspace data, and runtime pin files. Inventory instruction, CI, configuration, and lockfiles without reading bodies.

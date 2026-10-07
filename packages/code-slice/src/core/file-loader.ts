@@ -1,4 +1,4 @@
-import { existsSync, realpathSync, statSync, readFileSync } from "node:fs";
+import { closeSync, constants, existsSync, fstatSync, lstatSync, openSync, readSync, realpathSync, statSync, type BigIntStats } from "node:fs";
 import path from "node:path";
 import { CodeSliceError } from "../schema/errors.js";
 import { DEFAULT_MAX_BYTES, normalizeMaxBytes } from "./limits.js";
@@ -26,6 +26,11 @@ export interface LoadedFile {
 function escapesRoot(root: string, candidate: string): boolean {
   const relative = path.relative(root, candidate);
   return relative.startsWith("..") || path.isAbsolute(relative);
+}
+
+function sameFileState(left: BigIntStats, right: BigIntStats): boolean {
+  return left.dev === right.dev && left.ino === right.ino && left.mode === right.mode &&
+    left.size === right.size && left.mtimeNs === right.mtimeNs && left.ctimeNs === right.ctimeNs;
 }
 
 export function loadFile(requestedPath: string, options: LoadFileOptions = {}): LoadedFile {
@@ -81,18 +86,49 @@ export function loadFile(requestedPath: string, options: LoadFileOptions = {}): 
     }
   }
 
-  const stat = statSync(realPath);
+  const stat = statSync(realPath, { bigint: true });
   if (!stat.isFile()) {
     throw new CodeSliceError("FILE_NOT_FOUND", `Not a regular file: ${requestedPath}`);
   }
-  if (stat.size > maxBytes) {
+  if (stat.size > BigInt(maxBytes)) {
     throw new CodeSliceError(
       "FILE_TOO_LARGE",
       `File "${requestedPath}" is ${stat.size} bytes, exceeding the ${maxBytes}-byte limit`,
     );
   }
 
-  const buffer = readFileSync(realPath);
+  let descriptor: number | undefined;
+  let buffer: Buffer;
+  try {
+    // Bind the read to the admitted file, including when an ancestor changes.
+    descriptor = openSync(realPath, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0) | (constants.O_NONBLOCK ?? 0));
+    const opened = fstatSync(descriptor, { bigint: true });
+    const current = lstatSync(realPath, { bigint: true });
+    if (!opened.isFile() || !current.isFile() || !sameFileState(stat, opened) ||
+        !sameFileState(opened, current) || realpathSync(realPath) !== realPath) {
+      throw new CodeSliceError("FILE_NOT_FOUND", "The selected file changed before it could be read safely");
+    }
+    const bytes = Buffer.alloc(Number(opened.size) + 1);
+    let length = 0;
+    while (length < bytes.length) {
+      const count = readSync(descriptor, bytes, length, bytes.length - length, length);
+      if (count === 0) break;
+      length += count;
+      if (length > maxBytes) throw new CodeSliceError("FILE_TOO_LARGE", "The selected file exceeded its byte limit while being read");
+    }
+    const after = fstatSync(descriptor, { bigint: true });
+    if (after.size > BigInt(maxBytes)) throw new CodeSliceError("FILE_TOO_LARGE", "The selected file exceeded its byte limit while being read");
+    if (!sameFileState(opened, after) || after.size !== BigInt(length) ||
+        !sameFileState(after, lstatSync(realPath, { bigint: true })) || realpathSync(realPath) !== realPath) {
+      throw new CodeSliceError("FILE_NOT_FOUND", "The selected file changed while it was being read");
+    }
+    buffer = bytes.subarray(0, length);
+  } catch (error) {
+    if (error instanceof CodeSliceError) throw error;
+    throw new CodeSliceError("FILE_NOT_FOUND", "The selected file could not be read safely");
+  } finally {
+    if (descriptor !== undefined) closeSync(descriptor);
+  }
   let source: string;
   try {
     // Keep a leading UTF-8 BOM in the decoded source. Public byte ranges are

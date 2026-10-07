@@ -2,6 +2,30 @@
   "schema_version": "1.0.0",
   "updates": [
     {
+      "destination": "packages/cfml-policy-check/docs/CLI_CONTRACT.md",
+      "imported_sha256": "8a20dd984739309494c1f178aa8a9318b0d98a2ab85fd73cdd79fad825aecc4c",
+      "current_sha256": "f9828eba9aa1ed51ad3bf9f5362addb4d9632100e488209c4eea8259cd6b9200",
+      "reason": "Owner-selected source/profile read limits and growth/rejection contract (2026-10-08)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/src/cli.js",
+      "imported_sha256": "3dd4a852032141ebd4765f675bdf91f4f811875724dc0ab351fc78405ea97342",
+      "current_sha256": "2040e2fb13c5c932c46d08d5bdadbbffc8d43fc48470ee95e75eb7f880d033ef",
+      "reason": "Owner-selected bounded descriptor reads for source/profile inputs (2026-10-08)."
+    },
+    {
+      "destination": "packages/code-slice/docs/SECURITY_PRIVACY.md",
+      "imported_sha256": "06401d20abecdc91c747dbc4127e01de7715e591f55c9ea8f5ffa7313d6fa401",
+      "current_sha256": "ac24ffacc596a0e5f45700d7d67eacc4eb80e888d71692f5c37be1128f40ba21",
+      "reason": "Owner-selected descriptor-bound source reads and documented mutation/byte-limit behavior (2026-10-08)."
+    },
+    {
+      "destination": "packages/code-slice/src/core/file-loader.ts",
+      "imported_sha256": "bd8e56bc823a9a1210e7c558dd73c46239b6ec6cb9a8af65d77aa02ee5b5d04f",
+      "current_sha256": "bb733e8c3fa8b667f1a09965d9efaa22dcb264b2a3d1ae252dd2e8786bb5a6c4",
+      "reason": "Owner-selected descriptor-bound source reads and root-substitution rejection (2026-10-08)."
+    },
+    {
       "destination": "packages/error-lens/SPEC.md",
       "imported_sha256": "2cb5d8dc1b0c7a2218952b31b73a730a27e128050aaea80cceb5a30fd705dc69",
       "current_sha256": "4468e2fd67f94f2c5eea9a5613540a58d4c1d910cec6802bd222f47cb411f183",
@@ -12,6 +36,24 @@
       "imported_sha256": "288645c45d20389fe45473efdd19b0549cf02f098ac7e91630a3603062def270",
       "current_sha256": "18ea60a4ed5fd52bb0cad28ce995682d1ff4b56945e3693a7f8526b8e605a725",
       "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/project-profile/SPEC.md",
+      "imported_sha256": "4dbab230223b35d9fd8be3e79d36f7c3383214d78f0ebf9ff3ddfd340aa1fdfb",
+      "current_sha256": "53e486c29127b2b99e6eafff5c21a7a96590fb9815b0e19f146c62d96bf4c5c5",
+      "reason": "Owner-selected metadata FIFO/substitution rejection and partial-coverage contract (2026-10-08)."
+    },
+    {
+      "destination": "packages/project-profile/src/core/scanner.ts",
+      "imported_sha256": "d81d9dd592f11ce6f2bcd777bdaa694f28354b1e7a141a6006889f550d7a8d01",
+      "current_sha256": "c9ccc9b81178cc84cdc4534ff025ee8ffb9a809bd9ab01fc770ca1e657cbecca",
+      "reason": "Owner-selected nonblocking metadata opens and pre-read descriptor validation (2026-10-08)."
+    },
+    {
+      "destination": "packages/project-profile/test/runner.test.ts",
+      "imported_sha256": "27d8ae3dbface5b8c5643dca35f7a606134885105676715863126cf549a03465",
+      "current_sha256": "f02e16f8fa3b65e85cda8d65bd081f901e4b21ddf99dbee09d2dfc892b762520",
+      "reason": "Owner-selected FIFO/substitution regressions included in the native test gate (2026-10-08)."
     },
     {
       "destination": "packages/project-tree/README.md",
