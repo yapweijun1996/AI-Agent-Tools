@@ -1,8 +1,12 @@
 # Task status
 
+## Main integration and hosted correction verification — 2026-10-07
+
+The owner requested commit and integration into main. The three focused correction commits (`2e6b9f4`, `afd8a76`, `79ba4d7`) were already committed on local main and are confirmed on `origin/main`. The exact-source-head [Actions run](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/37646804459) passed Linux Node 22/24, macOS Node 22 and Windows Node 22 at `79ba4d7fff8caec275e7134fe4332aebac6c397e`. All seventeen new regressions ran on all four jobs. Current platform counts and limits are recorded in [Validation](VALIDATION.md#main-integration-and-hosted-correction-verification--2026-10-07). This final evidence update changes only Hub documentation; no package release or workflow change is included.
+
 ## Error Lens and Project Tree corrections — 2026-10-07
 
-The owner selected all three continued-review findings for correction. Error Lens consumes complete quoted multiline credential values before redaction and identity construction. Project Tree aligns HEAD/worktree directory scope, requires observed absence for deletion, withholds unproved untracked classifications and uses filesystem file evidence for digests. Its containment checks now distinguish a parent segment from legal names beginning with two dots. Package acceptance passed locally: 37 Error Lens tests and 21 Project Tree tests, with their configured checks and the `aptree` smoke. Combined root verification passed with 831 Node tests and twelve Python tests; current source updates and regression evidence are recorded in [Validation](VALIDATION.md#error-lens-and-project-tree-corrections--2026-10-07). These new fixes have not been pushed or run in hosted CI.
+The owner selected all three continued-review findings for correction. Error Lens consumes complete quoted multiline credential values before redaction and identity construction. Project Tree aligns HEAD/worktree directory scope, requires observed absence for deletion, withholds unproved untracked classifications and uses filesystem file evidence for digests. Its containment checks now distinguish a parent segment from legal names beginning with two dots. Package acceptance passed locally: 37 Error Lens tests and 21 Project Tree tests, with their configured checks and the `aptree` smoke. Combined root verification passed with 831 Node tests and twelve Python tests; current source updates and regression evidence are recorded in [Validation](VALIDATION.md#error-lens-and-project-tree-corrections--2026-10-07). Subsequent main integration and hosted verification are recorded above.
 
 ## Hosted follow-up verification and continued review — 2026-10-07
 
