@@ -26,7 +26,7 @@ function runBoundary(mode: "leaf" | "ancestor" | "growth", operation: "api" | "c
   const name = mode === "growth" ? "inside" : "outside";
   const maxBytes = Buffer.byteLength(source);
   try {
-    const args = [loader, "tsx", "--import", hook];
+    const args = [loader, "tsx", "--import", pathToFileURL(hook).href];
     if (operation === "cli") {
       args.push(path.join(packageRoot, "src/cli/index.ts"), "symbol", file, name,
         "--root", root, "--json");

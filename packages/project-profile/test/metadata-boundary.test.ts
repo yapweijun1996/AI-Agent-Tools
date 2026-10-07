@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import type { Profile } from "../src/types.js";
 
 const packageRoot = path.resolve(fileURLToPath(new URL("../../", import.meta.url)));
@@ -20,7 +20,7 @@ function checkBoundary(mode: "initial" | "fifo" | "replacement") {
       fs.unlinkSync(file);
       assert.equal(spawnSync("mkfifo", [file]).status, 0);
     }
-    const child = spawnSync(process.execPath, ["--import", hook, cli, root], {
+    const child = spawnSync(process.execPath, ["--import", pathToFileURL(hook).href, cli, root], {
       encoding: "utf8", timeout: 3000, killSignal: "SIGKILL",
       env: { ...process.env, PROFILE_TEST_BOUNDARY: JSON.stringify({
         mode, file, held: path.join(root, "held.json"),

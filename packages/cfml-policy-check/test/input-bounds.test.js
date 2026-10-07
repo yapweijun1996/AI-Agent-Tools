@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { runRequest } from "../src/cli.js";
 
 const packageRoot = fileURLToPath(new URL("../", import.meta.url));
@@ -28,13 +28,13 @@ for (const target of ["source", "profile"]) {
           try { fs.ftruncateSync(fd, 8 * 1024 * 1024); } finally { fs.closeSync(fd); }
         }
         const limits = { [target === "source" ? "max_file_bytes" : "max_profile_bytes"]: limit };
-        const child = spawnSync(process.execPath, ["--import", hook, cli, "check", "--root", root,
+        const child = spawnSync(process.execPath, ["--import", pathToFileURL(hook).href, cli, "check", "--root", root,
           "--file", "source.cfm", "--profile", "profile.json", "--limits", JSON.stringify(limits), "--json"], {
           encoding: "utf8", timeout: 5000,
           env: { ...process.env, POLICY_TEST_READ_BOUNDARY: JSON.stringify({ file, mode }) },
         });
         assert.ifError(child.error);
-        assert.equal(child.status, 3, child.stdout);
+        assert.equal(child.status, 3, child.stderr || child.stdout);
         const result = JSON.parse(child.stdout);
         assert.equal(result.status, "incomplete");
         assert.equal(result.complete, false);
