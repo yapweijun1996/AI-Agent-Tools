@@ -1,5 +1,9 @@
 # Task status
 
+## Contract Check removed-property acceptance — 2026-10-07
+
+The owner selected the reviewed false-compatibility fix. Removed explicit properties are now compared with the resulting schema-valued `additionalProperties` using the existing constraint comparator. Type and nested narrowing remain potential-breaking; unproved pattern acceptance remains unknown. Package acceptance passed locally with 50 tests, build, type declarations and packed-consumer checks. Final combined monorepo verification is pending the selected Test Scope fix; evidence is recorded in [Validation](VALIDATION.md#contract-check-removed-property-acceptance--2026-10-07).
+
 ## AIT dispatch package-root containment — 2026-10-07
 
 The owner selected the reviewed AIT path-containment fix. Dispatch now checks the canonical installed package directory against its installation root before resolving either the npm shim or the package executable fallback. A relocated package directory is rejected with `PATH_ESCAPE` before its executable starts. The focused regression covers ordinary fallback, a POSIX executable symlink within the package and an escaped package directory; the AIT suite passed 11/11 locally. Full root `npm run verify` passed locally; current evidence and platform limits are recorded in [Validation](VALIDATION.md#ait-dispatch-package-root-containment--2026-10-07).

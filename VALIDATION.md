@@ -533,3 +533,9 @@ On macOS with Node `v24.19.0`, the [AIT suite](tests/ait.test.js) passed 11/11 w
 Full root `npm run verify` exited 0 on the same runtime, including build, typecheck, lint, 783 Node tests, 7 Python tests, every package dry-run pack and the configured packed-consumer checks. The approved test environment allowed Release Guard's local HTTP fixtures. Imported-source coverage remained unchanged. After these evidence updates, `python3 scripts/validate_hub.py`, `git diff --check` and an untracked-file whitespace scan passed.
 
 This is current local source evidence. Windows/Linux execution, hosted CI and a newly published npm artifact were not verified. The runtime remains dependency-free and does not provide OS-level sandboxing.
+
+## Contract Check removed-property acceptance — 2026-10-07
+
+Before the fix, three new regressions failed because removed properties were reported compatible even when schema-valued `additionalProperties` narrowed their accepted types, nested constraints or unproved patterns. The comparator now reuses its bounded constraint walk at the removed property's logical pointer. Independent Ajv validation proves formerly accepted inputs are rejected by the type/nested/closed-object fixtures and still accepted by equivalent, widened and open-object fixtures.
+
+On macOS Node `v24.19.0`, 50 package tests passed, including nine new regressions, plus build, type declarations and packed-consumer checks. Boolean closed/open behavior, false schemas and incomplete pattern semantics remain covered. Final combined root verification is pending the selected Test Scope fix. This is local source evidence; package identity/version, publication and registry lifecycle are unchanged.

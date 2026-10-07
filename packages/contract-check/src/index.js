@@ -442,17 +442,21 @@ export function compareContracts(before, after, options = {}) {
           null,
           "PROPERTY_ADDED_ACCEPTANCE_DEPENDS_ON_PREVIOUS_OPEN_OBJECT",
         );
-      else if (y === undefined)
-        add(
-          q,
-          "properties",
-          b.additionalProperties === false
-            ? "potential-breaking"
-            : "compatible",
-          null,
-          null,
-          "PROPERTY_REMOVED",
-        );
+      else if (y === undefined) {
+        if (object(b.additionalProperties))
+          walk(x, b.additionalProperties, q);
+        else
+          add(
+            q,
+            "properties",
+            b.additionalProperties === false
+              ? "potential-breaking"
+              : "compatible",
+            null,
+            null,
+            "PROPERTY_REMOVED",
+          );
+      }
       else walk(x, y, q);
     }
     if (a.items !== undefined && b.items !== undefined)
