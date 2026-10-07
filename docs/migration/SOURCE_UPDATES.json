@@ -2,6 +2,18 @@
   "schema_version": "1.0.0",
   "updates": [
     {
+      "destination": "packages/error-lens/SPEC.md",
+      "imported_sha256": "2cb5d8dc1b0c7a2218952b31b73a730a27e128050aaea80cceb5a30fd705dc69",
+      "current_sha256": "4468e2fd67f94f2c5eea9a5613540a58d4c1d910cec6802bd222f47cb411f183",
+      "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/error-lens/src/core/redact.ts",
+      "imported_sha256": "288645c45d20389fe45473efdd19b0549cf02f098ac7e91630a3603062def270",
+      "current_sha256": "18ea60a4ed5fd52bb0cad28ce995682d1ff4b56945e3693a7f8526b8e605a725",
+      "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
+    },
+    {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
       "current_sha256": "fd90977f90406e5acda648774ebb267044436e386c1a68e6e66c116753ea9f50",

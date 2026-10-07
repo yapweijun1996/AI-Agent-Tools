@@ -214,6 +214,8 @@ Redaction MUST be applied before final contract-bound checks. If redaction expan
 
 The bounded provider-token patterns include standalone `sk-live-`, `sk-test-`, `sk-proj-`, `sk-svcacct-`, `ghp_`, `xox*`, `AIza`, and `AKIA` forms. Common composite and environment-style credential keys such as `refresh_token`, `client_secret`, `private_key`, `secret_key`, `session_token`, `id_token`, `oauth_token`, `OPENAI_API_KEY`, `GITHUB_TOKEN`, and `AWS_SECRET_ACCESS_KEY` are also covered. This list is intentionally conservative and does not claim universal credential-format coverage.
 
+Single- and double-quoted values for supported credential keys are consumed across LF/CRLF boundaries, with escaped quotes retained inside the value boundary. An unterminated quoted value, including a final incomplete escape, withholds its remaining tail. Redaction happens before diagnostic identity construction and also applies to producer outcome fields; credential tails must not survive in exported messages or stable identities.
+
 Authorization scheme values MUST be redacted for both colon and equals key-value delimiters, while preserving the scheme label (for example, `Bearer` or `Basic`).
 
 Raw secret-containing strings MUST NOT be used in diagnostic IDs, warnings, debug output, snapshots, or fixtures committed as real credentials.
