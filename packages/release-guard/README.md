@@ -22,6 +22,8 @@ The examples are synthetic fixtures, not live deployment proof. Source/local ins
 
 Input is one explicit UTF-8 JSON file matching [input schema](schema/input.schema.json); runtime validation adds stricter URL, calendar, uniqueness and budget checks. Supply normalized evidence from your existing CI, HTTP and browser tools. This CLI does not collect it, run Git/CI commands, open a browser, read credentials or execute build manifests.
 
+File inputs reject duplicate object keys, including escaped equivalents, before parsing can discard conflicting evidence. Nesting is bounded to 32 levels. These checks also apply to the `collect` request reader; repeated field names in separate objects remain valid.
+
 - `schemaVersion`: `"1.0"`.
 - `expected`: exact lower-case 40-hex commit, safe `buildId`, HTTPS `origin` without trailing slash, nonempty `assets` of `{path,sha256}`. SHA-256 means the lowercase hash of the captured decoded asset bytes, not an ETag, gzip transport bytes, or a source-file hash unless those are the deployed bytes. Paths must be canonical percent-encoded absolute URL paths, no query/fragment/traversal. Expected data must come from the intended build, not be copied from the live observations being checked.
 - `policy`: explicit UTC `asOf`, `maxEvidenceAgeSeconds` (0–604800), nonempty `requiredChecks` of caller-normalized safe identifiers. Optional `requireBrowser` and `requireServiceWorker` default false. There is no ambient clock; freshness is only relative to this declared cutoff, not a claim that a historical file is current now.

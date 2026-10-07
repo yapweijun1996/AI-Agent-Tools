@@ -9,6 +9,7 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { parseEvidenceJson } from "./json.js";
 export const LIMITS = Object.freeze({
   inputBytes: 1048576,
   outputBytes: 65536,
@@ -123,7 +124,7 @@ export function readJson(file) {
       size += n;
     }
     if (size > LIMITS.inputBytes) throw invalid();
-    return JSON.parse(
+    return parseEvidenceJson(
       new TextDecoder("utf-8", { fatal: true }).decode(
         buffer.subarray(0, size),
       ),
