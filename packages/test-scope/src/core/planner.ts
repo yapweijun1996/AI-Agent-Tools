@@ -1,21 +1,13 @@
 import { createHash } from "node:crypto";
 import type { CommandRecommendation, DiscoveredCommand, Evidence, Framework, NormalizedChange, ResourceLimits, TestRecommendation, VerificationLevel, VerificationPlan } from "../types.js";
 import type { DiscoveryResult } from "./discovery.js";
-import { detectFrameworks, packageRootFor, scriptPurpose } from "./frameworks.js";
+import { detectFrameworks, discoverCommands, packageRootFor, shellQuote } from "./frameworks.js";
 import { mapTests } from "./mapping.js";
 import { buildImportGraph, type ImportGraph } from "./imports.js";
 import { classifyRisk } from "./risk.js";
 
-function evidence(type: Evidence["type"], confidence: Evidence["confidence"], source: string, target?: string, details?: Record<string, unknown>): Evidence {
-  return { type, confidence, source, ...(target ? { target } : {}), ...(details ? { details } : {}) };
-}
-
 function compare(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
-}
-
-function shellQuote(value: string): string {
-  return `'${value.replaceAll("'", "'\\''")}'`;
 }
 
 function commandId(command: string, scope: CommandRecommendation["scope"], source: string): string {
@@ -108,7 +100,7 @@ export function buildPlan(input: PlannerInput): { plan: VerificationPlan; graph:
   const minimumTests = (strongestConfidence === "candidate" || strongestConfidence === "unknown" ? equallyStrong.slice(0, 1) : equallyStrong).slice(0, input.limits.maxReturnedTests);
   const recommendedTests = candidates.slice(0, input.limits.maxReturnedTests);
   const releaseTests = candidates.slice(0, input.limits.maxReturnedTests);
-  const commands = input.discovery.projectFiles.length > 0 ? relevantCommands(awaitlessCommands(input.discovery), input.changes, input.discovery) : [];
+  const commands = input.discovery.projectFiles.length > 0 ? relevantCommands(discoverCommands(input.discovery).commands, input.changes, input.discovery) : [];
   const minimumCommands = targetedCommands(minimumTests);
   const recommendedCommands = [...targetedCommands(recommendedTests), ...packageTestCommands(commands)];
   const hasTypeScript = input.changes.some(change => change.language === "typescript" || change.language === "tsx");
@@ -126,26 +118,4 @@ export function buildPlan(input: PlannerInput): { plan: VerificationPlan; graph:
     escalation: escalationFor(risk.level, minimumTests.length)
   };
   return { plan, graph, timedOut: mapped.timedOut || graph.timedOut || Date.now() >= deadline, truncated: mapped.truncated || candidates.length > input.limits.maxReturnedTests };
-}
-
-function awaitlessCommands(discovery: DiscoveryResult): DiscoveredCommand[] {
-  const commands: DiscoveredCommand[] = [];
-  for (const path of discovery.projectFiles.filter(path => path.endsWith("package.json")).sort()) {
-    const text = discovery.readFile(path);
-    if (!text) continue;
-    try {
-      const parsed: unknown = JSON.parse(text);
-      if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) continue;
-      const scripts = (parsed as { scripts?: unknown }).scripts;
-      if (typeof scripts !== "object" || scripts === null || Array.isArray(scripts)) continue;
-      for (const [name, value] of Object.entries(scripts as Record<string, unknown>).sort(([left], [right]) => compare(left, right))) {
-        if (typeof value !== "string") continue;
-        const purpose = scriptPurpose(name, value);
-        commands.push({ name, command: `npm run ${name}`, source: `${path}#scripts.${name}`, packagePath: path, purpose, evidence: [evidence("project-command-evidence", "confirmed", `${path}#scripts.${name}`, path, { declaredCommand: value, purpose })] });
-      }
-    } catch {
-      // Framework discovery reports malformed package metadata separately.
-    }
-  }
-  return commands.sort((left, right) => compare(left.source, right.source));
 }

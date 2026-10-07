@@ -18,6 +18,7 @@ Use this tool after the changed-file set is known and before verification is run
 5. Inspect `status`, `data.plan`, every recommendation's `evidence`, `confidence`, `risk`, `diagnostics`, and `truncation`.
 6. Use `explain` for a selected test or command when the reason must be shown separately.
 7. Run commands only in the agent's separate verification phase, subject to user and repository policy.
+   Interpret command strings in a POSIX-compatible shell from the request's explicit root. Nested package scripts already carry their npm prefix; preserve it when running the recommendation.
 
 ## Operation selection
 

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "updates": [
+    {
+      "destination": "packages/test-scope/README.md",
+      "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
+      "current_sha256": "9820214764d24415e871351f6a63d137f4da4f73eb5336f9110cebfcc666f379",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/SPEC.md",
+      "imported_sha256": "3f9bb5869138216c6af26bef3aeb0ceb5710f00a225fc4178b6b26780a88c3fd",
+      "current_sha256": "d938718671d8aa1d58e6ace175401cd54bed723ad12d49a6f81ad2775f419eaa",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/skills/agent-test-scope/SKILL.md",
+      "imported_sha256": "9f85cb389c24a1550223577c24b4e52681fb23148ae8a2499235461272f24322",
+      "current_sha256": "aec1098ec5f52adcebf0aa349831d4b8e4c268f021a31c46887b88539db223fe",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/src/core/frameworks.ts",
+      "imported_sha256": "6fdb68ce7b375de02ab913f709918f4d4187aa70e649376a3dff874fba1fe3e3",
+      "current_sha256": "93b0dcf41ef74fbd6f645ea2a500c955e81f71efc17421d24787e21607ca7de4",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/src/core/planner.ts",
+      "imported_sha256": "5c802cf7aafb3b305a1724a16bdcf90d545b3ee5cf8504a04e0daee65d7f06f2",
+      "current_sha256": "d7963c7970ee9cdf1eaecd4f7e611d6b1080596b3c02df52b55a95259674819d",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    }
+  ]
+}

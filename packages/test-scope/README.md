@@ -6,6 +6,8 @@
 
 The analysis core reads repository files as data. It never runs tests, builds, package scripts, installers, project code, network calls, or LLM calls, and it does not modify the target repository. Commands in results are recommendations with `executed: false`.
 
+Command strings use POSIX shell quoting and are intended to run from the request's explicit `root`. Nested package scripts include `npm --prefix '<package-directory>' run '<script>'` so similarly named scripts retain their owning package. Use a POSIX-compatible shell when executing these recommendations; planning itself does not require a shell.
+
 V0.1 supports JavaScript, TypeScript, JSX, and TSX repositories with Vitest, Jest, and Node.js native test conventions. Static imports and `require()` calls are bounded evidence; dynamic loading is reported as partial rather than treated as confirmed reachability.
 
 ## Usage

@@ -4,6 +4,8 @@ Ten tool source snapshots were imported on 2026-09-30 into `packages/`. [Tool in
 
 Every source tracked path has its SHA-256, import destination/disposition and destination hash. Compiled `dist/` files in CFML Check are reproducible build outputs and explicitly excluded; required Code Slice WASM grammars and integrity metadata are retained. Package manifests receive only repository metadata changes. Documentation navigation is redirected to package folders; immutable upstream evidence links are listed as historical external dependencies and remain recoverable through local bundles. Run `python3 scripts/verify_migration.py` to verify imported coverage.
 
+The historical `SOURCE_MANIFEST.json` remains the import snapshot. [Explicit source updates](SOURCE_UPDATES.json) record each evolved imported file's original import hash, exact current hash and reason. The coverage verifier rejects unrecorded changes, mismatched original hashes, unknown/duplicate destinations and later tampering with an updated file. Updates require an intentional reviewed manifest change; they do not replace historical migration evidence or establish a new package release.
+
 ## History recovery
 
 Recovery bundles for all ten repositories are stored locally beside this checkout in `../history/`. The source manifest records their full paths, SHA-256 values, imported heads and tags. Each bundle contains all fetched Git refs, not merely the default branch. Verify with `git bundle verify PATH` and restore with `git clone PATH.bundle restored-tool`. These files are deliberately excluded from public Git. Preserve them in durable private storage before deleting any original repository. The Hub history remains in this repository; its migration base is `d28ffa6`.

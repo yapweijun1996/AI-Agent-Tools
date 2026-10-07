@@ -21,7 +21,7 @@ function run(name, cwd, command, args) {
 if (action === 'test' || action === 'test:hub') {
   const files = readdirSync(join(root, 'tests')).filter(name => name.endsWith('.test.js')).sort().map(name => join('tests', name));
   run('ai-agent-tools', root, process.execPath, ['--test', ...files]);
-  run('hub-python-tests', root, process.platform === 'win32' ? 'python' : 'python3', ['-m', 'unittest', 'tests.test_validate_hub']);
+  run('hub-python-tests', root, process.platform === 'win32' ? 'python' : 'python3', ['-m', 'unittest', 'tests.test_validate_hub', 'tests.test_verify_migration']);
   run('hub-validator', root, process.platform === 'win32' ? 'python' : 'python3', ['scripts/validate_hub.py']);
   run('source-coverage', root, process.platform === 'win32' ? 'python' : 'python3', ['scripts/verify_migration.py']);
 }

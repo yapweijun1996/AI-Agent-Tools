@@ -207,6 +207,8 @@ A command SHOULD contain:
 
 Commands are data. The core engine MUST NOT execute them.
 
+Command strings use POSIX shell quoting and MUST be interpreted from the request's explicit `root`. Package script recommendations MUST include an explicit npm prefix for nested packages. Script names and package directories MUST be quoted when required so each remains one shell argument; discovery and planning MUST retain the same owning package.
+
 ## 12. Result Envelope
 
 Canonical result:

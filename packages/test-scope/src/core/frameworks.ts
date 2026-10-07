@@ -40,9 +40,21 @@ function packageValues(packageJson: PackageJson): Set<string> {
 }
 
 function packageScriptEntries(packageJson: PackageJson): Array<[string, string]> {
+  if (typeof packageJson.scripts !== "object" || packageJson.scripts === null || Array.isArray(packageJson.scripts)) return [];
   return Object.entries(packageJson.scripts ?? {})
     .filter((entry): entry is [string, string] => typeof entry[1] === "string")
     .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0);
+}
+
+export function shellQuote(value: string): string {
+  return `'${value.replaceAll("'", "'\\''")}'`;
+}
+
+function packageScriptCommand(packagePath: string, name: string): string {
+  const directory = dirname(packagePath);
+  const prefix = directory === "." ? "" : `--prefix ${shellQuote(directory)} `;
+  const script = /^[A-Za-z0-9:_-]+$/.test(name) && !name.startsWith("-") ? name : shellQuote(name);
+  return `npm ${prefix}run ${name.startsWith("-") ? "-- " : ""}${script}`;
 }
 
 export function scriptPurpose(name: string, command: string): DiscoveredCommand["purpose"] {
@@ -134,7 +146,7 @@ export function discoverCommands(discovery: DiscoveryResult): { commands: Discov
     }
     for (const [name, command] of packageScriptEntries(packageJson)) {
       const purpose = scriptPurpose(name, command);
-      commands.push({ name, command: `npm run ${name}`, source: `${path}#scripts.${name}`, packagePath: path, purpose, evidence: [evidence("project-command-evidence", "confirmed", `${path}#scripts.${name}`, path, { declaredCommand: command, purpose })] });
+      commands.push({ name, command: packageScriptCommand(path, name), source: `${path}#scripts.${name}`, packagePath: path, purpose, evidence: [evidence("project-command-evidence", "confirmed", `${path}#scripts.${name}`, path, { declaredCommand: command, purpose })] });
     }
   }
   commands.sort((left, right) => left.source < right.source ? -1 : left.source > right.source ? 1 : left.name < right.name ? -1 : 1);

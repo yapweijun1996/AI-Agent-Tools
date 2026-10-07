@@ -1,8 +1,12 @@
 # Task status
 
+## Test Scope package script ownership — 2026-10-07
+
+The owner selected the reviewed monorepo command fix. Discovery and planning now share package command generation; nested scripts include an explicit npm prefix, same-name scripts retain every owning package and POSIX argument quoting preserves spaces/apostrophes. Commands remain unexecuted recommendations interpreted from the request root. Package acceptance and combined root verification passed locally; evidence is recorded in [Validation](VALIDATION.md#test-scope-package-script-ownership--2026-10-07). Historical import hashes remain unchanged; [explicit source updates](docs/migration/SOURCE_UPDATES.json) record the five evolved imported files with exact current hashes.
+
 ## Contract Check removed-property acceptance — 2026-10-07
 
-The owner selected the reviewed false-compatibility fix. Removed explicit properties are now compared with the resulting schema-valued `additionalProperties` using the existing constraint comparator. Type and nested narrowing remain potential-breaking; unproved pattern acceptance remains unknown. Package acceptance passed locally with 50 tests, build, type declarations and packed-consumer checks. Final combined monorepo verification is pending the selected Test Scope fix; evidence is recorded in [Validation](VALIDATION.md#contract-check-removed-property-acceptance--2026-10-07).
+The owner selected the reviewed false-compatibility fix. Removed explicit properties are now compared with the resulting schema-valued `additionalProperties` using the existing constraint comparator. Type and nested narrowing remain potential-breaking; unproved pattern acceptance remains unknown. Package acceptance passed locally with 50 tests, build, type declarations and packed-consumer checks. Combined monorepo verification also passed; evidence is recorded in [Validation](VALIDATION.md#contract-check-removed-property-acceptance--2026-10-07).
 
 ## AIT dispatch package-root containment — 2026-10-07
 
