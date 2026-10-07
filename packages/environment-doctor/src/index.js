@@ -44,6 +44,7 @@ export function safeText(value) {
 export function readJson(file) {
   let fd;
   try {
+    const resolved = realpathSync(file);
     if (
       [
         ".env",
@@ -53,10 +54,17 @@ export function readJson(file) {
         "credentials.json",
         "tokens.json",
         "id_rsa",
-      ].includes(path.basename(realpathSync(file)).toLowerCase())
+      ].includes(path.basename(resolved).toLowerCase())
     )
       throw invalid("Credential files are not supported inputs");
-    fd = openSync(file, "r");
+    const initial = statSync(resolved);
+    if (!initial.isFile() || initial.size > LIMITS.inputBytes)
+      throw invalid("Input file limit exceeded or not a regular file");
+    // A file-type substitution must not block open before descriptor validation.
+    fd = openSync(
+      resolved,
+      constants.O_RDONLY | (process.platform === "win32" ? 0 : constants.O_NONBLOCK),
+    );
     const st = fstatSync(fd);
     if (!st.isFile() || st.size > LIMITS.inputBytes)
       throw invalid("Input file limit exceeded or not a regular file");

@@ -1,5 +1,15 @@
 # Task status
 
+## Follow-up defect fixes — 2026-10-07
+
+The owner selected all three follow-up findings for correction. Test Scope now tries the exact relative module path before source-extension fallback; Release Guard rejects duplicate JSON object keys and over-depth file evidence before parsing; Environment Doctor rejects nonregular inputs before opening and uses POSIX nonblocking descriptor validation. Native package identities, result fields, dependencies and release status remain unchanged. Package tests passed locally: 28 Test Scope, 82 Release Guard and 30 Environment Doctor tests. Packed consumers and combined root verification also passed; current regression, aggregate evidence and platform limits are recorded in [Validation](VALIDATION.md#follow-up-defect-fixes--2026-10-07). These new fixes have not yet been pushed.
+
+## Hosted verification and follow-up review — 2026-10-07
+
+The owner selected push, cross-platform verification and a further read-only source review. The three fix commits are on `origin/main` at `d948566ffdcaa8ec73e58e41edbc6f71e1b2b7cf`; the exact-head [Actions run](https://github.com/yapweijun1996/AI-Agent-Tools/actions/runs/37639322549) passed Linux Node 22/24, macOS Node 22 and Windows Node 22. Windows explicitly skipped ten platform-dependent tests; this is not coverage of those scenarios. Current counts, skips and reproduction evidence are recorded in [Validation](VALIDATION.md#hosted-verification-and-follow-up-review--2026-10-07).
+
+The review recorded three findings at that head: P1 Test Scope resolved an explicit JavaScript import to a same-stem TypeScript file and could omit the actual importing test from minimum scope; P1 Release Guard silently resolved conflicting duplicate JSON fields into a passing deployment result; P2 Environment Doctor blocked opening a supplied POSIX FIFO before its regular-file check. Proposed acceptance checks were recorded with each finding in Validation. The subsequent owner-selected fixes are recorded above; the original review itself did not change those implementations or add package releases.
+
 ## Test Scope package script ownership — 2026-10-07
 
 The owner selected the reviewed monorepo command fix. Discovery and planning now share package command generation; nested scripts include an explicit npm prefix, same-name scripts retain every owning package and POSIX argument quoting preserves spaces/apostrophes. Commands remain unexecuted recommendations interpreted from the request root. Package acceptance and combined root verification passed locally; evidence is recorded in [Validation](VALIDATION.md#test-scope-package-script-ownership--2026-10-07). Historical import hashes remain unchanged; [explicit source updates](docs/migration/SOURCE_UPDATES.json) record the five evolved imported files with exact current hashes.
