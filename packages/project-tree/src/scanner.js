@@ -6,11 +6,12 @@ import { fileURLToPath } from 'node:url';
 import { resolveRoot, safeRelative } from './safety.js';
 import { readGitChanges } from './git.js';
 import { discoverStaticEvidence } from './evidence.js';
+import { isIgnoredDirectory } from './scope.js';
 
 const PACKAGE_JSON_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'package.json');
 const TOOL_VERSION = JSON.parse(readFileSync(PACKAGE_JSON_PATH, 'utf8')).version;
 
-export const DEFAULT_IGNORE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', 'coverage', '.next', '.cache']);
+export { DEFAULT_IGNORE_DIRS } from './scope.js';
 const TEXT_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.json', '.md', '.yml', '.yaml', '.txt', '.html', '.css']);
 const TEST_RE = /(^|\/)(test|tests|__tests__)\/|\.((test|spec))\.[cm]?[jt]sx?$/i;
 const DOC_RE = /(^|\/)(README|GOAL|DESIGN|SPEC|EPIC|ROADMAP|TASK|PROGRESS|AGENTS|CHANGELOG|LICENSE)(\.md)?$/i;
@@ -33,7 +34,7 @@ async function walk(root, options, dir = root, out = []) {
     const absolute = path.join(dir, entry.name);
     const rel = safeRelative(root, absolute);
     if (entry.isDirectory()) {
-      if (DEFAULT_IGNORE_DIRS.has(entry.name) || options.ignore?.includes(rel)) continue;
+      if (isIgnoredDirectory(rel, options.ignore)) continue;
       await walk(root, options, absolute, out);
       continue;
     }

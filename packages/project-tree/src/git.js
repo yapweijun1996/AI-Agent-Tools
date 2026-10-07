@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import zlib from 'node:zlib';
 import { promisify } from 'node:util';
 import { safeRelative } from './safety.js';
+import { isIgnoredDirectory } from './scope.js';
 
 const inflate = promisify(zlib.inflate);
 const GIT_MAX_OBJECT_BYTES = 10 * 1024 * 1024;
@@ -293,17 +294,27 @@ function parseTree(body) {
   return entries.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-async function walkHeadTree(gitDir, treeOid, cache, prefix = '', out = new Map(), limit = 1000) {
-  if (out.size >= limit) return out;
-  const tree = await readObject(gitDir, treeOid, cache);
-  if (tree?.type !== 'tree') return out;
-  for (const entry of parseTree(tree.body)) {
-    if (out.size >= limit) break;
-    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
-    if (entry.mode === '40000') await walkHeadTree(gitDir, entry.oid, cache, rel, out, limit);
-    else if (entry.mode === '100644' || entry.mode === '100755' || entry.mode === '120000') out.set(rel, { oid: entry.oid, mode: entry.mode });
+async function walkHeadTree(gitDir, treeOid, cache, prefix = '', capture = { files: new Map(), complete: true }, limit = 1000, ignore = []) {
+  if (capture.files.size >= limit) {
+    capture.complete = false;
+    return capture;
   }
-  return out;
+  const tree = await readObject(gitDir, treeOid, cache);
+  if (tree?.type !== 'tree') {
+    capture.complete = false;
+    return capture;
+  }
+  for (const entry of parseTree(tree.body)) {
+    if (entry.mode === '40000' && isIgnoredDirectory(prefix ? prefix + '/' + entry.name : entry.name, ignore)) continue;
+    if (capture.files.size >= limit) {
+      capture.complete = false;
+      break;
+    }
+    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.mode === '40000') await walkHeadTree(gitDir, entry.oid, cache, rel, capture, limit, ignore);
+    else if (entry.mode === '100644' || entry.mode === '100755' || entry.mode === '120000') capture.files.set(rel, { oid: entry.oid, mode: entry.mode });
+  }
+  return capture;
 }
 
 async function headTree(gitDir, commitOid, cache) {
@@ -319,6 +330,24 @@ async function blobDigest(gitDir, oid, cache) {
   return blob?.type === 'blob' ? sha256(blob.body) : null;
 }
 
+async function missingWorktreePath(root, relative) {
+  const parts = relative.split('/');
+  let current = root;
+  for (const [index, part] of parts.entries()) {
+    current = path.join(current, part);
+    safeRelative(root, current);
+    let stat;
+    try {
+      stat = await fs.lstat(current);
+    } catch (error) {
+      return error.code === 'ENOENT' ? true : undefined;
+    }
+    // An uncaptured path through a symlink or non-directory is unknown, not a proven deletion.
+    if (index < parts.length - 1 && !stat.isDirectory()) return undefined;
+  }
+  return false;
+}
+
 export async function readGitChanges(root, nodes, options = {}) {
   const scannedAt = options.scannedAt || ZERO_TIME;
   const gitDir = await resolveGitDir(root);
@@ -329,21 +358,31 @@ export async function readGitChanges(root, nodes, options = {}) {
   const treeOid = await headTree(gitDir, commitOid, cache);
   if (!treeOid) return { vcs: 'git', available: false, changed: [], note: 'Git HEAD object is unavailable (missing loose object and no pack index could resolve it); no commands were executed.', freshness: { scannedAt } };
   const maxChanges = Math.max(1, Number(options.maxChanges || options.maxFiles || 1000));
-  const tracked = await walkHeadTree(gitDir, treeOid, cache, '', new Map(), maxChanges);
-  const nodePaths = new Set(nodes.filter((n) => n.path && n.path !== '.').map((n) => n.path));
-  const byPath = new Map(nodes.map((n) => [n.path, n]));
+  const capture = await walkHeadTree(gitDir, treeOid, cache, '', { files: new Map(), complete: true }, maxChanges, options.ignore);
+  const tracked = capture.files;
+  const fileNodes = nodes.filter((node) => node.provenance?.source === 'filesystem' && node.kind !== 'workspace' &&
+    node.path && node.path !== '.' && !isIgnoredDirectory(path.posix.dirname(node.path), options.ignore));
+  const byPath = new Map(fileNodes.map((node) => [node.path, node]));
+  let incomplete = !capture.complete;
   const changed = [];
   for (const rel of [...tracked.keys()].sort()) {
     const head = tracked.get(rel);
     const node = byPath.get(rel);
-    if (!node) changed.push({ path: rel, status: 'deleted', provenance: { source: 'git-head-tree' } });
+    if (!node) {
+      const missing = await missingWorktreePath(root, rel);
+      if (missing === true) changed.push({ path: rel, status: 'deleted', provenance: { source: 'git-head-tree' } });
+      else incomplete = true;
+    }
     else if (node.digest) {
       const headDigest = await blobDigest(gitDir, head.oid, cache);
       if (headDigest && headDigest !== node.digest) changed.push({ path: rel, status: 'modified', nodeId: node.id, provenance: { source: 'git-head-tree' } });
+      if (!headDigest) incomplete = true;
+    } else {
+      incomplete = true;
     }
   }
-  for (const rel of [...nodePaths].sort()) {
-    if (!tracked.has(rel)) changed.push({ path: rel, status: 'untracked', nodeId: byPath.get(rel)?.id, provenance: { source: 'git-head-tree' } });
+  for (const rel of [...byPath.keys()].sort()) {
+    if (capture.complete && !tracked.has(rel)) changed.push({ path: rel, status: 'untracked', nodeId: byPath.get(rel)?.id, provenance: { source: 'git-head-tree' } });
   }
-  return { vcs: 'git', available: true, base: { commit: commitOid }, changed: changed.slice(0, maxChanges), truncated: changed.length >= maxChanges || tracked.size >= maxChanges, note: 'Compared working tree files to Git HEAD using read-only .git object files (loose and packed); index/stage state is not inspected.', freshness: { scannedAt } };
+  return { vcs: 'git', available: true, base: { commit: commitOid }, changed: changed.slice(0, maxChanges), truncated: incomplete || changed.length >= maxChanges || tracked.size >= maxChanges, note: 'Compared captured files in the scan scope to Git HEAD using read-only .git objects; uncaptured paths require an observed absence, incomplete HEAD capture cannot prove untracked status, and index/stage state is not inspected.', freshness: { scannedAt } };
 }

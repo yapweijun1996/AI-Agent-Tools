@@ -27,6 +27,10 @@ Test evidence remains file-node based for deterministic `tests-for` compatibilit
 
 ## Git changed adapter
 
+HEAD and worktree comparison use the same default and explicitly supplied directory exclusions. An omitted graph node is not deletion evidence: an in-scope tracked path must be observed absent, without following a symlink ancestor, before it is reported deleted. Existing uncaptured paths and unreadable/non-directory ancestors leave the comparison incomplete. Only captured filesystem file nodes supply working-file digests; synthetic metadata nodes cannot replace those files.
+
+A bounded or unreadable HEAD inventory cannot prove that an absent entry is untracked. Such candidates are withheld and the existing adapter `truncated` flag reports incomplete comparison, including unavailable file digests. Known modified/deleted paths remain reportable within the bounds. `readGitChanges` accepts the optional `ignore` directory list used by `buildProjectGraph`; the CLI continues to collect repeated `--ignore DIR` values.
+
 The `changed` query compares scanned workspace files with the current Git `HEAD` tree by reading `.git/HEAD`, refs, packed refs, and Git object data directly — both loose objects and objects stored in `.git/objects/pack/*.pack` (including `OFS_DELTA`/`REF_DELTA` chains), resolved via each pack's `.idx`. This covers the common case of a fresh `git clone` or any repository that has run `git gc`/`git repack`, where objects are packed rather than loose. It reports `modified`, `deleted`, and `untracked` root-relative paths. It is intentionally read-only, does not inspect the index/staging area, does not invoke `git`, and reports unavailable only when HEAD itself cannot be resolved (no `.git` directory, unresolvable ref, or an object that is genuinely missing/corrupt in both loose and packed storage) — each `changed` response includes a `note` explaining which case applied.
 
 ## JSON schema and compatibility

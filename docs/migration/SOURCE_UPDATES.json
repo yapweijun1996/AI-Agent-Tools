@@ -14,6 +14,30 @@
       "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
     },
     {
+      "destination": "packages/project-tree/docs/SPEC.md",
+      "imported_sha256": "0d73af2cd1c3d3307154d9928a4cbf87d803d7ffd6dbed227c0e99211bbb18fb",
+      "current_sha256": "6074e3aa233c38e309679e1c6b6e5fc94f49bf7879212c0665bef789c8c3ce30",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+    },
+    {
+      "destination": "packages/project-tree/src/git.js",
+      "imported_sha256": "d794ee4045da288b887ac417980e48f4c6938f12583374510b2f0fe50608dc13",
+      "current_sha256": "f4e80cfc2860b12e58580cea7174bb13103adbf675a3120fe86d7a91ea060b3e",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+    },
+    {
+      "destination": "packages/project-tree/src/scanner.js",
+      "imported_sha256": "b763ea417704f33e07ee5d4867ce5720730db81fc202b5f30542735797604c32",
+      "current_sha256": "f455487d20281de6d7ca990b0827d23c68d29e8f2f471b8231daf1be03647b13",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+    },
+    {
+      "destination": "packages/project-tree/types/index.d.ts",
+      "imported_sha256": "3d85bea3742b1263a468da7667602c18e3cc926c02733ffa661f6dd66cf08ef9",
+      "current_sha256": "aa5ddb82fb6abbe31530eb495f268bcfac2020cbcb47ef8df998c440c27bfc7a",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+    },
+    {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
       "current_sha256": "fd90977f90406e5acda648774ebb267044436e386c1a68e6e66c116753ea9f50",

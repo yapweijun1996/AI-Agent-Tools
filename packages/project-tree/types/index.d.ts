@@ -119,7 +119,7 @@ export const DEFAULT_IGNORE_DIRS: Set<string>;
 
 export function buildProjectGraph(input?: BuildProjectGraphInput): Promise<GraphEnvelope>;
 
-export function readGitChanges(root: string, nodes: GraphNode[], options?: { scannedAt?: string; maxChanges?: number; maxFiles?: number }): Promise<ChangeAdapter>;
+export function readGitChanges(root: string, nodes: GraphNode[], options?: { scannedAt?: string; maxChanges?: number; maxFiles?: number; ignore?: string[] }): Promise<ChangeAdapter>;
 
 export function queryGraph(graph: GraphEnvelope, command: Command, options?: QueryOptions): GraphEnvelope | QueryEnvelope;
 
