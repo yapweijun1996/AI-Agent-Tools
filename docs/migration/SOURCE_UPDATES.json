@@ -14,6 +14,12 @@
       "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
     },
     {
+      "destination": "packages/project-tree/README.md",
+      "imported_sha256": "10be947e62e6443606be507ce28e01509d1843fe683b6a7c200bbaf2b268b602",
+      "current_sha256": "e4d736ef7d03830b41f840f4c800abb588c59e70d18173f36313c155cead653d",
+      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07)."
+    },
+    {
       "destination": "packages/project-tree/docs/SPEC.md",
       "imported_sha256": "0d73af2cd1c3d3307154d9928a4cbf87d803d7ffd6dbed227c0e99211bbb18fb",
       "current_sha256": "6074e3aa233c38e309679e1c6b6e5fc94f49bf7879212c0665bef789c8c3ce30",
@@ -24,6 +30,12 @@
       "imported_sha256": "d794ee4045da288b887ac417980e48f4c6938f12583374510b2f0fe50608dc13",
       "current_sha256": "f4e80cfc2860b12e58580cea7174bb13103adbf675a3120fe86d7a91ea060b3e",
       "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+    },
+    {
+      "destination": "packages/project-tree/src/safety.js",
+      "imported_sha256": "47fabeef1dd0b969d947a6aca5e23cd4ceea985d80795d2f7efc9480d9237650",
+      "current_sha256": "0d0daf652a74583686ad1bbf48e0fe71b7e01596e431a9926f91fa12ceb2c577",
+      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07)."
     },
     {
       "destination": "packages/project-tree/src/scanner.js",

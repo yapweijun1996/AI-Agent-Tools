@@ -44,6 +44,7 @@ const evidence = queryGraph(graph, 'evidence');
 - No command execution in target projects.
 - No network, API keys, database, telemetry, or LLM dependency.
 - Refuses query paths outside the chosen root.
+- Checks parent traversal by path segment; legal in-root names such as `..config.js` and `..cache/` remain usable.
 - Ignores common generated/heavy directories such as `.git`, `node_modules`, `dist`, `build`, and `coverage`.
 
 ## Development
