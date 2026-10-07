@@ -93,7 +93,11 @@ Requested limits must be positive safe integers and cannot exceed hard caps. Rea
 
 ## 7. Input and safety behavior
 
-The source reader requires `.cfm` or `.cfc`, an existing root and file, realpath containment, a regular file, valid UTF-8, no NUL byte, and an effective source-size limit. It checks size and modification time before and after reading and rejects a changed snapshot. Symlink escapes are rejected.
+The source reader requires `.cfm` or `.cfc`, an existing root and file, realpath containment, a regular file, valid UTF-8, no NUL byte, and an effective source-size limit. Static symlink escapes are rejected before admission.
+
+Reading is bound to a regular-file descriptor opened with no-follow and nonblocking flags where supported. Before consuming bytes, the reader compares admitted and opened device/inode identity, mode, size and nanosecond modification/change timestamps, checks the current pathname state, and rechecks the canonical path. Observed leaf or ancestor substitutions return the existing `SOURCE_CHANGED`/incomplete/exit 3 result. The same descriptor and pathname state are checked after reading, and the descriptor is closed on success or rejection.
+
+Oversized metadata is rejected before body reads. Actual reads are bounded to the admitted size plus one byte for growth detection and cannot exceed the selected source-byte limit plus one. Over-limit growth returns `LIMIT_EXCEEDED`/incomplete/exit 3 before UTF-8 decoding. These checks reject observed mutation; they do not provide an atomic filesystem snapshot or operating-system path confinement.
 
 Known envelope error codes include `INVALID_ARGUMENT`, `INVALID_LIMIT`, `UNSUPPORTED_EXTENSION`, `ROOT_NOT_FOUND`, `FILE_NOT_FOUND`, `PATH_UNRESOLVED`, `FILE_OUTSIDE_ROOT`, `LIMIT_EXCEEDED`, `SOURCE_CHANGED`, `BINARY_INPUT`, `ENCODING_UNSUPPORTED`, `UNSUPPORTED_SYNTAX`, and `INTERNAL_ERROR`.
 

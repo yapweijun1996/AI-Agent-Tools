@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { performance } from "node:perf_hooks";
 
 const TOOL_ID = "agent-cfml-policy-check";
 const SCHEMA_VERSION = "1.0.0";
@@ -35,6 +36,7 @@ const VOID_TAGS = new Set([
   "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
   "meta", "param", "source", "track", "wbr"
 ]);
+const TEXT_ELEMENTS = new Set(["script", "style", "textarea", "title", "xmp", "iframe", "noembed", "noframes"]);
 
 class PolicyError extends Error {
   constructor(code, message, exitCode = EXIT_CODES.invalid) {
@@ -210,9 +212,10 @@ function validateProfile(profile) {
   };
 }
 
-function lineStarts(source) {
+function lineStarts(source, checkDeadline) {
   const starts = [0];
   for (let index = 0; index < source.length; index += 1) {
+    checkDeadline();
     if (source[index] === "\n") starts.push(index + 1);
   }
   return starts;
@@ -230,9 +233,10 @@ function sourcePosition(starts, index) {
   return { line: lineIndex + 1, column: index - starts[lineIndex] + 1 };
 }
 
-function findTagEnd(source, start) {
+function findTagEnd(source, start, checkDeadline) {
   let quote = null;
   for (let index = start + 1; index < source.length; index += 1) {
+    checkDeadline();
     const character = source[index];
     if (quote !== null) {
       if (character === quote) quote = null;
@@ -247,8 +251,24 @@ function findTagEnd(source, start) {
   return -1;
 }
 
-function parseMarkup(source, limits) {
-  const starts = lineStarts(source);
+function hasHashExpression(source, commentRanges, checkDeadline) {
+  let comment = 0;
+  for (let index = 0; index < source.length; index += 1) {
+    checkDeadline();
+    if (commentRanges[comment]?.[0] === index) {
+      index = commentRanges[comment][1] - 1;
+      comment += 1;
+      continue;
+    }
+    if (source[index] !== "#") continue;
+    if (source[index + 1] !== "#") return true;
+    index += 1;
+  }
+  return false;
+}
+
+function parseMarkup(source, limits, checkDeadline) {
+  const starts = lineStarts(source, checkDeadline);
   const stack = [];
   const tables = [];
   const colgroups = [];
@@ -256,17 +276,20 @@ function parseMarkup(source, limits) {
   let tokens = 0;
   let malformed = false;
   let uncertain = false;
-  const started = Date.now();
+  let scriptEscaped = false;
+  const tagPrefix = /<\s*(\/\s*)?([A-Za-z][\w:-]*)/y;
 
   for (let index = 0; index < source.length; index += 1) {
-    if (Date.now() - started > limits.max_processing_ms) {
-      throw new PolicyError("RESOURCE_LIMIT", "Analysis exceeded the processing-time limit.", EXIT_CODES.incomplete);
-    }
+    checkDeadline();
+    const textName = TEXT_ELEMENTS.has(stack.at(-1)?.name) ? stack.at(-1).name : null;
+    if (textName === "script" && scriptEscaped && source.startsWith("-->", index)) scriptEscaped = false;
     if (source[index] !== "<") continue;
 
-    const commentStart = source.startsWith("<!---", index) ? "--->" : source.startsWith("<!--", index) ? "-->" : null;
+    const commentStart = source.startsWith("<!---", index) ? "--->" :
+      textName === null && source.startsWith("<!--", index) ? "-->" : null;
     if (commentStart !== null) {
       const commentEnd = source.indexOf(commentStart, index + 4);
+      checkDeadline();
       if (commentEnd < 0) {
         malformed = true;
         break;
@@ -276,7 +299,23 @@ function parseMarkup(source, limits) {
       continue;
     }
 
-    const end = findTagEnd(source, index);
+    if (textName !== null) {
+      if (textName === "script" && source.startsWith("<!--", index)) scriptEscaped = true;
+      tagPrefix.lastIndex = index;
+      const prefix = tagPrefix.exec(source);
+      checkDeadline();
+      const textTag = prefix?.[2]?.toLowerCase();
+      if (textTag?.startsWith("cf") && textTag !== "cfoutput") uncertain = true;
+      if (textName === "script" && scriptEscaped && !prefix?.[1] && textTag === "script") {
+        throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "Double-escaped script content is unsupported.", EXIT_CODES.incomplete);
+      }
+      const isEnd = textTag === textName && source.slice(index, index + textName.length + 2).toLowerCase() === "</" + textName &&
+        /[\t\n\f\r />]/.test(source[index + textName.length + 2] ?? "");
+      if (!isEnd) continue;
+      scriptEscaped = false;
+    }
+
+    const end = findTagEnd(source, index, checkDeadline);
     if (end < 0) {
       malformed = true;
       break;
@@ -308,11 +347,14 @@ function parseMarkup(source, limits) {
       continue;
     }
 
+    if (name === "plaintext" || name === "noscript") {
+      throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "This text context requires unsupported HTML parsing or scripting-mode semantics.", EXIT_CODES.incomplete);
+    }
     const node = { name, line: position.line, column: position.column, children: [] };
     if (stack.length > 0) stack.at(-1).children.push(node);
     if (name === "table") tables.push(node);
     if (name === "colgroup") colgroups.push(node);
-    const selfClosing = /\/\s*>$/.test(raw) || VOID_TAGS.has(name);
+    const selfClosing = (!TEXT_ELEMENTS.has(name) && /\/\s*>$/.test(raw)) || VOID_TAGS.has(name);
     if (!selfClosing) {
       stack.push(node);
       if (stack.length > limits.max_depth) throw new PolicyError("RESOURCE_LIMIT", "Input exceeds the nesting-depth limit.", EXIT_CODES.incomplete);
@@ -321,25 +363,36 @@ function parseMarkup(source, limits) {
   }
 
   if (stack.length > 0) malformed = true;
-  let visibleSource = source;
-  for (const [start, end] of commentRanges) visibleSource = `${visibleSource.slice(0, start)}${" ".repeat(end - start)}${visibleSource.slice(end)}`;
-  const hashExpression = visibleSource.replaceAll("##", "").includes("#");
+  // Scan visible spans once; rebuilding the source for every comment is quadratic.
+  const hashExpression = hasHashExpression(source, commentRanges, checkDeadline);
   uncertain = uncertain || hashExpression;
   const relevantUncertainty = malformed || (uncertain && (tables.length > 0 || colgroups.length > 0));
+  checkDeadline();
   return { tables, colgroups, relevantUncertainty, tokens };
 }
 
 function checkSource(source, profile, limits) {
-  const parsed = parseMarkup(source, limits);
+  const started = performance.now();
+  const checkDeadline = () => {
+    if (performance.now() - started > limits.max_processing_ms) {
+      throw new PolicyError("RESOURCE_LIMIT", "Analysis exceeded the processing-time limit.", EXIT_CODES.incomplete);
+    }
+  };
+  const parsed = parseMarkup(source, limits, checkDeadline);
   if (parsed.relevantUncertainty) {
     throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "The selected source contains malformed or dynamically generated structure affecting the requested policy.", EXIT_CODES.incomplete);
   }
   const enabled = new Map(profile.rules.filter(rule => rule.enabled).map(rule => [rule.id, rule]));
   const findings = [];
+  const addFinding = finding => {
+    if (findings.length >= limits.max_findings) throw new PolicyError("RESOURCE_LIMIT", "The finding limit was exceeded.", EXIT_CODES.incomplete);
+    findings.push(finding);
+  };
   if (enabled.has("html.table.requires-colgroup")) {
     for (const table of parsed.tables) {
-      if (!table.children.some(child => child.name === "colgroup")) {
-        findings.push({
+      checkDeadline();
+      if (!table.children.some(child => { checkDeadline(); return child.name === "colgroup"; })) {
+        addFinding({
           rule_id: "html.table.requires-colgroup",
           severity: enabled.get("html.table.requires-colgroup").severity,
           message: "Table must contain a direct colgroup element.",
@@ -351,8 +404,9 @@ function checkSource(source, profile, limits) {
   }
   if (enabled.has("html.table.requires-col")) {
     for (const colgroup of parsed.colgroups) {
-      if (!colgroup.children.some(child => child.name === "col")) {
-        findings.push({
+      checkDeadline();
+      if (!colgroup.children.some(child => { checkDeadline(); return child.name === "col"; })) {
+        addFinding({
           rule_id: "html.table.requires-col",
           severity: enabled.get("html.table.requires-col").severity,
           message: "Colgroup must contain at least one direct col element.",
@@ -362,8 +416,12 @@ function checkSource(source, profile, limits) {
       }
     }
   }
-  findings.sort((left, right) => left.line - right.line || left.column - right.column || left.rule_id.localeCompare(right.rule_id));
-  if (findings.length > limits.max_findings) throw new PolicyError("RESOURCE_LIMIT", "The finding limit was exceeded.", EXIT_CODES.incomplete);
+  checkDeadline();
+  findings.sort((left, right) => {
+    checkDeadline();
+    return left.line - right.line || left.column - right.column || left.rule_id.localeCompare(right.rule_id);
+  });
+  checkDeadline();
   return findings;
 }
 

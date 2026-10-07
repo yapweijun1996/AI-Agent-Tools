@@ -4,6 +4,7 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { checkFile } from "../src/index.js";
+import "./source-boundary.test.js";
 
 function withSource(source: string, extension = ".cfm", callback: (root: string, file: string) => void): void {
   const root = mkdtempSync(path.join(os.tmpdir(), "agent-cfml-check-"));

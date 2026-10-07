@@ -1,7 +1,7 @@
 # CLI Contract
 
 Status: `Implemented local contract`
-Last reconciled: 2026-09-16
+Last reconciled: 2026-10-08
 
 ## Commands
 
@@ -56,6 +56,16 @@ AIT mode reads exactly one JSON request from stdin. The request uses
 | Processing time | 1,000 ms | 10,000 ms |
 
 Limit exhaustion returns `incomplete` with exit code 3.
+
+The processing-time limit is a single monotonic cooperative deadline starting
+before source line indexing. It covers markup and quoted-tag scanning, visible
+hash spans, rule evaluation and final finding sorting. Native bounded scanning
+operations are checked around their execution, and analysis checks the deadline
+again before returning a complete result. Comment handling records source ranges
+and scans visible spans once rather than copying the source for each comment.
+Deadline exhaustion returns `RESOURCE_LIMIT`/incomplete/exit 3 with null data.
+This analysis budget excludes filesystem I/O, profile/request JSON parsing and
+result serialization; it is not an operating-system real-time scheduling bound.
 
 Source and profile files are checked for oversized regular-file metadata before
 their bodies are read. Reading uses a verified regular-file descriptor and is

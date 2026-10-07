@@ -2,16 +2,40 @@
   "schema_version": "1.0.0",
   "updates": [
     {
+      "destination": "packages/cfml-check/SPEC.md",
+      "imported_sha256": "b91c14964fa2ae7dfdbdaa79f67353dbf248d13bd76609cc8f054d899efb4ce4",
+      "current_sha256": "7c24b41527cbc95d69d8b8d506a444e82b44da55bbe9c725ea1a2ce57de97c57",
+      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08)."
+    },
+    {
+      "destination": "packages/cfml-check/src/core/source-reader.ts",
+      "imported_sha256": "ef72244381dc93e5a83e93a4e5484c086ca9577b74e82a8aa398658edcabbd5c",
+      "current_sha256": "ccc1d1ae23c1da0f2a5fdd5ea43305c04abfa1aaba5a7a279bf1ba3397dd31a3",
+      "reason": "Owner-selected descriptor-bound source reads, observed substitution rejection and bounded growth detection (2026-10-08)."
+    },
+    {
+      "destination": "packages/cfml-check/test/check.test.ts",
+      "imported_sha256": "139fc079688cfc6e59e57c76d5238507c451db00764b4ee1f9f14db5fc7dc040",
+      "current_sha256": "3ed8435ddc873f2a57babb84acb5fd826338ee9bdae30811fecf398f14250d42",
+      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/SPEC.md",
+      "imported_sha256": "7d8b0f5bb28804d5bf3e9b0ae91c1ea3ecd20e84a04fec147fd11186801394a8",
+      "current_sha256": "f7f678fc322bb4961019d2280d9f1b7b577de387dd838a185891922c88666ca4",
+      "reason": "Owner-selected opaque HTML text contexts, explicit unsupported states and bounded analysis semantics (2026-10-08)."
+    },
+    {
       "destination": "packages/cfml-policy-check/docs/CLI_CONTRACT.md",
       "imported_sha256": "8a20dd984739309494c1f178aa8a9318b0d98a2ab85fd73cdd79fad825aecc4c",
-      "current_sha256": "f9828eba9aa1ed51ad3bf9f5362addb4d9632100e488209c4eea8259cd6b9200",
-      "reason": "Owner-selected source/profile read limits and growth/rejection contract (2026-10-08)."
+      "current_sha256": "17e83486ded407b0abe75b1ad4d4ed46df4c71b56c363b12b1cdb7baac54b2f2",
+      "reason": "Owner-selected source/profile read bounds and cooperative processing deadline covering all analysis phases (2026-10-08)."
     },
     {
       "destination": "packages/cfml-policy-check/src/cli.js",
       "imported_sha256": "3dd4a852032141ebd4765f675bdf91f4f811875724dc0ab351fc78405ea97342",
-      "current_sha256": "2040e2fb13c5c932c46d08d5bdadbbffc8d43fc48470ee95e75eb7f880d033ef",
-      "reason": "Owner-selected bounded descriptor reads for source/profile inputs (2026-10-08)."
+      "current_sha256": "1fc9241a43a81d6d6ef48d1483494a1efad4dc99dcd693e9d226b0d73350f859",
+      "reason": "Owner-selected bounded source/profile reads, opaque HTML text contexts and one monotonic analysis deadline with linear visible-span hash scanning (2026-10-08)."
     },
     {
       "destination": "packages/code-slice/docs/SECURITY_PRIVACY.md",

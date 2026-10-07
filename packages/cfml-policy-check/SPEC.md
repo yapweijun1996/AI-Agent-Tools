@@ -2,7 +2,7 @@
 
 Status: `Implemented local slice`
 Lifecycle: `Pre-prototype`
-Last reconciled: 2026-09-16
+Last reconciled: 2026-10-08
 
 The first vertical slice is implemented and locally verified. The complete
 product and release specification remains broader than the current slice.
@@ -34,9 +34,23 @@ the JSON request envelope.
 - A `<col>` elsewhere in the table does not satisfy the rule.
 - Nested tables are evaluated independently.
 - HTML and CFML comments do not create active elements.
+- Tag-shaped contents of `script`, `style`, `textarea`, `title`, `xmp`, `iframe`,
+  `noembed`, and `noframes` do not create active HTML elements. Matching end tags
+  are case-insensitive; lookalike names do not end the text context. An opening
+  self-closing slash does not close these text elements.
+- Unclosed text elements, double-escaped script contents, `plaintext`, and
+  `noscript` return `incomplete`. The bounded checker does not implement the
+  full HTML tokenizer or choose a browser scripting mode.
 - `cfoutput` is transparent for static markup.
 - Other CFML tags, non-escaped hash expressions, malformed markup, or limits
   affecting a conclusion return `incomplete`.
+
+CFML tags and hash expressions within text contents retain the conservative
+dynamic-structure checks; opaque HTML text is not evidence of static CFML output.
+Comment suppression and escaped hashes are evaluated in one scan over visible
+source spans. Analysis uses one monotonic cooperative deadline covering source
+positions, markup, hashes, rules and final finding ordering; see
+[CLI_CONTRACT.md](docs/CLI_CONTRACT.md) for the processing boundary.
 
 ## AIT and CLI request contract
 
