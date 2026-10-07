@@ -1,10 +1,14 @@
 # Task status
 
+## CFML fixes main integration — 2026-10-08
+
+The owner selected commit and push. All thirteen intended CFML fix, regression, contract and evidence files were committed on main as `f86a4a9d8c32c3250c5ed83dfbf491082c1a817f` and pushed to origin. Remote branch read-back confirmed that exact SHA. The local acceptance remains 872 Node and twelve Python tests, all configured verification gates, seventeen dry-run packs and seven packed-consumer checks. The subsequent evidence update changes only TASK/VALIDATION; implementation source and regressions are unchanged. Current integration evidence is recorded in [Validation](VALIDATION.md#cfml-fixes-main-integration--2026-10-08). New hosted Linux/Windows acceptance remains unverified.
+
 ## CFML reader, text contexts and processing budgets — 2026-10-08
 
 The owner selected all three further-review findings for correction. CFML Check now binds bounded source reads to an admitted regular-file descriptor and rejects observed leaf/ancestor or nonregular substitutions before body reads. CFML Policy Check treats supported HTML text contents as opaque, explicitly withholds conclusions for unsupported text states, and applies one monotonic deadline across all analysis phases. Comment/hash processing scans visible spans once instead of repeatedly rebuilding the source.
 
-All twenty-eight new regressions passed locally. Native suites passed 30 CFML Check and 40 CFML Policy Check tests. Combined root verification exited 0 with 872 Node and twelve Python tests, no skips/failures, seventeen dry-run packs, seven packed-consumer checks and all applicable build/typecheck/lint gates. Current evidence and platform limits are recorded in [Validation](VALIDATION.md#cfml-reader-text-contexts-and-processing-budgets--2026-10-08). Historical import hashes remain unchanged; [explicit source updates](docs/migration/SOURCE_UPDATES.json) now record twenty-five evolved imported files. These corrections are local and uncommitted; new hosted Linux/Windows execution remains unverified.
+All twenty-eight new regressions passed locally. Native suites passed 30 CFML Check and 40 CFML Policy Check tests. Combined root verification exited 0 with 872 Node and twelve Python tests, no skips/failures, seventeen dry-run packs, seven packed-consumer checks and all applicable build/typecheck/lint gates. Current evidence and platform limits are recorded in [Validation](VALIDATION.md#cfml-reader-text-contexts-and-processing-budgets--2026-10-08). Historical import hashes remain unchanged; [explicit source updates](docs/migration/SOURCE_UPDATES.json) now record twenty-five evolved imported files. The subsequent owner-selected main integration is recorded above; new hosted Linux/Windows execution remains unverified.
 
 ## Read boundary integration and platform follow-up — 2026-10-08
 
