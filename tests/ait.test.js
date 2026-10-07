@@ -245,3 +245,62 @@ test('dispatch applies the exact native profile without rewriting its payload', 
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('dispatch fallback rejects an escaped package root before starting its executable', () => {
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'ait-fallback-path-')));
+  const home = path.join(root, 'home');
+  const installation = path.join(home, 'packages', 'agent-code-slice', '0.2.0');
+  const installed = path.join(installation, 'node_modules', 'agent-code-slice');
+  const marker = path.join(root, 'executed.txt');
+  const dispatch = () => captureStdout(() => ait.main([
+    'dispatch', 'agent-code-slice', '--allow-execution', '--json',
+    '--registry', registryPath, '--home', home,
+  ]));
+  try {
+    fs.mkdirSync(installed, { recursive: true });
+    fs.writeFileSync(path.join(installed, 'package.json'), JSON.stringify({
+      name: 'agent-code-slice', version: '0.2.0', bin: { 'code-slice': 'cli.js' },
+    }));
+    fs.writeFileSync(path.join(installed, 'cli.js'), [
+      `require('node:fs').writeFileSync(${JSON.stringify(marker)}, 'executed');`,
+      'console.log(JSON.stringify({schemaVersion:"1.0",ok:true,operation:"symbol",result:{fixture:true},warnings:[],meta:{}}))',
+    ].join('\n'));
+    fs.writeFileSync(path.join(home, 'installed.json'), JSON.stringify({
+      schema_version: 'ait-install-state/v1',
+      installed: [{
+        id: 'agent-code-slice', package: 'agent-code-slice', version: '0.2.0',
+        root: installation, bin: { name: 'code-slice', path: 'cli.js' },
+      }],
+    }));
+    assert.equal(fs.existsSync(path.join(installation, 'node_modules', '.bin')), false);
+
+    const contained = dispatch();
+    assert.equal(contained.value, 0);
+    assert.equal(JSON.parse(contained.output).data.result.fixture, true);
+    assert.equal(fs.existsSync(marker), true);
+    fs.unlinkSync(marker);
+
+    // Windows file symlinks require privileges; the escape below uses a directory junction.
+    if (process.platform !== 'win32') {
+      fs.renameSync(path.join(installed, 'cli.js'), path.join(installed, 'main.js'));
+      fs.symlinkSync('main.js', path.join(installed, 'cli.js'), 'file');
+      const containedLink = dispatch();
+      assert.equal(containedLink.value, 0);
+      assert.equal(JSON.parse(containedLink.output).data.result.fixture, true);
+      assert.equal(fs.existsSync(marker), true);
+      fs.unlinkSync(marker);
+    }
+
+    const outside = path.join(root, 'outside');
+    fs.renameSync(installed, outside);
+    fs.symlinkSync(outside, installed, process.platform === 'win32' ? 'junction' : 'dir');
+    const escaped = dispatch();
+    assert.equal(fs.existsSync(marker), false, 'Escaped executable must never start');
+    assert.equal(escaped.value, 4);
+    const output = JSON.parse(escaped.output);
+    assert.equal(output.ok, false);
+    assert.equal(output.meta.error, 'PATH_ESCAPE');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

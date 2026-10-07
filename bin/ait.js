@@ -574,6 +574,7 @@ function resolveExecutable(entry) {
   const realRoot = fs.realpathSync(entry.record.root);
   assertWithin(realHome, realRoot);
   const packageRootPath = fs.realpathSync(packageRoot(realRoot, entry.record.package));
+  assertWithin(realRoot, packageRootPath);
   const shim = path.join(realRoot, 'node_modules', '.bin', entry.record.bin.name + (process.platform === 'win32' ? '.cmd' : ''));
   if (process.platform !== 'win32' && fs.existsSync(shim)) {
     const realShim = fs.realpathSync(shim);

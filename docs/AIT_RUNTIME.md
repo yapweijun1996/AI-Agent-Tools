@@ -76,6 +76,8 @@ a sandbox: tool processes may still access resources available to the invoking u
 - Execution requires an explicit flag and uses an argument array with `shell: false`.
 - Unknown registry identity, missing executable, path escape, malformed state, and
   unsupported lifecycle states fail closed.
+- Resolved package directories must remain within their installation root, including
+  when dispatch falls back to the package executable because an npm shim is absent.
 
 ## Current limitations
 

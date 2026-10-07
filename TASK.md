@@ -1,5 +1,9 @@
 # Task status
 
+## AIT dispatch package-root containment — 2026-10-07
+
+The owner selected the reviewed AIT path-containment fix. Dispatch now checks the canonical installed package directory against its installation root before resolving either the npm shim or the package executable fallback. A relocated package directory is rejected with `PATH_ESCAPE` before its executable starts. The focused regression covers ordinary fallback, a POSIX executable symlink within the package and an escaped package directory; the AIT suite passed 11/11 locally. Full root `npm run verify` passed locally; current evidence and platform limits are recorded in [Validation](VALIDATION.md#ait-dispatch-package-root-containment--2026-10-07).
+
 ## Agent Context Pack — 2026-10-03
 
 The owner requested implementation of the existing `agent-context-pack` registry responsibility. It is implemented in [packages/context-pack](packages/context-pack/README.md) as a private, dependency-free source MVP. Scope: explicit supplied Hub-envelope artifacts and one JSON manifest declaring snapshot, tool identity, optional digests, `mandatory`/`priority` and a UTF-8 byte budget; deterministic ordering, exact artifact-digest and exact-locator deduplication, mandatory-overflow failure and stable omission reasons. Out of scope: running other tools, execution graphs, relevance scoring, span merging, native-contract adapters, Result Store locators, persistent memory and any network/LLM use. Snapshot identity is caller-declared and verified only for consistency. Registry remains 18 entries; source now has 17 package folders. Lifecycle is Experimental; npm identity, release and published verification remain `null`. Current check results are recorded in [Validation](VALIDATION.md). KB synchronization, npm publication and owner-confirmed delivery completion are not part of this change.
