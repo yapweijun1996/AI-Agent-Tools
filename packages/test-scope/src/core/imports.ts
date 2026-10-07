@@ -26,7 +26,8 @@ function localModuleCandidates(absoluteBase: string): string[] {
   const suppliedExtension = extname(absoluteBase);
   const withoutExtension = suppliedExtension ? absoluteBase.slice(0, -suppliedExtension.length) : absoluteBase;
   const bases = suppliedExtension && [".js", ".jsx", ".mjs", ".cjs"].includes(suppliedExtension.toLowerCase()) ? [withoutExtension, absoluteBase] : [absoluteBase, withoutExtension];
-  return [...new Set(bases.flatMap(base => [base, ...extensions.map(extension => `${base}${extension}`), ...extensions.map(extension => join(base, `index${extension}`))]))];
+  const candidates = bases.flatMap(base => [base, ...extensions.map(extension => `${base}${extension}`), ...extensions.map(extension => join(base, `index${extension}`))]);
+  return [...new Set([absoluteBase, ...candidates])];
 }
 
 function resolveLocal(discovery: DiscoveryResult, source: DiscoveredFile, specifier: string): string | undefined {

@@ -10,6 +10,8 @@ Command strings use POSIX shell quoting and are intended to run from the request
 
 V0.1 supports JavaScript, TypeScript, JSX, and TSX repositories with Vitest, Jest, and Node.js native test conventions. Static imports and `require()` calls are bounded evidence; dynamic loading is reported as partial rather than treated as confirmed reachability.
 
+Relative module imports retain an existing explicit file path before considering replacement extensions or directory indexes. JavaScript-extension imports can still map to TypeScript source when the exact file is absent; a same-stem TypeScript file does not replace an existing JavaScript target.
+
 ## Usage
 
 For Codex CLI, install globally so the command is available from any project:

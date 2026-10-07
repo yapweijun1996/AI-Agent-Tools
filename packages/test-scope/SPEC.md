@@ -106,6 +106,8 @@ Initial evidence types:
 
 Every selected test or command MUST carry at least one evidence item.
 
+Static relative import resolution MUST prefer an existing explicit file path over extension substitution and directory-index candidates. The bounded TypeScript-source fallback for JavaScript-extension specifiers applies only when the exact file is absent.
+
 ## 7. Confidence
 
 Allowed confidence:

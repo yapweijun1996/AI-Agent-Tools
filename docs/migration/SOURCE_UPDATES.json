@@ -4,14 +4,14 @@
     {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
-      "current_sha256": "9820214764d24415e871351f6a63d137f4da4f73eb5336f9110cebfcc666f379",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+      "current_sha256": "fd90977f90406e5acda648774ebb267044436e386c1a68e6e66c116753ea9f50",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07)."
     },
     {
       "destination": "packages/test-scope/SPEC.md",
       "imported_sha256": "3f9bb5869138216c6af26bef3aeb0ceb5710f00a225fc4178b6b26780a88c3fd",
-      "current_sha256": "d938718671d8aa1d58e6ace175401cd54bed723ad12d49a6f81ad2775f419eaa",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+      "current_sha256": "62b1ec2383013e2162352546341189e88c8e1bd3960b8f3a94eefcaa0b5cfe7d",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07)."
     },
     {
       "destination": "packages/test-scope/skills/agent-test-scope/SKILL.md",
@@ -24,6 +24,12 @@
       "imported_sha256": "6fdb68ce7b375de02ab913f709918f4d4187aa70e649376a3dff874fba1fe3e3",
       "current_sha256": "93b0dcf41ef74fbd6f645ea2a500c955e81f71efc17421d24787e21607ca7de4",
       "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/src/core/imports.ts",
+      "imported_sha256": "0f777efcb76a33b232a00faa28be63e5d71c144bc6930d07f233c475ec6e7e89",
+      "current_sha256": "15ebbeba1e7aeb203223419f1dac878884174629337cfb5cde5cf03268574af8",
+      "reason": "Owner-selected exact relative import ownership fix while preserving TypeScript source fallback (2026-10-07)."
     },
     {
       "destination": "packages/test-scope/src/core/planner.ts",
