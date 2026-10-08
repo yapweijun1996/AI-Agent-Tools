@@ -1,0 +1,4 @@
+{"type":"header","schemaVersion":"1.0.0","reporter":{"id":"agent-test-evidence","version":"0.1.0"},"runtime":{"id":"node","version":"24.0.0"}}
+{"type":"case","id":"case-1","status":"passed"}
+{"type":"summary","success":true,"counts":{"tests":1,"suites":0,"passed":1,"failed":0,"skipped":0,"todo":0,"cancelled":0}}
+{"type":"end"}

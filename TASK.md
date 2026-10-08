@@ -1,5 +1,9 @@
 # Task status
 
+## Test Evidence private local MVP (2026-10-08)
+
+The owner selected implementation of the supplied Test Evidence plan. [Package contract](packages/test-evidence/README.md) owns request/capture/output schemas, strict acceptance and fixed limits. The private dependency-free ESM package provides summarize/verify, a projected Node reporter and a separately opt-in package-only development pilot; root native test semantics remain unchanged. Registry lifecycle is Experimental, with npm/release/verification fields null. Final Windows Node 24.19.0 root verification passed: 926 Node tests (902 passed, zero failed, 24 explicit platform skips), twelve Python tests, eighteen dry-run packs and eight packed consumers. Test Evidence native/Schema/CLI/API/reporter and real installed tarball gates passed on Windows Node 24.19.0 and 22.23.3: 42 tests, 41 passed, zero failed, one explicit POSIX FIFO skip on each runtime. Both optional pilots matched producer counts and strictly withheld acceptance for that skip. [Validation](VALIDATION.md#test-evidence-private-local-mvp-2026-10-08) owns exact evidence, cleanup and platform limits. Current inventory is eighteen package folders plus AIT, with nineteen registered tools; historical import baselines remain unchanged. The owner subsequently selected a focused local commit of the package, Hub integration, tests and evidence documentation. Git owns the commit identity. No push, publication, KB writeback or monitoring is included.
+
 ## Installed CLI correction commit (2026-10-08)
 
 The owner selected a focused local commit containing all seven installed-CLI corrections, their regression tests and evidence updates. The source matched the recorded passing verification snapshot before this documentation update. The implementation and acceptance results below are unchanged. This commit includes thirty intended files; Git owns the commit identity. No push, hosted verification or package publication is included.

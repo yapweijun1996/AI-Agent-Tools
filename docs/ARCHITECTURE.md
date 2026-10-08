@@ -111,3 +111,7 @@ allowed store; the Hub does not own that storage. Runtime Trace receives event
 files and caller-defined business evidence; application adapters own
 instrumentation and readback. No automatic retries, service orchestration or
 mandatory inter-tool dependency follows.
+
+## Test Evidence ownership
+
+[Test Evidence](../packages/test-evidence/README.md) independently normalizes caller-selected Node event captures and unified JSON, checks declared source/environment bindings and strictly assesses explicit required checks. Its CLI alone reads bounded local artifacts; its core receives already-loaded bytes. The optional development collector is excluded from its pack allowlist. Producers/callers execute tests and supply process/source/environment declarations; Test Scope supplies candidates, Error Lens owns detailed diagnostics and future Result Store owns explicitly authorized persistence. The tool does not authenticate declarations, infer business correctness or become an execution/retry/orchestration runtime. Existing native test scripts and root exit semantics are preserved.

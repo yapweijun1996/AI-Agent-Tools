@@ -1,6 +1,6 @@
 # AI-Agent-Tools
 
-Owned source for seventeen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for eighteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
 ## Install all CLIs
 
@@ -59,7 +59,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 ## Two additional source MVPs
 
-[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has seventeen package folders; original ten source provenance remains unchanged.
+[Environment Doctor](packages/environment-doctor/README.md) checks sanitized runtime/configuration evidence. [Contract Check](packages/contract-check/README.md) implements the existing Contract Diff registry responsibility using offline JSON Schema inputs. Both are private source packages, included by root bootstrap/build/test/typecheck/pack, with no npm publication or AIT npm installation identity. The repository now has eighteen package folders; original ten source provenance remains unchanged.
 
 ## Patch policy checks
 
@@ -92,3 +92,7 @@ node packages/context-pack/src/cli.js pack --manifest examples/manifest.json --r
 ## Optional local workflow and UI evidence
 
 [Isolated CLI installation and rollback](docs/workflow/LOCAL_CLI.md) preserve existing global tools and personal Codex settings. Read the [optional workflow skill](skills/ai-agent-tools-workflow/SKILL.md) only when a tool answers the task. Release Guard adds a bounded read-only collector; its offline verifier remains available. [Runtime Trace UI Regression Check](packages/runtime-trace/README.md) analyzes explicit responsive geometry, declared overlap, focus and Back observations. General business-event correlation remains planned. These private source packages have no npm publication.
+
+## Test evidence acceptance
+
+[Agent Test Evidence](packages/test-evidence/README.md) normalizes explicit Node reporter captures or unified JSON and checks required evidence against caller-declared source and environments. The private Experimental MVP does not execute tests. Strict verification withholds acceptance for skip/todo/cancelled, missing or mismatched evidence; complete analyses can report a failing verdict with exit 0. Root verification tests the new tool while existing native test commands and exit semantics remain unchanged. An explicit package-only pilot is available with `npm --prefix packages/test-evidence run pilot`. No npm release is recorded.

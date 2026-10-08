@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "producer": {
+    "id": "fixture",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "success": true,
+    "counts": {
+      "tests": 1,
+      "suites": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "cancelled": 0
+    }
+  }
+}

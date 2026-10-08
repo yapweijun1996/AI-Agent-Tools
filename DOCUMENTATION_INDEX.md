@@ -69,3 +69,5 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 - [Rules Resolve profile, provenance, safe discovery and limits](packages/rules-resolve/README.md)
 - [Explicit batch CLI installation and agent onboarding](docs/workflow/INSTALL_ALL.md)
 - [Context Pack manifest, budget accounting, duplicates and limits](packages/context-pack/README.md)
+
+- [Test Evidence request, unified/Node captures, strict acceptance, schemas and optional pilot](packages/test-evidence/README.md)

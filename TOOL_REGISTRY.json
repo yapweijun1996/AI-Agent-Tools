@@ -217,6 +217,17 @@
       "release_version": null,
       "verification": null,
       "deprecation": null
+    },
+    {
+      "id": "agent-test-evidence",
+      "name": "Agent Test Evidence",
+      "description": "Summarize caller-selected Node or unified JSON test evidence and strictly verify required checks against declared source and target environments.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
     }
   ]
 }

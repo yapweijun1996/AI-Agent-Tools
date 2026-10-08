@@ -31,7 +31,7 @@ for (const folder of action === 'test:hub' ? [] : readdirSync(join(root, 'packag
   const cwd = join(root, 'packages', folder);
   const manifest = JSON.parse(readFileSync(join(cwd, 'package.json'), 'utf8'));
   if (action === 'bootstrap') run(manifest.name, cwd, npm, ['ci', '--ignore-scripts', '--no-audit', '--no-fund']);
-  else if (action === 'pack') { run(manifest.name, cwd, npm, ['pack', '--dry-run', '--ignore-scripts', '--json']); if (['environment-doctor','contract-check','release-guard','runtime-trace','patch-guard','rules-resolve','context-pack'].includes(folder)) run(manifest.name + '-packed-consumer', cwd, npm, ['run','smoke:pack']); }
+  else if (action === 'pack') { run(manifest.name, cwd, npm, ['pack', '--dry-run', '--ignore-scripts', '--json']); if (['environment-doctor','contract-check','release-guard','runtime-trace','patch-guard','rules-resolve','context-pack','test-evidence'].includes(folder)) run(manifest.name + '-packed-consumer', cwd, npm, ['run','smoke:pack']); }
   else if (manifest.scripts?.[action]) run(manifest.name, cwd, npm, ['run', action]);
   else results.push({ package: manifest.name, action, status: 'not-applicable', reason: `No ${action} script in source package` });
 }

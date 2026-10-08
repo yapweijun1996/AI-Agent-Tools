@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "expectedSource": {
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "dirty": false
+  },
+  "requiredChecks": [
+    {
+      "id": "unit",
+      "environment": {
+        "os": "windows",
+        "runtime": "node",
+        "version": "24.0.0"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "run-1",
+      "checkId": "unit",
+      "source": {
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "dirty": false
+      },
+      "environment": {
+        "os": "windows",
+        "runtime": "node",
+        "version": "24.0.0"
+      },
+      "producer": {
+        "id": "fixture",
+        "version": "1.0.0"
+      },
+      "exitCode": 1,
+      "signal": null,
+      "completed": true,
+      "artifact": {
+        "id": "capture-1",
+        "path": "examples/fail.json",
+        "format": "unified-json"
+      }
+    }
+  ]
+}
