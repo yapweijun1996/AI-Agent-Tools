@@ -1,13 +1,14 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { delimiter, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const consumer = mkdtempSync(join(tmpdir(), "ait-context-pack-pack-"));
+const consumer = mkdtempSync(join(tmpdir(), "ait-context-pack pack # -"));
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+const npmCli = process.env.npm_execpath || join(dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js");
 const env = {
   ...process.env,
   PATH: `${dirname(process.execPath)}${delimiter}${process.env.PATH ?? ""}`,
@@ -15,11 +16,11 @@ const env = {
   npm_config_update_notifier: "false",
 };
 function run(command, args, cwd = root) {
-  const result = spawnSync(command, args, {
+  const useNpmCli = command === npm && existsSync(npmCli);
+  const result = spawnSync(useNpmCli ? process.execPath : command, useNpmCli ? [npmCli, ...args] : args, {
     cwd,
     env,
     encoding: "utf8",
-    shell: process.platform === "win32" && command === npm,
     timeout: 60_000,
     maxBuffer: 1024 * 1024,
   });

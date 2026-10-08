@@ -26,17 +26,18 @@ Generic text never receives `confirmed` confidence without producer-specific evi
 
 CommonJS support is not implied.
 
-## Global installation for Codex CLI
+## Source installation for Codex CLI
 
-Install the published CLI from any directory:
+The package is private and has no recorded npm release. Build a reviewed checkout and install that local package:
 
 ```sh
-npm install --global agent-error-lens@latest
+npm --prefix packages/error-lens ci --ignore-scripts
+npm --prefix packages/error-lens run build
+npm install --global ./packages/error-lens --ignore-scripts
 agent-error-lens capabilities --format json
 ```
 
-The package exposes the `agent-error-lens` command globally. For a repository
-checkout, run `npm ci`, `npm run build`, and invoke `node dist/src/cli.js`.
+Run these commands from the monorepo root. The local installation exposes `agent-error-lens` globally; it does not publish the package. For an isolated installation of all source CLIs, use the root README's install-all workflow. Without a global install, invoke `node packages/error-lens/dist/src/cli.js` after the explicit build.
 
 ## Library usage
 

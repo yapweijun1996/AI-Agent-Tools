@@ -12,7 +12,7 @@ const npmCommand = npmCli ? process.execPath : process.platform === "win32" ? "n
 const npmPrefixArgs = npmCli ? [npmCli] : [];
 // Keep spaces in the temporary path so package and .cmd invocation quoting is
 // exercised on every platform, including the Windows runner.
-const tempRoot = mkdtempSync(join(tmpdir(), "agent-impact pack smoke-"));
+const tempRoot = mkdtempSync(join(tmpdir(), "agent-impact pack smoke # -"));
 
 function runNpm(args, cwd) {
   return execFileSync(npmCommand, [...npmPrefixArgs, ...args], {
@@ -63,11 +63,16 @@ try {
 
   const cliName = process.platform === "win32" ? "agent-impact.cmd" : "agent-impact";
   const cliPath = join(appDirectory, "node_modules", ".bin", cliName);
-  const cliCommand = process.platform === "win32" ? `"${cliPath}"` : cliPath;
-  const cliOutput = execFileSync(cliCommand, ["capabilities", "--json"], {
+  // Execute the installed Windows shim explicitly without Node's deprecated
+  // shell:true argument-array conversion.
+  const cliCommand = process.platform === "win32" ? process.env.ComSpec || "cmd.exe" : cliPath;
+  const cliArgs = process.platform === "win32"
+    ? ["/d", "/s", "/c", `""${cliPath}" capabilities --json"`]
+    : ["capabilities", "--json"];
+  const cliOutput = execFileSync(cliCommand, cliArgs, {
     cwd: appDirectory,
     encoding: "utf8",
-    ...(process.platform === "win32" ? { shell: true } : {}),
+    ...(process.platform === "win32" ? { windowsVerbatimArguments: true } : {}),
   });
   const cliResult = JSON.parse(cliOutput);
   assert.equal(cliResult.ok, true);

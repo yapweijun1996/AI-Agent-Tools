@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -12,10 +12,12 @@ mkdirSync(join(cache, 'tmp'), { recursive: true });
 mkdirSync(join(cache, 'npm'), { recursive: true });
 const env = { ...process.env, TMPDIR: realpathSync(join(cache, 'tmp')), TMP: realpathSync(join(cache, 'tmp')), TEMP: realpathSync(join(cache, 'tmp')), npm_config_cache: join(cache, 'npm'), FORCE_COLOR: '0', NODE_TEST_REPORTER: 'tap' };
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const npmCli = process.env.npm_execpath || join(dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js');
 const results = [];
 function run(name, cwd, command, args) {
   console.log(`\n[${action}] ${name}`);
-  const result = spawnSync(command, args, { cwd, env, stdio: 'inherit', shell: process.platform === 'win32' && command === npm });
+  const useNpmCli = command === npm && existsSync(npmCli);
+  const result = spawnSync(useNpmCli ? process.execPath : command, useNpmCli ? [npmCli, ...args] : args, { cwd, env, stdio: 'inherit' });
   results.push({ package: name, action, status: result.status === 0 ? 'passed' : 'failed', exitCode: result.status, error: result.error?.message });
 }
 if (action === 'test' || action === 'test:hub') {

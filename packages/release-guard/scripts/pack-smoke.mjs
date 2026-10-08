@@ -1,13 +1,14 @@
 import { mkdtempSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
-const dir = mkdtempSync(join(tmpdir(), "ait-mvp-pack-"));
+const dir = mkdtempSync(join(tmpdir(), "ait-mvp pack # -"));
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+const npmCli = process.env.npm_execpath || join(dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js");
 const run = (cmd, args, options = {}) => {
-  const r = spawnSync(cmd, args, {
+  const useNpmCli = cmd === npm && existsSync(npmCli);
+  const r = spawnSync(useNpmCli ? process.execPath : cmd, useNpmCli ? [npmCli, ...args] : args, {
     encoding: "utf8",
-    shell: process.platform === "win32" && cmd === npm,
     ...options,
   });
   if (r.status !== 0)

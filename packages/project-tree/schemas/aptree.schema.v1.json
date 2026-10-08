@@ -6,9 +6,27 @@
   "type": "object",
   "oneOf": [
     { "$ref": "#/$defs/graphEnvelope" },
-    { "$ref": "#/$defs/queryEnvelope" }
+    { "$ref": "#/$defs/queryEnvelope" },
+    { "$ref": "#/$defs/errorEnvelope" }
   ],
   "$defs": {
+    "errorEnvelope": {
+      "type": "object",
+      "required": ["schema", "error"],
+      "properties": {
+        "schema": { "const": "aptree.error.v1" },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "properties": {
+            "code": { "enum": ["INVALID_COMMAND", "CLI_ERROR"] },
+            "message": { "type": "string", "maxLength": 128 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "provenance": {
       "type": "object",
       "required": ["source"],

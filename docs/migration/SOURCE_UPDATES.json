@@ -44,16 +44,40 @@
       "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
     },
     {
+      "destination": "packages/change-impact/scripts/pack-smoke.cjs",
+      "imported_sha256": "470f3c48e0657269c1f70e2b13bfd6819db7a474bbbf98c2680e57085d003101",
+      "current_sha256": "7722014bbef39393834f5680f8fc18a23cf07ddadf19e794026070b8c503c4c6",
+      "reason": "Owner-selected explicit Windows shim execution without deprecated shell:true argument conversion; installed consumer paths include spaces and a hash (2026-10-08)."
+    },
+    {
+      "destination": "packages/code-slice/docs/JSON_SCHEMA.md",
+      "imported_sha256": "d943a34569ee966574a0a40aa53898f6d2a264d1329b0faeb1b706880661724f",
+      "current_sha256": "34d718948b9ce350df8ecdb96908c01327f2ded978ae6789f730d3f45194b035",
+      "reason": "Owner-selected installed schema location and packed-consumer verification documentation (2026-10-08)."
+    },
+    {
       "destination": "packages/code-slice/docs/SECURITY_PRIVACY.md",
       "imported_sha256": "06401d20abecdc91c747dbc4127e01de7715e591f55c9ea8f5ffa7313d6fa401",
       "current_sha256": "ac24ffacc596a0e5f45700d7d67eacc4eb80e888d71692f5c37be1128f40ba21",
       "reason": "Owner-selected descriptor-bound source reads and documented mutation/byte-limit behavior (2026-10-08)."
     },
     {
+      "destination": "packages/code-slice/package.json",
+      "imported_sha256": "c0eaab253a62a8dd32aeb2d456ca6abab0d07bde7efa73b4aeaf3631bc6351e7",
+      "current_sha256": "0d48db9d22f9d5240d0c7a7bae285219d707d4bbb65ca505dcb9126c8494292e",
+      "reason": "Owner-selected inclusion of maintained v1 and v1.1 JSON schemas in the npm artifact (2026-10-08)."
+    },
+    {
       "destination": "packages/code-slice/src/core/file-loader.ts",
       "imported_sha256": "bd8e56bc823a9a1210e7c558dd73c46239b6ec6cb9a8af65d77aa02ee5b5d04f",
       "current_sha256": "bb733e8c3fa8b667f1a09965d9efaa22dcb264b2a3d1ae252dd2e8786bb5a6c4",
       "reason": "Owner-selected descriptor-bound source reads and root-substitution rejection (2026-10-08)."
+    },
+    {
+      "destination": "packages/error-lens/README.md",
+      "imported_sha256": "f507de38290af5a2b0db8ef60640550db14e304dd1c3d03ae3092ee561fd3d19",
+      "current_sha256": "909a904c5c9f99cfd3c8045309631fd294d5a268c985aeaab907bef4da90e0da",
+      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
     },
     {
       "destination": "packages/error-lens/SPEC.md",
@@ -88,14 +112,32 @@
     {
       "destination": "packages/project-tree/README.md",
       "imported_sha256": "10be947e62e6443606be507ce28e01509d1843fe683b6a7c200bbaf2b268b602",
-      "current_sha256": "e4d736ef7d03830b41f840f4c800abb588c59e70d18173f36313c155cead653d",
-      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07)."
+      "current_sha256": "afe3dc5880af94c3540df11830f44b01fa10ebcea70ab039eb399283596a0294",
+      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08)."
+    },
+    {
+      "destination": "packages/project-tree/bin/aptree.js",
+      "imported_sha256": "7799256fd959049d7df94bcd947ab2ddabef71e2babad1c5d36381323a8d535e",
+      "current_sha256": "6db2f2145f35ccfda55f36d9bf6815bcec552a189c4452ada47691de389729bb",
+      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
     },
     {
       "destination": "packages/project-tree/docs/SPEC.md",
       "imported_sha256": "0d73af2cd1c3d3307154d9928a4cbf87d803d7ffd6dbed227c0e99211bbb18fb",
-      "current_sha256": "6074e3aa233c38e309679e1c6b6e5fc94f49bf7879212c0665bef789c8c3ce30",
-      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+      "current_sha256": "7a1eac7a28b7156af5ba0074bf8a91779cb3f46601806c8304cda1f9c53586dd",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
+    },
+    {
+      "destination": "packages/project-tree/schemas/aptree.schema.v1.json",
+      "imported_sha256": "2860f6012123c35d6a30f7ff416cd3b75883f1fff91f021626a5b8d3a04ecf4a",
+      "current_sha256": "bb82c4791990138db324ad1cbb1edf94c662bed828275ce87503d9d7cf6ece4d",
+      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
+    },
+    {
+      "destination": "packages/project-tree/src/cli.js",
+      "imported_sha256": "d2837fdd39aa5f5fb14b386dda66ad3286be0c3bec98a5f65bf77b4694f0d3e7",
+      "current_sha256": "3b5d38e9804a4981551b0093c3ec6dace5cdda2699237af9c2ad5a0d3da3476d",
+      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
     },
     {
       "destination": "packages/project-tree/src/git.js",
@@ -118,14 +160,20 @@
     {
       "destination": "packages/project-tree/types/index.d.ts",
       "imported_sha256": "3d85bea3742b1263a468da7667602c18e3cc926c02733ffa661f6dd66cf08ef9",
-      "current_sha256": "aa5ddb82fb6abbe31530eb495f268bcfac2020cbcb47ef8df998c440c27bfc7a",
-      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+      "current_sha256": "e3d1f01f1ee5b21a52b8c86939e7e5503832a1c0f0ca274cdb23b670512ab2d7",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
     },
     {
       "destination": "packages/symbol-search/scripts/docs-check.mjs",
       "imported_sha256": "3c7f41776f8eaeea4b69014cc60606cea8565595e5c673f0514da0c87e5f08d6",
       "current_sha256": "0cd8c460cae7edbbd5e48711c2e0064810c143d0eec7bd68fea5f4f2f6998845",
       "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
+      "destination": "packages/symbol-search/scripts/smoke-pack.mjs",
+      "imported_sha256": "3d2cfc57a8dc6076b601866347aec55eb078c37bf6407a7edf9cbee77a3ba3f5",
+      "current_sha256": "20e9fc0319ed9198fb545af87e20db37cd6b9514ac1b1b8fd378ddf8ea5c6987",
+      "reason": "Owner-selected npm JavaScript entrypoint and explicit Windows shim execution without deprecated shell:true argument conversion; installed consumer paths include spaces and a hash (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/README.md",

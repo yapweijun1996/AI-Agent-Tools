@@ -122,7 +122,10 @@ publisher signature or safety certificates.
 The installer copies the selected Node executable and adjacent regular libnode
 libraries where present, verifies its version on the current host, and writes
 launchers to the package's real CLI entrypoint. Available Node distribution license
-copy status is recorded. This runtime is not claimed to be portable or fully
+copy status is recorded. License discovery checks the regular `LICENSE` beside
+the selected executable first (the Windows distribution layout), then the parent
+directory (the Unix distribution layout). Missing licenses remain explicitly
+reported rather than fabricated. This runtime is not claimed to be portable or fully
 self-contained; system/Homebrew shared libraries may still be required. Optional
 native install scripts remain disabled, including CFML Linkage's optional parser;
 installation does not verify those optional capabilities.

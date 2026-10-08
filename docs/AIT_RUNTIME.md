@@ -8,6 +8,8 @@ AIT is the Hub-owned install and dispatch runtime for independently released too
 It does not contain tool implementations, normalize their native semantics, or
 control agent reasoning.
 
+The source CLI reads its reported version from its own package manifest. On Windows, source `ait install` resolves npm's JavaScript entrypoint from the invoking npm context, the Node distribution, or PATH and executes it through Node without a shell. This also supports install-all's copied Node runtime, which does not bundle npm; npm must still be available on the host. These source corrections do not change the existing published artifact.
+
 ## Distribution status and release gate
 
 `ai-agent-tools@0.1.1` is publicly published under Apache-2.0. The package includes

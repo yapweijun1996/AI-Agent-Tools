@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { spawnSync } = require('node:child_process');
 
 const ait = require('../bin/ait.js');
 
@@ -57,6 +58,57 @@ test('published package includes the default registry snapshot', () => {
   const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
   assert.equal(packageJson.files.includes('TOOL_REGISTRY.json'), true);
   assert.equal(packageJson.files.includes('docs/profiles/PROFILE_INDEX.json'), true);
+});
+
+test('CLI version and result provenance match the package manifest', () => {
+  const version = require('../package.json').version;
+  const child = spawnSync(process.execPath, [path.join(__dirname, '../bin/ait.js'), '--version'], { encoding: 'utf8' });
+  assert.equal(child.status, 0, child.stderr);
+  assert.equal(child.stdout.trim(), version);
+  const listed = captureStdout(() => ait.main(['list', '--json', '--registry', registryPath]));
+  assert.equal(listed.value, 0);
+  assert.equal(JSON.parse(listed.output).meta.ait_version, version);
+});
+
+test('copied Windows AIT runtime finds npm on PATH and installs before dispatch', { skip: process.platform !== 'win32' }, () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ait-copied-runtime space #'));
+  try {
+    const runtime = path.join(root, 'runtime');
+    const application = path.join(root, 'application');
+    const packagePath = path.join(root, 'tool');
+    const home = path.join(root, 'home');
+    fs.mkdirSync(runtime);
+    fs.mkdirSync(path.join(application, 'bin'), { recursive: true });
+    fs.mkdirSync(packagePath);
+    const node = path.join(runtime, 'node.exe');
+    fs.copyFileSync(process.execPath, node);
+    for (const file of ['bin/ait.js', 'bin/install-all.js', 'package.json']) {
+      fs.copyFileSync(path.join(__dirname, '..', file), path.join(application, file));
+    }
+    fs.writeFileSync(path.join(packagePath, 'package.json'), JSON.stringify({
+      name: 'agent-code-slice', version: '0.2.0', bin: { 'code-slice': 'cli.js' },
+      scripts: { postinstall: 'node forbidden.js' },
+    }));
+    fs.writeFileSync(path.join(packagePath, 'forbidden.js'), 'throw new Error("Lifecycle scripts must not execute");\n');
+    fs.writeFileSync(path.join(packagePath, 'cli.js'), 'console.log(JSON.stringify({schemaVersion:"1.0",ok:true,operation:"symbol",result:{fixture:true},warnings:[]}));\n');
+    const npmCli = require('../bin/install-all.js').findNpmCli();
+    assert.ok(npmCli, 'Owning test runtime must provide npm');
+    const npmDirectory = path.resolve(path.dirname(npmCli), '../../..');
+    const env = { ...process.env };
+    for (const key of Object.keys(env)) if (key.toLowerCase() === 'path' || key.toLowerCase() === 'npm_execpath') delete env[key];
+    env.PATH = npmDirectory;
+    const invoke = (args) => spawnSync(node, [path.join(application, 'bin/ait.js'), ...args], {
+      encoding: 'utf8', env, cwd: root, timeout: 120_000, shell: false,
+    });
+    const installed = invoke(['install', 'agent-code-slice', '--from-path', packagePath, '--allow-experimental', '--registry', registryPath, '--home', home, '--json']);
+    assert.equal(installed.status, 0, installed.stdout + installed.stderr);
+    assert.equal(JSON.parse(installed.stdout).ok, true);
+    const dispatched = invoke(['dispatch', 'agent-code-slice', '--allow-execution', '--registry', registryPath, '--home', home, '--json', '--', '--fixture']);
+    assert.equal(dispatched.status, 0, dispatched.stdout + dispatched.stderr);
+    assert.equal(JSON.parse(dispatched.stdout).data.result.fixture, true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('normalizes executable declarations without choosing an unsafe default', () => {

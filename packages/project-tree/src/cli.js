@@ -25,18 +25,25 @@ function parse(argv) {
 }
 
 export async function runCli(argv, io) {
-  const { command, opts } = parse([...argv]);
-  if (opts.help || !command) {
-    io.stdout.write(`${usage()}\n`);
+  let pretty = false;
+  try {
+    const { command, opts } = parse([...argv]);
+    pretty = opts.pretty;
+    if (opts.help || !command) {
+      io.stdout.write(`${usage()}\n`);
+      return 0;
+    }
+    if (!COMMANDS.has(command)) {
+      io.stdout.write(`${JSON.stringify({ schema: 'aptree.error.v1', error: { code: 'INVALID_COMMAND', message: 'Unknown project graph command.' } }, null, pretty ? 2 : 0)}\n`);
+      return 2;
+    }
+    const root = resolveRoot(opts.root, io.cwd);
+    const graph = await buildProjectGraph({ root, maxFiles: opts.maxFiles, ignore: opts.ignore });
+    const result = queryGraph(graph, command, { root, path: opts.path });
+    io.stdout.write(`${JSON.stringify(result, null, pretty ? 2 : 0)}\n`);
     return 0;
+  } catch {
+    io.stdout.write(`${JSON.stringify({ schema: 'aptree.error.v1', error: { code: 'CLI_ERROR', message: 'Unable to complete the project query; check the root, path and scan options.' } }, null, pretty ? 2 : 0)}\n`);
+    return 1;
   }
-  if (!COMMANDS.has(command)) {
-    io.stderr.write(`${usage()}\n`);
-    return 2;
-  }
-  const root = resolveRoot(opts.root, io.cwd);
-  const graph = await buildProjectGraph({ root, maxFiles: opts.maxFiles, ignore: opts.ignore });
-  const result = queryGraph(graph, command, { root, path: opts.path });
-  io.stdout.write(`${JSON.stringify(result, null, opts.pretty ? 2 : 0)}\n`);
-  return 0;
 }

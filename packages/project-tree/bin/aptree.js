@@ -5,7 +5,7 @@ runCli(process.argv.slice(2), { stdout: process.stdout, stderr: process.stderr, 
   .then((code) => {
     process.exitCode = code;
   })
-  .catch((error) => {
-    console.error(error && error.stack ? error.stack : String(error));
+  .catch(() => {
+    console.error('Unable to write the CLI result.');
     process.exitCode = 1;
   });

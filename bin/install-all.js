@@ -313,8 +313,8 @@ function installAll(options, { AitError, spawn = spawnSync } = {}) {
       }
     }
     if (run(nodeExecutable, ['--version'], prefix).trim() !== process.version) fail('Copied Node runtime version mismatch', 'RUNTIME_MISMATCH');
-    const runtimeLicense = path.join(path.dirname(path.dirname(sourceNodeExecutable)), 'LICENSE');
-    const licenseCopied = fs.existsSync(runtimeLicense);
+    const runtimeLicense = findNodeLicense(sourceNodeExecutable);
+    const licenseCopied = runtimeLicense !== null;
     if (licenseCopied) fs.copyFileSync(runtimeLicense, path.join(runtime, 'LICENSE'));
     const quote = (value) => `'${value.replaceAll("'", "'\\''")}'`;
     for (const item of inventory) for (const [name, target] of Object.entries(item.bins)) {
@@ -366,4 +366,12 @@ function findNpmCli() {
   return null;
 }
 
-module.exports = { installAll, findNpmCli, REPOSITORY, MAX_FILES, MAX_SOURCE_BYTES };
+function findNodeLicense(nodeExecutable) {
+  const directory = path.dirname(nodeExecutable);
+  for (const candidate of [path.join(directory, 'LICENSE'), path.join(directory, '..', 'LICENSE')]) {
+    if (fs.existsSync(candidate) && fs.lstatSync(candidate).isFile()) return candidate;
+  }
+  return null;
+}
+
+module.exports = { installAll, findNpmCli, findNodeLicense, REPOSITORY, MAX_FILES, MAX_SOURCE_BYTES };

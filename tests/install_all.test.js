@@ -5,7 +5,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const { AitError, parseArgs, main } = require('../bin/ait.js');
-const { installAll, findNpmCli, REPOSITORY } = require('../bin/install-all.js');
+const { installAll, findNpmCli, findNodeLicense, REPOSITORY } = require('../bin/install-all.js');
 
 const supportedNode = /^(?:22|24)\./.test(process.versions.node);
 function write(root, name, content) {
@@ -54,6 +54,25 @@ function capture(callback) {
   try { return { exit: callback(), value: JSON.parse(text) }; }
   finally { process.stdout.write = original; }
 }
+
+test('Node license discovery supports adjacent Windows and parent Unix distribution layouts', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ait-node-license-'));
+  try {
+    const executable = path.join(root, 'bin', 'node');
+    fs.mkdirSync(path.dirname(executable));
+    fs.writeFileSync(path.join(root, 'LICENSE'), 'Parent distribution license');
+    assert.equal(findNodeLicense(executable), path.join(root, 'LICENSE'));
+    fs.writeFileSync(path.join(root, 'bin', 'LICENSE'), 'Adjacent distribution license');
+    assert.equal(findNodeLicense(executable), path.join(root, 'bin', 'LICENSE'));
+    fs.unlinkSync(path.join(root, 'bin', 'LICENSE'));
+    fs.mkdirSync(path.join(root, 'bin', 'LICENSE'));
+    assert.equal(findNodeLicense(executable), path.join(root, 'LICENSE'));
+    fs.unlinkSync(path.join(root, 'LICENSE'));
+    assert.equal(findNodeLicense(executable), null);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
 
 test('install-all parses explicit source, isolated prefix and build approval', () => {
   const opts = parseArgs(['install-all', '--github', REPOSITORY, '--ref', 'main', '--prefix', './tools', '--allow-build', '--allow-experimental']);
@@ -109,6 +128,9 @@ test('install-all builds and installs a copied source fixture without lifecycle 
     assert.equal(fs.existsSync(path.join(f.source, 'packages/fixture/node_modules')), false);
     assert.equal(fs.existsSync(path.join(f.prefix, '.work')), false);
     const receipt = JSON.parse(fs.readFileSync(result.receipt));
+    const sourceLicense = findNodeLicense(receipt.sourceNodeExecutable);
+    assert.equal(receipt.nodeLicenseCopied, sourceLicense !== null);
+    if (sourceLicense) assert.deepEqual(fs.readFileSync(path.join(f.prefix, 'runtime', 'LICENSE')), fs.readFileSync(sourceLicense));
     assert.equal(receipt.configurationChanged, false);
     assert.equal(receipt.lifecycleScriptsExecuted, false);
     assert.equal(receipt.packageBuildScriptsExecuted, true);

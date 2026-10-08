@@ -95,6 +95,14 @@ export interface QueryEnvelope {
   note?: string;
 }
 
+export interface CliErrorEnvelope {
+  schema: 'aptree.error.v1';
+  error: {
+    code: 'INVALID_COMMAND' | 'CLI_ERROR';
+    message: string;
+  };
+}
+
 export interface BuildProjectGraphInput {
   root?: string;
   cwd?: string;

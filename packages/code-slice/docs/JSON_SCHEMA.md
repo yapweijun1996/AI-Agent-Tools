@@ -13,6 +13,13 @@ schemas/code-slice-result-v1.schema.json
 schemas/code-slice-result-v1.1.schema.json
 ```
 
+Packages built from this source include both files under the installed
+`agent-code-slice/schemas/` directory. These are package-relative files, not
+JavaScript export subpaths. `npm run test:e2e` installs a real tarball into a
+temporary consumer and validates success and CLI usage-error output against
+those installed schemas. This packaging correction does not republish an
+existing npm version.
+
 ## Success envelope
 
 ```json

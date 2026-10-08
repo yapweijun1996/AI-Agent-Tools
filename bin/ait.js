@@ -7,7 +7,7 @@ const path = require('node:path');
 const { randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 
-const VERSION = '0.1.0';
+const VERSION = require('../package.json').version;
 const RESULT_PROTOCOL = 'ait-result/v1';
 const INSTALL_STATE_VERSION = 'ait-install-state/v1';
 const PROFILE_INDEX_VERSION = '1.0.0';
@@ -413,10 +413,8 @@ function packageRoot(target, packageName) {
 
 function npmInvocation() {
   if (process.platform === 'win32') {
-    const lifecyclePath = process.env.npm_execpath;
-    const bundledPath = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js');
-    const npmCli = lifecyclePath && fs.existsSync(lifecyclePath) ? lifecyclePath : bundledPath;
-    if (fs.existsSync(npmCli)) return { command: process.execPath, prefix: [npmCli] };
+    const npmCli = require('./install-all.js').findNpmCli();
+    if (npmCli) return { command: process.execPath, prefix: [npmCli] };
   }
   return { command: 'npm', prefix: [] };
 }

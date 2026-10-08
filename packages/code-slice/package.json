@@ -37,7 +37,8 @@
   },
   "files": [
     "dist",
-    "grammars/wasm"
+    "grammars/wasm",
+    "schemas"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
