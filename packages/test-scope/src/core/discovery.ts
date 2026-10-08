@@ -152,7 +152,15 @@ function hasAllowedExtension(path: string): boolean {
 function isTestPath(relativePath: string): boolean {
   const parts = relativePath.toLowerCase().split("/");
   const file = parts.at(-1) ?? "";
-  return /(?:\.test|\.spec)\.(?:js|jsx|ts|tsx|mjs|cjs|mts|cts)$/.test(file) || parts.slice(0, -1).some(part => part === "test" || part === "tests" || part === "__tests__");
+  if (/\.d\.(?:ts|mts|cts)$/.test(file)) return false;
+  // An explicit test/spec name takes precedence over directory-only heuristics.
+  if (/(?:\.test|\.spec)\.(?:js|jsx|ts|tsx|mjs|cjs|mts|cts)$/.test(file)) return true;
+  const directories = parts.slice(0, -1);
+  const testDirectory = directories.findIndex(part => part === "test" || part === "tests" || part === "__tests__");
+  if (testDirectory < 0) return false;
+  if (directories.slice(testDirectory + 1).some(part => ["fixture", "fixtures", "__fixtures__", "__mocks__", "mocks", "helpers", "support"].includes(part))) return false;
+  const stem = file.replace(/\.(?:js|jsx|ts|tsx|mjs|cjs|mts|cts)$/, "");
+  return !["helper", "helpers", "setup", "teardown", "util", "utils", "test-helper", "test-helpers", "test-utils", "type-contract", "typecheck"].includes(stem);
 }
 
 function shouldSkipDirectory(relativePath: string, name: string, options: DiscoveryOptions, scopes: readonly IgnoreScope[]): boolean {

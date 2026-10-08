@@ -1,3 +1,6 @@
 # Keep source coverage hashes and frozen fixtures stable on all checkout platforms.
 * text=auto eol=lf
 *.wasm binary
+# Preserve the already recorded byte identities of the initial evaluation.
+docs/evaluation/tasks.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/evaluation/OBSERVATION_2026-10-08.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

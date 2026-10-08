@@ -16,6 +16,9 @@ Use this tool after the changed-file set is known and before verification is run
 3. Call `discover` to inspect framework, test-file, project-file, and command evidence.
 4. Call `plan` with every changed path. Use `--changed` repeatedly or `--changed-stdin` for newline-delimited paths.
 5. Inspect `status`, `data.plan`, every recommendation's `evidence`, `confidence`, `risk`, `diagnostics`, and `truncation`.
+   When the selected source CLI's help lists `--compact`, use it to reduce JSON
+   whitespace while retaining every field. Published older artifacts may not
+   support this source addition; do not infer availability from the version alone.
 6. Use `explain` for a selected test or command when the reason must be shown separately.
 7. Run commands only in the agent's separate verification phase, subject to user and repository policy.
    Interpret command strings in a POSIX-compatible shell from the request's explicit root. Nested package scripts already carry their npm prefix; preserve it when running the recommendation.
@@ -38,6 +41,11 @@ Use this tool after the changed-file set is known and before verification is run
 - Dynamic imports, computed requires, ignored or symlinked files, unsupported languages, and resource/time limits must not be promoted to confirmed evidence.
 - Versioned external evidence may enhance planning, but it cannot widen root or security boundaries and must not be treated as unversioned stdout.
 - Commands are data and carry `executed: false`; this tool never runs them.
+- The source directory-only convention filters known fixture/helper/type-check
+  names while preserving them in static import analysis. Explicit test/spec
+  filenames remain candidates even inside support directories. Review unusual
+  naming against the package contract; absence from a plan is not proof that no
+  additional verification is needed.
 
 ## CLI examples
 

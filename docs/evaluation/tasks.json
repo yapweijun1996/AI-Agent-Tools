@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "local-task-value-v1",
+  "sourceCommit": "ef05d9a7cd270a0971dd9caa7fd8e0e52b48c40d",
+  "patchCommit": "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4",
+  "patchPaths": [
+    "bin/ait.js",
+    "bin/install-all.js"
+  ],
+  "patchSha256": "a0d2f97e57583cc2211e3e3ac6ab83f83263475d66aeff31f519f0ef41a42a5e",
+  "repetitions": 3,
+  "files": [
+    {
+      "path": "packages/test-evidence/LICENSE",
+      "sha256": "100a5d1a1207d63f5adc4c9f042ccae77b4edb21732edd1e16f8179cc91c21c7",
+      "bytes": 11324
+    },
+    {
+      "path": "packages/test-evidence/README.md",
+      "sha256": "78b778337f6c1fe3f4ca99abd25cfa5a3633c8b76ce86f765e168373c7bc9354",
+      "bytes": 11657
+    },
+    {
+      "path": "packages/test-evidence/examples/fail-request.json",
+      "sha256": "8e15c1b4e9e6b47e84619c073a59808c34626f96debf98a4cb5c40d485996d4e",
+      "bytes": 879
+    },
+    {
+      "path": "packages/test-evidence/examples/fail.json",
+      "sha256": "e65bc5b1a479ac82c5f984bd5affd6dcb68b593a4fecb10ea2a752bf5878aac5",
+      "bytes": 293
+    },
+    {
+      "path": "packages/test-evidence/examples/node-pass.jsonl",
+      "sha256": "bf52e1dc871e449f7235b6c8d2206ccf95de5dbcf168683207d2f7adebd7e544",
+      "bytes": 329
+    },
+    {
+      "path": "packages/test-evidence/examples/not-run-request.json",
+      "sha256": "db6a45a21e74404109a54bcb125eb343cbcc1ca4421d69a15c59fec659823fc7",
+      "bytes": 319
+    },
+    {
+      "path": "packages/test-evidence/examples/pass-request.json",
+      "sha256": "eaffaccd63e6cc0752e3c9fe7eb61d1d9423e0e863240141edef6a29263af1e5",
+      "bytes": 879
+    },
+    {
+      "path": "packages/test-evidence/examples/pass.json",
+      "sha256": "972ad75a4e739b5fa9316c619d58e9f2733e47013e492db7da26273500f0a45c",
+      "bytes": 292
+    },
+    {
+      "path": "packages/test-evidence/examples/skip-request.json",
+      "sha256": "ca525ad656bd2aabaf9a33a40cc631b43bdf2331f471e3d4b479e99604f0d726",
+      "bytes": 879
+    },
+    {
+      "path": "packages/test-evidence/examples/skip.json",
+      "sha256": "f37a0b965da9b97bb38e697f2105ea3ccac6ecd2a7c4a9a5a72c2773b13b7c06",
+      "bytes": 292
+    },
+    {
+      "path": "packages/test-evidence/examples/truncated.jsonl",
+      "sha256": "514be46f52acf0d1c3be689eeae68b54e85d53fff57cbc92de2fd49f2767956c",
+      "bytes": 143
+    },
+    {
+      "path": "packages/test-evidence/package-lock.json",
+      "sha256": "ddec9432a7da148efedace664c4190cbf033310ef83b602e4e5450c98e425be3",
+      "bytes": 3113
+    },
+    {
+      "path": "packages/test-evidence/package.json",
+      "sha256": "ff035f0d5a1cd24dbdc00676a7c8a0fb71e99917aaf0df100c21fa6f8f93735a",
+      "bytes": 1295
+    },
+    {
+      "path": "packages/test-evidence/schema/node-record.schema.json",
+      "sha256": "64c39e592c3fa3356720ac742d996c1de7e8ab5d0230565114ad480e85ae68b4",
+      "bytes": 3981
+    },
+    {
+      "path": "packages/test-evidence/schema/request.schema.json",
+      "sha256": "00af9023275b934327d45e7aebfde690c569360428de7c36c331c39dbc356205",
+      "bytes": 5769
+    },
+    {
+      "path": "packages/test-evidence/schema/result.schema.json",
+      "sha256": "a8f394b05afa86b4a0efc586c7e2ec4e97f23cb1d3b2acd85c08c76163194621",
+      "bytes": 15926
+    },
+    {
+      "path": "packages/test-evidence/schema/unified.schema.json",
+      "sha256": "205630809069d742eea81ecbf5fc136a8953c8234feb173680fdfd90b4f73ac3",
+      "bytes": 3465
+    },
+    {
+      "path": "packages/test-evidence/scripts/check.mjs",
+      "sha256": "a8a42f355acbe6120cad26523c5268aa4d15cf0c1f6eb7b1d11d51b2b43607ad",
+      "bytes": 987
+    },
+    {
+      "path": "packages/test-evidence/scripts/coverage-subject.mjs",
+      "sha256": "a2bd9b15b97319d4dd9d12646b04097397c4f48b435ab2b47153625cba855913",
+      "bytes": 184
+    },
+    {
+      "path": "packages/test-evidence/scripts/pack-smoke.mjs",
+      "sha256": "711100262e00a230e4c2a19be65db1129fcff5d63ba0dbc0ca5e1ce9326c29f4",
+      "bytes": 5337
+    },
+    {
+      "path": "packages/test-evidence/scripts/pilot.mjs",
+      "sha256": "7eefd0fe06ade7ec18d2b268ad127a9134a1de0510d3f60464fca05f4a9539d5",
+      "bytes": 3852
+    },
+    {
+      "path": "packages/test-evidence/src/cli.js",
+      "sha256": "05c60cbff6fa98c78eb878cc90793544d2a59b197a410876ec3f71fb625559de",
+      "bytes": 3603
+    },
+    {
+      "path": "packages/test-evidence/src/contract.js",
+      "sha256": "a3011d67ae9583a7b8731025041b21e5ba28b77e9c0795e77b0d512504dfdd74",
+      "bytes": 2344
+    },
+    {
+      "path": "packages/test-evidence/src/index.js",
+      "sha256": "c92581d2846e9049827186dfc9c67be89dc2bf0f7d4a8ea4154e82a1a5126488",
+      "bytes": 9423
+    },
+    {
+      "path": "packages/test-evidence/src/input.js",
+      "sha256": "fc557eab680077c3d998ead6f7c350b9553889a46b3fcbf43173e29828d9740f",
+      "bytes": 7234
+    },
+    {
+      "path": "packages/test-evidence/src/node-reporter.js",
+      "sha256": "5350c2735f0e08edf0d4d93a4b8c63fcae9a3f7f734a23759d99327793a599b6",
+      "bytes": 3252
+    },
+    {
+      "path": "packages/test-evidence/src/normalize.js",
+      "sha256": "60f8201b5587d3738dde07bc6e8c140c7a93c9f4636ce2f7728f994624747ead",
+      "bytes": 4378
+    },
+    {
+      "path": "packages/test-evidence/src/result.js",
+      "sha256": "142832eb66ecea4f81c23edd5a2fc15ad7f7d76aff6fc2e6d152e6d7f44e7cc8",
+      "bytes": 2499
+    },
+    {
+      "path": "packages/test-evidence/test/budgets.test.js",
+      "sha256": "97c2726c3159321e640e5937d44597ec8180660ba6f331aa5d0b5c334aaa9ddf",
+      "bytes": 4151
+    },
+    {
+      "path": "packages/test-evidence/test/core.test.js",
+      "sha256": "6ed10a55b1c55d4ceb3aff15626ec310f3e7d625e79aeb661e8928074dc1a7ee",
+      "bytes": 8422
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/cancel.mjs",
+      "sha256": "f8e7bb0bb2b1dc423c5ff6ddbc5ac1a257097591fb62270780af428303d6b022",
+      "bytes": 216
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/coverage.mjs",
+      "sha256": "2f3bae680f1953915a4b666c00e45a5ffb8b036c100e18e2d3e24f088027c4f2",
+      "bytes": 128
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/fail.mjs",
+      "sha256": "0209a9d0dca387a3019c1ee3e6b9fd27431cb6a100057a0c43d627dbe6c34e39",
+      "bytes": 150
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/load-fail.mjs",
+      "sha256": "ca826493ab27933679281114f63ae4fb6c15b57a87aaf885ef835790cb094ac2",
+      "bytes": 42
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/pass.mjs",
+      "sha256": "a700c316b01c7ca4c972edd3cdf3ce562729529296dc065dcdb71e8fe7ee71ab",
+      "bytes": 305
+    },
+    {
+      "path": "packages/test-evidence/test/fixtures/skip.mjs",
+      "sha256": "1b934179cbcdca67d749791d1117c7dac012d908e7d1cb3996361576a64ff110",
+      "bytes": 255
+    },
+    {
+      "path": "packages/test-evidence/test/helpers.js",
+      "sha256": "b2aee6aca54415888d0f879552434dc0cfaaf2b67e4c9026ec85d9dc17bc3cad",
+      "bytes": 958
+    },
+    {
+      "path": "packages/test-evidence/test/input-cli.test.js",
+      "sha256": "8c9ce59a548f892d6a7d431119aa293181cb5b9a730e518b64abf92b90dccede",
+      "bytes": 6565
+    },
+    {
+      "path": "packages/test-evidence/test/node.test.js",
+      "sha256": "376908830f9f7caff8589642b7646857934fc1c8fdb96f34c748761a26958a70",
+      "bytes": 5841
+    },
+    {
+      "path": "packages/test-evidence/test/schema.test.js",
+      "sha256": "ac142907f433a09cae70c7afa5243ecf01f740f59da22e90e6236d31dbd22e43",
+      "bytes": 2435
+    },
+    {
+      "path": "packages/test-evidence/test/type-contract.ts",
+      "sha256": "909e21d26b1c451a082e52f162c8847b3e033fc3d1e6ba0a95d9d1525de624f7",
+      "bytes": 749
+    },
+    {
+      "path": "packages/test-evidence/types/index.d.ts",
+      "sha256": "a1f8aaf79d8c260b5292bf916611000503f27f499da4e093645a040882d48690",
+      "bytes": 3110
+    },
+    {
+      "path": "packages/test-evidence/types/node-reporter.d.ts",
+      "sha256": "3e66385b94a36f3cbca77e9dcad5c6510680337faa2f81014dc8ecfadf9d1f74",
+      "bytes": 115
+    }
+  ],
+  "toolVersions": {
+    "code-slice": "0.4.0",
+    "test-scope": "0.1.1",
+    "patch-guard": "0.1.0",
+    "test-evidence": "0.1.0"
+  },
+  "tasks": [
+    {
+      "id": "source-navigation",
+      "path": "src/index.js",
+      "symbol": "analyze",
+      "startLine": 63,
+      "endLine": 132
+    },
+    {
+      "id": "test-selection",
+      "changed": "src/index.js",
+      "requiredTests": [
+        "test/budgets.test.js",
+        "test/core.test.js",
+        "test/input-cli.test.js",
+        "test/node.test.js",
+        "test/schema.test.js"
+      ]
+    },
+    {
+      "id": "patch-review",
+      "protectedPath": "bin/install-all.js"
+    },
+    {
+      "id": "test-acceptance",
+      "checkId": "test-evidence-native"
+    }
+  ]
+}

@@ -178,14 +178,14 @@
     {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
-      "current_sha256": "fd90977f90406e5acda648774ebb267044436e386c1a68e6e66c116753ea9f50",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07)."
+      "current_sha256": "e81379554043b79ad72f3a1fc254ca6decc39a9b9d6370155b2a218cb640ce55",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/SPEC.md",
       "imported_sha256": "3f9bb5869138216c6af26bef3aeb0ceb5710f00a225fc4178b6b26780a88c3fd",
-      "current_sha256": "62b1ec2383013e2162352546341189e88c8e1bd3960b8f3a94eefcaa0b5cfe7d",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07)."
+      "current_sha256": "5af15642bb12ad02c31462504a77a3e170ea916a4ec54e0139fcb6ea22210b50",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/scripts/coverage-check.mjs",
@@ -208,14 +208,26 @@
     {
       "destination": "packages/test-scope/scripts/smoke-pack.mjs",
       "imported_sha256": "eb5034f596c1427e27879dbfd2fa324340d65693f72d0d53a3686bf98f073d3d",
-      "current_sha256": "1c9d88f47c70f7cfb81e52c70afa7c6f5b2e6215325c5d8031c729c3079ca097",
-      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+      "current_sha256": "9748d577c52989218e9c3cf165f8c6db8503bdc1538ec3ff2c185f35fe3b2cf5",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/skills/agent-test-scope/SKILL.md",
       "imported_sha256": "9f85cb389c24a1550223577c24b4e52681fb23148ae8a2499235461272f24322",
-      "current_sha256": "aec1098ec5f52adcebf0aa349831d4b8e4c268f021a31c46887b88539db223fe",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+      "current_sha256": "c4b111b345e3ab6c46aa9f3159d917ad988b5e16c71678a802feef00af12d17c",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
+    },
+    {
+      "destination": "packages/test-scope/src/cli.ts",
+      "imported_sha256": "735ea85dd79c266143c5bec0b50a5026418c983953a04009330e51b46e9bc4da",
+      "current_sha256": "937b494a5afd6cc2c0a181b370fb4834117d0c07cff73db7b99d7ea24fda1ee1",
+      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
+    },
+    {
+      "destination": "packages/test-scope/src/core/discovery.ts",
+      "imported_sha256": "c402c49c383f35a81ac605e77d6312f056579bdc0e71f0f04d8fa9f2a6537128",
+      "current_sha256": "c80f76955599807b8c5d989de1521993c3e39eec16a1c59f620a8c008c16db5f",
+      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/src/core/frameworks.ts",
@@ -234,6 +246,12 @@
       "imported_sha256": "5c802cf7aafb3b305a1724a16bdcf90d545b3ee5cf8504a04e0daee65d7f06f2",
       "current_sha256": "d7963c7970ee9cdf1eaecd4f7e611d6b1080596b3c02df52b55a95259674819d",
       "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/test/contract.test.mjs",
+      "imported_sha256": "fd59e54e3975e3d6516187730cd8431d7ae1f4a0e432ffe75b3d79f203432d12",
+      "current_sha256": "414c1fb4d181920a58bb30bbebe5c9f1996174e19ee6e8d361cf95eca6a0b9c6",
+      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
     }
   ]
 }

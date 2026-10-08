@@ -1,0 +1,1387 @@
+{
+  "schemaVersion": "1.0.0",
+  "suiteId": "local-task-value-v1",
+  "protocolSha256": "7180e4fba2c8e8eeac5a453114ce809ee9a512a887f9195d11ac03aaeb49d499",
+  "manifestSha256": "68e6702dff0f1c55d2b1f40d3200347306ac567cf60fbc069d847d6d430797ce",
+  "sourceCommit": "ef05d9a7cd270a0971dd9caa7fd8e0e52b48c40d",
+  "harnessSha256": "166e4a2dee3a884456b5e12aa5e4c7e3dd6314cc667cf967ddc648e18a6acec0",
+  "environment": {
+    "os": "windows",
+    "runtime": "node",
+    "version": "24.19.0",
+    "executable": "<NODE>",
+    "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+  },
+  "tools": {
+    "code-slice": {
+      "name": "agent-code-slice",
+      "version": "0.4.0",
+      "packageLockSha256": "c590a6943d1c63a8d6ffc9c1b2102069278d3e3436194231cb34aa27089e7a7c",
+      "runtimeSha256": "b3af4e04e5650e22e1a55b21355f0004ab89b4611cfd723bce1dec45ae8b4946"
+    },
+    "test-scope": {
+      "name": "agent-test-scope",
+      "version": "0.1.1",
+      "packageLockSha256": "b7f872f8beb79a1e92bca665aa30a49c3375b2618afeb79846f93a09507bcff4",
+      "runtimeSha256": "ad17e050f12307db187984dcdddd228f95c1f162eb3d984856501aa1b84f36b3"
+    },
+    "patch-guard": {
+      "name": "agent-patch-guard",
+      "version": "0.1.0",
+      "packageLockSha256": "047e328d23bc0e3592ef429922601122bb239bb44205d22c80939d6f13d85f8e",
+      "runtimeSha256": "283ceb20ea1864b8ee99402428b886325f8def9ad81dc750661d02a078c2412e"
+    },
+    "test-evidence": {
+      "name": "ai-agent-tool-test-evidence",
+      "version": "0.1.0",
+      "packageLockSha256": "ddec9432a7da148efedace664c4190cbf033310ef83b602e4e5450c98e425be3",
+      "runtimeSha256": "09cd2b64e11d9a15076f5edfce5e50a40205e61a5697823a90b1ace65b227509"
+    }
+  },
+  "collection": {
+    "command": {
+      "id": "033-shared-native-collection",
+      "command": [
+        "<NODE>",
+        "--test",
+        "--test-reporter=tap",
+        "--test-reporter-destination=<FIXTURE_ROOT>\\native.tap",
+        "--test-reporter=file:///C:/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+        "--test-reporter-destination=<FIXTURE_ROOT>\\capture.jsonl",
+        "<REPO>\\packages\\test-evidence\\test\\budgets.test.js",
+        "<REPO>\\packages\\test-evidence\\test\\core.test.js",
+        "<REPO>\\packages\\test-evidence\\test\\input-cli.test.js",
+        "<REPO>\\packages\\test-evidence\\test\\node.test.js",
+        "<REPO>\\packages\\test-evidence\\test\\schema.test.js"
+      ],
+      "cwd": "<REPO>\\packages\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 2185.1849,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "counts": {
+      "tests": 42,
+      "suites": 0,
+      "passed": 41,
+      "failed": 0,
+      "skipped": 1,
+      "todo": 0,
+      "cancelled": 0
+    },
+    "tapBytes": 8692,
+    "captureBytes": 2334,
+    "captureSha256": "e5dbe1eb8269f8d7d0207a780dc484ca7bbe3388e2baa29264a8aa41929b5929",
+    "fingerprintScope": "43 frozen Test Evidence package files; caller-declared identity, not producer authentication"
+  },
+  "fixtureBytes": 140114,
+  "tasks": [
+    {
+      "id": "source-navigation",
+      "arms": {
+        "fullRead": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "006-source-navigation-fullRead-1",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\test-evidence\\src\\index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 60.99350000000004,
+              "stdoutBytes": 9423,
+              "stderrBytes": 0,
+              "stdoutSha256": "c92581d2846e9049827186dfc9c67be89dc2bf0f7d4a8ea4154e82a1a5126488",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 9423,
+              "returnedSourceLines": 134
+            },
+            {
+              "id": "011-source-navigation-fullRead-2",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\test-evidence\\src\\index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 65.54269999999997,
+              "stdoutBytes": 9423,
+              "stderrBytes": 0,
+              "stdoutSha256": "c92581d2846e9049827186dfc9c67be89dc2bf0f7d4a8ea4154e82a1a5126488",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 9423,
+              "returnedSourceLines": 134
+            },
+            {
+              "id": "012-source-navigation-fullRead-3",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\test-evidence\\src\\index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 51.746799999999894,
+              "stdoutBytes": 9423,
+              "stderrBytes": 0,
+              "stdoutSha256": "c92581d2846e9049827186dfc9c67be89dc2bf0f7d4a8ea4154e82a1a5126488",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 9423,
+              "returnedSourceLines": 134
+            }
+          ],
+          "medianElapsedMs": 60.99350000000004,
+          "stdoutBytes": 9423,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 60.99350000000004,
+          "workflowStdoutBytes": 9423,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        },
+        "boundedRg": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "007-source-navigation-boundedRg-1",
+              "command": [
+                "rg",
+                "-n",
+                "-A",
+                "69",
+                "^function analyze\\(",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 17.730599999999868,
+              "stdoutBytes": 5561,
+              "stderrBytes": 0,
+              "stdoutSha256": "eafe05a038786605d3da3d858155c5cc99c8a3ebdb54e465414480f29d96e01d",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70,
+              "oracleAssistedRange": true
+            },
+            {
+              "id": "010-source-navigation-boundedRg-2",
+              "command": [
+                "rg",
+                "-n",
+                "-A",
+                "69",
+                "^function analyze\\(",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 9.798299999999927,
+              "stdoutBytes": 5561,
+              "stderrBytes": 0,
+              "stdoutSha256": "eafe05a038786605d3da3d858155c5cc99c8a3ebdb54e465414480f29d96e01d",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70,
+              "oracleAssistedRange": true
+            },
+            {
+              "id": "013-source-navigation-boundedRg-3",
+              "command": [
+                "rg",
+                "-n",
+                "-A",
+                "69",
+                "^function analyze\\(",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 12.111499999999978,
+              "stdoutBytes": 5561,
+              "stderrBytes": 0,
+              "stdoutSha256": "eafe05a038786605d3da3d858155c5cc99c8a3ebdb54e465414480f29d96e01d",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70,
+              "oracleAssistedRange": true
+            }
+          ],
+          "medianElapsedMs": 12.111499999999978,
+          "stdoutBytes": 5561,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 12.111499999999978,
+          "workflowStdoutBytes": 5561,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        },
+        "tool": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "008-source-navigation-tool-1",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\code-slice\\dist\\cli\\index.js",
+                "symbol",
+                "src/index.js",
+                "analyze",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 183.5628999999999,
+              "stdoutBytes": 5748,
+              "stderrBytes": 0,
+              "stdoutSha256": "f016cb87393c3be15e3c301681a8315ad6bef6cbbba1a8bbd2f870e8a22e6aeb",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70
+            },
+            {
+              "id": "009-source-navigation-tool-2",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\code-slice\\dist\\cli\\index.js",
+                "symbol",
+                "src/index.js",
+                "analyze",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 132.1210000000001,
+              "stdoutBytes": 5748,
+              "stderrBytes": 0,
+              "stdoutSha256": "f016cb87393c3be15e3c301681a8315ad6bef6cbbba1a8bbd2f870e8a22e6aeb",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70
+            },
+            {
+              "id": "014-source-navigation-tool-3",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\code-slice\\dist\\cli\\index.js",
+                "symbol",
+                "src/index.js",
+                "analyze",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 147.85539999999992,
+              "stdoutBytes": 5748,
+              "stderrBytes": 0,
+              "stdoutSha256": "f016cb87393c3be15e3c301681a8315ad6bef6cbbba1a8bbd2f870e8a22e6aeb",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "returnedSourceBytes": 5317,
+              "returnedSourceLines": 70
+            }
+          ],
+          "medianElapsedMs": 147.85539999999992,
+          "stdoutBytes": 5748,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 147.85539999999992,
+          "workflowStdoutBytes": 5748,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        }
+      }
+    },
+    {
+      "id": "test-selection",
+      "arms": {
+        "baseline": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "016-test-selection-baseline-1",
+              "command": [
+                "rg",
+                "-n",
+                "-F",
+                "--glob",
+                "*.test.js",
+                "from '../src/index.js'",
+                "test"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 17.90179999999964,
+              "stdoutBytes": 574,
+              "stderrBytes": 0,
+              "stdoutSha256": "2f851f939b856b0b72e6ccc7bcdd7dcc8f525a8be3ecb63edbaddd1f7e5d8c81",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "scopeClaim": "direct static imports only; no execution"
+            },
+            {
+              "id": "019-test-selection-baseline-2",
+              "command": [
+                "rg",
+                "-n",
+                "-F",
+                "--glob",
+                "*.test.js",
+                "from '../src/index.js'",
+                "test"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 21.535699999999906,
+              "stdoutBytes": 574,
+              "stderrBytes": 0,
+              "stdoutSha256": "be47396bceb0db533473488829fdcadd5d01fbbce693d740d3054cb1d9274321",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "scopeClaim": "direct static imports only; no execution"
+            },
+            {
+              "id": "020-test-selection-baseline-3",
+              "command": [
+                "rg",
+                "-n",
+                "-F",
+                "--glob",
+                "*.test.js",
+                "from '../src/index.js'",
+                "test"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 18.301100000000133,
+              "stdoutBytes": 574,
+              "stderrBytes": 0,
+              "stdoutSha256": "cb0ac77740d546ac8aabf1c42e787ad900e562278a9b1cc32aa8a2c500f8969b",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "scopeClaim": "direct static imports only; no execution"
+            }
+          ],
+          "medianElapsedMs": 18.301100000000133,
+          "stdoutBytes": 574,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 18.301100000000133,
+          "workflowStdoutBytes": 574,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": false,
+          "stderrByteStable": true
+        },
+        "tool": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "017-test-selection-tool-1",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-scope\\dist\\cli.js",
+                "plan",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--changed",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 86.61799999999994,
+              "stdoutBytes": 57693,
+              "stderrBytes": 610,
+              "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+              "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+              "status": "partial",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "recommendedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js",
+                "test/type-contract.ts"
+              ],
+              "extraRecommendedPaths": [
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/type-contract.ts"
+              ],
+              "stats": {
+                "filesScanned": 39,
+                "bytesParsed": 113917,
+                "testCandidates": 13,
+                "returnedTests": 13
+              },
+              "diagnostics": [
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "AMBIGUOUS_TEST_MAPPING"
+              ],
+              "scopeClaim": "static candidates; no execution"
+            },
+            {
+              "id": "018-test-selection-tool-2",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-scope\\dist\\cli.js",
+                "plan",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--changed",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 87.21979999999985,
+              "stdoutBytes": 57693,
+              "stderrBytes": 610,
+              "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+              "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+              "status": "partial",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "recommendedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js",
+                "test/type-contract.ts"
+              ],
+              "extraRecommendedPaths": [
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/type-contract.ts"
+              ],
+              "stats": {
+                "filesScanned": 39,
+                "bytesParsed": 113917,
+                "testCandidates": 13,
+                "returnedTests": 13
+              },
+              "diagnostics": [
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "AMBIGUOUS_TEST_MAPPING"
+              ],
+              "scopeClaim": "static candidates; no execution"
+            },
+            {
+              "id": "021-test-selection-tool-3",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-scope\\dist\\cli.js",
+                "plan",
+                "--root",
+                "<FIXTURE_ROOT>\\test-evidence",
+                "--changed",
+                "src/index.js"
+              ],
+              "cwd": "<FIXTURE_ROOT>\\test-evidence",
+              "exitCode": 0,
+              "elapsedMs": 93.50279999999975,
+              "stdoutBytes": 57693,
+              "stderrBytes": 610,
+              "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+              "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+              "status": "partial",
+              "selectedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js"
+              ],
+              "recommendedTests": [
+                "test/budgets.test.js",
+                "test/core.test.js",
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/input-cli.test.js",
+                "test/node.test.js",
+                "test/schema.test.js",
+                "test/type-contract.ts"
+              ],
+              "extraRecommendedPaths": [
+                "test/fixtures/cancel.mjs",
+                "test/fixtures/coverage.mjs",
+                "test/fixtures/fail.mjs",
+                "test/fixtures/load-fail.mjs",
+                "test/fixtures/pass.mjs",
+                "test/fixtures/skip.mjs",
+                "test/helpers.js",
+                "test/type-contract.ts"
+              ],
+              "stats": {
+                "filesScanned": 39,
+                "bytesParsed": 113917,
+                "testCandidates": 13,
+                "returnedTests": 13
+              },
+              "diagnostics": [
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "IMPORT_RESOLUTION_PARTIAL",
+                "AMBIGUOUS_TEST_MAPPING"
+              ],
+              "scopeClaim": "static candidates; no execution"
+            }
+          ],
+          "medianElapsedMs": 87.21979999999985,
+          "stdoutBytes": 57693,
+          "stderrBytes": 610,
+          "workflowMedianElapsedMs": 87.21979999999985,
+          "workflowStdoutBytes": 57693,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        }
+      }
+    },
+    {
+      "id": "patch-review",
+      "arms": {
+        "fullRead": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "022-patch-review-fullRead-1",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\review.diff"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 48.64859999999999,
+              "stdoutBytes": 2622,
+              "stderrBytes": 0,
+              "stdoutSha256": "a0d2f97e57583cc2211e3e3ac6ab83f83263475d66aeff31f519f0ef41a42a5e",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "supplied two-file diff only"
+            },
+            {
+              "id": "027-patch-review-fullRead-2",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\review.diff"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 43.58039999999983,
+              "stdoutBytes": 2622,
+              "stderrBytes": 0,
+              "stdoutSha256": "a0d2f97e57583cc2211e3e3ac6ab83f83263475d66aeff31f519f0ef41a42a5e",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "supplied two-file diff only"
+            },
+            {
+              "id": "028-patch-review-fullRead-3",
+              "command": [
+                "<NODE>",
+                "-e",
+                "process.stdout.write(require(\"node:fs\").readFileSync(process.argv[1]));",
+                "<FIXTURE_ROOT>\\review.diff"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 47.074299999999766,
+              "stdoutBytes": 2622,
+              "stderrBytes": 0,
+              "stdoutSha256": "a0d2f97e57583cc2211e3e3ac6ab83f83263475d66aeff31f519f0ef41a42a5e",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "supplied two-file diff only"
+            }
+          ],
+          "medianElapsedMs": 47.074299999999766,
+          "stdoutBytes": 2622,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 47.074299999999766,
+          "workflowStdoutBytes": 2622,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        },
+        "changedPaths": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "023-patch-review-changedPaths-1",
+              "command": [
+                "git",
+                "diff",
+                "--no-ext-diff",
+                "--no-textconv",
+                "--name-only",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4^",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4",
+                "--",
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "cwd": "<REPO>",
+              "exitCode": 0,
+              "elapsedMs": 28.581300000000283,
+              "stdoutBytes": 30,
+              "stderrBytes": 0,
+              "stdoutSha256": "29f74b60eb93fb5459c286f7b21d84039a530475d6ccf461e4a25e42378f3de2",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "path policy only; content uninspected"
+            },
+            {
+              "id": "026-patch-review-changedPaths-2",
+              "command": [
+                "git",
+                "diff",
+                "--no-ext-diff",
+                "--no-textconv",
+                "--name-only",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4^",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4",
+                "--",
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "cwd": "<REPO>",
+              "exitCode": 0,
+              "elapsedMs": 26.433100000000195,
+              "stdoutBytes": 30,
+              "stderrBytes": 0,
+              "stdoutSha256": "29f74b60eb93fb5459c286f7b21d84039a530475d6ccf461e4a25e42378f3de2",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "path policy only; content uninspected"
+            },
+            {
+              "id": "029-patch-review-changedPaths-3",
+              "command": [
+                "git",
+                "diff",
+                "--no-ext-diff",
+                "--no-textconv",
+                "--name-only",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4^",
+                "5aaf567d4f207ef2e8a228d4072c2b26bceeb0e4",
+                "--",
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "cwd": "<REPO>",
+              "exitCode": 0,
+              "elapsedMs": 32.03660000000036,
+              "stdoutBytes": 30,
+              "stderrBytes": 0,
+              "stdoutSha256": "29f74b60eb93fb5459c286f7b21d84039a530475d6ccf461e4a25e42378f3de2",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "changedPaths": [
+                "bin/ait.js",
+                "bin/install-all.js"
+              ],
+              "protectedPaths": [
+                "bin/install-all.js"
+              ],
+              "verdict": "violations",
+              "scopeClaim": "path policy only; content uninspected"
+            }
+          ],
+          "medianElapsedMs": 28.581300000000283,
+          "stdoutBytes": 30,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 28.581300000000283,
+          "workflowStdoutBytes": 30,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        },
+        "tool": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "024-patch-review-tool-1",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\patch-guard\\src\\cli.js",
+                "check",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--diff",
+                "review.diff",
+                "--policy",
+                "policy.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 57.23759999999993,
+              "stdoutBytes": 889,
+              "stderrBytes": 0,
+              "stdoutSha256": "f5a1a1cf498b396ade27fe2daa88ae3757511531daa139ab430d3d5535694119",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "violations",
+              "findings": [
+                {
+                  "rule_id": "PROTECTED_PATH",
+                  "severity": "error",
+                  "path": "bin/install-all.js",
+                  "line": null,
+                  "diff_line": null
+                }
+              ],
+              "scopeClaim": "explicit policy; no patch application"
+            },
+            {
+              "id": "025-patch-review-tool-2",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\patch-guard\\src\\cli.js",
+                "check",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--diff",
+                "review.diff",
+                "--policy",
+                "policy.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 52.62429999999995,
+              "stdoutBytes": 889,
+              "stderrBytes": 0,
+              "stdoutSha256": "f5a1a1cf498b396ade27fe2daa88ae3757511531daa139ab430d3d5535694119",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "violations",
+              "findings": [
+                {
+                  "rule_id": "PROTECTED_PATH",
+                  "severity": "error",
+                  "path": "bin/install-all.js",
+                  "line": null,
+                  "diff_line": null
+                }
+              ],
+              "scopeClaim": "explicit policy; no patch application"
+            },
+            {
+              "id": "030-patch-review-tool-3",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\patch-guard\\src\\cli.js",
+                "check",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--diff",
+                "review.diff",
+                "--policy",
+                "policy.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 55.46810000000005,
+              "stdoutBytes": 889,
+              "stderrBytes": 0,
+              "stdoutSha256": "f5a1a1cf498b396ade27fe2daa88ae3757511531daa139ab430d3d5535694119",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "violations",
+              "findings": [
+                {
+                  "rule_id": "PROTECTED_PATH",
+                  "severity": "error",
+                  "path": "bin/install-all.js",
+                  "line": null,
+                  "diff_line": null
+                }
+              ],
+              "scopeClaim": "explicit policy; no patch application"
+            }
+          ],
+          "medianElapsedMs": 55.46810000000005,
+          "stdoutBytes": 889,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 55.46810000000005,
+          "workflowStdoutBytes": 889,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        }
+      }
+    },
+    {
+      "id": "test-acceptance",
+      "arms": {
+        "baseline": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "034-test-acceptance-baseline-1",
+              "command": [
+                "<NODE>",
+                "-e",
+                "const fs=require('node:fs');const r=JSON.parse(fs.readFileSync(process.argv[1]));const c=JSON.parse(fs.readFileSync(process.argv[2]));const x=r.runs[0];const q=r.requiredChecks[0];const matched=JSON.stringify(r.expectedSource)===JSON.stringify(x.source)&&JSON.stringify(q.environment)===JSON.stringify(x.environment);const known=x.completed&&x.exitCode!==null&&x.signal===null;const verdict=matched&&known&&c.failed>0?'fail':matched&&known&&x.exitCode===0&&c.tests>0&&!c.failed&&!c.skipped&&!c.todo&&!c.cancelled?'pass':'unknown';console.log(JSON.stringify({verdict,counts:c,sourceMatched:matched,processKnown:known}));",
+                "<FIXTURE_ROOT>\\request.json",
+                "<FIXTURE_ROOT>\\native-counts.json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 54.24070000000029,
+              "stdoutBytes": 154,
+              "stderrBytes": 0,
+              "stdoutSha256": "008f1b8d7367615b66142aed5f79a5fe4ceeb6ff9a043a2005deea8e0a098f26",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "scopeClaim": "fixture-only independent TAP and declared binding inspection"
+            },
+            {
+              "id": "039-test-acceptance-baseline-2",
+              "command": [
+                "<NODE>",
+                "-e",
+                "const fs=require('node:fs');const r=JSON.parse(fs.readFileSync(process.argv[1]));const c=JSON.parse(fs.readFileSync(process.argv[2]));const x=r.runs[0];const q=r.requiredChecks[0];const matched=JSON.stringify(r.expectedSource)===JSON.stringify(x.source)&&JSON.stringify(q.environment)===JSON.stringify(x.environment);const known=x.completed&&x.exitCode!==null&&x.signal===null;const verdict=matched&&known&&c.failed>0?'fail':matched&&known&&x.exitCode===0&&c.tests>0&&!c.failed&&!c.skipped&&!c.todo&&!c.cancelled?'pass':'unknown';console.log(JSON.stringify({verdict,counts:c,sourceMatched:matched,processKnown:known}));",
+                "<FIXTURE_ROOT>\\request.json",
+                "<FIXTURE_ROOT>\\native-counts.json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 62.66309999999976,
+              "stdoutBytes": 154,
+              "stderrBytes": 0,
+              "stdoutSha256": "008f1b8d7367615b66142aed5f79a5fe4ceeb6ff9a043a2005deea8e0a098f26",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "scopeClaim": "fixture-only independent TAP and declared binding inspection"
+            },
+            {
+              "id": "040-test-acceptance-baseline-3",
+              "command": [
+                "<NODE>",
+                "-e",
+                "const fs=require('node:fs');const r=JSON.parse(fs.readFileSync(process.argv[1]));const c=JSON.parse(fs.readFileSync(process.argv[2]));const x=r.runs[0];const q=r.requiredChecks[0];const matched=JSON.stringify(r.expectedSource)===JSON.stringify(x.source)&&JSON.stringify(q.environment)===JSON.stringify(x.environment);const known=x.completed&&x.exitCode!==null&&x.signal===null;const verdict=matched&&known&&c.failed>0?'fail':matched&&known&&x.exitCode===0&&c.tests>0&&!c.failed&&!c.skipped&&!c.todo&&!c.cancelled?'pass':'unknown';console.log(JSON.stringify({verdict,counts:c,sourceMatched:matched,processKnown:known}));",
+                "<FIXTURE_ROOT>\\request.json",
+                "<FIXTURE_ROOT>\\native-counts.json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 0,
+              "elapsedMs": 58.690700000000106,
+              "stdoutBytes": 154,
+              "stderrBytes": 0,
+              "stdoutSha256": "008f1b8d7367615b66142aed5f79a5fe4ceeb6ff9a043a2005deea8e0a098f26",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "scopeClaim": "fixture-only independent TAP and declared binding inspection"
+            }
+          ],
+          "medianElapsedMs": 58.690700000000106,
+          "stdoutBytes": 154,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 58.690700000000106,
+          "workflowStdoutBytes": 154,
+          "callsPerRepetition": 1,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        },
+        "tool": {
+          "evidenceAdequate": true,
+          "samples": [
+            {
+              "id": "036-test-acceptance-tool-1",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                "verify",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--input",
+                "request.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 3,
+              "elapsedMs": 72.66539999999986,
+              "stdoutBytes": 634,
+              "stderrBytes": 0,
+              "stdoutSha256": "b9cac097bc8f5ae64a8be70911e43dfbfcb91b64fbec5fea853594fec232f859",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "summaryCommand": {
+                "id": "035-test-acceptance-tool-1-summarize",
+                "command": [
+                  "<NODE>",
+                  "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                  "summarize",
+                  "--root",
+                  "<FIXTURE_ROOT>",
+                  "--input",
+                  "request.json",
+                  "--json"
+                ],
+                "cwd": "<FIXTURE_ROOT>",
+                "exitCode": 0,
+                "elapsedMs": 66.57880000000023,
+                "stdoutBytes": 1251,
+                "stderrBytes": 0,
+                "stdoutSha256": "9d2295515b2829d3048e0b3c76c3229e86bdaddaee0b80a6abe9fd535eab7715",
+                "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "combinedElapsedMs": 139.2442000000001,
+              "combinedStdoutBytes": 1885,
+              "scopeClaim": "producer declarations checked, not authenticated"
+            },
+            {
+              "id": "038-test-acceptance-tool-2",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                "verify",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--input",
+                "request.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 3,
+              "elapsedMs": 71.72279999999955,
+              "stdoutBytes": 634,
+              "stderrBytes": 0,
+              "stdoutSha256": "b9cac097bc8f5ae64a8be70911e43dfbfcb91b64fbec5fea853594fec232f859",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "summaryCommand": {
+                "id": "037-test-acceptance-tool-2-summarize",
+                "command": [
+                  "<NODE>",
+                  "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                  "summarize",
+                  "--root",
+                  "<FIXTURE_ROOT>",
+                  "--input",
+                  "request.json",
+                  "--json"
+                ],
+                "cwd": "<FIXTURE_ROOT>",
+                "exitCode": 0,
+                "elapsedMs": 67.57200000000012,
+                "stdoutBytes": 1251,
+                "stderrBytes": 0,
+                "stdoutSha256": "9d2295515b2829d3048e0b3c76c3229e86bdaddaee0b80a6abe9fd535eab7715",
+                "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "combinedElapsedMs": 139.29479999999967,
+              "combinedStdoutBytes": 1885,
+              "scopeClaim": "producer declarations checked, not authenticated"
+            },
+            {
+              "id": "042-test-acceptance-tool-3",
+              "command": [
+                "<NODE>",
+                "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                "verify",
+                "--root",
+                "<FIXTURE_ROOT>",
+                "--input",
+                "request.json",
+                "--json"
+              ],
+              "cwd": "<FIXTURE_ROOT>",
+              "exitCode": 3,
+              "elapsedMs": 64.92519999999968,
+              "stdoutBytes": 634,
+              "stderrBytes": 0,
+              "stdoutSha256": "b9cac097bc8f5ae64a8be70911e43dfbfcb91b64fbec5fea853594fec232f859",
+              "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "verdict": "unknown",
+              "counts": {
+                "tests": 42,
+                "suites": 0,
+                "passed": 41,
+                "failed": 0,
+                "skipped": 1,
+                "todo": 0,
+                "cancelled": 0
+              },
+              "summaryCommand": {
+                "id": "041-test-acceptance-tool-3-summarize",
+                "command": [
+                  "<NODE>",
+                  "<REPO>\\packages\\test-evidence\\src\\cli.js",
+                  "summarize",
+                  "--root",
+                  "<FIXTURE_ROOT>",
+                  "--input",
+                  "request.json",
+                  "--json"
+                ],
+                "cwd": "<FIXTURE_ROOT>",
+                "exitCode": 0,
+                "elapsedMs": 70.38050000000021,
+                "stdoutBytes": 1251,
+                "stderrBytes": 0,
+                "stdoutSha256": "9d2295515b2829d3048e0b3c76c3229e86bdaddaee0b80a6abe9fd535eab7715",
+                "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "combinedElapsedMs": 135.3056999999999,
+              "combinedStdoutBytes": 1885,
+              "scopeClaim": "producer declarations checked, not authenticated"
+            }
+          ],
+          "medianElapsedMs": 71.72279999999955,
+          "stdoutBytes": 634,
+          "stderrBytes": 0,
+          "workflowMedianElapsedMs": 139.2442000000001,
+          "workflowStdoutBytes": 1885,
+          "callsPerRepetition": 2,
+          "stdoutByteStable": true,
+          "stderrByteStable": true
+        }
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "synthetic-passed",
+      "expected": "pass",
+      "observed": "pass",
+      "exitCode": 0,
+      "errorCode": null
+    },
+    {
+      "id": "synthetic-stale-source",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "synthetic-missing-check",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "synthetic-unknown-process",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "synthetic-environment-mismatch",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "synthetic-failed",
+      "expected": "fail",
+      "observed": "fail",
+      "exitCode": 0,
+      "errorCode": null
+    },
+    {
+      "id": "synthetic-failure-with-missing",
+      "expected": "fail",
+      "observed": "fail",
+      "exitCode": 0,
+      "errorCode": null
+    },
+    {
+      "id": "synthetic-skipped",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "truncated-capture",
+      "expected": "unknown",
+      "observed": "unknown",
+      "exitCode": 3,
+      "errorCode": "INCOMPLETE_CAPTURE"
+    }
+  ],
+  "shortcutDiagnostics": [
+    {
+      "id": "signature-only",
+      "evidenceAdequate": false
+    },
+    {
+      "id": "basename-only",
+      "evidenceAdequate": false
+    },
+    {
+      "id": "patch-exit-only",
+      "claimedVerdict": "pass",
+      "expectedVerdict": "violations",
+      "correct": false
+    },
+    {
+      "id": "native-exit-only",
+      "claimedVerdict": "pass",
+      "expectedVerdict": "unknown",
+      "correct": false
+    },
+    {
+      "id": "stale-native-exit-only",
+      "claimedVerdict": "pass",
+      "expectedVerdict": "unknown",
+      "correct": false
+    }
+  ],
+  "limitations": [
+    "Scripted evidence replay; no independent agent trials, error-rate or token savings measurement.",
+    "One repository, four selected tasks, one platform/runtime; no significance or productivity claim.",
+    "Built runtime hashes recorded; timing excludes discovery and shared collection unless explicitly combined.",
+    "Bytes are returned CLI output, not filesystem-read tracing; oracle-assisted rg range is disclosed.",
+    "Test Scope recommended fixture/helper paths are candidates requiring review; no commands were auto-executed."
+  ],
+  "observedOn": "2026-10-08",
+  "localEvidenceDirectory": ".cache/task-value-evaluation/run-GvfFHU",
+  "discovery": [
+    {
+      "id": "001-discovery-slice",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\code-slice\\dist\\cli\\index.js",
+        "capabilities",
+        "--json"
+      ],
+      "cwd": "<FIXTURE_ROOT>",
+      "exitCode": 0,
+      "elapsedMs": 90.09900000000016,
+      "stdoutBytes": 732,
+      "stderrBytes": 0,
+      "stdoutSha256": "87572d92de7f85060b108ff26dd90067b18b270ba4f8aa601fecb762d0e9cd77",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "002-discovery-scope",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "capabilities",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence"
+      ],
+      "cwd": "<FIXTURE_ROOT>",
+      "exitCode": 0,
+      "elapsedMs": 86.01729999999998,
+      "stdoutBytes": 1080,
+      "stderrBytes": 0,
+      "stdoutSha256": "f0c9000bba73e55905c058638ead83856b2d76c491b26d6e2f31375dbd1d1c5c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "003-discovery-patch",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\patch-guard\\src\\cli.js",
+        "capabilities",
+        "--json"
+      ],
+      "cwd": "<FIXTURE_ROOT>",
+      "exitCode": 0,
+      "elapsedMs": 65.82940000000008,
+      "stdoutBytes": 1499,
+      "stderrBytes": 0,
+      "stdoutSha256": "fd50227f06b92756757e57677d3765d30a30113065536a21afefd92ecf72feff",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "004-discovery-evidence",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-evidence\\src\\cli.js",
+        "capabilities",
+        "--json"
+      ],
+      "cwd": "<FIXTURE_ROOT>",
+      "exitCode": 0,
+      "elapsedMs": 80.01660000000038,
+      "stdoutBytes": 675,
+      "stderrBytes": 0,
+      "stdoutSha256": "b94549be1e45e3032df93c686bfcfb3c914c603dbaa7030045de363ee39bd07e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "005-discovery-rg",
+      "command": [
+        "rg",
+        "--version"
+      ],
+      "cwd": "<FIXTURE_ROOT>",
+      "exitCode": 0,
+      "elapsedMs": 10.279199999999946,
+      "stdoutBytes": 160,
+      "stderrBytes": 0,
+      "stdoutSha256": "6be9d6a7c90a5db370a21178599013e052473462bb21656673a0c200f5bd014e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

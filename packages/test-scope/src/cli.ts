@@ -13,11 +13,12 @@ function usage(): string {
     "Usage: agent-test-scope <operation> --root <path> [options]",
     "",
     "Operations: capabilities, discover, plan, explain",
-    "Common options: --include <glob> --exclude <glob> --limit <1..200>",
+    "Common options: --include <glob> --exclude <glob> --limit <1..200> --compact",
     "Plan options: --changed <path> (repeatable) --changed-stdin",
     "Explain options: --path <test-path> | --command <command>",
     "",
     "JSON results are written to stdout; human-readable diagnostics are written to stderr.",
+    "--compact removes JSON whitespace without omitting evidence or changing the result.",
     "Commands in results are recommendations only and are never executed by this tool."
   ].join("\n");
 }
@@ -29,6 +30,7 @@ interface ParsedArguments {
   include: string[];
   exclude: string[];
   changedStdin: boolean;
+  compact: boolean;
   errors: string[];
 }
 
@@ -42,13 +44,18 @@ export interface CliStreams {
 }
 
 function parseArguments(argv: readonly string[]): ParsedArguments {
-  const parsed: ParsedArguments = { values: {}, changed: [], include: [], exclude: [], changedStdin: false, errors: [] };
+  const parsed: ParsedArguments = { values: {}, changed: [], include: [], exclude: [], changedStdin: false, compact: false, errors: [] };
   if (argv.length === 0 || argv[0] === "--help" || argv[0] === "-h") return parsed;
   parsed.operation = argv[0];
   if (!operations.has(parsed.operation as Operation)) parsed.errors.push(`Unknown operation: ${parsed.operation}`);
   for (let index = 1; index < argv.length; index += 1) {
     const argument = argv[index] ?? "";
     if (argument === "--json") continue;
+    if (argument === "--compact") {
+      if (parsed.compact) parsed.errors.push("Duplicate option: --compact");
+      parsed.compact = true;
+      continue;
+    }
     if (argument === "--changed-stdin") {
       parsed.changedStdin = true;
       continue;
@@ -107,7 +114,7 @@ export function main(argv: readonly string[] = process.argv.slice(2), engine = n
   }
   const request = toRequest(parsed);
   const result = engine.execute(request);
-  streams.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  streams.stdout.write(`${JSON.stringify(result, null, parsed.compact ? undefined : 2)}\n`);
   for (const item of result.diagnostics) streams.stderr.write(`[${item.code}] ${item.message}${item.path ? ` (${item.path})` : ""}\n`);
   for (const error of parsed.errors) streams.stderr.write(`[INVALID_REQUEST] ${error}\n`);
   if (parsed.errors.length > 0) return 2;

@@ -89,6 +89,19 @@ V0.1 framework support:
 
 Framework detection MUST come from repository evidence such as package metadata, configuration, imports, or scripts.
 
+The current source refines directory-only naming to avoid recommending support
+inputs as standalone tests. Declaration files (`.d.ts`, `.d.mts`, `.d.cts`) MUST
+NOT be test candidates. Within a test directory, `fixture`, `fixtures`,
+`__fixtures__`, `__mocks__`, `mocks`, `helpers` and `support` subdirectories, and
+the file stems `helper`, `helpers`, `setup`, `teardown`, `util`, `utils`,
+`test-helper`, `test-helpers`, `test-utils`, `type-contract`, `typecheck` MUST NOT
+qualify solely by their directory. Explicit `.test.*` / `.spec.*` filenames
+override these support-directory/stem heuristics, but not declaration exclusion.
+Other directory-only conventions remain candidates. This is naming evidence,
+not a test-execution detector; callers with reserved names SHOULD use an explicit
+test/spec filename. Filtering MUST NOT remove those files from bounded source
+discovery or static import reachability, and MUST NOT bypass security exclusions.
+
 ## 6. Evidence Types
 
 Initial evidence types:
@@ -236,6 +249,15 @@ Allowed statuses:
 - `error`
 
 `complete` means planning completed within the evidence boundary. It MUST NOT mean the software is correct or the tests passed.
+
+The source CLI MAY accept `--compact` for any operation to remove JSON
+indentation. Parsed result fields, diagnostics, truncation, recommendation
+provenance and exit codes MUST be identical to default output. Both modes MUST
+emit one JSON object followed by a newline; human diagnostics remain on stderr.
+This flag MUST NOT be a core request property or a new result shape. Default
+formatting remains unchanged; duplicate/value-bearing `--compact` forms are
+invalid CLI arguments. This source addition does not describe a newly published
+npm artifact.
 
 ## 13. Diagnostics
 

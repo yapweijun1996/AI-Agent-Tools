@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
@@ -32,6 +32,21 @@ try {
   assert.ok(cliProcess.stdout.trim(), `packaged CLI returned no stdout: ${cliProcess.stderr}`);
   const cli = JSON.parse(cliProcess.stdout);
   assert.equal(cli.status, "complete");
+  const compactProcess = spawnSync(process.execPath, [join(extracted, "dist", "cli.js"), "capabilities", "--root", extracted, "--compact"], { encoding: "utf8" });
+  assert.equal(compactProcess.status, 0, compactProcess.stderr);
+  assert.deepEqual(JSON.parse(compactProcess.stdout), cli);
+  assert.equal(compactProcess.stdout, JSON.stringify(cli) + "\n");
+  const fixture = join(output, "consumer project #");
+  mkdirSync(join(fixture, "test", "fixtures"), { recursive: true });
+  writeFileSync(join(fixture, "package.json"), JSON.stringify({ scripts: { test: "node --test" } }));
+  writeFileSync(join(fixture, "test", "unit.test.js"), "import test from 'node:test'; test('unit', () => {});\n");
+  writeFileSync(join(fixture, "test", "helpers.js"), "export const helper = true;\n");
+  writeFileSync(join(fixture, "test", "fixtures", "fail.mjs"), "import test from 'node:test'; test('fixture', () => { throw Error('fixture'); });\n");
+  const filtered = api.discoverTests({ root: fixture });
+  assert.deepEqual(filtered.data.discovery.tests.map(t => t.path), ["test/unit.test.js"]);
+  const planned = spawnSync(process.execPath, [join(extracted, "dist", "cli.js"), "plan", "--root", fixture, "--changed", "test/helpers.js", "--compact"], { encoding: "utf8" });
+  assert.equal(planned.status, 0, planned.stderr);
+  assert.deepEqual(JSON.parse(planned.stdout), api.planTestScope({ root: fixture, changed: ["test/helpers.js"] }));
   const nodeModules = join(output, "node_modules");
   mkdirSync(nodeModules);
   symlinkSync(extracted, join(nodeModules, "agent-test-scope"), process.platform === "win32" ? "junction" : "dir");

@@ -1,0 +1,722 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "ef05d9a7cd270a0971dd9caa7fd8e0e52b48c40d",
+  "manifestSha256": "68e6702dff0f1c55d2b1f40d3200347306ac567cf60fbc069d847d6d430797ce",
+  "harnessSha256": "e5ca6416bf286ae4f166bccc927a330541b0bbbfd18c06d137a10edc9edf39bb",
+  "environment": {
+    "os": "win32",
+    "node": "24.19.0",
+    "compiler": "5.9.3"
+  },
+  "oldRuntimeSha256": "ad17e050f12307db187984dcdddd228f95c1f162eb3d984856501aa1b84f36b3",
+  "currentRuntimeSha256": "b8b7a7dd8762ecb75b255831315d73b970ad8965605e320ae5fcfd9afac6123a",
+  "currentSourceSha256": "586618e01b5ef6d77babbbc54f8edd89bd549b60162e10708b8bc5021158d853",
+  "frozenInputSha256": "a3c8bdcfc6b244aec19fcf6230615c4088bceae7d66d14082638c91e63c976bc",
+  "commands": [
+    {
+      "label": "build-tsconfig.json",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\node_modules\\typescript\\bin\\tsc",
+        "-p",
+        "<FIXTURE_ROOT>\\baseline\\tsconfig.json",
+        "--typeRoots",
+        "<REPO>\\packages\\test-scope\\node_modules\\@types"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\baseline",
+      "exitCode": 0,
+      "elapsedMs": 1119.9869000000003,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build-tsconfig.cjs.json",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\node_modules\\typescript\\bin\\tsc",
+        "-p",
+        "<FIXTURE_ROOT>\\baseline\\tsconfig.cjs.json",
+        "--typeRoots",
+        "<REPO>\\packages\\test-scope\\node_modules\\@types"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\baseline",
+      "exitCode": 0,
+      "elapsedMs": 1154.6997999999999,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "before-1",
+      "command": [
+        "<NODE>",
+        "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 100.40540000000055,
+      "stdoutBytes": 57693,
+      "stderrBytes": 610,
+      "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "after-1",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 96.78569999999945,
+      "stdoutBytes": 36947,
+      "stderrBytes": 610,
+      "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "compact-1",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js",
+        "--compact"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 98.42630000000008,
+      "stdoutBytes": 20108,
+      "stderrBytes": 610,
+      "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "compact-2",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js",
+        "--compact"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 89.63090000000011,
+      "stdoutBytes": 20108,
+      "stderrBytes": 610,
+      "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "after-2",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 90.34410000000025,
+      "stdoutBytes": 36947,
+      "stderrBytes": 610,
+      "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "before-2",
+      "command": [
+        "<NODE>",
+        "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 112.32250000000022,
+      "stdoutBytes": 57693,
+      "stderrBytes": 610,
+      "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "before-3",
+      "command": [
+        "<NODE>",
+        "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 120.69939999999951,
+      "stdoutBytes": 57693,
+      "stderrBytes": 610,
+      "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "after-3",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 115.41780000000017,
+      "stdoutBytes": 36947,
+      "stderrBytes": 610,
+      "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    },
+    {
+      "label": "compact-3",
+      "command": [
+        "<NODE>",
+        "<REPO>\\packages\\test-scope\\dist\\cli.js",
+        "plan",
+        "--root",
+        "<FIXTURE_ROOT>\\test-evidence",
+        "--changed",
+        "src/index.js",
+        "--compact"
+      ],
+      "cwd": "<FIXTURE_ROOT>\\test-evidence",
+      "exitCode": 0,
+      "elapsedMs": 95.46399999999994,
+      "stdoutBytes": 20108,
+      "stderrBytes": 610,
+      "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+      "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e"
+    }
+  ],
+  "arms": {
+    "before": {
+      "stdoutBytes": 57693,
+      "stderrBytes": 610,
+      "medianElapsedMs": 112.32250000000022,
+      "samples": [
+        {
+          "label": "before-1",
+          "command": [
+            "<NODE>",
+            "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 100.40540000000055,
+          "stdoutBytes": 57693,
+          "stderrBytes": 610,
+          "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/fixtures/cancel.mjs",
+            "test/fixtures/coverage.mjs",
+            "test/fixtures/fail.mjs",
+            "test/fixtures/load-fail.mjs",
+            "test/fixtures/pass.mjs",
+            "test/fixtures/skip.mjs",
+            "test/helpers.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js",
+            "test/type-contract.ts"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 13,
+            "returnedTests": 13
+          }
+        },
+        {
+          "label": "before-2",
+          "command": [
+            "<NODE>",
+            "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 112.32250000000022,
+          "stdoutBytes": 57693,
+          "stderrBytes": 610,
+          "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/fixtures/cancel.mjs",
+            "test/fixtures/coverage.mjs",
+            "test/fixtures/fail.mjs",
+            "test/fixtures/load-fail.mjs",
+            "test/fixtures/pass.mjs",
+            "test/fixtures/skip.mjs",
+            "test/helpers.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js",
+            "test/type-contract.ts"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 13,
+            "returnedTests": 13
+          }
+        },
+        {
+          "label": "before-3",
+          "command": [
+            "<NODE>",
+            "<FIXTURE_ROOT>\\baseline\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 120.69939999999951,
+          "stdoutBytes": 57693,
+          "stderrBytes": 610,
+          "stdoutSha256": "c5bd7058d7cce3d0ed73ed638cebff1783ede952a2e326f4943f3c2c7fa92371",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/fixtures/cancel.mjs",
+            "test/fixtures/coverage.mjs",
+            "test/fixtures/fail.mjs",
+            "test/fixtures/load-fail.mjs",
+            "test/fixtures/pass.mjs",
+            "test/fixtures/skip.mjs",
+            "test/helpers.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js",
+            "test/type-contract.ts"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 13,
+            "returnedTests": 13
+          }
+        }
+      ]
+    },
+    "after": {
+      "stdoutBytes": 36947,
+      "stderrBytes": 610,
+      "medianElapsedMs": 96.78569999999945,
+      "samples": [
+        {
+          "label": "after-1",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 96.78569999999945,
+          "stdoutBytes": 36947,
+          "stderrBytes": 610,
+          "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        },
+        {
+          "label": "after-2",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 90.34410000000025,
+          "stdoutBytes": 36947,
+          "stderrBytes": 610,
+          "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        },
+        {
+          "label": "after-3",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 115.41780000000017,
+          "stdoutBytes": 36947,
+          "stderrBytes": 610,
+          "stdoutSha256": "780ec609dc1d55409126f10f5a0a729c2f4e5f0953febe2cfb012c0aec7b183e",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        }
+      ]
+    },
+    "compact": {
+      "stdoutBytes": 20108,
+      "stderrBytes": 610,
+      "medianElapsedMs": 95.46399999999994,
+      "samples": [
+        {
+          "label": "compact-1",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js",
+            "--compact"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 98.42630000000008,
+          "stdoutBytes": 20108,
+          "stderrBytes": 610,
+          "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        },
+        {
+          "label": "compact-2",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js",
+            "--compact"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 89.63090000000011,
+          "stdoutBytes": 20108,
+          "stderrBytes": 610,
+          "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        },
+        {
+          "label": "compact-3",
+          "command": [
+            "<NODE>",
+            "<REPO>\\packages\\test-scope\\dist\\cli.js",
+            "plan",
+            "--root",
+            "<FIXTURE_ROOT>\\test-evidence",
+            "--changed",
+            "src/index.js",
+            "--compact"
+          ],
+          "cwd": "<FIXTURE_ROOT>\\test-evidence",
+          "exitCode": 0,
+          "elapsedMs": 95.46399999999994,
+          "stdoutBytes": 20108,
+          "stderrBytes": 610,
+          "stdoutSha256": "1793c9c146be13bd74ea9a231e1092e7c1a9d6c2ce2de1e967465997272ea047",
+          "stderrSha256": "dc17a93341071ff7fffed56d39ecc5fee124a70d1c916217131d7366ca15019e",
+          "status": "partial",
+          "minimum": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "recommended": [
+            "test/budgets.test.js",
+            "test/core.test.js",
+            "test/input-cli.test.js",
+            "test/node.test.js",
+            "test/schema.test.js"
+          ],
+          "diagnostics": [
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "AMBIGUOUS_TEST_MAPPING"
+          ],
+          "stats": {
+            "filesScanned": 39,
+            "bytesParsed": 113917,
+            "testCandidates": 5,
+            "returnedTests": 5
+          }
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "One frozen package task; three process samples, no throughput or independent agent outcome claim.",
+    "The older built runtime is rebuilt and content-hash matched; compilation cost is separate from plan timing.",
+    "Compact removes whitespace only; default output and full parsed evidence are preserved.",
+    "Support classification is an explicit naming heuristic; actual test execution is outside this planner."
+  ],
+  "observedOn": "2026-10-08",
+  "suiteId": "test-scope-refinement-v1",
+  "localEvidenceDirectory": ".cache/test-scope-refinement/run-Ar0vDk/",
+  "localMeasurementSha256": "63b7ed5be80da6fc58c8264a3fa6847581aaa125643be7a5f3b6c197fee8d96a",
+  "currentSourceState": "Uncommitted source changes; package version and publication metadata unchanged.",
+  "schemaSha256": "9e1c48ca716c4481196f569228de58e5de5b535a8bbec776363616dc13a4d733",
+  "lockSha256": "b7f872f8beb79a1e92bca665aa30a49c3375b2618afeb79846f93a09507bcff4",
+  "assertedChecks": [
+    "Rebuilt older dist exactly matches the original frozen observation runtime hash.",
+    "All nine plan outputs validate against the current native result schema.",
+    "Every arm retains the five independently identified required tests in minimum.",
+    "New default and compact parsed JSON are deeply equal, including partial diagnostics.",
+    "Three repetitions per arm have identical stdout and stderr hashes.",
+    "Task files and current source/runtime hashes are unchanged by analysis.",
+    "Temporary fixture workspace is removed; local command evidence is retained."
+  ]
+}

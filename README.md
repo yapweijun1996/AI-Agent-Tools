@@ -35,6 +35,8 @@ npm run verify
 
 Bootstrap runs `npm ci --ignore-scripts` for each package using its own lockfile. No hoisting or shared TypeScript version is imposed. Root `build`, `typecheck`, `lint`, `test` and `pack` commands orchestrate the applicable native scripts; missing scripts are reported as not applicable. `npm test` also checks AIT, Hub documents and source coverage. Tests use a canonical local temporary directory and writable npm cache.
 
+For an opt-in comparison of existing tools with conventional inspection on four frozen repository tasks, run `node scripts/evaluate-task-value.mjs` after building. The [evaluation protocol](docs/evaluation/PROTOCOL.md) defines evidence criteria, interface costs and controls; [recorded results](docs/evaluation/RESULTS.md) distinguish scripted observations from unmeasured agent outcomes. This experiment is separate from root acceptance and does not install or publish tools. The subsequent [Test Scope refinement](docs/evaluation/TEST_SCOPE_REFINEMENT.md) records a separate frozen before/after measurement for candidate filtering and optional lossless compact output. [Independent-agent observations](docs/evaluation/AGENT_RESULTS.md) report answer facts separately from incomplete telemetry and the blocked full CLI study.
+
 Run a tool independently, for example:
 
 ```sh

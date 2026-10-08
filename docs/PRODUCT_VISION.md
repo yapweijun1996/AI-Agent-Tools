@@ -12,12 +12,14 @@ Read-only operation is the default. Tools distinguish observation from inference
 
 ## Boundaries
 
-The Hub governs and documents the ecosystem. Individual repositories implement and ship tools. Agents retain responsibility for reasoning, selecting tools, approving actions, and deciding whether evidence is sufficient for their task.
+The Hub governs and documents the ecosystem. Individual tool packages in the owned source monorepo retain independent identities, contracts and releases. Agents retain responsibility for reasoning, selecting tools, approving actions, and deciding whether evidence is sufficient for their task.
 
-The ecosystem does not redesign Codex, Claude, or AGRUN. It does not provide autonomous planning, agent scheduling, session memory, a hosted control plane, or a unified reasoning runtime. The separate AIT package manages explicit local installation and process dispatch; it is not an agent runtime or decision engine. A future task-scoped Context Pack is an explicit bounded artifact, not persistent agent memory.
+The ecosystem does not redesign Codex, Claude, or AGRUN. It does not provide autonomous planning, agent scheduling, session memory, a hosted control plane, or a unified reasoning runtime. The separate AIT package manages explicit local installation and process dispatch; it is not an agent runtime or decision engine. The implemented task-scoped Context Pack assembles an explicit bounded artifact; persistent agent memory remains outside its responsibility.
 
 ## Evidence of value
 
 Tool repositories should measure representative tasks against a documented baseline: bytes or lines returned, irrelevant context avoided, repeatability, unsupported-case handling, and correctness of the resulting evidence. Record fixture inputs, tool version, commands, environment, and limitations. Never claim token savings, accuracy, safety, or coverage without reproducible measurements.
+
+The [local task-value protocol](evaluation/PROTOCOL.md) compares four frozen repository tasks with conventional inspection. [Observations](evaluation/RESULTS.md) report evidence availability and measured interface cost; independent agent trials are required before claiming reduced agent errors or improved productivity.
 
 Success is a smaller, more reliable interface to evidence, not a larger number of tools. [Roadmap](../ROADMAP.md) records priorities; [Tool standard](TOOL_STANDARD.md) defines readiness.

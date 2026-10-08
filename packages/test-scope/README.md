@@ -35,6 +35,45 @@ npx --no-install agent-test-scope explain --root . --changed src/order/service.t
 
 The CLI writes one JSON result to stdout and human-readable copies of diagnostics to stderr. `complete` means planning completed within the evidence boundary; it never means tests passed. `partial` means useful evidence exists with a bounded limitation. `error` means the request or root boundary must be corrected.
 
+## Source candidate filtering and compact output
+
+The current monorepo source adds the following behavior; no updated npm artifact
+has been published. Use a built checkout to try it:
+
+```sh
+node dist/cli.js plan --root . --changed src/core/discovery.ts --compact
+```
+
+`--compact` is a CLI formatting flag available for all four operations. It emits
+the same complete JSON object and final newline without indentation. Status,
+evidence, diagnostics, truncation, command ownership and exit codes are
+unchanged; stderr diagnostics remain separate. Default output stays indented.
+The library's request/result types and the distributed result schema are
+unchanged. Removing whitespace does not deduplicate repeated evidence or prove
+that a plan is the smallest useful context.
+
+Discovery still retains support files as source for static import reachability,
+but its directory-only test convention excludes these predictable support names:
+
+- Declaration files ending in `.d.ts`, `.d.mts` or `.d.cts`.
+- Subdirectories inside `test`, `tests` or `__tests__` named `fixture`, `fixtures`,
+  `__fixtures__`, `__mocks__`, `mocks`, `helpers` or `support`.
+- File stems `helper`, `helpers`, `setup`, `teardown`, `util`, `utils`,
+  `test-helper`, `test-helpers`, `test-utils`, `type-contract` or `typecheck`.
+
+An explicit `.test.*` or `.spec.*` name takes precedence over support-directory
+and support-stem heuristics; declaration files remain excluded. Ordinary
+directory-only tests, including aliased framework imports, retain the previous
+candidate convention. These names are heuristics, not proof that a file contains
+or executes tests. A real test using a reserved support name should use an
+explicit test/spec filename; `include` narrows discovery and does not override
+classification. Package-native commands remain available for wider verification.
+
+Changes to a helper can therefore recommend importing test suites without
+recommending the helper itself as a targeted test. Dynamic loading and missing
+evidence still produce the existing partial result; candidate filtering cannot
+turn partial analysis into executed or passing verification.
+
 The library exposes `getCapabilities`, `discoverTests`, `planTestScope`, `explainRecommendation`, and `execute` from `agent-test-scope`. Both ESM and CommonJS consumers are supported:
 
 ```js

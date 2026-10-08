@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-09-16. This index assigns document ownership; it is not a
+Last reconciled: 2026-10-08. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |
@@ -15,6 +15,10 @@ second task ledger or a tool release inventory.
 | [VALIDATION.md](VALIDATION.md) | Dated observations, checks, and evidence limitations |
 | [TOOL_REGISTRY.json](TOOL_REGISTRY.json) | Tool identity, lifecycle, repository/package links, release evidence snapshot |
 | [Product vision](docs/PRODUCT_VISION.md) | User problem, product value, and non-goals |
+| [Task-value evaluation](docs/evaluation/PROTOCOL.md) | Frozen task comparators, evidence grading, measurement boundaries and real-agent follow-on protocol |
+| [Task-value results](docs/evaluation/RESULTS.md) | Identified local observations, measured interface costs and workflow decisions |
+| [Test Scope refinement](docs/evaluation/TEST_SCOPE_REFINEMENT.md) | Frozen before/after candidate and output measurements for the selected source improvement |
+| [Independent-agent observations](docs/evaluation/AGENT_RESULTS.md) | Answer-artifact grading, telemetry audit, host pilot and blocked full CLI study |
 | [Architecture](docs/ARCHITECTURE.md) | Ownership boundaries, registry contract, and AIT runtime constraints |
 | [Tool standard](docs/TOOL_STANDARD.md) | Scope/admission/lifecycle gates |
 | [CLI standard](docs/CLI_STANDARD.md) | Target command/stream/exit/limit semantics |

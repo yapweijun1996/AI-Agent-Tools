@@ -1,0 +1,543 @@
+{
+  "schemaVersion": "1.0.0",
+  "observedDate": "2026-10-08",
+  "status": "answers_collected_telemetry_incomplete",
+  "localEvidence": ".cache/agent-study/host-pilot-urxbbuf2",
+  "runtime": {
+    "platform": "Windows",
+    "node": "24.19.0",
+    "agentSurface": "host fresh default-role fork_turns=none",
+    "modelSnapshot": null,
+    "usage": null
+  },
+  "design": {
+    "taskFamilies": 2,
+    "conditions": 2,
+    "repeats": 3,
+    "seed": 20261008,
+    "blindSeed": 20261009,
+    "knownFiles": 43,
+    "authoredUnfamiliarFiles": 7,
+    "expectedPaths": {
+      "known": [
+        "test/budgets.test.js",
+        "test/core.test.js",
+        "test/input-cli.test.js",
+        "test/node.test.js",
+        "test/schema.test.js"
+      ],
+      "unfamiliar": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ]
+    }
+  },
+  "consistency": {
+    "inputUnchanged": true,
+    "sourceUnchanged": true,
+    "runtimeUnchanged": true,
+    "protocolUnchanged": true,
+    "allPromptHashesMatchRegistration": true,
+    "deterministicSuiteChecksAgreeWithBlindFactsGrades": true,
+    "deterministicPathContractChecksAgreeWithBlindAdequacyGrades": true
+  },
+  "identities": {
+    "inputSha256": "dd1b2f5769201002efbda08417022916dfbd95cbc488886e490b7d5705d03466",
+    "protocolSha256": "49ba9932a6f6411fc1d1e1758e4130a33f610ce9798569e5a414efbc22d68025",
+    "currentSourceSha256": "586618e01b5ef6d77babbbc54f8edd89bd549b60162e10708b8bc5021158d853",
+    "currentRuntimeSha256": "b8b7a7dd8762ecb75b255831315d73b970ad8965605e320ae5fcfd9afac6123a"
+  },
+  "artifactSha256": {
+    "registration.json": "384c9eac7d7cff5f4b8be933c7d564c64bc34f2b38824ccd4834983af5aa835e",
+    "blind-bundle.json": "204ab2b88abc8d463e36214cbddea1e3603ad78d37e8f39a46078dc77b8c77d0",
+    "blind-map.json": "e8d1d7a885dc6709650420ed57cb210c5a2cdde9a2c505868bf8f9fed501449b",
+    "grading-criteria.txt": "089313d908a1af832aa69b3082a49ba740c0cd26ffd7533c1d544e399046f0d4",
+    "grades.json": "f1ef1b4d1fbc74ae22031959718b355af33ececd5abc0c68f5a7803cc878d373",
+    "timing.json": "1e4f60eeb3185ed8d0e2e5b26b422e837c5ee61ebd10b90f9f628ba51b74b193",
+    "audit.py": "9d5212280088b0a2902535b4ef7bf3ccd5d628ddfee5ff745bc569618a2edcf3",
+    "cleanup.json": "0b471342d55914816d43121101968741650f449bffb8a86f5a58bbb7873e12c1"
+  },
+  "groups": [
+    {
+      "task": "known",
+      "condition": "conventional",
+      "answerArtifacts": 3,
+      "adequateAnswerArtifacts": 0,
+      "identifiedSuiteSetCorrect": 3,
+      "unsupportedCompletionClaims": 0,
+      "promptJournalMatches": 1
+    },
+    {
+      "task": "known",
+      "condition": "tool",
+      "answerArtifacts": 3,
+      "adequateAnswerArtifacts": 3,
+      "identifiedSuiteSetCorrect": 3,
+      "unsupportedCompletionClaims": 0,
+      "promptJournalMatches": 1
+    },
+    {
+      "task": "unfamiliar",
+      "condition": "conventional",
+      "answerArtifacts": 3,
+      "adequateAnswerArtifacts": 2,
+      "identifiedSuiteSetCorrect": 2,
+      "unsupportedCompletionClaims": 0,
+      "promptJournalMatches": 1
+    },
+    {
+      "task": "unfamiliar",
+      "condition": "tool",
+      "answerArtifacts": 3,
+      "adequateAnswerArtifacts": 3,
+      "identifiedSuiteSetCorrect": 3,
+      "unsupportedCompletionClaims": 0,
+      "promptJournalMatches": 3
+    }
+  ],
+  "trials": [
+    {
+      "trial": 1,
+      "task": "unfamiliar",
+      "condition": "tool",
+      "repetition": 3,
+      "selectedPaths": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-07",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The unfamiliar-task answer selects both exact project-relative suites and accurately states the helper-mediated/direct imports, native glob command, support-input exclusions, static limitation, and testsExecuted:false."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "1fcc8f7f551785c3908b61423c3cf76bc0db2e12e77ecb00ef11cc24d413978d",
+        "answer.json": "c7cb0c53deb3895ae68cb9ee9314c1be83695537662d6e9d2d815c0eaed6b21e",
+        "journal.json": "75410a88fa5bc09e2fe73cdd2324dabc1546f9a5909492a0698722391732a736"
+      }
+    },
+    {
+      "trial": 2,
+      "task": "known",
+      "condition": "tool",
+      "repetition": 3,
+      "selectedPaths": [
+        "test/budgets.test.js",
+        "test/core.test.js",
+        "test/input-cli.test.js",
+        "test/node.test.js",
+        "test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-06",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The known-task answer selects the complete exact project-relative suite set and provides accurate direct-import, native-command, support-input, static-coverage, and testsExecuted:false evidence."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "5c6e2614c5216af92d98cd08efc1d9a51e3739e793bb9d3a85b6ee4fd3f65364",
+        "answer.json": "8c9d86a9643e9591963c84963deff2e889da748486178f7673484a88f054e27b",
+        "journal.json": "1235d61a9eb939ed381fbd3e52b4e0ffb2ba838460149ccbb1c77896ed50d8f8"
+      }
+    },
+    {
+      "trial": 3,
+      "task": "unfamiliar",
+      "condition": "conventional",
+      "repetition": 3,
+      "selectedPaths": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-09",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The unfamiliar-task answer selects the complete two-file project-relative suite set and accurately explains direct/transitive imports, the native command, excluded support inputs, static limitations, and testsExecuted:false."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "14d9d366658be94cccd5d1794f04a31ce047a4fdfc06df70cb58b2b646930f18",
+        "answer.json": "7a55f784f83285dfbd9e45cfa01f032aa75bc983c74e37d8b77af32e2b3c1865",
+        "journal.json": "2414eb5073ce2d9ee63c74949cedc7936dd90f7bae2f285e88b9651db4ed7443"
+      }
+    },
+    {
+      "trial": 4,
+      "task": "unfamiliar",
+      "condition": "conventional",
+      "repetition": 1,
+      "selectedPaths": [],
+      "projectRelativePathSetCorrect": false,
+      "identifiedSuiteSetCorrect": false,
+      "grade": {
+        "id": "answer-11",
+        "adequate": false,
+        "factsCorrect": false,
+        "unsupportedCompletionClaim": false,
+        "reason": "The answer selects no suites and claims the fixture input was unavailable, while the reference identifies two unfamiliar-task suite paths. The empty selection is inadequate and the suite-set claim is not factually correct."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": true,
+      "journalIssue": "Recorded prompt changes the input root; commands inspect a wrong root and enumerate evaluator/trial metadata. Failure attribution is not established.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "7f909ea36a9933f1371fe08bde6be514966fc945bd580d881d6071fd8a88c046",
+        "answer.json": "a70a7a3a4a73d416a63a5e5aba2637ee4eda389e2cb80c01c9c23373023abc10",
+        "journal.json": "018b6bc061a570b437af662edf4d9dcf28a978bd27293b1249c82a4bb179d3c2"
+      }
+    },
+    {
+      "trial": 5,
+      "task": "known",
+      "condition": "conventional",
+      "repetition": 2,
+      "selectedPaths": [
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/core.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/budgets.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/input-cli.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/node.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": false,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-05",
+        "adequate": false,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The identifiable known-task suite set and its import, command, support-input, and static-limit explanation are correct, but every selected path includes the repository-relative fixture-directory prefix, violating the required project-relative path contract."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "805efb6a78f0fe0d9356142fed7dc132c0351b5f0610ca21b80f7ea1a56edb1c",
+        "answer.json": "d160e1cc7fd6ba6836e1d5609a6fa5e16442796cf4b80bb59888a9f731a29beb",
+        "journal.json": "376c2ff83b97c3423eee7873a49ecc837f38262b530beed928c05bba393d5c08"
+      }
+    },
+    {
+      "trial": 6,
+      "task": "unfamiliar",
+      "condition": "tool",
+      "repetition": 2,
+      "selectedPaths": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-08",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The unfamiliar-task selection is the complete exact project-relative suite set. Its import explanations, native command, support-input handling, static limitations, and testsExecuted:false satisfy the criteria."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "8ba8456ceb0bdc363adf1351672a09c7b72b0e129d5f985ceeae40454990ee26",
+        "answer.json": "75247f83e8c9d71f146209a86d95e3ce4b146e2a26e1ace2322172c0b518fe4c",
+        "journal.json": "e3f8f80cb979b62e96888da2b6459ff6dc5ce271cbff64d92761ed64cdbc8823"
+      }
+    },
+    {
+      "trial": 7,
+      "task": "unfamiliar",
+      "condition": "tool",
+      "repetition": 1,
+      "selectedPaths": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-03",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The unfamiliar-task selection contains the complete two-file suite set with exact project-relative paths. The helper-mediated and direct imports, native command, exclusions, static limitations, and testsExecuted:false are accurate."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": true,
+      "journalScopeViolation": false,
+      "journalIssue": null,
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "d8f6dbd0acf4d04925a2c74ad38cede754fd31372b4a9255d552572a485cae53",
+        "answer.json": "9990b4e897b9c76ac602df4d6e560b702b51e8ca2c81bb8f4cfedf6fb4e8a07d",
+        "journal.json": "717424a83e73e448bebcd955027e133b32746b54eb31dae8d99918905525e0f6"
+      }
+    },
+    {
+      "trial": 8,
+      "task": "known",
+      "condition": "conventional",
+      "repetition": 3,
+      "selectedPaths": [
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/budgets.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/core.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/input-cli.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/node.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": false,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-10",
+        "adequate": false,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The known-task suite set and factual explanation are correct, but all selected paths carry the repository-relative fixture-directory prefix and therefore fail the required project-relative path contract."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": false,
+      "journalIssue": "Recorded setup output differs from frozen prompt; literal escape or ownership-path differences prevent exact telemetry validation.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "61f95281b7c1420a1f5c93dd36a148f22828a8f2d839966ac738fc733c64d531",
+        "answer.json": "7befde9a694ccc52ef2d76cd32b56259ad76f47987502e32984ada584db3f405",
+        "journal.json": "77bb3727b74360bd534b3bfd8fa0f65e335fdf547ed89eb54af7b2b3b3c2f53a"
+      }
+    },
+    {
+      "trial": 9,
+      "task": "known",
+      "condition": "tool",
+      "repetition": 1,
+      "selectedPaths": [
+        "test/budgets.test.js",
+        "test/core.test.js",
+        "test/input-cli.test.js",
+        "test/node.test.js",
+        "test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-02",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The known-task selection contains all five exact project-relative suites. The direct import relationship, native node test command, support-input classifications, static limitations, and testsExecuted:false are accurate."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": false,
+      "journalIssue": "Recorded setup output differs from frozen prompt; literal escape or ownership-path differences prevent exact telemetry validation.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "3ec5707fdb0e510ef0760a422bdff9e6c15fb663ab659fb97ae9909ff54f94e8",
+        "answer.json": "2588b5807238e17d99813ee176a0f472173bf1144eff9d035a07dc3fc5d08c4c",
+        "journal.json": "e3853f4afe54e9bd9baa5f9b2b02ea44703d929b21759700e63a3c2e48c69f31"
+      }
+    },
+    {
+      "trial": 10,
+      "task": "unfamiliar",
+      "condition": "conventional",
+      "repetition": 2,
+      "selectedPaths": [
+        "tests/billing.test.mjs",
+        "tests/ledger.spec.mjs"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-01",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The unfamiliar-task selection contains the complete two-file suite set with project-relative paths. It gives the correct direct and transitive import chain, native command, support-input exclusions, static-coverage limitation, and testsExecuted:false."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": false,
+      "journalIssue": "Recorded setup output differs from frozen prompt; literal escape or ownership-path differences prevent exact telemetry validation.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "98d550010a755ceff4a0c521bd1df304bda039a24e026dbbec0afef055fdae10",
+        "answer.json": "601e06e2cf66312fca916ba29a090e5c8fe8fd139c86dd3fe39ea43d01d07488",
+        "journal.json": "25071a2d6e68341ce23216fab36735f753174655d495fd66e906d43d632d3cef"
+      }
+    },
+    {
+      "trial": 11,
+      "task": "known",
+      "condition": "conventional",
+      "repetition": 1,
+      "selectedPaths": [
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/budgets.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/core.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/input-cli.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/node.test.js",
+        ".cache/agent-study/host-fixtures # xrj71exw/known/test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": false,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-12",
+        "adequate": false,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The identifiable known-task suite set and its direct-import, native-command, support-input, and static-limit explanation are correct, but the selected paths include the repository-relative fixture-directory prefix and violate the project-relative path contract."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": false,
+      "journalIssue": "Recorded setup output differs from frozen prompt; literal escape or ownership-path differences prevent exact telemetry validation.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "6544cd29ee73d62b2ec19fdd9d5a5614bbc60021e5cba8eceb66d60c2d8e4fda",
+        "answer.json": "425a6a6c3d307adafb29a75442b542091d34bad0cae357bfce1bc1131ebb2612",
+        "journal.json": "e32ccc024877500fa13c01ddba9bb4bd0b13b458c540b66cade76861f4e4ff1e"
+      }
+    },
+    {
+      "trial": 12,
+      "task": "known",
+      "condition": "tool",
+      "repetition": 2,
+      "selectedPaths": [
+        "test/budgets.test.js",
+        "test/core.test.js",
+        "test/input-cli.test.js",
+        "test/node.test.js",
+        "test/schema.test.js"
+      ],
+      "projectRelativePathSetCorrect": true,
+      "identifiedSuiteSetCorrect": true,
+      "grade": {
+        "id": "answer-04",
+        "adequate": true,
+        "factsCorrect": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "The known-task answer selects all five exact project-relative suite paths and accurately explains their direct imports, native command, support inputs, static evidence limits, and testsExecuted:false."
+      },
+      "promptReadJournalMatchesFrozenAfterLineEndingNormalization": false,
+      "journalScopeViolation": false,
+      "journalIssue": "Recorded setup output differs from frozen prompt; literal escape or ownership-path differences prevent exact telemetry validation.",
+      "metrics": {
+        "commandCalls": null,
+        "commandOutputBytes": null,
+        "elapsedMs": null,
+        "tokens": null
+      },
+      "artifactSha256": {
+        "prompt.txt": "3c24630a45c519ef45a5592c79cff4672a23ed7d280d667141e57f1e2b275356",
+        "answer.json": "f39d699f92da40a9bfefd63b080d5c21f7e975106c6ad2d9bb9b6f11bdfc210f",
+        "journal.json": "40caa5e0b9d74209b080076edf2cfa0237af94dcfa4583bb7a7b3e361d246d5b"
+      }
+    }
+  ],
+  "excludedSetup": {
+    "sessions": 2,
+    "reason": "Removed an accidental trailing period in the example tool command before measurement. First two host setup sessions are retained separately and excluded; criteria/order unchanged.",
+    "localEvidence": ".cache/agent-study/host-pilot-cecv9791"
+  },
+  "cliStudy": {
+    "status": "blocked_by_execution_policy",
+    "plannedSessions": 30,
+    "completedUnavailableResponses": 6,
+    "performanceSamples": 0,
+    "activeSeventhSessionTerminated": true,
+    "localEvidence": ".cache/agent-study/run-cp6xkyof",
+    "offlineAvailabilityControlsPassed": true,
+    "completeProviderBackedStudyVerified": false
+  },
+  "limitations": [
+    "These counts describe retained answer artifacts, not an authenticated agent error rate or causal productivity effect.",
+    "Six participant journals disagree with frozen setup output; all aggregate command/byte/time/token metrics are withheld.",
+    "Trial 4 has an incorrect unavailable-input answer, inconsistent recorded prompt and out-of-scope metadata enumeration. It is retained without replacement; actual failure attribution is unresolved.",
+    "Three conventional known answers identify the correct suites but violate the explicit project-relative path contract. This is distinct from incorrect test selection.",
+    "Criteria instantiated after collection explicitly distinguish factual identification and path-format compliance required in frozen prompts; this is descriptive grading, not a confirmatory experiment.",
+    "Method hints remain in prose and can weaken condition blinding; one fresh same-host grader is not independent human adjudication.",
+    "Host full session transcripts, authoritative model snapshot and usage are unavailable. Participant claims and unchanged source hashes do not prove every action was read-only.",
+    "Two small tasks with three repeats per condition do not establish repository generalization, statistical significance or runtime coverage.",
+    "The separate 30-session CLI study remains incomplete; rejected read commands are environment observations, not performance or correctness samples.",
+    "Node 22/Linux/macOS execution of the source refinement and agent studies remains unverified."
+  ],
+  "cleanup": {
+    "ownedFixture": ".cache/agent-study/host-fixtures # xrj71exw",
+    "inputSha256VerifiedBeforeCleanup": true,
+    "removed": true
+  }
+}

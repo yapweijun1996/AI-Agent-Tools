@@ -103,9 +103,9 @@ test("test-file, spec-file, and test-directory conventions are discovered", () =
   try {
     mkdirSync(join(root, "__tests__"), { recursive: true });
     writeFileSync(join(root, "src", "other.spec.ts"), "export const other = true;\n", "utf8");
-    writeFileSync(join(root, "__tests__", "helper.js"), "export const helper = true;\n", "utf8");
+    writeFileSync(join(root, "__tests__", "plain.js"), "export const plain = true;\n", "utf8");
     const paths = discoverTests({ root }).data.discovery?.tests.map(item => item.path);
-    assert.deepEqual(paths, ["__tests__/helper.js", "src/other.spec.ts", "tests/service.test.ts"]);
+    assert.deepEqual(paths, ["__tests__/plain.js", "src/other.spec.ts", "tests/service.test.ts"]);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
