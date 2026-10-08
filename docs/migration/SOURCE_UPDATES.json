@@ -38,6 +38,12 @@
       "reason": "Owner-selected bounded source/profile reads, opaque HTML text contexts and one monotonic analysis deadline with linear visible-span hash scanning (2026-10-08)."
     },
     {
+      "destination": "packages/change-impact/scripts/docs-check.cjs",
+      "imported_sha256": "09d1e6a9f648be5e20b0633f675304bc254ab19fff163187742c2459922e57db",
+      "current_sha256": "e21841f59b1058a3f2c73ae48a1691b7860ef113297f05a373c34047dd2b627e",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
       "destination": "packages/code-slice/docs/SECURITY_PRIVACY.md",
       "imported_sha256": "06401d20abecdc91c747dbc4127e01de7715e591f55c9ea8f5ffa7313d6fa401",
       "current_sha256": "ac24ffacc596a0e5f45700d7d67eacc4eb80e888d71692f5c37be1128f40ba21",
@@ -94,8 +100,8 @@
     {
       "destination": "packages/project-tree/src/git.js",
       "imported_sha256": "d794ee4045da288b887ac417980e48f4c6938f12583374510b2f0fe50608dc13",
-      "current_sha256": "f4e80cfc2860b12e58580cea7174bb13103adbf675a3120fe86d7a91ea060b3e",
-      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+      "current_sha256": "fecc11a06f4aa9f2eac8c75fafac7d368bcf3b4d2f931aea1baca807add67257",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Formatting-only verification correction (2026-10-08)."
     },
     {
       "destination": "packages/project-tree/src/safety.js",
@@ -116,6 +122,12 @@
       "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
     },
     {
+      "destination": "packages/symbol-search/scripts/docs-check.mjs",
+      "imported_sha256": "3c7f41776f8eaeea4b69014cc60606cea8565595e5c673f0514da0c87e5f08d6",
+      "current_sha256": "0cd8c460cae7edbbd5e48711c2e0064810c143d0eec7bd68fea5f4f2f6998845",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
       "current_sha256": "fd90977f90406e5acda648774ebb267044436e386c1a68e6e66c116753ea9f50",
@@ -126,6 +138,30 @@
       "imported_sha256": "3f9bb5869138216c6af26bef3aeb0ceb5710f00a225fc4178b6b26780a88c3fd",
       "current_sha256": "62b1ec2383013e2162352546341189e88c8e1bd3960b8f3a94eefcaa0b5cfe7d",
       "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07)."
+    },
+    {
+      "destination": "packages/test-scope/scripts/coverage-check.mjs",
+      "imported_sha256": "0e0035a4a3b5ab7d0715c46feca67daef5e11d2a7e214b802fccf343d1e992bf",
+      "current_sha256": "7a5dd449b85ecc7b0f4300329e99b6638e5c5ef4c88085c2518af7460510626d",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
+      "destination": "packages/test-scope/scripts/docs-check.mjs",
+      "imported_sha256": "c2389a875dc20210d7db2b005c5b859d14f91ba0e6463f7e9772efcf4d6310a0",
+      "current_sha256": "8a57edb7102c6d3248d6b1883a32b4e9c0ce8e6435d57945afe4bf2fb5902430",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
+      "destination": "packages/test-scope/scripts/schema-check.mjs",
+      "imported_sha256": "665b67b8951cbbb407cab740adc9d06a64fc3bf6e5c0cc904655419173b83752",
+      "current_sha256": "ef32ef19ae845adbc34fd6644d25eebf0a223892b9d3a235ba8ade65637d2b09",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
+    },
+    {
+      "destination": "packages/test-scope/scripts/smoke-pack.mjs",
+      "imported_sha256": "eb5034f596c1427e27879dbfd2fa324340d65693f72d0d53a3686bf98f073d3d",
+      "current_sha256": "1c9d88f47c70f7cfb81e52c70afa7c6f5b2e6215325c5d8031c729c3079ca097",
+      "reason": "Owner-selected validation fixes for Windows path handling, package-scoped Git evidence and focused formatting (2026-10-08)."
     },
     {
       "destination": "packages/test-scope/skills/agent-test-scope/SKILL.md",

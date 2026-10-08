@@ -151,14 +151,20 @@ test("traversal and absolute outside artifacts are security errors without path 
   } finally { fs.rmSync(outside, { recursive: true, force: true }); }
 }));
 
-test("artifact symlinks and symlink parent components are rejected", () => fixture((root) => {
+test("artifact file symlinks are rejected", (context) => fixture((root) => {
   const outside = fs.mkdtempSync(path.join(os.tmpdir(), "patch-guard-symlink-"));
   try {
     fs.writeFileSync(path.join(outside, "outside.diff"), diff);
-    fs.symlinkSync(path.join(outside, "outside.diff"), path.join(root, "linked.diff"));
-    fs.symlinkSync(outside, path.join(root, "linked-directory"), "dir");
+    try { fs.symlinkSync(path.join(outside, "outside.diff"), path.join(root, "linked.diff"), "file"); }
+    catch (error) {
+      if (process.platform === "win32" && ["EPERM", "EACCES"].includes(error.code)) {
+        context.skip("Windows file symlink creation requires developer mode or elevated permission");
+        return;
+      }
+      throw error;
+    }
     fs.symlinkSync(path.join(root, "change.diff"), path.join(root, "inside.diff"));
-    for (const selected of ["linked.diff", "linked-directory/outside.diff", "inside.diff"]) {
+    for (const selected of ["linked.diff", "inside.diff"]) {
       parsed(run(["check", "--root", root, "--diff", selected, "--policy", "policy.json", "--json"]), 4, "UNSAFE_PATH");
     }
     fs.symlinkSync(path.join(root, "policy.json"), path.join(root, "linked.json"));
@@ -166,11 +172,27 @@ test("artifact symlinks and symlink parent components are rejected", () => fixtu
   } finally { fs.rmSync(outside, { recursive: true, force: true }); }
 }));
 
+test("symlink parent components are rejected for inside and outside targets", () => fixture((root) => {
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), "patch-guard-directory-link-"));
+  try {
+    const inside = path.join(root, "real-directory");
+    fs.mkdirSync(inside);
+    fs.writeFileSync(path.join(inside, "inside.diff"), diff);
+    fs.writeFileSync(path.join(outside, "outside.diff"), diff);
+    const linkType = process.platform === "win32" ? "junction" : "dir";
+    fs.symlinkSync(outside, path.join(root, "outside-directory"), linkType);
+    fs.symlinkSync(inside, path.join(root, "inside-directory"), linkType);
+    for (const selected of ["outside-directory/outside.diff", "inside-directory/inside.diff"]) {
+      parsed(run(["check", "--root", root, "--diff", selected, "--policy", "policy.json", "--json"]), 4, "UNSAFE_PATH");
+    }
+  } finally { fs.rmSync(outside, { recursive: true, force: true }); }
+}));
+
 test("an explicitly selected root symlink is canonicalized", () => fixture((root) => {
   const container = fs.mkdtempSync(path.join(os.tmpdir(), "patch-guard-root-"));
   try {
     const alias = path.join(container, "root-alias");
-    fs.symlinkSync(root, alias, "dir");
+    fs.symlinkSync(root, alias, process.platform === "win32" ? "junction" : "dir");
     parsed(run(checkArgs(alias)));
   } finally { fs.rmSync(container, { recursive: true, force: true }); }
 }));

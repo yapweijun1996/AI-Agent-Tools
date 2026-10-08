@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const tests = readdirSync(resolve(root, "test")).filter(file => file.endsWith(".test.mjs")).sort().map(file => `test/${file}`);
 const result = spawnSync(process.execPath, ["--experimental-test-coverage", "--test", ...tests], { cwd: root, encoding: "utf8" });
 process.stdout.write(result.stdout ?? "");

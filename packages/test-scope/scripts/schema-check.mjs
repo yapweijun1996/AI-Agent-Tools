@@ -1,7 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const files = ["request.schema.json", "result.schema.json", "capabilities.schema.json"];
 for (const file of files) {
   const value = JSON.parse(readFileSync(resolve(root, "schemas", file), "utf8"));

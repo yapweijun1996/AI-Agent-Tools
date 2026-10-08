@@ -1,6 +1,7 @@
 const { execFileSync } = require("node:child_process");
+const { createHash } = require("node:crypto");
 const { existsSync, readFileSync, readdirSync, statSync } = require("node:fs");
-const { join, resolve } = require("node:path");
+const { join, relative, resolve } = require("node:path");
 
 const root = resolve(__dirname, "..");
 const requiredDocs = [
@@ -135,28 +136,53 @@ function checkTaskDag(text) {
   }
 }
 
-function checkGitReferences(texts) {
-  const allText = [...texts.values()].join("\n");
-  const revisions = new Set(allText.match(/\b[0-9a-f]{7}\b/g) ?? []);
-  for (const revision of revisions) {
-    execFileSync("git", ["cat-file", "-e", `${revision}^{commit}`], { cwd: root, stdio: "ignore" });
+function checkGitReferences(texts, packageRoot = root) {
+  const repositoryRoot = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: packageRoot, encoding: "utf8" }).trim();
+  const packagePath = relative(repositoryRoot, packageRoot).replaceAll("\\", "/");
+  const manifestPath = join(repositoryRoot, "docs/migration/SOURCE_MANIFEST.json");
+  const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, "utf8")) : [];
+  const importedFiles = manifest.find((tool) => tool.package === "agent-change-impact")?.files ?? [];
+  const historical = new Set();
+  for (const [file, text] of texts) {
+    for (const revision of new Set(text.match(/\b[0-9a-f]{7}\b/g) ?? [])) {
+      try {
+        execFileSync("git", ["cat-file", "-e", `${revision}^{commit}`], { cwd: repositoryRoot, stdio: "ignore" });
+      } catch (error) {
+        if (error.status === undefined) throw error;
+        // Consolidation preserves immutable upstream documents, not their Git objects.
+        // A missing revision is historical only while the entire import snapshot matches.
+        const destination = [packagePath, file.replaceAll("\\", "/")].filter(Boolean).join("/");
+        const imported = importedFiles.find((item) => item.destination === destination);
+        const actualHash = createHash("sha256").update(readFileSync(join(packageRoot, file))).digest("hex");
+        assert(imported?.imported_sha256 === actualHash, `unverified Git revision ${revision} in ${file}`);
+        historical.add(revision);
+      }
+    }
   }
-  const expected = execFileSync("git", ["show", "HEAD:.gitattributes"], { cwd: root }).toString("utf8").replaceAll("\r\n", "\n");
-  const actual = readFileSync(join(root, ".gitattributes"), "utf8").replaceAll("\r\n", "\n");
+  const attributesPath = [packagePath, ".gitattributes"].filter(Boolean).join("/");
+  const expected = execFileSync("git", ["show", `HEAD:${attributesPath}`], { cwd: repositoryRoot }).toString("utf8").replaceAll("\r\n", "\n");
+  const actual = readFileSync(join(packageRoot, ".gitattributes"), "utf8").replaceAll("\r\n", "\n");
   assert(expected === actual, ".gitattributes differs from HEAD");
+  return historical.size;
 }
 
-try {
-  for (const file of requiredDocs) {
-    assert(statSync(join(root, file)).isFile(), `missing required document: ${file}`);
+function main() {
+  try {
+    for (const file of requiredDocs) {
+      assert(statSync(join(root, file)).isFile(), `missing required document: ${file}`);
+    }
+    const files = markdownFiles();
+    const checked = checkMarkdown(files);
+    const identifiers = checkIdentifiers(checked.texts);
+    checkTaskDag(checked.texts.get("TASK.md"));
+    const historical = checkGitReferences(checked.texts);
+    if (historical) process.stdout.write(`docs-check: ${historical} historical revisions preserved from hash-verified import snapshots; upstream Git existence is not reverified\n`);
+    process.stdout.write(`docs-check: pass (${files.length} files, ${checked.linkCount} links, ${checked.relativeLinkCount} relative, ${checked.anchorCount} anchors, ${identifiers.definitions} identifiers, ${checked.fencedBlocks} fenced blocks)\n`);
+  } catch (error) {
+    process.stderr.write(`docs-check: fail: ${error instanceof Error ? error.message : String(error)}\n`);
+    process.exitCode = 1;
   }
-  const files = markdownFiles();
-  const checked = checkMarkdown(files);
-  const identifiers = checkIdentifiers(checked.texts);
-  checkTaskDag(checked.texts.get("TASK.md"));
-  checkGitReferences(checked.texts);
-  process.stdout.write(`docs-check: pass (${files.length} files, ${checked.linkCount} links, ${checked.relativeLinkCount} relative, ${checked.anchorCount} anchors, ${identifiers.definitions} identifiers, ${checked.fencedBlocks} fenced blocks)\n`);
-} catch (error) {
-  process.stderr.write(`docs-check: fail: ${error instanceof Error ? error.message : String(error)}\n`);
-  process.exitCode = 1;
 }
+
+module.exports = { checkGitReferences };
+if (require.main === module) main();

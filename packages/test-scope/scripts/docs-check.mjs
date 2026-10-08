@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const required = ["GOAL.md", "SPEC.md", "DESIGN.md", "EPIC.md", "ROADMAP.md", "TASK.md", "PROGRESS.md"];
 for (const file of required) {
   const text = readFileSync(resolve(root, file), "utf8");

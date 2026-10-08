@@ -39,7 +39,10 @@ test('library queries preserve legal two-dot names and ordinary root paths', asy
 test('CLI scans and queries legal two-dot names', async (t) => {
   const root = await fixture(t);
   const result = JSON.parse(execFileSync(process.execPath, [cli, 'impact', '--root', root, '--path', '..config.js'], { encoding: 'utf8' }));
-  assert.deepEqual(result.impacted.map((node) => node.path), ['..config.js']);
+  assert.deepEqual(
+    result.impacted.map((node) => node.path),
+    ['..config.js']
+  );
 });
 
 test('genuine parent and absolute escapes remain rejected', async (t) => {

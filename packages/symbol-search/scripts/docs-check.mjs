@@ -106,10 +106,10 @@ if (/### Runtime[\s\S]*None\. No CLI/.test(changelog)) fail("CHANGELOG.md: runti
 if (/`HEAD` is the historical documentation baseline/i.test(task)) fail("TASK.md: HEAD is still described as a historical/baseline checkout");
 if (!task.includes("HEAD` is the current V1 implementation line")) fail("TASK.md: current HEAD reconciliation is missing");
 if (!readme.includes("Node.js 22") || !readme.includes("Node.js 24") || !readme.includes("Node.js 26")) fail("README.md: supported Node.js majors are missing");
-if (packageJson.engines?.node !== "^22.0.0 || ^24.0.0 || ^26.0.0") fail("package.json: supported Node.js engine range is incorrect");
+if (packageJson.engines?.node !== "^22.0.0 || ^24.0.0 || ^25.0.0 || ^26.0.0") fail("package.json: supported Node.js engine range is incorrect");
 if (packageJson.publishConfig?.registry !== "https://registry.npmjs.org/" || packageJson.publishConfig?.access !== "public") fail("package.json: public npm publish configuration is incorrect");
 if (packageJson.repository?.url !== "git+https://github.com/yapweijun1996/AI-Agent-Tools.git") fail("package.json: repository URL is incorrect");
-const gitHeadFiles = spawnSync("git", ["ls-tree", "-r", "--name-only", "HEAD:packages/symbol-search"], { encoding: "utf8" });
+const gitHeadFiles = spawnSync("git", ["ls-tree", "--full-tree", "-r", "--name-only", "HEAD:packages/symbol-search"], { encoding: "utf8" });
 if (gitHeadFiles.error || gitHeadFiles.status !== 0) fail("Git evidence: unable to inspect HEAD");
 else {
   for (const path of ["package.json", "src/index.ts", "schemas/request.schema.json"]) {

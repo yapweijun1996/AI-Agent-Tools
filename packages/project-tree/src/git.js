@@ -360,8 +360,7 @@ export async function readGitChanges(root, nodes, options = {}) {
   const maxChanges = Math.max(1, Number(options.maxChanges || options.maxFiles || 1000));
   const capture = await walkHeadTree(gitDir, treeOid, cache, '', { files: new Map(), complete: true }, maxChanges, options.ignore);
   const tracked = capture.files;
-  const fileNodes = nodes.filter((node) => node.provenance?.source === 'filesystem' && node.kind !== 'workspace' &&
-    node.path && node.path !== '.' && !isIgnoredDirectory(path.posix.dirname(node.path), options.ignore));
+  const fileNodes = nodes.filter((node) => node.provenance?.source === 'filesystem' && node.kind !== 'workspace' && node.path && node.path !== '.' && !isIgnoredDirectory(path.posix.dirname(node.path), options.ignore));
   const byPath = new Map(fileNodes.map((node) => [node.path, node]));
   let incomplete = !capture.complete;
   const changed = [];
@@ -372,8 +371,7 @@ export async function readGitChanges(root, nodes, options = {}) {
       const missing = await missingWorktreePath(root, rel);
       if (missing === true) changed.push({ path: rel, status: 'deleted', provenance: { source: 'git-head-tree' } });
       else incomplete = true;
-    }
-    else if (node.digest) {
+    } else if (node.digest) {
       const headDigest = await blobDigest(gitDir, head.oid, cache);
       if (headDigest && headDigest !== node.digest) changed.push({ path: rel, status: 'modified', nodeId: node.id, provenance: { source: 'git-head-tree' } });
       if (!headDigest) incomplete = true;
@@ -384,5 +382,13 @@ export async function readGitChanges(root, nodes, options = {}) {
   for (const rel of [...byPath.keys()].sort()) {
     if (capture.complete && !tracked.has(rel)) changed.push({ path: rel, status: 'untracked', nodeId: byPath.get(rel)?.id, provenance: { source: 'git-head-tree' } });
   }
-  return { vcs: 'git', available: true, base: { commit: commitOid }, changed: changed.slice(0, maxChanges), truncated: incomplete || changed.length >= maxChanges || tracked.size >= maxChanges, note: 'Compared captured files in the scan scope to Git HEAD using read-only .git objects; uncaptured paths require an observed absence, incomplete HEAD capture cannot prove untracked status, and index/stage state is not inspected.', freshness: { scannedAt } };
+  return {
+    vcs: 'git',
+    available: true,
+    base: { commit: commitOid },
+    changed: changed.slice(0, maxChanges),
+    truncated: incomplete || changed.length >= maxChanges || tracked.size >= maxChanges,
+    note: 'Compared captured files in the scan scope to Git HEAD using read-only .git objects; uncaptured paths require an observed absence, incomplete HEAD capture cannot prove untracked status, and index/stage state is not inspected.',
+    freshness: { scannedAt }
+  };
 }

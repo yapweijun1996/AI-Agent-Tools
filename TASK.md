@@ -1,5 +1,11 @@
 # Task status
 
+## Local CLI validation corrections (2026-10-08)
+
+The owner selected correction and retesting of five issue groups found during Windows Node 24 CLI installation and validation. Test Scope check scripts now use file URL conversions, a Node-based npm invocation and Windows junctions for the packaged consumer. Patch Guard separates file-link permission coverage from always-running directory-link and selected-root checks. Change Impact keeps missing upstream revisions only when their entire imported document matches the immutable source manifest, and reports that upstream Git existence was not reverified. Symbol Search reconciles its current engine declaration and package-scoped Git listing. Four Project Tree files receive formatting-only corrections. Package identities, versions, dependencies, native contracts and publication guards are preserved.
+
+Focused acceptance passed: seven previously failing supplemental gates; 21 of 22 focused tests with one explicitly reported Windows file-symlink permission skip. Complete Windows Node 24 root verification exited 0: 877 Node tests (854 passed, zero failed, 23 explicit platform skips), twelve Python tests, all applicable build/typecheck/lint gates, seventeen dry-run packs and seven packed consumers. A fresh isolated source installation passed all 35 installed CLI startup and representative-input checks plus integrity read-back for eighteen packages. Evidence is owned by [Validation](VALIDATION.md#local-cli-validation-corrections-2026-10-08); local commit is owner-authorized; no push or npm publication is included.
+
 ## CFML fixes main integration — 2026-10-08
 
 The owner selected commit and push. All thirteen intended CFML fix, regression, contract and evidence files were committed on main as `f86a4a9d8c32c3250c5ed83dfbf491082c1a817f` and pushed to origin. Remote branch read-back confirmed that exact SHA. The local acceptance remains 872 Node and twelve Python tests, all configured verification gates, seventeen dry-run packs and seven packed-consumer checks. The subsequent evidence update changes only TASK/VALIDATION; implementation source and regressions are unchanged. Current integration evidence is recorded in [Validation](VALIDATION.md#cfml-fixes-main-integration--2026-10-08). New hosted Linux/Windows acceptance remains unverified.
