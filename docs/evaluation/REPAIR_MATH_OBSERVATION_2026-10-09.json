@@ -1,0 +1,812 @@
+{
+  "schemaVersion": "1.0.0",
+  "date": "2026-10-09",
+  "case": "historical-math-rendering",
+  "rawEvidenceDirectory": ".cache/repair-math/run-ipz65a88",
+  "sourceRepository": "Markdown-Editor",
+  "sourceCommit": "5214c9554f8b118fe60fa44ac563e5f785c410e4",
+  "historicalReference": "094478786ca427f82cab977c9f98a1e4cfd5bad6",
+  "sourceHeadUnchanged": "6b74417e28cf31987df10a962e19c3d123e66439",
+  "requestedModel": "gpt-6.1-sol",
+  "requestedEffort": "xhigh",
+  "cli": "codex-cli 0.161.0",
+  "runtime": "Ubuntu WSL Node 24.19.0",
+  "controller": "Windows Python 3.13.7; C: paths; Ubuntu WSL",
+  "seed": 20261011,
+  "order": [
+    [
+      "tool",
+      1
+    ],
+    [
+      "conventional",
+      1
+    ],
+    [
+      "tool",
+      2
+    ],
+    [
+      "conventional",
+      2
+    ],
+    [
+      "tool",
+      3
+    ],
+    [
+      "conventional",
+      3
+    ]
+  ],
+  "disabledOptionalSkillCount": 8,
+  "freeze": {
+    "baselineSha256": "0de64e605439c2bf7601abf047da87cea8cf14b6a861392e442f7e4ec393d0e3",
+    "protocolSha256": "dcd96e9350179366af5b769b064149ed7b19b151c5e3dbde090e1a8f8ebc43b2",
+    "harnessSha256": "d8b27e58e0ad871125541947649cf101ef8a308b40939387cfc369474f0202e6",
+    "acceptanceSha256": "901cf619f7d6c25c17f24995bd767ee6f1505797981eae2d7f5872c3820e821b",
+    "supportSha256": {
+      ".study/collect.mjs": "5f0a844cd6b754784235b9d85bfa141f8e522bbc67c7c58e3a08ba63fc15a1e8",
+      ".study/baseline.json": "5eb9795f1556e5ee323d3cd32159e8b967ba635750e5e17a481b84d30f20e4cb",
+      ".study/settings.json": "c1943098e68a7fb7a1a92466bbfb19725cad51d877558339bbc251bd9b4fb7a6",
+      ".study/policy.json": "948c6ad4b39b464c2e54d9049b053da5f42814ada89e7a20131c465e389a1f5c"
+    },
+    "previousFrozen": {
+      "docs\\evaluation\\REPAIR_WORKFLOW_OBSERVATION_2026-10-09.json": "19e30fa11c889012cb6683c99d9e7f100d2434020fcef9cefe0871f6a2d746d6",
+      "docs\\evaluation\\REPAIR_WORKFLOW_PROTOCOL.md": "c3a4813de09b2cf407465c5f00fa2ba78c6cdc50675433a02144b1b38b6f959b",
+      "docs\\evaluation\\REPAIR_WORKFLOW_RESULTS.md": "ab310d62db46c7f7ea81de09b6b7b54c2a3ea253be8df660857c1c1f58c201c1",
+      "scripts\\evaluate-repair-workflow.py": "7e17367ea8a3a58bb6329200624b15ab3152be64376befa20d777780d8a52dd7",
+      "scripts\\repair-workflow-collect.mjs": "ffd86e0928e51cef559b749b883d10602fa24e5b901d11dbcafe37d672841f90",
+      "scripts\\repair-workflow-acceptance.mjs": "d5cd19c345f7072e92bb8a1cbc0af0da7106b33e9b83eba03cd665fa9d906201",
+      "tests\\test_repair_workflow.py": "c0b10a1c51f1e79ebe88c322a9d37189c903945139feec7b496c11b5a8c68538"
+    },
+    "toolEntries": {
+      "packages/code-slice/dist/cli/index.js": "104a95a944fcb6d57a14385434674b1602c7b064fbceacdf26172a7b49e12884",
+      "packages/test-scope/dist/cli.js": "020407d374987b1f9aa72eb0c0b06305cf7cdaa40281403b23f401f8eb9ef50c",
+      "packages/patch-guard/src/cli.js": "a7a8366b0d482b3b34d033ac03619d0085b69f072853eab8cb54dee260f6b144",
+      "packages/test-evidence/src/cli.js": "05c60cbff6fa98c78eb878cc90793544d2a59b197a410876ec3f71fb625559de"
+    }
+  },
+  "toolBundleFiles": 182,
+  "toolBundleInventorySha256": "7d4f3e0e25fb82b0715d9df9549ea8da73abcc8cb40f2fcf8a4795aa6f1a2bc9",
+  "isolationProbe": {
+    "counts": {
+      "tests": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "stdoutSha256": "21a2579197075707b5e1391975e5c19afb261583538018b7f6a23d6ffdfdbe03",
+    "policy": "Root reads and shared temp denied; minimal runtime and explicit read-only dependency/tool roots; command network disabled.",
+    "deniedProbes": [
+      "owned outside sentinel",
+      "owned ancestor AGENTS sentinel",
+      "enumerated local Skill path"
+    ]
+  },
+  "controlCounts": {
+    "baseline": {
+      "native": {
+        "tests": 21,
+        "suites": 0,
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptance": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 7,
+        "failed": 11,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      }
+    },
+    "reference": {
+      "native": {
+        "tests": 23,
+        "suites": 0,
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptance": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      }
+    }
+  },
+  "primaryAuditSha256": "87ce463eb5cbc22895ffca658bcb251a48de3a4c88dd85acd044f73ab1736d75",
+  "failedPreparations": [
+    {
+      "directory": ".cache/repair-math/run-6q1dohbl",
+      "formalParticipants": 0,
+      "reason": "CLI 0.161.0 writable-file sandbox mount failure"
+    },
+    {
+      "directory": ".cache/repair-math/run-a766mofa",
+      "formalParticipants": 0,
+      "reason": "Unencoded hash in reporter path caused ESM fragment resolution"
+    }
+  ],
+  "attempts": [
+    {
+      "trial": "trial-01",
+      "condition": "tool",
+      "repetition": 1,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 20,
+      "fileChangeEvents": 3,
+      "failedCommands": 3,
+      "returnedCommandBytes": 95859,
+      "elapsedMs": 565366.027000011,
+      "usage": {
+        "input_tokens": 398921,
+        "cached_input_tokens": 338048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15426,
+        "reasoning_output_tokens": 7010
+      },
+      "uptake": {
+        "slice": 2,
+        "scope": 2,
+        "patch": 1,
+        "evidence": 1
+      },
+      "nativeCounts": {
+        "tests": 38,
+        "suites": 0,
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 10118.630600045435,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "a96f62ee56af94d9d8e5a8af7a413067c1813150a6069e69d79106fc1aaf46d4",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js \u2014 38 passed",
+          "node .study/collect.mjs \u2014 38 passed; source stable",
+          "Code Slice outline \u2014 ok",
+          "Test Scope plan \u2014 partial",
+          "Patch Guard check \u2014 pass",
+          "Test Evidence verify \u2014 pass"
+        ],
+        "reason": "Repaired math detection, text-only HTML rendering, entity decoding and CSS-independent lazy KaTeX loading. Only permitted files changed. Final tests completed with zero failures, skips, todos or cancellations.",
+        "limitations": [
+          "Test Scope reported incomplete static reachability.",
+          "Evidence covers the module, not full application, browser, security or business acceptance.",
+          "Source and process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [],
+      "artifactSha256": {
+        "events.jsonl": "d4787392a4770eae7748d6598ca7a86d518bb3dd27439709602d8657d0419fff",
+        "prompt.txt": "3f43e54ff602e974ee9508a8b3911a843866c1808bb9b27a821e0167ea26bc95",
+        "answer.json": "bfe69d858c0ccbb071eaad005a64f4e24f06a2c2177bbe6b36b1dd2f6092ddc8",
+        "stderr.txt": "a0e9073dd147a61dc3ad3161ee54d6918b5febb57cdfd784d47e42e529790b61",
+        "command-inventory.json": "548418ef49edf15a5a5ac6f04564d2d887bc0b93055d10d8394cc2056d5ab5bc",
+        "submitted-source.json": "3dc49ef51e8d10a91c39101284da96e07bec9dec0ad8c93daaa4782a65e12d8c",
+        "producer/receipt.json": "5a00e0136ab566dd414a2ef1d7f92b3779d6e61aefecdbaf2889ebeb7cf92b82",
+        "producer/request.json": "7d0db37aeb4f9be93fa92e4b45fcab8e5e096ec6db3a9aa15b341e7287f38985",
+        "producer/native.jsonl": "2973157c441d7ed5d0b1f69bf3d63342ef51038730c17bb254c4afe752fc3e06",
+        "producer/change.diff": "f940b2e26e086d87513af03c355f8e88e14393f8f7f6e7ddf11095d237921812",
+        "independent/native/stdout": "2973157c441d7ed5d0b1f69bf3d63342ef51038730c17bb254c4afe752fc3e06",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    },
+    {
+      "trial": "trial-02",
+      "condition": "conventional",
+      "repetition": 1,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 23,
+      "fileChangeEvents": 2,
+      "failedCommands": 3,
+      "returnedCommandBytes": 65419,
+      "elapsedMs": 736737.3769000405,
+      "usage": {
+        "input_tokens": 684710,
+        "cached_input_tokens": 632064,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13311,
+        "reasoning_output_tokens": 5286
+      },
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "nativeCounts": {
+        "tests": 68,
+        "suites": 0,
+        "passed": 68,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 26402.851999970153,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "5b62dc427179f02eb0ec470b44ab2faf131c659c0dc9de852651ad59e87bc5d9",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Repaired math detection and visible-text rendering, entity decoding and CSS-failure handling while retaining exports and lazy loading. Both runs passed all 68 tests with zero failures, skips, todos or cancellations. Collector evidence confirms permitted paths, stable source, matching bindings and final newlines.",
+        "limitations": [
+          "Module evidence only; full application, browser, security and business acceptance are not established.",
+          "Source/process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [],
+      "artifactSha256": {
+        "events.jsonl": "82a8e8cc26e3a9b3e98b6913b28756c2e6ccde005cb404b935c58202afb78658",
+        "prompt.txt": "d70dbeede95a08c69a3d6cc375762a3baa3dc5dc8dc14b0382af3241cf33df48",
+        "answer.json": "6062e63d9bb2d02d78f390dad88290018fa0a37823ffdd37a0cb689a3cda758f",
+        "stderr.txt": "7e3f11305ffe45f085ea1e13f366a0f494ceadb04a969d82c9522fb8901ba915",
+        "command-inventory.json": "6551764240f72be3bfaf4e22eaf016b8ba1faeda0c5b6d6b305decb9768a1eef",
+        "submitted-source.json": "1fd9ef0bebd8d1631739b9cec245be87b3738f2f8dfb062d3a805927900b228e",
+        "producer/receipt.json": "a2a48c10e072da3e4d3c4e9d3e720ba02f2801346fe8e24398113902c1e6b95e",
+        "producer/request.json": "eabe4e6b0ddc28f4d62f576ef69becb59d34a3eea0fe9f81ab16ac86894dcbb3",
+        "producer/native.jsonl": "33cf5c43abc7ec092e1c8b18da5de7cce1bfc9809821faa8f2dfaceeecb99196",
+        "producer/change.diff": "e57c016eda6107b8809614b783ae26572a034f353b4702cd55db41b0edf313c9",
+        "independent/native/stdout": "33cf5c43abc7ec092e1c8b18da5de7cce1bfc9809821faa8f2dfaceeecb99196",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    },
+    {
+      "trial": "trial-03",
+      "condition": "tool",
+      "repetition": 2,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 18,
+      "fileChangeEvents": 2,
+      "failedCommands": 1,
+      "returnedCommandBytes": 97687,
+      "elapsedMs": 635211.8081999943,
+      "usage": {
+        "input_tokens": 729137,
+        "cached_input_tokens": 667392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15881,
+        "reasoning_output_tokens": 7663
+      },
+      "uptake": {
+        "slice": 1,
+        "scope": 2,
+        "patch": 1,
+        "evidence": 1
+      },
+      "nativeCounts": {
+        "tests": 37,
+        "suites": 0,
+        "passed": 37,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 19006.6516000079,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "ebbbec969cf4438f2d62556005932dd230d4d2bf31b3a876f9b272e753bad6f8",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js \u2014 final: 37 passed",
+          "node --experimental-vm-modules --test --test-isolation=none test/mathSafety.test.js \u2014 initial escape failure corrected",
+          "node .study/collect.mjs \u2014 37 passed; sourceStable=true"
+        ],
+        "reason": "Repaired detection, visible-text rendering, entity decoding and CSS-failure handling while preserving exports and lazy loading. Collected tests completed with exit zero and no failures, skips, todos or cancellations. All four analyzers ran: Code Slice succeeded, Test Scope reported partial coverage, and Patch Guard and Test Evidence returned pass. Inspected all required artifacts; only permitted files changed.",
+        "limitations": [
+          "Test Scope could not fully resolve dynamic imports; all native tests still ran.",
+          "Evidence covers the module, not full application, browser, security or business acceptance.",
+          "Source and process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [],
+      "artifactSha256": {
+        "events.jsonl": "c6ccee644ebab4422cce5bbf0f2b97ef1d29c157814051f1210b5902eb8e8ab6",
+        "prompt.txt": "3f43e54ff602e974ee9508a8b3911a843866c1808bb9b27a821e0167ea26bc95",
+        "answer.json": "a7ee686113bdbb6ef49558db746e4cf331a0c2ef5dbd3784b301599c90b29802",
+        "stderr.txt": "e307df04902e3672c53a6a1ed690ba831775aba7465eb8f7fc880356b5ee96cc",
+        "command-inventory.json": "9cb08b1167593fe8d5e1de6858b7c5643f617b7333c96fa8ab9f79fcdf95c289",
+        "submitted-source.json": "7887fe77462c7832fb02a02a46040fd49563df3ab26064f03de85421457c2af0",
+        "producer/receipt.json": "447c7bcc1bd8fc3f0dfc30ecacb39f6597695528bea3d5adf9bd6c0851dce156",
+        "producer/request.json": "e67aa06e26b4cab442aa76cf0058d768a4bb8f4cf456df0324ead4e7eb974449",
+        "producer/native.jsonl": "874bed955842cf371c1004a74263842bed56c7c53d3303121dd4db96b1fa1ed5",
+        "producer/change.diff": "db2452683075165342a5d54b42022d907aee8d3f2eb798b122d528010ed173ff",
+        "independent/native/stdout": "874bed955842cf371c1004a74263842bed56c7c53d3303121dd4db96b1fa1ed5",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    },
+    {
+      "trial": "trial-04",
+      "condition": "conventional",
+      "repetition": 2,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 17,
+      "fileChangeEvents": 4,
+      "failedCommands": 2,
+      "returnedCommandBytes": 71696,
+      "elapsedMs": 809006.3228999497,
+      "usage": {
+        "input_tokens": 855851,
+        "cached_input_tokens": 793984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19712,
+        "reasoning_output_tokens": 10228
+      },
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "nativeCounts": {
+        "tests": 32,
+        "suites": 0,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 16745.98290002905,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "f2dd5eb6179cc63088353ad4db600759db637ab95085b133893ff425502bb954",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Repaired detection, text-only rendering, entity decoding and CSS-failure handling while preserving exports and lazy KaTeX loading. Both final runs completed with exit zero: 32 passed, zero failures/skips/todos/cancellations. Inspected required artifacts; patch is permitted, final newlines are present, and current source matches the stable collected hash.",
+        "limitations": [
+          "Module evidence only; full application, browser, security and business acceptance were not assessed.",
+          "Producer and process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [],
+      "artifactSha256": {
+        "events.jsonl": "6677d35ea8b11bbb13d135fe1fab0806b673a751386840afd6186f18db35329e",
+        "prompt.txt": "d70dbeede95a08c69a3d6cc375762a3baa3dc5dc8dc14b0382af3241cf33df48",
+        "answer.json": "30f5d337c6dd7f657bb1758ea2a193accc4e636276d6465d5a803e331bd14b7e",
+        "stderr.txt": "403cf62fd9d62e66aa2865aa20874c05a34a1ed7baae4e03984662692edd775c",
+        "command-inventory.json": "b829c7240f99eeebd68746e16d91ca3e01b6672350f8e08646e9710f6340f0c8",
+        "submitted-source.json": "6b522b407efb5d8e93413ff7fb830ad921e7799259b6eb13f602bab69aeb3383",
+        "producer/receipt.json": "fe1c1b86b0ec9ebf74547a4a950e27552545bb7774ddadc3749bdac8a517381a",
+        "producer/request.json": "854e08dc73b953a073e7306995a20ef87d516f0b868f64f31b91790d18e73aee",
+        "producer/native.jsonl": "d2b9a961be6af0a6ef58f8cf6b65017c5d3e377d0c53189ea617096b3687ad79",
+        "producer/change.diff": "ef7f7ed1d517a85656f2dda74ce0618ff73aa21ee6a18d53b2f9a9cc11a27e4c",
+        "independent/native/stdout": "d2b9a961be6af0a6ef58f8cf6b65017c5d3e377d0c53189ea617096b3687ad79",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    },
+    {
+      "trial": "trial-05",
+      "condition": "tool",
+      "repetition": 3,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 28,
+      "fileChangeEvents": 5,
+      "failedCommands": 2,
+      "returnedCommandBytes": 127516,
+      "elapsedMs": 787253.2880000072,
+      "usage": {
+        "input_tokens": 1311571,
+        "cached_input_tokens": 1235712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17120,
+        "reasoning_output_tokens": 7237
+      },
+      "uptake": {
+        "slice": 2,
+        "scope": 2,
+        "patch": 2,
+        "evidence": 2
+      },
+      "nativeCounts": {
+        "tests": 34,
+        "suites": 0,
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 9723.695900058374,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "f929dfd9ee0c167a39a7108a734b0d77a95fc9dc83cdd5af6d570373c4a773b4",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Repaired math detection, text-only HTML rendering, entity decoding and CSS-independent lazy KaTeX loading. Only permitted files changed, with final newlines. Collector confirms stable source and a complete zero-exit run: 34 passed, zero failures/skips/todos/cancellations. Code Slice succeeded; Patch Guard and Test Evidence passed. All four analyzers were inspected.",
+        "limitations": [
+          "Test Scope reports partial import coverage; all native tests ran.",
+          "Module evidence only, not full application/browser/security/business acceptance.",
+          "Source/process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [
+        {
+          "severity": "warn",
+          "code": "transitive_dependency_import",
+          "path": "src/preview/mathRenderer.js",
+          "detail": "The entities import resolves from the frozen production lock but entities is not a direct package.json dependency. Current-lock behavior passed; dependency declaration/installation portability needs review before adopting this replayed patch. This is not a registered scoring violation."
+        }
+      ],
+      "artifactSha256": {
+        "events.jsonl": "b28a5d2f6159cd63eac137d027e093828ba529c7ac04543bd442fafc52e368ce",
+        "prompt.txt": "3f43e54ff602e974ee9508a8b3911a843866c1808bb9b27a821e0167ea26bc95",
+        "answer.json": "a93675aa2f7817e6d24e883e3a2f62133d0cba218bb24d15894e1499bae57a24",
+        "stderr.txt": "6ecbcfcbaec88422b91d5aa1a4201a48977f758eb8c8d87703dcfbaa9a2c6ed2",
+        "command-inventory.json": "2e3d08d0d2162f3652854f525d01bf89d9d65fdf5b762e9feba4ea46f2c3907b",
+        "submitted-source.json": "104a4c94cfa1b96bb63c995b9c764706a05d59783e27fe2ece97b16e41ec8ff0",
+        "producer/receipt.json": "09963d7b4ce8acc315526805f498411c47cfa14e844bc9b43950d0edbbb8333c",
+        "producer/request.json": "a98debff483c4e86019ab5313ddbbb4a89ce65d066814f0b8ce377d8a652f422",
+        "producer/native.jsonl": "4bce5fed25a6af42e9bfc3b19de959afa59c5c745ad96169dac3038bc5c4f372",
+        "producer/change.diff": "57ec9394c96f815e92886e60f71747058614b597a0813b67da2017832a0f4cab",
+        "independent/native/stdout": "4bce5fed25a6af42e9bfc3b19de959afa59c5c745ad96169dac3038bc5c4f372",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    },
+    {
+      "trial": "trial-06",
+      "condition": "conventional",
+      "repetition": 3,
+      "available": true,
+      "repairCorrect": true,
+      "adequateAnswer": true,
+      "scopeCompliant": true,
+      "meaningfulRegressions": true,
+      "calls": 18,
+      "fileChangeEvents": 2,
+      "failedCommands": 1,
+      "returnedCommandBytes": 77416,
+      "elapsedMs": 596536.9164999574,
+      "usage": {
+        "input_tokens": 658056,
+        "cached_input_tokens": 608128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 16998,
+        "reasoning_output_tokens": 7932
+      },
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "nativeCounts": {
+        "tests": 35,
+        "suites": 0,
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "acceptanceCounts": {
+        "tests": 18,
+        "suites": 0,
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "independentVerificationMs": 16819.765500025824,
+      "changedPaths": [
+        "src/preview/mathRenderer.js",
+        "test/mathSafety.test.js"
+      ],
+      "protectedChanges": [],
+      "sourceStable": true,
+      "supportStable": true,
+      "sourceSha256": "d9fd15d4ad2c9a0d19531d8cb26ed6cc42351800483f72056cb04b2a6e0ae832",
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/mathRenderer.js",
+          "test/mathSafety.test.js"
+        ],
+        "testsRun": [
+          "node --experimental-vm-modules --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Repaired detection, visible-text rendering, entity decoding and CSS-tolerant lazy loading. Final native and collector runs passed 35/35 tests with no failures, skips, todos or cancellations. Inspected required artifacts and verified permitted changes, final newlines and stable current source.",
+        "limitations": [
+          "Module evidence only; no full application, browser, security or business acceptance.",
+          "Source and process declarations are not authenticated execution identities."
+        ]
+      },
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "findings": [],
+      "artifactSha256": {
+        "events.jsonl": "624dfcec62e7aae8789311b1454d99b5cfd99cc29f84a46e4a64b8d4d0d809c5",
+        "prompt.txt": "d70dbeede95a08c69a3d6cc375762a3baa3dc5dc8dc14b0382af3241cf33df48",
+        "answer.json": "c4ff09b870650270a4c19de512a9d0d439e60f47f1f4a458aa682d49d4c04196",
+        "stderr.txt": "6ccf58b74350ea8f8f99e4e2e2180724eb2d59501e9801a4a087924a947f3ad8",
+        "command-inventory.json": "3b41267161f4c07c31168b0bf35ca18ebcad5af27160fac18f34e27fc57fb997",
+        "submitted-source.json": "67b14c0345a011ee95b04816095540368b10ef46f1ac16f1c8bfe2021a99eda3",
+        "producer/receipt.json": "45799f59b4e5eaeb3b74373752a50d4e38fa0d608c2dd74b66de392ca8a4bf27",
+        "producer/request.json": "f246911b10c5a650d08b5b8f3610c24ede90c96d29d703764dce9e87ea7b300e",
+        "producer/native.jsonl": "3d1691276438a45bc57a3fc1f7c0b4b00b64779a34d853a008f01a7c88e3cd42",
+        "producer/change.diff": "3763cd12b0e84719b50f61720b3a77fec41ce7dfcc54ffcdfaece49098728145",
+        "independent/native/stdout": "3d1691276438a45bc57a3fc1f7c0b4b00b64779a34d853a008f01a7c88e3cd42",
+        "independent/acceptance/stdout": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31"
+      }
+    }
+  ],
+  "summary": {
+    "conventional": {
+      "attempts": 3,
+      "available": 3,
+      "correctRepairs": 3,
+      "adequateAnswers": 3,
+      "medians": {
+        "calls": 18,
+        "returnedCommandBytes": 71696,
+        "elapsedMs": 736737.3769000405
+      },
+      "usageMedians": {
+        "input_tokens": 684710,
+        "cached_input_tokens": 632064,
+        "output_tokens": 16998
+      },
+      "scopeCompliantWorkflows": 3
+    },
+    "tool": {
+      "attempts": 3,
+      "available": 3,
+      "correctRepairs": 3,
+      "adequateAnswers": 3,
+      "medians": {
+        "calls": 20,
+        "returnedCommandBytes": 97687,
+        "elapsedMs": 635211.8081999943
+      },
+      "usageMedians": {
+        "input_tokens": 729137,
+        "cached_input_tokens": 667392,
+        "output_tokens": 15881
+      },
+      "scopeCompliantWorkflows": 3
+    }
+  },
+  "readback": {
+    "sourceUnchanged": true,
+    "previousFrozenUnchanged": true,
+    "toolEntriesAndBundleUnchanged": true,
+    "distinctThreads": 6
+  },
+  "cleanup": {
+    "removed": true
+  },
+  "limitations": [
+    "Six sessions, one second module case, one requested model/runtime; no causal or general performance claim.",
+    "CLI emitted accounting is not billing or complete model-context telemetry; backend model snapshot is not independently attested.",
+    "Auth/service traffic and hidden/server instructions are outside command filesystem isolation.",
+    "Different implementations/regression tests, paired tool-first order and shared provider/cache state limit cost comparisons.",
+    "Frozen module/native acceptance does not establish complete browser, asynchronous revision, application or security correctness.",
+    "One tool patch imports a locked transitive dependency; review declaration/installation portability before adoption.",
+    "No Linux-native storage, macOS or Node 22 acceptance is claimed; do not pool the first and second repair cases."
+  ],
+  "rootAcceptance": {
+    "complete": true,
+    "platform": "Windows",
+    "nodeVersion": "v24.19.0",
+    "nodeOptions": "--throw-deprecation",
+    "exitCode": 0,
+    "logSha256": "7ff5deaf5fcca08ebc86ea775b4d8454da8b5d4309c3290f407d4abc168c65be",
+    "rawAcceptanceArtifact": "root-acceptance.json",
+    "nodeTests": {
+      "tests": 933,
+      "pass": 909,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 24,
+      "todo": 0
+    },
+    "rootPythonTests": 12,
+    "separateOfflineControls": 16,
+    "dryRunPackages": 18,
+    "packedConsumers": 8,
+    "stages": {
+      "build": {
+        "records": 18,
+        "statuses": {
+          "passed": 15,
+          "not-applicable": 3
+        },
+        "ledgerSha256": "f7b82e3c47f4ce5e71635b19286a88cd246ab2b862772c8b91152d27e85da995"
+      },
+      "typecheck": {
+        "records": 18,
+        "statuses": {
+          "passed": 16,
+          "not-applicable": 2
+        },
+        "ledgerSha256": "74b1e778bbc00ef667d4059460c81971fa0351eb5c488e9e57e8c419245315a2"
+      },
+      "lint": {
+        "records": 18,
+        "statuses": {
+          "not-applicable": 11,
+          "passed": 7
+        },
+        "ledgerSha256": "16800c69571f813f1398e51b8057da2361dfae2180fc4f1fff3576a0e1155f60"
+      },
+      "test": {
+        "records": 22,
+        "statuses": {
+          "passed": 22
+        },
+        "ledgerSha256": "e6fadd0d4eeddfde1e5f8459b8e6a1697f25a681a018ea564f93d33d98fa3ee2"
+      },
+      "pack": {
+        "records": 26,
+        "statuses": {
+          "passed": 26
+        },
+        "ledgerSha256": "1599d5e1751faf732cd874cd1f68d075672d99fb90afcc8ed637f47a45325b7b"
+      }
+    },
+    "hub": {
+      "tools": 19,
+      "documents": 54,
+      "links": 440
+    },
+    "migration": {
+      "importedFiles": 698,
+      "sourceRepositories": 10,
+      "explicitSourceUpdates": 42
+    },
+    "platformSkipsPreserved": true
+  }
+}

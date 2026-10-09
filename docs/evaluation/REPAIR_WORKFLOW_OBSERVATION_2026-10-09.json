@@ -1,0 +1,1682 @@
+{
+  "schemaVersion": "1.0.0",
+  "date": "2026-10-09",
+  "study": "complete historical module repair workflow",
+  "registration": {
+    "schemaVersion": "1.0.0",
+    "seed": 20261010,
+    "order": [
+      [
+        "tool",
+        1
+      ],
+      [
+        "tool",
+        2
+      ],
+      [
+        "tool",
+        3
+      ],
+      [
+        "conventional",
+        1
+      ],
+      [
+        "conventional",
+        2
+      ],
+      [
+        "conventional",
+        3
+      ]
+    ],
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "cli": "codex-cli 0.161.0",
+    "runtime": "Ubuntu WSL Node 24.19.0",
+    "sourceCommit": "f373f6f3bf77c3f1ce5d6ddb11adfa94c1ee4096",
+    "historicalFix": "29cc3899eb76e348a3ff9d72a9c1fd7f146ab429",
+    "sourceHead": "6b74417e28cf31987df10a962e19c3d123e66439",
+    "baselineSha256": "3cf322f991f7f03e76f240a7c02c0169699e40339bc8b8db75f2484d84442edc",
+    "sourceFiles": [
+      {
+        "path": "package-lock.json",
+        "bytes": 358053,
+        "sha256": "f1e98f71ea79daf3e140176e2df9cf262d252209a2e0928aa4b2e48a646676fd"
+      },
+      {
+        "path": "package.json",
+        "bytes": 812,
+        "sha256": "26846ab56de7b0fe7a621b60a9b71fdce4f79abdc20ca3b5252f35375fcf8547"
+      },
+      {
+        "path": "src/App.jsx",
+        "bytes": 28382,
+        "sha256": "c8b6b003d8cb13662e3a5f015296c6c0c8d2fb0c990d4d7e750a5487c43afa4f"
+      },
+      {
+        "path": "src/batch/BatchConvertSheet.jsx",
+        "bytes": 6248,
+        "sha256": "f0dfde8088c9fcaa1fb618aeca2ab6e9a78a891b3cb61772a2cfa7c300e9b4f4"
+      },
+      {
+        "path": "src/batch/batchProcess.js",
+        "bytes": 1951,
+        "sha256": "2e18a9efd5f4defb30fd92be1553da2f2f8bda9cc029df2caacd3ed97d0e02af"
+      },
+      {
+        "path": "src/components/DocumentLayoutSheet.jsx",
+        "bytes": 7339,
+        "sha256": "63c9fcf6ef35b39686cf61737c1ab6a578793daadca5ec174c1f514b06463baf"
+      },
+      {
+        "path": "src/components/MoreMenu.jsx",
+        "bytes": 1215,
+        "sha256": "0d335e500a1f631fd0a901205955054838d38d265b74eb90551e68d77980ef46"
+      },
+      {
+        "path": "src/converter/convertBlockquote.js",
+        "bytes": 808,
+        "sha256": "418356045fce3fb5f0cec9fb6ae49a7b540af4811e890c4f827bb06404954f8f"
+      },
+      {
+        "path": "src/converter/convertCodeBlock.js",
+        "bytes": 789,
+        "sha256": "ca4f6af48df0b4bb4f264b83164547213b706e298e9326c93d7b862dd8f246ce"
+      },
+      {
+        "path": "src/converter/convertHeading.js",
+        "bytes": 826,
+        "sha256": "823a8b56f2b9cbd58906ad4d2b4145f2d4f548c7e4a1d72f7ed1323069e99064"
+      },
+      {
+        "path": "src/converter/convertImage.js",
+        "bytes": 3418,
+        "sha256": "7ea9247950bfaea33712bd1618a2de7adf1a634590ca1974833f60948a9a24f1"
+      },
+      {
+        "path": "src/converter/convertInline.js",
+        "bytes": 1350,
+        "sha256": "cf24d30ee771ea375395f5adc65b3b1168066b3751b68b78a0ce8a0d8513e09d"
+      },
+      {
+        "path": "src/converter/convertList.js",
+        "bytes": 1021,
+        "sha256": "714bbefd03df3ab9b79d8b92c616f7c9a4ddd11084ae4b1cd6b741cc39f86057"
+      },
+      {
+        "path": "src/converter/convertMermaid.js",
+        "bytes": 2927,
+        "sha256": "2af0ab8eb4fd63668b6e1da8018a007d96a59f114ce0cce127c4a6c5554538b8"
+      },
+      {
+        "path": "src/converter/convertParagraph.js",
+        "bytes": 699,
+        "sha256": "d77e831733a1e12ae6319bdc798d4f0ce935f0a41ccc3db632f92d2898ac143a"
+      },
+      {
+        "path": "src/converter/convertTable.js",
+        "bytes": 1618,
+        "sha256": "9a662a4c0c3b930a53a41bd86c2c73b8842b700aeece0492ff222d230e6f079b"
+      },
+      {
+        "path": "src/converter/convertToc.js",
+        "bytes": 909,
+        "sha256": "9344925257d5ec6151fc4cfd96d9c6b6dc7c9edc33e1fb4e16c749bf241ef36c"
+      },
+      {
+        "path": "src/converter/coverPage.js",
+        "bytes": 1855,
+        "sha256": "c235063ef68923fdaf625dae33c5f18f6cfa10da4f102d247c7b5a05dfe5b630"
+      },
+      {
+        "path": "src/converter/markdownToDocx.js",
+        "bytes": 4570,
+        "sha256": "55651b09dbc84ea0d7ca22dea9ad72fb56e479822d444529ba56f57f1ffade53"
+      },
+      {
+        "path": "src/converter/pageLayout.js",
+        "bytes": 2774,
+        "sha256": "ce982355f7ce08611a65e2b17656dfa0b8df7aa4a085c95853084bbfd95fcb4b"
+      },
+      {
+        "path": "src/download/downloadDocx.js",
+        "bytes": 370,
+        "sha256": "a81cb5245683c4d149aed473338b705f9382a5a1fd244d743d96078cf0976354"
+      },
+      {
+        "path": "src/download/downloadPdf.js",
+        "bytes": 384,
+        "sha256": "33e4e6b7053e458df0de7d779a1fc2035bf702490995cf3181bd827d821558c7"
+      },
+      {
+        "path": "src/editor/FileUploader.jsx",
+        "bytes": 1041,
+        "sha256": "2957b8a7fa68d7fef6fc6ee591001413b73399a5d85d2cf72266ff866441711b"
+      },
+      {
+        "path": "src/editor/MarkdownEditor.jsx",
+        "bytes": 2371,
+        "sha256": "925fdfcb32347093e1c444b02d004167af24c65e1eeda48ef004351e7dd796d4"
+      },
+      {
+        "path": "src/editor/useFileUpload.jsx",
+        "bytes": 1101,
+        "sha256": "a5ac076db86319153c1cf49e0a5e4998ec8eb14fb21efea619fb7ea4616dde0d"
+      },
+      {
+        "path": "src/history/HistoryPanel.jsx",
+        "bytes": 10137,
+        "sha256": "c6c841d770d017334d967456a964d0eed39ff848071e0d6e6f5e2574946730e2"
+      },
+      {
+        "path": "src/history/VersionsView.jsx",
+        "bytes": 3808,
+        "sha256": "0f3ba0b69d508a5410976d220cd6e36411f62afa70f581702d2d9c1fab75c5b6"
+      },
+      {
+        "path": "src/history/db.js",
+        "bytes": 1983,
+        "sha256": "83658cd03d51d4ffef80e09553f736f6dbf8f4fa97845033bce232bd9e68a242"
+      },
+      {
+        "path": "src/history/documentRepo.js",
+        "bytes": 4096,
+        "sha256": "1ec046ae591326d042dfd46b1b1e74a82ba7deb22f81bc0ba3d15bbbabe64299"
+      },
+      {
+        "path": "src/history/exportHistory.js",
+        "bytes": 2317,
+        "sha256": "332f321139be67c7acd1fc2c900c1a7e3eb1e919db0805f98d6ba7cb8e525b30"
+      },
+      {
+        "path": "src/history/snapshotRepo.js",
+        "bytes": 1390,
+        "sha256": "46e41124fd36e97747057ee0e353876ed02de21b04c29d8b764df8e988797eb4"
+      },
+      {
+        "path": "src/history/useHistory.js",
+        "bytes": 4735,
+        "sha256": "1ea8499cfdf3cc63de424f6398402ff76ec6e9d69943a677ced3e9b824260627"
+      },
+      {
+        "path": "src/images/imageCache.js",
+        "bytes": 1720,
+        "sha256": "274c9b2f9f1950d4f74c10f12b9ef5dfbe43b2f5be81115a08612e7c03846fd5"
+      },
+      {
+        "path": "src/images/imageRepo.js",
+        "bytes": 3237,
+        "sha256": "52ed0695bd609a35daba44d338f1f683edaa207ea70f4f01b6b343725986e485"
+      },
+      {
+        "path": "src/images/insertImage.js",
+        "bytes": 1368,
+        "sha256": "d47f1b4cb7a3c753dd3a044aec1f2f514399c2428cffcc4888df4dc9eefb2a54"
+      },
+      {
+        "path": "src/images/useImages.js",
+        "bytes": 1090,
+        "sha256": "7c5b8a1930832cc059b78e185038cb2528e4560926ae37ea999d813e4e734484"
+      },
+      {
+        "path": "src/main.jsx",
+        "bytes": 295,
+        "sha256": "6a3e03e790bc009049b6e1c7fe920d800943724329bc85a6f15a13bf8cd55020"
+      },
+      {
+        "path": "src/parser/parseMarkdown.js",
+        "bytes": 257,
+        "sha256": "ceb4e8ac44df3efa5068df07036215a92b99892e34ec04a39b2c6564af0a6eb0"
+      },
+      {
+        "path": "src/preferences/DraftRestorePrompt.jsx",
+        "bytes": 745,
+        "sha256": "0a2c0f62030d63ec112cc09ef736c3098aeb64d5b59fe55307a8314dcf330b95"
+      },
+      {
+        "path": "src/preferences/SettingsSheet.jsx",
+        "bytes": 6953,
+        "sha256": "d73b53060bfdf69acdddb8fdcb7852d9a51315fd280ae5a580568f49bfca6ad4"
+      },
+      {
+        "path": "src/preferences/defaults.js",
+        "bytes": 1034,
+        "sha256": "9ffebd6b282ac35204e0e25f47d939fa83bb2e07cac7e7b1cc79bdfdaea18732"
+      },
+      {
+        "path": "src/preferences/draftStorage.js",
+        "bytes": 1188,
+        "sha256": "6b059c7e6d9fbd53eb9d533d49a993b3fbca28a21c369031bb3e8f3a21e9fcdc"
+      },
+      {
+        "path": "src/preferences/storage.js",
+        "bytes": 1085,
+        "sha256": "3ff750b6f44200cfcf3aa754a79357c6c8eea24486cbda8855ea5aa6e9b4152b"
+      },
+      {
+        "path": "src/preferences/usePreferences.js",
+        "bytes": 594,
+        "sha256": "548346c0cb0c6efe0f6f0d1437595adaceaeb51013ba82c3d9ae51fdc30c863a"
+      },
+      {
+        "path": "src/preview/LaserPointer.jsx",
+        "bytes": 4450,
+        "sha256": "800546bea7e270d03618a4cd231c9355b7bf31504a6a75ceb3060e4e55c25f3a"
+      },
+      {
+        "path": "src/preview/MarkdownPreview.jsx",
+        "bytes": 3601,
+        "sha256": "dd4eafb364263f49b0f2f9f5561c22b9986072c873d4434fd46bcbea119a91c2"
+      },
+      {
+        "path": "src/preview/mathRenderer.js",
+        "bytes": 1753,
+        "sha256": "a0caf7b60849ca5aa817b05b91839fbbc3b0ccf72eb55418d6564d0c0f63515e"
+      },
+      {
+        "path": "src/preview/mermaidRenderer.js",
+        "bytes": 1711,
+        "sha256": "1570449a7d570d09242bd28c56fdfd42f70944f1b2a3c74b4b6e666996175965"
+      },
+      {
+        "path": "src/preview/usePreviewControls.js",
+        "bytes": 2534,
+        "sha256": "c715a103c8b0ba9bd0105c3862b9f643d3c3db7f8388ce023c53d51339a236ad"
+      },
+      {
+        "path": "src/pwa/UpdatePrompt.jsx",
+        "bytes": 1898,
+        "sha256": "6f40930ef0a9a641b695dcd484a3e7be56416421ddd720b924d2cd771585b4d1"
+      },
+      {
+        "path": "src/share/QRCodeView.jsx",
+        "bytes": 1855,
+        "sha256": "edfad5ad84bdf3694e026cdad58a5fa9656f3bdaa0fea3268db55e90dd47eacf"
+      },
+      {
+        "path": "src/share/ShareModal.jsx",
+        "bytes": 4686,
+        "sha256": "9f7a36d3b3d9b8c1b2115547cba43c910e417e891117dc4fce59e0289a2e9988"
+      },
+      {
+        "path": "src/share/shareLink.js",
+        "bytes": 1631,
+        "sha256": "8048be6d92f5eeccc82478e02fef31092e092e3c7ac400bfcc685b88d30b8ec4"
+      },
+      {
+        "path": "src/share/shortenerService.js",
+        "bytes": 714,
+        "sha256": "e175b140fdb3992418a1f30e7dfb830a3dd55c2d0dee1d01fc1c54e43f09f42f"
+      },
+      {
+        "path": "src/styles/app.css",
+        "bytes": 53773,
+        "sha256": "db50ffb73c04073e7bb1e33daade0477743cbc92b9f0a5acbf8996044679f563"
+      },
+      {
+        "path": "src/styles/print.css",
+        "bytes": 2536,
+        "sha256": "5b376e55e8d55e40cd3d9bc918a3b03727d94d5812ef5247b07b04c7a580b856"
+      },
+      {
+        "path": "src/styles/templates/businessReport.js",
+        "bytes": 1322,
+        "sha256": "f38e5391a5cdf91d130ee7783e1bf95a8c22870b6684f620d38a465d482951d2"
+      },
+      {
+        "path": "src/styles/templates/default.js",
+        "bytes": 1224,
+        "sha256": "b2e6806077e00ff34d82e3e4dfa1e30554163180d63e1611f207f232cda2349e"
+      },
+      {
+        "path": "src/styles/templates/index.js",
+        "bytes": 604,
+        "sha256": "4afc5af5fc807f46be48a83ea40912d37274ebc878dd0e2af9ce15a348781b19"
+      },
+      {
+        "path": "src/styles/templates/minimal.js",
+        "bytes": 1283,
+        "sha256": "72fc41a130f96247de7d96734fde46e1bf8f2d5fd9069e9e931a8aebb382cdaf"
+      },
+      {
+        "path": "src/styles/templates/technicalDocument.js",
+        "bytes": 1284,
+        "sha256": "8729fc5c96156fe20e08c6fc418754923a54a6b630d9930db48efb1642272a65"
+      },
+      {
+        "path": "src/styles/theme.css",
+        "bytes": 7841,
+        "sha256": "2f4cdb34e91b9f615ea94c8f95f23de18d1bfb3c939716e3a516cc05765347b9"
+      },
+      {
+        "path": "src/styles/wordStyleConfig.js",
+        "bytes": 1107,
+        "sha256": "2312df82f8fe6aee1a19855ec2e3e51dd8881a72513667aee3a964d4e4c25e76"
+      },
+      {
+        "path": "src/theme/ThemeToggle.jsx",
+        "bytes": 1313,
+        "sha256": "e29a1eb1aa82ee2093e2a3c661873cad6c3eb6b91d6c1ac7ecf84fe3b5c1c0bd"
+      },
+      {
+        "path": "src/theme/useTheme.js",
+        "bytes": 1409,
+        "sha256": "f2b501f1398c8ce202e8a6ea2a71ab51bedae2bf660f4ef6c115fdb81efd48ca"
+      },
+      {
+        "path": "test/db.test.js",
+        "bytes": 631,
+        "sha256": "792849a9b054134bb7f8393f6783c4f03ae6b2cb5d3b32e232c1ccce89ab6d18"
+      },
+      {
+        "path": "test/parser.test.js",
+        "bytes": 442,
+        "sha256": "60fe239ba86fa9b19aba2a4ad0b046044260422fd785253f9523bbd5c8aacfb5"
+      },
+      {
+        "path": "test/shareLink.test.js",
+        "bytes": 901,
+        "sha256": "ac7bc0bc982bf7db12a78777bf26b1b4a0a35a1dd776118db27891ed43cf27f3"
+      }
+    ],
+    "protocolSha256": "c3a4813de09b2cf407465c5f00fa2ba78c6cdc50675433a02144b1b38b6f959b",
+    "harnessSha256": "7e17367ea8a3a58bb6329200624b15ab3152be64376befa20d777780d8a52dd7",
+    "acceptanceSha256": "d5cd19c345f7072e92bb8a1cbc0af0da7106b33e9b83eba03cd665fa9d906201",
+    "supportSha256": {
+      ".study/collect.mjs": "ffd86e0928e51cef559b749b883d10602fa24e5b901d11dbcafe37d672841f90",
+      ".study/baseline.json": "9397980add38a302b321d23f40f077ce694e32875417f356b59b4f046f36a1ca",
+      ".study/settings.json": "9fbf09283408d6a075c728082e486de52c65bd4064647000d296370071f84ec4",
+      ".study/policy.json": "feb4d692fbe31e0fb808c9907b875573284bd2c30635000017535a759d963f60"
+    },
+    "watched": {
+      "C:\\Users\\tno\\Documents\\GitHub\\AI-Agent-Tools\\packages\\code-slice\\dist\\cli\\index.js": "104a95a944fcb6d57a14385434674b1602c7b064fbceacdf26172a7b49e12884",
+      "C:\\Users\\tno\\Documents\\GitHub\\AI-Agent-Tools\\packages\\test-scope\\dist\\cli.js": "020407d374987b1f9aa72eb0c0b06305cf7cdaa40281403b23f401f8eb9ef50c",
+      "C:\\Users\\tno\\Documents\\GitHub\\AI-Agent-Tools\\packages\\patch-guard\\src\\cli.js": "a7a8366b0d482b3b34d033ac03619d0085b69f072853eab8cb54dee260f6b144",
+      "C:\\Users\\tno\\Documents\\GitHub\\AI-Agent-Tools\\packages\\test-evidence\\src\\cli.js": "05c60cbff6fa98c78eb878cc90793544d2a59b197a410876ec3f71fb625559de"
+    }
+  },
+  "evidenceDirectory": ".cache/repair-workflow/run-gfnnw503",
+  "registrationSha256": "da37525d1c4f2cf941ba5da293f60781a22947f288d28668c48a1ada7ed1f25b",
+  "measurementsSha256": "ef01a4eee3a4b79ed212967a6e7ef6181a287af684260db3fbfbdea13059b4e9",
+  "primaryAuditSha256": "e0c9cc423ad9a19679ae7d1f6c46b6ee685651a57afff3701d5631eedbe8ac28",
+  "summary": {
+    "conventional": {
+      "attempts": 3,
+      "available": 3,
+      "correctRepairs": 3,
+      "adequateAnswers": 3,
+      "medians": {
+        "calls": 21,
+        "returnedCommandBytes": 63718,
+        "elapsedMs": 267947.05769990105
+      },
+      "usageMedians": {
+        "input_tokens": 308835,
+        "cached_input_tokens": 257280,
+        "output_tokens": 10375
+      },
+      "independentVerificationMedianMs": 10071.081300033256
+    },
+    "tool": {
+      "attempts": 3,
+      "available": 3,
+      "correctRepairs": 3,
+      "adequateAnswers": 3,
+      "medians": {
+        "calls": 26,
+        "returnedCommandBytes": 77741,
+        "elapsedMs": 271421.6825000476
+      },
+      "usageMedians": {
+        "input_tokens": 386757,
+        "cached_input_tokens": 332032,
+        "output_tokens": 9671
+      },
+      "independentVerificationMedianMs": 9347.687599947676
+    }
+  },
+  "primaryAudit": {
+    "schemaVersion": "1.0.0",
+    "kind": "post_collection_primary_review",
+    "recordsSha256": "ef01a4eee3a4b79ed212967a6e7ef6181a287af684260db3fbfbdea13059b4e9",
+    "audit": [
+      {
+        "trial": 1,
+        "condition": "tool",
+        "repetition": 1,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "eed5cf87e109d8ff586b1cd3403af49fc4e13e5050165a3bbc3433e057c64dc9",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      },
+      {
+        "trial": 2,
+        "condition": "tool",
+        "repetition": 2,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "2697db42abfe2dedd488b17f9b698d5cf49a1874898d70d803d60f0fa28c8abf",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      },
+      {
+        "trial": 3,
+        "condition": "tool",
+        "repetition": 3,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "2e479c166195feb2ce22cecca8463d828615b3ffcf52a22951b7648c172da53c",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      },
+      {
+        "trial": 4,
+        "condition": "conventional",
+        "repetition": 1,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "6767f164c3ff5ba08963c2e790f24a93923f50507f392a460d3b99f7c95756de",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      },
+      {
+        "trial": 5,
+        "condition": "conventional",
+        "repetition": 2,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": false,
+        "auditedCompleteWorkflow": false,
+        "deviations": [
+          {
+            "commandIndex": 4,
+            "kind": "outside_fixture_skill_read",
+            "outputBytes": 14062
+          }
+        ],
+        "commandsSha256": "8d95abb4da811c6b5a173ca86c5be42d38631940de51179ffc00612e942d9f9d",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      },
+      {
+        "trial": 6,
+        "condition": "conventional",
+        "repetition": 3,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": false,
+        "auditedCompleteWorkflow": false,
+        "deviations": [
+          {
+            "commandIndex": 1,
+            "kind": "outside_fixture_ancestor_instruction_probe",
+            "outputBytes": 0,
+            "probedPaths": 8
+          }
+        ],
+        "commandsSha256": "cb0e2ab13990d9befadd8267a8f67a44ef5e132b5b8ffdc0a89c1e2f7ca16740",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    ],
+    "note": "Automatic adequate scores remain unchanged. Outside instruction access is a protocol deviation, not an incorrect patch or inferred credential access. Higher-priority host guidance and the reasons for discovery were not captured. No unavailable trial was replaced."
+  },
+  "dependencies": {
+    "exitCode": 0,
+    "elapsedMs": 69546.89580004197,
+    "lockSha256": "f1e98f71ea79daf3e140176e2df9cf262d252209a2e0928aa4b2e48a646676fd",
+    "ignoreScripts": true,
+    "stdoutSha256": "76582e862f16be95a0b38b2d4a4ec543f976889614796b009ace19d176b0c558",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "cleanup": {
+    "temporaryRoot": "C:\\Users\\tno\\AppData\\Local\\Temp\\repair-workflow # 4q7kvhi4",
+    "removed": true
+  },
+  "failedPreparation": {
+    "evidenceDirectory": ".cache/repair-workflow/run-vk6xo4ux",
+    "repairParticipants": 0,
+    "retainedUnchanged": true
+  },
+  "trials": [
+    {
+      "condition": "tool",
+      "repetition": 1,
+      "available": true,
+      "calls": 22,
+      "elapsedMs": 255136.83480001055,
+      "returnedCommandBytes": 89093,
+      "usage": {
+        "input_tokens": 390563,
+        "cached_input_tokens": 337664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9089,
+        "reasoning_output_tokens": 4110
+      },
+      "failedCommands": 3,
+      "fileChangeEvents": 2,
+      "threadIds": [
+        "01a11e45-58dc-7313-adf7-ae652f640174"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 1,
+        "scope": 1,
+        "patch": 1,
+        "evidence": 1
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/previewSafety.test.js \u2014 reproduced 3 failures before repair",
+          "node --test --test-isolation=none test/*.test.js \u2014 16 passed",
+          "node .study/collect.mjs \u2014 16 passed"
+        ],
+        "reason": "Shared escaping protects both HTML insertion boundaries and preserves literal entity text. Regression checks confirm the requested existing behavior. Collection recorded stable source, complete zero-exit execution, and no failures, skips, todos or cancellations. Code Slice succeeded; Test Scope was partial. Patch Guard and Test Evidence returned complete pass verdicts.",
+        "limitations": [
+          "Module-level evidence only; Mermaid and DOM stubs do not establish complete application, browser, business or security acceptance.",
+          "Test Scope provides partial static analysis, not test execution.",
+          "Patch Guard checks the supplied diff. Test Evidence evaluates supplied artifacts against unauthenticated source/environment declarations."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "89d4066a7a22ca71dd1d14c7b73bb449602285a5228149d05ff6fd5759819226",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-01",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-01/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 9331.01850003004,
+          "stdoutSha256": "c8a7359d42ded58b96102cfa47b1c7e4dde9f5247c3acbae2e8e7025e77a1560",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 16,
+              "suites": 0,
+              "passed": 16,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-01",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-01/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-01",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 2745.094300014898,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 12208.120899973437
+      },
+      "adequate": true,
+      "eventsSha256": "30520880d68fa67f5dcbe890f30dd9e67d489f474f98ddf964cd31564a2a3b61",
+      "stderrSha256": "643146b5ac86a0c34753fa32fa0c27c3d07f142bb7409f6ebaaed032defe7a93",
+      "promptSha256": "59b8c1f83ad5bb3df2197f5efff3ddd1135a27eff2a27313739bb8218072b3a5",
+      "answerSha256": "8ee8c5df6e340b493663a3aa853dffb481f4592d357ca231f3e54d1385c2bcbe",
+      "primaryReview": {
+        "trial": 1,
+        "condition": "tool",
+        "repetition": 1,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "eed5cf87e109d8ff586b1cd3403af49fc4e13e5050165a3bbc3433e057c64dc9",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    },
+    {
+      "condition": "tool",
+      "repetition": 2,
+      "available": true,
+      "calls": 26,
+      "elapsedMs": 310884.0987998992,
+      "returnedCommandBytes": 74996,
+      "usage": {
+        "input_tokens": 330582,
+        "cached_input_tokens": 279680,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9906,
+        "reasoning_output_tokens": 4630
+      },
+      "failedCommands": 3,
+      "fileChangeEvents": 3,
+      "threadIds": [
+        "01a11e49-6f32-7881-b3d9-74cdcb6d6011"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 1,
+        "scope": 1,
+        "patch": 1,
+        "evidence": 1
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/*.test.js \u2014 final run: 16 passed",
+          "node .study/collect.mjs \u2014 16 passed; zero failures, skips, todos or cancellations"
+        ],
+        "reason": "Both HTML insertion boundaries now escape all five characters and preserve literal entity text. Preservation regressions pass. Collection confirmed stable source and completed with exit zero. Patch Guard and Test Evidence returned complete pass verdicts.",
+        "limitations": [
+          "Module-level evidence only; Mermaid and DOM are mocked, and full application/browser/business/security acceptance is unverified.",
+          "Code Slice succeeded; Test Scope reported partial static reachability and did not execute tests.",
+          "Patch Guard covers the supplied snapshot diff. Test Evidence relies on unauthenticated source/environment declarations."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "084b6b4a402876d1a18c1db380c3da05666d6fc90010b29a32b57eb0409438a6",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-02",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-02/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 6752.3327000672,
+          "stdoutSha256": "c8a7359d42ded58b96102cfa47b1c7e4dde9f5247c3acbae2e8e7025e77a1560",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 16,
+              "suites": 0,
+              "passed": 16,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-02",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-02/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-02",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 2554.2306000133976,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 9347.687599947676
+      },
+      "adequate": true,
+      "eventsSha256": "e90bf3f4d66f6e8a702e43fd363ae62cd822b3e9355019df148f0991f7cc6e44",
+      "stderrSha256": "4bdbd621748f0b78f37cb7882e5ab97fd3959a42686812755ada3cb1ae4d3aa4",
+      "promptSha256": "59b8c1f83ad5bb3df2197f5efff3ddd1135a27eff2a27313739bb8218072b3a5",
+      "answerSha256": "1da885e87e4f83e0ebacaa6a1851c29631b6df3b69695e8ac3527c6138745770",
+      "primaryReview": {
+        "trial": 2,
+        "condition": "tool",
+        "repetition": 2,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "2697db42abfe2dedd488b17f9b698d5cf49a1874898d70d803d60f0fa28c8abf",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    },
+    {
+      "condition": "tool",
+      "repetition": 3,
+      "available": true,
+      "calls": 32,
+      "elapsedMs": 271421.6825000476,
+      "returnedCommandBytes": 77741,
+      "usage": {
+        "input_tokens": 386757,
+        "cached_input_tokens": 332032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9671,
+        "reasoning_output_tokens": 4630
+      },
+      "failedCommands": 2,
+      "fileChangeEvents": 2,
+      "threadIds": [
+        "01a11e4e-591e-71d0-9523-71e8e0c1f657"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 1,
+        "scope": 1,
+        "patch": 1,
+        "evidence": 1
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/*.test.js \u2014 3 regression failures before repair; 16/16 passed after repair",
+          "node .study/collect.mjs \u2014 16/16 passed, completed with exit 0"
+        ],
+        "reason": "Both HTML insertion points escape all five characters and preserve literal entities. Collection confirmed stable source and no failed, skipped, todo or cancelled tests. Source files have final newlines. Patch Guard permitted the patch; Test Evidence reported pass.",
+        "limitations": [
+          "Module-level tests use dependency and DOM doubles; application, browser, business and broader security acceptance remain unverified.",
+          "Code Slice returned ok; Test Scope returned partial static coverage. Neither executes tests.",
+          "Analyzer verdicts cover supplied artifacts; source, environment and producer declarations are not authenticated."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "6fa6dac75aa7c0fc5566c69dc4df442d18643110823380a4457387f4280dac3c",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-03",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-03/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 6799.726000055671,
+          "stdoutSha256": "c8a7359d42ded58b96102cfa47b1c7e4dde9f5247c3acbae2e8e7025e77a1560",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 16,
+              "suites": 0,
+              "passed": 16,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-03",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-03/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-03",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 1967.9032999556512,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 8829.632400069386
+      },
+      "adequate": true,
+      "eventsSha256": "5ecd5d21b9bfceb5e004a064a482345bcd5425ce9f767a8feb15fe69ab87a84d",
+      "stderrSha256": "5d4daf91cad2d342d6772f0b8758917a51e82c13f1b907e661c0d80bb0952d87",
+      "promptSha256": "59b8c1f83ad5bb3df2197f5efff3ddd1135a27eff2a27313739bb8218072b3a5",
+      "answerSha256": "5e5b696d34d96fec7ac6b02611b9cf7080b63082384490657a5b2b5e3197487d",
+      "primaryReview": {
+        "trial": 3,
+        "condition": "tool",
+        "repetition": 3,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "2e479c166195feb2ce22cecca8463d828615b3ffcf52a22951b7648c172da53c",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    },
+    {
+      "condition": "conventional",
+      "repetition": 1,
+      "available": true,
+      "calls": 21,
+      "elapsedMs": 263559.4786000438,
+      "returnedCommandBytes": 67843,
+      "usage": {
+        "input_tokens": 415083,
+        "cached_input_tokens": 364800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10611,
+        "reasoning_output_tokens": 4547
+      },
+      "failedCommands": 2,
+      "fileChangeEvents": 2,
+      "threadIds": [
+        "01a11e52-9687-7ac3-9029-72f89b09f66d"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Both insertion boundaries now escape all five characters and preserve literal entities. Rendering preservation tests pass. Collector evidence confirms stable source, a permitted patch, completed zero-exit execution, and 15 passing tests with no failures, skips, todos, or cancellations.",
+        "limitations": [
+          "Module-level evidence with controlled Mermaid/storage dependencies and DOM stubs; no complete application, browser, business, or security acceptance.",
+          "Source and environment declarations are not authenticated facts."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "6a7427ba54625bac8e4f31c0c19afa8023f442193572e3e7895850f5f5e91bcd",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-04",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-04/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 8401.66119998321,
+          "stdoutSha256": "f6a37be2ef59120feb98c3c1b4a4c735ff25ad16ca7ed46f7cf98fa4709d8830",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 15,
+              "suites": 0,
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-04",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-04/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-04",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 2874.234599992633,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 11339.732999913394
+      },
+      "adequate": true,
+      "eventsSha256": "7f5b50685cafecb6179d5233f8182d4b11f447fb7f3f8de80616d3a9f8a7bcda",
+      "stderrSha256": "76ff0ef88b2bbf7536a512e4f5397219abf2b3386dbe7e8159272dbe1d427f64",
+      "promptSha256": "7cbb4a4604d8211eded6f91fbf6937209a8ed9211bc39cd8252bd499a80e067a",
+      "answerSha256": "0ca7a1085b060192524e3a4994c4838f729a05d65724c07518d1e8ba6c8f2b28",
+      "primaryReview": {
+        "trial": 4,
+        "condition": "conventional",
+        "repetition": 1,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": true,
+        "auditedCompleteWorkflow": true,
+        "deviations": [],
+        "commandsSha256": "6767f164c3ff5ba08963c2e790f24a93923f50507f392a460d3b99f7c95756de",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    },
+    {
+      "condition": "conventional",
+      "repetition": 2,
+      "available": true,
+      "calls": 23,
+      "elapsedMs": 328823.0988000287,
+      "returnedCommandBytes": 63718,
+      "usage": {
+        "input_tokens": 304067,
+        "cached_input_tokens": 257280,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10375,
+        "reasoning_output_tokens": 5153
+      },
+      "failedCommands": 2,
+      "fileChangeEvents": 2,
+      "threadIds": [
+        "01a11e56-caeb-77e1-aa8f-6645b1d31150"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/*.test.js",
+          "node .study/collect.mjs"
+        ],
+        "reason": "Both HTML insertion boundaries now escape all five characters and preserve literal entities. Both runs completed with exit zero: 18 tests passed, none failed, skipped, todo or cancelled. Collector evidence confirms stable source and only permitted changes.",
+        "limitations": [
+          "Module-level tests use Mermaid, storage and DOM substitutes; they do not establish complete application, browser, business or security acceptance.",
+          "Source and environment declarations are not authenticated facts."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "14eac3617f10d16824bac31e93f9f1d789ff7bd7dcaad45ed6f57579df72ed7e",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-05",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-05/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 7600.305100088008,
+          "stdoutSha256": "c4e95989c3dec96556b70088fe706be68f1f4f03bbe9f5e8c27539f3f8f0ee31",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 18,
+              "suites": 0,
+              "passed": 18,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-05",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-05/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-05",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 2407.96949993819,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 10071.081300033256
+      },
+      "adequate": true,
+      "eventsSha256": "29060aaf01471ac5f920e920b70b8f636abacb1e3c2577acd95c1e3bbd50d996",
+      "stderrSha256": "871dc9512917fae44845c7f84dcc84bcf8553be7f2a66441791c705620d51235",
+      "promptSha256": "7cbb4a4604d8211eded6f91fbf6937209a8ed9211bc39cd8252bd499a80e067a",
+      "answerSha256": "a198760a6cac4b65db821f42101aa1b739b02d99e567f60583bc3930a83e41d6",
+      "primaryReview": {
+        "trial": 5,
+        "condition": "conventional",
+        "repetition": 2,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": false,
+        "auditedCompleteWorkflow": false,
+        "deviations": [
+          {
+            "commandIndex": 4,
+            "kind": "outside_fixture_skill_read",
+            "outputBytes": 14062
+          }
+        ],
+        "commandsSha256": "8d95abb4da811c6b5a173ca86c5be42d38631940de51179ffc00612e942d9f9d",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    },
+    {
+      "condition": "conventional",
+      "repetition": 3,
+      "available": true,
+      "calls": 13,
+      "elapsedMs": 267947.05769990105,
+      "returnedCommandBytes": 57610,
+      "usage": {
+        "input_tokens": 308835,
+        "cached_input_tokens": 247808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10180,
+        "reasoning_output_tokens": 4716
+      },
+      "failedCommands": 2,
+      "fileChangeEvents": 2,
+      "threadIds": [
+        "01a11e5b-f622-7e82-8a7f-2e42d8975df9"
+      ],
+      "captureErrors": [],
+      "executionPolicyRejected": false,
+      "uptake": {
+        "slice": 0,
+        "scope": 0,
+        "patch": 0,
+        "evidence": 0
+      },
+      "answer": {
+        "conclusion": "pass",
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "testsRun": [
+          "node --test --test-isolation=none test/previewSafety.test.js \u2014 reproduced 3 failures before repair",
+          "node --test --test-isolation=none test/*.test.js \u2014 17 passed",
+          "node .study/collect.mjs \u2014 completed successfully; 17 passed"
+        ],
+        "reason": "Both HTML insertion boundaries now escape all five characters and preserve literal entity text. Collector diff, capture, receipt, request and policy confirm a permitted stable patch, zero exit, 17 passing cases and no failures, skips, todos or cancellations.",
+        "limitations": [
+          "Module-level evidence uses browser and Mermaid doubles; it does not establish complete application, browser, business or security acceptance.",
+          "Source and environment declarations are not authenticated facts."
+        ]
+      },
+      "independent": {
+        "changedPaths": [
+          "src/preview/MarkdownPreview.jsx",
+          "src/preview/htmlEscape.js",
+          "src/preview/mermaidRenderer.js",
+          "test/previewSafety.test.js"
+        ],
+        "protectedChanges": [],
+        "supportStable": true,
+        "sourceSha256": "9a8dc61ef2bd2159b0bf6329948e2b8c5ade3203ce94505c31dcfa4035a15294",
+        "sourceStable": true,
+        "native": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-06",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-06/.study/empty-home",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "test/db.test.js",
+            "test/parser.test.js",
+            "test/previewSafety.test.js",
+            "test/shareLink.test.js"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 5587.529399897903,
+          "stdoutSha256": "25b3dfabc011d3f56f3a29c2e1bf26dcc9cd01e6caee2f04d6eb58c2f28c559e",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 17,
+              "suites": 0,
+              "passed": 17,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "acceptance": {
+          "argv": [
+            "wsl.exe",
+            "-d",
+            "Ubuntu",
+            "--cd",
+            "/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-06",
+            "--exec",
+            "timeout",
+            "--kill-after=5",
+            "65s",
+            "env",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node_modules/@openai/codex/bin/codex.js",
+            "sandbox",
+            "-c",
+            "sandbox_mode=\"read-only\"",
+            "-c",
+            "approval_policy=\"never\"",
+            "env",
+            "-i",
+            "PATH=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin:/usr/bin:/bin",
+            "HOME=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-06/.study/empty-home",
+            "REPAIR_PROJECT=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/trial-06",
+            "REPAIR_DEPS=/mnt/c/Users/tno/AppData/Local/Temp/repair-workflow # 4q7kvhi4/dependencies",
+            "REPAIR_TYPESCRIPT=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/code-slice/node_modules/typescript/lib/typescript.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/.cache/agent-study/wsl-environment-1yxyf2b3/node-v24.19.0-linux-x64/bin/node",
+            "--experimental-vm-modules",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/packages/test-evidence/src/node-reporter.js",
+            "/mnt/c/Users/tno/Documents/GitHub/AI-Agent-Tools/scripts/repair-workflow-acceptance.mjs"
+          ],
+          "exitCode": 0,
+          "elapsedMs": 1921.1193999508396,
+          "stdoutSha256": "af4718609186d212092807877c1d363d64b17d114962037c15edff391bc22f81",
+          "stderrSha256": "b67555df7c3888627129422a95a3671775386d0e810c81f0e30d7d42a411f4dc",
+          "summary": {
+            "type": "summary",
+            "success": true,
+            "counts": {
+              "tests": 11,
+              "suites": 0,
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0,
+              "todo": 0,
+              "cancelled": 0
+            }
+          },
+          "strictPass": true
+        },
+        "repairCorrect": true,
+        "elapsedMs": 7566.886899992824
+      },
+      "adequate": true,
+      "eventsSha256": "5acf503a21340af749cfc99fcfae3479c826d30f5e0986ec4b57ac180e8f0922",
+      "stderrSha256": "056385643d68db3c26817115abe5a8f9a9c15f94d3df05dccc785efd697894c9",
+      "promptSha256": "7cbb4a4604d8211eded6f91fbf6937209a8ed9211bc39cd8252bd499a80e067a",
+      "answerSha256": "1eb3e2c76190836307680e6d37ef63cbdb8f176fd49c1fdf81fad35d65d874ab",
+      "primaryReview": {
+        "trial": 6,
+        "condition": "conventional",
+        "repetition": 3,
+        "runtimeRepairCorrect": true,
+        "answerEvidenceAdequate": true,
+        "protocolCompliant": false,
+        "auditedCompleteWorkflow": false,
+        "deviations": [
+          {
+            "commandIndex": 1,
+            "kind": "outside_fixture_ancestor_instruction_probe",
+            "outputBytes": 0,
+            "probedPaths": 8
+          }
+        ],
+        "commandsSha256": "cb0e2ab13990d9befadd8267a8f67a44ef5e132b5b8ffdc0a89c1e2f7ca16740",
+        "authoredRegressionReviewed": true,
+        "protectedBytesStable": true
+      }
+    }
+  ],
+  "measurementLimits": [
+    "One selected historical defect, three assigned repetitions per arm.",
+    "All tool sessions preceded conventional sessions; host/provider load and cache are uncontrolled.",
+    "Two conventional sessions deviated from the fixture read boundary; only one conventional session is protocol compliant.",
+    "Global Skill and instruction discovery were not isolated or fully observed.",
+    "Canonical HTML entity forms and a fixed module boundary are tested; no full browser/build/business/security acceptance.",
+    "Reported token usage and emitted UTF-8 command-output bytes are not billing or full model context."
+  ]
+}

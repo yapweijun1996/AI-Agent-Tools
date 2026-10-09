@@ -23,6 +23,10 @@ second task ledger or a tool release inventory.
 | [Ubuntu CLI observations](docs/evaluation/CLI_RESULTS.md) | Thirty captured sessions, treatment uptake, grading adjudication and measured interface costs |
 | [Real-repository pilot](docs/evaluation/REAL_REPOSITORY_PILOT.md) | Pinned source subsets, fresh-session selection tasks and pre-registered grading |
 | [Real-repository observations](docs/evaluation/REAL_REPOSITORY_RESULTS.md) | Twelve captured suite-selection sessions, exact-path grading, costs and subset limits |
+| [Repair workflow protocol](docs/evaluation/REPAIR_WORKFLOW_PROTOCOL.md) | Historical defect replay, scoped source writes, native execution and independent acceptance criteria |
+| [Repair workflow observations](docs/evaluation/REPAIR_WORKFLOW_RESULTS.md) | Six complete repair attempts, runtime correctness, scope deviations and assigned workflow costs |
+| [Isolated math repair protocol](docs/evaluation/REPAIR_MATH_PROTOCOL.md) | Second historical case, read confinement, disabled optional Skills and interleaved conditions |
+| [Isolated math repair observations](docs/evaluation/REPAIR_MATH_RESULTS.md) | Second-case controls, independent repair grading, scope audit and measured workflow costs |
 | [Architecture](docs/ARCHITECTURE.md) | Ownership boundaries, registry contract, and AIT runtime constraints |
 | [Tool standard](docs/TOOL_STANDARD.md) | Scope/admission/lifecycle gates |
 | [CLI standard](docs/CLI_STANDARD.md) | Target command/stream/exit/limit semantics |
