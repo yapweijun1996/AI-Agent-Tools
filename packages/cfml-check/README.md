@@ -17,6 +17,11 @@ Version `0.1.1` contains the first feasibility slice plus executable schema vali
 - explicit-root path safety, source stability checks, input validation, output limits, nesting limits, finding limits, and time limits;
 - deterministic JSON and text CLI output.
 
+The current local source corrects CFScript identifiers containing `cf` being
+misclassified as markup. Ordinary variables and calls remain script text; actual
+CFML tag islands still return `incomplete` with their source position. This fix
+does not expand the supported grammar or record a new npm release.
+
 Local verification before this documentation update:
 
 - `npm test`: 22/22 passed;

@@ -51,3 +51,23 @@ test("CLI capabilities is available without a source file", () => {
   const envelope = JSON.parse(result.stdout) as { data: { profile: string } };
   assert.equal(envelope.data.profile, "cfml-structure-v1");
 });
+
+test("CLI accepts ordinary cf-prefixed identifiers and preserves actual island rejection", () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), "agent-cfml-check prefix # "));
+  const file = path.join(root, "prefix.cfm");
+  try {
+    writeFileSync(file, "<cfscript>var cfnunique = 1; cfhelper();</cfscript>", "utf8");
+    const valid = runCli(["check", "--root", root, file, "--json"]);
+    assert.equal(valid.status, 0, valid.stderr);
+    assert.equal(JSON.parse(valid.stdout).data.verdict, "pass");
+    assert.equal(valid.stderr, "");
+    writeFileSync(file, "<cfscript>var cfnunique = 1;\n<cfset x=1>\n</cfscript>", "utf8");
+    const island = runCli(["check", "--root", root, file, "--json"]);
+    assert.equal(island.status, 3);
+    const envelope = JSON.parse(island.stdout);
+    assert.equal(envelope.data, null);
+    assert.match(envelope.errors[0].message, /line 2, column 1$/u);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

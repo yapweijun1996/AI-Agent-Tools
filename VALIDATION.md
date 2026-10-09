@@ -1,5 +1,42 @@
 # Validation and evidence
 
+## CFScript tag-prefix false-positive repair (2026-10-09)
+
+Three new API/CLI regressions reproduce the false tag-prefix diagnosis before
+the fix, then pass with a single explicit `<` guard in `startsCfTag`. Ordinary
+prefixed/embedded identifiers, property access, whitespace calls, CRLF, strings
+and comments pass; actual paired/bodyless/unknown tag islands remain incomplete
+at their source position. Windows Node 24.21.0 package tests pass thirty cases
+with three explicit Windows skips and zero failures. Full `npm run verify` exited
+zero with `NODE_OPTIONS=--throw-deprecation`: 968 Node tests (944 passed, 24 explicit
+platform skips, zero failed/cancelled/todo), twelve Python tests, applicable
+build/typecheck/lint gates, eighteen dry-run packs and eight packed consumers.
+
+The documented explicit `install-all` route installed AIT and all eighteen tools
+to a new isolated prefix containing spaces and `#`, preserving the old prefix.
+Its receipt records HEAD `99a9c641817cc97902f1c7e1e7dce76975a02ed6`, a dirty local
+snapshot with the requested fix, 918 source files, 26,005,499 bytes, and snapshot
+SHA-256 `49a28eedce68967652b0707071edcd3f9c35a2530a4e154019e96bea449e4789`.
+This is an uncommitted source snapshot, not the immutable HEAD alone. All nineteen
+artifact/producer-lock/consumer-lock identities and Windows help launchers pass.
+The installed compiled lexer matches the local build byte-for-byte.
+
+The unchanged primary CFML matrix passes fifty-six commands and sixty-three
+assertions, including actual ContentAdmin access-file read-back. Nine additional
+identifier controls pass while the actual tag island remains incomplete. Forty
+existing CFML Check/Policy Check JSON results match their pre-fix results exactly.
+The access file and ORM bootstrap pass structural checks; the loader remains
+incomplete because `cftry` is unsupported. Selected real source hashes and
+ContentAdmin status are preserved. No application source was changed.
+
+Final Hub/migration and tracked whitespace checks pass, retaining the immutable
+import baseline and fifty-two explicit updates. Logs, new installation receipt,
+installed matrix, native-output comparisons and final source/gate identities are
+retained under `.cache/cli-usability/`. No wider grammar, Node 22/non-Windows,
+optional native parser, publication, global-install repair or live Lucee/browser/
+database acceptance is implied. The Windows symlink scenarios remain explicitly
+skipped. This repair remains uncommitted; no push or release occurred.
+
 ## CLI fixes local commit and isolated installation (2026-10-09)
 
 The owner selected A and B. Before staging, the twenty-three accepted file hashes,

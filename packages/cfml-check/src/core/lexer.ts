@@ -58,6 +58,7 @@ function isNameCharacter(character: string | undefined): boolean {
 }
 
 function startsCfTag(source: string, index: number): boolean {
+  if (source[index] !== "<") return false;
   const afterSlash = source[index + 1] === "/" ? index + 2 : index + 1;
   return source.slice(afterSlash, afterSlash + 2).toLowerCase() === "cf" && isNameCharacter(source[afterSlash + 2]);
 }

@@ -1,5 +1,22 @@
 # Task status
 
+## CFScript tag-prefix false-positive repair (2026-10-09)
+
+The owner selected repairing the independently reproduced CFML Check lexer
+defect and verifying a new isolated installation. `startsCfTag` now requires an
+actual `<` delimiter before testing the tag name. Focused API/CLI regressions
+fail before the fix and pass afterward, preserving real tag-island rejection and
+positions. Package identities, dependencies, native contracts and grammar scope
+are unchanged. Full Windows Node 24.21.0 acceptance passed: 944 Node tests,
+24 explicit platform skips, zero failures, twelve Python tests, eighteen dry-run
+packs and eight packed consumers. A new isolated source installation passed all
+nineteen help launchers, the fifty-six-call CFML matrix and sixty-three assertions,
+nine identifier controls, and forty unchanged native-result comparisons. The real
+Chatbox access file now passes structure checks without any application edit.
+[Validation](VALIDATION.md#cfscript-tag-prefix-false-positive-repair-2026-10-09)
+owns source-snapshot identity, installed evidence and remaining coverage limits.
+No commit, push, publication, global install or ContentAdmin edit is included.
+
 ## CLI fixes local commit and isolated installation (2026-10-09)
 
 The owner selected A and B: commit the verified CLI repairs and validate an

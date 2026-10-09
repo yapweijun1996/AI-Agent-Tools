@@ -88,6 +88,32 @@ test("CF-09 fails closed for unknown tags and tag islands", () => {
   assert(island.envelope.errors.some((item) => item.code === "UNSUPPORTED_SYNTAX"));
 });
 
+test("CFScript identifiers containing cf are not markup", () => {
+  for (const source of [
+    "<cfscript>var cfnunique = 1;</cfscript>",
+    "<cfscript>var account_cfnunique = 1;</cfscript>",
+    "<cfscript> cfhelper();</cfscript>",
+    "<cfscript>var value = cookie.cookcfnunique;</cfscript>",
+    "<cfscript>var cfscriptValue = 1;</cfscript>",
+    "<cfscript>\r\n// cfnunique\r\nvar cfnunique = 1;\r\n</cfscript>",
+    '<cfscript>var value = "<cfif fake>"; /* <cfset fake> */</cfscript>',
+  ]) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.data?.verdict, "pass", source);
+  }
+});
+
+test("actual CFScript tag islands remain incomplete at their source position", () => {
+  for (const tag of ["<cfif ok>", "<CFSET x=1>", "<cfunknown />"]) {
+    const result = run(`<cfscript>var cfnunique = 1;\n${tag}\n</cfscript>`);
+    assert.equal(result.exit_code, 3);
+    assert.equal(result.envelope.data, null);
+    assert.equal(result.envelope.errors[0]?.code, "UNSUPPORTED_SYNTAX");
+    assert.match(result.envelope.errors[0]?.message ?? "", /line 2, column 1$/u);
+  }
+});
+
 test("CF-10 preserves UTF-8 byte coordinates for non-ASCII input", () => {
   const result = run("😀\r\n<cfif ok>\r\n</cfif>");
   const data = result.envelope.data;

@@ -16,8 +16,8 @@
     {
       "destination": "packages/cfml-check/test/check.test.ts",
       "imported_sha256": "139fc079688cfc6e59e57c76d5238507c451db00764b4ee1f9f14db5fc7dc040",
-      "current_sha256": "3ed8435ddc873f2a57babb84acb5fd826338ee9bdae30811fecf398f14250d42",
-      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08)."
+      "current_sha256": "1bfb300df6bdfe984aff75ec95f9e002e7c0792e390ab2a3787f30e7f74089a2",
+      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
     },
     {
       "destination": "packages/cfml-policy-check/SPEC.md",
@@ -294,6 +294,24 @@
       "imported_sha256": "013c7dc769992d1cf59fcf452e4b22ce364958e9923c2832b3126cdeae6ed735",
       "current_sha256": "63b6c20cb4f52df6b279645211c126e78a54aeb59c7ecb927fdeb65dfaa4d924",
       "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/cfml-check/README.md",
+      "imported_sha256": "896b5fd45c87e0415a87e6977996e2ed8d2ea738559303fcec1f65250ea9d38c",
+      "current_sha256": "72f30afa86721c8264e038a33f6b911d9f4a7b47563841014a023f0a0c77a135",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+    },
+    {
+      "destination": "packages/cfml-check/src/core/lexer.ts",
+      "imported_sha256": "7f28212ff371aba0315b53ba8c116b9f0ea6d371bc795f834a2524fa2822fb4d",
+      "current_sha256": "9f174bd7ddacce72731a61a0fe4140bcabe924bd907c1d72d3d60a57e9cf7c28",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+    },
+    {
+      "destination": "packages/cfml-check/test/cli.test.ts",
+      "imported_sha256": "b7c4e48725015278e34d67845ddd5ab661003f17513e8d67bd53db4fba677c10",
+      "current_sha256": "b6b2fc027e88fc7cbb8c7a2e29e0c48c886870ef70578c88134e0278f1b5cffe",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
     }
   ]
 }
