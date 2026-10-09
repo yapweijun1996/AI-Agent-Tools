@@ -1,0 +1,1088 @@
+{
+  "schemaVersion": "1.0.0",
+  "observedDate": "2026-10-08",
+  "localEvidence": ".cache/agent-study/real-repositories-7t83a8__",
+  "environment": {
+    "execution": "Ubuntu WSL on C: mounted subsets",
+    "node": "24.19.0",
+    "cli": "0.161.0",
+    "requestedModel": "gpt-6.1-sol",
+    "reasoningEffort": "xhigh"
+  },
+  "registrationSha256": "8de5d108c9d17c97715d5d5fbaa166c0cff7ee2fb947448b7892e42694a90bec",
+  "harnessSha256": "85bbe0a58f27fed68a80c243b75e5289db8d1bc921ac36c676894852f7982a86",
+  "captureHarnessSha256": "a96387857d3fb383ab2ed7fc34d465f378b601d03aaa578c7ce730aa5133c064",
+  "protocolSha256": "f466f98bde8c57f80b7695e5214b7db02d3b63a72c861fbd202c7b789c087b6b",
+  "inputs": {
+    "markdown": {
+      "commit": "6b74417e28cf31987df10a962e19c3d123e66439",
+      "files": [
+        {
+          "path": "package.json",
+          "sha256": "5dd9408f91d46c272d200b90e03e0da3cb25a2a5fcfb9e7687b428985de32991",
+          "bytes": 793
+        },
+        {
+          "path": "src/App.jsx",
+          "sha256": "099cd364395fdea14eb063cf0ac3822de1c15020a40455353c0cbefa315b027e",
+          "bytes": 32506
+        },
+        {
+          "path": "src/accessibility/useModalA11y.js",
+          "sha256": "83f684a2c04112a5ee9ba0a557f798aaf461e7a9892df5a394239a319a60e581",
+          "bytes": 1990
+        },
+        {
+          "path": "src/batch/BatchConvertSheet.jsx",
+          "sha256": "817ac740a352f39b29fa18c47a65a1dbdc6d6ce575f7b12acc8840b5fdbf65dd",
+          "bytes": 8337
+        },
+        {
+          "path": "src/batch/batchProcess.js",
+          "sha256": "1fc0f90fea09ce8b3399e1aade64a16a00bdaf9d0064922c457f8aaa9c16022a",
+          "bytes": 3871
+        },
+        {
+          "path": "src/components/DocumentLayoutSheet.jsx",
+          "sha256": "7fb85370eed1f8c1ed17775f5487310b1e61b5517751711634d686682f77bfe9",
+          "bytes": 7575
+        },
+        {
+          "path": "src/components/MoreMenu.jsx",
+          "sha256": "330bd3822eb3757f1f4aad9245c3879facf89932e0a141221c3b93856026ed09",
+          "bytes": 1376
+        },
+        {
+          "path": "src/converter/convertBlockquote.js",
+          "sha256": "614bfdc193627097d4208b5422250cea681dd9dcff016543145c98daebe79a70",
+          "bytes": 1208
+        },
+        {
+          "path": "src/converter/convertCodeBlock.js",
+          "sha256": "ca4f6af48df0b4bb4f264b83164547213b706e298e9326c93d7b862dd8f246ce",
+          "bytes": 789
+        },
+        {
+          "path": "src/converter/convertHeading.js",
+          "sha256": "3f1816bf7e8e8a230823232d5e8c0315b35d2b527786a51bd172a7eb1ffd9d3c",
+          "bytes": 861
+        },
+        {
+          "path": "src/converter/convertImage.js",
+          "sha256": "8f5a3574aa84dd273d0af164718ad8f3156708623b9bba5bdc0f0347bb4ac48b",
+          "bytes": 4596
+        },
+        {
+          "path": "src/converter/convertInline.js",
+          "sha256": "c89cdf11884025e01644249989b26e4ee56128c44ea7d01a4c2e8b75d9c7768d",
+          "bytes": 1779
+        },
+        {
+          "path": "src/converter/convertList.js",
+          "sha256": "59556317de31d315374f4d2dfe5603a566e231ae5c4b60ec8a4961656f1226a5",
+          "bytes": 1715
+        },
+        {
+          "path": "src/converter/convertMermaid.js",
+          "sha256": "12646e77440cd0c286f7c59a97a497c5dba36831827a3c159921d377704ca747",
+          "bytes": 3028
+        },
+        {
+          "path": "src/converter/convertParagraph.js",
+          "sha256": "17f87d6745fe3a1aed1425fa4ca4c126805c65c0f4921c76ff50585b39917a7a",
+          "bytes": 870
+        },
+        {
+          "path": "src/converter/convertTable.js",
+          "sha256": "86e4d2edd409f4329aacdf75756e34c97227c659e77564ea7bc3f6637d9b29c8",
+          "bytes": 1650
+        },
+        {
+          "path": "src/converter/convertToc.js",
+          "sha256": "9344925257d5ec6151fc4cfd96d9c6b6dc7c9edc33e1fb4e16c749bf241ef36c",
+          "bytes": 909
+        },
+        {
+          "path": "src/converter/coverPage.js",
+          "sha256": "07270d4b7d0d7d2fd8c45201dc1c59c2e4f962c580cd956478f2625b3379df87",
+          "bytes": 1966
+        },
+        {
+          "path": "src/converter/markdownToDocx.js",
+          "sha256": "1d948bfb22d71754b792905069332ab7e2d39cccbbbabc5c297488de2476bc87",
+          "bytes": 6601
+        },
+        {
+          "path": "src/converter/pageLayout.js",
+          "sha256": "5096b63a4ff50365e709ed993d775575185e446679af7b3a9d7ad9934feb7d49",
+          "bytes": 3574
+        },
+        {
+          "path": "src/download/downloadDocx.js",
+          "sha256": "a81cb5245683c4d149aed473338b705f9382a5a1fd244d743d96078cf0976354",
+          "bytes": 370
+        },
+        {
+          "path": "src/download/downloadPdf.js",
+          "sha256": "05bf1343607da211cb0b63cb0c60d8be5ce0821c38307dc6eaa4e6c769116763",
+          "bytes": 3161
+        },
+        {
+          "path": "src/editor/FileUploader.jsx",
+          "sha256": "3a90ff79c5fb9293db279beb06bea3364b5169684f42d4dec6015d6fc82051f8",
+          "bytes": 1117
+        },
+        {
+          "path": "src/editor/MarkdownEditor.jsx",
+          "sha256": "925fdfcb32347093e1c444b02d004167af24c65e1eeda48ef004351e7dd796d4",
+          "bytes": 2371
+        },
+        {
+          "path": "src/editor/useFileUpload.jsx",
+          "sha256": "958350661486f3af7d1a65c74e72d7e66f65ad083f9a7fd31048130ce99705a4",
+          "bytes": 1284
+        },
+        {
+          "path": "src/history/HistoryPanel.jsx",
+          "sha256": "fb501338d99aa38e419b9adacad7f72e091fc2ad9a72af907caadb42e282f404",
+          "bytes": 12170
+        },
+        {
+          "path": "src/history/VersionsView.jsx",
+          "sha256": "194129bbf50e00c433738df786e7489b9aac496e5e122c61c53aee62bb1c5c98",
+          "bytes": 4275
+        },
+        {
+          "path": "src/history/db.js",
+          "sha256": "83658cd03d51d4ffef80e09553f736f6dbf8f4fa97845033bce232bd9e68a242",
+          "bytes": 1983
+        },
+        {
+          "path": "src/history/documentRepo.js",
+          "sha256": "d9c98aac7398fed98448f2be3ae15c915787940059d5958513823362e48e7ad3",
+          "bytes": 5748
+        },
+        {
+          "path": "src/history/exportHistory.js",
+          "sha256": "1409c80e855d186114010a287fe5ef9912c0d6697518223d39bf3a282b3fba35",
+          "bytes": 16635
+        },
+        {
+          "path": "src/history/savePolicy.js",
+          "sha256": "590eafff0a861b5e6c6e55a27a2453a1606cb59d207c134a1f793cb991963c3b",
+          "bytes": 309
+        },
+        {
+          "path": "src/history/snapshotRepo.js",
+          "sha256": "1ba67c6edb9c76ad5056584794800e06ce846feacd85b3811ee1de8175117e56",
+          "bytes": 1581
+        },
+        {
+          "path": "src/history/useHistory.js",
+          "sha256": "13188722c505185b2cdb49e41de23c526cb4f0fa27d12fa741db6c2f6df9569a",
+          "bytes": 9124
+        },
+        {
+          "path": "src/images/imageCache.js",
+          "sha256": "0e564968d90847421445e4fcf7f05f6617472b61afb6d7b2cd75c1014c65fb5f",
+          "bytes": 2020
+        },
+        {
+          "path": "src/images/imageRepo.js",
+          "sha256": "692de8fc98820d4d4ec3c56567df44b777839dc4dcb85cfe66fd915bb27b32f0",
+          "bytes": 4261
+        },
+        {
+          "path": "src/images/insertImage.js",
+          "sha256": "57754986bd99a7c0de1e5263f6d0cac3ea3160cfc4c22f4f1a689aba215c3413",
+          "bytes": 1439
+        },
+        {
+          "path": "src/images/useImages.js",
+          "sha256": "a61774565f09da07a40f7ee83b7588ef169ed9d41508c1f214762ce75830047a",
+          "bytes": 1340
+        },
+        {
+          "path": "src/limits/resourceLimits.js",
+          "sha256": "00ea274387fc2d6459dd9b17b8e32ee0c599e470699f4b6153a42561b05d3b2b",
+          "bytes": 847
+        },
+        {
+          "path": "src/main.jsx",
+          "sha256": "6a3e03e790bc009049b6e1c7fe920d800943724329bc85a6f15a13bf8cd55020",
+          "bytes": 295
+        },
+        {
+          "path": "src/parser/parseMarkdown.js",
+          "sha256": "ceb4e8ac44df3efa5068df07036215a92b99892e34ec04a39b2c6564af0a6eb0",
+          "bytes": 257
+        },
+        {
+          "path": "src/preferences/DraftRestorePrompt.jsx",
+          "sha256": "0a2c0f62030d63ec112cc09ef736c3098aeb64d5b59fe55307a8314dcf330b95",
+          "bytes": 745
+        },
+        {
+          "path": "src/preferences/SettingsSheet.jsx",
+          "sha256": "4fed319ddea421ea2d17c7d4703c024745a3217ff0e1aa1b29e5397ce1e0dcb0",
+          "bytes": 7331
+        },
+        {
+          "path": "src/preferences/defaults.js",
+          "sha256": "9ffebd6b282ac35204e0e25f47d939fa83bb2e07cac7e7b1cc79bdfdaea18732",
+          "bytes": 1034
+        },
+        {
+          "path": "src/preferences/draftStorage.js",
+          "sha256": "6b059c7e6d9fbd53eb9d533d49a993b3fbca28a21c369031bb3e8f3a21e9fcdc",
+          "bytes": 1188
+        },
+        {
+          "path": "src/preferences/storage.js",
+          "sha256": "b78f2eba9290a48e7e53af769732fd91ab6d9a9d9ecfae0adf541ef997af6b6c",
+          "bytes": 2972
+        },
+        {
+          "path": "src/preferences/usePreferences.js",
+          "sha256": "548346c0cb0c6efe0f6f0d1437595adaceaeb51013ba82c3d9ae51fdc30c863a",
+          "bytes": 594
+        },
+        {
+          "path": "src/preview/LaserPointer.jsx",
+          "sha256": "0143694ea01c6463e7bddd4e7e4a82bf624af793b20dafb2831fb6c9c30c9d5b",
+          "bytes": 4923
+        },
+        {
+          "path": "src/preview/MarkdownPreview.jsx",
+          "sha256": "1a1c96dc8c7aca0cf8d159e12df40fc59092ff13a97f14240a66b8b884800e07",
+          "bytes": 4838
+        },
+        {
+          "path": "src/preview/htmlEscape.js",
+          "sha256": "423fc5d526bfd26de3e69e10f2623038cee98dcf7430357f8ce31270ce264d0c",
+          "bytes": 232
+        },
+        {
+          "path": "src/preview/mathRenderer.js",
+          "sha256": "378afb0760077b38dc8d75d2ebe3297a1998ab01ac0adac471a87da94e8a214c",
+          "bytes": 4028
+        },
+        {
+          "path": "src/preview/mermaidRenderer.js",
+          "sha256": "d072dc0513b1b43423b15c58b79016ade795e3b3f95f338697b9060d4e737e07",
+          "bytes": 2096
+        },
+        {
+          "path": "src/preview/usePreviewControls.js",
+          "sha256": "c715a103c8b0ba9bd0105c3862b9f643d3c3db7f8388ce023c53d51339a236ad",
+          "bytes": 2534
+        },
+        {
+          "path": "src/pwa/UpdatePrompt.jsx",
+          "sha256": "978d341c4643a9750d1edf365ca2e34f930db9a807fbdc85e07ccad30f538fdd",
+          "bytes": 3585
+        },
+        {
+          "path": "src/share/QRCodeView.jsx",
+          "sha256": "edfad5ad84bdf3694e026cdad58a5fa9656f3bdaa0fea3268db55e90dd47eacf",
+          "bytes": 1855
+        },
+        {
+          "path": "src/share/ShareModal.jsx",
+          "sha256": "d76a6ecf3b7505bf9172e85df9009e474e582aa5349f164b7c32f0dc016cf629",
+          "bytes": 7020
+        },
+        {
+          "path": "src/share/shareLink.js",
+          "sha256": "12ab252ce5e47323736b268f60a9b916412065116402dedd54971f9f8bd4e3b4",
+          "bytes": 2439
+        },
+        {
+          "path": "src/share/shortenerService.js",
+          "sha256": "d71cbfc3a3d2d4b42e75e4823eabe83a3da6f93275fbe99ea77cb406e5272265",
+          "bytes": 1360
+        },
+        {
+          "path": "src/styles/templates/businessReport.js",
+          "sha256": "f38e5391a5cdf91d130ee7783e1bf95a8c22870b6684f620d38a465d482951d2",
+          "bytes": 1322
+        },
+        {
+          "path": "src/styles/templates/default.js",
+          "sha256": "b2e6806077e00ff34d82e3e4dfa1e30554163180d63e1611f207f232cda2349e",
+          "bytes": 1224
+        },
+        {
+          "path": "src/styles/templates/index.js",
+          "sha256": "4afc5af5fc807f46be48a83ea40912d37274ebc878dd0e2af9ce15a348781b19",
+          "bytes": 604
+        },
+        {
+          "path": "src/styles/templates/minimal.js",
+          "sha256": "72fc41a130f96247de7d96734fde46e1bf8f2d5fd9069e9e931a8aebb382cdaf",
+          "bytes": 1283
+        },
+        {
+          "path": "src/styles/templates/technicalDocument.js",
+          "sha256": "8729fc5c96156fe20e08c6fc418754923a54a6b630d9930db48efb1642272a65",
+          "bytes": 1284
+        },
+        {
+          "path": "src/styles/wordStyleConfig.js",
+          "sha256": "2312df82f8fe6aee1a19855ec2e3e51dd8881a72513667aee3a964d4e4c25e76",
+          "bytes": 1107
+        },
+        {
+          "path": "src/theme/ThemeToggle.jsx",
+          "sha256": "e29a1eb1aa82ee2093e2a3c661873cad6c3eb6b91d6c1ac7ecf84fe3b5c1c0bd",
+          "bytes": 1313
+        },
+        {
+          "path": "src/theme/useTheme.js",
+          "sha256": "1324ccc88212450e62482e4c9f4cd9b95727c49e03f73813adb66742c42cdd08",
+          "bytes": 2747
+        },
+        {
+          "path": "test/backupManifest.test.js",
+          "sha256": "b48039ee73338efbe56f19765d9a2596f9d429123ec34a278edfc184557005b9",
+          "bytes": 3303
+        },
+        {
+          "path": "test/batchProcess.test.js",
+          "sha256": "0d3ff2797789007ee6bcd79061bab24607d39acc5aad9cc897699621640f819f",
+          "bytes": 811
+        },
+        {
+          "path": "test/db.test.js",
+          "sha256": "792849a9b054134bb7f8393f6783c4f03ae6b2cb5d3b32e232c1ccce89ab6d18",
+          "bytes": 631
+        },
+        {
+          "path": "test/documentMetadata.test.js",
+          "sha256": "43db4a8b15d7d0537d61da6bc4c151873eedaec50a9f790aaf524d884f3549c2",
+          "bytes": 677
+        },
+        {
+          "path": "test/docx.test.js",
+          "sha256": "b832f17150ac57cf9b24697c73e627a3fc08ce5261f26b1aaefae0d5159f2829",
+          "bytes": 2426
+        },
+        {
+          "path": "test/htmlEscape.test.js",
+          "sha256": "81bd7c968107fee3f0ae90473b36583702fbab6f51570f32c28a631ef7350760",
+          "bytes": 469
+        },
+        {
+          "path": "test/imageOwnership.test.js",
+          "sha256": "cd584e9f2d3d07292eb4705fdb0ee2e0617b9d7436c74d5e3833032802c64b80",
+          "bytes": 519
+        },
+        {
+          "path": "test/layoutPrint.test.js",
+          "sha256": "cfa3c1ccf2e1ffcaa1b11a3eb994b8403e96a1917b304e122f94a3e64bca1f75",
+          "bytes": 3219
+        },
+        {
+          "path": "test/mathRenderer.test.js",
+          "sha256": "026cfbd58cb1fd026e1421ab0786fbd1f2cff5b68206eb890e50d4b13187de5b",
+          "bytes": 1027
+        },
+        {
+          "path": "test/parser.test.js",
+          "sha256": "60fe239ba86fa9b19aba2a4ad0b046044260422fd785253f9523bbd5c8aacfb5",
+          "bytes": 442
+        },
+        {
+          "path": "test/preferences.test.js",
+          "sha256": "6e6271b7364dfdb30e7225bb6fa35e3a342decc624f0d2e8815dc567c8252b98",
+          "bytes": 1115
+        },
+        {
+          "path": "test/resourceLimits.test.js",
+          "sha256": "b78bc62f2f7f0b68ade9ffc9cf029f0d98843d7a18a7fc81be939dc37220dfda",
+          "bytes": 555
+        },
+        {
+          "path": "test/savePolicy.test.js",
+          "sha256": "2d22716df3515326039c24f4ecb349b6cfe79d1df5011e1e569a05be9e6815d7",
+          "bytes": 567
+        },
+        {
+          "path": "test/shareLink.test.js",
+          "sha256": "97bb375d1d7b2d49284c0f791209e9fffa6586dd5b2dc0d5136bc63289a9f3a9",
+          "bytes": 1373
+        },
+        {
+          "path": "test/shortenerService.test.js",
+          "sha256": "902dbfe7d6eb0f65b1d598433736d93245a5966e78bc06010b5f92389ed7061c",
+          "bytes": 772
+        },
+        {
+          "path": "test/snapshot.test.js",
+          "sha256": "17aeef979164904a7523f2d7edb552af66131e83244ff936e42f0b4938988a3d",
+          "bytes": 831
+        },
+        {
+          "path": "vite.config.js",
+          "sha256": "3f3cfbd881d2b17cb200043a14fde335b1cc521455ff880cf4bfb8e5e3b16103",
+          "bytes": 3903
+        }
+      ],
+      "sha256": "4e93c49cede23fe6f61b4ef86869bdcbc756dc4164d0afe95aed307dc903edc5",
+      "omitted": "Unselected applications, dependencies, generated output, assets and configuration are absent."
+    },
+    "queue": {
+      "commit": "d53054faee4df485211c0a244446b9b3113290cd",
+      "files": [
+        {
+          "path": "package.json",
+          "sha256": "228e2ed81115df75eee389b29d8bb6a63acd443c797ff3eaf76b107bb823aaa5",
+          "bytes": 1214
+        },
+        {
+          "path": "packages/contracts/package.json",
+          "sha256": "892f18a0986de8c139a52ae5b4373b2837474c0b72efcf49564d929961b1836b",
+          "bytes": 460
+        },
+        {
+          "path": "packages/contracts/src/domain.ts",
+          "sha256": "7ff3531a78de2a5d66669e1d92aa85af65478ce1ecdbbceead71cbf7612eaa17",
+          "bytes": 671
+        },
+        {
+          "path": "packages/contracts/src/index.ts",
+          "sha256": "722cc83d8c83377fdb9db0f92dd901637957b77fdf309285e5d99f0cbeb56429",
+          "bytes": 1025
+        },
+        {
+          "path": "packages/contracts/src/schemas.ts",
+          "sha256": "4b1d259d5b11689ae93f32af0a5d8cf0f725e125b9e27bb66f532b75ea2c879a",
+          "bytes": 5774
+        },
+        {
+          "path": "packages/queue-core/package.json",
+          "sha256": "1399ae1720c2385a3963d33efa569f71d0ed4bbf2c4001ed44f369f00749f74e",
+          "bytes": 388
+        },
+        {
+          "path": "packages/queue-core/src/idempotency.ts",
+          "sha256": "084be7e4224338fca2a5773011d194e98ec75779a37e5f8a8316cf3109a07261",
+          "bytes": 1193
+        },
+        {
+          "path": "packages/queue-core/src/index.ts",
+          "sha256": "4925590d646f990b598faaa388f2f3c55838e216687cbbdb7353c36028fabb98",
+          "bytes": 847
+        },
+        {
+          "path": "packages/queue-core/src/return-window.ts",
+          "sha256": "d99a2509201597f06caa0a2fba28d5493818203ac30106d32b5017011a52bbfd",
+          "bytes": 7058
+        },
+        {
+          "path": "packages/queue-core/src/revision.ts",
+          "sha256": "93601e78b1804aebabbc54e0e7caeb1c0adf5716c0e7acae526e526f23d10541",
+          "bytes": 603
+        },
+        {
+          "path": "packages/queue-core/src/sequence.ts",
+          "sha256": "d25ce8a91412f58e92a99ed49748673220d95e0b864f0722dd181efc0371fc3f",
+          "bytes": 974
+        },
+        {
+          "path": "packages/queue-core/src/transitions.ts",
+          "sha256": "2329c30085c34b198d730400f2daee06a381b88fd4e3bb7b2c65052bbec46163",
+          "bytes": 3029
+        },
+        {
+          "path": "packages/queue-core/src/types.ts",
+          "sha256": "67616d5737c0969484e236271b644c0d94755f1db424dea8270c0685361c0327",
+          "bytes": 635
+        },
+        {
+          "path": "packages/queue-core/test/dist-smoke.mjs",
+          "sha256": "f2d2a5ed8be8bd01aaddb7b8afdb7d74cab12793ce631c2f8465c2f322204f54",
+          "bytes": 487
+        },
+        {
+          "path": "packages/queue-core/test/idempotency.test.ts",
+          "sha256": "2ce20170b3538edbe949e106a1ede9d44e4cbbd9bfb2f128282c78fcba7c33ac",
+          "bytes": 1496
+        },
+        {
+          "path": "packages/queue-core/test/lifecycle.test.ts",
+          "sha256": "40fd1d521d3e97f690216c8d5993a68e4d805646f153487bcc9cda3b8fc670ca",
+          "bytes": 2765
+        },
+        {
+          "path": "packages/queue-core/test/presence.test.ts",
+          "sha256": "638b3090be325be866e7060574757e8e5515c850b9156564f06a81b26f7986b0",
+          "bytes": 2019
+        },
+        {
+          "path": "packages/queue-core/test/return-window.test.ts",
+          "sha256": "ce3549b2121c061e6a75ae94c7ca30a1e78cdea32e28b01ba64e848b01c5d560",
+          "bytes": 4583
+        },
+        {
+          "path": "packages/queue-core/test/revision.test.ts",
+          "sha256": "805c7803b555c6e987121958f1bffd6b3d771104a47ef540c78d114b255fec29",
+          "bytes": 776
+        },
+        {
+          "path": "packages/queue-core/test/sequence.test.ts",
+          "sha256": "bf80c0d97432b9b145fdc4a4227ef48f56d9aad096b1f9161a073032efaeb0c8",
+          "bytes": 2238
+        },
+        {
+          "path": "packages/queue-core/tsconfig.build.json",
+          "sha256": "81b93211e8825b2a76576662ea5791e3696906a2d24ed4fe1c8908b190a67393",
+          "bytes": 276
+        }
+      ],
+      "sha256": "a8ea916019006145f6c409297d3202f88fb9ba2b5f2fdb7144b1f2b4cad1a111",
+      "omitted": "Unselected applications, dependencies, generated output, assets and configuration are absent."
+    }
+  },
+  "toolTrees": {
+    "packages/test-scope/src": "586618e01b5ef6d77babbbc54f8edd89bd549b60162e10708b8bc5021158d853",
+    "packages/test-scope/dist": "b8b7a7dd8762ecb75b255831315d73b970ad8965605e320ae5fcfd9afac6123a"
+  },
+  "groups": [
+    {
+      "task": "markdown",
+      "condition": "conventional",
+      "trials": 3,
+      "adequate": 3,
+      "factuallyCorrect": 3,
+      "unsupportedClaims": 0,
+      "medianElapsedMs": 54181.73539999407,
+      "medianCalls": 4,
+      "medianReturnedCommandBytes": 4609,
+      "medianInputTokens": 63029,
+      "medianCachedInputTokens": 45440,
+      "medianOutputTokens": 1359
+    },
+    {
+      "task": "markdown",
+      "condition": "tool",
+      "trials": 3,
+      "adequate": 3,
+      "factuallyCorrect": 3,
+      "unsupportedClaims": 0,
+      "medianElapsedMs": 65785.34529998433,
+      "medianCalls": 4,
+      "medianReturnedCommandBytes": 54207,
+      "medianInputTokens": 83209,
+      "medianCachedInputTokens": 56192,
+      "medianOutputTokens": 1632
+    },
+    {
+      "task": "queue",
+      "condition": "conventional",
+      "trials": 3,
+      "adequate": 3,
+      "factuallyCorrect": 3,
+      "unsupportedClaims": 0,
+      "medianElapsedMs": 71163.12469996046,
+      "medianCalls": 3,
+      "medianReturnedCommandBytes": 51214,
+      "medianInputTokens": 83767,
+      "medianCachedInputTokens": 54144,
+      "medianOutputTokens": 1758
+    },
+    {
+      "task": "queue",
+      "condition": "tool",
+      "trials": 3,
+      "adequate": 3,
+      "factuallyCorrect": 3,
+      "unsupportedClaims": 0,
+      "medianElapsedMs": 91482.82200004905,
+      "medianCalls": 5,
+      "medianReturnedCommandBytes": 61845,
+      "medianInputTokens": 144908,
+      "medianCachedInputTokens": 106240,
+      "medianOutputTokens": 2580
+    }
+  ],
+  "trials": [
+    {
+      "index": 1,
+      "task": "queue",
+      "condition": "tool",
+      "repetition": 1,
+      "elapsedMs": 140207.70749996882,
+      "calls": 5,
+      "returnedCommandBytes": 102496,
+      "usage": {
+        "input_tokens": 144908,
+        "cached_input_tokens": 106240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3575,
+        "reasoning_output_tokens": 2274
+      },
+      "failedCommands": 1,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "a9a887856e8b3e5eb15f342e505aff09a5e3fb4e3ed586dd6afe45f550976c01",
+      "promptSha256": "88e7e0372c54843a956e07d933cc97f67f4e09c017c8530df722834e2ad4516a",
+      "answerSha256": "89a2e7899ff0b96679fe5dc5f25ce666792d2fdb90ad2817b271a1c71e47090d",
+      "stderrSha256": "3f87f4c787537185478c5f39899cf99715387f33a9edff83fe741cd91a7ead6c",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-10",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set; correct Vitest and barrel-import reasoning, separate dist smoke exclusion, and explicit static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 2,
+      "compliant": true,
+      "processSha256": "0bbee87b88e209da107346c5b42b3a6a4e9712d84037c46c58fa21255dbc0936"
+    },
+    {
+      "index": 2,
+      "task": "queue",
+      "condition": "conventional",
+      "repetition": 3,
+      "elapsedMs": 71163.12469996046,
+      "calls": 3,
+      "returnedCommandBytes": 29630,
+      "usage": {
+        "input_tokens": 71825,
+        "cached_input_tokens": 47616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1758,
+        "reasoning_output_tokens": 1013
+      },
+      "failedCommands": 1,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "37088237ddcb70daae6dcb8c137c881310aac5feaaea1b14c424f47a5b88a39b",
+      "promptSha256": "3d7862ad64395a7274f9a76391ab9bbe7fd2f5fefaca6dfab3bd80d9550927c3",
+      "answerSha256": "e58925ac1b5a426739ce415b1897b0b2817df8dd0cd0538c3922627a226add79",
+      "stderrSha256": "122b946e2609e26a03579e71be18d686007d3222ba4c437c6e557025a3ad8831",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-01",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set; correct Vitest classification, source resolution and barrel reachability; excludes dist smoke and states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "c3d60395d3784648dc602160523a5dabe8c7b57ea2a5a3fd454c645bc137f226"
+    },
+    {
+      "index": 3,
+      "task": "queue",
+      "condition": "conventional",
+      "repetition": 1,
+      "elapsedMs": 64053.480799891986,
+      "calls": 3,
+      "returnedCommandBytes": 51214,
+      "usage": {
+        "input_tokens": 83767,
+        "cached_input_tokens": 54144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1635,
+        "reasoning_output_tokens": 922
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "94e80993393118c9e6b757ef5d5edaae576a6dbdbdb8894bef23b454e76d1f00",
+      "promptSha256": "0beb0df503b7eceb19e9ca16b65f1fbc9a0089317e1ffddea8fc55a0dbee5a95",
+      "answerSha256": "d17ccae44b11801fb70f6a874b63de5638c892cf2eb0af9b0d9eed38e525d0d6",
+      "stderrSha256": "f922374e34de23fd0794277c1a951174a96c04d549146b9b081b38f0f4de400e",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-06",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set; correctly resolves index.js through the barrel to revision.ts, applies Vitest defaults, excludes dist smoke and states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "28afb362e2c0276b7b9ef086e57bc71436a5ed40a5d7093200f8dbe1dd19ca49"
+    },
+    {
+      "index": 4,
+      "task": "queue",
+      "condition": "tool",
+      "repetition": 3,
+      "elapsedMs": 91482.82200004905,
+      "calls": 5,
+      "returnedCommandBytes": 44263,
+      "usage": {
+        "input_tokens": 111086,
+        "cached_input_tokens": 81920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2580,
+        "reasoning_output_tokens": 1355
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "65cf69b3a256619bc0d48b521a79c20c83ec345f1f5d81184a98972e480e19f7",
+      "promptSha256": "ff964f101d06b9aadc77b4abda37d4e5b6a94630eab72341e07699a633c21db1",
+      "answerSha256": "45834082988c847a13a731abb1cb3374cc510789a5b55cfcd8d5f221a8060392",
+      "stderrSha256": "2e880dd4b69417c7430865a4f047288637c48e2ff123c79977144b26d1cc6782",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-11",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set; correct module-level source reachability and Vitest reasoning, excludes dist smoke and explicitly disclaims execution and complete coverage."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 1,
+      "compliant": true,
+      "processSha256": "85d88a741e547a23256468ba7572161b86ff9d4b3cdc9c17df236f3d1208b0ed"
+    },
+    {
+      "index": 5,
+      "task": "markdown",
+      "condition": "tool",
+      "repetition": 2,
+      "elapsedMs": 65785.34529998433,
+      "calls": 4,
+      "returnedCommandBytes": 54734,
+      "usage": {
+        "input_tokens": 87513,
+        "cached_input_tokens": 56192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1632,
+        "reasoning_output_tokens": 971
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "28ec2a52e3e1aec9eb613103d0c4571c607976f6eb478dfd157dab1885bba3a1",
+      "promptSha256": "6c9a0e100adf0483d57187f942b171fbf5ea1e1dfd2eeef3dee1794be469304d",
+      "answerSha256": "3061d4b1c3775e1601b42f1a3150aab8b2685e54af4474707c48f15c8a763eb0",
+      "stderrSha256": "c7cadb0013a7d64311d2929565c2bfa58106bb332ef64f9881aef395089b7a20",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-09",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite; correctly filters indirect consumers and explicitly limits findings to static inspection of the supplied subset."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 1,
+      "compliant": true,
+      "processSha256": "60304fbd1602059d298a06a9880c78528a5cf62e4a4fff4e7f9f73f62445602b"
+    },
+    {
+      "index": 6,
+      "task": "markdown",
+      "condition": "conventional",
+      "repetition": 2,
+      "elapsedMs": 54181.73539999407,
+      "calls": 4,
+      "returnedCommandBytes": 6055,
+      "usage": {
+        "input_tokens": 48089,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1372,
+        "reasoning_output_tokens": 754
+      },
+      "failedCommands": 1,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "bd445ab4340ba368ebf4f32889d4f593bce26a510e36009017069c0b515c71ec",
+      "promptSha256": "660b396c5757d713569cc81f69e358e5f4b4fe04f3bd49cc0206a313d97871ab",
+      "answerSha256": "5694271fc00b03e85b337c4c98fa1288e994a584f6d6d3639f77832cfa215b14",
+      "stderrSha256": "06518ccd542a26c6bbde90f12763688a946190c410ea405db0dfcf0310343a4a",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-12",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite with changed-file import evidence; correctly excludes production and same-named local-function matches, with explicit static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "04a3e55444ea80bfa1ca1950ec5a55a163bfee790fd711a381acb33982fa6baf"
+    },
+    {
+      "index": 7,
+      "task": "markdown",
+      "condition": "conventional",
+      "repetition": 1,
+      "elapsedMs": 45148.79700005986,
+      "calls": 5,
+      "returnedCommandBytes": 2953,
+      "usage": {
+        "input_tokens": 63641,
+        "cached_input_tokens": 46336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1164,
+        "reasoning_output_tokens": 576
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "ffeec11e77c7875f01f35613c4624a7f763934f9923abcbeb714f3955d4bdc58",
+      "promptSha256": "676443e250eafd8547cfba3cfbc9b1250b29dfa74a1752a11973b69dbfb04541",
+      "answerSha256": "8eba75ff5485a8e924933024d9e58f7c4f0538a7f1361320bd3119e69d54f22d",
+      "stderrSha256": "4a110335003d8dc51abc45c77f6cc70864931cbbedd664f04955f26d1bedf46b",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-03",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite, supported by the changed-file import; correctly rejects indirect or similarly named matches and states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "9be5f03d6fc8613dc0ff3ebe530c9511a38c198a142d9abd26e0ba45ce41bc20"
+    },
+    {
+      "index": 8,
+      "task": "markdown",
+      "condition": "tool",
+      "repetition": 3,
+      "elapsedMs": 59262.93420000002,
+      "calls": 4,
+      "returnedCommandBytes": 54207,
+      "usage": {
+        "input_tokens": 83209,
+        "cached_input_tokens": 54144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1627,
+        "reasoning_output_tokens": 870
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "8846a2786d67dd97a8cf6006161c3cd13b65bdb0d7a8dcc1360b6ae2a991ff8b",
+      "promptSha256": "13a11c7fc5183079d97167b861ace13c40aa9ea182e55e7ddf342c412881a669",
+      "answerSha256": "5fdad4e06800aea2e7f315d5ae736b618fd72d4392d82f17361caa813f1456dd",
+      "stderrSha256": "747cc68362f02deea49c736fcb7d120814e24a070c1663812b5389ce4059037e",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-05",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite; filters indirect recommendations and similar names appropriately, and explicitly states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 1,
+      "compliant": true,
+      "processSha256": "d7e2e4ad5eeb7c6a20a3a53c1799176457bff18ef3c5acaaa0d5e17f2fe4e043"
+    },
+    {
+      "index": 9,
+      "task": "markdown",
+      "condition": "conventional",
+      "repetition": 3,
+      "elapsedMs": 55576.56640000641,
+      "calls": 3,
+      "returnedCommandBytes": 4609,
+      "usage": {
+        "input_tokens": 63029,
+        "cached_input_tokens": 45440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1359,
+        "reasoning_output_tokens": 861
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "f06aa5b036ec0174d4f9196c0051d2d14ff2366ce161493a02d8beb19cae5a25",
+      "promptSha256": "9df87c374894571ca9624964ecda6dc5974b1233bffb32dc3a7e3d3f64253f32",
+      "answerSha256": "45d15d04f0453dd473522871f9e60c1370ca06bed23e91959ec8adccc8e881ad",
+      "stderrSha256": "94e0af3c7bc86cc2146db1bface64373d115ad6d601fc354e9e1f8fdff925bdc",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-04",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite with explicit import evidence; correctly excludes production code and the local helper, with static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "05859b267db573a0eaaeafa73267b7f768da9c382c98b5596689b266d48304c5"
+    },
+    {
+      "index": 10,
+      "task": "queue",
+      "condition": "conventional",
+      "repetition": 2,
+      "elapsedMs": 98857.61419998016,
+      "calls": 6,
+      "returnedCommandBytes": 73443,
+      "usage": {
+        "input_tokens": 131186,
+        "cached_input_tokens": 100608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2885,
+        "reasoning_output_tokens": 1787
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "1c7f3c1de9c71a65e92e35f3750dbce57154f87c31c1ddd8cca32c0b63c9a11c",
+      "promptSha256": "9a2cd22fe4192946279988ded839f66bfe73a82025a6a0a78f91562c0d8519d9",
+      "answerSha256": "e809370e1cc55c6ad3b5ae825d3129a2b883accba0fa62f95702833527c82261",
+      "stderrSha256": "76f4d45861f73222d00fd651469115004b4ccc4b60cc56fa953b7937f27269c9",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-02",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set with correct module-level barrel reachability and runner reasoning; separates dist smoke and explicitly limits conclusions to static subset evidence."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": false,
+      "discoveryCalls": 0,
+      "compliant": true,
+      "processSha256": "c946b7e209f46c98ff28deb157f3fc06ec26a06c9983650c9ca3777c4aa6ca62"
+    },
+    {
+      "index": 11,
+      "task": "markdown",
+      "condition": "tool",
+      "repetition": 1,
+      "elapsedMs": 71487.02479992062,
+      "calls": 4,
+      "returnedCommandBytes": 44180,
+      "usage": {
+        "input_tokens": 82953,
+        "cached_input_tokens": 67968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1897,
+        "reasoning_output_tokens": 1251
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "59a4e84829506dba89a6ae4d05e26b6333c4f04b2008058950ed55203ef9b0de",
+      "promptSha256": "b3cfbe4da85d96fd24df9e922c993558f607cc0b186983db9b06fe71b135b511",
+      "answerSha256": "4602be8f4ca5c007ceab43934a01def9928a41ee2d47e8f10ff9ddcfeb7d53b4",
+      "stderrSha256": "d2ae87845fedee64a90703dc4a8676b5eea9d7a8198eae53f2baa279e29fef29",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-07",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact direct Node suite with explicit changed-file import evidence; excludes indirect recommendations and states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 1,
+      "compliant": true,
+      "processSha256": "f3a54eb26c3996b71a3853290e5f389201120fb0d58dfaa56b60d6111cc888eb"
+    },
+    {
+      "index": 12,
+      "task": "queue",
+      "condition": "tool",
+      "repetition": 2,
+      "elapsedMs": 86581.91099995747,
+      "calls": 5,
+      "returnedCommandBytes": 61845,
+      "usage": {
+        "input_tokens": 146635,
+        "cached_input_tokens": 112512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2385,
+        "reasoning_output_tokens": 1340
+      },
+      "failedCommands": 0,
+      "available": true,
+      "inputUnchanged": true,
+      "captureErrors": [],
+      "eventsSha256": "cf53b72e73aacf642c969fa4ac9fd7c82482d56839f287d73befda098e28e5f4",
+      "promptSha256": "f2afacb688239e2dce6402f28ee235c4ac1e4d81317b4a2262794414080fe63c",
+      "answerSha256": "4798acec4ca85cbb8626dc230ed847905d34f3ed2bcbd834e9e16938e77cb5e6",
+      "stderrSha256": "ff848107a7c2a12e21806c95a4d99a435c3c5fe40daeda040d37ee07eb62afa1",
+      "deterministicFacts": true,
+      "grade": {
+        "id": "answer-08",
+        "adequate": true,
+        "unsupportedCompletionClaim": false,
+        "reason": "Exact six-suite set with correct module-level reachability, source resolution and Vitest classification; excludes dist smoke and states static/subset limitations."
+      },
+      "gradingDisagreement": false,
+      "toolPlanAttempted": true,
+      "discoveryCalls": 1,
+      "compliant": true,
+      "processSha256": "68b295872b2c7bf7296ebac73e98db4c1a3f61baaf44891f8a0384827d53807b"
+    }
+  ],
+  "grader": {
+    "elapsedMs": 42706.108000013046,
+    "calls": 0,
+    "usage": {
+      "input_tokens": 18127,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1080,
+      "reasoning_output_tokens": 516
+    },
+    "available": true,
+    "captureErrors": [],
+    "eventsSha256": "eb880370c2dfaa376e131af484038847caffdb8a71c8cf0355360a891de93a40",
+    "promptSha256": "4d7d7de9b47fd128627b30de670b71e21f8709fa54a411adf71065b79b6775b4",
+    "answerSha256": "fb71dcbd7b96f0a76421f5b66dee9e22adfdb11200faa328a3f0e42b97b1846f",
+    "stderrSha256": "74667a2e2b12dae0bd7ce76676bc56e7d38b5807ecb29cd2e882c4bf1df46f00"
+  },
+  "audit": {
+    "freshThreads": 13,
+    "bothStudiesDistinctThreads": 44,
+    "exactPromptAndArtifactIdentitiesMatched": 13,
+    "toolTreesUnchanged": true,
+    "ownedFixturesRemoved": true,
+    "commandsManuallyReviewed": 12,
+    "scopeViolationsObserved": [],
+    "allToolArmsAttemptedPlan": true,
+    "gradingDisagreements": [],
+    "commandInventorySha256": "8f246ce36f570071cb9afc6fb2e9cf0ef521ceef4efc5563699176bd3b5bcc3c",
+    "legacyCommandInventorySha256": "9fbbc6f7765ed722f248b81d14336819fa730d63a63a96551be8c3bd9f6c6318",
+    "commandInventoryFile": "command-inventory-audit-utf8.json",
+    "utf8ReadbackCorrectedTrials": [
+      5,
+      8
+    ]
+  },
+  "limitations": [
+    "Two selected owned source subsets, not a random repository sample.",
+    "Static suite selection only; no test execution or complete workflow.",
+    "One requested model/settings/environment and three repeats; no significance or causal productivity claim.",
+    "Prompt limits and emitted events are not proof of OS isolation or backend state.",
+    "Reported returned bytes are UTF-8 aggregated_output from emitted command events, not authenticated complete stdout or backend context.",
+    "One capabilities call omitted --root and returned INVALID_REQUEST; plan calls supplied the root. Nonzero rg no-match/absent-directory results also remain captured.",
+    "Condition hints can remain in prose despite opaque-ID blind grading.",
+    "Post-collection auxiliary inventory used Windows default decoding for output text in trials 5/8. UTF-8 readback is retained separately; command/exit fields, raw core captures, usage and byte measurements were unchanged. Current uptake parser now explicitly decodes UTF-8."
+  ]
+}

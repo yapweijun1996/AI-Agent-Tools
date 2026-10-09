@@ -14,6 +14,24 @@ import time
 ROOT = Path(__file__).resolve().parent.parent
 SEED = 20261008
 MODEL, EFFORT = 'gpt-6.1-sol', 'xhigh'
+WSL_DISTRO = None
+
+
+def cli_path(path):
+    if WSL_DISTRO is None:
+        return str(path)
+    resolved = Path(path).resolve()
+    assert resolved.drive.upper() == 'C:', 'WSL study supports only the explicit C: workspace'
+    return '/mnt/c/' + resolved.as_posix()[3:]
+
+
+def node_command(node, arguments):
+    if WSL_DISTRO is None:
+        return [node, *arguments]
+    interpreter = cli_path(node)
+    # Coreutils timeout owns the Linux process group; killing only wsl.exe is insufficient.
+    return ['wsl.exe', '-d', WSL_DISTRO, '--exec', 'timeout', '--kill-after=5', '290s',
+            'env', 'PATH=' + interpreter.rsplit('/', 1)[0] + ':/usr/local/bin:/usr/bin:/bin', interpreter, *arguments]
 
 
 def sha(data):
@@ -40,12 +58,12 @@ def git(*args):
 
 def run_session(node, codex, workspace, prompt, output, schema):
     output.mkdir(parents=True)
-    (output / 'prompt.txt').write_text(prompt, encoding='utf-8')
-    args = [node, codex, 'exec', '--ignore-user-config', '--ephemeral', '--json',
-            '--sandbox', 'read-only', '--skip-git-repo-check', '-C', str(workspace),
+    (output / 'prompt.txt').write_bytes(prompt.encode('utf-8'))
+    args = node_command(node, [cli_path(codex), 'exec', '--ignore-user-config', '--ephemeral', '--json',
+            '--sandbox', 'read-only', '--skip-git-repo-check', '-C', cli_path(workspace),
             '-m', MODEL, '-c', f'model_reasoning_effort="{EFFORT}"',
             '-c', 'approval_policy="never"', '-c', 'project_doc_max_bytes=0',
-            '--output-schema', str(schema), '-o', str(output / 'answer.json'), '-']
+            '--output-schema', cli_path(schema), '-o', cli_path(output / 'answer.json'), '-'])
     start = time.perf_counter()
     env = os.environ.copy()
     env['PATH'] = str(Path(node).parent) + os.pathsep + env['PATH']
@@ -61,12 +79,17 @@ def run_session(node, codex, workspace, prompt, output, schema):
                 process.kill()
             process.wait()
     elapsed = (time.perf_counter() - start) * 1000
-    events = [json.loads(line) for line in (output / 'events.jsonl').read_text(encoding='utf-8').splitlines() if line.strip()]
+    capture_errors = []
+    try:
+        events = [json.loads(line) for line in (output / 'events.jsonl').read_text(encoding='utf-8').splitlines() if line.strip()]
+    except (UnicodeError, json.JSONDecodeError):
+        events = []
+        capture_errors.append('invalid_event_capture')
     items = [e['item'] for e in events if e.get('type') == 'item.completed']
     commands = [i for i in items if i.get('type') == 'command_execution']
     uses = [e['usage'] for e in events if e.get('type') == 'turn.completed']
     forbidden = [i.get('type') for i in items if i.get('type') in ('file_change', 'web_search', 'mcp_tool_call')]
-    record = {'exitCode': process.returncode, 'elapsedMs': elapsed,
+    record = {'argv': args, 'exitCode': process.returncode, 'elapsedMs': elapsed,
               'calls': len(commands), 'returnedCommandBytes': sum(len(i.get('aggregated_output', '').encode()) for i in commands),
               'usage': uses[-1] if len(uses) == 1 else None,
               'threadIds': [e['thread_id'] for e in events if e.get('type') == 'thread.started'],
@@ -77,25 +100,47 @@ def run_session(node, codex, workspace, prompt, output, schema):
     record['stderrSha256'] = sha(stderr_bytes)
     record['executionPolicyRejected'] = b'blocked by policy' in stderr_bytes
     answer_path = output / 'answer.json'
-    answer = json.loads(answer_path.read_text(encoding='utf-8')) if answer_path.exists() else None
+    try:
+        answer = json.loads(answer_path.read_text(encoding='utf-8')) if answer_path.exists() else None
+    except (UnicodeError, json.JSONDecodeError):
+        answer = None
+        capture_errors.append('invalid_final_answer')
     if answer is not None:
         record['answerSha256'] = sha(answer_path.read_bytes())
-    record['available'] = (process.returncode == 0 and len(uses) == 1 and answer is not None
+    if len(record['threadIds']) != 1 or sum(e.get('type') == 'turn.started' for e in events) != 1 or len(uses) != 1:
+        capture_errors.append('missing_or_ambiguous_turn')
+    if any(e.get('type') in ('error', 'turn.failed') for e in events):
+        capture_errors.append('failed_event')
+    starts = [e['item']['id'] for e in events if e.get('type') == 'item.started' and e.get('item', {}).get('type') == 'command_execution']
+    ends = [i['id'] for i in commands]
+    if sorted(starts) != sorted(ends) or len(set(starts)) != len(starts):
+        capture_errors.append('unpaired_command_events')
+    messages = [i.get('text', '') for i in items if i.get('type') == 'agent_message']
+    try:
+        if not messages or json.loads(messages[-1]) != answer:
+            capture_errors.append('final_message_mismatch')
+    except json.JSONDecodeError:
+        capture_errors.append('final_message_mismatch')
+    record['captureErrors'] = capture_errors
+    record['available'] = (process.returncode == 0 and answer is not None and not capture_errors
                            and not record['executionPolicyRejected'])
     dump(output / 'process.json', record)
     return record, answer
 
 
 def main():
+    global WSL_DISTRO
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--node', required=True)
     parser.add_argument('--codex-js', required=True)
     parser.add_argument('--run', action='store_true', help='Explicitly invoke provider-backed fresh sessions')
+    parser.add_argument('--wsl-distro', choices=['Ubuntu'], help='Use already authenticated Ubuntu with task-local Linux binaries')
     args = parser.parse_args()
+    WSL_DISTRO = args.wsl_distro
     assert args.run, 'Provider-backed execution requires --run and owner authorization'
     node, codex = str(Path(args.node).resolve()), str(Path(args.codex_js).resolve())
-    assert subprocess.check_output([node, '-p', 'process.versions.node'], text=True).strip() == '24.19.0'
-    version = subprocess.check_output([node, codex, '--version'], text=True).strip()
+    assert subprocess.check_output(node_command(node, ['-p', 'process.versions.node']), text=True).strip() == '24.19.0'
+    version = subprocess.check_output(node_command(node, [cli_path(codex), '--version']), text=True).strip()
     assert version == 'codex-cli 0.161.0', version
     manifest_bytes = (ROOT / 'docs/evaluation/tasks.json').read_bytes()
     manifest = json.loads(manifest_bytes)
@@ -154,15 +199,19 @@ def main():
         random.Random(SEED).shuffle(order)
         dump(output / 'registration.json', {'schemaVersion': '1.0.0', 'seed': SEED, 'order': order, 'model': MODEL, 'effort': EFFORT,
               'cli': version, 'manifestSha256': sha(manifest_bytes), 'studyProtocolSha256': sha((ROOT / 'docs/evaluation/AGENT_STUDY.md').read_bytes()),
-              'harnessSha256': sha(Path(__file__).read_bytes()), 'inputSha256': tree(snapshot), 'watched': watched, 'tasks': tasks})
+              'harnessSha256': sha(Path(__file__).read_bytes()), 'inputSha256': tree(snapshot), 'watched': watched, 'tasks': tasks,
+              'executionEnvironment': 'Ubuntu WSL' if WSL_DISTRO else 'Windows',
+              'executionAddendumSha256': sha((ROOT / 'docs/evaluation/WSL_STUDY.md').read_bytes()) if WSL_DISTRO else None})
         print('Evidence:', output.relative_to(ROOT), flush=True)
         records, answers = [], []
         for index, (task, condition, repetition) in enumerate(order, 1):
             workspace = work / f'trial-{index:02d}'; shutil.copytree(snapshot, workspace)
             before = tree(workspace)
-            common = f"Read-only bounded investigation. Allowed data root: {workspace}. Work only on the task below. You share the computer with others: preserve all files. Do not edit, install, run tests, use Git/network/MCP/KB/other agents or inspect other directories, evaluator records, config or credentials. At most six shell command calls, including at most two help/capabilities calls. Use PowerShell reads/rg or the explicitly authorized local Node CLI. No web or memory. Return the answer schema; unused sourceExcerpt is empty and counts null. Paths in answers are relative, not absolute. Describe evidence, not tool/condition names.\nTask ID: {task}\n{tasks[task]}\n"
+            shell = 'POSIX reads/rg' if WSL_DISTRO else 'PowerShell reads/rg'
+            common = f"Read-only bounded investigation. Allowed data root: {cli_path(workspace)}. Work only on the task below. You share the computer with others: preserve all files. Do not edit, install, run tests, use Git/network/MCP/KB/other agents or inspect other directories, evaluator records, config or credentials. At most six shell command calls, including at most two help/capabilities calls. Use {shell} or the explicitly authorized local Node CLI. No web or memory. Return the answer schema; unused sourceExcerpt is empty and counts null. Paths in answers are relative, not absolute. Describe evidence, not tool/condition names.\nTask ID: {task}\n{tasks[task]}\n"
             if condition == 'tool':
-                common += f"Local tool invocation prefix: & '{node}' '{tools[task]}'\nAppend the operation and flags required by help/capabilities. Root must be the task's data directory (project or unfamiliar for selection; this workspace for patch/evidence). Test Scope supports --compact. Inspect partial/unknown/diagnostics rather than promoting them to pass. You may read task input to clarify a tool limitation.\n"
+                invocation = f"'{cli_path(node)}' '{cli_path(tools[task])}'" if WSL_DISTRO else f"& '{node}' '{tools[task]}'"
+                common += f"Local tool invocation prefix: {invocation}\nAppend the operation and flags required by help/capabilities. Root must be the task's data directory (project or unfamiliar for selection; this workspace for patch/evidence). Test Scope supports --compact. Inspect partial/unknown/diagnostics rather than promoting them to pass. You may read task input to clarify a tool limitation.\n"
             else:
                 common += "Use conventional bounded file inspection and rg; do not invoke AI-Agent-Tools analyzers. No oracle line range or expected answer is supplied.\n"
             rec, answer = run_session(node, codex, workspace, common, output / f'trial-{index:02d}', schema)

@@ -6,6 +6,12 @@ commit, independent-agent comparison and broader naming regressions. The
 and separate [CLI study design](AGENT_STUDY.md) have different evidence limits.
 The original four-task protocol, manifest and observation remain unchanged.
 
+This document records the earlier Windows and host-artifact stages. The later
+[Ubuntu CLI observations](CLI_RESULTS.md) provide thirty emitted-event captures
+and actual usage, with explicit treatment/grading limitations. They supersede
+the environment blocker for the new Ubuntu execution, while preserving every
+historical Windows rejection and withheld host metric here.
+
 ## Answer artifacts
 
 Twelve fresh host default-role agents ran sequentially in the registered order:
@@ -68,7 +74,7 @@ attempts; their evidence and correction remain separate. No failed attempt was
 silently replaced. Owned fixture directories were removed after consistency
 checks. Portable results contain hashes and answer grades, not raw transcripts.
 
-## Separate CLI study remains blocked
+## Earlier Windows CLI study was blocked
 
 The planned thirty fresh Codex CLI sessions could not obtain task evidence:
 local execution policy rejected bounded input reads and analyzer commands. Six

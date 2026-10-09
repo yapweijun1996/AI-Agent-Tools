@@ -18,7 +18,11 @@ second task ledger or a tool release inventory.
 | [Task-value evaluation](docs/evaluation/PROTOCOL.md) | Frozen task comparators, evidence grading, measurement boundaries and real-agent follow-on protocol |
 | [Task-value results](docs/evaluation/RESULTS.md) | Identified local observations, measured interface costs and workflow decisions |
 | [Test Scope refinement](docs/evaluation/TEST_SCOPE_REFINEMENT.md) | Frozen before/after candidate and output measurements for the selected source improvement |
-| [Independent-agent observations](docs/evaluation/AGENT_RESULTS.md) | Answer-artifact grading, telemetry audit, host pilot and blocked full CLI study |
+| [Independent-agent observations](docs/evaluation/AGENT_RESULTS.md) | Historical host answer artifacts, telemetry audit and Windows CLI rejection |
+| [Ubuntu study execution](docs/evaluation/WSL_STUDY.md) | Environment addendum, authenticated preflight and strict emitted-event capture |
+| [Ubuntu CLI observations](docs/evaluation/CLI_RESULTS.md) | Thirty captured sessions, treatment uptake, grading adjudication and measured interface costs |
+| [Real-repository pilot](docs/evaluation/REAL_REPOSITORY_PILOT.md) | Pinned source subsets, fresh-session selection tasks and pre-registered grading |
+| [Real-repository observations](docs/evaluation/REAL_REPOSITORY_RESULTS.md) | Twelve captured suite-selection sessions, exact-path grading, costs and subset limits |
 | [Architecture](docs/ARCHITECTURE.md) | Ownership boundaries, registry contract, and AIT runtime constraints |
 | [Tool standard](docs/TOOL_STANDARD.md) | Scope/admission/lifecycle gates |
 | [CLI standard](docs/CLI_STANDARD.md) | Target command/stream/exit/limit semantics |
