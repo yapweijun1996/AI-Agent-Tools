@@ -1,5 +1,51 @@
 # Validation and evidence
 
+## CLI fixes local commit and isolated installation (2026-10-09)
+
+The owner selected A and B. Before staging, the twenty-three accepted file hashes,
+original HEAD and zero staged files matched `.cache/cli-usability/final-acceptance.json`.
+The focused local commit is `7645d4c21547f33b7f70809cce4de2eaffd0ff54`; its worktree
+was clean before source acquisition. Git may normalize root Markdown line endings;
+original executed byte identities remain in the acceptance record.
+
+The documented local `ait install-all --from-path` route completed with explicit
+build/experimental approvals in an isolated prefix containing spaces and `#`.
+The receipt records that clean source commit, 918 copied files, 26,003,047 source
+bytes and snapshot SHA-256 `5ba97db0c4d8e5dffc7f045e3ed13b1d79bdb26eb80dbd84e7acec93b4f1407c`.
+Nineteen packages (AIT and eighteen tools) installed under Windows Node 24.21.0;
+all nineteen native `.cmd` help launchers passed outside the source package
+directories. Artifact SHA-512 integrity, installed producer shrinkwrap SHA-256 and
+consumer lock SHA-256 independently matched every receipt entry. The copied Node
+runtime executed, temporary installer `.work` was removed, and the receipt reports
+no configuration changes or lifecycle-script execution.
+
+Forty retained commands cover installed help, Code Slice exact UTF-8 extraction,
+Change Impact import evidence, Project Tree, Project Profile, CFML Linkage JSON
+alias equivalence/duplicate rejection, and Test Scope full/fitting/withheld/invalid
+results. The fixture plan is 3,287 bytes; its 1,024-byte ceiling returns 475 bytes
+with partial status, empty data and explicit RESOURCE_LIMIT. Fitting output and
+stderr match uncapped output byte-for-byte. Code Slice's missing-command and
+help/JSON rejection exits remain two. The actual installed Patch Guard accepts LF
+and CRLF repair metadata and reports the forbidden path as policy violations.
+Copied-runtime tests pass all three cases, detect one injected hidden-geometry
+defect, then pass all three after restoration. Fixture production code is never
+applied to ContentAdmin.
+
+Initial harness attempts used a wrong executable name, resolved a relative Code
+Slice path from the wrong working directory, normalized CRLF in a text assertion,
+and assumed TAP was the default reporter. The final harness uses receipt/bin names,
+an absolute file path, exact byte offsets and explicit TAP. These were corrected
+test assumptions, not new product defects; initial logs are retained. Final logs,
+commands, receipt identity and acceptance are under `.cache/cli-usability/`.
+The isolated installation and fixture remain intentionally available for reuse.
+
+The source-wide acceptance below remains applicable: no tool source changed after
+it. This follow-up updates only TASK/VALIDATION, validated by Hub/migration and
+whitespace checks. Native optional parsers, published-release AIT dispatch, GitHub
+acquisition, global Project Profile repair, Node 22/non-Windows and live ERP are
+unverified by this follow-up. No push, npm release, global install, shell profile
+edit or ERP source/data change occurred.
+
 ## CLI usability and Windows patch framing (2026-10-09)
 
 Local Windows Node 24.21.0 focused checks passed: eighteen package standalone-help

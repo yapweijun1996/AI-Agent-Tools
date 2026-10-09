@@ -1,5 +1,19 @@
 # Task status
 
+## CLI fixes local commit and isolated installation (2026-10-09)
+
+The owner selected A and B: commit the verified CLI repairs and validate an
+isolated installation. The exact twenty-three-file accepted scope is committed
+locally as `7645d4c21547f33b7f70809cce4de2eaffd0ff54`. A clean snapshot of that
+commit installed all eighteen tools and AIT using the explicit `install-all`
+workflow. All nineteen Windows launchers, artifact/lock identities and focused
+installed coding regressions passed. The install keeps its own Node 24.21.0
+runtime and a receipt, without changing global tools or shell configuration.
+[Validation](VALIDATION.md#cli-fixes-local-commit-and-isolated-installation-2026-10-09)
+owns installed evidence and limits. This follow-up changes only TASK/VALIDATION
+documentation; source acceptance below remains applicable. No push or publication
+is included, and the existing global Project Profile installation remains separate.
+
 ## CLI usability and Windows patch framing (2026-10-09)
 
 The owner selected improving invocation consistency, output control and Windows
