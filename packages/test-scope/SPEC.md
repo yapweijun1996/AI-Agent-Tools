@@ -259,6 +259,26 @@ formatting remains unchanged; duplicate/value-bearing `--compact` forms are
 invalid CLI arguments. This source addition does not describe a newly published
 npm artifact.
 
+The source CLI MAY accept `plan --summary` as an explicitly identified projection,
+validated by `schemas/summary.schema.json`. This CLI view MUST preserve every
+test and command in `minimum`, `recommended`, and `release`, their order, IDs,
+scope, confidence, command ownership and `executed: false`, all changes, risk,
+escalation, diagnostics, truncation, statistics and native exit semantics. It
+MUST replace each recommendation's evidence array with its exact count and
+sorted unique evidence types, and declare `view: "summary"` plus the
+`recommendation-evidence` omission when a plan exists. Canonical/API results
+continue to carry full evidence as required above. Summary evidence types/counts
+MUST NOT be described as complete provenance or proof of execution.
+
+`--summary` MUST NOT be a core request property, change default/compact output,
+alter planning bounds or select fewer recommendations. It MAY combine with
+`--compact`. Other operations, duplicate flags and value-bearing forms MUST be
+rejected with a structured CLI error and exit 2 before repository analysis.
+Engine errors retain exit 1. Planning `complete` and `partial` retain exit 0,
+including their existing zero-test semantics; neither means tests passed.
+Summary output is a source addition, not a newly published artifact or a promise
+of lower byte counts for every small result.
+
 ## 13. Diagnostics
 
 Initial diagnostic codes:

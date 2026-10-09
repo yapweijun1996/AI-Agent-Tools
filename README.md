@@ -47,6 +47,14 @@ node packages/project-tree/bin/aptree.js --help
 node bin/ait.js --help
 ```
 
+The current Test Scope source supports `plan --summary --compact` for all planning
+decisions with explicitly omitted recommendation evidence bodies. Use the
+[package contract](packages/test-scope/README.md) to choose full evidence or the
+separate summary schema. [Recorded measurements](docs/evaluation/TEST_SCOPE_SUMMARY_2026-10-09.json)
+preserve default/compact byte identity and the specific output reduction; agent
+token savings and general speed gains remain unmeasured. This source addition
+has no new npm release.
+
 [Tool index and usage](migration-tools.md) lists every package, executable and source version. [Migration evidence and deletion checklist](docs/migration/README.md) records source commits, licenses, history recovery, validation and remaining external dependencies. The owner authorized consolidation on 2026-09-30; [architecture decision](docs/migration/DECISION.md) supersedes the previous independent-repository source restriction.
 
 ## Contracts and releases

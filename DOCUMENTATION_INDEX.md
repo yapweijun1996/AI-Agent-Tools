@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-10-08. This index assigns document ownership; it is not a
+Last reconciled: 2026-10-09. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |
@@ -18,6 +18,7 @@ second task ledger or a tool release inventory.
 | [Task-value evaluation](docs/evaluation/PROTOCOL.md) | Frozen task comparators, evidence grading, measurement boundaries and real-agent follow-on protocol |
 | [Task-value results](docs/evaluation/RESULTS.md) | Identified local observations, measured interface costs and workflow decisions |
 | [Test Scope refinement](docs/evaluation/TEST_SCOPE_REFINEMENT.md) | Frozen before/after candidate and output measurements for the selected source improvement |
+| [Test Scope summary observations](docs/evaluation/TEST_SCOPE_SUMMARY_2026-10-09.json) | Exact CLI-view measurements, canonical compatibility, retained decisions and explicit evidence omissions |
 | [Independent-agent observations](docs/evaluation/AGENT_RESULTS.md) | Historical host answer artifacts, telemetry audit and Windows CLI rejection |
 | [Ubuntu study execution](docs/evaluation/WSL_STUDY.md) | Environment addendum, authenticated preflight and strict emitted-event capture |
 | [Ubuntu CLI observations](docs/evaluation/CLI_RESULTS.md) | Thirty captured sessions, treatment uptake, grading adjudication and measured interface costs |

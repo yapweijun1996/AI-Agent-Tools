@@ -4,6 +4,7 @@ import { readFileSync, realpathSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { TestScopeEngine } from "./core/engine.js";
+import { toPlanSummary } from "./cli-summary.js";
 import type { Operation } from "./types.js";
 
 const operations = new Set<Operation>(["capabilities", "discover", "plan", "explain"]);
@@ -14,11 +15,13 @@ function usage(): string {
     "",
     "Operations: capabilities, discover, plan, explain",
     "Common options: --include <glob> --exclude <glob> --limit <1..200> --compact",
-    "Plan options: --changed <path> (repeatable) --changed-stdin",
+    "Plan options: --changed <path> (repeatable) --changed-stdin --summary",
     "Explain options: --path <test-path> | --command <command>",
     "",
     "JSON results are written to stdout; human-readable diagnostics are written to stderr.",
     "--compact removes JSON whitespace without omitting evidence or changing the result.",
+    "--summary keeps all plan recommendations and diagnostics, replacing evidence with counts/types.",
+    "Summary output has view: summary and its own summary.schema.json; use full output for evidence details.",
     "Commands in results are recommendations only and are never executed by this tool."
   ].join("\n");
 }
@@ -31,6 +34,7 @@ interface ParsedArguments {
   exclude: string[];
   changedStdin: boolean;
   compact: boolean;
+  summary: boolean;
   errors: string[];
 }
 
@@ -44,13 +48,19 @@ export interface CliStreams {
 }
 
 function parseArguments(argv: readonly string[]): ParsedArguments {
-  const parsed: ParsedArguments = { values: {}, changed: [], include: [], exclude: [], changedStdin: false, compact: false, errors: [] };
+  const parsed: ParsedArguments = { values: {}, changed: [], include: [], exclude: [], changedStdin: false, compact: false, summary: false, errors: [] };
   if (argv.length === 0 || argv[0] === "--help" || argv[0] === "-h") return parsed;
   parsed.operation = argv[0];
   if (!operations.has(parsed.operation as Operation)) parsed.errors.push(`Unknown operation: ${parsed.operation}`);
   for (let index = 1; index < argv.length; index += 1) {
     const argument = argv[index] ?? "";
     if (argument === "--json") continue;
+    if (argument === "--summary" || argument.startsWith("--summary=")) {
+      if (parsed.summary) parsed.errors.push("Duplicate option: --summary");
+      if (argument !== "--summary") parsed.errors.push("--summary does not accept a value");
+      parsed.summary = true;
+      continue;
+    }
     if (argument === "--compact") {
       if (parsed.compact) parsed.errors.push("Duplicate option: --compact");
       parsed.compact = true;
@@ -84,6 +94,7 @@ function parseArguments(argv: readonly string[]): ParsedArguments {
       else parsed.values[key] = value;
     } else parsed.errors.push(`Unknown option: ${key}`);
   }
+  if (parsed.summary && parsed.operation !== "plan") parsed.errors.push("--summary is supported only for plan");
   return parsed;
 }
 
@@ -112,11 +123,14 @@ export function main(argv: readonly string[] = process.argv.slice(2), engine = n
     streams.stdout.write(`${usage()}\n`);
     return 0;
   }
-  const request = toRequest(parsed);
-  const result = engine.execute(request);
-  streams.stdout.write(`${JSON.stringify(result, null, parsed.compact ? undefined : 2)}\n`);
+  const invalidSummaryArguments = parsed.summary && parsed.errors.length > 0;
+  const request = invalidSummaryArguments ? {} : toRequest(parsed);
+  let result = engine.execute(request);
+  if (invalidSummaryArguments) result = { ...result, diagnostics: parsed.errors.map(message => ({ code: "INVALID_REQUEST", message, severity: "error" })) };
+  const output = parsed.summary ? toPlanSummary(result) : result;
+  streams.stdout.write(`${JSON.stringify(output, null, parsed.compact ? undefined : 2)}\n`);
   for (const item of result.diagnostics) streams.stderr.write(`[${item.code}] ${item.message}${item.path ? ` (${item.path})` : ""}\n`);
-  for (const error of parsed.errors) streams.stderr.write(`[INVALID_REQUEST] ${error}\n`);
+  if (!invalidSummaryArguments) for (const error of parsed.errors) streams.stderr.write(`[INVALID_REQUEST] ${error}\n`);
   if (parsed.errors.length > 0) return 2;
   return result.status === "error" ? 1 : 0;
 }

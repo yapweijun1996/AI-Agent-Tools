@@ -13,12 +13,18 @@ Use this tool after the changed-file set is known and before verification is run
 
 1. Keep one explicit repository `root` for each request.
 2. Call `capabilities` when supported operations or frameworks are unknown.
-3. Call `discover` to inspect framework, test-file, project-file, and command evidence.
-4. Call `plan` with every changed path. Use `--changed` repeatedly or `--changed-stdin` for newline-delimited paths.
+3. With known changed paths, call `plan` directly; it already performs discovery. Use a separate `discover` only when its framework, test-file, project-file or command details answer another question.
+4. Include every changed path in one plan. Use `--changed` repeatedly or `--changed-stdin` for newline-delimited paths. Reuse capability/help facts already inspected in the current task only while the executable, installed source identity and relevant options remain unchanged; refresh them when that identity is unknown or changes. Recompute plans for changed inputs.
 5. Inspect `status`, `data.plan`, every recommendation's `evidence`, `confidence`, `risk`, `diagnostics`, and `truncation`.
    When the selected source CLI's help lists `--compact`, use it to reduce JSON
    whitespace while retaining every field. Published older artifacts may not
    support this source addition; do not infer availability from the version alone.
+   When current help also lists `plan --summary`, that view can serve decisions
+   requiring paths, confidence, scope, risk and limitations. It retains all three
+   recommendation levels but declares omitted evidence bodies and provides only
+   their counts/types. Use full output when locations, details or individual
+   evidence confidence matter; retain partial/empty-result limitations. Summary
+   has its own packaged schema and is available only for `plan`.
 6. Use `explain` for a selected test or command when the reason must be shown separately.
 7. Run commands only in the agent's separate verification phase, subject to user and repository policy.
    Interpret command strings in a POSIX-compatible shell from the request's explicit root. Nested package scripts already carry their npm prefix; preserve it when running the recommendation.

@@ -1,0 +1,428 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yapweijun1996/AI-Agent-Tools/tree/main/packages/test-scope/schemas/summary.schema.json",
+  "title": "Test Scope plan summary CLI view",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "view",
+    "omitted",
+    "status",
+    "data",
+    "diagnostics",
+    "truncation",
+    "stats"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1"
+    },
+    "view": {
+      "const": "summary"
+    },
+    "omitted": {
+      "type": "array",
+      "maxItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "const": "recommendation-evidence"
+      }
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial",
+        "error"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "plan": {
+          "$ref": "#/$defs/plan"
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    },
+    "truncation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "truncated",
+        "reasons"
+      ],
+      "properties": {
+        "truncated": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "enum": ["complete", "partial"] } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "data": { "type": "object", "required": ["plan"], "properties": { "plan": {} } },
+          "omitted": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "evidenceType": {
+      "enum": [
+        "direct-source-test-mapping",
+        "direct-import",
+        "static-module-reachability",
+        "same-feature-convention",
+        "same-package",
+        "package-fallback",
+        "repository-fallback",
+        "external-symbol-evidence",
+        "external-impact-evidence",
+        "project-command-evidence"
+      ]
+    },
+    "test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "confidence",
+        "evidenceCount",
+        "evidenceTypes",
+        "path",
+        "framework"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope": {
+          "enum": [
+            "targeted",
+            "package",
+            "repository"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "confirmed",
+            "strong",
+            "candidate",
+            "unknown"
+          ]
+        },
+        "evidenceCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidenceTypes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidenceType"
+          }
+        },
+        "path": {
+          "type": "string"
+        },
+        "framework": {
+          "enum": [
+            "vitest",
+            "jest",
+            "node",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "confidence",
+        "evidenceCount",
+        "evidenceTypes",
+        "command",
+        "purpose",
+        "source",
+        "executed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope": {
+          "enum": [
+            "targeted",
+            "package",
+            "repository"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "confirmed",
+            "strong",
+            "candidate",
+            "unknown"
+          ]
+        },
+        "evidenceCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidenceTypes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidenceType"
+          }
+        },
+        "command": {
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "test",
+            "typecheck",
+            "build",
+            "lint",
+            "coverage",
+            "verify",
+            "release",
+            "other"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "executed": {
+          "const": false
+        }
+      }
+    },
+    "level": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tests",
+        "commands"
+      ],
+      "properties": {
+        "tests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/test"
+          }
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/command"
+          }
+        }
+      }
+    },
+    "change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "status",
+        "exists",
+        "supported"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "added",
+            "modified",
+            "deleted",
+            "renamed",
+            "unsupported"
+          ]
+        },
+        "oldPath": {
+          "type": "string"
+        },
+        "language": {
+          "enum": [
+            "javascript",
+            "typescript",
+            "jsx",
+            "tsx"
+          ]
+        },
+        "exists": {
+          "type": "boolean"
+        },
+        "supported": {
+          "type": "boolean"
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "signals"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical",
+            "unknown"
+          ]
+        },
+        "signals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "description",
+              "confidence"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "confirmed",
+                  "strong",
+                  "candidate",
+                  "unknown"
+                ]
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "changes",
+        "risk",
+        "minimum",
+        "recommended",
+        "release",
+        "escalation"
+      ],
+      "properties": {
+        "changes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/change"
+          }
+        },
+        "risk": {
+          "$ref": "#/$defs/risk"
+        },
+        "minimum": {
+          "$ref": "#/$defs/level"
+        },
+        "recommended": {
+          "$ref": "#/$defs/level"
+        },
+        "release": {
+          "$ref": "#/$defs/level"
+        },
+        "escalation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "severity"
+      ],
+      "properties": {
+        "code": {
+          "enum": [
+            "INVALID_REQUEST",
+            "PATH_OUTSIDE_ROOT",
+            "TEST_FRAMEWORK_NOT_FOUND",
+            "TEST_NOT_FOUND",
+            "CHANGE_NOT_SUPPORTED",
+            "AMBIGUOUS_TEST_MAPPING",
+            "PROJECT_CONFIG_AMBIGUOUS",
+            "IMPACT_EVIDENCE_UNAVAILABLE",
+            "IMPORT_RESOLUTION_PARTIAL",
+            "RESOURCE_LIMIT",
+            "TIMEOUT",
+            "UNSUPPORTED_OPERATION",
+            "INTERNAL_ERROR"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

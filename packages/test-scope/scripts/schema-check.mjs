@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
-const files = ["request.schema.json", "result.schema.json", "capabilities.schema.json"];
+const files = ["request.schema.json", "result.schema.json", "capabilities.schema.json", "summary.schema.json"];
 for (const file of files) {
   const value = JSON.parse(readFileSync(resolve(root, "schemas", file), "utf8"));
   if (value.$schema !== "https://json-schema.org/draft/2020-12/schema" || typeof value.$id !== "string") throw new Error(`${file} is not a versioned JSON schema`);

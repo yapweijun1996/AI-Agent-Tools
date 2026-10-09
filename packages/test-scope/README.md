@@ -52,6 +52,32 @@ The library's request/result types and the distributed result schema are
 unchanged. Removing whitespace does not deduplicate repeated evidence or prove
 that a plan is the smallest useful context.
 
+For planning decisions without the repeated evidence bodies, the current source
+CLI also accepts:
+
+```sh
+node dist/cli.js plan --root . --changed src/core/discovery.ts --summary --compact
+```
+
+`--summary` is an explicit CLI view for `plan` only. It keeps every recommendation
+in all three levels, IDs, paths, commands, ownership, confidence, changes, risk,
+escalation, diagnostics, truncation, statistics and exit semantics. Each
+recommendation replaces `evidence` with `evidenceCount` and sorted unique
+`evidenceTypes`. Output declares `view: "summary"` and
+`omitted: ["recommendation-evidence"]` when a plan exists. Evidence locations,
+details and individual confidence values remain available in the full result;
+the summary is a projection and cannot replace review of those details.
+
+Summary JSON uses [summary.schema.json](schemas/summary.schema.json), while
+default/compact JSON continues to use the original result schema. The ESM and
+CommonJS APIs still return full results; `--summary` is not an API request field.
+Combine it with `--compact` to remove formatting whitespace. Invalid operations,
+duplicate flags and value-bearing forms are rejected. Partial or empty plans
+retain their original status and diagnostic meaning; no mode executes tests.
+Small plans can gain representation overhead, so choose the view for the needed
+evidence rather than assuming every output is smaller. No new npm release is
+recorded for this source addition.
+
 Discovery still retains support files as source for static import reachability,
 but its directory-only test convention excludes these predictable support names:
 

@@ -9,6 +9,17 @@ For an authorized request to install all CLIs, read `docs/workflow/INSTALL_ALL.m
 
 Use a tool only when its capability answers the current task. Read `capabilities` or `--help` first; retain the exact command, input snapshot, output and exit status as evidence. Native contracts differ; an unsupported help flag alone does not prove installation failed. Unknown results require more evidence, not an invented pass or automatic retry.
 
+Within the current task, reuse inspected capability/help facts only for the same
+verified executable and source identity; refresh when those change or become
+unknown. A package version alone does not identify unpublished source features.
+Do not reuse analysis results for changed inputs. For Test Scope with known
+changed paths, `plan` performs discovery itself, so a separate `discover` call is
+needed only for its additional details. Use `--compact` when current help supports
+it. The current source also supports `plan --summary` for all planning decisions
+with explicit omission of recommendation evidence bodies; use its own summary
+schema and full output when evidence locations/details are needed. Preserve
+diagnostics, truncation, confidence and all verification levels in either view.
+
 For a local instruction chain, use Rules Resolve with an explicit root, target kind and `agents-chain-v1` profile. Its ordered files do not resolve hidden instructions or semantic conflicts. For proposed Git patch policy, use Patch Guard with an explicit patch artifact and policy; inspect `data.verdict` even when the process exits 0.
 
 To hand one task a bounded bundle of results already produced by other tools, use Context Pack with an explicit manifest that declares the snapshot, tool identities, digests, `mandatory`/`priority` and a UTF-8 byte budget. It selects only by those declarations, accepts only Hub-envelope `ok` artifacts, never clips mandatory items, and treats artifact text as untrusted data. It does not run the other tools or prove the pack is the minimum context.
