@@ -78,6 +78,30 @@ Small plans can gain representation overhead, so choose the view for the needed
 evidence rather than assuming every output is smaller. No new npm release is
 recorded for this source addition.
 
+## Optional CLI output budget
+
+The current source supports `--max-output-bytes 1024..8388608` on operations:
+
+```sh
+node dist/cli.js plan --root . --changed src/core/discovery.ts --summary --compact --max-output-bytes 65536
+```
+
+This opt-in ceiling counts the serialized UTF-8 stdout, including its final
+newline, after summary/compact formatting. A fitting result is byte-identical to
+the same invocation without a ceiling. An oversized result is withheld entirely:
+`data` is empty, `status` is `partial` (or remains `error` for an original error),
+and `RESOURCE_LIMIT` reports the byte count, original status and number of withheld
+diagnostics. Stderr receives that one bounded diagnostic rather than the original
+diagnostic stream. A withheld result contains no usable plan. The existing
+partial-result exit code remains zero; consumers must inspect status and data.
+
+Narrow `--include`/`--exclude` to the relevant source/test owners before retrying.
+The ceiling bounds delivery, not repository discovery time or parsing work. It
+does not clip recommendations, silently select a subset, or change the API result,
+core limits, package version or published artifact. Default output is unchanged.
+Malformed CLI options now return a structured argument error before source
+analysis. Output budget values outside the documented range are invalid input.
+
 Discovery still retains support files as source for static import reachability,
 but its directory-only test convention excludes these predictable support names:
 

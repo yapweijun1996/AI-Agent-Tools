@@ -22,6 +22,10 @@ aptree goals --root .
 
 Commands: `context`, `impact`, `changed`, `tests-for`, `evidence`, `goals`, `progress`, `path-to-done`.
 
+The current source accepts standalone `aptree --help` and `aptree -h` as well as
+operation help. Help exits zero without scanning a project. Existing query and
+error envelopes are unchanged; this addition has no new npm release.
+
 All commands emit bounded JSON envelopes with stable node IDs, provenance, freshness metadata, and safe root-relative paths. The MVP scanner is Node/JS/TS first-class with generic text fallback, local JS/TS import edges, static package/test evidence, and a read-only Git HEAD change adapter for `changed`.
 
 CLI failures emit one `aptree.error.v1` JSON document with `error.code` and a bounded message, without a stack trace or input paths. Unknown commands exit `2`; argument, scan and query failures exit `1`. Successful graph/query envelopes remain unchanged. Usage output (no command or a command followed by `--help`) remains text and exits `0`.

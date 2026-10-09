@@ -60,7 +60,7 @@ test('successful CLI graph output and textual usage remain compatible', async (t
   const graph = invoke(root, ['context', '--root', root]);
   assert.equal(graph.status, 0, graph.stderr);
   assert.equal(JSON.parse(graph.stdout).schema, 'aptree.graph.v1');
-  for (const args of [[], ['context', '--help']]) {
+  for (const args of [[], ['--help'], ['-h'], ['context', '--help']]) {
     const help = invoke(root, args);
     assert.equal(help.status, 0, help.stderr);
     assert.match(help.stdout, /^aptree <command>/);

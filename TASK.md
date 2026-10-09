@@ -1,5 +1,20 @@
 # Task status
 
+## CLI usability and Windows patch framing (2026-10-09)
+
+The owner selected improving invocation consistency, output control and Windows
+compatibility after a bounded CLI dry run. Current local source accepts CRLF Git
+metadata while preserving hunk text, adds missing standalone help support in
+Change Impact/Project Tree and fixes Code Slice's standalone help exit, accepts
+an optional CFML Linkage JSON alias, and adds an opt-in Test Scope output ceiling.
+Native tool envelopes, valid default output, package versions, dependencies and
+publication state remain unchanged. Malformed Test Scope options reject before
+source analysis. Full Windows Node 24.21.0 root acceptance passed: 941 Node tests
+passed, 24 explicit platform skips, zero failures, twelve Python tests, eighteen
+dry-run packs and eight packed consumers. Hub/migration, source-update manifest
+and tracked/untracked whitespace checks passed. No commit, push, publication,
+global installation repair or ERP source change is included.
+
 ## Test Scope summary local commit (2026-10-09)
 
 The owner selected A: make a focused local commit of the verified seventeen-file Test Scope summary and planning-guidance scope. Pre-staging readback matches every accepted file, the full root log/gate ledgers, frozen studies, core/API files and cleanup records. Only this commit-stage documentation is added after acceptance; implementation, schemas, measurements and dependencies are unchanged. Git owns the resulting commit identity and worktree state. Earlier sections retain their dated scope and validation limits. No push, publication, new provider session or KB writeback is included.

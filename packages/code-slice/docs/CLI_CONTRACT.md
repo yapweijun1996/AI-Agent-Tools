@@ -177,6 +177,10 @@ safety ceiling because no valid operation budget exists yet.
 `--json`; the combination returns the v1.1 `INVALID_ARGUMENT` envelope so
 stdout remains JSON-clean.
 
+In the current source, explicit standalone `--help` exits zero without loading a
+source file. A missing command without `--help` remains an argument error (exit
+2). This source correction has no new npm release.
+
 ## Exit codes
 
 Current:

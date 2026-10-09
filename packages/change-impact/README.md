@@ -130,6 +130,10 @@ agent-change-impact version` before relying on those paths from the public
 
 ## CLI
 
+The current source supports standalone `--help`/`-h` and operation help, exiting
+zero without opening a repository. Analysis and capabilities retain their native
+JSON contracts. This source addition has no new npm release.
+
 After `npm run build`, the executable can be invoked directly:
 
 ```sh

@@ -29,7 +29,7 @@ export async function runCli(argv, io) {
   try {
     const { command, opts } = parse([...argv]);
     pretty = opts.pretty;
-    if (opts.help || !command) {
+    if (opts.help || !command || command === '--help' || command === '-h') {
       io.stdout.write(`${usage()}\n`);
       return 0;
     }

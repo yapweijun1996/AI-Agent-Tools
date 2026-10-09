@@ -1,5 +1,34 @@
 # Validation and evidence
 
+## CLI usability and Windows patch framing (2026-10-09)
+
+Local Windows Node 24.21.0 focused checks passed: eighteen package standalone-help
+entrypoints, exact LF/CRLF patch policy equivalence, unsafe paths, rename and
+no-newline metadata, source-text CR preservation, native JSON alias equivalence,
+and Test Scope full/summary/compact output budgets. The smallest supported ceiling
+counts UTF-8 and the stdout newline, withholds oversized data and bounds stderr
+without mutating API results. Valid fitting output remains byte-identical; invalid
+options reject before analysis. Replaying the original CRLF repair artifact now
+passes; a 1,024-byte Test Scope ceiling emits an explicit 474-byte partial result
+with no plan, while a 65,536-byte ceiling retains its full 3,552-byte fixture result.
+These are single-fixture delivery measurements, not scan-time or token savings.
+
+Full `npm run verify` exited zero on Windows Node 24.21.0 with
+`NODE_OPTIONS=--throw-deprecation`: 965 Node tests (941 passed, 24 explicit platform
+skips, zero failed/cancelled/todo), twelve Python tests, applicable build/typecheck/
+lint gates, eighteen dry-run packs and eight packed consumers. Test Scope's four
+schema baseline checks and documentation check passed. Final Hub validation passed
+nineteen tools, fifty-four documents and 446 links; migration verification passed
+698 imported files and forty-nine explicit updates with the import baseline intact.
+Tracked/untracked whitespace and final diff checks passed. Logs, replay JSON and
+source/gate identities are retained under `.cache/cli-usability/`.
+
+These are local source changes with no new npm release, successful installer/
+dispatch verification, Node 22 or non-Windows acceptance, or measured token/latency
+benefit. The global Project Profile installation issue from the prior dry run
+remains a separate installation problem. No ERP source or global installation was
+modified.
+
 ## Test Scope summary local commit (2026-10-09)
 
 The owner selected A: commit the verified seventeen-file summary and planning-guidance change locally. All seventeen accepted file hashes, root acceptance/gate logs and ledgers, forty-seven frozen-study/core/API file identities, measurement and cleanup records match the retained final manifest before staging. The original pre-commit manifest is preserved under `.cache/test-scope-summary/run-v7mp_izb/`. Existing full Windows Node 24 acceptance below remains applicable: only TASK/VALIDATION commit-stage prose changes after that readback. Final Hub/migration, staged content and whitespace checks cover this documentation and the exact commit scope. Git owns commit identity; original measured bytes remain in local evidence if Git normalizes text line endings. No push, publication, provider call or KB writeback is included.

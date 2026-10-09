@@ -9,6 +9,12 @@ For an authorized request to install all CLIs, read `docs/workflow/INSTALL_ALL.m
 
 Use a tool only when its capability answers the current task. Read `capabilities` or `--help` first; retain the exact command, input snapshot, output and exit status as evidence. Native contracts differ; an unsupported help flag alone does not prove installation failed. Unknown results require more evidence, not an invented pass or automatic retry.
 
+Current source packages all support standalone `--help`; older published or local
+installations may differ. Help keeps each package's native text/JSON stream, not a
+universal envelope. Capabilities may still require `--root`; read help before
+adding generic flags. CFML Linkage accepts optional `--json` without changing its
+native result. Use the verified executable rather than an assumed global install.
+
 Within the current task, reuse inspected capability/help facts only for the same
 verified executable and source identity; refresh when those change or become
 unknown. A package version alone does not identify unpublished source features.
@@ -19,6 +25,12 @@ it. The current source also supports `plan --summary` for all planning decisions
 with explicit omission of recommendation evidence bodies; use its own summary
 schema and full output when evidence locations/details are needed. Preserve
 diagnostics, truncation, confidence and all verification levels in either view.
+
+For large repositories, explicitly narrow Test Scope with `--include`/`--exclude`.
+The current source additionally accepts `--max-output-bytes 65536` to withhold an
+oversized result. A `RESOURCE_LIMIT` result with empty data contains no plan even
+when the native partial-result exit is zero. The output ceiling does not reduce
+scan work; use the scope filters for that. Never infer a pass from an empty plan.
 
 For a local instruction chain, use Rules Resolve with an explicit root, target kind and `agents-chain-v1` profile. Its ordered files do not resolve hidden instructions or semantic conflicts. For proposed Git patch policy, use Patch Guard with an explicit patch artifact and policy; inspect `data.verdict` even when the process exits 0.
 

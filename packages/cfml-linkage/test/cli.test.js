@@ -50,6 +50,20 @@ test("emits a stable JSON capabilities envelope without stderr noise", () => {
   }
 });
 
+test("explicit JSON alias preserves native output and rejects duplicate or valued flags", () => {
+  const root = temporaryDirectory();
+  try {
+    assert.deepEqual(runCli(["capabilities", "--json"], root), runCli(["capabilities"], root));
+    for (const args of [["capabilities", "--json", "--json"], ["capabilities", "--json=true"]]) {
+      const result = runCli(args, root);
+      assert.equal(result.exitCode, 2);
+      assert.equal(result.stdout.status, "error");
+    }
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("returns machine-readable invalid-input diagnostics and human stderr diagnostics", () => {
   const root = temporaryDirectory();
   try {

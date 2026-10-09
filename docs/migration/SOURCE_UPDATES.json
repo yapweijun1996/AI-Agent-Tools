@@ -112,8 +112,8 @@
     {
       "destination": "packages/project-tree/README.md",
       "imported_sha256": "10be947e62e6443606be507ce28e01509d1843fe683b6a7c200bbaf2b268b602",
-      "current_sha256": "afe3dc5880af94c3540df11830f44b01fa10ebcea70ab039eb399283596a0294",
-      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08)."
+      "current_sha256": "f30712ed0f83787173f2116872b065d18239ac5a6f14b9e1f4c49a93f55820b3",
+      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
     },
     {
       "destination": "packages/project-tree/bin/aptree.js",
@@ -136,8 +136,8 @@
     {
       "destination": "packages/project-tree/src/cli.js",
       "imported_sha256": "d2837fdd39aa5f5fb14b386dda66ad3286be0c3bec98a5f65bf77b4694f0d3e7",
-      "current_sha256": "3b5d38e9804a4981551b0093c3ec6dace5cdda2699237af9c2ad5a0d3da3476d",
-      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08)."
+      "current_sha256": "0571d462bdfa969390b3d8a3b76175af3436ce7e920214486c60edf22581095a",
+      "reason": "Owner-selected installed CLI E2E correction: bounded Project Tree JSON errors and source-install documentation; native package metadata and successful contracts preserved (2026-10-08). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
     },
     {
       "destination": "packages/project-tree/src/git.js",
@@ -178,8 +178,8 @@
     {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
-      "current_sha256": "280914cd630c71f7f1b0e86ff2b4e16112584a3996d41b3f8d9ba43d51e68077",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected explicit planning summary view, compatibility and omission documentation (2026-10-09)."
+      "current_sha256": "7bdc2ddd11d37caaeef78fbee28b6519c01613e943510a5b47de288c7a2368e2",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected explicit planning summary view, compatibility and omission documentation (2026-10-09). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
     },
     {
       "destination": "packages/test-scope/SPEC.md",
@@ -220,8 +220,8 @@
     {
       "destination": "packages/test-scope/src/cli.ts",
       "imported_sha256": "735ea85dd79c266143c5bec0b50a5026418c983953a04009330e51b46e9bc4da",
-      "current_sha256": "2deb3c54bf4833220a34a99223c571685c9faabe2e4521f9a07c92e8af4e7d05",
-      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected opt-in summary rendering and pre-analysis rejection of invalid summary arguments (2026-10-09)."
+      "current_sha256": "9eebab89358ac79751f98acd2ce0677e5aa87d0da367e229620209d4d990d717",
+      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected opt-in summary rendering and pre-analysis rejection of invalid summary arguments (2026-10-09). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
     },
     {
       "destination": "packages/test-scope/src/core/discovery.ts",
@@ -252,6 +252,48 @@
       "imported_sha256": "fd59e54e3975e3d6516187730cd8431d7ae1f4a0e432ffe75b3d79f203432d12",
       "current_sha256": "414c1fb4d181920a58bb30bbebe5c9f1996174e19ee6e8d361cf95eca6a0b9c6",
       "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
+    },
+    {
+      "destination": "packages/cfml-linkage/README.md",
+      "imported_sha256": "e0ca5d54f24079a5314c79ad61e3a24bf1966187082362346de1861315654508",
+      "current_sha256": "eda918c69e0a98732eeacaaf5c0e957ce69e20828d0d62622d24ce3b1dd8d561",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/cli.js",
+      "imported_sha256": "ecf7e4af72319325d86f53f65c32b4ad53f3f8a9b1596a11ea47a62ccdb5986a",
+      "current_sha256": "b0e18289bbdef78eb746717291865f354774991a7ba70b99c517dffd2a6cfbd0",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/cli.test.js",
+      "imported_sha256": "d469b6c1c448eb17757598087975ff6806571b56d7505dc79ec37c7ee09ebf37",
+      "current_sha256": "c454245171f065cc57edcad35ff9c2f2f6c523b7874289c5b60c909ac01a2d97",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/change-impact/README.md",
+      "imported_sha256": "8b068af3a6d8741a37efec68649dde82c691170499cca5ac4121b39ac3f6b960",
+      "current_sha256": "721caa054da4e89b2e45b2d962dab27dc5f0bba59eeae4dd130223ed911ac973",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/change-impact/src/cli.ts",
+      "imported_sha256": "f7368562b44b9614f324d617e5aadb1890568136544d6835b923a1a5d6caa0ea",
+      "current_sha256": "ae5b6d8bea634a73181b77da63ca7cd70a79d206e9ae2af0737f9b1e6de2b4e5",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/code-slice/docs/CLI_CONTRACT.md",
+      "imported_sha256": "78a3b28749c1333c2dd5f7ecd1484b395860a3434b11a1b614bde5882abab645",
+      "current_sha256": "6f9c2b234209df482db3e091dc25e9e57c129ec34105e53bc5c073a109046314",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+    },
+    {
+      "destination": "packages/code-slice/src/cli/index.ts",
+      "imported_sha256": "013c7dc769992d1cf59fcf452e4b22ce364958e9923c2832b3126cdeae6ed735",
+      "current_sha256": "63b6c20cb4f52df6b279645211c126e78a54aeb59c7ecb927fdeb65dfaa4d924",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
     }
   ]
 }

@@ -81,12 +81,13 @@ function envelope(command, status, diagnostics = [], data = null) {
 
 function usageData() {
   return {
-    usage: `${TOOL_NAME} <command> [--config <path>]`,
+    usage: `${TOOL_NAME} <command> [--config <path>] [--json]`,
     commands: COMMANDS,
     implemented_commands: ["capabilities", "analyze", "index", ...QUERY_COMMANDS],
     notes: [
       "analyze and index run the bounded, explicit mixed structural scanner pipeline; query commands run the same pipeline and query its resulting graph.",
       "Source is never executed; diagnostics are emitted on stderr and in the JSON envelope.",
+      "--json is an optional alias for the existing JSON output; it does not change the native envelope.",
     ],
   };
 }
@@ -96,9 +97,15 @@ function parseArguments(argv) {
   let configPath = null;
   let help = false;
   let version = false;
+  let json = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
+    if (argument === "--json") {
+      if (json) throw diagnostic("INVALID_INPUT", "error", "--json cannot be repeated.");
+      json = true;
+      continue;
+    }
     if (argument === "--help" || argument === "-h") {
       help = true;
       continue;

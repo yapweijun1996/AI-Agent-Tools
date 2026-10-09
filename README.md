@@ -59,6 +59,14 @@ has no new npm release.
 
 ## Contracts and releases
 
+The current source includes compatible CLI usability fixes: all eighteen package
+entrypoints accept standalone `--help`, CFML Linkage accepts optional `--json`,
+and Patch Guard handles CRLF metadata without rewriting hunk source text. Test
+Scope adds an opt-in `--max-output-bytes` ceiling that withholds oversized results
+with an explicit diagnostic; narrow discovery scope before retrying. Native
+JSON/exit semantics, package versions and published artifacts remain independent;
+these changes introduce no new npm release.
+
 AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
 
 MIT notices remain with their packages. CFML Linkage remains private with no package license declaration, and CFML Policy Check remains private/UNLICENSED. Root Apache-2.0 does not relicense imported source. Error Lens remains private. No package was published during consolidation.

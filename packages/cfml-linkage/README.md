@@ -60,6 +60,11 @@ The private CLI accepts `capabilities`, `analyze`, `index`, and bounded query co
 
 For example, `node bin/agent-cfml-linkage.js callees --config config.json` analyzes the admitted root and returns a bounded `agent-cfml-linkage-query/v0.1` result in the stable JSON envelope. The `explain` command uses `edge_id` and maps to `explain-edge`; query results are not persisted.
 
+The current source also accepts a single optional `--json` flag on these commands
+or `capabilities`. It is an alias for the existing JSON output, preserving the
+envelope, diagnostics and exit status. Duplicate or value-bearing forms are
+invalid input. No public release is implied.
+
 ### Optional Tree-sitter CFML backend
 
 The private library exports an explicit Tree-sitter backend. It is not selected by default and accepts CFML source extensions only:

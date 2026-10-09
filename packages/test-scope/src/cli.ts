@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { TestScopeEngine } from "./core/engine.js";
 import { toPlanSummary } from "./cli-summary.js";
-import type { Operation } from "./types.js";
+import type { Operation, Result } from "./types.js";
 
 const operations = new Set<Operation>(["capabilities", "discover", "plan", "explain"]);
 
@@ -14,7 +14,7 @@ function usage(): string {
     "Usage: agent-test-scope <operation> --root <path> [options]",
     "",
     "Operations: capabilities, discover, plan, explain",
-    "Common options: --include <glob> --exclude <glob> --limit <1..200> --compact",
+    "Common options: --include <glob> --exclude <glob> --limit <1..200> --compact --max-output-bytes <1024..8388608>",
     "Plan options: --changed <path> (repeatable) --changed-stdin --summary",
     "Explain options: --path <test-path> | --command <command>",
     "",
@@ -22,6 +22,7 @@ function usage(): string {
     "--compact removes JSON whitespace without omitting evidence or changing the result.",
     "--summary keeps all plan recommendations and diagnostics, replacing evidence with counts/types.",
     "Summary output has view: summary and its own summary.schema.json; use full output for evidence details.",
+    "--max-output-bytes withholds oversized results as partial RESOURCE_LIMIT; narrow --include/--exclude and retry.",
     "Commands in results are recommendations only and are never executed by this tool."
   ].join("\n");
 }
@@ -89,12 +90,16 @@ function parseArguments(argv: readonly string[]): ParsedArguments {
     if (key === "--changed") parsed.changed.push(value);
     else if (key === "--include") parsed.include.push(value);
     else if (key === "--exclude") parsed.exclude.push(value);
-    else if (["--root", "--limit", "--path", "--command"].includes(key)) {
+    else if (["--root", "--limit", "--path", "--command", "--max-output-bytes"].includes(key)) {
       if (parsed.values[key] !== undefined) parsed.errors.push(`Duplicate option: ${key}`);
       else parsed.values[key] = value;
     } else parsed.errors.push(`Unknown option: ${key}`);
   }
   if (parsed.summary && parsed.operation !== "plan") parsed.errors.push("--summary is supported only for plan");
+  const outputCap = parsed.values["--max-output-bytes"];
+  if (outputCap !== undefined && (!/^\d+$/.test(outputCap) || !Number.isSafeInteger(Number(outputCap)) || Number(outputCap) < 1024 || Number(outputCap) > 8 * 1024 * 1024)) {
+    parsed.errors.push("--max-output-bytes must be an integer from 1024 to 8388608");
+  }
   return parsed;
 }
 
@@ -123,14 +128,30 @@ export function main(argv: readonly string[] = process.argv.slice(2), engine = n
     streams.stdout.write(`${usage()}\n`);
     return 0;
   }
-  const invalidSummaryArguments = parsed.summary && parsed.errors.length > 0;
-  const request = invalidSummaryArguments ? {} : toRequest(parsed);
+  const invalidArguments = parsed.errors.length > 0;
+  const request = invalidArguments ? {} : toRequest(parsed);
   let result = engine.execute(request);
-  if (invalidSummaryArguments) result = { ...result, diagnostics: parsed.errors.map(message => ({ code: "INVALID_REQUEST", message, severity: "error" })) };
-  const output = parsed.summary ? toPlanSummary(result) : result;
-  streams.stdout.write(`${JSON.stringify(output, null, parsed.compact ? undefined : 2)}\n`);
+  if (invalidArguments) result = { ...result, diagnostics: parsed.errors.map(message => ({ code: "INVALID_REQUEST", message, severity: "error" })) };
+  const serialize = (value: Result): string => `${JSON.stringify(parsed.summary ? toPlanSummary(value) : value, null, parsed.compact ? undefined : 2)}\n`;
+  let output = serialize(result);
+  const cap = Number(parsed.values["--max-output-bytes"]);
+  if (!invalidArguments && Number.isFinite(cap) && Buffer.byteLength(output, "utf8") > cap) {
+    result = {
+      schemaVersion: result.schemaVersion,
+      status: result.status === "error" ? "error" : "partial",
+      data: {},
+      diagnostics: [{
+        code: "RESOURCE_LIMIT", severity: "warning",
+        message: "Serialized CLI output exceeds --max-output-bytes; results withheld. Narrow --include/--exclude or choose --summary --compact before retrying.",
+        details: { maxOutputBytes: cap, actualBytes: Buffer.byteLength(output, "utf8"), originalStatus: result.status, withheldDiagnostics: result.diagnostics.length }
+      }],
+      truncation: { truncated: true, reasons: ["RESOURCE_LIMIT"] },
+      stats: {}
+    };
+    output = serialize(result);
+  }
+  streams.stdout.write(output);
   for (const item of result.diagnostics) streams.stderr.write(`[${item.code}] ${item.message}${item.path ? ` (${item.path})` : ""}\n`);
-  if (!invalidSummaryArguments) for (const error of parsed.errors) streams.stderr.write(`[INVALID_REQUEST] ${error}\n`);
   if (parsed.errors.length > 0) return 2;
   return result.status === "error" ? 1 : 0;
 }

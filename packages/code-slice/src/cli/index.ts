@@ -288,7 +288,7 @@ async function run(): Promise<number> {
       return exitCodeFor(printCliUsageError(new CliUsageError("A command is required"), true));
     }
     process.stdout.write(HELP_TEXT);
-    return parsed.command === undefined ? EXIT_ARGS_INVALID : 0;
+    return parsed.flags.help ? 0 : EXIT_ARGS_INVALID;
   }
 
   try {

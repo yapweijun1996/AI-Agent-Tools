@@ -12,6 +12,9 @@ const incomplete = () => { throw patchError("INCOMPLETE_RESULT", "incomplete"); 
 const resource = () => { throw patchError("RESOURCE_LIMIT", "incomplete"); };
 const modes = new Set(["100644", "100755", "120000"]);
 
+// CRLF framing is accepted for metadata only; hunk source text stays byte-faithful.
+const metadataLine = (line) => line?.endsWith("\r") ? line.slice(0, -1) : line;
+
 export function safeRelativePath(value) {
   if (typeof value !== "string" || !value || value.length > 1024 ||
       /[\\:\u0000-\u001f\u007f]/.test(value) || value.startsWith("/") ||
@@ -99,7 +102,7 @@ export function parseDiff(diffText, limits) {
     if (lines[cursor].startsWith("diff --cc ") || lines[cursor].startsWith("diff --combined ")) unsupported();
     if (!lines[cursor].startsWith("diff --git ")) invalid();
     if (files.length >= limits.max_files) resource();
-    const [oldPath, newPath] = headerPaths(lines[cursor]);
+    const [oldPath, newPath] = headerPaths(metadataLine(lines[cursor]));
     const file = {
       path: newPath,
       previous_path: null,
@@ -127,7 +130,7 @@ export function parseDiff(diffText, limits) {
       metadata.set(key, value);
     };
     while (cursor < lines.length && !lines[cursor].startsWith("diff --git ")) {
-      const line = lines[cursor];
+      const line = metadataLine(lines[cursor]);
       if (line.startsWith("diff --cc ") || line.startsWith("diff --combined ")) unsupported();
       if (line.startsWith("@@ ")) {
         if (!hadMarkers || binary) invalid();
@@ -158,7 +161,7 @@ export function parseDiff(diffText, limits) {
         };
         while (oldConsumed < oldCount || newConsumed < newCount) {
           const bodyLine = lines[cursor];
-          if (bodyLine === "\\ No newline at end of file") { noNewline(); continue; }
+          if (metadataLine(bodyLine) === "\\ No newline at end of file") { noNewline(); continue; }
           if (bodyLine === undefined || bodyLine.startsWith("diff --git ") || bodyLine.startsWith("@@ ")) incomplete();
           if (![" ", "+", "-"].includes(bodyLine[0])) invalid();
           const type = bodyLine[0];
@@ -181,7 +184,7 @@ export function parseDiff(diffText, limits) {
           lastType = type;
           cursor += 1;
         }
-        if (lines[cursor] === "\\ No newline at end of file") noNewline();
+        if (metadataLine(lines[cursor]) === "\\ No newline at end of file") noNewline();
         previousOldEnd = oldIndex + oldCount;
         previousNewEnd = newIndex + newCount;
         lineDelta += newCount - oldCount;
@@ -197,7 +200,7 @@ export function parseDiff(diffText, limits) {
         if (hadMarkers) invalid();
         oldMarker = markerPath(line, "--- ", "a");
         if (lines[cursor + 1] === undefined) incomplete();
-        newMarker = markerPath(lines[cursor + 1] ?? "", "+++ ", "b");
+        newMarker = markerPath(metadataLine(lines[cursor + 1]) ?? "", "+++ ", "b");
         hadMarkers = true;
         cursor += 2;
         continue;

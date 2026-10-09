@@ -11,6 +11,21 @@ interface ParsedArgs {
 }
 
 export function main(argv: readonly string[] = process.argv.slice(2)): number {
+  if ((argv.length === 1 && ["--help", "-h"].includes(argv[0] ?? "")) ||
+      (argv.length === 2 && ["capabilities", "file", "symbol", "changed"].includes(argv[0] ?? "") && ["--help", "-h"].includes(argv[1] ?? ""))) {
+    process.stdout.write([
+      "Usage: agent-impact <capabilities|file|symbol|changed> [options]",
+      "  agent-impact file <file> --root <directory> [--project tsconfig.json] --json",
+      "  agent-impact symbol <file> <symbol> --root <directory> [--project tsconfig.json] --json",
+      "  agent-impact changed --root <directory> --base <revision> [--head <revision> | --worktree] --json",
+      "  agent-impact capabilities --json",
+      "Limits: --depth --max-nodes --max-edges --max-paths --max-output-bytes --max-files --max-file-bytes --max-total-file-bytes --max-diagnostics",
+      "Read-only JavaScript/TypeScript/TSX evidence; analysis requires a Git repository and a supported project configuration.",
+      "JSON results retain native ok/error and warning semantics; no source execution or network access.",
+      ""
+    ].join("\n"));
+    return 0;
+  }
   let result: ImpactResult;
   let json = false;
   let maxOutputBytes = 1024 * 1024;

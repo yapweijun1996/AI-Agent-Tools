@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { capabilities, checkPatch, encodeResult, exitCode } from "../src/index.js";
+import { parseDiff } from "../src/diff.js";
 
 const policy = (extra = {}) => ({ schema_version: "1.0.0", allowed_paths: ["*"], ...extra });
 const lines = (values, prefix) => values.map((value) => `${prefix}${value}`).join("\n");
@@ -75,6 +76,26 @@ test("text modification reports counts and one-based added line locations", () =
   assert.equal(data.findings[0].path, "src/a.js");
   assert.equal(data.findings[0].line, 1);
   assert.equal(typeof data.findings[0].diff_line, "number");
+});
+
+test("CRLF metadata produces the same policy findings without normalizing source content", () => {
+  const diff = patch("src/a.js", ["old"], ["TODO"]);
+  const selected = policy({ content_rules: [{ id: "TODO", needle: "TODO", severity: "warning" }] });
+  assert.deepEqual(checkPatch(diff.replaceAll("\n", "\r\n"), selected), checkPatch(diff, selected));
+  // A native LF-framed Git diff can carry CR in actual source lines.
+  const content = patch("src/a.js", ["old\r"], ["new\r"]);
+  assert.equal(parseDiff(content, capabilities().meta.limits)[0].addedContent[0].text, "new\r");
+  const findings = ok(checkPatch(content, policy({ content_rules: [{ id: "SOURCE_CR", needle: "new", severity: "error" }] })), "violations");
+  assert.equal(findings.findings[0].rule_id, "SOURCE_CR");
+});
+
+test("CRLF metadata retains path rejection, rename modes and no-newline markers", () => {
+  failed(checkPatch(patch("../escape.js").replaceAll("\n", "\r\n"), policy()), 4, "UNSAFE_PATH");
+  failed(checkPatch(patch("src/a\rb.js").replaceAll("\n", "\r\n"), policy()), 4, "UNSAFE_PATH");
+  const rename = "diff --git a/src/old.js b/src/new.js\nsimilarity index 100%\nrename from src/old.js\nrename to src/new.js\n";
+  assert.deepEqual(checkPatch(rename.replaceAll("\n", "\r\n"), policy({ allow_renames: true })), checkPatch(rename, policy({ allow_renames: true })));
+  const noNewline = "diff --git a/src/a.js b/src/a.js\n--- a/src/a.js\n+++ b/src/a.js\n@@ -1 +1 @@\n-old\n\\ No newline at end of file\n+new\n\\ No newline at end of file\n";
+  assert.deepEqual(checkPatch(noNewline.replaceAll("\n", "\r\n"), policy()), checkPatch(noNewline, policy()));
 });
 
 test("literal scope selectors distinguish exact files from directory prefixes", () => {

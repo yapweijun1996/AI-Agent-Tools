@@ -39,6 +39,11 @@ guarantee against arbitrary concurrent hostile filesystem mutation.
 the tool does not certify Git state or compare the artifact with the worktree.
 `untracked` accepts added-file patches only. `snapshot` is the default.
 
+The current source accepts LF or CRLF framing on Git metadata headers and
+no-newline markers. Only those structural lines lose a final framing CR; added,
+deleted and context source lines retain their original CR characters. This does
+not normalize the proposed source change or weaken relative-path checks.
+
 ## Policy
 
 The policy [schema](schema/policy.schema.json) and [example](examples/policy.json)
