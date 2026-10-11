@@ -1,5 +1,117 @@
 # Validation and evidence
 
+## Codebase bug repairs (2026-10-11)
+
+The owner selected all fifteen findings in the [codebase bug review](docs/CODEBASE_BUG_REVIEW.md)
+for repair from source baseline `f7a94a59bf9c9b6353901e19433a6e54fe38c36d`.
+The report's repair map links each correction to native regression evidence.
+This acceptance concerns the local uncommitted worktree, rather than that
+unchanged baseline commit or a published artifact.
+
+Focused regression runs use macOS Node `24.21.0`. Before implementation, fourteen
+cases across the initial redaction/input/graph, discovery/project and AIT groups
+failed (seven, four and three respectively); eight existing-pass controls in the
+first group were retained. The original audit independently reproduced CFML
+output/exit and Code Slice path failures. After implementation, the focused
+suites passed. Eighteen final input/lexer/AIT controls also passed, including a
+real regular-file-to-FIFO substitution, template interpolation/regex controls
+and malformed installation records. Fixtures contain synthetic input only and
+are removed by their test cleanup.
+
+CFML Check's output contract now requires at least 512 bytes. Actual CLI rendering
+and its final newline count toward the limit; an oversized pretty result becomes
+incomplete/exit 3 and its failure envelope may be compacted. The minimum is
+checked with all remaining limits at their hard caps and recorded in README,
+SPEC and schema. Targeted Test Scope commands preserve package cwd/config/runner
+resolution with POSIX shell quoting; the tests use inert local runners with npm
+offline. Change Impact uses the pinned compiler's matcher against snapshot-only
+directory entries and checks ordinary compiler membership, revision inventory
+and explicitly imported excluded files. Project Tree's module adapter remains
+lexical, rather than a complete JS/TS grammar or runtime dependency analysis.
+
+Full `npm run verify` exited zero on macOS Node `24.21.0`: 999 Node tests,
+998 passed and one Windows-only copied-runtime test skipped, with no failures,
+cancellations or todo; twelve Python tests passed. Fifteen builds, sixteen
+typechecks, seven lint checks, eighteen dry-run package checks and eight configured
+packed-consumer checks passed. Unavailable package scripts remain explicitly
+not applicable. The new regressions add thirty-one Node cases to the original
+968-test baseline; passing the old suite alone was not used as repair evidence.
+
+After the evidence update, standalone `python3 scripts/validate_hub.py` passed
+nineteen tools, fifty-five controlled documents and 501 local/link checks.
+`python3 scripts/verify_migration.py` verified all 698 imported files across ten
+source repositories with 57 explicit source updates. Tracked `git diff --check`
+and explicit whitespace checks for all eight untracked files passed. Final diff
+review retained all earlier TASK/VALIDATION sections and the original baseline
+findings. Local verification logs, gate summaries and a SHA-256 inventory of the
+accepted changed files are retained under `.cache/codebase-fixes/`; deliberate
+regression tests remain in their owning test folders.
+
+Package identities/versions, native module systems, compilers, dependencies,
+licenses/private flags and registry/release status are preserved. Historical
+import hashes remain unchanged; explicit source updates bind repaired imported
+files to their current hashes. Repair verification preceded Git integration;
+no push, publication, hosted run or installation update is included. Node 22,
+Linux/Windows execution, live CFML
+engines, optional native parsers and published artifacts remain unverified for
+these repairs. Filesystem admission checks do not imply an atomic snapshot or
+operating-system confinement. Historical external claims were not re-audited;
+the repairs introduce no external URL.
+
+The owner subsequently selected a local commit of the accepted repairs. Before
+integration, SHA-256 readback matched all 37 accepted files, the changed-file set
+matched the receipt exactly, and HEAD remained the recorded baseline. Only the
+TASK/VALIDATION integration notes changed afterward; source, regressions and
+package contracts remain byte-identical to full native acceptance. Unchanged
+native checks were not repeated. Hub validation, source coverage and tracked/
+untracked whitespace checks passed again before staging. The intended 37-file
+scope is staged explicitly and reviewed before committing; Git history records
+the resulting local commit identity. No remote operation is included.
+
+## Codebase bug review (2026-10-11)
+
+Reviewed local source baseline `f7a94a59bf9c9b6353901e19433a6e54fe38c36d`
+with a clean initial worktree. Read repository/package contracts, CLI/API entry
+points and selected core implementations across AIT and eighteen packages. The
+[bug review](docs/CODEBASE_BUG_REVIEW.md) records fifteen reproduced defects,
+three P1 and twelve P2, with source locations and trigger conditions. Source,
+lockfiles, registry identities, versions and historical evidence were preserved.
+Only review documentation was changed.
+
+Verification uses macOS Node `24.21.0`, rather than the shell's unsupported Node
+`23.10.0`. The first root verification attempt stopped because Test Evidence's
+local compiler dependency was missing. A package-local `npm ci --ignore-scripts
+--no-audit --no-fund` restored its lockfile dependencies without changing tracked
+files. The subsequent native baseline passed: 968 Node tests (967 passed, one
+Windows-only copied-runtime test skipped, zero failures/cancellations/todo), twelve
+Python tests, fifteen applicable builds, sixteen typechecks, seven lint checks,
+eighteen dry-run packs, and eight packed consumer checks. Missing package scripts
+remain explicitly not applicable, rather than counted as passing checks.
+
+After saving the review documentation, the final `npm run verify` exited zero
+with the same totals. Standalone `python3 scripts/validate_hub.py` passed nineteen
+tools, fifty-five controlled documents and 481 local/link checks. Tracked
+`git diff --check` and explicit untracked-report whitespace checks passed.
+Readback confirmed all earlier TASK/VALIDATION sections were preserved exactly.
+
+Synthetic disposable probes independently reproduced every reported defect.
+They used local built code, fake credentials, a 500 ms bound on the writerless
+FIFO child, isolated AIT state, and an inert child-package runner with npm offline.
+The runner failed from the generated root command and passed from its owning
+package. Fixtures were deleted. No target application, production service or
+real credential was used. Local verification logs and probe observations are
+retained under `.cache/codebase-review/`; the report contains the durable
+reproduction conditions.
+
+This is selected-path static review plus native tests and targeted execution,
+not exhaustive proof of bug absence. Node 22, Windows/Linux reproductions, optional
+native parsers, live Lucee/browser/database behavior and published artifacts were
+not accepted in this review. One GitHub documentation link verifies only the
+documented token prefix, not package behavior. No external release claim changed.
+At review completion, all fifteen findings were pending in TASK; the original
+review did not repair implementations. Subsequent owner-selected repairs and
+their acceptance are recorded above.
+
 ## CFScript tag-prefix false-positive repair (2026-10-09)
 
 Three new API/CLI regressions reproduce the false tag-prefix diagnosis before

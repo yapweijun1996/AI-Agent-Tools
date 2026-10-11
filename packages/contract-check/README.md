@@ -20,4 +20,11 @@ Results have stable JSON pointers, before/after constraints, status compatible/p
 
 ESM API `compareContracts(before,after,{samples?}?)`, `selectPointer(value,pointer?)`, `capabilities()`, `encodeResult(result)`, `exitCode(result)`. Result [schema](schema/result.schema.json), declarations `types/index.d.ts`; runtime validation is authoritative. Run `npm test`, `npm run build`, `npm run typecheck`, `npm run smoke:pack`.
 
+Explicit JSON paths must resolve to regular files. The reader checks type and
+size before opening and validates the opened descriptor. POSIX opens are
+nonblocking so writerless FIFOs and observed file-to-FIFO substitutions fail as
+invalid input. UTF-8 decoding is fatal; invalid bytes are never repaired into
+replacement characters before contract comparison. These checks do not provide
+an atomic filesystem snapshot or OS confinement.
+
 Removing an explicit property makes its values subject to the resulting `additionalProperties` constraint. When that constraint is a schema, the comparator checks the removed property's schema against it, including nested constraints. Unproved pattern changes and unsupported semantics retain an incomplete result instead of a compatibility claim.

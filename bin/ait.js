@@ -343,8 +343,22 @@ function loadState(home) {
     return { schema_version: INSTALL_STATE_VERSION, installed: [] };
   }
   const state = readJson(statePath, 'installation state');
-  if (state.schema_version !== INSTALL_STATE_VERSION || !Array.isArray(state.installed)) {
+  if (!state || typeof state !== 'object' || state.schema_version !== INSTALL_STATE_VERSION || !Array.isArray(state.installed)) {
     throw new AitError('Installation state has an unsupported schema', 2, 'INVALID_STATE');
+  }
+  const ids = new Set();
+  for (const entry of state.installed) {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)
+      || !nonEmpty(entry.id) || !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(entry.id) || ids.has(entry.id)
+      || !isSafePackageName(entry.package) || !nonEmpty(entry.version)
+      || !nonEmpty(entry.root) || !path.isAbsolute(entry.root)
+      || !entry.bin || typeof entry.bin !== 'object' || Array.isArray(entry.bin)
+      || !nonEmpty(entry.bin.name) || !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(entry.bin.name)
+      || !nonEmpty(entry.bin.path) || path.isAbsolute(entry.bin.path) || path.win32.isAbsolute(entry.bin.path)
+      || entry.bin.path.replaceAll('\\', '/').split('/').includes('..')) {
+      throw new AitError('Installation state contains an invalid or duplicate record', 2, 'INVALID_STATE');
+    }
+    ids.add(entry.id);
   }
   return state;
 }
@@ -548,12 +562,36 @@ function doctor(options) {
   const state = loadState(home);
   const issues = [];
   for (const entry of state.installed) {
-    if (!registry.tools.some((tool) => tool.id === entry.id)) {
+    const tool = registry.tools.find((candidate) => candidate.id === entry.id);
+    if (!tool) {
       issues.push({ id: entry.id, code: 'NOT_IN_REGISTRY', message: 'Installed tool is absent from the selected registry' });
       continue;
     }
-    if (!fs.existsSync(path.join(entry.root, 'package.json'))) {
-      issues.push({ id: entry.id, code: 'INSTALLATION_MISSING', message: 'Installation root is missing' });
+    try {
+      if (!tool.npm || entry.package !== tool.npm.name || entry.version !== tool.release_version) {
+        throw new AitError('Installed identity does not match the selected registry', 4, 'PACKAGE_IDENTITY_MISMATCH');
+      }
+      const realRoot = fs.realpathSync(entry.root);
+      assertWithin(fs.realpathSync(home), realRoot);
+      const realPackage = fs.realpathSync(packageRoot(realRoot, entry.package));
+      assertWithin(realRoot, realPackage);
+      const manifestPath = fs.realpathSync(path.join(realPackage, 'package.json'));
+      assertWithin(realPackage, manifestPath);
+      const manifest = readJson(manifestPath, 'installed package manifest');
+      if (manifest.name !== entry.package || manifest.version !== entry.version) {
+        throw new AitError('Installed manifest identity does not match its record', 4, 'PACKAGE_IDENTITY_MISMATCH');
+      }
+      const bin = packageBin(manifest, entry.package);
+      if (bin.name !== entry.bin.name || path.normalize(bin.path) !== path.normalize(entry.bin.path)) {
+        throw new AitError('Installed executable does not match its record', 4, 'BIN_MISMATCH');
+      }
+      const executable = path.resolve(realPackage, bin.path);
+      assertWithin(realPackage, executable);
+      const realExecutable = fs.realpathSync(executable);
+      assertWithin(realPackage, realExecutable);
+      if (!fs.statSync(realExecutable).isFile()) throw new AitError('Installed executable is not a regular file', 4, 'BIN_MISSING');
+    } catch (error) {
+      issues.push({ id: entry.id, code: error instanceof AitError ? error.code : 'INSTALLATION_MISSING', message: 'Installed package identity, path or executable validation failed' });
     }
   }
   return result({ registry: registry.tools.length, installed: state.installed.length, issues }, issues.length ? 'incomplete' : 'ok', issues.length === 0, { issue_count: issues.length });
@@ -561,7 +599,7 @@ function doctor(options) {
 
 function assertWithin(root, candidate) {
   const relative = path.relative(path.resolve(root), path.resolve(candidate));
-  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+  if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
     throw new AitError('Installation path escapes AIT home', 4, 'PATH_ESCAPE');
   }
 }
@@ -670,7 +708,8 @@ function textOutput(value) {
 }
 
 function main(argv = process.argv.slice(2)) {
-  let options;
+  const separator = argv.indexOf('--');
+  let options = { json: argv.slice(0, separator < 0 ? argv.length : separator).includes('--json') };
   try {
     options = parseArgs(argv);
     if (options.command === 'help') {

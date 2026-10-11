@@ -1,5 +1,31 @@
 # Task status
 
+## Codebase bug review and repairs (2026-10-11)
+
+The requested source review and Markdown report are complete. The bounded audit
+of AIT and eighteen packages confirms fifteen defects at source baseline
+`f7a94a59bf9c9b6353901e19433a6e54fe38c36d`. The
+[bug review](docs/CODEBASE_BUG_REVIEW.md) owns findings, locations, reproduction
+conditions, impact, and the repair/regression map. Historical reviews are preserved.
+The owner selected all fifteen findings for local source correction.
+[Validation](VALIDATION.md#codebase-bug-repairs-2026-10-11) owns current checks and
+coverage limits. Package identities, versions, dependencies and release status
+are unchanged.
+
+| Follow-up | Status |
+| --- | --- |
+| BUG-001–003: credential redaction, CFML incomplete exit code, Test Scope include pruning | Resolved locally; focused regressions and full native/Hub acceptance pass |
+| BUG-004–015: input handling, project/package scope, output bounds, path guards, graph/Git evidence, AIT state/JSON errors | Resolved locally; focused regressions and full native/Hub acceptance pass |
+
+All fifteen requested source corrections and their regression assets are complete.
+Full verification passed 998 of 999 Node tests with one Windows-only skip, twelve
+Python tests and the remaining configured gates. The owner subsequently selected
+local Git integration of the accepted scope. Before integration, readback matched
+all 37 accepted-file hashes and the unchanged baseline HEAD; only this integration
+note changes the accepted documentation. Git history records the resulting local
+commit. No push, installation or release is included. The review baseline remains
+historical evidence; repair acceptance applies to the verified source snapshot.
+
 ## CFScript tag-prefix false-positive repair (2026-10-09)
 
 The owner selected repairing the independently reproduced CFML Check lexer

@@ -224,6 +224,12 @@ Commands are data. The core engine MUST NOT execute them.
 
 Command strings use POSIX shell quoting and MUST be interpreted from the request's explicit `root`. Package script recommendations MUST include an explicit npm prefix for nested packages. Script names and package directories MUST be quoted when required so each remains one shell argument; discovery and planning MUST retain the same owning package.
 
+Targeted framework commands for nested packages MUST preserve the owning runner
+and configuration context through a subshell working directory and consistent
+package-relative test paths. Release-level plans MUST retain discovered root
+verification gates for child-only changes; package-level filtering does not
+remove repository-level checks.
+
 ## 12. Result Envelope
 
 Canonical result:

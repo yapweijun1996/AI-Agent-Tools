@@ -51,6 +51,14 @@ accepts a registered tool with a confirmed package identity and recorded release
 version. Planned, Deprecated, and unknown-package entries fail closed; Experimental
 entries require `--allow-experimental`.
 
+Installation-state records require unique registered-style IDs, package/version
+identity, an absolute installation root, and safe executable name/path fields.
+Malformed records return `INVALID_STATE`. Doctor also checks registry/manifest
+identity, the declared executable and realpath containment without executing the
+tool; stale or inconsistent installations return issues and incomplete status.
+With `--json` before the dispatch `--` boundary, argument errors emit a structured
+AIT error envelope as well as errors raised after parsing.
+
 npm installation is explicit and pinned to the registry's recorded version. AIT
 uses npm's `--ignore-scripts`, `--no-audit`, `--no-fund`, `--no-package-lock`, and
 no-shell invocation. `--from-path` supports controlled local fixtures and must still

@@ -26,6 +26,29 @@ function run(source: string, extension = ".cfm") {
   return result;
 }
 
+test("output withholding returns incomplete exit 3 and rejects impossible budgets", () => {
+  withSource("<cfset n = 1>", ".cfm", (root, file) => {
+    const limited = checkFile({ root, file, limits: { max_output_bytes: 512 } });
+    assert.equal(limited.envelope.status, "incomplete");
+    assert.equal(limited.exit_code, 3);
+    assert.ok(Buffer.byteLength(JSON.stringify(limited.envelope)) + 1 <= 512);
+    const worst = checkFile({ root, file, limits: { max_output_bytes: 512, max_source_bytes: 16 * 1024 * 1024, max_nesting: 1024, max_findings: 1000, time_limit_ms: 30000 } });
+    assert.equal(worst.exit_code, 3);
+    assert.ok(Buffer.byteLength(JSON.stringify(worst.envelope)) + 1 <= 512);
+    const invalid = checkFile({ root, file, limits: { max_output_bytes: 1 } });
+    assert.equal(invalid.exit_code, 2);
+    assert.equal(invalid.envelope.errors[0]?.code, "INVALID_LIMIT");
+  });
+});
+
+test("dot-prefixed in-root filenames are not parent traversal", () => {
+  withSource("<cfset n = 1>", ".cfm", (root) => {
+    const file = path.join(root, "..config.cfm");
+    writeFileSync(file, "<cfset n = 1>");
+    assert.equal(checkFile({ root, file }).exit_code, 0);
+  });
+});
+
 test("CF-01 reports an extra closing tag without inventing an opener", () => {
   const result = run("<cfif ok>value</cfif></cfif>");
   assert.equal(result.exit_code, 0);

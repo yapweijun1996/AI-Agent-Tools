@@ -4,6 +4,8 @@ import {
   fstatSync,
   readSync,
   realpathSync,
+  statSync,
+  constants,
 } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -37,6 +39,7 @@ export function invalid(message = "Invalid bounded JSON Schema input") {
 export function readJson(file) {
   let fd;
   try {
+    const resolved = realpathSync(file);
     if (
       [
         ".env",
@@ -44,10 +47,13 @@ export function readJson(file) {
         "auth.json",
         "credentials.json",
         "tokens.json",
-      ].includes(path.basename(realpathSync(file)).toLowerCase())
+      ].includes(path.basename(resolved).toLowerCase())
     )
       throw invalid("Credential files are not inputs");
-    fd = openSync(file, "r");
+    const initial = statSync(resolved);
+    if (!initial.isFile() || initial.size > LIMITS.inputBytes) throw invalid();
+    // Nonblocking open also rejects a regular-file-to-FIFO substitution safely.
+    fd = openSync(resolved, constants.O_RDONLY | (process.platform === "win32" ? 0 : constants.O_NONBLOCK));
     const st = fstatSync(fd);
     if (!st.isFile() || st.size > LIMITS.inputBytes) throw invalid();
     const buffer = Buffer.alloc(LIMITS.inputBytes + 1);
@@ -58,7 +64,7 @@ export function readJson(file) {
       size += n;
     }
     if (size > LIMITS.inputBytes) throw invalid();
-    return JSON.parse(buffer.subarray(0, size).toString("utf8"));
+    return JSON.parse(new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(buffer.subarray(0, size)));
   } catch {
     throw invalid();
   } finally {

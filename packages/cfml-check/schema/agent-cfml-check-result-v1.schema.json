@@ -118,7 +118,7 @@
         "max_source_bytes": { "type": "integer", "minimum": 1 },
         "max_nesting": { "type": "integer", "minimum": 1 },
         "max_findings": { "type": "integer", "minimum": 1 },
-        "max_output_bytes": { "type": "integer", "minimum": 1 },
+        "max_output_bytes": { "type": "integer", "minimum": 512 },
         "time_limit_ms": { "type": "integer", "minimum": 1 }
       },
       "additionalProperties": false

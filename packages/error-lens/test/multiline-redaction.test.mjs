@@ -11,6 +11,31 @@ const request = (message) => ({
   artifacts: [{ id: "stderr", stream: "stderr", content: JSON.stringify({ diagnostics: [{ message, severity: "error" }] }) }],
 });
 
+test("GitHub credential prefixes are redacted from output and identities", () => {
+  for (const prefix of ["github_pat_", "ghp_", "gho_", "ghu_", "ghs_", "ghr_"]) {
+    const results = ["A", "B"].map(tail => parse(request("unexpected " + prefix + "x".repeat(48) + tail)));
+    for (const result of results) {
+      assert.equal(result.data.diagnostics[0].message, "unexpected [REDACTED]");
+      assert.equal(JSON.stringify(result).includes(prefix), false);
+    }
+    assert.equal(results[0].data.diagnostics[0].id, results[1].data.diagnostics[0].id);
+  }
+});
+
+test("quoted Authorization values redact multiline and truncated tails", () => {
+  for (const quote of ["\"", "'"]) {
+    for (const newline of ["\n", "\r\n"]) {
+      for (const closed of [true, false]) {
+        const message = "Authorization: " + quote + "Bearer SYNTHETIC_FIRST" + newline + "SYNTHETIC_TAIL" + (closed ? quote + " inputTokens=42" : "\\");
+        const result = parse(request(message));
+        assert.equal(result.data.diagnostics[0].message, "Authorization: " + quote + "Bearer [REDACTED]" + quote + (closed ? " inputTokens=42" : ""));
+        assert.equal(JSON.stringify(result).includes("SYNTHETIC_"), false);
+        assert.equal(redactText(result.data.diagnostics[0].message), result.data.diagnostics[0].message);
+      }
+    }
+  }
+});
+
 for (const newline of ["\n", "\r\n"]) {
   for (const quote of ["\"", "'"]) {
     test("quoted credentials redact every line (" + JSON.stringify(newline) + ", " + quote + ")", () => {
