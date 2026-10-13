@@ -1,5 +1,219 @@
 # Validation and evidence
 
+## Operational and maintenance source verification (2026-10-13)
+
+For the owner's complete local source commit, current acceptance covers the
+earlier CFML and validation-boundary changes together with the operational and
+maintenance changes that had paused during the ContentAdmin report task. Context
+Pack/Patch Guard compare observable pre-open and descriptor metadata and final
+identity; same-file mutation returns `INPUT_CHANGED` rather than accepted bytes.
+AIT doctor resolves the actual rooted tool manifest and executable, dispatch
+retains bounded UTF-8 output and observed native exit on `EXECUTION_OUTPUT_LIMIT`,
+and install serializes both same-tool operations and installed-state merging.
+No stale lock is removed automatically. These checks do not authenticate files
+or prove absence of unobservable filesystem races.
+
+Project Profile accepts only the explicit root
+`agentProjectProfile.independentPackages` declaration, emits optional independent
+`packageInventory` evidence and member-local commands/runtimes/managers, and does
+not turn it into an npm workspace. Root verify prepares builds/types/lint once,
+then uses six package-local `test:prepared` scripts. Independent `npm test`
+retains full preparation. Direct Windows orchestration locates npm's JavaScript
+CLI even when Node is copied outside npm's installation.
+
+`npm run verify` passed on Windows Node 24.21.0 with
+`NODE_OPTIONS=--throw-deprecation`: 1,126 Node tests in 19 suite summaries, 1,099
+passed, 27 explicit platform/environment skips, zero failures/cancellations/todos;
+12 Python tests; 18 native dry-run packs and eight packed-consumer gates. Root
+AIT reported 78 passed/2 skipped. All applicable build/typecheck/lint stages
+passed. npm reported its existing `.gitignore` packaging fallback warning.
+Migration coverage verified 698 imported files and 90 explicit source updates.
+
+Actual source CLI smoke proved healthy doctor exit 0, consumer-manifest-only
+missing tool exit 3 with `INSTALLATION_MISSING`, and a native producer exceeding
+1 MiB returning wrapper exit 1 with retained bounded bytes,
+`EXECUTION_OUTPUT_LIMIT`, `output_truncated: true` and observed `native_exit: null`.
+The real rebuilt Profile CLI scanned this repository: exit 0, `complete`,
+`project.kind: monorepo`, `workspace.enabled: false`, and 18 independent members
+without truncation. Its 14 advisory entries are `info` for member scripts not
+declared; there are no warning/error-severity diagnostics.
+
+Existing bounded static impact evidence remains partial for depth limits,
+unresolved built-ins and out-of-selection modules, not whole-repository
+completeness. Earlier reader and direct-npm smokes remain under
+`.cache/option-c-validation-20261013/`. Current command logs, native output,
+inventory, acceptance summary and seven new-file whitespace checks are retained
+under `.cache/all-files-commit-20261013/`; temporary native producers were removed.
+The checked-in source contracts and immutable import-update hashes agree.
+
+This is Windows source/packed-consumer acceptance, not new Linux/macOS CI,
+publication, a replacement installed snapshot or ContentAdmin business/runtime
+proof. The owner authorized a local commit of all current repository changes;
+no remote push, package version/dependency/license/lifecycle change, or
+installation/cutover is included in this step.
+
+## Validation-boundary fixes (2026-10-13)
+
+The owner selected only option A from the read-only codebase review. Earlier
+Windows probes established the failing baseline: ambiguous Contract Check JSON
+was marked compatible, malformed Code Slice native fields passed AIT's consumer
+validator, and malformed Hub advisory metadata entered successful Context Packs.
+Those observed failures were not rerun merely to reconfirm them.
+
+Current source uses fatal UTF-8 decoding and iterative duplicate-key admission
+before Contract Check pointer selection. Decoded key comparison catches escaped
+duplicates without imposing a new raw-document depth ceiling; the existing
+selected-schema depth and byte limits remain in force. AIT validates operation,
+result and warning shapes in production, and its profile tests no longer contain
+a second validator. Context Pack checks diagnostic objects and finite numeric
+caps without interpreting artifact data or rejecting compatible-major additions.
+Package versions, dependencies, result schemas and native exit mappings are
+unchanged.
+
+Twenty-five source CLI scenarios passed: seven actual AIT dispatches against
+temporary native producers, ten Context Pack mandatory/optional cases, and eight
+Contract Check cases. They cover malformed input rejection, normal success,
+pagination, capabilities, native errors, valid pointer selection, independent
+object keys, and comparison exits 0/1/2/3. AIT protocol rejection remains wrapper
+exit 4 with native exit 0 and the original payload/streams preserved. An initial
+smoke-harness expectation of wrapper exit 1 was corrected to the existing exit-4
+contract; no product behavior was changed to fit the harness.
+
+Full `npm run verify` passed on Windows Node 24.21.0 with
+`NODE_OPTIONS=--throw-deprecation`: 1,073 Node tests, 1,048 passed, 25 explicit
+platform/environment skips, zero failures/cancellations/todos; 12 Python tests;
+18 native dry-run packs and eight packed-consumer gates. The affected suites
+reported AIT 65 passed/2 skipped, Contract Check 88 passed, and Context Pack
+44 passed/2 skipped. Build, applicable typechecks and lint also passed. npm
+reported its existing `.gitignore` packaging fallback warning. Import coverage
+remains 698 source files and 76 explicit source updates; the selected native
+packages were added after the immutable ten-package import baseline.
+
+Static impact used an explicit 17-file JS source/test selection and reported
+partial evidence for unresolved built-ins and out-of-selection metadata, not
+whole-repository completeness. No LSP server was available; TypeScript compiler
+references confirmed the selected production callers. Temporary project
+configurations and runtime fixtures were removed. Local command evidence is
+retained under `.cache/option-a-validation-20261013/` (`native-smokes.json`,
+`impact-summary.json`, `verify.*`, and final Hub/whitespace records).
+
+This validates owned source and inert CLI fixtures, not a new npm artifact or
+the current installed snapshot. No reinstall, publication, commit, push,
+ContentAdmin modification or application-runtime execution occurred. Other
+review findings remain outside this selected change; Linux/macOS acceptance
+was not rerun for this patch.
+
+## Latest installation replacement and bounded language expansion (2026-10-13)
+
+The authorized local-source installer first installed the previously verified
+fixes, then installed the fully verified expansion. Final provenance is HEAD
+`f7a94a59bf9c9b6353901e19433a6e54fe38c36d` plus an explicitly dirty local snapshot,
+not that immutable commit alone: 922 copied source files, 26,140,109 bytes,
+snapshot SHA-256 `1e91ce6708a7da5fce2b1974d7d09b64051197476403949ba1477dd01e75882a`.
+The sole active prefix is `C:/Users/tno/.omp/ai-agent-tools-20261013`, with its own
+verified Node 24.21.0 and nineteen native Windows launchers. Both prior prefixes
+were removed after verification. Historical receipts and 1,292 evidence files
+were preserved byte-identically under the separate evidence root.
+
+Actual source and installed CLI scenarios show valid script component/function
+declarations, literal includes/constructors and admitted HTML forms completing
+with real confirmed links. The frozen eight-file ContentAdmin subset retains six
+method facts and incomplete status in both modes; live hashes and copy hashes
+remain identical. This checks static coverage, not the application's behavior.
+
+Five independently reproduced CFScript review defects were corrected: nested
+comment tails cannot generate includes; known callbacks cannot become builtins;
+filesystem hash suffixes cannot resolve to truncated template names; method-local
+bindings do not leak to siblings; rejected methods do not enter the confirmed
+method index. A genuine component target may retain its separate CFINVOKES edge
+while its rejected method remains unresolved. Three HTML review defects were
+corrected: select descendants cannot create ignored forms, malformed slash-ended
+raw delimiters stay partial, and unhandled heading/paragraph/ruby recovery stops
+before ambiguous descendant evidence. Initial failing outputs are retained.
+
+Windows Node 24.21.0 full `npm run verify` passes with
+`NODE_OPTIONS=--throw-deprecation`: 1,027 Node tests (1,002 passed, 25 explicit
+platform skips, zero failed/cancelled/todo), twelve Python tests, applicable
+build/typecheck/lint gates, eighteen dry-run packs and eight root packed consumers.
+The complete Linkage package gate passes 142 of 143 on Windows with one POSIX
+skip, and all 143 on Linux Node 24.19.0. Fifty-two native emitted Fact/Graph schema
+validations pass. Final installation checks pass nineteen help launchers and
+fifteen additional native behavior scenarios; sixteen installed changed-file
+hashes match the accepted source. Post-retirement native script analysis passes.
+OMP's actual RPC Rules Resolve route returns exit 0/status ok/complete true from
+the final prefix, without a provider prompt or approval-policy/configuration edit.
+An attempted discovery request used an unsupported RPC command; its native
+rejection is retained as a harness correction, not an installation failure.
+
+Source/package contracts, CLI capability descriptions, optional workflow guidance
+and explicit source-update provenance agree. The 698-file immutable import
+baseline is preserved with 76 declared updates and four new implementation/test
+files. Prior unrelated material and historical observations remain unchanged.
+Evidence, receipts, raw commands/results, source identities and retirement maps
+are under `C:/Users/tno/.omp/ai-agent-tools-evidence/20261013`; the current prefix
+contains `INSTALLATION.json` and `INSTALLATION_SMOKE.json`.
+
+No full CFML/CFScript/HTML grammar, HTML5 recovery, native Tree-sitter loading,
+full repository Linux/macOS/Node 22 matrix or live Lucee/database/browser business
+acceptance is established. Unsupported syntax/dynamic dispatch remains partial
+or unresolved, and no runtime/release/lifecycle completion is inferred. There is
+no old executable installation retained, publication, commit, push, global PATH
+change or ContentAdmin source/data edit.
+
+## CFML policy and linkage scope corrections (2026-10-12)
+
+Policy Check's eleven independent source CLI controls pass: unknown output,
+include-only and malformed markup return incomplete/exit 3/null data even without
+a literal table; static pass/violations, comments, raw text and escaped hashes
+retain their outcomes. CRLF/Unicode cause coordinates and content-free reason
+metadata pass. Byte-identical copies of four real ContentAdmin files return
+located `UNSUPPORTED_CFML_TAG` causes; live source hashes remain unchanged.
+An initial direct-root probe correctly rejected an external profile with
+`PATH_ESCAPE`; frozen copies preserve the native profile-inside-root boundary
+without adding files to the application.
+
+Linkage default mixed remains incomplete on nonempty mixed templates. Explicit
+`cfml-structural` admits only `.cfm`/`.cfml`/`.cfc` and declares excluded ordinary
+HTML/web-flow, standalone JS/CSS/SQL and runtime capabilities. Closed literal
+includes complete within that scope; ordinary HTML forms are excluded, dynamic
+targets remain unresolved without guessed edges, and unsupported/malformed/
+opaque script or resource-limited inputs stay incomplete. Analyze/index/query
+scopes and option/config/output bounds are exercised.
+
+Review independently found a script-CFC false-completeness gap: the original
+source CLI returned exit 0/complete with FILE-only evidence. The corrected CLI
+returns exit 3/incomplete with a located unsupported diagnostic. Leading comments
+and tag-looking script literals never create include evidence; real tag-CFC
+includes remain confirmed. Actual Windows C1 and Linux LF/CR/ESC filename cases
+retain resource diagnostics without unsafe human stderr locators. JSON paths
+remain data, not terminal-safe text or execution permission.
+
+Final Windows Node 24.21.0 `npm run verify` passes with
+`NODE_OPTIONS=--throw-deprecation`: 994 Node tests (969 passed, 25 explicit
+platform skips, zero failed/cancelled/todo), applicable build/typecheck/lint/
+test/pack gates, twelve Python tests, eighteen dry-run packs and eight root
+packed consumers.
+Policy Check passes all 52 native tests; Linkage passes 109 with one POSIX-only
+skip. The focused CLI/parser gate passes 25 with one skip on Windows and all 26
+on Linux Node 24.19.0. Fifty captured Policy/Fact/Graph schema validations pass.
+Two additional actual offline packed Windows CLI consumers and a package-root
+structural-library confirmed-include graph pass, without optional native parsers
+or replacing the existing installation.
+
+The initial root run exposed three test-assumption failures, not new product
+failures: incidental stderr punctuation, an absent static component name, and
+CR-only versus native LF-based source-map coordinates. The wording assertion was
+removed, supported method/tag evidence retained, and coordinate fixtures corrected.
+Focused Windows/Linux and final root gates then passed; initial logs are retained.
+Current observations, commands, raw outputs, source hashes and packed evidence
+are under `C:/Users/tno/.omp/ai-agent-tools-20261012/E2E_CONTENTADMIN_20261012/cfml-fix-smoke`.
+
+The immutable 698-file import baseline and 74 explicit source updates are
+preserved. No release/version/license/dependency/registry maturity change,
+ContentAdmin edit, old-installation overwrite, commit or push occurred. Complete
+CFML/CFScript/HTML grammar, optional native parser loading, full non-Windows/Node
+22 acceptance, and live Lucee/database/browser behavior remain unverified.
+
 ## CFScript tag-prefix false-positive repair (2026-10-09)
 
 Three new API/CLI regressions reproduce the false tag-prefix diagnosis before

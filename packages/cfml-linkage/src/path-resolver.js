@@ -75,8 +75,8 @@ function pathExpressionForFact(fact) {
   return typeof value === "string" && value.trim() !== "" ? value : fact.normalized_expression;
 }
 
-function addDiagnostic(diagnostics, code, file, message) {
-  diagnostics.push({ code, severity: "error", file, message });
+function addDiagnostic(diagnostics, code, file, message, span) {
+  diagnostics.push({ code, severity: "error", file, message, ...(span ? { span } : {}) });
 }
 
 function makeUnresolved({ fact, relationType, reason, candidates = [], expression, details = {} }) {
@@ -131,7 +131,8 @@ function hasParentSegment(value) {
 }
 
 function targetCandidates(fact, rawExpression) {
-  const stripped = stripUrlSuffix(rawExpression.trim());
+  const value = rawExpression.trim();
+  const stripped = fact.kind === "INCLUDE" || fact.kind === "CUSTOM_TAG" ? value : stripUrlSuffix(value);
   if (stripped === "") return { kind: "empty", values: [] };
   if (isExternalTarget(stripped)) return { kind: "external", values: [] };
   if (stripped.includes("\0") || stripped.includes("\\") || hasParentSegment(stripped)) return { kind: "outside", values: [] };
@@ -274,7 +275,7 @@ export function resolveLiteralPaths({ factBundle, indexes, rootGuard } = {}) {
       const result = resolvePathTarget({ fact, expression: pathExpressionForFact(fact), rootGuard, knownPaths });
       if (result.resolution) resolutions.push(result.resolution);
       if (result.unresolved) unresolved.push(result.unresolved);
-      if (result.diagnostic) addDiagnostic(diagnostics, result.diagnostic.code, result.diagnostic.file, result.diagnostic.message);
+      if (result.diagnostic) addDiagnostic(diagnostics, result.diagnostic.code, result.diagnostic.file, result.diagnostic.message, fact.span);
       continue;
     }
     if (fact.kind !== "DYNAMIC_REFERENCE") continue;

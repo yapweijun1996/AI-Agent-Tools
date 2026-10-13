@@ -5,17 +5,26 @@
 | Field | Value |
 | --- | --- |
 | Version | 0.1 documentation baseline |
-| Last updated | 2026-09-15 |
+| Last updated | 2026-10-13 |
 | Scope | Changes in this repository |
 | Source of truth | Git history and this changelog |
 | Evidence | Initial commit `1b29c0b`; documentation baseline and M1 foundation commits follow |
-| Verification | Documentation consistency checks and current bounded query/robustness/adversarial-fixture/evidence/edge-budget/ignore-policy/hidden-file/generated-directory-policy/configuration-mapping/plugin-rejection/worker-boundary/common-CFML/cfparam/condition-boundary/mixed-node-budget/control-flow/CFScript/SQL `npm test` (95/95) evidence are recorded; native Tree-sitter loading and full grammar coverage remain unverified without a C/C++ toolchain |
+| Verification | Historical 95/95 baseline and dated source/package/CLI observations are retained; current consolidated acceptance belongs to root VALIDATION/TASK. Native Tree-sitter loading, full grammar and business runtime behavior remain unverified. |
 | Limitations | No parser/resolver release runtime, public package, hosted CI run, or release exists; the read-only CI workflow is present |
 
 ## Unreleased
 
 ### Added
 
+- Added a bounded shared CFScript scanner for bare CFCs and cfscript bodies: real component/interface/function declarations and literal link calls now produce existing Facts with source ownership. Unknown/dynamic/malformed syntax remains partial; nested comments, quotes/interpolation, bindings and rejected method targets are fail-closed.
+- Replaced blanket nonempty-HTML incompleteness with strict admitted structural coverage, explicit closing/void-tag proof and raw-text/RCDATA boundaries. Unsupported recovery/select/heading/paragraph contexts stop before fake form evidence; no full HTML5 recovery or embedded-runtime claim is made.
+- Preserved literal filesystem hashes for includes/custom tags while retaining URL query/fragment normalization. Confined visible SQL extraction to genuine CFScript/CFML expression islands; legacy valid cfset/cfreturn query evidence is retained.
+- Initial CLI mode addition (2026-10-12): added `--mode mixed|cfml-structural` to analyze, index and query commands, requiring configured CFML admission and declaring narrower `data.scope`. Default mixed mode, configuration schema, envelopes, exit meanings, policies and budgets are unchanged; current grammar coverage is described above.
+- Exported `createCfmlScannerBackend` from the package root for explicit narrower library use; callers supply CFML-only `snapshotOptions.extensions`, and ordinary HTML/web-flow, standalone JavaScript/CSS/SQL analysis, and runtime semantics are not implied. Existing CFML tag metadata is retained.
+- Preserved bounded parser/resolver diagnostic source attribution in existing `details.path` and source spans, without copying arbitrary reporter metadata; CLI stderr includes path and one-based line/zero-based UTF-16 column where available. Existing unsupported/opaque/malformed diagnostics remain visible.
+- Initial script-CFC false-completeness repair (2026-10-12) made bare scripts opaque/incomplete and avoided interpreting tag-looking strings. The subsequent bounded scanner described above supersedes whole-file opacity only for syntax it actually admits.
+- Hardened the human stderr locator boundary against oversized, absolute/traversing, C0/DEL/C1-control and Unicode-line-separator paths; unsafe locators are omitted while diagnostic code/message and JSON evidence are retained. Added script-CFC/tag-CFC and real control-filename regressions; focused Windows tests pass 25 cases with one POSIX-only skip, and Linux Node 24.19.0 passes all 26 focused cases.
+- Added consumer regressions for modes, scope, include confidence, unresolved targets, source locations, library use, and limits. Independent native source smoke exercised default/structural includes, exclusions, forms, diagnostics, dynamic/missing targets and queries. Windows Node 24.21.0 root acceptance passes 109 native package tests with one POSIX-only skip; actual offline packed CLI/library consumers pass. No release or complete CFML runtime coverage is implied.
 - Project classification and status boundaries in `README.md`.
 - Goal, progress state, and autonomous execution contract in `GOAL.md`, `PROGRESS.md`, and `GOAL_PROMPT.md`.
 - Proposed functional contract in `SPEC.md` plus validated Graph IR and Fact IR schema/example contracts in `schema/` and `examples/`.

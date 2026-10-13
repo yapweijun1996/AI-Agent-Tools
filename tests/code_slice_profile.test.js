@@ -2,56 +2,10 @@ const assert = require('node:assert/strict');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const test = require('node:test');
+const { validateNativeProfile } = require('../bin/ait.js');
 
 const fixture = path.join(__dirname, 'fixtures', 'code-slice-profile-tool.js');
-const schemaVersions = new Set(['1.0', '1.1']);
-
-function invalid(message) {
-  throw new Error(`INVALID_CODE_SLICE_PROTOCOL: ${message}`);
-}
-
-function validateWarnings(value) {
-  if (!Array.isArray(value)) invalid('warnings must be an array');
-  for (const warning of value) {
-    if (!warning || typeof warning !== 'object' || typeof warning.code !== 'string' || typeof warning.message !== 'string') {
-      invalid('warning shape is invalid');
-    }
-  }
-}
-
-function consume(exitCode, stdout) {
-  let value;
-  try {
-    value = JSON.parse(stdout);
-  } catch {
-    invalid('stdout is not exactly one JSON document');
-  }
-  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid('envelope must be an object');
-  if (!schemaVersions.has(value.schemaVersion) || typeof value.ok !== 'boolean' || typeof value.operation !== 'string') {
-    invalid('schema version, ok, or operation is invalid');
-  }
-  validateWarnings(value.warnings);
-  if (value.schemaVersion === '1.1' && (value.operation !== 'cli' || value.ok !== false)) {
-    invalid('v1.1 is reserved for CLI usage errors');
-  }
-  if (value.schemaVersion === '1.0' && value.operation === 'cli') {
-    invalid('CLI usage errors must use v1.1');
-  }
-
-  if (value.ok) {
-    if (exitCode !== 0 || !value.result || typeof value.result !== 'object' || Array.isArray(value.result)) {
-      invalid('native success requires exit 0 and a result object');
-    }
-    const hasMore = value.result.page && value.result.page.hasMore === true;
-    const truncated = value.warnings.some((warning) => warning.code === 'OUTLINE_TRUNCATED');
-    return { kind: hasMore || truncated ? 'bounded_success' : 'complete', value };
-  }
-
-  if (exitCode === 0 || typeof value.error !== 'object' || !value.error || typeof value.error.code !== 'string') {
-    invalid('native failure requires a nonzero exit and stable error code');
-  }
-  return { kind: 'error', code: value.error.code, value };
-}
+const profile = { protocol: 'code-slice-native-v1' };
 
 function runFixture(scenario) {
   const child = spawnSync(process.execPath, [fixture, scenario], { encoding: 'utf8' });
@@ -61,27 +15,75 @@ function runFixture(scenario) {
 
 test('accepts complete and bounded-success native Code Slice results', () => {
   const complete = runFixture('success');
-  assert.equal(consume(complete.exitCode, complete.stdout).kind, 'complete');
+  assert.deepEqual(validateNativeProfile(profile, complete.stdout, complete.exitCode), { passed: true, classification: 'complete' });
 
   const bounded = runFixture('outlineTruncated');
-  assert.equal(consume(bounded.exitCode, bounded.stdout).kind, 'bounded_success');
+  assert.deepEqual(validateNativeProfile(profile, bounded.stdout, bounded.exitCode), { passed: true, classification: 'bounded_success' });
 });
 
-test('uses native error codes as the semantic authority', () => {
-  const cliError = runFixture('cliError');
-  const cliResult = consume(cliError.exitCode, cliError.stdout);
-  assert.equal(cliResult.kind, 'error');
-  assert.equal(cliResult.code, 'INVALID_ARGUMENT');
-
-  const operationError = runFixture('operationError');
-  const operationResult = consume(operationError.exitCode, operationError.stdout);
-  assert.equal(operationResult.kind, 'error');
-  assert.equal(operationResult.code, 'SYMBOL_AMBIGUOUS');
+test('accepts native CLI and operation errors without interpreting the numeric exit as completeness', () => {
+  for (const scenario of ['cliError', 'operationError']) {
+    const native = runFixture(scenario);
+    assert.deepEqual(validateNativeProfile(profile, native.stdout, native.exitCode), { passed: true, classification: 'error' });
+  }
 });
 
 test('rejects malformed, unknown, and exit/status-mismatched native output', () => {
   for (const scenario of ['mismatch', 'unknownSchema', 'malformed', 'missing']) {
     const run = runFixture(scenario);
-    assert.throws(() => consume(run.exitCode, run.stdout), /INVALID_CODE_SLICE_PROTOCOL/);
+    const result = validateNativeProfile(profile, run.stdout, run.exitCode);
+    assert.equal(result.passed, false);
+    assert.equal(result.classification, 'protocol_error');
+  }
+});
+
+test('rejects malformed native success fields through the production validator', () => {
+  const success = { schemaVersion: '1.0', ok: true, operation: 'outline', warnings: [], result: {} };
+  const missingOperation = { ...success };
+  delete missingOperation.operation;
+  for (const [name, value] of [
+    ['missing operation', missingOperation],
+    ['non-string operation', { ...success, operation: 1 }],
+    ['missing result', { schemaVersion: '1.0', ok: true, operation: 'outline', warnings: [] }],
+    ['array result', { ...success, result: [] }],
+    ['null result', { ...success, result: null }],
+    ['non-array warnings', { ...success, warnings: {} }],
+    ['null warning', { ...success, warnings: [null] }],
+    ['array warning', { ...success, warnings: [[]] }],
+    ['missing warning code', { ...success, warnings: [{ message: 'advisory' }] }],
+    ['non-string warning message', { ...success, warnings: [{ code: 'ADVISORY', message: 1 }] }],
+    ['v1.1 core success', { ...success, schemaVersion: '1.1' }],
+    ['v1.0 CLI success', { ...success, operation: 'cli' }],
+  ]) {
+    const result = validateNativeProfile(profile, JSON.stringify(value), 0);
+    assert.equal(result.passed, false, name);
+    assert.equal(result.classification, 'protocol_error', name);
+  }
+});
+
+test('preserves independent pagination signals, advisory additions and native capabilities', () => {
+  const success = { schemaVersion: '1.0', ok: true, operation: 'outline', warnings: [], result: {} };
+  for (const [value, classification] of [
+    [{ ...success, result: { page: { hasMore: true } } }, 'bounded_success'],
+    [{ ...success, warnings: [{ code: 'OUTLINE_TRUNCATED', message: 'More symbols remain.' }] }, 'bounded_success'],
+    [{ ...success, warnings: [{ code: 'ADVISORY', message: 'Additional evidence.', details: {} }], extra: {} }, 'complete'],
+    [{ schemaVersion: '1.0', ok: true, operation: 'capabilities', warnings: [] }, 'complete'],
+  ]) {
+    assert.deepEqual(validateNativeProfile(profile, JSON.stringify(value), 0), { passed: true, classification });
+  }
+});
+
+test('rejects native error envelopes with missing codes, successful exits or incompatible versions', () => {
+  const failure = { schemaVersion: '1.1', ok: false, operation: 'cli', warnings: [], error: { code: 'INVALID_ARGUMENT' } };
+  for (const [value, exitCode] of [
+    [failure, 0],
+    [{ ...failure, error: {} }, 2],
+    [{ ...failure, schemaVersion: '1.0' }, 2],
+    [{ ...failure, operation: 'outline' }, 2],
+    [{ ...failure, warnings: [null] }, 2],
+  ]) {
+    const result = validateNativeProfile(profile, JSON.stringify(value), exitCode);
+    assert.equal(result.passed, false);
+    assert.equal(result.classification, 'protocol_error');
   }
 });

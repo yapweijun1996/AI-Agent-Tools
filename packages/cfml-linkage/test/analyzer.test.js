@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { analyzeProject, serializeAnalysis } from "../src/index.js";
+import { analyzeProject, createCfmlScannerBackend, queryGraph, serializeAnalysis } from "../src/index.js";
 import { createMixedStructuralScannerBackend } from "../src/web-scanner.js";
 import { validateGraph } from "../src/graph.js";
 
@@ -222,6 +222,84 @@ test("marks source mutation and wall-time limit results incomplete", () => {
     assert.equal(limited.graph.diagnostics.some((item) => item.code === "TIME_LIMIT" && item.details?.max_wall_time_ms === 3), true);
     assert.equal(limited.graph.diagnostics.find((item) => item.code === "TIME_LIMIT")?.details?.stage, "snapshot:complete");
     assert.deepEqual(validateGraph(limited.graph), []);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("explicit library CFML scanner produces a confirmed include graph within declared CFML discovery", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "agent-cfml-linkage-structural-library-"));
+  try {
+    fs.writeFileSync(path.join(root, "index.cfm"), '<cfinclude template="target.cfm">\n', "utf8");
+    fs.writeFileSync(path.join(root, "target.cfm"), "", "utf8");
+    fs.writeFileSync(path.join(root, "ignored.html"), '<form action="target.cfm"></form>', "utf8");
+    const result = analyzeProject({
+      rootPath: root,
+      parserBackend: createCfmlScannerBackend(),
+      parserVersion: "cfml-structural-scanner/v0.1",
+      parserName: "cfml-structural-scanner",
+      snapshotOptions: { extensions: [".cfm", ".cfml", ".cfc"] },
+      createdAt: "2026-09-14T00:00:00.000Z",
+    });
+    assert.equal(result.complete, true);
+    assert.deepEqual(result.fact_bundle.source_files.map((item) => item.file), ["index.cfm", "target.cfm"]);
+    const edge = result.graph.edges.find((item) => item.type === "INCLUDES");
+    assert.equal(result.graph.nodes.find((node) => node.id === edge.from).path, "index.cfm");
+    assert.equal(result.graph.nodes.find((node) => node.id === edge.to).path, "target.cfm");
+    assert.equal(edge.confidence.level, "confirmed");
+    assert.equal(result.graph.edges.some((item) => item.type === "FORM_SUBMITS_TO"), false);
+    assert.deepEqual(validateGraph(result.graph), []);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("real parser diagnostics retain nested source paths and spans through analysis and serialization", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "agent-cfml-linkage-diagnostic-location-"));
+  try {
+    fs.mkdirSync(path.join(root, "nested"));
+    fs.writeFileSync(path.join(root, "nested", "page.cfm"), "\n  <cfunknown>", "utf8");
+    const result = analyzeProject({
+      rootPath: root,
+      parserBackend: createCfmlScannerBackend(),
+      parserVersion: "cfml-structural-scanner/v0.1",
+      parserName: "cfml-structural-scanner",
+      createdAt: "2026-09-14T00:00:00.000Z",
+    });
+    assert.equal(result.complete, false);
+    const item = result.diagnostics.find((value) => value.code === "UNSUPPORTED_SYNTAX");
+    assert.equal(item.details.path, "nested/page.cfm");
+    assert.deepEqual(item.span, { start_line: 2, start_col: 2, end_line: 2, end_col: 13 });
+    assert.equal(Object.hasOwn(item, "file"), false);
+    assert.deepEqual(result.fact_bundle.diagnostics.find((value) => value.id === item.id), item);
+    assert.deepEqual(result.graph.diagnostics.find((value) => value.id === item.id), item);
+    const restored = JSON.parse(serializeAnalysis(result).json);
+    assert.deepEqual(restored.diagnostics.find((value) => value.id === item.id), item);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("actual include-cycle diagnostics preserve resolver source path in graph and queries", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "agent-cfml-linkage-cycle-location-"));
+  try {
+    fs.mkdirSync(path.join(root, "nested"));
+    fs.writeFileSync(path.join(root, "nested", "page.cfm"), '<cfinclude template="target.cfm">', "utf8");
+    fs.writeFileSync(path.join(root, "nested", "target.cfm"), '<cfinclude template="page.cfm">', "utf8");
+    const result = analyzeProject({
+      rootPath: root,
+      parserBackend: createCfmlScannerBackend(),
+      parserVersion: "cfml-structural-scanner/v0.1",
+      parserName: "cfml-structural-scanner",
+      createdAt: "2026-09-14T00:00:00.000Z",
+    });
+    assert.equal(result.complete, false);
+    assert.equal(result.resolutions.diagnostics.some((item) => item.code === "SCOPE_INCLUDE_CYCLE" && item.file === "nested/page.cfm"), true);
+    assert.equal(result.diagnostics.some((item) => item.code === "SCOPE_INCLUDE_CYCLE" && item.details.path === "nested/page.cfm"), true);
+    assert.equal(result.graph.edges.filter((item) => item.type === "INCLUDES").length, 2);
+    const query = queryGraph(result.graph, { operation: "stats" });
+    assert.equal(query.complete, false);
+    assert.equal(query.diagnostics.some((item) => item.code === "SCOPE_INCLUDE_CYCLE" && item.details.path === "nested/page.cfm"), true);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

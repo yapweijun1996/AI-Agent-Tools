@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import { createCfmlScannerBackend } from "./cfml-scanner.js";
+import { findCfscriptClose, isScriptCfcSource, scanCfmlComment, scanCfscript } from "./cfscript-scanner.js";
 
 const DEFAULT_MAX_NODES = 10_000;
 const DEFAULT_MAX_ATTRIBUTE_BYTES = 4_096;
@@ -10,7 +11,6 @@ const CFML_EXTENSIONS = new Set([".cfm", ".cfml", ".cfc"]);
 const JAVASCRIPT_EXTENSIONS = new Set([".js", ".mjs"]);
 const CSS_EXTENSIONS = new Set([".css"]);
 const SQL_EXTENSIONS = new Set([".sql"]);
-const CFML_DYNAMIC_SCOPE_NAMES = new Set(["application", "arguments", "attributes", "caller", "cgi", "client", "cookie", "form", "local", "request", "server", "session", "this", "url", "variables"]);
 
 function startsWithInsensitiveAt(text, value, offset) {
   if (offset + value.length > text.length) return false;
@@ -52,89 +52,81 @@ function nodeSpan(sourceMap, start, end) {
   };
 }
 
+function htmlWhitespace(character) {
+  return character !== undefined && /[ \t\r\n\f]/u.test(character);
+}
+
 function parseTag(text, start, sourceMap, file, maxAttributeBytes) {
   let cursor = start + 1;
-  if (text[cursor] === "/" || text[cursor] === "!" || text[cursor] === "?") return null;
+  const closing = text[cursor] === "/";
+  if (closing) cursor += 1;
+  if (!/[A-Za-z]/u.test(text[cursor] ?? "")) return null;
   const nameStart = cursor;
   while (isNameCharacter(text[cursor])) cursor += 1;
-  if (cursor === nameStart) return null;
   const name = text.slice(nameStart, cursor).toLowerCase();
-  let quote = null;
-  let end = cursor;
-  while (end < text.length) {
-    const character = text[end];
-    if (quote !== null) {
-      if (character === quote) quote = null;
-    } else if (character === "\"" || character === "'") {
-      quote = character;
-    } else if (character === ">") {
-      break;
-    }
-    end += 1;
-  }
-  if (end >= text.length || quote !== null) {
-    return {
-      error: diagnostic("PARSE_PARTIAL", "error", "HTML tag is missing a complete closing delimiter.", file, sourceMap, start, text.length),
-      next: text.length,
-    };
-  }
-
+  const fail = (message, offset = cursor, code = "PARSE_PARTIAL") => ({
+    error: diagnostic(code, "error", message, file, sourceMap, offset, Math.min(text.length, offset + 1)),
+    next: text.length,
+  });
+  if (Buffer.byteLength(name, "utf8") > maxAttributeBytes) return fail("HTML tag name exceeds the field limit.", nameStart, "RESOURCE_LIMIT");
   const attributes = [];
-  while (cursor < end) {
-    while (cursor < end && isWhitespace(text[cursor])) cursor += 1;
-    if (cursor >= end || text[cursor] === "/") break;
-    const attributeStart = cursor;
-    while (cursor < end && isNameCharacter(text[cursor])) cursor += 1;
-    if (cursor === attributeStart) {
+  const names = new Set();
+  const attributesStart = cursor;
+  let selfClosing = false;
+  while (cursor < text.length) {
+    const separator = cursor;
+    while (htmlWhitespace(text[cursor])) cursor += 1;
+    if (Buffer.byteLength(text.slice(attributesStart, cursor), "utf8") > maxAttributeBytes) return fail("HTML attribute region exceeds the field limit.", attributesStart, "RESOURCE_LIMIT");
+    if (text[cursor] === ">") {
+      return {
+        node: { kind: "HTML_TAG", name, closing, self_closing: selfClosing, attributes, ...nodeSpan(sourceMap, start, cursor + 1) },
+        next: cursor + 1,
+      };
+    }
+    if (text[cursor] === "/" && text[cursor + 1] === ">" && !closing) {
+      selfClosing = true;
       cursor += 1;
       continue;
     }
+    if (closing) return fail("HTML closing tag contains unsupported attributes or delimiters.");
+    if (separator === cursor) return fail("HTML attributes must be separated by whitespace.");
+    const attributeStart = cursor;
+    if (!/[A-Za-z_:]/u.test(text[cursor] ?? "")) return fail("HTML attribute name is malformed.");
+    while (isNameCharacter(text[cursor])) cursor += 1;
     const attributeName = text.slice(attributeStart, cursor).toLowerCase();
-    while (cursor < end && isWhitespace(text[cursor])) cursor += 1;
+    if (names.has(attributeName)) return fail("HTML tag contains an ambiguous duplicate attribute.", attributeStart);
+    names.add(attributeName);
+    const nameEnd = cursor;
+    while (htmlWhitespace(text[cursor])) cursor += 1;
     let value = null;
     let valueQuote = null;
-    let valueStart = cursor;
-    let valueEnd = cursor;
-    let truncated = false;
     if (text[cursor] === "=") {
       cursor += 1;
-      while (cursor < end && isWhitespace(text[cursor])) cursor += 1;
-      valueStart = cursor;
+      while (htmlWhitespace(text[cursor])) cursor += 1;
+      let valueStart = cursor;
       if (text[cursor] === "\"" || text[cursor] === "'") {
-        valueQuote = text[cursor];
-        cursor += 1;
+        valueQuote = text[cursor++];
         valueStart = cursor;
-        while (cursor < end && text[cursor] !== valueQuote) cursor += 1;
-        valueEnd = cursor;
-        if (cursor < end) cursor += 1;
+        while (cursor < text.length && text[cursor] !== valueQuote) cursor += 1;
+        if (cursor === text.length) return fail("HTML attribute string is not terminated.", attributeStart);
+        value = text.slice(valueStart, cursor++);
+        if (value.includes("\0")) return fail("HTML attribute contains a tokenizer replacement character.", attributeStart);
       } else {
-        while (cursor < end && !isWhitespace(text[cursor]) && text[cursor] !== ">") cursor += 1;
-        valueEnd = cursor;
+        while (cursor < text.length && !htmlWhitespace(text[cursor]) && text[cursor] !== ">") {
+          if (/["'`=<>\0]/u.test(text[cursor])) return fail("HTML unquoted attribute value is malformed.");
+          cursor += 1;
+        }
+        if (cursor === valueStart) return fail("HTML attribute is missing its value.", attributeStart);
+        value = text.slice(valueStart, cursor);
       }
-      const bounded = boundedValue(text.slice(valueStart, valueEnd), maxAttributeBytes);
-      value = bounded.value;
-      truncated = bounded.truncated;
+    } else {
+      // Leave whitespace for the next attribute's separator check.
+      cursor = nameEnd;
     }
-    attributes.push({
-      name: attributeName,
-      value,
-      quote: valueQuote,
-      ...(truncated ? { truncated: true } : {}),
-      span: sourceMap.spanFromTextOffsets(attributeStart, cursor),
-    });
+    if (Buffer.byteLength(text.slice(attributesStart, cursor), "utf8") > maxAttributeBytes) return fail("HTML attribute region exceeds the field limit.", attributeStart, "RESOURCE_LIMIT");
+    attributes.push({ name: attributeName, value, quote: valueQuote, span: sourceMap.spanFromTextOffsets(attributeStart, cursor) });
   }
-
-  return {
-    node: {
-      kind: "HTML_TAG",
-      name,
-      closing: false,
-      self_closing: text[end - 1] === "/",
-      attributes,
-      ...nodeSpan(sourceMap, start, end + 1),
-    },
-    next: end + 1,
-  };
+  return fail("HTML tag is missing a complete closing delimiter.", start);
 }
 
 function findClosingTag(text, name, start) {
@@ -394,28 +386,6 @@ function javascriptNodes(text, start, end, sourceMap, file, maxExpressionBytes) 
   return nodes;
 }
 
-function qualifiedIdentifierAt(text, start, end) {
-  let cursor = skipJavaScriptTrivia(text, start, end);
-  const segments = [];
-  while (cursor < end && isIdentifierStart(text[cursor])) {
-    const segmentStart = cursor;
-    cursor += 1;
-    while (cursor < end && isIdentifierCharacter(text[cursor])) cursor += 1;
-    segments.push(text.slice(segmentStart, cursor));
-    const dot = skipJavaScriptTrivia(text, cursor, end);
-    if (text[dot] !== ".") {
-      cursor = dot;
-      break;
-    }
-    cursor = skipJavaScriptTrivia(text, dot + 1, end);
-  }
-  return segments.length > 0 ? { segments, value: segments.join("."), end: cursor } : null;
-}
-
-function isStaticCfmlComponent(segments) {
-  return segments.length >= 2 && !CFML_DYNAMIC_SCOPE_NAMES.has(segments[0].toLowerCase());
-}
-
 function namedStringArgument(text, start, end, name) {
   let cursor = start;
   while (cursor < end) {
@@ -440,180 +410,6 @@ function namedStringArgument(text, start, end, name) {
     return { found: true, value: value?.value ?? null, start: valueStart, end: value?.end ?? valueStart };
   }
   return { found: false, value: null };
-}
-
-function firstNamedStringArgument(text, start, end, names) {
-  for (const name of names) {
-    const argument = namedStringArgument(text, start, end, name);
-    if (argument.found) return argument;
-  }
-  return { found: false, value: null };
-}
-
-function staticInvokeArguments(text, open, end) {
-  const first = parseQuoted(text, skipJavaScriptTrivia(text, open + 1, end), end);
-  if (first) {
-    const comma = skipJavaScriptTrivia(text, first.end, end);
-    if (text[comma] === ",") {
-      const second = parseQuoted(text, skipJavaScriptTrivia(text, comma + 1, end), end);
-      if (second) return { component: first.value, method: second.value };
-    }
-  }
-  const component = namedStringArgument(text, open + 1, end, "component");
-  const method = namedStringArgument(text, open + 1, end, "method");
-  if (component.found || method.found) return { component: component.value, method: method.value };
-  return null;
-}
-
-function locationArguments(text, open, end) {
-  const first = parseQuoted(text, skipJavaScriptTrivia(text, open + 1, end), end);
-  if (first) return { url: first.value };
-  const named = namedStringArgument(text, open + 1, end, "url");
-  return { url: named.found ? named.value : null };
-}
-
-function createObjectArguments(text, open, end) {
-  const firstStart = skipJavaScriptTrivia(text, open + 1, end);
-  const first = parseQuoted(text, firstStart, end);
-  if (first) {
-    if (first.value.trim().toLowerCase() !== "component") return null;
-    const comma = skipJavaScriptTrivia(text, first.end, end);
-    if (text[comma] !== ",") return { component: null };
-    const secondStart = skipJavaScriptTrivia(text, comma + 1, end);
-    const second = parseQuoted(text, secondStart, end);
-    return { component: second?.value ?? null };
-  }
-  const type = namedStringArgument(text, open + 1, end, "type");
-  const component = namedStringArgument(text, open + 1, end, "class");
-  if (type.found && type.value !== null && type.value.trim().toLowerCase() !== "component") return null;
-  if (type.found || component.found) return { component: component.value };
-  return { component: null };
-}
-
-function cfscriptNodes(text, start, end, sourceMap, file, maxExpressionBytes) {
-  const nodes = [];
-  let cursor = start;
-  while (cursor < end) {
-    if (text[cursor] === "\"" || text[cursor] === "'" || text[cursor] === "`") {
-      cursor = skipJavaScriptString(text, cursor, end);
-      continue;
-    }
-    if (text.startsWith("//", cursor)) {
-      const lineEnd = text.indexOf("\n", cursor + 2);
-      cursor = lineEnd === -1 ? end : lineEnd + 1;
-      continue;
-    }
-    if (text.startsWith("/*", cursor)) {
-      const close = text.indexOf("*/", cursor + 2);
-      cursor = close === -1 ? end : close + 2;
-      continue;
-    }
-    if (!isIdentifierStart(text[cursor])) {
-      cursor += 1;
-      continue;
-    }
-
-    const identifierStart = cursor;
-    const identifier = qualifiedIdentifierAt(text, cursor, end);
-    if (!identifier) {
-      cursor += 1;
-      continue;
-    }
-    cursor = identifier.end;
-    const keyword = identifier.segments.length === 1 ? identifier.segments[0].toLowerCase() : "";
-    if (keyword === "include") {
-      const target = parseQuoted(text, skipJavaScriptTrivia(text, cursor, end), end);
-      if (target) {
-        const bounded = boundedValue(text.slice(identifierStart, target.end), maxExpressionBytes);
-        nodes.push({ kind: "CFML_SCRIPT_INCLUDE", target: target.value, expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, target.end) });
-        cursor = target.end;
-      }
-      continue;
-    }
-    if (keyword === "location") {
-      const open = skipJavaScriptTrivia(text, cursor, end);
-      if (text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        if (callEnd > open && text[callEnd - 1] === ")") {
-          const args = locationArguments(text, open, callEnd - 1);
-          const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-          nodes.push({ kind: "CFML_SCRIPT_REDIRECT", url: args.url, expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-          cursor = callEnd;
-        }
-      }
-      continue;
-    }
-    if (["cfinclude", "cfmodule", "cfobject"].includes(keyword)) {
-      const open = skipJavaScriptTrivia(text, cursor, end);
-      if (text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        if (callEnd > open && text[callEnd - 1] === ")") {
-          const argument = keyword === "cfinclude"
-            ? firstNamedStringArgument(text, open + 1, callEnd - 1, ["template"])
-            : keyword === "cfmodule"
-              ? firstNamedStringArgument(text, open + 1, callEnd - 1, ["name", "template"])
-              : firstNamedStringArgument(text, open + 1, callEnd - 1, ["component"]);
-          if (argument.found) {
-            const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-            nodes.push({ kind: keyword === "cfinclude" ? "CFML_SCRIPT_INCLUDE" : keyword === "cfmodule" ? "CFML_SCRIPT_CUSTOM_TAG" : "CFML_SCRIPT_INSTANTIATE", ...(keyword === "cfmodule" ? { target: argument.value } : keyword === "cfobject" ? { creation_kind: "cfobject", component: argument.value } : { target: argument.value }), expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-            cursor = callEnd;
-          }
-        }
-      }
-      continue;
-    }
-    if (keyword === "new" && identifier.segments.length === 1) {
-      const component = qualifiedIdentifierAt(text, cursor, end);
-      const open = component ? skipJavaScriptTrivia(text, component.end, end) : -1;
-      if (component && isStaticCfmlComponent(component.segments) && text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        if (callEnd > open && text[callEnd - 1] === ")") {
-          const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-          nodes.push({ kind: "CFML_SCRIPT_INSTANTIATE", component: component.value, expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-          cursor = callEnd;
-        }
-      }
-      continue;
-    }
-    if (keyword === "invoke" || keyword === "cfinvoke") {
-      const open = skipJavaScriptTrivia(text, cursor, end);
-      if (text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        const args = callEnd > open && text[callEnd - 1] === ")" ? staticInvokeArguments(text, open, callEnd - 1) : null;
-        if (args) {
-          const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-          nodes.push({ kind: "CFML_SCRIPT_INVOKE", ...(keyword === "cfinvoke" ? { invoke_kind: "cfinvoke" } : {}), component: args.component, method: args.method, expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-          cursor = callEnd;
-        }
-      }
-      continue;
-    }
-    if (keyword === "createobject") {
-      const open = skipJavaScriptTrivia(text, cursor, end);
-      if (text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        const args = callEnd > open && text[callEnd - 1] === ")" ? createObjectArguments(text, open, callEnd - 1) : null;
-        if (args) {
-          const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-          nodes.push({ kind: "CFML_SCRIPT_INSTANTIATE", creation_kind: "createObject", component: args.component, expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-          cursor = callEnd;
-        }
-      }
-      continue;
-    }
-    if (isStaticCfmlComponent(identifier.segments) && identifier.segments.length >= 3) {
-      const open = skipJavaScriptTrivia(text, cursor, end);
-      if (text[open] === "(") {
-        const callEnd = findCallEnd(text, open, end);
-        if (callEnd > open && text[callEnd - 1] === ")") {
-          const bounded = boundedValue(text.slice(identifierStart, callEnd), maxExpressionBytes);
-          nodes.push({ kind: "CFML_SCRIPT_INVOKE", component: identifier.segments.slice(0, -1).join("."), method: identifier.segments.at(-1), expression: bounded.value, expression_truncated: bounded.truncated, ...nodeSpan(sourceMap, identifierStart, callEnd) });
-          cursor = callEnd;
-        }
-      }
-    }
-  }
-  return nodes;
 }
 
 function parseSqlQuoted(text, start, end) {
@@ -994,30 +790,181 @@ function addNode(nodes, node, diagnostics, maxNodes, file, sourceMap, offset) {
   return true;
 }
 
-function scanHtml(text, sourceMap, file, maxNodes, maxAttributeBytes, maxExpressionBytes) {
+const HTML_VOID_TAGS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
+const HTML_PAIRED_TAGS = new Set([
+  "a", "abbr", "address", "article", "aside", "audio", "b", "bdi", "bdo", "blockquote", "body", "button", "canvas", "caption",
+  "cite", "code", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "fieldset",
+  "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "html", "i",
+  "ins", "kbd", "label", "legend", "li", "main", "map", "mark", "menu", "meter", "nav", "ol", "optgroup", "option", "output",
+  "p", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "search", "section", "select", "small",
+  "span", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time",
+  "title", "tr", "u", "ul", "var", "video",
+]);
+const HTML_RAW_TAGS = new Set(["script", "style", "textarea", "title"]);
+const HTML_OPAQUE_TAGS = new Set(["svg", "math", "template", "noscript", "xmp", "iframe", "noembed", "noframes", "plaintext"]);
+const HTML_BLOCK_TAGS = new Set(["address", "article", "aside", "blockquote", "dd", "details", "dialog", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "menu", "nav", "ol", "p", "pre", "search", "section", "summary", "table", "ul"]);
+const HTML_TABLE_CHILDREN = new Map([
+  ["table", new Set(["caption", "colgroup", "thead", "tbody", "tfoot", "script", "style"])],
+  ["colgroup", new Set(["col"])],
+  ["thead", new Set(["tr"])], ["tbody", new Set(["tr"])], ["tfoot", new Set(["tr"])],
+  ["tr", new Set(["td", "th"])],
+  ["select", new Set(["option", "optgroup"])], ["optgroup", new Set(["option"])],
+]);
+
+function htmlNeedsRecovery(name, stack) {
+  const parent = stack.at(-1)?.name;
+  if (stack.some((entry) => entry.name === "select") && !["option", "optgroup", "script"].includes(name)) return true;
+  if (/^h[1-6]$/u.test(name) && stack.some((entry) => /^h[1-6]$/u.test(entry.name))) return true;
+  if (["rt", "rp"].includes(name) && parent !== "ruby") return true;
+  if (HTML_TABLE_CHILDREN.has(parent) && !HTML_TABLE_CHILDREN.get(parent).has(name)) return true;
+  if (["caption", "colgroup", "thead", "tbody", "tfoot"].includes(name) && parent !== "table") return true;
+  if (name === "col" && parent !== "colgroup") return true;
+  if (name === "tr" && !["thead", "tbody", "tfoot"].includes(parent)) return true;
+  if (["td", "th"].includes(name) && parent !== "tr") return true;
+  if (name === "li" && !["ol", "ul", "menu"].includes(parent)) return true;
+  if (["dt", "dd"].includes(name) && parent !== "dl") return true;
+  if (name === "option" && !["select", "optgroup", "datalist"].includes(parent)) return true;
+  if (name === "optgroup" && parent !== "select") return true;
+  if (HTML_BLOCK_TAGS.has(name) && stack.some((entry) => entry.name === "p")) return true;
+  if (["form", "a", "button", "head", "body", "html"].includes(name) && stack.some((entry) => entry.name === name)) return true;
+  if (name === "html" && stack.length !== 0) return true;
+  if (["head", "body"].includes(name) && parent !== "html") return true;
+  if (parent === "html" && !["head", "body"].includes(name)) return true;
+  if (parent === "head" && !["base", "link", "meta", "title", "style", "script"].includes(name)) return true;
+  return false;
+}
+
+function htmlRawClosingTag(text, name, start) {
+  const needle = `</${name}`;
+  for (let cursor = start; cursor < text.length; cursor += 1) {
+    if (!startsWithInsensitiveAt(text, needle, cursor)) continue;
+    const boundary = text[cursor + needle.length];
+    if (boundary === ">" || boundary === "/" || htmlWhitespace(boundary)) return cursor;
+  }
+  return -1;
+}
+
+function htmlCfmlTagEnd(text, start) {
+  let quote = null;
+  for (let cursor = start + 1; cursor < text.length; cursor += 1) {
+    const character = text[cursor];
+    if (quote !== null) {
+      if (character === quote && text[cursor + 1] === quote) cursor += 1;
+      else if (character === quote) quote = null;
+    } else if (character === "\"" || character === "'") quote = character;
+    else if (character === ">") return cursor + 1;
+  }
+  return -1;
+}
+
+function htmlLiteralCfset(text, start, end) {
+  const expression = text.slice(start + 6, end - 1).trim();
+  return /^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*[ \t\r\n\f]*=[ \t\r\n\f]*(?:true|false|[+-]?(?:\d+(?:\.\d*)?|\.\d+)|"(?:[^"#\0]|"")*"|'(?:[^'#\0]|'')*')[ \t\r\n\f]*\/?$/iu.test(expression);
+}
+
+function scanHtml(text, sourceMap, file, maxNodes, maxAttributeBytes, maxExpressionBytes, includeCfscript = true) {
   const nodes = [];
   const diagnostics = [];
+  const stack = [];
+  const cfml = CFML_EXTENSIONS.has(extensionFor(file));
   let complete = true;
   let cursor = 0;
+  let elementCount = 0;
+  let doctypeSeen = false;
+  const documentSections = new Set();
+  let documentClosed = false;
+  const report = (code, message, start, end = start + 1) => {
+    diagnostics.push(diagnostic(code, code === "UNSUPPORTED_SYNTAX" ? "warning" : "error", message, file, sourceMap, start, Math.min(text.length, end)));
+    complete = false;
+  };
+  const append = (node, offset) => {
+    if (addNode(nodes, node, diagnostics, maxNodes, file, sourceMap, offset)) return true;
+    complete = false;
+    return false;
+  };
+  const literalAttribute = (node, name) => {
+    const value = staticAttribute(node, name);
+    return value !== null && !value.includes("&") ? value : null;
+  };
+  const uncertainAttribute = (node, name) => hasDynamicAttribute(node, [name]) || (attribute(node, name)?.value?.includes("&") ?? false);
   while (cursor < text.length) {
+    if (cfml && text.startsWith("<!---", cursor)) {
+      const comment = scanCfmlComment(text, cursor);
+      if (comment.code) {
+        report(comment.code, "CFML comment is unterminated or exceeds the nesting limit.", cursor, comment.next);
+        break;
+      }
+      cursor = comment.next;
+      continue;
+    }
     if (text.startsWith("<!--", cursor)) {
       const end = text.indexOf("-->", cursor + 4);
       if (end === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "HTML comment is not terminated.", file, sourceMap, cursor, text.length));
-        complete = false;
+        report("PARSE_PARTIAL", "HTML comment is not terminated.", cursor, text.length);
         break;
       }
+      const body = text.slice(cursor + 4, end);
+      if (body.includes("--") || body.startsWith(">") || body.startsWith("->") || body.endsWith("<!")) report("PARSE_PARTIAL", "HTML comment requires unsupported tokenizer recovery.", cursor, end + 3);
       cursor = end + 3;
       continue;
     }
+    if (startsWithInsensitiveAt(text, "<!doctype", cursor)) {
+      const end = text.indexOf(">", cursor + 9);
+      if (end === -1) {
+        report("PARSE_PARTIAL", "HTML document type is not terminated.", cursor, text.length);
+        break;
+      }
+      if (!/^<!doctype[ \t\r\n\f]+html[ \t\r\n\f]*>$/iu.test(text.slice(cursor, end + 1)) || doctypeSeen || elementCount > 0 || text.slice(0, cursor).replace(/<!--[\s\S]*?-->/gu, "").trim() !== "") {
+        report("UNSUPPORTED_SYNTAX", "HTML document type is outside the admitted literal subset.", cursor, end + 1);
+      }
+      doctypeSeen = true;
+      cursor = end + 1;
+      continue;
+    }
     if (text[cursor] !== "<") {
-      cursor += 1;
+      const next = text.indexOf("<", cursor);
+      const end = next === -1 ? text.length : next;
+      const content = text.slice(cursor, end);
+      if (cfml && content.includes("#")) report("UNSUPPORTED_SYNTAX", "CFML text interpolation can change emitted HTML structure.", cursor, end);
+      if (content.includes("\0")) report("PARSE_PARTIAL", "HTML text contains a tokenizer replacement character.", cursor, end);
+      if (content.trim() !== "" && (documentClosed || HTML_TABLE_CHILDREN.has(stack.at(-1)?.name) || ["html", "head"].includes(stack.at(-1)?.name))) report("UNSUPPORTED_SYNTAX", "HTML text requires unsupported tree-building recovery.", cursor, end);
+      cursor = end;
+      continue;
+    }
+    const cfmlName = cfml ? /^<\/?(cf[A-Za-z0-9_:-]*)\b/iu.exec(text.slice(cursor, cursor + 128))?.[1]?.toLowerCase() : null;
+    if (cfmlName && !["cfscript", "cfquery"].includes(cfmlName)) {
+      const end = htmlCfmlTagEnd(text, cursor);
+      if (end === -1) {
+        report("PARSE_PARTIAL", "CFML island is missing a complete closing delimiter.", cursor, text.length);
+        break;
+      }
+      if (++elementCount > maxNodes) { report("RESOURCE_LIMIT", "HTML structural element limit exceeded.", cursor); break; }
+      if (Buffer.byteLength(text.slice(cursor, end), "utf8") > maxAttributeBytes) {
+        report("RESOURCE_LIMIT", "CFML island exceeds the HTML field limit.", cursor, end);
+        break;
+      }
+      let harmless = cfmlName === "cfset" && !text.startsWith("</", cursor) && htmlLiteralCfset(text, cursor, end);
+      if (cfmlName === "cfparam" && !text.startsWith("</", cursor)) {
+        const parameter = parseTag(text, cursor, sourceMap, file, maxAttributeBytes);
+        if (parameter?.error) { diagnostics.push(parameter.error); complete = false; break; }
+        const parameterNode = parameter?.node;
+        harmless = parameterNode !== undefined && typeof attribute(parameterNode, "name")?.value === "string"
+          && /^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*$/u.test(attribute(parameterNode, "name").value)
+          && parameterNode.attributes.every((item) => ["name", "default", "type", "min", "max", "pattern"].includes(item.name) && typeof item.value === "string" && !/[#&\0]/u.test(item.value));
+      }
+      if (!text.startsWith("</", cursor) && ["cfset", "cfreturn"].includes(cfmlName)) {
+        const queries = queryExecuteNodes(text, cursor + cfmlName.length + 1, end - 1, sourceMap, file, maxExpressionBytes, maxNodes - nodes.length);
+        nodes.push(...queries.nodes);
+        if (queries.limited) { report("RESOURCE_LIMIT", "Embedded queryExecute node limit exceeded.", cursor, end); break; }
+      }
+      if (!harmless) report("UNSUPPORTED_SYNTAX", "CFML island output and control semantics are outside HTML structural coverage.", cursor, end);
+      cursor = end;
       continue;
     }
     const parsed = parseTag(text, cursor, sourceMap, file, maxAttributeBytes);
     if (parsed === null) {
-      cursor += 1;
-      continue;
+      report("PARSE_PARTIAL", "HTML markup opener is malformed or unsupported.", cursor);
+      break;
     }
     if (parsed.error) {
       diagnostics.push(parsed.error);
@@ -1025,128 +972,128 @@ function scanHtml(text, sourceMap, file, maxNodes, maxAttributeBytes, maxExpress
       break;
     }
     const node = parsed.node;
-    const action = staticAttribute(node, "action");
-    if (CFML_EXTENSIONS.has(extensionFor(file)) && node.name === "cfscript") {
-      const closeStart = findClosingTag(text, "cfscript", parsed.next);
-      if (closeStart === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "CFScript region is not terminated.", file, sourceMap, parsed.next, text.length));
-        complete = false;
+    if (node.closing) {
+      const open = stack.at(-1);
+      if (HTML_VOID_TAGS.has(node.name) || !open || open.name !== node.name) {
+        report("PARSE_PARTIAL", "HTML closing tag does not match the open element stack.", cursor, parsed.next);
         break;
       }
-      for (const child of cfscriptNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes)) {
-        if (!addNode(nodes, child, diagnostics, maxNodes, file, sourceMap, child.byte_start)) {
-          complete = false;
-          break;
-        }
-      }
-      if (!complete) break;
-      cursor = closeStart;
-      continue;
-    }
-    if (CFML_EXTENSIONS.has(extensionFor(file)) && node.name.startsWith("cf") && node.name !== "cfquery") {
+      stack.pop();
+      if (node.name === "html") documentClosed = true;
+      if (open.form) Object.assign(open.form, nodeSpan(sourceMap, open.start, parsed.next));
       cursor = parsed.next;
       continue;
     }
-    if (node.name === "cfquery") {
-      const closeStart = findClosingTag(text, "cfquery", parsed.next);
-      if (closeStart === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "CFML query region is not terminated.", file, sourceMap, parsed.next, text.length));
-        complete = false;
-      } else if (!addNode(nodes, sqlNode(text, parsed.next, closeStart, sourceMap, file, { statement_kind: "cfquery", datasource: staticAttribute(node, "datasource"), datasource_expression: attribute(node, "datasource")?.value ?? null, datasource_dynamic: staticAttribute(node, "datasource") === null && hasDynamicAttribute(node, ["datasource"]), container_byte_start: node.byte_start }), diagnostics, maxNodes, file, sourceMap, cursor)) {
-        complete = false;
-        break;
-      } else {
-        cursor = closeStart;
-        continue;
-      }
-    } else if (node.name === "form") {
-      const closeStart = findClosingTag(text, "form", parsed.next);
-      if (closeStart === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "HTML form is not terminated.", file, sourceMap, parsed.next, text.length));
-        complete = false;
-      }
-      const closeEnd = closeStart === -1 ? parsed.next : (() => {
-        const delimiter = text.indexOf(">", closeStart + 6);
-        return delimiter === -1 ? text.length : delimiter + 1;
-      })();
-      if (!addNode(nodes, {
-        kind: "HTML_FORM",
-        action: action ?? "",
-        action_dynamic: action === null && hasDynamicAttribute(node, ["action"]),
-        method: staticAttribute(node, "method") ?? "GET",
-        attributes: node.attributes,
-        ...nodeSpan(sourceMap, cursor, closeEnd),
-      }, diagnostics, maxNodes, file, sourceMap, cursor)) {
-        complete = false;
-        break;
-      }
-    } else if (node.name === "link" && (staticAttribute(node, "rel") ?? "").toLowerCase().split(/\s+/u).includes("stylesheet")) {
-      const href = staticAttribute(node, "href");
-      if (!addNode(nodes, {
-        kind: "CSS_REFERENCE",
-        reference_kind: "stylesheet",
-        target: href ?? "",
-        dynamic: href === null && hasDynamicAttribute(node, ["href"]),
-        ...nodeSpan(sourceMap, cursor, parsed.next),
-      }, diagnostics, maxNodes, file, sourceMap, cursor)) {
-        complete = false;
-        break;
-      }
-    } else if (node.name === "script") {
-      const closeStart = findClosingTag(text, "script", parsed.next);
-      if (closeStart === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "HTML script region is not terminated.", file, sourceMap, parsed.next, text.length));
-        complete = false;
-        break;
-      }
-      const src = staticAttribute(node, "src");
-      if (src !== null || hasDynamicAttribute(node, ["src"])) {
-        if (!addNode(nodes, {
-          kind: "JS_ASSET",
-          target: src ?? "",
-          dynamic: src === null,
-          ...nodeSpan(sourceMap, cursor, parsed.next),
-        }, diagnostics, maxNodes, file, sourceMap, cursor)) {
-          complete = false;
-          break;
-        }
-      }
-      for (const child of javascriptNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes)) {
-        if (!addNode(nodes, child, diagnostics, maxNodes, file, sourceMap, child.byte_start)) {
-          complete = false;
-          break;
-        }
-      }
-      if (closeStart > parsed.next) cursor = closeStart;
-    } else if (node.name === "style") {
-      const closeStart = findClosingTag(text, "style", parsed.next);
-      if (closeStart === -1) {
-        diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "HTML style region is not terminated.", file, sourceMap, parsed.next, text.length));
-        complete = false;
-        break;
-      }
-      for (const child of cssNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes)) {
-        if (!addNode(nodes, child, diagnostics, maxNodes, file, sourceMap, child.byte_start)) {
-          complete = false;
-          break;
-        }
-      }
-      if (closeStart > parsed.next) cursor = closeStart;
+    if (++elementCount > maxNodes) { report("RESOURCE_LIMIT", "HTML structural element limit exceeded.", cursor); break; }
+    if (documentClosed) report("UNSUPPORTED_SYNTAX", "HTML markup follows the closed document element.", cursor, parsed.next);
+    if (["html", "head", "body"].includes(node.name)) {
+      if (documentSections.has(node.name) || (node.name === "head" && documentSections.has("body"))) report("UNSUPPORTED_SYNTAX", "HTML document sections require unsupported tree-building recovery.", cursor, parsed.next);
+      documentSections.add(node.name);
     }
+    if (node.attributes.some((item) => item.name.includes(":") || item.name === "xmlns" || item.name === "is" || item.value?.includes("&") || (cfml && item.value?.includes("#")))) {
+      report("UNSUPPORTED_SYNTAX", "HTML attributes contain dynamic, encoded, or namespace-dependent semantics.", cursor, parsed.next);
+    }
+    if (node.attributes.some((item) => item.name.startsWith("on") || item.name === "style")) {
+      report("UNSUPPORTED_SYNTAX", "Embedded attribute language is outside bounded HTML structural coverage.", cursor, parsed.next);
+    }
+    if (cfml && ["cfscript", "cfquery"].includes(node.name)) {
+      const closeStart = node.name === "cfscript" ? findCfscriptClose(text, parsed.next) : findClosingTag(text, node.name, parsed.next);
+      if (closeStart === -1) { report("PARSE_PARTIAL", "CFML embedded region is not terminated.", cursor, text.length); break; }
+      const close = parseTag(text, closeStart, sourceMap, file, maxAttributeBytes);
+      if (!close || close.error) {
+        if (close?.error) diagnostics.push(close.error);
+        else report("PARSE_PARTIAL", "CFML embedded closing delimiter is malformed.", closeStart);
+        complete = false;
+        break;
+      }
+      if (node.self_closing || node.attributes.length > 0 && node.name === "cfscript") report("UNSUPPORTED_SYNTAX", "CFML script delimiter contains unsupported syntax.", cursor, parsed.next);
+      if (node.name === "cfscript" && includeCfscript) {
+        const script = scanCfscript(text, parsed.next, closeStart, sourceMap, file, { maxNodes: Math.max(1, maxNodes - nodes.length), maxExpressionBytes });
+        diagnostics.push(...script.diagnostics);
+        complete = complete && script.complete;
+        for (const child of script.nodes) {
+          if (!append(child, parsed.next)) break;
+        }
+      } else if (node.name === "cfquery") {
+        if (!append(sqlNode(text, parsed.next, closeStart, sourceMap, file, { statement_kind: "cfquery", datasource: staticAttribute(node, "datasource"), datasource_expression: attribute(node, "datasource")?.value ?? null, datasource_dynamic: staticAttribute(node, "datasource") === null && hasDynamicAttribute(node, ["datasource"]), container_byte_start: node.byte_start }), cursor)) break;
+        report("UNSUPPORTED_SYNTAX", "SQL query semantics are outside HTML structural coverage.", parsed.next, closeStart);
+      }
+      if (node.name === "cfscript") {
+        const queries = queryExecuteNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes, maxNodes - nodes.length);
+        nodes.push(...queries.nodes);
+        if (queries.nodes.length > 0) report("UNSUPPORTED_SYNTAX", "SQL query semantics are outside HTML structural coverage.", parsed.next, closeStart);
+        if (queries.limited) { report("RESOURCE_LIMIT", "Web parser node limit exceeded in CFScript query extraction.", parsed.next); break; }
+      }
+      cursor = close.next;
+      continue;
+    }
+    if (!HTML_VOID_TAGS.has(node.name) && !HTML_PAIRED_TAGS.has(node.name)) report("UNSUPPORTED_SYNTAX", "HTML element is outside the admitted ordinary-markup subset.", cursor, parsed.next);
+    if (htmlNeedsRecovery(node.name, stack)) {
+      report("UNSUPPORTED_SYNTAX", "HTML nesting requires unsupported tree-building recovery.", cursor, parsed.next);
+      // An ignored or implicitly relocated element cannot yield reliable facts.
+      break;
+    }
+    if (node.self_closing && !HTML_VOID_TAGS.has(node.name)) report("PARSE_PARTIAL", "HTML non-void element uses an unsupported self-closing delimiter.", cursor, parsed.next);
+    if (HTML_OPAQUE_TAGS.has(node.name)) {
+      // Foreign, template and legacy raw contexts cannot safely yield HTML facts.
+      report("UNSUPPORTED_SYNTAX", "HTML context requires unsupported foreign or tokenizer semantics.", cursor, parsed.next);
+      break;
+    }
+    const open = { name: node.name, start: cursor };
+    if (node.name === "form") {
+      const action = literalAttribute(node, "action");
+      open.form = { kind: "HTML_FORM", action: action ?? "", action_dynamic: action === null && uncertainAttribute(node, "action"), method: literalAttribute(node, "method") ?? "GET", attributes: node.attributes, ...nodeSpan(sourceMap, cursor, parsed.next) };
+      if (!append(open.form, cursor)) break;
+    } else if (node.name === "link" && (literalAttribute(node, "rel") ?? "").toLowerCase().split(/\s+/u).includes("stylesheet")) {
+      const href = literalAttribute(node, "href");
+      if (!append({ kind: "CSS_REFERENCE", reference_kind: "stylesheet", target: href ?? "", dynamic: href === null && uncertainAttribute(node, "href"), ...nodeSpan(sourceMap, cursor, parsed.next) }, cursor)) break;
+    }
+    if (HTML_RAW_TAGS.has(node.name)) {
+      const closeStart = htmlRawClosingTag(text, node.name, parsed.next);
+      if (closeStart === -1) { report("PARSE_PARTIAL", "HTML raw-text or RCDATA region is not terminated.", cursor, text.length); break; }
+      const close = parseTag(text, closeStart, sourceMap, file, maxAttributeBytes);
+      if (!close || close.error) {
+        if (close?.error) diagnostics.push(close.error);
+        else report("PARSE_PARTIAL", "HTML raw-text closing delimiter is malformed.", closeStart);
+        complete = false;
+        break;
+      }
+      const body = text.slice(parsed.next, closeStart);
+      if (cfml && (body.includes("#") || /<\/?cf[A-Za-z]/iu.test(body))) report("UNSUPPORTED_SYNTAX", "CFML interpolation or islands in an embedded region remain dynamic.", parsed.next, closeStart);
+      if (body.includes("\0")) report("PARSE_PARTIAL", "HTML embedded text contains a tokenizer replacement character.", parsed.next, closeStart);
+      if (node.name === "script") {
+        const src = literalAttribute(node, "src");
+        if (src !== null || uncertainAttribute(node, "src")) {
+          if (!append({ kind: "JS_ASSET", target: src ?? "", dynamic: src === null, ...nodeSpan(sourceMap, cursor, parsed.next) }, cursor)) break;
+        }
+        const type = (literalAttribute(node, "type") ?? "").toLowerCase();
+        if (!["", "module", "text/javascript", "application/javascript", "text/ecmascript", "application/ecmascript"].includes(type) || uncertainAttribute(node, "type")) {
+          report("UNSUPPORTED_SYNTAX", "HTML script language is outside the admitted embedded-language subset.", cursor, parsed.next);
+        } else {
+          for (const child of javascriptNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes)) {
+            if (!append(child, parsed.next)) break;
+          }
+        }
+        if (body.trim() !== "") report("UNSUPPORTED_SYNTAX", "JavaScript coverage is limited to bounded fetch and AJAX call structures.", parsed.next, closeStart);
+        if (body.includes("<!--")) { report("UNSUPPORTED_SYNTAX", "HTML escaped-script tokenizer states are not admitted.", parsed.next, closeStart); break; }
+      } else if (node.name === "style") {
+        const type = (literalAttribute(node, "type") ?? "").toLowerCase();
+        if (!["", "text/css"].includes(type) || uncertainAttribute(node, "type")) {
+          report("UNSUPPORTED_SYNTAX", "HTML style language is outside the admitted embedded-language subset.", cursor, parsed.next);
+        } else {
+          for (const child of cssNodes(text, parsed.next, closeStart, sourceMap, file, maxExpressionBytes)) {
+            if (!append(child, parsed.next)) break;
+          }
+        }
+        if (body.trim() !== "") report("UNSUPPORTED_SYNTAX", "CSS coverage is limited to bounded imports and url() references.", parsed.next, closeStart);
+      }
+      cursor = close.next;
+      continue;
+    }
+    if (!HTML_VOID_TAGS.has(node.name)) stack.push(open);
     cursor = parsed.next;
   }
-  if (CFML_EXTENSIONS.has(extensionFor(file)) && nodes.length < maxNodes) {
-    const queryResult = queryExecuteNodes(text, 0, text.length, sourceMap, file, maxExpressionBytes, maxNodes - nodes.length);
-    nodes.push(...queryResult.nodes);
-    if (queryResult.limited) {
-      diagnostics.push(diagnostic("RESOURCE_LIMIT", "error", `Web parser node limit exceeded: ${maxNodes}.`, file, sourceMap, 0));
-      complete = false;
-    }
-  }
-  if (text.trim() !== "") {
-    diagnostics.push(diagnostic("UNSUPPORTED_SYNTAX", "warning", "HTML coverage is limited to bounded form, asset, and embedded web-flow structures.", file, sourceMap, 0, text.length));
-    complete = false;
-  }
+  if (stack.length > 0) report("PARSE_PARTIAL", "HTML element is missing its matching closing tag.", stack.at(-1).start, text.length);
   return { nodes, diagnostics, complete };
 }
 
@@ -1235,23 +1182,26 @@ function extensionFor(file) {
  * visible SQL table names, literal-first-argument queryExecute calls, and bounded
  * CFScript linkage forms; it is not a browser or language runtime.
  */
-export function createWebScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttributeBytes = DEFAULT_MAX_ATTRIBUTE_BYTES, maxExpressionBytes = DEFAULT_MAX_EXPRESSION_BYTES } = {}) {
+export function createWebScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttributeBytes = DEFAULT_MAX_ATTRIBUTE_BYTES, maxExpressionBytes = DEFAULT_MAX_EXPRESSION_BYTES, includeCfscript = true } = {}) {
   for (const [value, name] of [[maxNodes, "maxNodes"], [maxAttributeBytes, "maxAttributeBytes"], [maxExpressionBytes, "maxExpressionBytes"]]) {
     if (!Number.isSafeInteger(value) || value <= 0) throw new TypeError(`${name} must be a positive safe integer`);
   }
+  if (typeof includeCfscript !== "boolean") throw new TypeError("includeCfscript must be a boolean");
   return Object.freeze({
     version: "web-structural-scanner/v0.1",
     parse(text, { file, sourceMap }) {
       const extension = extensionFor(file);
-      const result = HTML_EXTENSIONS.has(extension)
-        ? scanHtml(text, sourceMap, file, maxNodes, maxAttributeBytes, maxExpressionBytes)
-        : JAVASCRIPT_EXTENSIONS.has(extension)
-          ? scanJavaScript(text, sourceMap, file, maxNodes, maxExpressionBytes)
-          : CSS_EXTENSIONS.has(extension)
-            ? scanCss(text, sourceMap, file, maxNodes, maxExpressionBytes)
-            : SQL_EXTENSIONS.has(extension)
-              ? scanSql(text, sourceMap, file, maxNodes)
-              : { nodes: [], diagnostics: [], complete: true };
+      const result = includeCfscript && extension === ".cfc" && isScriptCfcSource(text)
+        ? scanCfscript(text, 0, text.length, sourceMap, file, { maxNodes, maxExpressionBytes, scriptCfc: true })
+        : HTML_EXTENSIONS.has(extension)
+          ? scanHtml(text, sourceMap, file, maxNodes, maxAttributeBytes, maxExpressionBytes, includeCfscript)
+          : JAVASCRIPT_EXTENSIONS.has(extension)
+            ? scanJavaScript(text, sourceMap, file, maxNodes, maxExpressionBytes)
+            : CSS_EXTENSIONS.has(extension)
+              ? scanCss(text, sourceMap, file, maxNodes, maxExpressionBytes)
+              : SQL_EXTENSIONS.has(extension)
+                ? scanSql(text, sourceMap, file, maxNodes)
+                : { nodes: [], diagnostics: [], complete: true };
       return {
         tree: { kind: "WEB_STRUCTURAL_DOCUMENT", backend: "web-structural-scanner/v0.1", nodes: result.nodes },
         diagnostics: result.diagnostics,
@@ -1267,7 +1217,7 @@ export function createWebScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttri
  */
 export function createMixedStructuralScannerBackend(options = {}) {
   const cfmlBackend = createCfmlScannerBackend(options);
-  const webBackend = createWebScannerBackend(options);
+  const webBackend = createWebScannerBackend({ ...options, includeCfscript: false });
   const maxNodes = options.maxNodes ?? DEFAULT_MAX_NODES;
   return Object.freeze({
     version: "mixed-structural-scanner/v0.1",
@@ -1275,6 +1225,13 @@ export function createMixedStructuralScannerBackend(options = {}) {
       const extension = extensionFor(context.file);
       const isCfml = extension === ".cfm" || extension === ".cfml" || extension === ".cfc";
       const cfml = isCfml ? cfmlBackend.parse(text, context) : { nodes: [], diagnostics: [], complete: true };
+      if (cfml.tree?.kind === "CFML_SCRIPT_DOCUMENT") {
+        return {
+          tree: { kind: "MIXED_STRUCTURAL_DOCUMENT", backend: "mixed-structural-scanner/v0.1", nodes: cfml.tree.nodes },
+          complete: cfml.complete === true,
+          diagnostics: cfml.diagnostics,
+        };
+      }
       const web = webBackend.parse(text, context);
       const allNodes = [...(cfml.tree?.nodes ?? []), ...(web.tree?.nodes ?? [])].sort((left, right) => {
         const startDifference = (left.byte_start ?? 0) - (right.byte_start ?? 0);

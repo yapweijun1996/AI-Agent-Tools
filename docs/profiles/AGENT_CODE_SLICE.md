@@ -38,10 +38,12 @@ Code Slice has two native envelope versions:
 | `schemaVersion: "1.0"` | Core operation result | `ok: true` carries `result`; `ok: false` carries `error.code`. |
 | `schemaVersion: "1.1"` with `operation: "cli"` | CLI argument-shape failure | `ok` must be `false`; read the stable `error.code`. |
 
-Both versions include a `warnings` array. The native `error.code` is the primary
-machine semantic; `recoverable`, `details`, candidates, and warning metadata are
-additional evidence. The Hub consumer must preserve the native envelope rather than
-wrapping it as the Hub target envelope.
+Both versions require a string `operation` and a `warnings` array whose entries
+are objects with string `code` and `message` fields. Core successes carry a
+non-array result object; native capabilities retain their separate payload shape.
+The native `error.code` is the primary machine semantic; `recoverable`, `details`,
+candidates, and warning metadata are additional evidence. The Hub consumer must
+preserve the native envelope rather than wrapping it as the Hub target envelope.
 
 ## Consumer classification
 
@@ -82,7 +84,9 @@ This profile does not promote `agent-code-slice` from its registered lifecycle,
 certify the published artifact's exact behavior, or add a registry contract-profile
 field. It does not migrate Code Slice to `schema_version`, `status`, `complete`, or
 Hub `data`. The executable fixtures in
-[`tests/code_slice_profile.test.js`](../../tests/code_slice_profile.test.js) cover
-complete success, bounded outline success, CLI and operation errors, malformed or
-unknown envelopes, and exit/status mismatch. Native tool consumers remain separate
-from the target-envelope fixtures in `tests/hub_consumer.test.js`.
+[`tests/code_slice_profile.test.js`](../../tests/code_slice_profile.test.js) call
+AIT's production `validateNativeProfile` rather than a second test-only validator.
+They cover complete and bounded success, CLI and operation errors, malformed
+operation/result/warning fields, unknown envelopes, version/operation pairing,
+and exit/status mismatch. Native tool consumers remain separate from the
+target-envelope fixtures in `tests/hub_consumer.test.js`.

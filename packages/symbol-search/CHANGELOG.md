@@ -4,9 +4,16 @@
 |---|---|
 | Status | Active |
 | Owner | Project maintainers |
-| Last reviewed | 2026-09-08 |
+| Last reviewed | 2026-10-12 |
 
 All entries are user-visible changes. Package `0.1.2` adds an agent-facing skill and npm integration documentation without changing runtime behavior. Packages `0.1.1` and `0.1.2` were published publicly to npm on 2026-09-08; their matching tags and GitHub Releases are recorded in `RELEASE.md`.
+
+## Unreleased
+
+### Documentation
+
+- Corrected the agent skill's `definition`, `references`, and `implementations` requirements: `symbol` is mandatory and `from` is optional, including positioned CLI queries.
+- This correction changes guidance only; runtime behavior, schemas, package version, and published artifacts are unchanged.
 
 ## 0.1.2 — 2026-09-08
 

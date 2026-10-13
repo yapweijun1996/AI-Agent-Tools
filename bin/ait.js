@@ -6,6 +6,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
+const { StringDecoder } = require('node:string_decoder');
 
 const VERSION = require('../package.json').version;
 const RESULT_PROTOCOL = 'ait-result/v1';
@@ -13,6 +14,8 @@ const INSTALL_STATE_VERSION = 'ait-install-state/v1';
 const PROFILE_INDEX_VERSION = '1.0.0';
 const DEFAULT_TIMEOUT_MS = 120_000;
 const DEFAULT_OUTPUT_BYTES = 1_048_576;
+const STATE_LOCK_WAIT_MS = 5_000;
+const LOCK_POLL_MS = 25;
 const LIFECYCLES = new Set(['Planned', 'Experimental', 'Verified', 'Stable', 'Deprecated']);
 
 class AitError extends Error {
@@ -274,11 +277,15 @@ function validateNativeProfile(profile, stdout, exitCode, args = []) {
   }
   if (!value || typeof value !== 'object' || Array.isArray(value)) return validationFailure('Native envelope is not an object');
   if (profile.protocol === 'code-slice-native-v1') {
-    if (!['1.0', '1.1'].includes(value.schemaVersion) || typeof value.ok !== 'boolean' || !Array.isArray(value.warnings)) return validationFailure('Code Slice envelope is invalid');
+    if (!['1.0', '1.1'].includes(value.schemaVersion) || typeof value.ok !== 'boolean' ||
+        typeof value.operation !== 'string' || !Array.isArray(value.warnings) ||
+        !value.warnings.every((warning) => warning && typeof warning === 'object' && !Array.isArray(warning) &&
+          typeof warning.code === 'string' && typeof warning.message === 'string')) return validationFailure('Code Slice envelope is invalid');
     if (value.schemaVersion === '1.1' && (value.operation !== 'cli' || value.ok !== false)) return validationFailure('Code Slice v1.1 is reserved for CLI errors');
     if (value.schemaVersion === '1.0' && value.operation === 'cli') return validationFailure('Code Slice CLI errors require v1.1');
     if (value.ok) {
-      if (exitCode !== 0 || (value.operation !== 'capabilities' && (!value.result || typeof value.result !== 'object'))) return validationFailure('Code Slice success has an invalid exit/status or result');
+      if (exitCode !== 0 || (value.operation !== 'capabilities' &&
+          (!value.result || typeof value.result !== 'object' || Array.isArray(value.result)))) return validationFailure('Code Slice success has an invalid exit/status or result');
       const bounded = value.warnings.some((warning) => warning && warning.code === 'OUTLINE_TRUNCATED') || Boolean(value.result && value.result.page && value.result.page.hasMore === true);
       return { passed: true, classification: bounded ? 'bounded_success' : 'complete' };
     }
@@ -343,7 +350,7 @@ function loadState(home) {
     return { schema_version: INSTALL_STATE_VERSION, installed: [] };
   }
   const state = readJson(statePath, 'installation state');
-  if (state.schema_version !== INSTALL_STATE_VERSION || !Array.isArray(state.installed)) {
+  if (!state || typeof state !== 'object' || state.schema_version !== INSTALL_STATE_VERSION || !Array.isArray(state.installed)) {
     throw new AitError('Installation state has an unsupported schema', 2, 'INVALID_STATE');
   }
   return state;
@@ -351,6 +358,35 @@ function loadState(home) {
 
 function saveState(home, state) {
   writeJsonAtomic(path.join(home, 'installed.json'), state);
+}
+
+function withInstallLock(home, name, waitMs, callback) {
+  fs.mkdirSync(home, { recursive: true, mode: 0o700 });
+  const lockPath = path.join(home, name);
+  const deadline = Date.now() + waitMs;
+  const sleeper = waitMs ? new Int32Array(new SharedArrayBuffer(4)) : null;
+  let descriptor;
+  while (descriptor === undefined) {
+    try {
+      descriptor = fs.openSync(lockPath, 'wx', 0o600);
+    } catch (error) {
+      if (error.code !== 'EEXIST') throw error;
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) {
+        throw new AitError(`Installation lock is busy: ${lockPath}; no lock is removed automatically`, 4, 'INSTALL_LOCK_BUSY');
+      }
+      Atomics.wait(sleeper, 0, 0, Math.min(LOCK_POLL_MS, remaining));
+    }
+  }
+  try {
+    return callback();
+  } finally {
+    try {
+      fs.closeSync(descriptor);
+    } finally {
+      fs.unlinkSync(lockPath);
+    }
+  }
 }
 
 function result(data, status = 'ok', ok = true, meta = {}) {
@@ -473,55 +509,61 @@ function installTool(options) {
   if (options.fromPath && !fs.existsSync(path.join(source, 'package.json'))) {
     throw new AitError(`Local package has no package.json: ${source}`, 2, 'PACKAGE_MANIFEST_MISSING');
   }
-  if (fs.existsSync(path.join(installedRoot, 'package.json'))) {
-    const state = loadState(home);
-    const existing = state.installed.find((entry) => entry.id === tool.id && entry.version === tool.release_version);
-    if (existing) return result({ tool: tool.id, package: existing.package, already_installed: true }, 'ok', true);
-  }
+  // Same-tool installs fail closed before npm or target writes. Different tools
+  // may install concurrently; only their short state merge waits (at most 5s).
+  return withInstallLock(home, `.install-${tool.id}.lock`, 0, () => {
+    if (fs.existsSync(path.join(installedRoot, 'package.json'))) {
+      const state = loadState(home);
+      const existing = state.installed.find((entry) => entry.id === tool.id && entry.version === tool.release_version);
+      if (existing) return result({ tool: tool.id, package: existing.package, already_installed: true }, 'ok', true);
+    }
 
-  fs.mkdirSync(target, { recursive: true, mode: 0o700 });
-  const rootPackage = {
-    name: `ait-install-${tool.id}`,
-    version: '0.0.0',
-    private: true,
-  };
-  writeJsonAtomic(path.join(target, 'package.json'), rootPackage);
-  runNpm([
-    'install',
-    '--prefix', target,
-    '--ignore-scripts',
-    // Local source installs must be copied inside AIT home, not linked outside it.
-    ...(options.fromPath ? ['--install-links'] : []),
-    '--no-audit',
-    '--no-fund',
-    '--no-package-lock',
-    '--save-exact',
-    source,
-  ], options.json);
+    fs.mkdirSync(target, { recursive: true, mode: 0o700 });
+    const rootPackage = {
+      name: `ait-install-${tool.id}`,
+      version: '0.0.0',
+      private: true,
+    };
+    writeJsonAtomic(path.join(target, 'package.json'), rootPackage);
+    runNpm([
+      'install',
+      '--prefix', target,
+      '--ignore-scripts',
+      // Local source installs must be copied inside AIT home, not linked outside it.
+      ...(options.fromPath ? ['--install-links'] : []),
+      '--no-audit',
+      '--no-fund',
+      '--no-package-lock',
+      '--save-exact',
+      source,
+    ], options.json);
 
-  const installedPackage = readJson(path.join(installedRoot, 'package.json'), 'installed package manifest');
-  if (installedPackage.name !== packageName) {
-    throw new AitError(`Installed package name mismatch: expected ${packageName}`, 4, 'PACKAGE_IDENTITY_MISMATCH');
-  }
-  if (installedPackage.version !== tool.release_version) {
-    throw new AitError(`Installed package version mismatch: expected ${tool.release_version}`, 4, 'PACKAGE_VERSION_MISMATCH');
-  }
-  const bin = packageBin(installedPackage, packageName);
-  const state = loadState(home);
-  state.installed = state.installed.filter((entry) => entry.id !== tool.id);
-  state.installed.push({
-    id: tool.id,
-    name: tool.name,
-    package: packageName,
-    version: installedPackage.version || tool.release_version,
-    root: target,
-    bin,
-    source: options.fromPath ? { kind: 'path', value: source } : { kind: 'npm', value: source },
-    execution_approved: false,
-    installed_at: new Date().toISOString(),
+    const installedPackage = readJson(path.join(installedRoot, 'package.json'), 'installed package manifest');
+    if (installedPackage.name !== packageName) {
+      throw new AitError(`Installed package name mismatch: expected ${packageName}`, 4, 'PACKAGE_IDENTITY_MISMATCH');
+    }
+    if (installedPackage.version !== tool.release_version) {
+      throw new AitError(`Installed package version mismatch: expected ${tool.release_version}`, 4, 'PACKAGE_VERSION_MISMATCH');
+    }
+    const bin = packageBin(installedPackage, packageName);
+    return withInstallLock(home, '.installed-state.lock', STATE_LOCK_WAIT_MS, () => {
+      const state = loadState(home);
+      state.installed = state.installed.filter((entry) => entry.id !== tool.id);
+      state.installed.push({
+        id: tool.id,
+        name: tool.name,
+        package: packageName,
+        version: installedPackage.version || tool.release_version,
+        root: target,
+        bin,
+        source: options.fromPath ? { kind: 'path', value: source } : { kind: 'npm', value: source },
+        execution_approved: false,
+        installed_at: new Date().toISOString(),
+      });
+      saveState(home, state);
+      return result({ tool: tool.id, package: packageName, version: installedPackage.version || tool.release_version }, 'ok', true);
+    });
   });
-  saveState(home, state);
-  return result({ tool: tool.id, package: packageName, version: installedPackage.version || tool.release_version }, 'ok', true);
 }
 
 function listTools(options) {
@@ -545,15 +587,44 @@ function listTools(options) {
 function doctor(options) {
   const registry = loadRegistry(options);
   const home = homePath(options);
-  const state = loadState(home);
   const issues = [];
+  let state;
+  try {
+    state = loadState(home);
+  } catch (error) {
+    issues.push({ id: null, code: error.code || 'INVALID_STATE', message: error.message });
+    return result({ registry: registry.tools.length, installed: null, issues }, 'incomplete', false, { issue_count: issues.length });
+  }
+  const ids = new Set();
   for (const entry of state.installed) {
-    if (!registry.tools.some((tool) => tool.id === entry.id)) {
-      issues.push({ id: entry.id, code: 'NOT_IN_REGISTRY', message: 'Installed tool is absent from the selected registry' });
-      continue;
-    }
-    if (!fs.existsSync(path.join(entry.root, 'package.json'))) {
-      issues.push({ id: entry.id, code: 'INSTALLATION_MISSING', message: 'Installation root is missing' });
+    try {
+      validateInstalledRecord(entry);
+      if (ids.has(entry.id)) throw new AitError('Duplicate installed tool record', 4, 'INVALID_STATE');
+      ids.add(entry.id);
+      const tool = registry.tools.find((candidate) => candidate.id === entry.id);
+      if (!tool) throw new AitError('Installed tool is absent from the selected registry', 4, 'NOT_IN_REGISTRY');
+      if (!tool.npm || entry.package !== tool.npm.name || entry.version !== tool.release_version) {
+        throw new AitError('Installed identity does not match the selected registry', 4, 'PACKAGE_IDENTITY_MISMATCH');
+      }
+      const rooted = resolveInstalledPackage({ options, record: entry });
+      const manifestPath = fs.realpathSync(path.join(rooted.packageRootPath, 'package.json'));
+      assertWithin(rooted.packageRootPath, manifestPath);
+      if (!fs.statSync(manifestPath).isFile()) throw new AitError('Installed package manifest is not a regular file', 4, 'PACKAGE_MANIFEST_MISSING');
+      const manifest = readJson(manifestPath, 'installed package manifest');
+      if (manifest.name !== entry.package || manifest.version !== entry.version) {
+        throw new AitError('Actual installed package identity does not match its record', 4, 'PACKAGE_IDENTITY_MISMATCH');
+      }
+      const bin = packageBin(manifest, entry.package);
+      if (bin.name !== entry.bin.name || bin.path !== entry.bin.path) {
+        throw new AitError('Actual executable declaration does not match its record', 4, 'BIN_MISMATCH');
+      }
+      resolveExecutable({ options, record: entry }, rooted);
+    } catch (error) {
+      issues.push({
+        id: entry && typeof entry.id === 'string' ? entry.id : null,
+        code: error.code === 'ENOENT' || error.code === 'ENOTDIR' ? 'INSTALLATION_MISSING' : error.code || 'INVALID_STATE',
+        message: error.message,
+      });
     }
   }
   return result({ registry: registry.tools.length, installed: state.installed.length, issues }, issues.length ? 'incomplete' : 'ok', issues.length === 0, { issue_count: issues.length });
@@ -566,24 +637,45 @@ function assertWithin(root, candidate) {
   }
 }
 
-function resolveExecutable(entry) {
+function validateInstalledRecord(record) {
+  if (!record || typeof record !== 'object' || Array.isArray(record) ||
+      typeof record.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(record.id) ||
+      !isSafePackageName(record.package) || !nonEmpty(record.version) ||
+      !nonEmpty(record.root) || !path.isAbsolute(record.root) ||
+      !record.bin || typeof record.bin !== 'object' || Array.isArray(record.bin) ||
+      !nonEmpty(record.bin.name) || !nonEmpty(record.bin.path)) {
+    throw new AitError('Installation record is malformed', 4, 'INVALID_STATE');
+  }
+  safeSegment(record.bin.name, 'executable name');
+}
+
+function resolveInstalledPackage(entry) {
+  validateInstalledRecord(entry.record);
   const home = homePath(entry.options);
+  assertWithin(home, entry.record.root);
   const realHome = fs.realpathSync(home);
   const realRoot = fs.realpathSync(entry.record.root);
   assertWithin(realHome, realRoot);
   const packageRootPath = fs.realpathSync(packageRoot(realRoot, entry.record.package));
   assertWithin(realRoot, packageRootPath);
-  const shim = path.join(realRoot, 'node_modules', '.bin', entry.record.bin.name + (process.platform === 'win32' ? '.cmd' : ''));
-  if (process.platform !== 'win32' && fs.existsSync(shim)) {
-    const realShim = fs.realpathSync(shim);
-    assertWithin(realRoot, realShim);
-    return { command: realShim, args: [] };
-  }
+  return { realRoot, packageRootPath };
+}
+
+function resolveExecutable(entry, rooted = resolveInstalledPackage(entry)) {
+  const { realRoot, packageRootPath } = rooted;
   const script = path.resolve(packageRootPath, entry.record.bin.path);
   assertWithin(packageRootPath, script);
   if (!fs.existsSync(script)) throw new AitError('Installed executable is missing', 4, 'BIN_MISSING');
   const realScript = fs.realpathSync(script);
   assertWithin(packageRootPath, realScript);
+  if (!fs.statSync(realScript).isFile()) throw new AitError('Installed executable is not a regular file', 4, 'BIN_MISSING');
+  const shim = path.join(realRoot, 'node_modules', '.bin', entry.record.bin.name + (process.platform === 'win32' ? '.cmd' : ''));
+  if (process.platform !== 'win32' && fs.existsSync(shim)) {
+    const realShim = fs.realpathSync(shim);
+    assertWithin(packageRootPath, realShim);
+    if (!fs.statSync(realShim).isFile()) throw new AitError('Installed executable shim is not a regular file', 4, 'BIN_MISSING');
+    return { command: realShim, args: [] };
+  }
   if (path.extname(realScript).toLowerCase() === '.js') return { command: process.execPath, args: [realScript] };
   return { command: realScript, args: [] };
 }
@@ -591,6 +683,29 @@ function resolveExecutable(entry) {
 function safeEnvironment() {
   const allowed = ['PATH', 'Path', 'PATHEXT', 'SystemRoot', 'TEMP', 'TMP', 'HOME', 'USERPROFILE', 'APPDATA', 'LOCALAPPDATA'];
   return Object.fromEntries(allowed.filter((key) => process.env[key] !== undefined).map((key) => [key, process.env[key]]));
+}
+
+function boundedCapture(child) {
+  const stdout = child.stdout || Buffer.alloc(0);
+  const stderr = child.stderr || Buffer.alloc(0);
+  let truncated = false;
+  const decode = (bytes, budget) => {
+    const decoder = new StringDecoder('utf8');
+    let text = decoder.write(bytes.subarray(0, budget));
+    if (budget >= bytes.length) text += decoder.end();
+    else truncated = true;
+    // Invalid UTF-8 can expand into replacement characters. Bound retained
+    // UTF-8 text too, leaving ordinary complete native streams unchanged.
+    if (Buffer.byteLength(text, 'utf8') > budget) {
+      text = new StringDecoder('utf8').write(Buffer.from(text, 'utf8').subarray(0, budget));
+      truncated = true;
+    }
+    return text;
+  };
+  // Reserve room for stderr evidence even if spawnSync overshoots maxBuffer.
+  const stdoutText = decode(stdout, DEFAULT_OUTPUT_BYTES - Math.min(stderr.length, DEFAULT_OUTPUT_BYTES / 2));
+  const stderrText = decode(stderr, DEFAULT_OUTPUT_BYTES - Buffer.byteLength(stdoutText, 'utf8'));
+  return { stdout: stdoutText, stderr: stderrText, truncated };
 }
 
 function dispatchTool(options) {
@@ -604,6 +719,7 @@ function dispatchTool(options) {
   const state = loadState(homePath(options));
   const record = state.installed.find((entry) => entry.id === id);
   if (!record) throw new AitError(`Tool is not installed: ${id}`, 4, 'NOT_INSTALLED');
+  validateInstalledRecord(record);
   if (!tool.npm || record.package !== tool.npm.name || record.version !== tool.release_version) {
     throw new AitError(`Installed identity does not match the selected registry: ${id}`, 4, 'PACKAGE_IDENTITY_MISMATCH');
   }
@@ -616,37 +732,47 @@ function dispatchTool(options) {
   const child = spawnSync(executable.command, [...executable.args, ...options.passthrough], {
     cwd,
     env: safeEnvironment(),
-    encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
     timeout: DEFAULT_TIMEOUT_MS,
     maxBuffer: DEFAULT_OUTPUT_BYTES,
     windowsHide: true,
     shell: false,
   });
-  if (child.error && child.error.code !== 'ETIMEDOUT') {
+  const resourceLimited = Boolean(child.error && child.error.code === 'ENOBUFS');
+  if (child.error && !['ETIMEDOUT', 'ENOBUFS'].includes(child.error.code)) {
     throw new AitError(`Tool execution failed to start: ${child.error.message}`, 1, 'EXECUTION_START_FAILED');
   }
+  const capture = boundedCapture(child);
+  const limited = resourceLimited || capture.truncated;
   const exitCode = child.status === null ? 1 : child.status;
-  let data = { stdout: child.stdout || '', stderr: child.stderr || '' };
-  const trimmed = (child.stdout || '').trim();
-  if (trimmed) {
+  let data = { stdout: capture.stdout, stderr: capture.stderr };
+  const trimmed = capture.stdout.trim();
+  if (trimmed && !limited) {
     try { data = JSON.parse(trimmed); } catch { /* Preserve non-JSON native output as bounded text. */ }
   }
   const profileValidation = profile
-    ? validateNativeProfile(profile, child.stdout || '', exitCode, options.passthrough)
+    ? limited
+      ? validationFailure('Native output exceeded the capture limit; it is not a complete protocol document')
+      : validateNativeProfile(profile, capture.stdout, exitCode, options.passthrough)
     : null;
-  const nativeOk = exitCode === 0;
+  const nativeOk = exitCode === 0 && !child.error && !limited;
   const wrapperOk = nativeOk && (!profileValidation || profileValidation.passed);
   const output = result(data, wrapperOk ? 'ok' : 'error', wrapperOk, {
     tool: id,
     package: record.package,
     version: record.version,
-    exit_code: exitCode,
-    native_exit: exitCode,
+    exit_code: child.status,
+    native_exit: child.status,
     signal: child.signal || null,
     cwd,
-    native_stdout: child.stdout || '',
-    native_stderr: child.stderr || '',
+    native_stdout: capture.stdout,
+    native_stderr: capture.stderr,
+    ...(limited ? {
+      error: 'EXECUTION_OUTPUT_LIMIT',
+      message: `Tool output exceeded the ${DEFAULT_OUTPUT_BYTES}-byte capture limit; captured streams may be truncated`,
+      output_truncated: true,
+      output_limit_bytes: DEFAULT_OUTPUT_BYTES,
+    } : {}),
     ...(profile ? {
       profile: {
         id: profile.profile_id,
@@ -657,7 +783,7 @@ function dispatchTool(options) {
       },
     } : {}),
   });
-  return { output, exitCode: profileValidation && !profileValidation.passed ? 4 : exitCode };
+  return { output, exitCode: limited ? 1 : profileValidation && !profileValidation.passed ? 4 : exitCode };
 }
 
 function textOutput(value) {

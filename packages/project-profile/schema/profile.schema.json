@@ -23,6 +23,24 @@
     "warnings",
     "coverage"
   ],
+  "allOf": [
+    {
+      "if": { "properties": { "project": { "properties": { "kind": { "const": "monorepo" } } } } },
+      "then": { "required": ["packageInventory"] }
+    }
+  ],
+  "dependentSchemas": {
+    "packageInventory": {
+      "properties": {
+        "coverage": {
+          "properties": {
+            "categories": { "required": ["packageInventory"] },
+            "truncated": { "required": ["packageInventory"] }
+          }
+        }
+      }
+    }
+  },
   "properties": {
     "schemaVersion": { "const": "1.0" },
     "toolVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
@@ -32,6 +50,7 @@
     "packageManager": { "$ref": "#/$defs/packageManager" },
     "runtimes": { "type": "array", "items": { "$ref": "#/$defs/runtime" } },
     "workspace": { "$ref": "#/$defs/workspace" },
+    "packageInventory": { "$ref": "#/$defs/packageInventory" },
     "commands": { "$ref": "#/$defs/commands" },
     "scripts": { "type": "array", "items": { "$ref": "#/$defs/scripts" } },
     "entrypoints": { "type": "array", "items": { "$ref": "#/$defs/entrypoint" } },
@@ -63,7 +82,7 @@
       "properties": {
         "root": { "const": "." },
         "name": { "type": ["string", "null"] },
-        "kind": { "enum": ["single-package", "workspace", "unknown"] },
+        "kind": { "enum": ["single-package", "workspace", "monorepo", "unknown"] },
         "repository": { "$ref": "#/$defs/repository" },
         "evidence": { "$ref": "#/$defs/evidenceRef" }
       }
@@ -146,6 +165,34 @@
         "packages": { "type": "array", "items": { "$ref": "#/$defs/workspacePackage" } },
         "total": { "type": ["integer", "null"], "minimum": 0 },
         "returned": { "type": "integer", "minimum": 0 },
+        "truncated": { "type": "boolean" }
+      }
+    },
+    "packageInventory": {
+      "description": "Source-only additive independent-package inventory; not the exact published 0.1.1 contract.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "declarations", "packages", "total", "returned", "truncated"],
+      "properties": {
+        "kind": { "const": "independent" },
+        "declarations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "pointer", "evidence"],
+            "properties": {
+              "path": { "const": "package.json" },
+              "pointer": { "enum": ["/agentProjectProfile", "/agentProjectProfile/independentPackages"] },
+              "evidence": { "$ref": "#/$defs/evidenceRef", "minItems": 1 }
+            }
+          }
+        },
+        "packages": { "type": "array", "maxItems": 100, "items": { "$ref": "#/$defs/workspacePackage" } },
+        "total": { "type": ["integer", "null"], "minimum": 0 },
+        "returned": { "type": "integer", "minimum": 0, "maximum": 100 },
         "truncated": { "type": "boolean" }
       }
     },
@@ -287,6 +334,7 @@
             "packageManager": { "$ref": "#/$defs/coverageState" },
             "runtimes": { "$ref": "#/$defs/coverageState" },
             "workspace": { "$ref": "#/$defs/coverageState" },
+            "packageInventory": { "$ref": "#/$defs/coverageState" },
             "commands": { "$ref": "#/$defs/coverageState" },
             "scripts": { "$ref": "#/$defs/coverageState" },
             "entrypoints": { "$ref": "#/$defs/coverageState" },
@@ -301,6 +349,7 @@
           "required": ["workspace", "output", "directoryEntries", "metadataFiles", "metadataBytes", "depth"],
           "properties": {
             "workspace": { "type": "boolean" },
+            "packageInventory": { "type": "boolean" },
             "output": { "type": "boolean" },
             "directoryEntries": { "type": "boolean" },
             "metadataFiles": { "type": "boolean" },

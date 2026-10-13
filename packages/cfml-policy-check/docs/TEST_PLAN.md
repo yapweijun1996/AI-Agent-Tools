@@ -1,14 +1,25 @@
 # Test Plan
 
 Status: `Local slice verified; complete matrix pending`
-Last reconciled: 2026-09-16
+Last reconciled: 2026-10-12
 
-## Current results
+## Recorded results and current correction
 
-Current-cycle `npm test` passes 15/15 tests on Windows Node v25.2.1. Manual CLI
-and AIT stdin smoke checks also pass, including the approved Globe3 profile.
-These results prove local source behavior only; they do not prove packaged,
-deployed, cross-platform, or registered AIT behavior.
+The earlier local record reports `npm test` passing 15/15 tests on Windows Node
+v25.2.1 and manual CLI/AIT stdin smoke checks including the approved Globe3 profile.
+These are historical observations, not a new suite run for the current correction.
+The POL-01 through POL-16 states below retain that earlier evidence.
+
+On 2026-10-12 the parent reported all 11 independent source CLI smoke controls
+passing: no-target unknown hash/include, adjacent unknown/literal assignment and
+malformed input refused with exit 3/null data; static violation retained exit
+0/`violations`; static/comment/raw-text/escaped-hash controls passed; CRLF plus
+Chinese text produced `HASH_EXPRESSION` at line 2, column 12 with content-free
+root-relative metadata. All 52 native package tests subsequently passed under
+Windows Node 24.21.0 consolidated root acceptance. A real offline packed Windows
+CLI consumer also returned incomplete for unknown output without a table.
+Deployment, complete cross-platform coverage, runtime CFML/database/browser
+and published-release AIT behavior remain unverified.
 
 | ID | Fixture / check | Expected result | Current state |
 | --- | --- | --- | --- |
@@ -28,6 +39,28 @@ deployed, cross-platform, or registered AIT behavior.
 | POL-14 | Malicious profile text | No execution/network/mutation | Partial; executable fields rejected, full hostile corpus pending |
 | POL-15 | Globe3 approved profile and sanitized regions | Profile loads; both table rules apply to the represented family | Pass; four fixture tests and owner decision recorded |
 | POL-16 | Output limit overflow | Incomplete result and exit code 3 | Pass |
+
+## Current regression cases
+
+The following are implemented in the existing test files and passed in the
+52-test Windows native package gate. Broader matrix gaps above remain separate.
+
+| ID | Consumer-visible behavior | Expected result |
+| --- | --- | --- |
+| POL-17 | Unknown hash/encoded output, include-only, assignment/script and raw-text CFML, with/without static targets | Incomplete/exit 3/null data, one cause |
+| POL-18 | Static no-target, comment-only and escaped hashes | Complete pass with no findings |
+| POL-19 | Multiline CRLF, BMP/astral Unicode and normalized nested source path | Original one-based line/UTF-16 column and canonical root-relative path; no private source values |
+| POL-20 | Malformed closures/comments/tags/elements and unsupported text contexts | Fixed causal reason/location, first-cause ordering and deterministic result |
+| POL-21 | Thousands of unknown tags | Exactly one bounded content-free cause, independent of construct count |
+| POL-22 | Structural cause with output/deadline/token/depth limits | Resource exhaustion remains incomplete/exit 3/null data with no cause disclosure |
+| POL-23 | AIT include-only request | Hub schema 1.0.0 and unchanged incomplete/exit mapping with original cause |
+| POL-24 | Security path escape | Existing refusal without new cause details or path metadata |
+
+The cause schema permits only `{reason,line,column}` for
+`CFML_STRUCTURE_UNCERTAIN`; reason identifiers and location semantics are in
+[JSON_SCHEMA.md](JSON_SCHEMA.md#structural-cause-details). Tests protect consumer
+outcomes and coordinate/privacy boundaries, not incidental diagnostic wording.
+
 
 ## Test layers
 

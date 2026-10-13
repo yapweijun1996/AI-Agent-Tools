@@ -33,7 +33,15 @@ npm run bootstrap
 npm run verify
 ```
 
-Bootstrap runs `npm ci --ignore-scripts` for each package using its own lockfile. No hoisting or shared TypeScript version is imposed. Root `build`, `typecheck`, `lint`, `test` and `pack` commands orchestrate the applicable native scripts; missing scripts are reported as not applicable. `npm test` also checks AIT, Hub documents and source coverage. Tests use a canonical local temporary directory and writable npm cache.
+Bootstrap runs `npm ci --ignore-scripts` for each package using its own lockfile.
+No hoisting or shared TypeScript version is imposed. Root `build`, `typecheck`,
+`lint`, `test` and `pack` commands orchestrate the applicable native scripts;
+missing scripts are reported as not applicable. `npm run verify` prepares build,
+typecheck and lint once, then selects package-local `test:prepared` where declared
+before packing. Independent `npm test` still performs each tool's full native
+preparation. Tests check AIT, Hub documents and source coverage and use a canonical
+temporary directory and writable npm cache. Direct script invocation locates npm's
+JavaScript CLI on PATH, including when using a copied Windows Node executable.
 
 For an opt-in comparison of existing tools with conventional inspection on four frozen repository tasks, run `node scripts/evaluate-task-value.mjs` after building. The [evaluation protocol](docs/evaluation/PROTOCOL.md) defines evidence criteria, interface costs and controls; [recorded results](docs/evaluation/RESULTS.md) distinguish scripted observations from unmeasured agent outcomes. This experiment is separate from root acceptance and does not install or publish tools. The subsequent [Test Scope refinement](docs/evaluation/TEST_SCOPE_REFINEMENT.md) records a separate frozen before/after measurement for candidate filtering and optional lossless compact output. [Earlier host observations](docs/evaluation/AGENT_RESULTS.md) preserve answer facts and withheld telemetry. The owner-authorized [Ubuntu CLI study](docs/evaluation/CLI_RESULTS.md) and [real-repository pilot](docs/evaluation/REAL_REPOSITORY_RESULTS.md) separately record actual emitted events/usage, treatment and grading limits. The [complete repair replay](docs/evaluation/REPAIR_WORKFLOW_RESULTS.md) adds six isolated historical fixes with native execution, independent acceptance and a separate scope audit. The [isolated interleaved math replay](docs/evaluation/REPAIR_MATH_RESULTS.md) adds a second six-session case with verified command read confinement. These development studies do not show a general token or latency advantage and introduce no agent runtime into AIT or tools.
 
@@ -57,6 +65,13 @@ has no new npm release.
 
 [Tool index and usage](migration-tools.md) lists every package, executable and source version. [Migration evidence and deletion checklist](docs/migration/README.md) records source commits, licenses, history recovery, validation and remaining external dependencies. The owner authorized consolidation on 2026-09-30; [architecture decision](docs/migration/DECISION.md) supersedes the previous independent-repository source restriction.
 
+The root manifest explicitly declares `agentProjectProfile.independentPackages`
+as `["packages/*"]`. Current Project Profile source reports these as a monorepo
+inventory with member-local commands and runtime evidence, not as an npm
+workspace. The declaration does not install dependencies, hoist packages or
+change their independent lockfiles. Undeclared repositories are not scanned for
+guessed package-folder conventions.
+
 ## Contracts and releases
 
 The current source includes compatible CLI usability fixes: all eighteen package
@@ -66,6 +81,15 @@ Scope adds an opt-in `--max-output-bytes` ceiling that withholds oversized resul
 with an explicit diagnostic; narrow discovery scope before retrying. Native
 JSON/exit semantics, package versions and published artifacts remain independent;
 these changes introduce no new npm release.
+
+Current CFML source also fails closed on Policy Check uncertainty even without a
+literal table, with bounded causal reasons and source coordinates. Linkage adds
+explicit `--mode cfml-structural` for bounded CFML tag/script declaration and link
+stages; ordinary HTML/web flow remains outside that opt-in scope. Default mixed
+mode now admits strict literal HTML structure while retaining unknown/recovery/
+embedded-language incompleteness. Read the [Policy Check](packages/cfml-policy-check/README.md) and
+[Linkage](packages/cfml-linkage/README.md) contracts before choosing the scope.
+Existing installed snapshots do not acquire these unpublished changes.
 
 AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
 

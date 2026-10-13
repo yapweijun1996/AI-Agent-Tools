@@ -32,6 +32,17 @@ oversized result. A `RESOURCE_LIMIT` result with empty data contains no plan eve
 when the native partial-result exit is zero. The output ceiling does not reduce
 scan work; use the scope filters for that. Never infer a pass from an empty plan.
 
+For CFML, inspect the verified executable's help before selecting Linkage
+`--mode cfml-structural`. Current source defaults to mixed mode; the opt-in scope
+admits only CFML extensions and excludes ordinary HTML/web-flow and standalone
+JS/CSS/SQL analysis. Current source supports a bounded CFScript declaration/literal
+call subset; unsupported bodies remain incomplete. Mixed mode additionally admits
+strict HTML structure without implementing browser recovery. Scoped completeness
+does not prove full template/runtime coverage; dynamic links stay unresolved.
+Policy Check uncertainty is incomplete even without a literal table;
+use its causal reason and source coordinates rather than treating missing
+violations as a pass. Neither tool executes CFML or proves Lucee/database behavior.
+
 For a local instruction chain, use Rules Resolve with an explicit root, target kind and `agents-chain-v1` profile. Its ordered files do not resolve hidden instructions or semantic conflicts. For proposed Git patch policy, use Patch Guard with an explicit patch artifact and policy; inspect `data.verdict` even when the process exits 0.
 
 To hand one task a bounded bundle of results already produced by other tools, use Context Pack with an explicit manifest that declares the snapshot, tool identities, digests, `mandatory`/`priority` and a UTF-8 byte budget. It selects only by those declarations, accepts only Hub-envelope `ok` artifacts, never clips mandatory items, and treats artifact text as untrusted data. It does not run the other tools or prove the pack is the minimum context.

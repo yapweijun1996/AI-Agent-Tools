@@ -22,20 +22,20 @@
     {
       "destination": "packages/cfml-policy-check/SPEC.md",
       "imported_sha256": "7d8b0f5bb28804d5bf3e9b0ae91c1ea3ecd20e84a04fec147fd11186801394a8",
-      "current_sha256": "f7f678fc322bb4961019d2280d9f1b7b577de387dd838a185891922c88666ca4",
-      "reason": "Owner-selected opaque HTML text contexts, explicit unsupported states and bounded analysis semantics (2026-10-08)."
+      "current_sha256": "1cbfb1141c3bebf58475a274d8b1a5a39819aa752c6e4c6af1264889657c80f3",
+      "reason": "Owner-selected opaque HTML text contexts, explicit unsupported states and bounded analysis semantics (2026-10-08). Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
     },
     {
       "destination": "packages/cfml-policy-check/docs/CLI_CONTRACT.md",
       "imported_sha256": "8a20dd984739309494c1f178aa8a9318b0d98a2ab85fd73cdd79fad825aecc4c",
-      "current_sha256": "17e83486ded407b0abe75b1ad4d4ed46df4c71b56c363b12b1cdb7baac54b2f2",
-      "reason": "Owner-selected source/profile read bounds and cooperative processing deadline covering all analysis phases (2026-10-08)."
+      "current_sha256": "4ade42c4edf1714e211169ea0768ea7e229481a6a689727aa51fd8538d8d2510",
+      "reason": "Owner-selected source/profile read bounds and cooperative processing deadline covering all analysis phases (2026-10-08). Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
     },
     {
       "destination": "packages/cfml-policy-check/src/cli.js",
       "imported_sha256": "3dd4a852032141ebd4765f675bdf91f4f811875724dc0ab351fc78405ea97342",
-      "current_sha256": "1fc9241a43a81d6d6ef48d1483494a1efad4dc99dcd693e9d226b0d73350f859",
-      "reason": "Owner-selected bounded source/profile reads, opaque HTML text contexts and one monotonic analysis deadline with linear visible-span hash scanning (2026-10-08)."
+      "current_sha256": "2b9c88db86485ac907e8c6ca6c626a24161a222ed972958d31d3258d6c9ee5da",
+      "reason": "Owner-selected bounded source/profile reads, opaque HTML text contexts and one monotonic analysis deadline with linear visible-span hash scanning (2026-10-08). Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
     },
     {
       "destination": "packages/change-impact/scripts/docs-check.cjs",
@@ -94,8 +94,8 @@
     {
       "destination": "packages/project-profile/SPEC.md",
       "imported_sha256": "4dbab230223b35d9fd8be3e79d36f7c3383214d78f0ebf9ff3ddfd340aa1fdfb",
-      "current_sha256": "53e486c29127b2b99e6eafff5c21a7a96590fb9815b0e19f146c62d96bf4c5c5",
-      "reason": "Owner-selected metadata FIFO/substitution rejection and partial-coverage contract (2026-10-08)."
+      "current_sha256": "1350010d13f4cc795c2accb022f95f2cebc7386bafd4aace9a4d000e1811144b",
+      "reason": "Owner-selected metadata FIFO/substitution rejection and partial-coverage contract (2026-10-08). Owner-selected explicit independent-package source inventory, monorepo identity and member-local contract (2026-10-13)."
     },
     {
       "destination": "packages/project-profile/src/core/scanner.ts",
@@ -106,8 +106,8 @@
     {
       "destination": "packages/project-profile/test/runner.test.ts",
       "imported_sha256": "27d8ae3dbface5b8c5643dca35f7a606134885105676715863126cf549a03465",
-      "current_sha256": "f02e16f8fa3b65e85cda8d65bd081f901e4b21ddf99dbee09d2dfc892b762520",
-      "reason": "Owner-selected FIFO/substitution regressions included in the native test gate (2026-10-08)."
+      "current_sha256": "aef4d47ea8555ebf9b434621e205f26a143a90d92ae22e630a9333d8f651375c",
+      "reason": "Owner-selected FIFO/substitution regressions included in the native test gate (2026-10-08). Owner-selected explicit independent-package profiling and native boundary regressions (2026-10-13)."
     },
     {
       "destination": "packages/project-tree/README.md",
@@ -256,20 +256,20 @@
     {
       "destination": "packages/cfml-linkage/README.md",
       "imported_sha256": "e0ca5d54f24079a5314c79ad61e3a24bf1966187082362346de1861315654508",
-      "current_sha256": "eda918c69e0a98732eeacaaf5c0e957ce69e20828d0d62622d24ce3b1dd8d561",
-      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+      "current_sha256": "731e1c2e05787b382310835c4bc481e9afedc5291661382475e8953280ea7ce7",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
     },
     {
       "destination": "packages/cfml-linkage/src/cli.js",
       "imported_sha256": "ecf7e4af72319325d86f53f65c32b4ad53f3f8a9b1596a11ea47a62ccdb5986a",
-      "current_sha256": "b0e18289bbdef78eb746717291865f354774991a7ba70b99c517dffd2a6cfbd0",
-      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+      "current_sha256": "462b3947375d328dab7bfbf411bf3ea212ad700eb3c8ad9aa5a6484a1d5e234e",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
     },
     {
       "destination": "packages/cfml-linkage/test/cli.test.js",
       "imported_sha256": "d469b6c1c448eb17757598087975ff6806571b56d7505dc79ec37c7ee09ebf37",
-      "current_sha256": "c454245171f065cc57edcad35ff9c2f2f6c523b7874289c5b60c909ac01a2d97",
-      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+      "current_sha256": "4e2dc73f45c7e88768bb3080ab7d5c41e319c7bc781e4ccac9b074570df340c2",
+      "reason": "Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
     },
     {
       "destination": "packages/change-impact/README.md",
@@ -312,6 +312,234 @@
       "imported_sha256": "b7c4e48725015278e34d67845ddd5ab661003f17513e8d67bd53db4fba677c10",
       "current_sha256": "b6b2fc027e88fc7cbb8c7a2e29e0c48c886870ef70578c88134e0278f1b5cffe",
       "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+    },
+    {
+      "destination": "packages/symbol-search/CHANGELOG.md",
+      "imported_sha256": "0d9378e736496801434de4083b2d6a06a4026c207ec5a2c9e57a24970a553b5f",
+      "current_sha256": "bfcb16e6a94206254f743cb375a1ead03ce0c001e600e422d02ee0a2125963d7",
+      "reason": "Owner-selected documentation-only Symbol Search skill correction: symbol remains required and from optional for semantic operations; no runtime or release change (2026-10-12)."
+    },
+    {
+      "destination": "packages/symbol-search/skills/agent-symbol-search/SKILL.md",
+      "imported_sha256": "dc1cb364f34c9b0f3068a8ff6727d9dd1efab2ae6369feb45e467f860506fe7c",
+      "current_sha256": "0c942d4b7bd5bf82dfeb58148a60f771d06ffcb2b3af2eb6bea44f0e23d2da8d",
+      "reason": "Owner-selected documentation-only Symbol Search skill correction: symbol remains required and from optional for semantic operations; no runtime or release change (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/README.md",
+      "imported_sha256": "d92fbbcffdbfe0eb6da8a08f9024424f48f768261975f00a5b37c1e629f3289c",
+      "current_sha256": "8393a146c0b2224adbfefe281540b8653e4952d4fe25e31fcc2eafe1ad76b552",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/docs/JSON_SCHEMA.md",
+      "imported_sha256": "9cf1256eaf1cf6c9364aa0bb959c8cc3aebe8bb4ccd5f02fcc38a3d2f0d4c850",
+      "current_sha256": "e7127244d1794d3acf9c6369161a0bb3f27b4db8aefff1dda0c647e150f487ee",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/docs/ARCHITECTURE.md",
+      "imported_sha256": "975192c781cf4e5d892377b32550ad2eee50f675e37d732341eecdf55a1e2b6a",
+      "current_sha256": "15d3d780abc7541002d0ce7b46c6809632c195919f3b22a72436bd0a7c3c2513",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/docs/RULE_CATALOG.md",
+      "imported_sha256": "4512077f83305c3f90f5fdb2538c88b30226f3ecb8356a12598467fec64528fc",
+      "current_sha256": "059fa590c1c15d82d05bea0d48dbef5200b9e288f8d26318d29499cbcb0f2b4f",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/docs/SECURITY.md",
+      "imported_sha256": "da91a7ad4510d67587c1d1bde1c25853885947e30f1a4c984745cd7fdfe18710",
+      "current_sha256": "fcd3d4dd4cab74e81dd7f8d00361a759a5d64a83d476028db6b77ccc777e44e0",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/docs/TEST_PLAN.md",
+      "imported_sha256": "802ee10e6723be567658285e710e65ea3f77c37bae15ab748c8c4f832c35d7fc",
+      "current_sha256": "3d0920081d9997a1fd19ff5786e0d89b12c7e41835f9707d7c485fcdb8363c70",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/schema/result-v1.schema.json",
+      "imported_sha256": "91a8cd3cb3fd05807b308d1ea21a18789565a0a48985d82da1a8a844b62f49b5",
+      "current_sha256": "948be88a0600ec8c8376f7e67dc94e07af0a865e8e28225cb80ed5869013ed76",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-policy-check/test/policy-check.test.js",
+      "imported_sha256": "c545fc1c30e8e2b5125a54de91eec5efc90c38102e9732492497d9f0b7bdf442",
+      "current_sha256": "ebf9bacdf7b33225a6b45fbd599eba3a8687f7863fc73a562d961b20b8b51a35",
+      "reason": "Owner-selected target-independent fail-closed CFML uncertainty and bounded reason/location diagnostics with behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/cfml-scanner.js",
+      "imported_sha256": "99078f6872425f6c7795cfc99448cf84785896e69c9d963b51f02ac625d76701",
+      "current_sha256": "588a166c7a782d9097221cac816d4b4171d8e107302650acd4d63def82e65f89",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/web-scanner.js",
+      "imported_sha256": "54cd89caebcfdf4387f642e913db2969f64653c184aaae96c08e9dfb3fe9a24b",
+      "current_sha256": "bac7c1142c20fc65991a80d722d88991e014ede7277a3a8869a38a349fbbe1be",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/fact-extractor.js",
+      "imported_sha256": "3cc9ec3b476387aa13b333d517200f00d7d8c9ae99c8f8bb8ef4a4deaf891215",
+      "current_sha256": "5354f75a9726b5a2001862024b3a2fad0dd122f1b7828f03f1467b9c8da86316",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/graph.js",
+      "imported_sha256": "c204a8fe3e3ca3d8e2793d9e8603d87c8fb49e6ae9d38efe55d733854813799c",
+      "current_sha256": "977a3780168c363011903111dbf3053ac440d8bc21f47d29389bf7df4d01686c",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/path-resolver.js",
+      "imported_sha256": "c840f76ceedd3a5279776afa15ec2b416be4ae23bad8ffcf2b6fce2a0d3b5155",
+      "current_sha256": "93094913a2c358832495b3c1242e0ea8bae9401438e39969bb1c8056d1e88db0",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/src/index.js",
+      "imported_sha256": "7b3a13f60a6b3deb3b62d49480cb89010833c68d9f85185dd17272fbbfe20874",
+      "current_sha256": "d8bf3d28005b341f83b075298d2a272a80aff2564f9ec807cfd270b02854cd6c",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/parser-adapter.test.js",
+      "imported_sha256": "43b39688fc98d7c0a29c8eefce8bc3516cf6c595ca5f5865f262032f0b69a127",
+      "current_sha256": "676c49b8694f92b861ba8ca2f72d1884925d1de65936b2cc00095fdb6c461ac6",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/analyzer.test.js",
+      "imported_sha256": "c7e4b54266d5768c0a866aacddeebb35dc9f9471bd504ceae89ac9b1e49aa913",
+      "current_sha256": "390e17ae44a517c218dc75e8b1b66d460ac947a1e67ce8367d55f7df8425ca2b",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/graph.test.js",
+      "imported_sha256": "3538c71ab9717cfb4cc19bf391de701be2ddf301d09c91ea653d589a3e8c546f",
+      "current_sha256": "3ec3e4d8a66cdbcd740e75ee1b80e58a97b5cef05683dd0299ed04e6a3fe9b0f",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/fact-extractor.test.js",
+      "imported_sha256": "2b8df9b60cf0408ca18079fc9fe6d196915cee1d6c1fe45e739cf86c6130663b",
+      "current_sha256": "862302a6d11e32137078690ee918e9c6b18ee836c3e50973f7c77780bd7184fc",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12)."
+    },
+    {
+      "destination": "packages/cfml-linkage/SPEC.md",
+      "imported_sha256": "dcbbe84ec7f793c24e3681cb514760282bd7cea217d8a61bc3a9c877fa11bfe4",
+      "current_sha256": "3dad748f96dc58b0c6e308b3b2580a46015e6b87601a05888f8005cae317042b",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/CHANGELOG.md",
+      "imported_sha256": "7fbd719e92d64ae95579ab4a3353f998b5f4cb076b935111fb9dd90a8a8b8998",
+      "current_sha256": "0f4c78733e8a05bdd10158b4ef4a9590b919e3d465aed7d848959cc0b3871b82",
+      "reason": "Owner-selected explicit CFML structural scope, opaque script-CFC coverage, safe source diagnostics and behavioral regressions (2026-10-12). Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/path-resolver.test.js",
+      "imported_sha256": "c9c4fd327613a60adb3a2ec31767d0641e2561f86c4018e0aca96aa16d183d19",
+      "current_sha256": "509cf18a332211a79819eee3d73d11491a20146577996f3b7cb408520d65e8f1",
+      "reason": "Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-linkage/test/web-scanner.test.js",
+      "imported_sha256": "98a47251b320b5c1827b778e2a3d5af71cd28189f52510304b6d03a42943a3b4",
+      "current_sha256": "e140cbee752ca0c4bd8828076fd41aec149828111810b57291c96e6810c64460",
+      "reason": "Owner-selected bounded CFScript/HTML structural coverage, scoped bindings, nested-comment/recovery soundness, literal filesystem path semantics and behavioral regressions (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-check/package.json",
+      "imported_sha256": "47195258a59ff89408cdc2e219a0d11f3782ce7a97b31c5a5733a7b69fddf3bb",
+      "current_sha256": "a756eefd2981a931027a2652502b669ccf5591a8753723532de2951d18e8ff8d",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/change-impact/package.json",
+      "imported_sha256": "c8945bf860f86cd294606169603f90fb43b547f7f4e3837d6cb5b23f80829b7f",
+      "current_sha256": "c761172565a5dca85882542bc0ee83dbd9fd667214feb474933806e929d6b49a",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/error-lens/package.json",
+      "imported_sha256": "9ade2495d43bc398341d73ff42afe1b53abf65b554cd55879d470afa114c0677",
+      "current_sha256": "77b7ee67adf7e356a263a621ba8d50dfe70cc25a02788e9311fa37dd34ba3b30",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/package.json",
+      "imported_sha256": "33afd87adf462e5ecc08a23bf2080f0c406689070a2524790c0cecf149ad0308",
+      "current_sha256": "716bfec2e93a17f83bbaccc465330053e80700db1eae89330c38c0368e1093ef",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/schema/profile.schema.json",
+      "imported_sha256": "4bc68b116bf868501e4782bf3d9dbd94082856ffbd438f1b2b9d21c121acd456",
+      "current_sha256": "fc1f3342c3f9fdc1715fe4d61fa8e83888e2b39726f1f246930f4a49b689d012",
+      "reason": "Owner-selected optional independent-package inventory schema, preserving native workspace and member-local contracts (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/cli.ts",
+      "imported_sha256": "73931a5a269f9e05841ba70a7239b3f629613dc054aafffb96059a311f110a8f",
+      "current_sha256": "3961dac9c5c17d47086af3645a44e2e7fe6e8b74c9b2b7cc7666ff032b5247b2",
+      "reason": "Owner-selected optional independent-package inventory and text representation, without guessed package-folder conventions (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/core/diagnostics.ts",
+      "imported_sha256": "3fa768bec0601160be445b0e35bda30395ea69e3b2f9a9d3feeafa894a600a99",
+      "current_sha256": "bda04f03cc7b911020916bb56710d4061fa1e93fb92bbecbf2df0be8579a477c",
+      "reason": "Owner-selected explicit independent-package declaration diagnostics and bounded invalid-input evidence (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/core/profiler.ts",
+      "imported_sha256": "63b9692ec2d0d22ab43156be0a9fed77c9c0ff02779b67f2d565f5d67660d867",
+      "current_sha256": "16296ba44b6f8a1e2574519b3f4dbebd89e73316cdae826ab482d42806867894",
+      "reason": "Owner-selected evidence-backed independent-package monorepo classification with unchanged workspace semantics (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/core/semantic.ts",
+      "imported_sha256": "46e0ae00763f98255fb08ddc2ee9826783dd142c306e31bd8ce1d697b20f0409",
+      "current_sha256": "a01468f564801eeb98919a1d69757c43f9aa091b4b82207713bab6b9f68bce58",
+      "reason": "Owner-selected semantic references and coverage checks for explicit independent-package inventory (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/detectors/workspace.ts",
+      "imported_sha256": "6a4932351eba1fb2b6597befb26a23f5fffc439b5824b1809f16f538acc50d6a",
+      "current_sha256": "cbde861e769a4fc152ba78b3a5f3bba2d631638e9c97bbc46c82691a41cc1c71",
+      "reason": "Owner-selected bounded explicit independent-package discovery and member-local package manager, runtime and commands (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/src/types.ts",
+      "imported_sha256": "a712968f5b96c8750b597368f6f9f47e177e445deee8dc5cc4185167b6fb4f09",
+      "current_sha256": "071ea6eaeca3227a98a0dd3eb91105cccfba1e0381d646befee778c0e8a43bc5",
+      "reason": "Owner-selected optional independent-package inventory types and evidence references (2026-10-13)."
+    },
+    {
+      "destination": "packages/symbol-search/package.json",
+      "imported_sha256": "f2495848c5055c80fec6e73b7262b4f486a56e58d3b7306310db4f97a4ac15ab",
+      "current_sha256": "24858df9236fcc3ebc8cb5a309cc8e5d7f35d6e2e58b9e1d1979976fc3a740f6",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/test-scope/package.json",
+      "imported_sha256": "c2f4a90bf79df3f386ebca73e8ec9a312dcc55f8260b44232f3f3b64e126cc79",
+      "current_sha256": "c12a1cf30cd1fc14d9a35e889321526256cc4d4d527277a775de0235b46d0c9a",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13)."
+    },
+    {
+      "destination": "packages/project-profile/README.md",
+      "imported_sha256": "d07985ad3b7427cb2ea7fcbfd034cfeb63c8af38eb86fcd732620ecab0b7fd74",
+      "current_sha256": "df63c45fd8d503be82b0044821923b1dac006f6d578794edb6539621409fe10b",
+      "reason": "Owner-selected explicit independent-package source declaration, optional native inventory contract and authorized monorepo ownership clarification (2026-10-13)."
     }
   ]
 }

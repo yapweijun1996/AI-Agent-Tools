@@ -8,7 +8,7 @@ import { collectInventory } from "../detectors/inventory.js";
 import { loadPackageManifest } from "../detectors/manifest.js";
 import { collectNodeFacts, type NodeScope } from "../detectors/node.js";
 import { resolvePackageManager } from "../detectors/package-manager.js";
-import { discoverWorkspace, workspaceOutputDeclarations, type WorkspaceCandidate } from "../detectors/workspace.js";
+import { discoverIndependentPackages, discoverWorkspace, workspaceOutputDeclarations, type WorkspaceCandidate } from "../detectors/workspace.js";
 import type {
   Command,
   CommandPurpose,
@@ -60,21 +60,25 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
     ? resolvePackageManager(scanner, evidence, diagnostics, rootManifest).manager
     : unknownManager();
   const workspaceDiscovery = discoverWorkspace(scanner, evidence, diagnostics, rootManifest);
-  const candidates = workspaceDiscovery.candidates
+  const independentDiscovery = discoverIndependentPackages(scanner, evidence, diagnostics, rootManifest, workspaceDiscovery);
+  const candidates = (independentDiscovery?.valid ? independentDiscovery.candidates : workspaceDiscovery.candidates)
     .filter((candidate) => candidate.path !== ".")
     .sort((left, right) => compareCodePoint(left.path, right.path));
   const memberManifests = new Map<string, ReturnType<typeof loadPackageManifest>>();
-  for (const candidate of candidates) {
+  for (const candidate of independentDiscovery?.valid ? candidates.slice(0, BUDGETS.workspacePackages) : candidates) {
     const manifest = loadPackageManifest(scanner, evidence, diagnostics, candidate.path);
     memberManifests.set(candidate.path, manifest);
     if (!manifest.valid) {
       diagnostics.add(
-        "WORKSPACE_UNRESOLVED",
+        independentDiscovery?.valid ? "PACKAGE_INVENTORY_UNRESOLVED" : "WORKSPACE_UNRESOLVED",
         "warning",
-        "A workspace member directory did not contain a readable valid package manifest.",
+        independentDiscovery?.valid
+          ? "An independent member directory did not contain a readable valid package manifest."
+          : "A workspace member directory did not contain a readable valid package manifest.",
         `${candidate.path}/package.json`,
         candidate.evidence,
       );
+      if (independentDiscovery?.valid) independentDiscovery.complete = false;
     }
   }
 
@@ -89,7 +93,7 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
   const memberManagers = new Map<string, PackageManager>();
   for (const manifest of returnedManifests) {
     if (!manifest.valid) continue;
-    const manager = resolvePackageManager(scanner, evidence, diagnostics, manifest, rootManager).manager;
+    const manager = resolvePackageManager(scanner, evidence, diagnostics, manifest, independentDiscovery?.valid ? undefined : rootManager).manager;
     memberManagers.set(manifest.cwd, manager);
     memberScopes.push({
       manifest,
@@ -98,8 +102,9 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
     });
   }
   const nodeScopes = [rootScope, ...memberScopes].filter((scope): scope is NodeScope => scope !== null);
-  const workspacePackages = buildWorkspacePackages(diagnostics, returnedCandidates, memberManifests, memberManagers);
-  checkDuplicateWorkspaceNames(diagnostics, returnedCandidates, memberManifests);
+  const memberPackages = buildWorkspacePackages(diagnostics, returnedCandidates, memberManifests, memberManagers);
+  const nameConflict = checkDuplicateWorkspaceNames(diagnostics, returnedCandidates, memberManifests, independentDiscovery?.valid === true);
+  if (independentDiscovery !== null && nameConflict) independentDiscovery.complete = false;
 
   const workspaceManager = chooseWorkspaceManager(workspaceDiscovery, rootManager, diagnostics);
   const workspaceEnabled = workspaceDiscovery.hasValidDeclaration
@@ -113,20 +118,30 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
     enabled: workspaceEnabled,
     manager: workspaceManager,
     declarations: workspaceOutputDeclarations(workspaceDiscovery.declarations, rootManager.name),
-    packages: workspacePackages,
+    packages: independentDiscovery?.valid ? [] : memberPackages,
     total: workspaceDiscovery.hasValidDeclaration && workspaceDiscovery.complete ? candidates.length : null,
-    returned: workspacePackages.length,
-    truncated: candidates.length > BUDGETS.workspacePackages || !workspaceDiscovery.complete,
+    returned: independentDiscovery?.valid ? 0 : memberPackages.length,
+    truncated: !workspaceDiscovery.complete || (independentDiscovery?.valid !== true && candidates.length > BUDGETS.workspacePackages),
   };
   if (candidates.length > BUDGETS.workspacePackages) {
     diagnostics.add(
-      "WORKSPACE_TRUNCATED",
+      independentDiscovery?.valid ? "PACKAGE_INVENTORY_TRUNCATED" : "WORKSPACE_TRUNCATED",
       "warning",
-      "The workspace package output exceeded the fixed return cap.",
+      independentDiscovery?.valid
+        ? "The independent package output exceeded the fixed return cap."
+        : "The workspace package output exceeded the fixed return cap.",
       null,
-      workspaceDiscovery.declarations.flatMap((declaration) => declaration.evidence),
+      independentDiscovery?.declarations.flatMap((declaration) => declaration.evidence) ?? workspaceDiscovery.declarations.flatMap((declaration) => declaration.evidence),
     );
   }
+  const packageInventory: DraftProfile["packageInventory"] = independentDiscovery === null ? undefined : {
+    kind: "independent",
+    declarations: independentDiscovery.declarations,
+    packages: independentDiscovery.valid ? memberPackages : [],
+    total: independentDiscovery.valid && independentDiscovery.complete && candidates.length <= BUDGETS.workspacePackages ? candidates.length : null,
+    returned: independentDiscovery.valid ? memberPackages.length : 0,
+    truncated: !independentDiscovery.complete || candidates.length > BUDGETS.workspacePackages,
+  };
 
   const nodeFacts = collectNodeFacts(scanner, evidence, diagnostics, nodeScopes);
   const inventory = collectInventory(
@@ -137,15 +152,22 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
     nodeScopes.map((scope) => scope.manifest),
   );
   const project = buildProject(scanner, evidence, rootManifest, workspace, workspaceDiscovery.hasValidDeclaration, diagnostics);
+  if (independentDiscovery !== null) {
+    project.evidence.push(...independentDiscovery.declarations.flatMap((declaration) => declaration.evidence));
+    if (independentDiscovery.valid) project.kind = "monorepo";
+    else if (!workspaceDiscovery.hasValidDeclaration) project.kind = "unknown";
+  }
   const categories = buildCoverageCategories(scanner, diagnostics, rootManifest.valid, workspaceDiscovery, inventory, nodeScopes.length > 0);
+  if (packageInventory !== undefined) categories.packageInventory = packageInventory.truncated || diagnostics.hasPartialImpact() ? "partial" : "complete";
   const coverage: Coverage = {
     status: Object.values(categories).some((value) => value === "partial") ? "partial" : "complete",
-    strategies: ["root-sentinels", "workspace-patterns", "workspace-ancestors", "package-roots"],
+    strategies: ["root-sentinels", "workspace-patterns", "workspace-ancestors", "package-roots", ...(packageInventory === undefined ? [] : ["independent-package-patterns"])],
     budgets: { ...BUDGETS },
     usage: scanner.usage(),
     categories,
     truncated: {
       workspace: workspace.truncated,
+      ...(packageInventory === undefined ? {} : { packageInventory: packageInventory.truncated }),
       output: false,
       ...scanner.truncated(),
     },
@@ -160,6 +182,7 @@ function buildDraft(scanner: Scanner, evidence: EvidenceStore, diagnostics: Diag
     packageManager: rootManager,
     runtimes: nodeFacts.runtimes,
     workspace,
+    ...(packageInventory === undefined ? {} : { packageInventory }),
     commands: nodeFacts.commands,
     scripts: nodeFacts.scripts,
     entrypoints: nodeFacts.entrypoints,
@@ -225,8 +248,10 @@ function checkDuplicateWorkspaceNames(
   diagnostics: DiagnosticCollector,
   candidates: readonly WorkspaceCandidate[],
   manifests: ReadonlyMap<string, ReturnType<typeof loadPackageManifest>>,
-): void {
+  independent = false,
+): boolean {
   const byName = new Map<string, string[]>();
+  let conflict = false;
   for (const candidate of candidates) {
     const manifest = manifests.get(candidate.path);
     const value = manifest?.valid && manifest.data !== null && typeof manifest.data.name === "string" ? manifest.data.name.trim() : "";
@@ -235,8 +260,16 @@ function checkDuplicateWorkspaceNames(
   }
   for (const paths of byName.values()) {
     if (paths.length < 2) continue;
-    diagnostics.add("WORKSPACE_NAME_CONFLICT", "warning", "Multiple workspace packages declare the same package name.", paths[0] ?? null);
+    conflict = true;
+    diagnostics.add(
+      independent ? "PACKAGE_INVENTORY_NAME_CONFLICT" : "WORKSPACE_NAME_CONFLICT",
+      "warning",
+      independent ? "Multiple independent packages declare the same package name." : "Multiple workspace packages declare the same package name.",
+      paths[0] ?? null,
+      independent ? paths.flatMap((member) => manifests.get(member)?.evidence ?? []) : [],
+    );
   }
+  return conflict;
 }
 
 function chooseWorkspaceManager(
@@ -318,7 +351,7 @@ function fitOutputBudget(draft: DraftProfile, evidence: EvidenceStore, diagnosti
   draft.coverage.status = "partial";
   draft.coverage.categories = Object.fromEntries(Object.entries(draft.coverage.categories).map(([key, value]) => [key, value === "complete" ? "partial" : value]));
   draft.status = "partial";
-  for (const packageRecord of [...draft.workspace.packages].sort((left, right) => compareCodePoint(right.path, left.path))) {
+  for (const packageRecord of [...draft.workspace.packages, ...(draft.packageInventory?.packages ?? [])].sort((left, right) => compareCodePoint(right.path, left.path))) {
     dropScope(draft, packageRecord.path);
     profile = finalizeDraft(draft, evidence);
     if (serializedBytes(profile, pretty) <= BUDGETS.outputBytes) return profile;
@@ -344,7 +377,15 @@ function fitOutputBudget(draft: DraftProfile, evidence: EvidenceStore, diagnosti
 }
 
 function dropScope(draft: DraftProfile, scope: string): void {
+  const wasWorkspaceMember = draft.workspace.packages.some((record) => record.path === scope);
   draft.workspace.packages = draft.workspace.packages.filter((record) => record.path !== scope);
+  if (draft.packageInventory !== undefined) {
+    draft.packageInventory.packages = draft.packageInventory.packages.filter((record) => record.path !== scope);
+    draft.packageInventory.returned = draft.packageInventory.packages.length;
+    draft.packageInventory.truncated = true;
+    draft.packageInventory.total = null;
+    draft.coverage.truncated.packageInventory = true;
+  }
   draft.runtimes = draft.runtimes.filter((record) => record.cwd !== scope);
   draft.scripts = draft.scripts.filter((record) => record.cwd !== scope);
   draft.entrypoints = draft.entrypoints.filter((record) => record.cwd !== scope);
@@ -352,9 +393,11 @@ function dropScope(draft: DraftProfile, scope: string): void {
   draft.configs = draft.configs.filter((record) => !record.path.startsWith(`${scope}/`));
   draft.instructions = draft.instructions.filter((record) => record.scope !== scope && !record.scope.startsWith(`${scope}/`));
   draft.ci = draft.ci.filter((record) => !record.path.startsWith(`${scope}/`));
-  draft.workspace.returned = draft.workspace.packages.length;
-  draft.workspace.truncated = true;
-  draft.workspace.total = null;
+  if (wasWorkspaceMember) {
+    draft.workspace.returned = draft.workspace.packages.length;
+    draft.workspace.truncated = true;
+    draft.workspace.total = null;
+  }
 }
 
 function serializedBytes(profile: Profile, pretty: boolean): number {

@@ -2,7 +2,7 @@
 
 Status: `Implemented local slice`
 Lifecycle: `Pre-prototype`
-Last reconciled: 2026-10-08
+Last reconciled: 2026-10-12
 
 The first vertical slice is implemented and locally verified. The complete
 product and release specification remains broader than the current slice.
@@ -42,8 +42,10 @@ the JSON request envelope.
   `noscript` return `incomplete`. The bounded checker does not implement the
   full HTML tokenizer or choose a browser scripting mode.
 - `cfoutput` is transparent for static markup.
-- Other CFML tags, non-escaped hash expressions, malformed markup, or limits
-  affecting a conclusion return `incomplete`.
+- Other visible CFML tags, non-escaped hash expressions and malformed markup
+  return `incomplete`, whether or not a literal table/colgroup exists. Limits
+  also return `incomplete`; literal `cfset`, encoded-output calls and includes
+  are not whitelisted or executed.
 
 CFML tags and hash expressions within text contents retain the conservative
 dynamic-structure checks; opaque HTML text is not evidence of static CFML output.
@@ -85,12 +87,22 @@ The implemented envelope is version `1.0.0`:
 | `status` | `ok`, `incomplete`, or `error` |
 | `complete` | True only for supported completed analysis |
 | `data` | Result data for `ok`; null for `incomplete` and `error` |
-| `errors` | Stable error-code/message objects |
+| `errors` | Stable error-code/message objects; structural refusal may add bounded cause `details` |
 | `warnings` | Advisory array |
 | `meta` | Scope, root-relative path, profile identity, and effective limits |
 
 A completed check with violations uses status `ok`, verdict `violations`, and
 exit code `0`. An incomplete or error result withholds `data`.
+
+`CFML_STRUCTURE_UNCERTAIN` includes one cause in `errors[0].details`:
+`{reason,line,column}`. Its eight fixed reasons and selection semantics are
+defined in [JSON_SCHEMA.md](docs/JSON_SCHEMA.md#structural-cause-details).
+Coordinates are original one-based line/UTF-16 code-unit column positions;
+the validated source path is root-relative in `meta.path`. No arbitrary
+source text, attribute names/values or snippets are returned. Other error
+codes do not acquire this optional field. Output/deadline limits still apply
+and may return `RESOURCE_LIMIT` instead.
+
 
 ## Finding contract
 
@@ -121,7 +133,11 @@ and unnecessary source excerpts are not returned.
 
 ## Acceptance boundary
 
-The generic and owner-approved Globe3 slices are accepted by the current local
-tests and smoke checks. Experimental admission still requires the remaining security matrix,
-platform evidence, package inspection, maintainer/license decision, and
-AIT/Hub registration review.
+Earlier local tests and smoke checks accepted the generic and owner-approved
+Globe3 slices. The 2026-10-12 no-target refusal and causal-location correction
+has independent source CLI smoke coverage and 52 passing native package tests
+under Windows Node 24.21.0 root acceptance, plus a real packed Windows CLI
+consumer refusal. These observations do not prove runtime CFML behavior.
+Experimental admission still requires the remaining security matrix, platform
+evidence, package inspection, maintainer/license decision, and AIT/Hub
+registration review.

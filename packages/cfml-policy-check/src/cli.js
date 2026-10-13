@@ -39,10 +39,11 @@ const VOID_TAGS = new Set([
 const TEXT_ELEMENTS = new Set(["script", "style", "textarea", "title", "xmp", "iframe", "noembed", "noframes"]);
 
 class PolicyError extends Error {
-  constructor(code, message, exitCode = EXIT_CODES.invalid) {
+  constructor(code, message, exitCode = EXIT_CODES.invalid, details) {
     super(message);
     this.code = code;
     this.exitCode = exitCode;
+    if (details !== undefined) this.details = details;
   }
 }
 
@@ -65,7 +66,7 @@ function errorResult(error, meta = {}) {
       status: error.exitCode === EXIT_CODES.incomplete ? "incomplete" : "error",
       complete: false,
       data: null,
-      errors: [{ code: error.code, message: error.message }],
+      errors: [{ code: error.code, message: error.message, ...(error.details === undefined ? {} : { details: error.details }) }],
       meta
     }),
     exitCode: error.exitCode
@@ -251,9 +252,9 @@ function findTagEnd(source, start, checkDeadline) {
   return -1;
 }
 
-function hasHashExpression(source, commentRanges, checkDeadline) {
+function firstHashExpression(source, commentRanges, checkDeadline, end) {
   let comment = 0;
-  for (let index = 0; index < source.length; index += 1) {
+  for (let index = 0; index < end; index += 1) {
     checkDeadline();
     if (commentRanges[comment]?.[0] === index) {
       index = commentRanges[comment][1] - 1;
@@ -261,10 +262,10 @@ function hasHashExpression(source, commentRanges, checkDeadline) {
       continue;
     }
     if (source[index] !== "#") continue;
-    if (source[index + 1] !== "#") return true;
+    if (source[index + 1] !== "#") return index;
     index += 1;
   }
-  return false;
+  return -1;
 }
 
 function parseMarkup(source, limits, checkDeadline) {
@@ -274,8 +275,10 @@ function parseMarkup(source, limits, checkDeadline) {
   const colgroups = [];
   const commentRanges = [];
   let tokens = 0;
-  let malformed = false;
-  let uncertain = false;
+  let firstCause = null;
+  const recordCause = (reason, index) => {
+    if (firstCause === null || index < firstCause.index) firstCause = { reason, index };
+  };
   let scriptEscaped = false;
   const tagPrefix = /<\s*(\/\s*)?([A-Za-z][\w:-]*)/y;
 
@@ -291,7 +294,7 @@ function parseMarkup(source, limits, checkDeadline) {
       const commentEnd = source.indexOf(commentStart, index + 4);
       checkDeadline();
       if (commentEnd < 0) {
-        malformed = true;
+        recordCause("UNCLOSED_COMMENT", index);
         break;
       }
       commentRanges.push([index, commentEnd + commentStart.length]);
@@ -305,9 +308,10 @@ function parseMarkup(source, limits, checkDeadline) {
       const prefix = tagPrefix.exec(source);
       checkDeadline();
       const textTag = prefix?.[2]?.toLowerCase();
-      if (textTag?.startsWith("cf") && textTag !== "cfoutput") uncertain = true;
+      if (textTag?.startsWith("cf") && textTag !== "cfoutput") recordCause("UNSUPPORTED_CFML_TAG", index);
       if (textName === "script" && scriptEscaped && !prefix?.[1] && textTag === "script") {
-        throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "Double-escaped script content is unsupported.", EXIT_CODES.incomplete);
+        recordCause("DOUBLE_ESCAPED_SCRIPT", index);
+        break;
       }
       const isEnd = textTag === textName && source.slice(index, index + textName.length + 2).toLowerCase() === "</" + textName &&
         /[\t\n\f\r />]/.test(source[index + textName.length + 2] ?? "");
@@ -317,7 +321,7 @@ function parseMarkup(source, limits, checkDeadline) {
 
     const end = findTagEnd(source, index, checkDeadline);
     if (end < 0) {
-      malformed = true;
+      recordCause("UNCLOSED_TAG", index);
       break;
     }
     tokens += 1;
@@ -332,13 +336,13 @@ function parseMarkup(source, limits, checkDeadline) {
     const name = (closingMatch?.[1] ?? openingMatch[1]).toLowerCase();
     const position = sourcePosition(starts, index);
     if (name.startsWith("cf")) {
-      if (name !== "cfoutput") uncertain = true;
+      if (name !== "cfoutput") recordCause("UNSUPPORTED_CFML_TAG", index);
       index = end;
       continue;
     }
     if (closingMatch) {
       if (stack.length === 0 || stack.at(-1).name !== name) {
-        malformed = true;
+        recordCause("MISMATCHED_CLOSING_TAG", index);
         index = end;
         continue;
       }
@@ -348,9 +352,10 @@ function parseMarkup(source, limits, checkDeadline) {
     }
 
     if (name === "plaintext" || name === "noscript") {
-      throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "This text context requires unsupported HTML parsing or scripting-mode semantics.", EXIT_CODES.incomplete);
+      recordCause("UNSUPPORTED_TEXT_CONTEXT", index);
+      break;
     }
-    const node = { name, line: position.line, column: position.column, children: [] };
+    const node = { name, index, line: position.line, column: position.column, children: [] };
     if (stack.length > 0) stack.at(-1).children.push(node);
     if (name === "table") tables.push(node);
     if (name === "colgroup") colgroups.push(node);
@@ -362,13 +367,13 @@ function parseMarkup(source, limits, checkDeadline) {
     index = end;
   }
 
-  if (stack.length > 0) malformed = true;
-  // Scan visible spans once; rebuilding the source for every comment is quadratic.
-  const hashExpression = hasHashExpression(source, commentRanges, checkDeadline);
-  uncertain = uncertain || hashExpression;
-  const relevantUncertainty = malformed || (uncertain && (tables.length > 0 || colgroups.length > 0));
+  if (firstCause === null && stack.length > 0) recordCause("UNCLOSED_ELEMENT", stack[0].index);
+  // Scan visible spans once, only before any known cause; comment rebuilding is quadratic.
+  const hashIndex = firstHashExpression(source, commentRanges, checkDeadline, firstCause?.index ?? source.length);
+  if (hashIndex >= 0) recordCause("HASH_EXPRESSION", hashIndex);
   checkDeadline();
-  return { tables, colgroups, relevantUncertainty, tokens };
+  const uncertainty = firstCause === null ? null : { reason: firstCause.reason, ...sourcePosition(starts, firstCause.index) };
+  return { tables, colgroups, uncertainty, tokens };
 }
 
 function checkSource(source, profile, limits) {
@@ -379,8 +384,8 @@ function checkSource(source, profile, limits) {
     }
   };
   const parsed = parseMarkup(source, limits, checkDeadline);
-  if (parsed.relevantUncertainty) {
-    throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "The selected source contains malformed or dynamically generated structure affecting the requested policy.", EXIT_CODES.incomplete);
+  if (parsed.uncertainty !== null) {
+    throw new PolicyError("CFML_STRUCTURE_UNCERTAIN", "The selected source contains malformed or dynamically generated structure affecting the requested policy.", EXIT_CODES.incomplete, parsed.uncertainty);
   }
   const enabled = new Map(profile.rules.filter(rule => rule.enabled).map(rule => [rule.id, rule]));
   const findings = [];
@@ -475,6 +480,7 @@ function versionResult() {
 }
 
 export function runRequest(request, { cwd = process.cwd() } = {}) {
+  let sourcePath;
   try {
     if (!isPlainObject(request)) throw new PolicyError("INVALID_REQUEST", "The request must be a JSON object.");
     const operation = request.operation;
@@ -498,6 +504,7 @@ export function runRequest(request, { cwd = process.cwd() } = {}) {
       throw new PolicyError("INVALID_PROFILE", "The policy profile is not valid JSON.");
     }
     const source = readUtf8Bounded(file.absolute, limits.max_file_bytes, "source");
+    sourcePath = file.relative;
     const findings = checkSource(source, profile, limits);
     const result = envelope({
       status: "ok",
@@ -521,7 +528,7 @@ export function runRequest(request, { cwd = process.cwd() } = {}) {
     const normalized = error instanceof PolicyError
       ? error
       : new PolicyError("INTERNAL_ERROR", "The policy check failed unexpectedly.", EXIT_CODES.internal);
-    return errorResult(normalized);
+    return errorResult(normalized, normalized.code === "CFML_STRUCTURE_UNCERTAIN" ? { path: sourcePath } : {});
   }
 }
 

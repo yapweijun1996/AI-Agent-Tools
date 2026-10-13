@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
@@ -240,6 +241,29 @@ test("reports missing parser results and fact limits as incomplete evidence", ()
     assert.equal(limited.complete, false);
     assert.equal(limited.facts.length, 1);
     assert.equal(limited.diagnostics.some((item) => item.code === "RESOURCE_LIMIT"), true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("parser diagnostic attribution uses admitted source path and bounded fields, not reporter extras", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "agent-cfml-linkage-fact-location-"));
+  try {
+    fs.mkdirSync(path.join(root, "nested"));
+    fs.writeFileSync(path.join(root, "nested", "page.cfm"), "\n  <cfunknown>", "utf8");
+    const snapshot = createSnapshot(createRootGuard(root));
+    const parsed = parseSnapshot(snapshot, root);
+    parsed[0] = {
+      ...parsed[0],
+      diagnostics: parsed[0].diagnostics.map((item) => ({ ...item, file: "../../outside.cfm", details: { private_backend_data: "must not escape" }, private_backend_data: "must not escape" })),
+    };
+    const bundle = extractFactBundle({ snapshot, parsedFiles: parsed });
+    assert.equal(bundle.complete, false);
+    const item = bundle.diagnostics.find((value) => value.code === "UNSUPPORTED_SYNTAX");
+    assert.deepEqual(item.details, { path: "nested/page.cfm" });
+    assert.deepEqual(item.span, { start_line: 2, start_col: 2, end_line: 2, end_col: 13 });
+    assert.equal(Object.hasOwn(item, "file"), false);
+    assert.equal(Object.hasOwn(item, "private_backend_data"), false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

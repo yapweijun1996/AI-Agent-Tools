@@ -126,6 +126,8 @@ test("path escape is rejected without reading outside the root", () => {
   const response = runRequest({ operation: "check", root: "test/fixtures", file: "../../outside.cfm", profile: "../../profiles/example.json" }, { cwd: repoRoot });
   assert.equal(response.exitCode, 4);
   assert.equal(response.result.errors[0].code, "PATH_ESCAPE");
+  assert.equal(response.result.errors[0].details, undefined);
+  assert.deepEqual(response.result.meta, {});
 });
 
 test("malformed profile is rejected", () => {

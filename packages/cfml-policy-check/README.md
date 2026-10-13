@@ -17,7 +17,7 @@ The local tool is `agent-cfml-policy-check` version `0.1.0`. It supports:
 - one root-relative local JSON profile;
 - direct table rules for `<colgroup>` and `<col>`;
 - HTML/CFML comments and transparent `cfoutput`;
-- fail-closed dynamic/malformed/unsupported structure;
+- fail-closed dynamic/malformed/unsupported structure, even without literal table targets;
 - deterministic JSON with bounded limits;
 - CLI and AIT stdin JSON invocation.
 
@@ -47,6 +47,18 @@ node src/cli.js check --root . --file test/fixtures/missing-colgroup.cfm --profi
 The command emits one JSON document. Exit code 0 means a supported check
 completed, even when the result verdict is `violations`. Exit 3 represents
 incomplete static evidence.
+
+Unknown output such as `<cfoutput>#fragment#</cfoutput>`, include-only input,
+and any visible non-`cfoutput` CFML tag return `incomplete` with null data.
+Literal `cfset` assignments and encoded-output calls are not assumed safe.
+Static no-target input, comments and escaped `##` remain supported.
+
+Structural refusal retains `CFML_STRUCTURE_UNCERTAIN` and adds one bounded,
+content-free cause in `errors[0].details`: a fixed `reason` and original
+one-based `line`/`column`. The validated root-relative source path is in
+`meta.path`; no attribute values, source snippets or absolute paths are added.
+See the [cause contract](docs/JSON_SCHEMA.md#structural-cause-details).
+
 
 ## AIT invocation
 

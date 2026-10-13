@@ -2,7 +2,7 @@ import { BUDGETS } from "../constants.js";
 import { DiagnosticCollector } from "../core/diagnostics.js";
 import { compareCodePoint, EvidenceStore } from "../core/evidence.js";
 import { Scanner } from "../core/scanner.js";
-import type { WorkspaceDeclaration } from "../types.js";
+import type { PackageInventory, WorkspaceDeclaration } from "../types.js";
 import type { PackageManifest } from "./manifest.js";
 import { hasOwn, isRecord, manifestEvidence } from "./manifest.js";
 
@@ -32,6 +32,86 @@ export interface WorkspaceDiscovery {
   complete: boolean;
   hasValidDeclaration: boolean;
   declarationSets: string[][];
+}
+
+export interface IndependentPackageDiscovery {
+  declarations: PackageInventory["declarations"];
+  candidates: WorkspaceCandidate[];
+  complete: boolean;
+  valid: boolean;
+}
+
+/** Only a root manifest declaration authorizes independent-package traversal. */
+export function discoverIndependentPackages(
+  scanner: Scanner,
+  evidence: EvidenceStore,
+  diagnostics: DiagnosticCollector,
+  rootManifest: PackageManifest,
+  workspace: WorkspaceDiscovery,
+): IndependentPackageDiscovery | null {
+  if (!rootManifest.valid || rootManifest.data === null || !hasOwn(rootManifest.data, "agentProjectProfile")) return null;
+  const config = rootManifest.data.agentProjectProfile;
+  if (isRecord(config) && !hasOwn(config, "independentPackages")) return null;
+  const pointer = isRecord(config) ? "/agentProjectProfile/independentPackages" : "/agentProjectProfile";
+  const declarationEvidence = manifestEvidence(evidence, rootManifest, pointer);
+  const declarations = [{ path: rootManifest.path, pointer, evidence: [declarationEvidence] }];
+  const unresolved = (message: string): IndependentPackageDiscovery => {
+    diagnostics.add("PACKAGE_INVENTORY_UNRESOLVED", "warning", message, rootManifest.path, [declarationEvidence]);
+    return { declarations, candidates: [], complete: false, valid: false };
+  };
+  const sources = isRecord(config) ? config.independentPackages : null;
+  if (!Array.isArray(sources) || sources.length === 0 || !sources.every((value): value is string => typeof value === "string")) {
+    return unresolved("The independent-package declaration must be a nonempty array of supported root-relative patterns.");
+  }
+  const patterns: PatternSpec[] = [];
+  const seen = new Set<string>();
+  for (const source of sources) {
+    const pattern = parsePattern(source);
+    if (pattern === null || Buffer.byteLength(source, "utf8") > BUDGETS.sourceStringBytes || pattern.segments.length > BUDGETS.directoryDepth) {
+      return unresolved("An independent-package pattern is unsafe, too large, or uses unsupported syntax; no independent members were traversed.");
+    }
+    if (pattern.segments.some((segment) => scanner.isForbiddenDirectory(segment))) {
+      return unresolved("An independent-package pattern targets an excluded directory; no independent members were traversed.");
+    }
+    const key = `${pattern.exclude ? "!" : ""}${pattern.segments.join("/")}`;
+    if (seen.has(key)) return unresolved("The independent-package declaration contains duplicate patterns.");
+    seen.add(key);
+    patterns.push(pattern);
+  }
+  if (!patterns.some((pattern) => !pattern.exclude)) return unresolved("The independent-package declaration contains no positive member pattern.");
+  if (workspace.declarations.length > 0) {
+    diagnostics.add(
+      "PACKAGE_INVENTORY_UNRESOLVED",
+      "warning",
+      "Independent-package and workspace declarations conflict; independent membership is not canonical and was not traversed.",
+      rootManifest.path,
+      [declarationEvidence, ...workspace.declarations.flatMap((declaration) => declaration.evidence)],
+    );
+    return { declarations, candidates: [], complete: false, valid: false };
+  }
+  let complete = true;
+  const paths = new Set<string>();
+  const exclusions = patterns.filter((pattern) => pattern.exclude);
+  for (const pattern of patterns.filter((value) => !value.exclude)) {
+    const expanded = expandPattern(scanner, pattern.segments, true);
+    complete = complete && expanded.complete;
+    if (expanded.paths.length === 0) complete = false;
+    for (const member of expanded.paths) {
+      if (exclusions.some((exclusion) => matchesPattern(member, exclusion.segments))) continue;
+      if (paths.has(member)) {
+        diagnostics.add("PACKAGE_INVENTORY_UNRESOLVED", "warning", "Independent-package patterns overlap on a member directory.", member, [declarationEvidence]);
+        complete = false;
+      }
+      paths.add(member);
+    }
+  }
+  if (!complete) diagnostics.add("PACKAGE_INVENTORY_UNRESOLVED", "warning", "Independent-package discovery was incomplete; totals and absent-member conclusions remain unknown.", rootManifest.path, [declarationEvidence]);
+  return {
+    declarations,
+    candidates: Array.from(paths).sort(compareCodePoint).map((member) => ({ path: member, evidence: [declarationEvidence] })),
+    complete,
+    valid: true,
+  };
 }
 
 export function discoverWorkspace(
@@ -274,7 +354,7 @@ function parsePattern(source: string): PatternSpec | null {
   return { exclude, segments, source };
 }
 
-function expandPattern(scanner: Scanner, segments: string[]): { paths: string[]; complete: boolean } {
+function expandPattern(scanner: Scanner, segments: string[], requireMembers = false): { paths: string[]; complete: boolean } {
   let states = ["."];
   let complete = true;
   for (const segment of segments) {
@@ -295,7 +375,10 @@ function expandPattern(scanner: Scanner, segments: string[]): { paths: string[];
         if (!listing.complete) complete = false;
         for (const entry of listing.entries) {
           const candidate = current === "." ? entry.name : `${current}/${entry.name}`;
-          if (scanner.isForbiddenDirectory(candidate)) continue;
+          if (scanner.isForbiddenDirectory(candidate)) {
+            if (requireMembers) complete = false;
+            continue;
+          }
           if (!entry.isDirectory() && !entry.isSymbolicLink()) continue;
           const probe = scanner.probe(candidate);
           if (probe.kind === "directory") queue.push(candidate);
@@ -307,12 +390,20 @@ function expandPattern(scanner: Scanner, segments: string[]): { paths: string[];
     }
     const next: string[] = [];
     for (const current of states) {
+      if (requireMembers && current !== "." && current.split("/").length >= BUDGETS.directoryDepth) {
+        scanner.markDepthLimit(current);
+        complete = false;
+        continue;
+      }
       if (segment === "*") {
         const listing = scanner.listDirectory(current);
         if (!listing.complete) complete = false;
         for (const entry of listing.entries) {
           const candidate = current === "." ? entry.name : `${current}/${entry.name}`;
-          if (scanner.isForbiddenDirectory(candidate)) continue;
+          if (scanner.isForbiddenDirectory(candidate)) {
+            if (requireMembers) complete = false;
+            continue;
+          }
           if (!entry.isDirectory() && !entry.isSymbolicLink()) continue;
           const probe = scanner.probe(candidate);
           if (probe.kind === "directory") next.push(candidate);
@@ -320,10 +411,13 @@ function expandPattern(scanner: Scanner, segments: string[]): { paths: string[];
         }
       } else {
         const candidate = current === "." ? segment : `${current}/${segment}`;
-        if (scanner.isForbiddenDirectory(candidate)) continue;
+        if (scanner.isForbiddenDirectory(candidate)) {
+          if (requireMembers) complete = false;
+          continue;
+        }
         const probe = scanner.probe(candidate);
         if (probe.kind === "directory") next.push(candidate);
-        else if (probe.kind !== "missing") complete = false;
+        else if (requireMembers || probe.kind !== "missing") complete = false;
       }
     }
     states = Array.from(new Set(next)).sort(compareCodePoint);
@@ -343,7 +437,7 @@ function matchesPattern(relativePath: string, segments: string[]): boolean {
     else if (segments[patternIndex] === "**") {
       result = visit(pathIndex, patternIndex + 1) || (pathIndex < pathSegments.length && visit(pathIndex + 1, patternIndex));
     } else {
-      result = pathIndex < pathSegments.length && segments[patternIndex] === pathSegments[pathIndex] && visit(pathIndex + 1, patternIndex + 1);
+      result = pathIndex < pathSegments.length && (segments[patternIndex] === "*" || segments[patternIndex] === pathSegments[pathIndex]) && visit(pathIndex + 1, patternIndex + 1);
     }
     memo.set(key, result);
     return result;

@@ -27,12 +27,15 @@ export function readArtifact(root, name, extensions, cap) {
       if (lstatSync(current).isSymbolicLink()) throw new InputError('UNSAFE_PATH');
     }
     const expected = lstatSync(file, { bigint: true });
+    if (!expected.isFile()) throw new InputError('UNSAFE_PATH');
     if (realpathSync(file) !== file) throw new InputError('UNSAFE_PATH');
     fd = openSync(file, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0) | (constants.O_NONBLOCK ?? 0));
     const before = fstatSync(fd, { bigint: true });
     if (!before.isFile()) throw new InputError('UNSAFE_PATH');
     if (expected.dev !== before.dev || expected.ino !== before.ino || realpathSync(file) !== file)
       throw new InputError('UNSAFE_PATH');
+    if (expected.size !== before.size || expected.mtimeNs !== before.mtimeNs || expected.ctimeNs !== before.ctimeNs)
+      throw new InputError('INPUT_CHANGED', 'incomplete');
     const openedPath = lstatSync(file, { bigint: true });
     if (openedPath.isSymbolicLink() || openedPath.dev !== before.dev || openedPath.ino !== before.ino)
       throw new InputError('UNSAFE_PATH');
@@ -48,6 +51,9 @@ export function readArtifact(root, name, extensions, cap) {
     const after = fstatSync(fd, { bigint: true });
     if (before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs ||
         before.ino !== after.ino || before.dev !== after.dev || BigInt(length) !== after.size)
+      throw new InputError('INPUT_CHANGED', 'incomplete');
+    const finalPath = lstatSync(file, { bigint: true });
+    if (realpathSync(file) !== file || finalPath.isSymbolicLink() || finalPath.dev !== after.dev || finalPath.ino !== after.ino)
       throw new InputError('INPUT_CHANGED', 'incomplete');
     try { return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes.subarray(0, length)); }
     catch { throw new InputError('INVALID_ENCODING'); }

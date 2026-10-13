@@ -1,7 +1,7 @@
 # Rule Catalog
 
 Status: `Two V1 rules implemented locally`
-Last reconciled: 2026-09-16
+Last reconciled: 2026-10-12
 
 A rule is released only when source, fixtures, package evidence, and the release
 gates prove it. The current rules are locally implemented and tested, not
@@ -22,8 +22,13 @@ released.
 - Comments do not create elements.
 - Tag matching is case-insensitive while source locations remain original.
 - The rules do not infer column counts from `colspan`, CSS, or runtime data.
-- Dynamic or malformed structure affecting a table returns `incomplete` before
-  findings are presented.
+- Dynamic, malformed or unsupported structure returns `incomplete` before
+  findings are presented, even without literal table/colgroup targets.
+- Unknown hash output, includes and other visible non-`cfoutput` CFML tags
+  cannot establish a complete no-findings result. This includes literal
+  assignments and encoded-output calls; no CFML or include is executed.
+- Refusal carries one bounded content-free cause/location, not a policy
+  violation finding. See [JSON_SCHEMA.md](JSON_SCHEMA.md#structural-cause-details).
 
 ## Planned rules
 

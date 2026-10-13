@@ -45,6 +45,7 @@
     "check:contract": "node contract/verify-contract.mjs && node scripts/check-contract-drift.mjs",
     "check:fixtures": "node scripts/check-fixtures.mjs",
     "test": "npm run check:contract && npm run check:fixtures && npm run check:capabilities && npm run typecheck && npm run lint && npm run build && npm run check:package && node --test",
+    "test:prepared": "npm run check:contract && npm run check:fixtures && npm run check:capabilities && npm run check:package && node --test",
     "pack:check": "npm run build && npm run check:package"
   },
   "devDependencies": {

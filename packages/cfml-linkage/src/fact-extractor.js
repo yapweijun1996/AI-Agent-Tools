@@ -305,6 +305,9 @@ function normalizeDiagnostic(item, file, index) {
     code,
     message: message.slice(0, MAX_DIAGNOSTIC_MESSAGE),
   };
+  if (typeof file === "string" && file.length > 0 && file.length <= 4096 && !path.posix.isAbsolute(file) && !path.win32.isAbsolute(file) && !/[\u0000-\u001f\u007f:]/u.test(file) && !file.split(/[\\/]/u).includes("..")) {
+    normalized.details = { path: file.replaceAll("\\", "/") };
+  }
   if (item?.span && Number.isSafeInteger(item.span.start_line) && Number.isSafeInteger(item.span.start_col) && Number.isSafeInteger(item.span.end_line) && Number.isSafeInteger(item.span.end_col)) {
     normalized.span = {
       start_line: item.span.start_line,
@@ -412,6 +415,8 @@ export function extractFactBundle({ snapshot, parsedFiles, toolVersion = DEFAULT
     if (!Array.isArray(nodes)) continue;
     let componentName = null;
     let methodName = null;
+    const scriptComponents = [];
+    const scriptMethods = [];
     const conditionStack = [];
     const switchFrames = [];
     activeCondition = null;
@@ -425,28 +430,51 @@ export function extractFactBundle({ snapshot, parsedFiles, toolVersion = DEFAULT
       const enclosingSymbol = methodName ?? componentName;
       const nodeLanguage = node.kind === "HTML_FORM" ? "html" : node.kind === "JS_FETCH" || node.kind === "JS_AJAX" || node.kind === "JS_ASSET" ? "javascript" : node.kind === "CSS_REFERENCE" ? "css" : node.kind === "SQL_QUERY" ? "sql" : language;
       activeCondition = currentCondition(conditionStack);
+      if (node.kind === "CFML_SCRIPT_COMPONENT") {
+        if (node.closing) {
+          componentName = scriptComponents.pop() ?? null;
+        } else {
+          scriptComponents.push(componentName);
+          componentName = typeof node.name === "string" && node.name !== "" ? node.name : null;
+          if (componentName === null) addFact(makeDynamicFact({ file, language, node, sourceKind: "COMPONENT", expression: "script component identity", enclosingSymbol: null, ordinal: factOrdinal++ }));
+          else addFact(makeFact({ file, language, node, kind: "COMPONENT", normalizedExpression: `component ${componentName}`, enclosingSymbol: null, extractionRuleId: "cfscript-component-v0.1", attributes: { component_name: componentName, extends: node.attributes?.extends ?? null, implements: splitList(node.attributes?.implements ?? null) }, ordinal: factOrdinal++ }));
+        }
+        continue;
+      }
+      if (node.kind === "CFML_SCRIPT_METHOD") {
+        if (node.closing) {
+          methodName = scriptMethods.pop() ?? null;
+        } else {
+          scriptMethods.push(methodName);
+          const name = node.name;
+          methodName = componentName ? `${componentName}.${name}` : name;
+          addFact(makeFact({ file, language, node, kind: "METHOD", normalizedExpression: `method ${methodName}`, enclosingSymbol: componentName, extractionRuleId: "cfscript-method-v0.1", attributes: { method_name: name, access: node.access ?? null }, ordinal: factOrdinal++ }));
+          if (path.basename(file).toLowerCase() === "application.cfc" && APPLICATION_HOOK_NAMES.has(name.toLowerCase())) addFact(makeFact({ file, language, node, kind: "APPLICATION_HOOK", normalizedExpression: `application hook ${name}`, enclosingSymbol: componentName, extractionRuleId: "application-hook-v0.1", attributes: { application_name: file, hook_name: name }, ordinal: factOrdinal++ }));
+        }
+        continue;
+      }
       if (node.kind === "CFML_SCRIPT_INCLUDE") {
         const target = typeof node.target === "string" ? normalizeText(node.target) : "";
-        if (target === "" || target.includes("#")) addFact(makeDynamicFact({ file, language, node, sourceKind: "INCLUDE", expression: node.expression || "cfscript include", enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
+        if (node.expression_truncated === true || node.dynamic === true || target === "" || (node.dynamic !== false && target.includes("#"))) addFact(makeDynamicFact({ file, language, node, sourceKind: "INCLUDE", expression: node.expression || "cfscript include", enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
         else addFact(makeFact({ file, language, node, kind: "INCLUDE", normalizedExpression: target, enclosingSymbol, extractionRuleId: "cfscript-include-path-v0.1", attributes: { template: target, include_phase: "page" }, ordinal: factOrdinal++ }));
         continue;
       }
       if (node.kind === "CFML_SCRIPT_REDIRECT") {
         const url = typeof node.url === "string" ? normalizeText(node.url) : "";
-        if (url === "" || url.includes("#")) addFact(makeDynamicFact({ file, language, node, sourceKind: "REDIRECT", expression: node.expression || "cfscript location", enclosingSymbol, ordinal: factOrdinal++ }));
+        if (node.expression_truncated === true || node.dynamic === true || url === "" || (node.dynamic !== false && url.includes("#"))) addFact(makeDynamicFact({ file, language, node, sourceKind: "REDIRECT", expression: node.expression || "cfscript location", enclosingSymbol, ordinal: factOrdinal++ }));
         else addFact(makeFact({ file, language, node, kind: "REDIRECT", normalizedExpression: url, enclosingSymbol, extractionRuleId: "cfscript-location-url-v0.1", attributes: { url }, ordinal: factOrdinal++ }));
         continue;
       }
       if (node.kind === "CFML_SCRIPT_INSTANTIATE") {
         const component = typeof node.component === "string" ? normalizeText(node.component) : "";
         const creationKind = ["createObject", "cfobject"].includes(node.creation_kind) ? node.creation_kind : "new";
-        if (component === "" || component.includes("#")) addFact(makeDynamicFact({ file, language, node, sourceKind: "INSTANTIATE", expression: node.expression || `cfscript ${creationKind}`, enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
+        if (node.expression_truncated === true || node.dynamic === true || component === "" || (node.dynamic !== false && component.includes("#"))) addFact(makeDynamicFact({ file, language, node, sourceKind: "INSTANTIATE", expression: node.expression || `cfscript ${creationKind}`, enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
         else addFact(makeFact({ file, language, node, kind: "INSTANTIATE", normalizedExpression: component, enclosingSymbol, extractionRuleId: creationKind === "createObject" ? "cfscript-createobject-component-v0.1" : creationKind === "cfobject" ? "cfscript-cfobject-component-v0.1" : "cfscript-new-component-v0.1", attributes: { component, ...(creationKind !== "new" ? { creation_kind: creationKind } : {}) }, ordinal: factOrdinal++ }));
         continue;
       }
       if (node.kind === "CFML_SCRIPT_CUSTOM_TAG") {
         const target = typeof node.target === "string" ? normalizeText(node.target) : "";
-        if (target === "" || target.includes("#")) addFact(makeDynamicFact({ file, language, node, sourceKind: "CUSTOM_TAG", expression: node.expression || "cfscript cfmodule", enclosingSymbol, ordinal: factOrdinal++ }));
+        if (node.expression_truncated === true || node.dynamic === true || target === "" || (node.dynamic !== false && target.includes("#"))) addFact(makeDynamicFact({ file, language, node, sourceKind: "CUSTOM_TAG", expression: node.expression || "cfscript cfmodule", enclosingSymbol, ordinal: factOrdinal++ }));
         else addFact(makeFact({ file, language, node, kind: "CUSTOM_TAG", normalizedExpression: `custom tag ${target}`, enclosingSymbol, extractionRuleId: "cfscript-cfmodule-name-v0.1", attributes: { name: target }, ordinal: factOrdinal++ }));
         continue;
       }
@@ -454,7 +482,7 @@ export function extractFactBundle({ snapshot, parsedFiles, toolVersion = DEFAULT
         const component = typeof node.component === "string" ? normalizeText(node.component) : "";
         const method = typeof node.method === "string" ? normalizeText(node.method) : "";
         const invokeKind = node.invoke_kind === "cfinvoke" ? "cfinvoke" : "invoke";
-        if (component === "" || method === "" || component.includes("#") || method.includes("#")) addFact(makeDynamicFact({ file, language, node, sourceKind: "INVOKE", expression: node.expression || `cfscript ${invokeKind}`, enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
+        if (node.expression_truncated === true || node.dynamic === true || component === "" || method === "" || (node.dynamic !== false && (component.includes("#") || method.includes("#")))) addFact(makeDynamicFact({ file, language, node, sourceKind: "INVOKE", expression: node.expression || `cfscript ${invokeKind}`, enclosingSymbol, unresolvedReason: "DYNAMIC_EXPRESSION", ordinal: factOrdinal++ }));
         else addFact(makeFact({ file, language, node, kind: "INVOKE", normalizedExpression: `${component}.${method}`, enclosingSymbol, extractionRuleId: invokeKind === "cfinvoke" ? "cfscript-cfinvoke-v0.1" : "cfscript-invoke-v0.1", attributes: { component, method, ...(invokeKind === "cfinvoke" ? { invoke_kind: invokeKind } : {}) }, ordinal: factOrdinal++ }));
         continue;
       }

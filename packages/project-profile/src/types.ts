@@ -28,7 +28,7 @@ export interface ProjectRepository {
 export interface Project {
   root: ".";
   name: string | null;
-  kind: "single-package" | "workspace" | "unknown";
+  kind: "single-package" | "workspace" | "monorepo" | "unknown";
   repository: ProjectRepository;
   evidence: EvidenceToken[];
 }
@@ -75,6 +75,20 @@ export interface Workspace {
   enabled: boolean | null;
   manager: "npm" | "pnpm" | "yarn" | null;
   declarations: WorkspaceDeclaration[];
+  packages: WorkspacePackage[];
+  total: number | null;
+  returned: number;
+  truncated: boolean;
+}
+
+/** Source-only additive contract; not part of the published 0.1.1 profile. */
+export interface PackageInventory {
+  kind: "independent";
+  declarations: Array<{
+    path: string;
+    pointer: string;
+    evidence: EvidenceToken[];
+  }>;
   packages: WorkspacePackage[];
   total: number | null;
   returned: number;
@@ -156,6 +170,7 @@ export interface Coverage {
     metadataFiles: boolean;
     metadataBytes: boolean;
     depth: boolean;
+    packageInventory?: boolean;
   };
 }
 
@@ -168,6 +183,7 @@ export interface Profile {
   packageManager: PackageManager;
   runtimes: RuntimeDeclaration[];
   workspace: Workspace;
+  packageInventory?: PackageInventory;
   commands: Commands;
   scripts: ScriptGroup[];
   entrypoints: Entrypoint[];

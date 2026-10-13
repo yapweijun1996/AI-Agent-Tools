@@ -46,7 +46,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test test/*.test.cjs",
+    "test": "npm run build && npm run test:prepared",
+    "test:prepared": "node --test test/*.test.cjs",
     "docs:check": "node scripts/docs-check.cjs",
     "release:check": "node scripts/release-check.cjs",
     "pack:check": "npm run build && npm pack --dry-run --ignore-scripts",

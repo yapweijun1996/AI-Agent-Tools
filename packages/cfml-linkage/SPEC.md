@@ -41,6 +41,31 @@ The implementation MUST canonicalize the root, reject traversal and symlink esca
 
 The M1 snapshot currently discovers `.cfm`, `.cfml`, `.cfc`, `.html`, `.htm`, `.js`, `.mjs`, `.css`, and `.sql` deterministically. The M1 decoder accepts strict UTF-8 only and maps byte offsets to one-based lines and zero-based UTF-16 columns. The M2 parser adapter now owns a fail-closed backend boundary and explicit partial/unsupported diagnostics. Dependency-free bounded CFML/web structural scanners and a fixture-backed Fact extractor are available as explicit components, while the default adapter remains unselected and full grammar coverage/resolution are unresolved. Visible SQL table extraction and literal `queryExecute` extraction are bounded; quoted/schema-qualified identifiers are normalized and declared CTE names are excluded, while T-033 preserves interpolated SQL identifiers and dynamic datasources as unresolved evidence, and T-034 links only structurally evidenced repository actions. SQL semantics, target resolution, and broader cross-file linkage remain later concerns.
 
+The CLI accepts `--mode mixed|cfml-structural` on `analyze`, `index`, and every
+query command. `mixed` remains the default and explicitly selects the bounded
+mixed scanner; fully admitted HTML/script structure can complete, while
+unsupported grammar, ambiguous output and embedded semantics retain diagnostics.
+`cfml-structural` requires `config.analysis.languages` to contain `cfml` and
+overrides discovery extensions to `.cfm`, `.cfml`, and `.cfc` through existing
+snapshot options. Mode is CLI-owned, not a new configuration property.
+Duplicate, missing, or invalid values, and combinations with help, version,
+or capabilities, are invalid input. `--json` semantics, envelope/version,
+exit mappings, root admission, configured policies, and budgets are unchanged.
+
+The bounded dependency-free CFScript scanner recognizes component/interface and
+real function declarations, literal link calls and simple literal statements.
+Lexical strings/interpolation/comments are isolated, method bindings are scoped,
+and rejected declarations never establish confirmed method targets. Unknown
+syntax and dynamic dispatch remain incomplete/unresolved. Literal filesystem
+includes preserve escaped hashes rather than applying URL fragment rules.
+
+Mixed HTML completeness is a strict structural proof over admitted paired/void
+tags, explicit closures, comments, doctype and raw-text/RCDATA boundaries. It does
+not implement HTML5 recovery, foreign/custom/template semantics, arbitrary
+embedded languages or runtime output. Recovery-dependent/ambiguous syntax stops
+before uncertain descendants can become confirmed form relationships. Source
+and declaration/link/node/expression/token/depth/diagnostic bounds remain enforced.
+
 ### 3.1 Current repository contract evidence
 
 The repository now has a private `package.json` with Node `>=20`, an `npm test` script, a private `bin/agent-cfml-linkage.js` entry point, package `exports`, a private `src/index.js` library entry, and internal root-guard, snapshot, source-map, CLI, cache, parser-adapter, bounded CFML/web scanner, Fact extractor, bounded SQL/repository resolver, analysis orchestrator, bounded output serializer, and bounded graph-query modules with focused tests. It has an explicit but host-unverified Tree-sitter CFML backend in `src/tree-sitter-backend.js`, declared through pinned optional dependencies `@cfmleditor/tree-sitter-cfml@0.26.2` and `tree-sitter@0.25.0`; it has no released CLI/API, runtime linkage implementation, verified native parser installation, or release artifact. A read-only CI workflow is defined but has no hosted run, and bounded query-command CLI wiring plus library evidence, Graph edge, and serialized-output enforcement are implemented. API and public package metadata below remain proposed contracts.
@@ -56,6 +81,18 @@ Each stage has typed boundaries and may emit diagnostics. Cross-file stages cons
 ### 4.0 Fact IR contract
 
 The parser-independent Fact IR bundle is defined by `schema/agent-cfml-linkage-fact-v0.1.schema.json` with a representative fixture at `examples/facts-v0.1.json`. It records source files, parser identity/completeness, normalized facts, source spans, enclosing symbols, conditions, extraction rule IDs, diagnostics, and counts. The schema, representative fixture, and produced bounded fixture bundle validate locally; T-034 adds bounded `REPOSITORY_ACTION` facts only when a CFC method contains query evidence, and T-056 adds structural `CONTROL_FLOW` facts for selected fallback tags without expression evaluation, while T-057 adds bounded static/named-argument CFScript linkage and quoted/CTE-safe SQL table forms; broader parser and Fact IR coverage remains unimplemented.
+
+Normalized parser diagnostics retain the admitted root-relative source path
+in existing `diagnostic.details.path`, not a new top-level `file` field.
+Existing code, severity, bounded message, and span remain available; arbitrary
+backend metadata is not copied. Graph resolver-diagnostic mapping also retains
+safe root-relative file attribution and source spans where supplied. Stderr
+uses `[path:start_line:start_col]` when present, with one-based lines and
+zero-based UTF-16 columns; absent coordinates are not fabricated. The human
+locator renderer rejects paths longer than 4096 characters, absolute/parent
+traversal paths, C0/DEL/C1 controls, and Unicode line separators. It omits an
+unsafe locator without suppressing the diagnostic code/message or rewriting
+the JSON path. Fact/Graph diagnostic schemas remain unchanged.
 
 ### 4.1 Planned linkage families
 
@@ -129,9 +166,31 @@ Unresolved records are successful analysis output, not internal errors. Planned 
 
 The supported operations are `related`, `callers`, `callees`, `includes`, `included-by`, `trace`, `scope-flow`, `tables`, `routes`, `unresolved`, `explain-edge`, `impact-evidence`, and `stats`. The private CLI exposes the bounded subset `related`, `callers`, `callees`, `trace`, `unresolved`, `explain` (mapped to `explain-edge`), and `stats`; request selectors and bounds are supplied under the optional `query` object in `schema/agent-cfml-linkage-config-v0.1.schema.json`. Results are deterministic and bounded by `max_results`, `max_depth`, and `max_visited`; traversal is cycle-safe. Exhausted limits return diagnostics and `complete=false`. Query explanations are deterministic templates over edge confidence, metadata, spans, and evidence; they do not execute source or invent targets. The query envelope is `agent-cfml-linkage-query/v0.1`; public package integration and graph persistence remain later contracts.
 
+Opt-in `cfml-structural` CLI query payloads, like analyze/index payloads, carry
+`data.scope`. Its mode is `cfml-structural`, its `source_extensions` are
+`.cfm`/`.cfml`/`.cfc`, and its `excluded_capabilities` are
+`ordinary-html-web-flow-parsing`, `standalone-javascript-analysis`,
+`standalone-css-analysis`, `standalone-sql-analysis`, and `runtime-semantics`.
+Its `completeness` warning states that complete applies only to the declared
+bounded CFML structural stages, not whole-file or mixed-language coverage,
+and that bounded CFML tag metadata may survive. Ordinary HTML forms are not
+handled; supported CFML query-container/redirect metadata is not erased.
+Dynamic targets never become guessed confirmed edges, even when structural
+stages complete; missing include targets retain existing scope incompleteness.
+Malformed/unsupported/opaque and exhausted-budget boundaries remain
+incomplete. Default/explicit mixed analysis and query payload shapes are
+unchanged apart from improved diagnostics.
+
+Bare script-based `.cfc` source is conservatively classified after leading
+whitespace/comments: non-tag content remains an opaque script document with
+a located `UNSUPPORTED_SYNTAX` diagnostic and `complete=false`. No script grammar
+or runtime semantics are inferred. The mixed scanner also skips web extraction
+inside that opaque document, preventing CFML-looking string literals from
+fabricating facts or edges. Tag-based CFC coverage is preserved.
+
 ## 4.6 Composed analysis result
 
-T-036 exposes `analyzeProject({ rootPath, config, parserBackend | parserAdapter, ...options })` through the private package entry. It creates the root guard, discovers a deterministic snapshot, reads and parses each admitted file, extracts Fact IR, builds immutable indexes, runs the bounded path/CFC/scope/web-flow/repository passes, merges resolution and diagnostic evidence by stable IDs, builds Graph IR, and returns immutable reverse adjacency. The default parser backend remains unselected and therefore returns `PARSER_UNAVAILABLE`; the CLI explicitly injects `mixed-structural-scanner/v0.1`. Callers may explicitly inject `createTreeSitterCfmlBackend()` from `src/index.js` for `.cfm`/`.cfml`/`.cfc`/`.cfs` parsing, but its native loading and full Fact coverage are host-unverified. Source metadata/content is checked after parsing, and drift makes the result incomplete. The result contract is `schema/agent-cfml-linkage-analysis-v0.1.schema.json`.
+T-036 exposes `analyzeProject({ rootPath, config, parserBackend | parserAdapter, ...options })` through the private package entry. It creates the root guard, discovers a deterministic snapshot, reads and parses each admitted file, extracts Fact IR, builds immutable indexes, runs the bounded path/CFC/scope/web-flow/repository passes, merges resolution and diagnostic evidence by stable IDs, builds Graph IR, and returns immutable reverse adjacency. The default library parser backend remains unselected and therefore returns `PARSER_UNAVAILABLE`; the CLI explicitly selects `mixed-structural-scanner/v0.1` by default or `cfml-structural-scanner/v0.1` when requested. The package-root `createCfmlScannerBackend()` export permits explicit narrower library use; callers must supply `snapshotOptions: { extensions: [".cfm", ".cfml", ".cfc"] }` to narrow discovery, since the factory does not do that itself. The library analysis contract is unchanged and does not acquire the CLI scope wrapper. Callers may explicitly inject `createTreeSitterCfmlBackend()` from `src/index.js` for `.cfm`/`.cfml`/`.cfc`/`.cfs` parsing, but its native loading and full Fact coverage are host-unverified. Source metadata/content is checked after parsing, and drift makes the result incomplete. The result contract is `schema/agent-cfml-linkage-analysis-v0.1.schema.json`.
 
 The orchestrator currently applies configured language, file/fact/resolver/traversal, edge, evidence, ignore-glob, hidden-file, and wall-time policies that are supported by the underlying bounded stages. The optional Tree-sitter backend is explicit and fail-closed; its unsupported script/embedded-language regions remain opaque rather than becoming guessed Facts. `buildGraph` enforces the library `limits.max_edges` budget on the final deterministically ordered edge set and the `limits.max_evidence` budget in deterministic edge/unresolved/node order; either cap returns `complete=false` with `RESOURCE_LIMIT` details while preserving a valid Graph IR and reverse adjacency. The private library `serializeAnalysis` and CLI enforce `limits.max_output_bytes` for serialized results, returning `complete=false`/`OUTPUT_LIMIT` evidence without arbitrary JSON truncation; values below 300 bytes are rejected at the CLI boundary because the stable fallback envelope cannot fit. `analyzeProject` enforces `limits.max_wall_time_ms` with a monotonic clock, cooperative discovery/parse/Fact checkpoints, and resolver stage checkpoints; a deadline preserves completed partial evidence, returns `complete=false`, and adds deterministic `TIME_LIMIT` details including the configured limit and stage. Synchronous parser calls are not preemptively cancellable. T-039 verifies the bounded cross-budget regression boundary in ADR-029. The bounded ignore matcher supports root-relative literal, `*`, `?`, and recursive `**` patterns, while hidden-file policy covers dot-prefixed entry names; broader glob semantics, generated-file detection, query-command persistence, full parser coverage, and public release remain open and are not implied by this API. Query-command CLI output is bounded by the configured serialized output cap.
 

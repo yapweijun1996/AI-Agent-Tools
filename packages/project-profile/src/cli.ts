@@ -136,8 +136,13 @@ function renderText(profile: Profile): string {
     `repository: ${profile.project.repository.kind}`,
     `package-manager: ${profile.packageManager.name ?? "unknown"}${profile.packageManager.version ? `@${profile.packageManager.version}` : ""}`,
     `workspace: ${profile.workspace.enabled === null ? "unknown" : profile.workspace.enabled ? `${profile.workspace.returned}${profile.workspace.total === null ? "+" : `/${profile.workspace.total}`} packages` : "disabled"}`,
-    "commands:",
   ];
+  if (profile.packageInventory !== undefined) {
+    const inventory = profile.packageInventory;
+    lines.push(`independent-packages: ${inventory.returned}${inventory.total === null ? "+" : `/${inventory.total}`}${inventory.truncated ? " (partial)" : ""}`);
+    for (const member of inventory.packages) lines.push(`  ${member.path}: ${member.name ?? "unknown"} (${member.packageManager.name ?? "unknown"})`);
+  }
+  lines.push("commands:");
   for (const [purpose, commands] of Object.entries(profile.commands)) {
     const values = commands.map((command) => `${command.cwd}:${command.script}${command.argv === null ? " (argv unavailable)" : ` (${command.argv.join(" ")})`}`);
     lines.push(`  ${purpose}: ${values.length > 0 ? values.join(", ") : "none"}`);

@@ -152,6 +152,11 @@ function classify(artifact) {
       typeof e.tool.version !== "string" || !["ok", "incomplete", "error"].includes(e.status) ||
       typeof e.complete !== "boolean" || !Array.isArray(e.errors) || !Array.isArray(e.warnings) ||
       !record(e.meta) || typeof e.meta.scope !== "string" || !record(e.meta.limits)) return "unsupported-contract";
+  for (const rows of [e.errors, e.warnings]) {
+    if (rows.some((row) => !record(row) || typeof row.code !== "string" || typeof row.message !== "string"))
+      return "unsupported-contract";
+  }
+  if (Object.values(e.meta.limits).some((value) => !Number.isFinite(value))) return "unsupported-contract";
   if (e.status === "ok") {
     if (e.complete !== true || !record(e.data) || e.errors.length) return "unsupported-contract";
     return "ok";

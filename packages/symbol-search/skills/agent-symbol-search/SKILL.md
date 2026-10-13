@@ -43,11 +43,13 @@ The package supports Node.js 22, 24, and 26. For a globally available Codex CLI 
 | `capabilities` | Confirm supported languages and operations | `root` |
 | `search` | Find declarations by exact, prefix, or substring name | `root`, `symbol`; optional `match`, `project` |
 | `symbols` | List declarations in one TypeScript file | `root`, `path`; optional `project` |
-| `definition` | Resolve a declaration, alias, overload, or position | `root`, `symbol` or `from`; optional `project` |
-| `references` | Find compiler-resolved references and import aliases | `root`, `symbol` or `from`; optional `project` |
-| `implementations` | Find explicit `implements`, `extends`, or supported abstract overrides | `root`, `symbol` or `from`; optional `project` |
+| `definition` | Resolve a declaration, alias, overload, or position | `root`, `symbol`; optional `from`, `project` |
+| `references` | Find compiler-resolved references and import aliases | `root`, `symbol`; optional `from`, `project` |
+| `implementations` | Find explicit `implements`, `extends`, or supported abstract overrides | `root`, `symbol`; optional `from`, `project` |
 
 All paths are relative to `root` unless documented as an absolute root. `from` uses `{ "path": "...", "line": 1, "column": 0 }`, with 1-based lines and 0-based UTF-16 columns.
+
+`symbol` is required even when `from` is supplied. For positioned CLI queries, pass `--symbol` together with `--from-path`, `--line`, and `--column`; a position-only request is invalid.
 
 ## CLI examples
 

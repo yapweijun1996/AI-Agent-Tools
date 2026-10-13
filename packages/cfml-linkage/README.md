@@ -65,6 +65,103 @@ or `capabilities`. It is an alias for the existing JSON output, preserving the
 envelope, diagnostics and exit status. Duplicate or value-bearing forms are
 invalid input. No public release is implied.
 
+### Explicit analysis modes
+
+`analyze`, `index`, and all query commands accept `--mode mixed|cfml-structural`.
+The default remains `mixed`, composing bounded CFML/script and strict HTML
+structural scanners. Fully admitted literal structure can complete; unsupported
+grammar, ambiguous output, malformed input and resource limits remain partial.
+Default analysis/query payloads still omit the opt-in scope field.
+
+For example:
+
+```sh
+node bin/agent-cfml-linkage.js analyze --config config.json --mode cfml-structural --json
+node bin/agent-cfml-linkage.js callees --config config.json --mode cfml-structural
+```
+
+`cfml-structural` requires `analysis.languages` in the configuration to contain
+`cfml`. Mode is CLI-owned: the v0.1 configuration schema is unchanged and does
+not accept a `mode` property. The CLI admits only `.cfm`, `.cfml`, and `.cfc`
+files in this mode, explicitly selects the dependency-free CFML structural
+scanner, and retains the existing root guard, discovery policies, resolvers,
+budgets, diagnostics, unresolved records, envelope version, and exit meanings.
+Duplicate, missing, or invalid mode values are invalid input. `--mode` cannot
+be combined with `--help`, `--version`, or `capabilities`; help and capabilities
+describe both modes.
+
+Opt-in analysis, index, and query payloads carry `data.scope`, containing
+`mode`, `source_extensions`, `excluded_capabilities`, and a `completeness`
+warning. Excluded capabilities are ordinary HTML/web-flow parsing, standalone
+JavaScript/CSS/SQL analysis, and runtime semantics. Bounded CFML tag/script
+metadata, such as declarations, literal calls, query containers or redirects,
+may still survive; the mode does not erase legitimate CFML facts. HTML forms
+are not handled by this factory. `complete=true` means only that the declared
+bounded structural stages
+completed, not whole-file, mixed-language, or runtime coverage. Dynamic targets
+remain unresolved rather than guessed, even when these stages are complete.
+Missing include targets retain existing scope incompleteness, and malformed,
+unsupported, opaque, and resource-limited paths remain incomplete.
+
+Script-based `.cfc` files and `<cfscript>` bodies now share a bounded lexical and
+structural scanner. Admitted component/interface and real `function` declarations
+produce existing COMPONENT/METHOD facts; safe file-derived identities and method
+ownership are retained. Empty declarations, simple literal assignments/returns,
+and literal include/new/createObject/invoke/location/tag-call forms can complete.
+Unknown bodies, malformed declarations, dynamic arguments, shadowed callbacks and
+resource limits remain incomplete; no guessed builtin or method target is added.
+Nested CFML comments, doubled quotes/hashes and interpolated strings remain
+lexically isolated. Script strings are never rescanned as CFML or HTML tags.
+Literal filesystem include/custom-tag names preserve hashes; only URL targets
+discard query/fragment suffixes. Root guards and admitted-snapshot checks remain.
+
+### Bounded HTML structure
+
+Mixed mode recognizes explicit paired/void HTML structure, comments and the
+literal HTML doctype. Forms and assets preserve real source spans. Script/style
+raw text and textarea/title RCDATA cannot create fake form markup; unhandled
+embedded-language semantics remain partial. Recovery-dependent nesting, optional
+end tags, select insertion contexts, foreign/custom/template regions, ambiguous
+CFML output, encoded or embedded-language attributes and malformed/truncated
+fields remain partial rather than receiving invented HTML5 recovery. Scanning
+stops before ambiguous recovery-dependent nodes can become confirmed form links.
+Known queryExecute evidence is confined to genuine CFScript and CFML expression
+islands, never ordinary HTML text or comments. This is not a browser/tree-builder,
+full HTML/CFScript grammar, runtime dispatch model or business execution proof.
+
+Parser diagnostics retain the admitted root-relative path in `details.path`
+and their existing `span`; resolver diagnostics preserve file/span information
+where available. Human stderr diagnostics use `[path:start_line:start_col]`
+when coordinates exist. Lines are one-based and columns are zero-based UTF-16
+offsets. Missing coordinates are not invented, and bounded coverage warnings
+remain visible in mixed mode. The stderr locator boundary accepts only bounded,
+root-relative paths without parent traversal or control characters (including
+LF, CR, ESC, DEL, and C1 controls); unsafe locators are omitted without dropping
+the diagnostic code or message. Machine-readable diagnostic paths remain
+available in the JSON result.
+
+### Explicit library CFML structural scanner
+
+The package root exports `createCfmlScannerBackend` for explicit library use.
+The factory is narrower than the mixed scanner; it does not itself narrow
+snapshot discovery. Library callers must set the intended extension scope:
+
+```js
+import { analyzeProject, createCfmlScannerBackend } from "agent-cfml-linkage";
+
+const analysis = analyzeProject({
+  rootPath: "./project",
+  parserBackend: createCfmlScannerBackend(),
+  parserVersion: "cfml-structural-scanner/v0.1",
+  parserName: "cfml-structural-scanner",
+  snapshotOptions: { extensions: [".cfm", ".cfml", ".cfc"] },
+});
+```
+
+The library analysis contract is unchanged; the CLI adds the opt-in
+`data.scope` descriptor to its own payload. This factory does not add a full
+CFScript parser, standalone web-language analysis, or runtime execution.
+
 ### Optional Tree-sitter CFML backend
 
 The private library exports an explicit Tree-sitter backend. It is not selected by default and accepts CFML source extensions only:
@@ -157,3 +254,18 @@ The planned tool will not:
 ## Verification and limitations
 
 Foundation, bounded extraction, deterministic configured ignore-glob/hidden-file/generated-directory discovery policies, configured CFC mappings, immutable-index, literal-resolution, bounded CFC/scope/web-flow/dynamic-evidence/SQL-repository resolution, bounded Graph IR, bounded graph-query verification, bounded analysis orchestration, configured library edge/evidence/serialized-output/wall-time budget enforcement, and inert adversarial safe-failure fixture checks have current `npm test` evidence (95/95 passed). The bounded CFML scanner now recognizes the common switch/control, transport, mail, interface, and administrative tags observed in the read-only ContentAdmin smoke, and the Fact extractor emits switch/case condition evidence and literal `cfparam` scope writes without executing source; selected return/loop/try/catch/throw/break/continue tags also produce structural `CONTROL_FLOW` Facts and Graph nodes without inferred edges; static CFScript linkage forms, including positional/named `createObject("component", ...)`, `cfinclude`/`cfobject`/`cfmodule`, `location`, named/positional `queryExecute`, and `invoke`/`cfinvoke`, reuse existing Fact kinds, and selected SQL DML/DDL/reference/MERGE and dialect maintenance table forms are emitted per bounded semicolon-separated statement or SQL `GO` batch, with quoted/schema-qualified identifiers normalized without execution; procedure calls are not promoted to table Facts, and declared CTE names are not promoted to table Facts. Cross-file fallback-Fact regressions verify CFC, include, custom-tag, redirect, and query Graph edges. The private CLI envelope, bounded `analyze`/`index` and query commands, private `analyzeProject`/`serializeAnalysis` exports, cache foundation, bounded scanners, fixture-backed Fact extractor, immutable indexes, resolvers, and Graph builder are tested. The new Tree-sitter backend has syntax/fake-parser coverage but no native parser load, full grammar fixture, broader resolver, browser, broader engine compatibility, deployment, or release verification; the Node host evidence is limited to the recorded environment and all other linkage/compatibility claims remain proposed.
+
+The 95/95 count above is retained historical pre-correction evidence. Current
+2026-10-12 Windows Node 24.21.0 root acceptance passes 109 native package tests
+with one POSIX-only skip. The focused CLI/parser gate passes all 26 cases on
+Linux Node 24.19.0, including real control-character filenames; this is not a
+full Linux package/repository matrix. Actual offline packed Windows CLI/library
+consumers preserve confirmed literal includes with explicit structural selection.
+Root `TASK.md` and `VALIDATION.md` own the consolidated acceptance and limits.
+
+For the 2026-10-13 coverage expansion, all 143 native package cases run: Windows
+Node 24.21.0 passes 142 with one POSIX skip; Linux Node 24.19.0 passes all 143.
+Controlled script declarations/includes/constructors and literal HTML forms now
+complete; the frozen eight-file ContentAdmin subset remains incomplete with
+source hashes unchanged. Review cases protect against false comment/shadowed/
+rejected-method links, filename hash truncation and HTML recovery-dependent forms.

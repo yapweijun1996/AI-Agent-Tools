@@ -10,8 +10,44 @@
     "status": { "enum": ["ok", "incomplete", "error"] },
     "complete": { "type": "boolean" },
     "data": { "type": ["object", "null"] },
-    "errors": { "type": "array" },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "details": { "$ref": "#/$defs/structureCause" }
+        },
+        "allOf": [
+          {
+            "if": { "required": ["details"] },
+            "then": { "properties": { "code": { "const": "CFML_STRUCTURE_UNCERTAIN" } } }
+          }
+        ]
+      }
+    },
     "warnings": { "type": "array" },
     "meta": { "type": "object" }
+  },
+  "$defs": {
+    "structureCause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "line", "column"],
+      "properties": {
+        "reason": {
+          "enum": [
+            "UNSUPPORTED_CFML_TAG", "HASH_EXPRESSION", "UNCLOSED_COMMENT",
+            "UNCLOSED_TAG", "MISMATCHED_CLOSING_TAG", "UNCLOSED_ELEMENT",
+            "UNSUPPORTED_TEXT_CONTEXT", "DOUBLE_ESCAPED_SCRIPT"
+          ]
+        },
+        "line": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 1 }
+      }
+    }
   }
 }

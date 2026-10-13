@@ -40,6 +40,27 @@ It is a metadata-oriented scanner. It does not understand the entire codebase an
 
 Configuration discovery includes TypeScript, Vite, Vitest, Jest, ESLint, Prettier, Turbo, Nx, webpack, and Rollup. Finding a configuration file does not prove that the project uses it. Browser-related configuration is inventoried without inventing a browser runtime requirement.
 
+### Explicit independent-package source inventory
+
+Current unpublished source also accepts a root manifest declaration:
+
+```json
+{
+  "agentProjectProfile": {
+    "independentPackages": ["packages/*"]
+  }
+}
+```
+
+Only declared patterns are scanned; a folder named `packages` alone is not a
+declaration. The optional `packageInventory` object records `kind: "independent"`,
+the declaring manifest/pointer/evidence, bounded member `packages`, `total`,
+`returned` and `truncated`. Member package managers, runtimes and commands remain
+member-local. This can establish `project.kind: "monorepo"` without fabricating an
+npm workspace or a root-shared package manager. Existing workspace discovery and
+undeclared single-package results are unchanged. The checked-in schema represents
+this source addition; it is not a claim about the published `0.1.1` artifact.
+
 ## CLI
 
 The examples and exact exit/strict-mode rules below describe the `0.1.2` release contract. Source version and npm registry state are verified independently; the schema and representative profiles remain versioned repository artifacts.
@@ -83,7 +104,7 @@ Until that registry publication is complete, use the repository's packaged-consu
 
 The versioned JSON contract has these top-level fields:
 
-`schemaVersion`, `toolVersion`, `status`, `project`, `ecosystems`, `packageManager`, `runtimes`, `workspace`, `commands`, `scripts`, `entrypoints`, `configs`, `instructions`, `ci`, `evidence`, `warnings`, and `coverage`.
+`schemaVersion`, `toolVersion`, `status`, `project`, `ecosystems`, `packageManager`, `runtimes`, `workspace`, `commands`, `scripts`, `entrypoints`, `configs`, `instructions`, `ci`, `evidence`, `warnings`, and `coverage`. Current source additionally emits optional `packageInventory` only for an explicit independent-package declaration.
 
 The canonical names are `runtimes` and `workspace`. The early brief's `runtime` and `workspaces` spellings are not aliases. `coverage` records scan/output limits so consumers can distinguish an absent fact from incomplete discovery.
 
@@ -93,7 +114,12 @@ Schema-valid representative profiles for `complete`, `partial`, `unsupported`, a
 
 ## Ecosystem responsibilities
 
-Each capability has its own repository and npm package, with independent versions, tests, and releases. The separate `AI-Agent-Tools` hub owns registry, standards, discovery, documentation, compatibility, and roadmap artifacts; the Company KB records the authoritative project knowledge and decisions. Codex/Claude/AGRUN own reasoning and orchestration. A monorepo or shared core is deferred until roughly 3-5 mature tools demonstrate real duplicated infrastructure.
+Tools retain independent npm identities, versions, tests and release approval.
+The owner-authorized 2026-09-30 [monorepo decision](../../docs/migration/DECISION.md)
+places owned implementations in `packages/`; it supersedes the historical
+standalone-roadmap consolidation deferral. The Hub owns registry, standards,
+discovery, documentation and governance, not shared reasoning or automatic
+execution. Codex/Claude/AGRUN continue to own reasoning and orchestration.
 
 | Tool | Responsibility |
 | --- | --- |

@@ -4,6 +4,7 @@ import path from "node:path";
 import { analyzeProject } from "./analyzer.js";
 import { queryGraph, validateQueryRequest } from "./graph-query.js";
 import { createMixedStructuralScannerBackend } from "./web-scanner.js";
+import { createCfmlScannerBackend } from "./cfml-scanner.js";
 import { serializeBoundedJson } from "./output.js";
 import { createRootGuard, RootGuardError } from "./root-guard.js";
 
@@ -30,6 +31,12 @@ const QUERY_OPERATIONS = Object.freeze({
   stats: "stats",
 });
 const COMMANDS = Object.freeze(["capabilities", "analyze", "index", ...QUERY_COMMANDS]);
+const CFML_STRUCTURAL_SCOPE = Object.freeze({
+  mode: "cfml-structural",
+  source_extensions: Object.freeze([".cfm", ".cfml", ".cfc"]),
+  excluded_capabilities: Object.freeze(["ordinary-html-web-flow-parsing", "standalone-javascript-analysis", "standalone-css-analysis", "standalone-sql-analysis", "runtime-semantics"]),
+  completeness: "complete applies only to the declared bounded CFML tag/script structural stages, not whole-file or mixed-language coverage; unsupported syntax remains incomplete.",
+});
 
 function diagnostic(code, severity, message, details = {}) {
   return Object.freeze({ code, severity, message, ...details });
@@ -81,11 +88,13 @@ function envelope(command, status, diagnostics = [], data = null) {
 
 function usageData() {
   return {
-    usage: `${TOOL_NAME} <command> [--config <path>] [--json]`,
+    usage: `${TOOL_NAME} <command> [--config <path>] [--mode mixed|cfml-structural] [--json]`,
     commands: COMMANDS,
     implemented_commands: ["capabilities", "analyze", "index", ...QUERY_COMMANDS],
+    default_mode: "mixed",
+    modes: { mixed: "Bounded CFML/script and strict HTML structural analysis; unsupported grammar and embedded semantics remain incomplete.", "cfml-structural": CFML_STRUCTURAL_SCOPE },
     notes: [
-      "analyze and index run the bounded, explicit mixed structural scanner pipeline; query commands run the same pipeline and query its resulting graph.",
+      "analyze, index, and query commands use mixed mode by default; --mode cfml-structural explicitly narrows discovery and analysis to CFML structural stages.",
       "Source is never executed; diagnostics are emitted on stderr and in the JSON envelope.",
       "--json is an optional alias for the existing JSON output; it does not change the native envelope.",
     ],
@@ -98,6 +107,7 @@ function parseArguments(argv) {
   let help = false;
   let version = false;
   let json = false;
+  let mode = null;
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
@@ -112,6 +122,14 @@ function parseArguments(argv) {
     }
     if (argument === "--version" || argument === "-v") {
       version = true;
+      continue;
+    }
+    if (argument === "--mode") {
+      if (mode !== null || index + 1 >= argv.length || !["mixed", "cfml-structural"].includes(argv[index + 1])) {
+        throw diagnostic("INVALID_INPUT", "error", "--mode requires exactly one value: mixed or cfml-structural.");
+      }
+      mode = argv[index + 1];
+      index += 1;
       continue;
     }
     if (argument === "--config") {
@@ -132,8 +150,8 @@ function parseArguments(argv) {
   }
 
   if (help || version) {
-    if (command !== null || configPath !== null || (help && version)) {
-      throw diagnostic("INVALID_INPUT", "error", "--help/--version cannot be combined with a command or --config.");
+    if (command !== null || configPath !== null || mode !== null || (help && version)) {
+      throw diagnostic("INVALID_INPUT", "error", "--help/--version cannot be combined with a command, --config, or --mode.");
     }
     return { command: help ? "help" : "version", configPath: null };
   }
@@ -143,10 +161,10 @@ function parseArguments(argv) {
   if (configPath === null && command !== "capabilities") {
     throw diagnostic("INVALID_INPUT", "error", "--config is required for this command.");
   }
-  if (configPath !== null && command === "capabilities") {
-    throw diagnostic("INVALID_INPUT", "error", "capabilities does not accept --config.");
+  if ((configPath !== null || mode !== null) && command === "capabilities") {
+    throw diagnostic("INVALID_INPUT", "error", "capabilities does not accept --config or --mode.");
   }
-  return { command, configPath };
+  return { command, configPath, mode: mode ?? "mixed" };
 }
 
 function readConfig(configPath, cwd) {
@@ -249,7 +267,15 @@ function validateQueryConfig(config, command) {
 
 function stderrFor(diagnostics) {
   return diagnostics.map((item) => {
-    const location = item.path ? ` [${item.path}]` : "";
+    const sourcePath = item.details?.path ?? item.path;
+    const safePath = typeof sourcePath === "string" && sourcePath.length > 0 && sourcePath.length <= 4096
+      && !path.posix.isAbsolute(sourcePath) && !path.win32.isAbsolute(sourcePath)
+      && !/[\u0000-\u001f\u007f-\u009f\u2028\u2029:]/u.test(sourcePath)
+      && !sourcePath.split(/[\\/]/u).includes("..");
+    const coordinates = Number.isSafeInteger(item.span?.start_line) && item.span.start_line >= 1
+      && Number.isSafeInteger(item.span?.start_col) && item.span.start_col >= 0
+      ? `:${item.span.start_line}:${item.span.start_col}` : "";
+    const location = safePath ? ` [${sourcePath.replaceAll("\\", "/")}${coordinates}]` : "";
     return `${item.severity.toUpperCase()} ${item.code}${location}: ${item.message}\n`;
   }).join("");
 }
@@ -293,6 +319,8 @@ export function runCli(argv, { cwd = process.cwd() } = {}) {
     return result(parsed.command, "completed", [], {
       commands: { capabilities: "implemented", analyze: "bounded", index: "bounded", queries: "bounded" },
       source_extensions: [".cfm", ".cfml", ".cfc", ".html", ".htm", ".js", ".mjs", ".css", ".sql"],
+      default_mode: "mixed",
+      modes: { mixed: "Bounded mixed-language analysis; nonempty web coverage remains incomplete.", "cfml-structural": CFML_STRUCTURAL_SCOPE },
       foundation: ["root_guard", "deterministic_snapshot", "strict_utf8_decoder", "source_map"],
       safety: { source_execution: false, network: false, database: false, shell: false, browser: false },
     }, DEFAULT_EXIT_CODES.completed);
@@ -301,6 +329,9 @@ export function runCli(argv, { cwd = process.cwd() } = {}) {
   let config;
   try {
     config = validateConfig(readConfig(parsed.configPath, cwd));
+    if (parsed.mode === "cfml-structural" && !config.analysis.languages.includes("cfml")) {
+      invalidConfig("--mode cfml-structural requires analysis.languages to contain cfml.");
+    }
     validateQueryConfig(config, parsed.command);
   } catch (error) {
     const item = error?.code ? error : diagnostic("INVALID_INPUT", "error", "Configuration validation failed.");
@@ -318,12 +349,14 @@ export function runCli(argv, { cwd = process.cwd() } = {}) {
   }
 
   try {
+    const structuralOnly = parsed.mode === "cfml-structural";
     const analysis = analyzeProject({
       rootPath: path.resolve(cwd, config.root),
       config,
-      parserBackend: createMixedStructuralScannerBackend(),
-      parserVersion: "mixed-structural-scanner/v0.1",
-      parserName: "mixed-structural-scanner",
+      parserBackend: structuralOnly ? createCfmlScannerBackend() : createMixedStructuralScannerBackend(),
+      parserVersion: structuralOnly ? "cfml-structural-scanner/v0.1" : "mixed-structural-scanner/v0.1",
+      parserName: structuralOnly ? "cfml-structural-scanner" : "mixed-structural-scanner",
+      ...(structuralOnly ? { snapshotOptions: { extensions: CFML_STRUCTURAL_SCOPE.source_extensions } } : {}),
       maxFacts: config.limits.max_facts,
       maxEdges: config.limits.max_edges,
       maxResolverRecords: config.limits.max_edges,
@@ -340,7 +373,7 @@ export function runCli(argv, { cwd = process.cwd() } = {}) {
       }
       const status = query.complete ? "completed" : "incomplete";
       const exitCode = query.complete ? config.exit_codes.completed : config.exit_codes.incomplete;
-      return result(parsed.command, status, query.diagnostics, query, exitCode, {
+      return result(parsed.command, status, query.diagnostics, structuralOnly ? { scope: CFML_STRUCTURAL_SCOPE, ...query } : query, exitCode, {
         maxOutputBytes: config.limits.max_output_bytes,
         incompleteExitCode: config.exit_codes.incomplete,
       });
@@ -349,6 +382,7 @@ export function runCli(argv, { cwd = process.cwd() } = {}) {
     const status = analysis.complete ? "completed" : "incomplete";
     const exitCode = analysis.complete ? config.exit_codes.completed : config.exit_codes.incomplete;
     return result(parsed.command, status, analysis.diagnostics, {
+      ...(structuralOnly ? { scope: CFML_STRUCTURAL_SCOPE } : {}),
       graph: analysis.graph,
       fact_bundle: analysis.fact_bundle,
       resolutions: analysis.resolutions,

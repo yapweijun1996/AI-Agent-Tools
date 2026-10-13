@@ -4,7 +4,7 @@ import fs from "node:fs";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { packContext, encodeResult } from "../src/index.js";
-import { entry, manifestOf, PACKAGE_ROOT, setup, withRoot, writeJson } from "./fixture.js";
+import { entry, envelopeOf, manifestOf, PACKAGE_ROOT, setup, withRoot, writeJson } from "./fixture.js";
 
 const cli = fileURLToPath(new URL("../src/cli.js", import.meta.url));
 const run = (args, cwd) => spawnSync(process.execPath, [cli, ...args], { cwd, encoding: "buffer" });
@@ -58,6 +58,34 @@ test("capabilities and exit codes follow the documented classes", () => withRoot
   writeJson(root, "manifest.json", { nope: true });
   assert.equal(run(["pack", "--manifest", "manifest.json", "--root", root, "--json"]).status, 2);
   assert.equal(run(["pack", "--manifest", "absent.json", "--root", root, "--json"]).status, 2);
+}));
+
+test("malformed artifact metadata fails mandatory CLI requests and omits only optional evidence", () => withRoot((root) => {
+  const artifacts = [
+    envelopeOf({ n: 1 }, { warnings: [null] }),
+    envelopeOf(null, { status: "error", complete: false, errors: [{ code: "BROKEN" }] }),
+    envelopeOf({ n: 1 }, { meta: { scope: "Example", limits: { max_items: "not-a-number" } } }),
+  ];
+  writeJson(root, "art/ok.json", envelopeOf({ n: 2 }));
+  for (const artifact of artifacts) {
+    writeJson(root, "art/a.json", artifact);
+    for (const mandatory of [false, true]) {
+      writeJson(root, "manifest.json", manifestOf([entry("ok", "art/ok.json"), entry("a", "art/a.json", { mandatory })]));
+      const result = run(["pack", "--manifest", "manifest.json", "--root", root, "--json"]);
+      assert.equal(result.status, mandatory ? 3 : 0);
+      assert.equal(text(result.stderr), "");
+      const emitted = JSON.parse(text(result.stdout));
+      assert.equal(emitted.status, mandatory ? "incomplete" : "ok");
+      assert.equal(emitted.complete, !mandatory);
+      if (mandatory) {
+        assert.equal(emitted.errors[0].code, "UNSUPPORTED_CONTRACT");
+        assert.equal(emitted.data, null);
+      } else {
+        assert.deepEqual(emitted.data.included.map((item) => item.id), ["ok"]);
+        assert.deepEqual(emitted.data.omitted, [{ id: "a", reason: "unsupported-contract", duplicate_of: null }]);
+      }
+    }
+  }
 }));
 
 test("unknown, duplicate and malformed arguments are rejected without side effects", () => withRoot((root) => {

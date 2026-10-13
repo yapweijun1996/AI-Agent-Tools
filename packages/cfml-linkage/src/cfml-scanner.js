@@ -1,3 +1,5 @@
+import { findCfscriptClose, isScriptCfcSource, scanCfmlComment, scanCfscript } from "./cfscript-scanner.js";
+
 const DEFAULT_MAX_NODES = 10_000;
 const DEFAULT_MAX_ATTRIBUTE_BYTES = 4_096;
 const EXPRESSION_TAGS = new Set(["cfabort", "cfelseif", "cfexit", "cfif", "cfreturn", "cfset", "cfthrow"]);
@@ -98,44 +100,6 @@ function isNameCharacter(character) {
   if (character === undefined) return false;
   const code = character.charCodeAt(0);
   return (code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122) || character === "_" || character === ":" || character === "-";
-}
-
-function containsCall(text, name) {
-  let cursor = 0;
-  let quote = null;
-  while (cursor < text.length) {
-    const character = text[cursor];
-    if (quote !== null) {
-      if (character === "\\") cursor += 2;
-      else {
-        if (character === quote) quote = null;
-        cursor += 1;
-      }
-      continue;
-    }
-    if (text.startsWith("//", cursor)) {
-      const lineEnd = text.indexOf("\n", cursor + 2);
-      cursor = lineEnd === -1 ? text.length : lineEnd + 1;
-      continue;
-    }
-    if (text.startsWith("/*", cursor)) {
-      const blockEnd = text.indexOf("*/", cursor + 2);
-      cursor = blockEnd === -1 ? text.length : blockEnd + 2;
-      continue;
-    }
-    if (character === "\"" || character === "'") {
-      quote = character;
-      cursor += 1;
-      continue;
-    }
-    if (text.slice(cursor, cursor + name.length).toLowerCase() === name.toLowerCase() && !/[A-Za-z0-9_$]/u.test(text[cursor - 1] ?? "") && !/[A-Za-z0-9_$]/u.test(text[cursor + name.length] ?? "")) {
-      let after = cursor + name.length;
-      while (isWhitespace(text[after])) after += 1;
-      if (text[after] === "(") return true;
-    }
-    cursor += 1;
-  }
-  return false;
 }
 
 function isWhitespace(character) {
@@ -302,14 +266,16 @@ function addNode(nodes, node, diagnostics, maxNodes, file, sourceMap, offset) {
   return true;
 }
 
+
 /**
  * A conservative, dependency-free CFML structural scanner backend.
- * It recognizes bounded CFML tags and opaque script regions; it is not a
- * general CFML grammar and intentionally reports unsupported regions.
+ * It recognizes bounded CFML tags and a conservative CFScript structural subset;
+ * unsupported syntax remains explicitly incomplete.
  */
-export function createCfmlScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttributeBytes = DEFAULT_MAX_ATTRIBUTE_BYTES } = {}) {
+export function createCfmlScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttributeBytes = DEFAULT_MAX_ATTRIBUTE_BYTES, maxExpressionBytes = maxAttributeBytes } = {}) {
   if (!Number.isSafeInteger(maxNodes) || maxNodes <= 0) throw new TypeError("maxNodes must be a positive safe integer");
   if (!Number.isSafeInteger(maxAttributeBytes) || maxAttributeBytes <= 0) throw new TypeError("maxAttributeBytes must be a positive safe integer");
+  if (!Number.isSafeInteger(maxExpressionBytes) || maxExpressionBytes <= 0) throw new TypeError("maxExpressionBytes must be a positive safe integer");
 
   return Object.freeze({
     version: "cfml-structural-scanner/v0.1",
@@ -319,16 +285,20 @@ export function createCfmlScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttr
       let complete = true;
       let cursor = 0;
       const blockStack = [];
+      if (file.toLowerCase().endsWith(".cfc") && isScriptCfcSource(text)) {
+        const script = scanCfscript(text, 0, text.length, sourceMap, file, { maxNodes, maxExpressionBytes, scriptCfc: true });
+        return { tree: { kind: "CFML_SCRIPT_DOCUMENT", backend: "cfml-structural-scanner/v0.1", nodes: script.nodes }, complete: script.complete, diagnostics: script.diagnostics };
+      }
 
       while (cursor < text.length) {
         if (startsWithAt(text, "<!---", cursor)) {
-          const end = text.indexOf("--->", cursor + 5);
-          if (end === -1) {
-            diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "CFML comment is not terminated.", file, sourceMap, cursor, text.length));
+          const comment = scanCfmlComment(text, cursor);
+          if (comment.code) {
+            diagnostics.push(diagnostic(comment.code, "error", comment.code === "RESOURCE_LIMIT" ? "CFML comment nesting exceeded the structural depth bound." : "CFML comment is not terminated.", file, sourceMap, cursor, text.length));
             complete = false;
             break;
           }
-          cursor = end + 4;
+          cursor = comment.next;
           continue;
         }
         if (startsWithAt(text, "<!--", cursor)) {
@@ -386,31 +356,25 @@ export function createCfmlScannerBackend({ maxNodes = DEFAULT_MAX_NODES, maxAttr
             complete = false;
             break;
           }
-          if (!node.closing && node.name === "cfscript") {
+          if (!node.closing && !node.self_closing && node.name === "cfscript") {
             const bodyStart = parsed.next;
-            const closingStart = findClosingTag(text, "cfscript", bodyStart);
+            const closingStart = findCfscriptClose(text, bodyStart);
             if (closingStart === -1) {
               diagnostics.push(diagnostic("PARSE_PARTIAL", "error", "CFScript region is not terminated.", file, sourceMap, bodyStart, text.length));
               complete = false;
               break;
             }
             if (closingStart > bodyStart) {
-              const body = text.slice(bodyStart, closingStart);
-              const dynamicConstructs = containsCall(body, "evaluate") ? ["evaluate"] : [];
-              if (!addNode(nodes, {
-                kind: "OPAQUE_REGION",
-                name: "cfscript",
-                parsed: false,
-                ...(dynamicConstructs.length > 0 ? { dynamic_constructs: dynamicConstructs } : {}),
-                span: sourceMap.spanFromTextOffsets(bodyStart, closingStart),
-                byte_start: sourceMap.textOffsetToByteOffset(bodyStart),
-                byte_end: sourceMap.textOffsetToByteOffset(closingStart),
-              }, diagnostics, maxNodes, file, sourceMap, bodyStart)) {
+              const remainingNodes = maxNodes - nodes.length;
+              if (remainingNodes <= 0) {
+                diagnostics.push(diagnostic("RESOURCE_LIMIT", "error", "Parser node limit exceeded.", file, sourceMap, bodyStart, closingStart));
                 complete = false;
                 break;
               }
-              diagnostics.push(diagnostic("UNSUPPORTED_SYNTAX", "warning", "CFScript body is preserved as an opaque region until a script parser is selected.", file, sourceMap, bodyStart, closingStart));
-              complete = false;
+              const script = scanCfscript(text, bodyStart, closingStart, sourceMap, file, { maxNodes: remainingNodes, maxExpressionBytes });
+              nodes.push(...script.nodes);
+              diagnostics.push(...script.diagnostics);
+              complete = complete && script.complete;
             }
             cursor = closingStart;
             continue;

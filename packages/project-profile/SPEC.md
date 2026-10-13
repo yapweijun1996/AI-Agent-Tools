@@ -14,8 +14,8 @@ The profiler operates on one caller-supplied directory. It does not automaticall
 
 - `project.root` is always `"."`, relative to the selected inspection directory.
 - `project.name` is the nonempty root `package.json` name or `null`; directory names are not substituted for a declared package name.
-- `project.kind` is `single-package`, `workspace`, or `unknown`.
-- A valid workspace declaration establishes `workspace`, even when member discovery is incomplete. Without a workspace declaration, a valid root Node manifest establishes `single-package`. Otherwise the kind is `unknown`.
+- `project.kind` is `single-package`, `workspace`, or `unknown` in the frozen standalone contract. Current source additionally supports `monorepo` for a valid explicit independent-package declaration described in section 6.1.
+- A valid workspace declaration establishes `workspace`, even when member discovery is incomplete. Without a workspace or independent-package declaration, a valid root Node manifest establishes `single-package`. Otherwise the kind is `unknown`. Invalid independent-package declarations do not establish `monorepo`.
 - A `project.repository` record reports a `.git` directory/file marker as `git-marker`, or `unknown` without such evidence. A marker is not proof of a valid or healthy Git repository.
 - The profiler inventories the `.git` marker using filesystem metadata only. It does not traverse `.git`, read a worktree pointer file, validate history, resolve remotes, or search ancestors.
 - Output paths are root-relative, use `/`, preserve case and Unicode spelling, and never expose absolute host paths.
@@ -45,6 +45,11 @@ All top-level fields listed below are required. JSON uses UTF-8. Empty supported
 | `evidence` | Deduplicated evidence records with stable IDs |
 | `warnings` | Structured diagnostics of severity `info`, `warning`, or `error` |
 | `coverage` | Global and per-category completeness and applied budgets |
+
+Current source optionally adds `packageInventory` as described in section 6.1.
+It is omitted when no independent-package declaration exists; the fields in the
+table remain required. This additive source contract does not assert support in
+an older published or installed artifact.
 
 Source-derived records MUST carry `evidence` references. The JSON Schema must enforce record shapes, required fields, nullable values, and enums. Semantic validation additionally enforces reference integrity and cross-field consistency.
 
@@ -107,6 +112,28 @@ When both workspace declaration formats exist, retain both declarations and thei
 - `truncated`: whether package output or discovery was capped.
 
 Members are deduplicated by normalized path, not package name. Duplicate declared names are diagnosed. A matched directory without a readable valid manifest is unresolved, not a fabricated package. V1 does not recursively activate independent workspace declarations inside members; it reports that limitation when encountered.
+
+### 6.1 Explicit independent packages (current source)
+
+The only independent-package opt-in is
+`package.json#/agentProjectProfile/independentPackages`, an array of root-relative
+patterns using the bounded grammar in this section. Never discover independent
+packages from guessed directory conventions. A valid declaration can establish
+`project.kind: "monorepo"`; it does not create an npm workspace, activate nested
+workspaces, or make a member inherit the root package manager.
+
+The optional `packageInventory` object has `kind: "independent"`, declaration
+`path`/`pointer`/evidence, bounded member `packages`, `total`, `returned`, and
+`truncated`. Member records use the existing scoped package-manager and evidence
+shape. Commands, scripts, runtimes and other member facts retain their own `cwd`.
+Discovery/output caps and protected-path/read boundaries still apply. Exact
+totals require complete enumeration; invalid, conflicting, duplicate-name or
+unreadable members produce explicit partial evidence rather than guessed facts.
+Absent this declaration, existing workspace and single-package behavior is
+unchanged. The checked-in schema, semantic checks and native fixtures own the
+current source addition; no release, dependency installation or execution is
+authorized by the declaration.
+
 
 ## 7. Scripts and commands
 

@@ -34,6 +34,36 @@ export function invalid(message = "Invalid bounded JSON Schema input") {
   e.code = "INVALID_INPUT";
   return e;
 }
+function parseUnambiguousJson(text) {
+  // Native parsing owns JSON grammar. Scan the same raw text before returning
+  // its value, so duplicate keys cannot disappear before pointer selection.
+  const value = JSON.parse(text);
+  const objects = [];
+  for (let index = 0; index < text.length; index++) {
+    const character = text[index];
+    if (character === "{") objects.push(new Set());
+    else if (character === "}") objects.pop();
+    else if (character === '"') {
+      const start = index++;
+      while (text[index] !== '"') {
+        if (text[index] === "\\") index++;
+        index++;
+      }
+      const end = index + 1;
+      let next = end;
+      while (/[\x20\x09\x0a\x0d]/.test(text[next] ?? "")) next++;
+      if (text[next] === ":") {
+        const key = JSON.parse(text.slice(start, end));
+        const seen = objects.at(-1);
+        if (seen.has(key)) throw invalid();
+        seen.add(key);
+      }
+    }
+  }
+  // The byte-bounded scan is iterative: schema depth is enforced separately,
+  // and pointer wrapper documents do not acquire a new parsing-depth limit.
+  return value;
+}
 export function readJson(file) {
   let fd;
   try {
@@ -58,7 +88,12 @@ export function readJson(file) {
       size += n;
     }
     if (size > LIMITS.inputBytes) throw invalid();
-    return JSON.parse(buffer.subarray(0, size).toString("utf8"));
+    // Preserve a leading BOM for JSON.parse to reject, as before.
+    const text = new TextDecoder("utf-8", {
+      fatal: true,
+      ignoreBOM: true,
+    }).decode(buffer.subarray(0, size));
+    return parseUnambiguousJson(text);
   } catch {
     throw invalid();
   } finally {

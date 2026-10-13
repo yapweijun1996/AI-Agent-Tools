@@ -1,5 +1,91 @@
 # Task status
 
+## Complete local source commit and operational verification (2026-10-13)
+
+The owner requested all current AI-Agent-Tools changes committed locally, not
+the separate ContentAdmin worktree. The source includes the earlier CFML and
+validation-boundary fixes plus the remaining operational/maintenance fixes:
+observable input-mutation rejection in Context Pack/Patch Guard; actual installed
+package/bin checks in AIT doctor; bounded output-limit evidence; per-tool and
+installed-state locks; explicitly declared independent-package profiling; and
+single root preparation with unchanged independent native test commands.
+
+Full Windows Node 24.21.0 root verification passed: 1,126 Node tests, 1,099 passed,
+27 explicit skips and no failures/cancellations/todos; 12 Python tests; 18 dry-run
+packs and eight packed-consumer gates. Native source doctor/dispatch scenarios
+and an actual 18-member independent-package profile also passed.
+[Validation](VALIDATION.md#operational-and-maintenance-source-verification-2026-10-13)
+owns counts, provenance and limits. Import hashes and affected source contracts
+are synchronized; no package version, dependency, license or lifecycle changes.
+
+This acceptance and authorized local commit do not replace the active
+`C:/Users/tno/.omp/ai-agent-tools-20261013` installation. The proposed later
+installation/cutover remains pending; no npm publication or remote push is
+authorized here. Earlier dated sections preserve historical observations rather
+than claiming their old no-commit statements describe the current worktree.
+
+## Validation-boundary fixes (2026-10-13)
+
+The owner selected option A from the codebase review: correct Contract Check raw
+JSON admission, AIT's production Code Slice consumer validation, and Context
+Pack's Hub envelope metadata validation. Duplicate decoded JSON keys and invalid
+UTF-8 now fail with Contract Check's existing invalid-input result. AIT rejects
+malformed operation/result/warning fields without changing native payloads or
+exits. Context Pack rejects malformed diagnostic rows and nonnumeric caps while
+preserving optional omission, mandatory failure and compatible-major additions.
+
+Twenty-five actual source CLI scenarios and Windows Node 24.21.0 full root
+verification passed. The Code Slice profile tests now exercise production code
+instead of a divergent test-only validator. [Validation](VALIDATION.md#validation-boundary-fixes-2026-10-13)
+records test counts, static-impact limits and retained evidence. No installation,
+npm release, version/dependency/license change, commit or push occurred. The
+existing installed snapshot remains unchanged; reader-race, doctor, output-limit,
+installation-state and broader maintenance findings were outside option A.
+
+## Latest installation replacement and bounded language expansion (2026-10-13)
+
+The owner requested the latest local source installation, removal of the old
+version, then option C: expand CFScript/HTML coverage. The prior active snapshot
+and the intermediate installation were retired after native launcher/path
+verification; historical receipts and 1,292 evidence files were preserved
+separately. OMP now selects only `C:/Users/tno/.omp/ai-agent-tools-20261013`.
+
+CFML Linkage now shares a bounded CFScript scanner for script CFCs and cfscript
+bodies, producing real declaration/literal-link evidence while leaving unhandled
+syntax partial. Mixed mode admits strict literal HTML structure rather than
+marking every nonempty document unsupported; recovery-dependent/ambiguous markup
+stops before fabricated form evidence. Review-driven comment, binding, rejected
+method, filename-hash and HTML insertion/raw-end-tag fixes are covered by native
+source and installed CLI scenarios.
+
+Windows/Linux package gates, full Windows root acceptance, produced IR schemas,
+nineteen installed help launchers and final installed behavior checks passed.
+Eight unchanged ContentAdmin copies remain appropriately incomplete; no
+application edit or business runtime execution occurred. Existing contracts,
+workflow guidance and 76 explicit import updates are synchronized. [Validation](VALIDATION.md#latest-installation-replacement-and-bounded-language-expansion-2026-10-13)
+owns snapshot identity, actual counts and limits. No publication, version/license/
+dependency/lifecycle change, commit or push is included.
+
+## CFML policy and linkage scope corrections (2026-10-12)
+
+The owner selected A, B and C after the installed-tool ContentAdmin investigation.
+Current source refuses Policy Check uncertainty without requiring a literal
+table target, adds bounded causal diagnostics/source locations, and provides
+Linkage's explicit `--mode cfml-structural` with declared CFML-only stage scope.
+Default mixed mode remains unchanged. Script-based CFCs stay opaque/incomplete;
+tag-looking literals cannot fabricate links, and unsafe human stderr locators
+are withheld without suppressing diagnostic codes/messages.
+
+Independent source CLI smoke, native Windows package/repository acceptance,
+focused Linux CLI/parser regressions, native result-schema validation and actual
+offline packed Windows CLI/library consumers passed. Existing package/workflow
+contracts and explicit migration updates are synchronized; the immutable import
+baseline remains intact. [Validation](VALIDATION.md#cfml-policy-and-linkage-scope-corrections-2026-10-12)
+owns identities, counts and remaining scope limits. No source change to
+ContentAdmin, old-installation overwrite, optional native parser installation,
+commit, push or publication is included. These unpublished source fixes are not
+yet installed into the existing `ai-agent-tools-20261012` tool snapshot.
+
 ## CFScript tag-prefix false-positive repair (2026-10-09)
 
 The owner selected repairing the independently reproduced CFML Check lexer

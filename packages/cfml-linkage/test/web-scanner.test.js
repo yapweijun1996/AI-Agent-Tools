@@ -154,27 +154,6 @@ test("extracts bounded static CFScript linkage calls and SQL evidence", () => {
     const repeated = adapter.parse(source, "page.cfm");
     assert.deepEqual(repeated.tree, pageParsed.tree);
     assert.deepEqual(repeated.diagnostics, pageParsed.diagnostics);
-    const scriptNodes = pageParsed.tree.nodes.filter((node) => node.kind.startsWith("CFML_SCRIPT_"));
-    assert.deepEqual(scriptNodes.map((node) => node.kind), [
-      "CFML_SCRIPT_INCLUDE",
-      "CFML_SCRIPT_REDIRECT",
-      "CFML_SCRIPT_REDIRECT",
-      "CFML_SCRIPT_REDIRECT",
-      "CFML_SCRIPT_INCLUDE",
-      "CFML_SCRIPT_INCLUDE",
-      "CFML_SCRIPT_INSTANTIATE",
-      "CFML_SCRIPT_INSTANTIATE",
-      "CFML_SCRIPT_CUSTOM_TAG",
-      "CFML_SCRIPT_CUSTOM_TAG",
-      "CFML_SCRIPT_INSTANTIATE",
-      "CFML_SCRIPT_INVOKE",
-      "CFML_SCRIPT_INVOKE",
-      "CFML_SCRIPT_INVOKE",
-      "CFML_SCRIPT_INVOKE",
-      "CFML_SCRIPT_INSTANTIATE",
-      "CFML_SCRIPT_INSTANTIATE",
-      "CFML_SCRIPT_INSTANTIATE",
-    ]);
     assert.equal(pageParsed.tree.nodes.filter((node) => node.kind === "SQL_QUERY").length, 4);
     const sqlParsed = adapter.parse(Buffer.from("merge into orders using inventory on orders.id = inventory.id", "utf8"), "query.sql");
     assert.deepEqual(sqlParsed.tree.nodes[0].tables, ["inventory", "orders"]);

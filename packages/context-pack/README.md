@@ -48,6 +48,12 @@ One strict JSON file; unknown keys and duplicate keys are rejected. See [request
 
 Only the Hub result envelope ([JSON standard](../../docs/JSON_STANDARD.md)) with `schema_version` major `1` is accepted. Native contracts (for example Code Slice's `schemaVersion`/`ok`/`result`) are **not** adapted; they are reported as `unsupported-contract`.
 
+Diagnostic entries in `errors` and `warnings` must be non-array objects with
+string `code` and `message` fields. Every `meta.limits` value must be a finite
+number; numeric strings and nested objects are not effective caps. Compatible
+major-1 extra fields remain allowed, including diagnostic metadata. Artifact
+`data` remains opaque: this validation does not interpret a tool-specific verdict.
+
 | Artifact | Optional item | Mandatory item |
 | --- | --- | --- |
 | `status: ok`, `complete: true`, consistent | included if it fits | included or `MANDATORY_OVERFLOW` |
@@ -116,6 +122,12 @@ process.exitCode = exitCode(JSON.parse(encoded));
 
 Artifact content is untrusted data. It is passed through verbatim and never interpreted: text that looks like instructions, `mandatory`/`priority` fields, paths or `__proto__` keys inside an artifact cannot change selection, read files or execute anything. Consumers must keep treating `included[].data` as evidence, not as instructions (`content_trust` says so). The tool opens only the manifest and the artifacts it names, under the explicit root, and rejects symlinks, special files and observed substitution during capture. It never writes files. This is process-level discipline, not an OS sandbox, and it does not defend against arbitrary hostile concurrent filesystem mutation.
 
+Capture compares the admitted file's size and timestamps with the opened
+descriptor, checks descriptor stability after reading, and verifies the final
+named path still identifies that descriptor. Observable mutation or replacement
+withholds the pack with `INPUT_CHANGED`; these checks do not make filesystem
+capture atomic under arbitrary concurrent mutation.
+
 ## Provenance of the examples
 
 `examples/artifacts/rules-resolve.json` and `patch-guard.json` are unmodified outputs of the sibling source packages at version 0.1.0:
@@ -136,4 +148,4 @@ npm --prefix packages/context-pack run typecheck
 npm --prefix packages/context-pack run smoke:pack
 ```
 
-Root verification discovers this package. Tests cover canonical and permuted ordering, exact byte accounting at the budget boundary (including that the CLI's `used` equals stdout bytes), digest and locator duplicates, mandatory and optional overflow, incomplete and unsupported envelopes, snapshot/identity/digest mismatch, manifest shape, unsafe paths and symlinks, duplicate JSON keys, non-UTF-8 input, resource and output caps, hostile artifact text, read-only behavior, schemas, declarations and a packed consumer. Only macOS has been exercised; Windows and Linux are unverified.
+Root verification discovers this package. Tests cover canonical and permuted ordering, exact byte accounting at the budget boundary (including that the CLI's `used` equals stdout bytes), digest and locator duplicates, mandatory and optional overflow, incomplete and unsupported envelopes, diagnostic/cap field shapes, compatible-major additions, snapshot/identity/digest mismatch, manifest shape, unsafe paths and symlinks, duplicate JSON keys, non-UTF-8 input, resource and output caps, hostile artifact text, read-only behavior, schemas, declarations and a packed consumer. Dated platform observations are recorded in the root [validation evidence](../../VALIDATION.md); one platform's acceptance does not establish another's.

@@ -29,6 +29,29 @@ export function validateProfileSemantics(profile: Profile): string[] {
   if (profile.workspace.returned !== profile.workspace.packages.length) errors.push("workspace returned");
   if (profile.workspace.total !== null && profile.workspace.total < profile.workspace.returned) errors.push("workspace total");
   if (profile.workspace.truncated && profile.workspace.total === null && profile.workspace.returned > BUDGETS.workspacePackages) errors.push("workspace truncation");
+  const inventory = profile.packageInventory;
+  if (profile.project.kind === "monorepo" && inventory === undefined) errors.push("monorepo inventory");
+  if (inventory !== undefined) {
+    if (inventory.kind !== "independent") errors.push("package inventory kind");
+    if (inventory.returned !== inventory.packages.length || inventory.returned > BUDGETS.workspacePackages) errors.push("package inventory returned");
+    if (inventory.total !== null && inventory.total < inventory.returned) errors.push("package inventory total");
+    if (!inventory.truncated && inventory.total !== inventory.returned) errors.push("package inventory completeness");
+    if (inventory.truncated && profile.status === "complete") errors.push("package inventory status");
+    if (profile.coverage.truncated.packageInventory !== inventory.truncated) errors.push("package inventory truncation");
+    if (profile.coverage.categories.packageInventory === undefined) errors.push("package inventory coverage");
+    if (inventory.declarations.length !== 1 || inventory.declarations.some((declaration) => declaration.path !== "package.json" || !["/agentProjectProfile", "/agentProjectProfile/independentPackages"].includes(declaration.pointer) || declaration.evidence.length === 0)) errors.push("package inventory declaration");
+    const members = new Set<string>();
+    for (const member of inventory.packages) {
+      if (member.path === "." || member.path.split("/").some((segment) => segment === "" || segment === "." || segment === "..") || members.has(member.path)) errors.push("package inventory member path");
+      members.add(member.path);
+      if (member.evidence.length === 0) errors.push("package inventory member evidence");
+      if (member.packageManager.inherited === true) errors.push("independent manager inheritance");
+    }
+    if (profile.workspace.packages.some((member) => members.has(member.path))) errors.push("conflicting package membership");
+    if (profile.project.kind === "monorepo" && profile.workspace.enabled !== false) errors.push("monorepo workspace");
+  } else if (profile.coverage.categories.packageInventory !== undefined || profile.coverage.truncated.packageInventory !== undefined) {
+    errors.push("undeclared package inventory coverage");
+  }
   if (profile.coverage.usage.directoryEntries > profile.coverage.budgets.directoryEntries) errors.push("directory budget");
   if (profile.coverage.usage.metadataFiles > profile.coverage.budgets.metadataFiles) errors.push("metadata file budget");
   if (profile.coverage.usage.metadataBytes > profile.coverage.budgets.metadataTotalBytes) errors.push("metadata byte budget");

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
@@ -137,6 +138,44 @@ test("marks graph incomplete and reports invariant failures without dropping evi
     assert.equal(graph.complete, false);
     assert.equal(graph.unresolved.length, 2);
     assert.equal(validateGraph({ ...graph, edges: [{ ...graph.edges[0], to: "node:missing" }] }).length > 0, true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("resolver diagnostics retain schema-safe source coordinates without arbitrary reporter metadata", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "agent-cfml-linkage-graph-diagnostic-"));
+  try {
+    const factBundle = {
+      complete: true,
+      source_files: [{ file: "nested/page.cfm", language: "cfml", fingerprint: "sha256:page" }],
+      facts: [fact({ fact_id: "page", kind: "FILE", file: "nested/page.cfm", expression: "source_file nested/page.cfm" })],
+      diagnostics: [],
+    };
+    const graph = buildGraph({
+      factBundle,
+      rootGuard: createRootGuard(root),
+      resolutions: {
+        complete: false,
+        resolutions: [],
+        unresolved: [],
+        diagnostics: [
+          { code: "REFERENCE_ACCESS_ERROR", severity: "error", file: "nested/page.cfm", message: "Referenced path is inaccessible.", span: { start_line: 3, start_col: 2, end_line: 3, end_col: 35 }, details: { secret: "must not escape" }, backend_extra: "must not escape" },
+          { code: "REFERENCE_ACCESS_ERROR", severity: "error", file: "../outside.cfm", message: "Reference is outside the root." },
+        ],
+      },
+      createdAt: "2026-09-14T00:00:00.000Z",
+    });
+    assert.equal(graph.complete, false);
+    const located = graph.diagnostics.find((item) => item.details?.path === "nested/page.cfm");
+    assert.deepEqual(located.span, { start_line: 3, start_col: 2, end_line: 3, end_col: 35 });
+    assert.equal(located.code, "REFERENCE_ACCESS_ERROR");
+    assert.deepEqual(located.details, { path: "nested/page.cfm" });
+    assert.equal(Object.hasOwn(located, "file"), false);
+    assert.equal(Object.hasOwn(located, "backend_extra"), false);
+    const rejected = graph.diagnostics.find((item) => item.message === "Reference is outside the root.");
+    assert.equal(Object.hasOwn(rejected, "details"), false);
+    assert.deepEqual(validateGraph(graph), []);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

@@ -45,17 +45,26 @@ ait install TOOL_ID --from-path PACKAGE_DIR [--allow-experimental] [--json] [--r
 ait dispatch TOOL_ID --allow-execution [--cwd PATH] [--json] [--registry PATH] [--home PATH] [--profile-index PATH] -- [ARGS...]
 ```
 
-`list` reads the explicit local `TOOL_REGISTRY.json` snapshot. `doctor` checks
-registry and installed-state references without executing a package. `install` only
-accepts a registered tool with a confirmed package identity and recorded release
-version. Planned, Deprecated, and unknown-package entries fail closed; Experimental
-entries require `--allow-experimental`.
+`list` reads the explicit local `TOOL_REGISTRY.json` snapshot. Current source
+`doctor` checks installed-state records, the actual rooted package manifest and
+name/version, the recorded executable declaration and the executable path without
+executing a package. A consumer-only manifest is not an installed tool. `install`
+only accepts a registered tool with a confirmed package identity and recorded
+release version. Planned, Deprecated, and unknown-package entries fail closed;
+Experimental entries require `--allow-experimental`.
 
 npm installation is explicit and pinned to the registry's recorded version. AIT
 uses npm's `--ignore-scripts`, `--no-audit`, `--no-fund`, `--no-package-lock`, and
 no-shell invocation. `--from-path` supports controlled local fixtures and must still
 resolve to the registered package identity. Installation state is stored in
 `$AIT_HOME` or the user's `~/.ai-agent-tools` directory.
+
+Current source serializes installs of the same tool with an exclusive per-tool
+lock; a competing same-tool install fails with `INSTALL_LOCK_BUSY`. Different
+tools may install concurrently, but their read/merge/write of installed state is
+serialized by a separate lock with a five-second acquisition bound. Locks are
+released after normal completion or failure; stale locks are never removed
+automatically. These source changes do not upgrade an existing installation.
 
 `dispatch` requires a separate `--allow-execution` approval. It resolves the
 installed package's declared `bin`, starts it without a shell, passes a reduced
@@ -66,6 +75,12 @@ profile's bounded native validator and adds optional `meta.profile` metadata.
 Native streams, payload, and `native_exit` are retained; profile validation never
 renames native fields or maps native statuses to a universal Hub status. AIT is not
 a sandbox: tool processes may still access resources available to the invoking user.
+
+Current source treats the 1 MiB capture ceiling as `EXECUTION_OUTPUT_LIMIT`,
+not as a failure to start. It retains UTF-8-safe bounded stdout/stderr and the
+observed `native_exit` (including `null` when no numeric exit was observed), marks
+`output_truncated`, and returns wrapper exit 1. Truncated output is never admitted
+as a complete native JSON document or a successful exact-profile validation.
 
 ## Security boundaries
 

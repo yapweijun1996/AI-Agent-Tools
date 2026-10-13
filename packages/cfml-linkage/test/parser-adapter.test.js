@@ -197,3 +197,11 @@ test("rejects invalid adapter options, scanner options, and unsafe spans", () =>
   assert.throws(() => createCfmlScannerBackend({ maxNodes: 0 }), /maxNodes/u);
   assert.throws(() => createCfmlScannerBackend({ maxAttributeBytes: 0 }), /maxAttributeBytes/u);
 });
+
+test("preserves tagged CFC declaration coverage after a leading CFML comment", () => {
+  const adapter = createParserAdapter({ backend: createCfmlScannerBackend() });
+  const tagged = adapter.parse(Buffer.from('<!--- header --->\n<cfcomponent><cffunction name="run"><cfreturn 1></cffunction></cfcomponent>', "utf8"), "Tagged.cfc");
+  assert.equal(tagged.complete, true);
+  assert.equal(tagged.tree.nodes.some((node) => node.kind === "CFML_TAG" && node.name === "cfcomponent"), true);
+  assert.equal(tagged.tree.nodes.some((node) => node.kind === "CFML_TAG" && node.name === "cffunction"), true);
+});

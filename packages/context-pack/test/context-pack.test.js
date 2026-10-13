@@ -214,6 +214,92 @@ test("native, wrong-major and inconsistent envelopes are unsupported contracts",
   }
 }));
 
+test("malformed diagnostic rows and nonnumeric effective caps are unsupported contracts", () => withRoot((root) => {
+  writeJson(root, "art/ok.json", envelopeOf({ n: 1 }));
+  const assertUnsupported = (artifact, label) => {
+    writeJson(root, "art/x.json", artifact);
+    writeJson(root, "manifest.json", manifestOf([entry("ok", "art/ok.json"), entry("x", "art/x.json")]));
+    const optional = packContext(options(root));
+    assert.equal(optional.status, "ok", label);
+    assert.equal(optional.complete, true, label);
+    assert.deepEqual(ids(optional.data.included), ["ok"], label);
+    assert.deepEqual(optional.data.omitted, [{ id: "x", reason: "unsupported-contract", duplicate_of: null }], label);
+    writeJson(root, "manifest.json", manifestOf([entry("ok", "art/ok.json"), entry("x", "art/x.json", { mandatory: true })]));
+    const mandatory = packContext(options(root));
+    assert.equal(mandatory.status, "incomplete", label);
+    assert.equal(mandatory.complete, false, label);
+    assert.equal(mandatory.data, null, label);
+    assert.equal(codeOf(mandatory), "UNSUPPORTED_CONTRACT", label);
+    assert.equal(exitCode(mandatory), 3, label);
+  };
+  const validRow = { code: "EXAMPLE", message: "Diagnostic text" };
+  const invalidRows = [null, [], "text", 1, {}, { code: "EXAMPLE" }, { message: "text" },
+    { code: 1, message: "text" }, { code: "EXAMPLE", message: null }];
+  for (const field of ["warnings", "errors"]) {
+    for (const row of invalidRows) {
+      const artifact = field === "errors"
+        ? envelopeOf(null, { status: "error", complete: false })
+        : envelopeOf({ n: 2 });
+      artifact[field] = [validRow, row];
+      assertUnsupported(artifact, `${field}: ${JSON.stringify(row)}`);
+    }
+  }
+  for (const value of ["not-a-number", "1", null, true, [], {}]) {
+    assertUnsupported(envelopeOf({ n: 2 }, { meta: { scope: "Example", limits: { max_items: 1, other_cap: value } } }),
+      `limit: ${JSON.stringify(value)}`);
+  }
+}));
+
+test("major-1 additions, advisory diagnostics and finite fractional caps preserve opaque data", () => withRoot((root) => {
+  const data = { native: { warnings: [null], errors: "not a Hub diagnostic", limits: { mode: "opaque" } } };
+  writeJson(root, "art/a.json", envelopeOf(data, {
+    schema_version: "1.7.3",
+    tool: { id: "agent-example", version: "1.0.0", optional_label: "example" },
+    warnings: [{ code: "ADVISORY", message: "Not an incomplete result", optional_detail: { n: 1 } }],
+    meta: { scope: "Example", limits: { fractional_cap: 0.5, zero_cap: 0, signed_cap: -0.5 }, optional_detail: true },
+    optional_detail: { supported_major: 1 },
+  }));
+  writeJson(root, "manifest.json", manifestOf([entry("a", "art/a.json", { mandatory: true })]));
+  const result = packContext(options(root));
+  assert.equal(result.status, "ok");
+  assert.equal(result.complete, true);
+  assert.equal(exitCode(result), 0);
+  assert.deepEqual(result.data.omitted, []);
+  assert.deepEqual(JSON.parse(encodeResult(result)).data.included[0].data, data);
+}));
+
+test("valid extended error diagnostics remain incomplete evidence, not unsupported contracts", () => withRoot((root) => {
+  for (const status of ["error", "incomplete"]) {
+    writeJson(root, "art/a.json", envelopeOf(null, {
+      schema_version: "1.1.0", status, complete: false,
+      errors: [{ code: "INCOMPLETE_RESULT", message: "Evidence withheld", optional_detail: 1 }],
+      warnings: [{ code: "ADVISORY", message: "Additional context", optional_detail: true }],
+      meta: { scope: "Example", limits: { fractional_cap: 1.5 } },
+    }));
+    writeJson(root, "manifest.json", manifestOf([entry("a", "art/a.json")]));
+    const optional = packContext(options(root));
+    assert.equal(optional.status, "ok", status);
+    assert.deepEqual(optional.data.included, [], status);
+    assert.deepEqual(optional.data.omitted, [{ id: "a", reason: "incomplete-evidence", duplicate_of: null }], status);
+    writeJson(root, "manifest.json", manifestOf([entry("a", "art/a.json", { mandatory: true })]));
+    const mandatory = packContext(options(root));
+    assert.equal(codeOf(mandatory), "INCOMPLETE_EVIDENCE", status);
+    assert.equal(mandatory.data, null, status);
+  }
+}));
+
+test("overflowing JSON numeric caps remain input errors before envelope classification", () => withRoot((root) => {
+  const artifact = JSON.stringify(envelopeOf({ n: 1 })).replace('"max_items":1', '"max_items":1e400');
+  write(root, "art/a.json", artifact);
+  for (const mandatory of [false, true]) {
+    writeJson(root, "manifest.json", manifestOf([entry("a", "art/a.json", { mandatory })]));
+    const result = packContext(options(root));
+    assert.equal(result.status, "error");
+    assert.equal(codeOf(result), "INVALID_INPUT");
+    assert.equal(result.data, null);
+  }
+}));
+
 test("a mixed snapshot rejects the whole request even for optional items", () => withRoot((root) => {
   setup(root, [{ n: 1 }, { n: 2 }], [{}, { snapshot: "git:fedcba" }]);
   const result = packContext(options(root));

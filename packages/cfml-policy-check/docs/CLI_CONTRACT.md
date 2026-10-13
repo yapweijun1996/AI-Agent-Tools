@@ -1,7 +1,7 @@
 # CLI Contract
 
 Status: `Implemented local contract`
-Last reconciled: 2026-10-08
+Last reconciled: 2026-10-12
 
 ## Commands
 
@@ -33,6 +33,27 @@ AIT mode reads exactly one JSON request from stdin. The request uses
 - stdout contains no banner, progress text, ANSI escape, or second object;
 - diagnostics are represented in the JSON envelope;
 - AIT mode never prompts interactively.
+
+## Structural refusal
+
+Visible non-`cfoutput` CFML tags, non-escaped hashes and malformed structures
+return `CFML_STRUCTURE_UNCERTAIN`, status `incomplete`, `complete: false`,
+null `data` and exit 3, including when no literal table target is present.
+Includes are not resolved or executed; literal assignments and encoded-output
+calls are not assumed safe. Static no-target/comment-only input and escaped
+`##` remain supported.
+
+One optional `errors[0].details` object carries a fixed `reason` plus original
+one-based line/UTF-16 code-unit column. `meta.path` is the validated canonical
+root-relative source path. No source excerpts, attributes or values are emitted.
+The eight reason identifiers, exact locations and first-cause ordering are in
+[JSON_SCHEMA.md](JSON_SCHEMA.md#structural-cause-details).
+
+These are bounded static refusal locations, not executed CFML or proof of runtime
+syntax, browser output or database behavior. Resource exhaustion may replace the
+structural diagnostic with `RESOURCE_LIMIT`; the cause field is not added to all
+errors.
+
 
 ## Path and profile rules
 

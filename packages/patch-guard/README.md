@@ -31,9 +31,11 @@ explicit root, rejects symlink child components and out-of-root inputs, and read
 only these two supplied artifacts. Policy JSON must have unique keys and stay
 within the parser's depth bound of 32.
 
-Path and file-identity checks reject observed boundary changes before returning
-captured bytes. This is a local snapshot reader, with no OS sandbox or confinement
-guarantee against arbitrary concurrent hostile filesystem mutation.
+Artifact capture compares admitted size/timestamps with the opened descriptor,
+checks descriptor stability after reading, and verifies final named-path identity.
+Observable changes return `INPUT_CHANGED`, `incomplete`, null data and exit 3.
+This detects the checked substitutions; it is not atomic filesystem capture or
+an OS sandbox.
 
 `--origin staged|unstaged|untracked|snapshot` is the caller's evidence label;
 the tool does not certify Git state or compare the artifact with the worktree.

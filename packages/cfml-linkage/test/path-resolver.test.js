@@ -106,3 +106,30 @@ test("keeps dynamic, external, missing, and unsafe paths unresolved", () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("keeps filesystem hash suffixes literal while resolving URL fragments separately", () => {
+  const root = makeFixture();
+  try {
+    fs.writeFileSync(path.join(root, "app", "shared", "#header#.cfm"), "inert\n");
+    const sourceFiles = ["app/page.cfm", "app/shared/header.cfm", "app/shared/#header#.cfm"].map(sourceFile);
+    const factBundle = {
+      source_files: sourceFiles,
+      complete: true,
+      facts: [
+        fact({ fact_id: "missing-suffix", kind: "INCLUDE", file: "app/page.cfm", expression: "shared/header.cfm#suffix", attributes: { template: "shared/header.cfm#suffix" } }),
+        fact({ fact_id: "literal-hashes", kind: "INCLUDE", file: "app/page.cfm", expression: "shared/#header#.cfm", attributes: { template: "shared/#header#.cfm" }, line: 2 }),
+        fact({ fact_id: "url-fragment", kind: "FORM", file: "app/page.cfm", expression: "shared/header.cfm#section", attributes: { action: "shared/header.cfm#section" }, line: 3 }),
+      ],
+    };
+    const result = resolveLiteralPaths({ factBundle, indexes: buildProjectIndexes({ factBundle }), rootGuard: createRootGuard(root) });
+    assert.deepEqual(result.unresolved.map((item) => [item.source_fact_id, item.reason, item.candidates]), [
+      ["missing-suffix", "PATH_NOT_FOUND", ["app/shared/header.cfm#suffix", "shared/header.cfm#suffix"]],
+    ]);
+    assert.deepEqual(Object.fromEntries(result.resolutions.map((item) => [item.source_fact_id, item.to_file])), {
+      "literal-hashes": "app/shared/#header#.cfm",
+      "url-fragment": "app/shared/header.cfm",
+    });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

@@ -466,7 +466,20 @@ export function buildGraph({ factBundle, resolutions = null, snapshot = null, ro
   const graphUnresolved = [...unresolved.values()].sort((left, right) => compareStrings([left.source_node, left.relation_type, left.span.start_line, left.span.start_col, left.id].join("\0"), [right.source_node, right.relation_type, right.span.start_line, right.span.start_col, right.id].join("\0")));
   const diagnostics = [
     ...(factBundle.diagnostics ?? []).map((item) => ({ ...item })),
-    ...(resolutions?.diagnostics ?? []).map((item, index) => ({ id: `diagnostic:${sha256([item.file, item.code, item.message, index].join("\0"))}`, severity: item.severity ?? "error", code: item.code, message: item.message })),
+    ...(resolutions?.diagnostics ?? []).map((item, index) => {
+      const sourcePath = item.file;
+      const safePath = typeof sourcePath === "string" && sourcePath.length > 0 && sourcePath.length <= 4096 && !path.posix.isAbsolute(sourcePath) && !path.win32.isAbsolute(sourcePath) && !/[\u0000-\u001f\u007f:]/u.test(sourcePath) && !sourcePath.split(/[\\/]/u).includes("..");
+      const span = item.span;
+      const hasSpan = span && Number.isSafeInteger(span.start_line) && Number.isSafeInteger(span.start_col) && Number.isSafeInteger(span.end_line) && Number.isSafeInteger(span.end_col);
+      return {
+        id: `diagnostic:${sha256([item.file, item.code, item.message, index].join("\0"))}`,
+        severity: item.severity ?? "error",
+        code: item.code,
+        message: item.message,
+        ...(safePath ? { details: { path: sourcePath.replaceAll("\\", "/") } } : {}),
+        ...(hasSpan ? { span: spanFor(span) } : {}),
+      };
+    }),
   ];
   const draft = {
     schema_version: GRAPH_SCHEMA_VERSION,

@@ -40,7 +40,10 @@
     "lint": "node scripts/monorepo.mjs lint",
     "pack": "node scripts/monorepo.mjs pack",
     "test:hub": "node scripts/monorepo.mjs test:hub",
-    "verify": "npm run build && npm run typecheck && npm run lint && npm test && npm run pack"
+    "verify": "npm run build && npm run typecheck && npm run lint && node scripts/monorepo.mjs test --prepared && npm run pack"
+  },
+  "agentProjectProfile": {
+    "independentPackages": ["packages/*"]
   },
   "license": "Apache-2.0"
 }
