@@ -1,5 +1,31 @@
 # Task status
 
+## Local merge integration (2026-10-13)
+
+The owner requested resolution of the active merge between local
+`f758e09e55bdd4f6f73d3b61312bba6142b0d7c8` and incoming
+`e52efbf0169b57c88753e3c9dbe37e228a9aad46`. All five conflicted files are resolved.
+The integration retains the local validation/CFScript/HTML/operational fixes and
+all incoming fifteen codebase repairs, without wholesale branch replacement.
+Both sides' dated TASK/VALIDATION evidence is preserved. Source-update records are
+deduplicated by destination with immutable import identities retained and actual
+merged hashes synchronized.
+
+Doctor rejects malformed/duplicate installation state and unsafe recorded bin
+paths before discovery with input exit 2; real installed identity/containment
+issues remain incomplete/exit 3. Its normalized bin comparison and shared rooted
+executable checks are retained. Contract Check retains both raw duplicate-key/
+fatal UTF-8 rejection and incoming regular-file/nonblocking descriptor admission.
+The old doctor contract tests now distinguish these error classes.
+
+Full merged Windows acceptance passes 1,157 Node tests: 1,127 passed, 30 explicit
+skips, zero failures/cancellations/todos; 12 Python tests; 18 dry-run packs and
+eight packed consumers. Nine actual native CLI scenarios pass.
+[Validation](VALIDATION.md#local-merge-integration-2026-10-13) records the initial
+contract-test/resource failures, host-only low-concurrency execution, current
+evidence and limits. This authorizes completion of the existing local merge, not
+a push, release, installation/cutover or ContentAdmin edit.
+
 ## Complete local source commit and operational verification (2026-10-13)
 
 The owner requested all current AI-Agent-Tools changes committed locally, not
@@ -85,6 +111,31 @@ owns identities, counts and remaining scope limits. No source change to
 ContentAdmin, old-installation overwrite, optional native parser installation,
 commit, push or publication is included. These unpublished source fixes are not
 yet installed into the existing `ai-agent-tools-20261012` tool snapshot.
+## Codebase bug review and repairs (2026-10-11)
+
+The requested source review and Markdown report are complete. The bounded audit
+of AIT and eighteen packages confirms fifteen defects at source baseline
+`f7a94a59bf9c9b6353901e19433a6e54fe38c36d`. The
+[bug review](docs/CODEBASE_BUG_REVIEW.md) owns findings, locations, reproduction
+conditions, impact, and the repair/regression map. Historical reviews are preserved.
+The owner selected all fifteen findings for local source correction.
+[Validation](VALIDATION.md#codebase-bug-repairs-2026-10-11) owns current checks and
+coverage limits. Package identities, versions, dependencies and release status
+are unchanged.
+
+| Follow-up | Status |
+| --- | --- |
+| BUG-001–003: credential redaction, CFML incomplete exit code, Test Scope include pruning | Resolved locally; focused regressions and full native/Hub acceptance pass |
+| BUG-004–015: input handling, project/package scope, output bounds, path guards, graph/Git evidence, AIT state/JSON errors | Resolved locally; focused regressions and full native/Hub acceptance pass |
+
+All fifteen requested source corrections and their regression assets are complete.
+Full verification passed 998 of 999 Node tests with one Windows-only skip, twelve
+Python tests and the remaining configured gates. The owner subsequently selected
+local Git integration of the accepted scope. Before integration, readback matched
+all 37 accepted-file hashes and the unchanged baseline HEAD; only this integration
+note changes the accepted documentation. Git history records the resulting local
+commit. No push, installation or release is included. The review baseline remains
+historical evidence; repair acceptance applies to the verified source snapshot.
 
 ## CFScript tag-prefix false-positive repair (2026-10-09)
 

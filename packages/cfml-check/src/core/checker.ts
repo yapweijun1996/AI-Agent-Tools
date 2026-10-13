@@ -15,12 +15,11 @@ function emptyEnvelope<T>(status: Envelope<T>["status"], limits: CheckLimits, er
   return { schema_version: "1.0.0", tool: { id: TOOL_ID, version: TOOL_VERSION }, status, complete: false, data: null, errors, warnings: [], meta: meta(limits) };
 }
 
-function fitOutput<T>(envelope: Envelope<T>, limits: CheckLimits): Envelope<T> {
-  const serialized = JSON.stringify(envelope);
+export function fitOutput<T>(envelope: Envelope<T>, limits: CheckLimits, serialize: (value: Envelope<T>) => string = (value) => `${JSON.stringify(value)}\n`): Envelope<T> {
+  const serialized = serialize(envelope);
   if (Buffer.byteLength(serialized, "utf8") <= limits.max_output_bytes) return envelope;
   const fallback: Envelope<T> = emptyEnvelope<T>("incomplete", limits, [{ code: "LIMIT_EXCEEDED", message: "The output limit was reached; result data was withheld" }]);
-  if (Buffer.byteLength(JSON.stringify(fallback), "utf8") <= limits.max_output_bytes) return fallback;
-  return { schema_version: "1.0.0", tool: { id: TOOL_ID, version: TOOL_VERSION }, status: "incomplete", complete: false, data: null, errors: [{ code: "LIMIT_EXCEEDED", message: "Output limit exceeded" }], warnings: [], meta: meta(limits) };
+  return fallback;
 }
 
 export function capabilities(limitsInput?: Partial<CheckLimits>): Envelope<CapabilitiesData> {
@@ -85,12 +84,11 @@ export function checkFile(options: CheckOptions): { envelope: Envelope<CheckData
       ],
       findings: scanned.findings,
     };
-    return {
-      envelope: fitOutput({ schema_version: "1.0.0", tool: { id: TOOL_ID, version: TOOL_VERSION }, status: "ok", complete: true, data, errors: [], warnings: [], meta: meta(limits) }, limits),
-      exit_code: 0,
-    };
+    const envelope = fitOutput({ schema_version: "1.0.0", tool: { id: TOOL_ID, version: TOOL_VERSION }, status: "ok", complete: true, data, errors: [], warnings: [], meta: meta(limits) }, limits);
+    return { envelope, exit_code: envelope.status === "incomplete" ? 3 : 0 };
   } catch (error) {
     const failure = error instanceof ToolFailure ? error : new ToolFailure("INTERNAL_ERROR", "The checker failed without a safe result", 1);
-    return { envelope: fitOutput(emptyEnvelope(failure.exitCode === 3 ? "incomplete" : "error", limits, [{ code: failure.code, message: failure.message }]), limits), exit_code: failure.exitCode };
+    const envelope = fitOutput(emptyEnvelope<CheckData>(failure.exitCode === 3 ? "incomplete" : "error", limits, [{ code: failure.code, message: failure.message }]), limits);
+    return { envelope, exit_code: envelope.status === "incomplete" ? 3 : failure.exitCode };
   }
 }

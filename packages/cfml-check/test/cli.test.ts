@@ -11,6 +11,28 @@ function runCli(args: string[]) {
   return spawnSync(process.execPath, [cli, ...args], { encoding: "utf8" });
 }
 
+test("CLI bounds compact and pretty stdout including the final newline", () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), "agent-cfml-check-budget-"));
+  const file = path.join(root, "simple.cfm");
+  writeFileSync(file, "<cfset n = 1>");
+  try {
+    for (const cap of [512, 826, 4096]) {
+      for (const pretty of [false, true]) {
+        const result = runCli(["check", "--root", root, file, "--json", "--max-output-bytes", String(cap), ...(pretty ? ["--pretty"] : [])]);
+        const envelope = JSON.parse(result.stdout);
+        assert.ok(Buffer.byteLength(result.stdout) <= cap, `${cap}: ${result.stdout}`);
+        assert.equal(result.status, envelope.status === "incomplete" ? 3 : 0);
+        if (cap === 4096) assert.equal(envelope.status, "ok");
+      }
+    }
+    const invalid = runCli(["check", "--root", root, file, "--json", "--max-output-bytes", "1"]);
+    assert.equal(invalid.status, 2);
+    assert.equal(JSON.parse(invalid.stdout).errors[0].code, "INVALID_LIMIT");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("CLI JSON mode keeps stdout to one parseable envelope", () => {
   const root = mkdtempSync(path.join(os.tmpdir(), "agent-cfml-check-cli-"));
   const file = path.join(root, "valid.cfm");

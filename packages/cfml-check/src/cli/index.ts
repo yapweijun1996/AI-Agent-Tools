@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { capabilities, checkFile } from "../core/checker.js";
+import { capabilities, checkFile, fitOutput } from "../core/checker.js";
 import { DEFAULT_LIMITS } from "../core/limits.js";
 import { ToolFailure } from "../schema/errors.js";
 import { TOOL_ID, TOOL_VERSION } from "../schema/types.js";
@@ -133,10 +133,18 @@ export function main(argv: readonly string[] = process.argv.slice(2)): number {
     const result = args.operation === "capabilities"
       ? { envelope: capabilities(args.limits), exit_code: 0 as const }
       : checkFile({ root: args.root!, file: args.file!, limits: args.limits });
-    if (args.json) process.stdout.write(`${JSON.stringify(result.envelope, null, args.pretty ? 2 : undefined)}\n`);
-    else process.stdout.write(renderText(result.envelope));
-    if (result.envelope.status !== "ok") for (const error of result.envelope.errors) process.stderr.write(`error: ${error.code}: ${error.message}\n`);
-    return result.exit_code;
+    const serialize = (value: Envelope<unknown>) => args.json
+      ? `${JSON.stringify(value, null, args.pretty ? 2 : undefined)}\n`
+      : renderText(value);
+    const envelope = args.operation === "check"
+      ? fitOutput(result.envelope, result.envelope.meta.limits, serialize)
+      : result.envelope;
+    let output = serialize(envelope);
+    // A compact failure retains the complete envelope when indentation cannot fit.
+    if (args.json && Buffer.byteLength(output) > envelope.meta.limits.max_output_bytes) output = `${JSON.stringify(envelope)}\n`;
+    process.stdout.write(output);
+    if (envelope.status !== "ok") for (const error of envelope.errors) process.stderr.write(`error: ${error.code}: ${error.message}\n`);
+    return envelope.status === "incomplete" ? 3 : result.exit_code;
   } catch (error) {
     const failure = error instanceof ToolFailure ? error : new ToolFailure("INTERNAL_ERROR", "The CLI failed without a safe result", 1);
     const envelope: Envelope<null> = {

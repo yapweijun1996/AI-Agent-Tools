@@ -64,7 +64,7 @@ test('doctor verifies the actual package and executable without executing or mut
   assert.equal(missing.output.data.issues[0].code, 'INSTALLATION_MISSING');
 });
 
-test('doctor reports malformed records, duplicate records and registry mismatches as issues', (t) => {
+test('doctor rejects invalid state before discovery and reports installed identity issues', (t) => {
   const context = fixture(t);
   const installed = installedFixture(context, 'throw new Error("doctor must not execute");');
   const cases = [
@@ -79,18 +79,20 @@ test('doctor reports malformed records, duplicate records and registry mismatche
   for (const [record, code] of cases) {
     writeState(context, [record]);
     const child = invoke(context, ['doctor']);
-    assert.equal(child.status, 3);
+    assert.equal(child.status, code === 'INVALID_STATE' ? 2 : 3);
     assert.equal(child.output.ok, false);
-    assert.equal(child.output.data.issues[0].code, code);
+    assert.equal(code === 'INVALID_STATE' ? child.output.meta.error : child.output.data.issues[0].code, code);
   }
   writeState(context, [installed.record, installed.record]);
-  assert.equal(invoke(context, ['doctor']).output.data.issues[0].code, 'INVALID_STATE');
+  const duplicate = invoke(context, ['doctor']);
+  assert.equal(duplicate.status, 2);
+  assert.equal(duplicate.output.meta.error, 'INVALID_STATE');
   for (const malformed of ['null', '{', '{"schema_version":"wrong","installed":[]}']) {
     fs.writeFileSync(path.join(context.home, 'installed.json'), malformed);
     const child = invoke(context, ['doctor']);
-    assert.equal(child.status, 3);
-    assert.equal(child.output.status, 'incomplete');
-    assert.equal(child.output.data.issues.length, 1);
+    assert.equal(child.status, 2);
+    assert.equal(child.output.status, 'error');
+    assert.equal(child.output.ok, false);
   }
 });
 
@@ -119,7 +121,9 @@ test('doctor reports escaped roots, packages and declared executable paths witho
   const escapedBin = { name: 'code-slice', path: '../../../outside.js' };
   fs.writeFileSync(path.join(installed.packageRoot, 'package.json'), JSON.stringify({ ...installed.manifest, bin: { 'code-slice': escapedBin.path } }));
   writeState(context, [{ ...installed.record, bin: escapedBin }]);
-  assert.equal(invoke(context, ['doctor']).output.data.issues[0].code, 'PATH_ESCAPE');
+  const invalidPath = invoke(context, ['doctor']);
+  assert.equal(invalidPath.status, 2);
+  assert.equal(invalidPath.output.meta.error, 'INVALID_STATE');
   fs.writeFileSync(path.join(installed.packageRoot, 'package.json'), JSON.stringify(installed.manifest));
   writeState(context, [installed.record]);
   const outside = path.join(context.root, 'outside-package');

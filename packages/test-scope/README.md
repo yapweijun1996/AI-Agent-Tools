@@ -8,6 +8,12 @@ The analysis core reads repository files as data. It never runs tests, builds, p
 
 Command strings use POSIX shell quoting and are intended to run from the request's explicit `root`. Nested package scripts include `npm --prefix '<package-directory>' run '<script>'` so similarly named scripts retain their owning package. Use a POSIX-compatible shell when executing these recommendations; planning itself does not require a shell.
 
+Targeted framework commands for nested packages change into the owning package
+in a subshell and use package-relative test paths, retaining local runner/config
+resolution. Release-level plans retain discovered root verification gates even
+when all changed files belong to a child package. Package-level recommendations
+remain filtered to the changed owners.
+
 V0.1 supports JavaScript, TypeScript, JSX, and TSX repositories with Vitest, Jest, and Node.js native test conventions. Static imports and `require()` calls are bounded evidence; dynamic loading is reported as partial rather than treated as confirmed reachability.
 
 Relative module imports retain an existing explicit file path before considering replacement extensions or directory indexes. JavaScript-extension imports can still map to TypeScript source when the exact file is absent; a same-stem TypeScript file does not replace an existing JavaScript target.

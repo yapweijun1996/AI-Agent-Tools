@@ -4,20 +4,20 @@
     {
       "destination": "packages/cfml-check/SPEC.md",
       "imported_sha256": "b91c14964fa2ae7dfdbdaa79f67353dbf248d13bd76609cc8f054d899efb4ce4",
-      "current_sha256": "7c24b41527cbc95d69d8b8d506a444e82b44da55bbe9c725ea1a2ce57de97c57",
-      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08)."
+      "current_sha256": "5fc0ec3d6851999e8df2012a75bb312ed00ad5fc70b5ae8b428ce67218ab2e83",
+      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/cfml-check/src/core/source-reader.ts",
       "imported_sha256": "ef72244381dc93e5a83e93a4e5484c086ca9577b74e82a8aa398658edcabbd5c",
-      "current_sha256": "ccc1d1ae23c1da0f2a5fdd5ea43305c04abfa1aaba5a7a279bf1ba3397dd31a3",
-      "reason": "Owner-selected descriptor-bound source reads, observed substitution rejection and bounded growth detection (2026-10-08)."
+      "current_sha256": "85e4e5099452a640dfdee1266414820fc094b2de2b872a5b7a55cb2445337edb",
+      "reason": "Owner-selected descriptor-bound source reads, observed substitution rejection and bounded growth detection (2026-10-08). Owner-selected descriptor-bound source reads, observed substitution rejection and bounded growth detection (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/cfml-check/test/check.test.ts",
       "imported_sha256": "139fc079688cfc6e59e57c76d5238507c451db00764b4ee1f9f14db5fc7dc040",
-      "current_sha256": "1bfb300df6bdfe984aff75ec95f9e002e7c0792e390ab2a3787f30e7f74089a2",
-      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+      "current_sha256": "44f7a3547c13c8776659245a12981fdb86ea2774932c155288107a26f3e0c2a4",
+      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/cfml-policy-check/SPEC.md",
@@ -70,8 +70,8 @@
     {
       "destination": "packages/code-slice/src/core/file-loader.ts",
       "imported_sha256": "bd8e56bc823a9a1210e7c558dd73c46239b6ec6cb9a8af65d77aa02ee5b5d04f",
-      "current_sha256": "bb733e8c3fa8b667f1a09965d9efaa22dcb264b2a3d1ae252dd2e8786bb5a6c4",
-      "reason": "Owner-selected descriptor-bound source reads and root-substitution rejection (2026-10-08)."
+      "current_sha256": "8f176d29605e701cc4da8bece0a8fd436e7442aff86745dda7769614ba595362",
+      "reason": "Owner-selected descriptor-bound source reads and root-substitution rejection (2026-10-08). Owner-selected descriptor-bound source reads and root-substitution rejection (2026-10-08). Owner-selected repair of BUG-010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/error-lens/README.md",
@@ -88,8 +88,8 @@
     {
       "destination": "packages/error-lens/src/core/redact.ts",
       "imported_sha256": "288645c45d20389fe45473efdd19b0549cf02f098ac7e91630a3603062def270",
-      "current_sha256": "18ea60a4ed5fd52bb0cad28ce995682d1ff4b56945e3693a7f8526b8e605a725",
-      "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07)."
+      "current_sha256": "2dd274d32dccb11d052c02b883750057be793a0cc53dbe2befd6c9cb15c1d310",
+      "reason": "Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07). Owner-selected quoted multiline credential redaction fix and bounded value contract (2026-10-07). Owner-selected repair of BUG-001, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/project-profile/SPEC.md",
@@ -112,8 +112,8 @@
     {
       "destination": "packages/project-tree/README.md",
       "imported_sha256": "10be947e62e6443606be507ce28e01509d1843fe683b6a7c200bbaf2b268b602",
-      "current_sha256": "f30712ed0f83787173f2116872b065d18239ac5a6f14b9e1f4c49a93f55820b3",
-      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+      "current_sha256": "72976c0274886afda3943d777a839919aa6b0105ecdf5d38d6a1d070a43a78cb",
+      "reason": "Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected segment-aware containment for legal two-dot-prefixed names (2026-10-07). Owner-selected installed CLI E2E correction: document bounded Project Tree JSON errors without changing successful contracts (2026-10-08). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected repair of BUG-011/012/013, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/project-tree/bin/aptree.js",
@@ -142,8 +142,8 @@
     {
       "destination": "packages/project-tree/src/git.js",
       "imported_sha256": "d794ee4045da288b887ac417980e48f4c6938f12583374510b2f0fe50608dc13",
-      "current_sha256": "fecc11a06f4aa9f2eac8c75fafac7d368bcf3b4d2f931aea1baca807add67257",
-      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Formatting-only verification correction (2026-10-08)."
+      "current_sha256": "c500c17c2e73b00da03ca4284ffd993dee41becc2091eed04e09c1b1522e57f4",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Formatting-only verification correction (2026-10-08). Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Formatting-only verification correction (2026-10-08). Owner-selected repair of BUG-011/012/013, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/project-tree/src/safety.js",
@@ -154,8 +154,8 @@
     {
       "destination": "packages/project-tree/src/scanner.js",
       "imported_sha256": "b763ea417704f33e07ee5d4867ce5720730db81fc202b5f30542735797604c32",
-      "current_sha256": "f455487d20281de6d7ca990b0827d23c68d29e8f2f471b8231daf1be03647b13",
-      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07)."
+      "current_sha256": "ee076c110fcbe290f84cd83e7594aeef6c946fa4e4f659eed4c4e6767f7350e2",
+      "reason": "Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Owner-selected consistent Git comparison scope and absence/coverage evidence fix (2026-10-07). Owner-selected repair of BUG-011/012/013, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/project-tree/types/index.d.ts",
@@ -178,14 +178,14 @@
     {
       "destination": "packages/test-scope/README.md",
       "imported_sha256": "fc8d2d2facabf60d97309fde931ed765b5f3be5929a2f3c72db5ce1d68f0df48",
-      "current_sha256": "7bdc2ddd11d37caaeef78fbee28b6519c01613e943510a5b47de288c7a2368e2",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected explicit planning summary view, compatibility and omission documentation (2026-10-09). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09)."
+      "current_sha256": "132da09cdc299148e6f1e092213ddc0032831730722f2aec0d1bf8e539d24502",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected explicit planning summary view, compatibility and omission documentation (2026-10-09). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected explicit planning summary view, compatibility and omission documentation (2026-10-09). Owner-selected CLI usability, bounded delivery and native-contract compatibility improvements (2026-10-09). Owner-selected repair of BUG-003/007/008, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/test-scope/SPEC.md",
       "imported_sha256": "3f9bb5869138216c6af26bef3aeb0ceb5710f00a225fc4178b6b26780a88c3fd",
-      "current_sha256": "e50cc8bd359eb7f3a119b207257e70e0ea1670bd07999a183e41522c28e8f902",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected CLI-only planning summary contract with preserved canonical/API evidence and native failure semantics (2026-10-09)."
+      "current_sha256": "715c9c082047cf7c5637f2bc8249a2ffe803a46e1fbdd1be83fd6bbca7bf4920",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected CLI-only planning summary contract with preserved canonical/API evidence and native failure semantics (2026-10-09). Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected exact relative import ownership fix (2026-10-07). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected CLI-only planning summary contract with preserved canonical/API evidence and native failure semantics (2026-10-09). Owner-selected repair of BUG-003/007/008, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/test-scope/scripts/coverage-check.mjs",
@@ -226,8 +226,8 @@
     {
       "destination": "packages/test-scope/src/core/discovery.ts",
       "imported_sha256": "c402c49c383f35a81ac605e77d6312f056579bdc0e71f0f04d8fa9f2a6537128",
-      "current_sha256": "c80f76955599807b8c5d989de1521993c3e39eec16a1c59f620a8c008c16db5f",
-      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08)."
+      "current_sha256": "3c08ac29df064c2614323de2798d16c081929299814dc7601429c5ad36472c61",
+      "reason": "Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected Test Scope support-candidate filtering and optional lossless compact JSON, with native and packed-consumer regressions (2026-10-08). Owner-selected repair of BUG-003/007/008, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/test-scope/src/core/frameworks.ts",
@@ -244,8 +244,8 @@
     {
       "destination": "packages/test-scope/src/core/planner.ts",
       "imported_sha256": "5c802cf7aafb3b305a1724a16bdcf90d545b3ee5cf8504a04e0daee65d7f06f2",
-      "current_sha256": "d7963c7970ee9cdf1eaecd4f7e611d6b1080596b3c02df52b55a95259674819d",
-      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07)."
+      "current_sha256": "ea99a43d10c3188d6b6a743b8af8d3922a693180b89bd5d5f9426034c8a7bcea",
+      "reason": "Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected Test Scope package script ownership fix and execution contract (2026-10-07). Owner-selected repair of BUG-003/007/008, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/test-scope/test/contract.test.mjs",
@@ -298,8 +298,8 @@
     {
       "destination": "packages/cfml-check/README.md",
       "imported_sha256": "896b5fd45c87e0415a87e6977996e2ed8d2ea738559303fcec1f65250ea9d38c",
-      "current_sha256": "72f30afa86721c8264e038a33f6b911d9f4a7b47563841014a023f0a0c77a135",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+      "current_sha256": "1d12b310695290e5e0bcbd8ef188491006633b2987384aa996714a6f79168bab",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/cfml-check/src/core/lexer.ts",
@@ -310,8 +310,8 @@
     {
       "destination": "packages/cfml-check/test/cli.test.ts",
       "imported_sha256": "b7c4e48725015278e34d67845ddd5ab661003f17513e8d67bd53db4fba677c10",
-      "current_sha256": "b6b2fc027e88fc7cbb8c7a2e29e0c48c886870ef70578c88134e0278f1b5cffe",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+      "current_sha256": "2e5454a75117353ad4bc6f19758dc456d60732d2f7a89c2e907e9c5204ef3e10",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
     },
     {
       "destination": "packages/symbol-search/CHANGELOG.md",
@@ -540,6 +540,36 @@
       "imported_sha256": "d07985ad3b7427cb2ea7fcbfd034cfeb63c8af38eb86fcd732620ecab0b7fd74",
       "current_sha256": "df63c45fd8d503be82b0044821923b1dac006f6d578794edb6539621409fe10b",
       "reason": "Owner-selected explicit independent-package source declaration, optional native inventory contract and authorized monorepo ownership clarification (2026-10-13)."
+    },
+    {
+      "destination": "packages/cfml-check/schema/agent-cfml-check-result-v1.schema.json",
+      "imported_sha256": "5a9ebb82300fc656208bf935dccba217ffd8e1c3e5e6943ca65cc8c9ccf53b26",
+      "current_sha256": "ab19b153f8b80a3f1c2724e1f1952769a3b17fff6ca05970b4fb0a0a4e915895",
+      "reason": "Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+    },
+    {
+      "destination": "packages/cfml-check/src/cli/index.ts",
+      "imported_sha256": "9cdaf6211bb166b1c584012e39efcff2c415547b5a0b8e8a801cec7e85d4a0cc",
+      "current_sha256": "944520bfd9a83792bc7018229ab539106d688a1a59b093c0093ae7bd3c6e19f9",
+      "reason": "Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+    },
+    {
+      "destination": "packages/cfml-check/src/core/checker.ts",
+      "imported_sha256": "49973b414080a83cc9732a6511bc573a5fbcda25b9f235126be54b6106605b1c",
+      "current_sha256": "de624516f710836e3bc1ec3a098c95c5393bc01cbcdf332a95b5f9f167dcfe74",
+      "reason": "Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+    },
+    {
+      "destination": "packages/cfml-check/src/core/limits.ts",
+      "imported_sha256": "075e3501575850407a04c16b73e50db731b81e75c410ead808f57a2772ccf0df",
+      "current_sha256": "62d4822951615142137c1f6110006a16040ca0d16ea095e1f46b1895bb5f287f",
+      "reason": "Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+    },
+    {
+      "destination": "packages/change-impact/src/project.ts",
+      "imported_sha256": "c1746dc987a737dd61fd1d18c9d06522896a0075fc2b5fcbdf1f7587bfdd20c1",
+      "current_sha256": "917348262097464b2eb89c9890f87353d9a6d8d7b4b68a3417e2514604e0e673",
+      "reason": "Owner-selected repair of BUG-006, native regressions and corresponding contracts (2026-10-11)."
     }
   ]
 }

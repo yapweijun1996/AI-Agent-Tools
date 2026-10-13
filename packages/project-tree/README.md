@@ -28,6 +28,13 @@ error envelopes are unchanged; this addition has no new npm release.
 
 All commands emit bounded JSON envelopes with stable node IDs, provenance, freshness metadata, and safe root-relative paths. The MVP scanner is Node/JS/TS first-class with generic text fallback, local JS/TS import edges, static package/test evidence, and a read-only Git HEAD change adapter for `changed`.
 
+File-count and per-file byte limits must be finite positive safe integers; zero,
+negative, fractional and nonfinite values reject. Local import extraction skips
+inert comments, quoted strings and template text, while inspecting template
+interpolation expressions. It remains a bounded lexical adapter, not a full JS/TS
+grammar or runtime dependency analysis. Malformed pack-index tables are withheld
+as unavailable Git evidence rather than aborting the graph query.
+
 CLI failures emit one `aptree.error.v1` JSON document with `error.code` and a bounded message, without a stack trace or input paths. Unknown commands exit `2`; argument, scan and query failures exit `1`. Successful graph/query envelopes remain unchanged. Usage output (no command or a command followed by `--help`) remains text and exits `0`.
 
 Package/test evidence is derived only from files such as `package.json`, lock/workspace/config files, dependency/script declarations, test filenames, static imports, and test config filenames. Scripts and test runners are never executed.

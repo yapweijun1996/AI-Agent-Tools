@@ -5,10 +5,22 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { loadFile } from "../../src/core/file-loader.js";
 
 const packageRoot = fileURLToPath(new URL("../../", import.meta.url));
 const hook = fileURLToPath(new URL("../helpers/file-boundary-hook.mjs", import.meta.url));
 const loader = Number(process.versions.node.split(".")[0]) === 18 ? "--loader" : "--import";
+
+test("legal two-dot filenames remain inside the explicit root", () => {
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "code-slice-dot-")));
+  try {
+    const file = path.join(root, "..config.js");
+    const source = "export const value = 1;\n";
+    fs.writeFileSync(file, source);
+    assert.equal(loadFile(file, { root }).source, source);
+    assert.throws(() => loadFile(path.join(root, "../outside.js"), { root }), { code: "FILE_OUTSIDE_ROOT" });
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
 
 function runBoundary(mode: "leaf" | "ancestor" | "growth", operation: "api" | "cli") {
   const workspace = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "code-slice-boundary-")));

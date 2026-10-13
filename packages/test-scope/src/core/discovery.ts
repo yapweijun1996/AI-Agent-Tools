@@ -93,13 +93,22 @@ function includeMayReachDirectory(patterns: readonly string[] | undefined, relat
   if (!patterns || patterns.length === 0) return false;
   const directory = normalizePattern(relativePath).split("/").filter(Boolean);
   return patterns.some(rawPattern => {
-    const pattern = normalizePattern(rawPattern).split("/").filter(Boolean);
-    if (pattern.length === 0 || pattern[0] === "**") return true;
-    if (directory.length > pattern.length) return false;
-    return directory.every((segment, index) => {
-      const patternSegment = pattern[index] ?? "";
-      return patternSegment === "**" || globToRegExp(patternSegment).test(segment);
-    });
+    const normalized = normalizePattern(rawPattern);
+    if (!normalized.includes("/")) return true;
+    const pattern = normalized.split("/").filter(Boolean);
+    let states = new Set([0]);
+    for (const segment of directory) {
+      // A globstar can consume zero segments or remain active at any depth.
+      for (const index of states) if (pattern[index] === "**") states.add(index + 1);
+      const next = new Set<number>();
+      for (const index of states) {
+        if (pattern[index] === "**") next.add(index);
+        else if (pattern[index] !== undefined && globToRegExp(pattern[index]!).test(segment)) next.add(index + 1);
+      }
+      if (next.size === 0) return false;
+      states = next;
+    }
+    return true;
   });
 }
 

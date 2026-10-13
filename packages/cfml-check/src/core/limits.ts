@@ -33,5 +33,9 @@ export function normalizeLimits(requested: Partial<CheckLimits> | undefined): Ch
     }
     values[key] = value;
   }
+  // Reserve enough space for the compact failure envelope at every hard limit.
+  if (values.max_output_bytes < 512) {
+    throw new ToolFailure("INVALID_LIMIT", "max_output_bytes must be at least 512", 2);
+  }
   return values;
 }

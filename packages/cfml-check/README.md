@@ -69,6 +69,11 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 
 Check limits can be overridden with `--max-source-bytes`, `--max-nesting`, `--max-findings`, `--max-output-bytes`, and `--time-limit-ms`, subject to the hard caps reported by `capabilities`.
 
+`max_output_bytes` must be at least 512, reserving a complete failure envelope.
+CLI ceilings count actual UTF-8 stdout, including indentation and the final
+newline. If pretty output cannot fit, checking returns incomplete/exit 3 and may
+emit its failure envelope as compact JSON. Default fitting output is unchanged.
+
 The checker requires one explicit root and one `.cfm` or `.cfc` file. JSON mode emits one envelope on stdout; diagnostics stay on stderr. A completed check with structural violations still exits `0` and reports `data.verdict: "violations"`. Exit `3` means unsupported syntax, insufficient evidence, or a resource limit. Exit `4` means an explicit-root or access-policy rejection. See [SPEC.md](SPEC.md) for the complete contract.
 
 ## Safety and boundaries

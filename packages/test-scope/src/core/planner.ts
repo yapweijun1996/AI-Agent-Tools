@@ -25,12 +25,16 @@ function frameworkCommand(framework: Framework, path: string): string {
   return `node --test ${target}`;
 }
 
-function targetedCommands(tests: readonly TestRecommendation[]): CommandRecommendation[] {
+function targetedCommands(tests: readonly TestRecommendation[], discovery: DiscoveryResult): CommandRecommendation[] {
   const knownFrameworkTests = tests.filter((test): test is TestRecommendation & { framework: Framework } => test.framework !== "unknown");
   return knownFrameworkTests.map(test => {
     const source = `framework:${test.framework}`;
     const framework = test.framework;
-    return makeCommand(frameworkCommand(framework, test.path), "test", "targeted", source, test.evidence);
+    const owner = packageRootFor(discovery, test.path);
+    const target = owner === "." ? test.path : test.path.slice(owner.length + 1);
+    const invocation = frameworkCommand(framework, target);
+    const command = owner === "." ? invocation : `(cd ${shellQuote(`./${owner}`)} && ${invocation})`;
+    return makeCommand(command, "test", "targeted", source, test.evidence);
   });
 }
 
@@ -100,15 +104,17 @@ export function buildPlan(input: PlannerInput): { plan: VerificationPlan; graph:
   const minimumTests = (strongestConfidence === "candidate" || strongestConfidence === "unknown" ? equallyStrong.slice(0, 1) : equallyStrong).slice(0, input.limits.maxReturnedTests);
   const recommendedTests = candidates.slice(0, input.limits.maxReturnedTests);
   const releaseTests = candidates.slice(0, input.limits.maxReturnedTests);
-  const commands = input.discovery.projectFiles.length > 0 ? relevantCommands(discoverCommands(input.discovery).commands, input.changes, input.discovery) : [];
-  const minimumCommands = targetedCommands(minimumTests);
-  const recommendedCommands = [...targetedCommands(recommendedTests), ...packageTestCommands(commands)];
+  const discoveredCommands = input.discovery.projectFiles.length > 0 ? discoverCommands(input.discovery).commands : [];
+  const commands = relevantCommands(discoveredCommands, input.changes, input.discovery);
+  const minimumCommands = targetedCommands(minimumTests, input.discovery);
+  const recommendedCommands = [...targetedCommands(recommendedTests, input.discovery), ...packageTestCommands(commands)];
   const hasTypeScript = input.changes.some(change => change.language === "typescript" || change.language === "tsx");
   const typecheck = commandForPurpose(commands, "typecheck", "package");
   const build = commandForPurpose(commands, "build", "package");
   if (hasTypeScript && typecheck.length > 0) recommendedCommands.push(...typecheck);
   if (risk.level === "high" || risk.level === "critical") recommendedCommands.push(...build);
-  const releaseCommandList = [...recommendedCommands, ...releaseCommands(commands)];
+  const repositoryCommands = discoveredCommands.filter(command => !command.packagePath || command.packagePath === "package.json");
+  const releaseCommandList = [...recommendedCommands, ...releaseCommands([...commands, ...repositoryCommands])];
   const plan: VerificationPlan = {
     changes: input.changes.slice(),
     risk,

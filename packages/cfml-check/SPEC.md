@@ -91,6 +91,11 @@ Check data contains the profile, source path/SHA-256/byte size/UTF-8/BOM metadat
 
 Requested limits must be positive safe integers and cannot exceed hard caps. Reaching a limit returns a fail-closed result rather than partial data.
 
+`max_output_bytes` has a minimum of 512 to reserve the compact failure envelope
+at every hard-limit combination. CLI accounting includes the selected rendering
+and final newline. An oversized result is withheld as incomplete with exit 3;
+pretty mode falls back to compact failure JSON if indentation cannot fit.
+
 ## 7. Input and safety behavior
 
 The source reader requires `.cfm` or `.cfc`, an existing root and file, realpath containment, a regular file, valid UTF-8, no NUL byte, and an effective source-size limit. Static symlink escapes are rejected before admission.

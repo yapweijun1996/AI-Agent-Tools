@@ -6,7 +6,7 @@ import type { CheckLimits, LoadedSource } from "../schema/types.js";
 
 function escapesRoot(root: string, candidate: string): boolean {
   const relative = path.relative(root, candidate);
-  return relative.startsWith("..") || path.isAbsolute(relative);
+  return relative === ".." || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
 }
 
 function sameFileState(left: BigIntStats, right: BigIntStats): boolean {

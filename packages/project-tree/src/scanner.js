@@ -7,6 +7,7 @@ import { resolveRoot, safeRelative } from './safety.js';
 import { readGitChanges } from './git.js';
 import { discoverStaticEvidence } from './evidence.js';
 import { isIgnoredDirectory } from './scope.js';
+import { extractJsImports } from './module-imports.js';
 
 const PACKAGE_JSON_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'package.json');
 const TOOL_VERSION = JSON.parse(readFileSync(PACKAGE_JSON_PATH, 'utf8')).version;
@@ -55,17 +56,6 @@ function classify(rel) {
 function languageFor(rel) {
   const ext = path.extname(rel).toLowerCase();
   return { '.js': 'javascript', '.mjs': 'javascript', '.cjs': 'javascript', '.ts': 'typescript', '.tsx': 'typescript', '.jsx': 'javascript', '.json': 'json', '.md': 'markdown', '.yml': 'yaml', '.yaml': 'yaml' }[ext] || 'unknown';
-}
-
-function extractJsImports(source) {
-  const imports = [];
-  const patterns = [/(?:import|export)\s+(?:type\s+)?(?:[\s\S]*?\s+from\s+)?["']([^"']+)["']/g, /import\s*\(\s*["']([^"']+)["']\s*\)/g, /require\s*\(\s*["']([^"']+)["']\s*\)/g];
-  for (const pattern of patterns) {
-    for (const match of source.matchAll(pattern)) {
-      if (match[1]?.startsWith('.')) imports.push(match[1]);
-    }
-  }
-  return [...new Set(imports)].sort();
 }
 
 function resolveLocalImport(fromRel, specifier, byPath) {
@@ -132,11 +122,14 @@ function edgesFor(nodes, importRefs = new Map()) {
 export async function buildProjectGraph(input = {}) {
   const root = resolveRoot(input.root || '.', input.cwd || process.cwd());
   const options = {
-    maxFiles: Number(input.maxFiles || 1000),
-    maxBytesPerFile: Number(input.maxBytesPerFile || 256000),
+    maxFiles: input.maxFiles === undefined ? 1000 : input.maxFiles,
+    maxBytesPerFile: input.maxBytesPerFile === undefined ? 256000 : input.maxBytesPerFile,
     ignore: input.ignore || [],
     scannedAt: input.scannedAt || new Date(0).toISOString()
   };
+  for (const name of ['maxFiles', 'maxBytesPerFile']) {
+    if (!Number.isSafeInteger(options[name]) || options[name] < 1) throw new Error(`${name} must be a finite positive safe integer`);
+  }
   const files = await walk(root, options);
   const fileNodes = [];
   const importRefs = new Map();

@@ -86,22 +86,32 @@ const PACK_IDX_MAGIC = 0xff744f63;
 
 async function parsePackIndexV2(idxPath) {
   const buf = await fs.readFile(idxPath).catch(() => null);
-  if (!buf || buf.length < 8 || buf.readUInt32BE(0) !== PACK_IDX_MAGIC || buf.readUInt32BE(4) !== 2) return null;
+  if (!buf || buf.length < 8 + 256 * 4 + 40 || buf.readUInt32BE(0) !== PACK_IDX_MAGIC || buf.readUInt32BE(4) !== 2) return null;
   const fanoutStart = 8;
   const objectCount = buf.readUInt32BE(fanoutStart + 255 * 4);
   const shaStart = fanoutStart + 256 * 4;
   const crcStart = shaStart + objectCount * 20;
   const offsetStart = crcStart + objectCount * 4;
   const extStart = offsetStart + objectCount * 4;
+  const extBytes = buf.length - 40 - extStart;
+  if (extBytes < 0 || extBytes % 8 !== 0) return null;
+  let previousCount = 0;
+  for (let i = 0; i < 256; i++) {
+    const count = buf.readUInt32BE(fanoutStart + i * 4);
+    if (count < previousCount || count > objectCount) return null;
+    previousCount = count;
+  }
   const map = new Map();
   for (let i = 0; i < objectCount; i++) {
     const oid = buf.subarray(shaStart + i * 20, shaStart + i * 20 + 20).toString('hex');
     let offset = buf.readUInt32BE(offsetStart + i * 4);
     if (offset & 0x80000000) {
       const extIndex = offset & 0x7fffffff;
+      if (extIndex >= extBytes / 8) return null;
       const hi = buf.readUInt32BE(extStart + extIndex * 8);
       const lo = buf.readUInt32BE(extStart + extIndex * 8 + 4);
       offset = hi * 2 ** 32 + lo;
+      if (!Number.isSafeInteger(offset)) return null;
     }
     map.set(oid, offset);
   }

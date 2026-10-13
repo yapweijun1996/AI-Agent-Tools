@@ -1,5 +1,5 @@
 import { lstatSync, realpathSync } from "node:fs";
-import { isAbsolute, join, relative, resolve, sep } from "node:path";
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import * as ts from "typescript";
 import { ImpactError } from "./errors";
 import { readTextFileBounded, SourceSnapshot } from "./snapshot";
@@ -79,20 +79,48 @@ function fileExists(root: string, fileName: string, snapshot: SourceSnapshot): b
   return snapshot.fileExists(fileName) || (externalFileAllowed(root, toAbsolute(root, fileName)) && ts.sys.fileExists(toAbsolute(root, fileName)));
 }
 
-function virtualReadDirectory(snapshot: SourceSnapshot, root: string, directory: string, extensions?: readonly string[]): string[] {
-  const directoryAbsolute = resolve(directory);
-  const results: string[] = [];
-  for (const relativePath of snapshot.projectFiles()) {
-    const absolutePath = join(root, ...relativePath.split("/"));
-    if (!isInside(directoryAbsolute, absolutePath)) {
-      continue;
+interface DirectoryEntries {
+  files: string[];
+  directories: string[];
+}
+
+// The pinned compiler exports its filesystem matcher without a public declaration.
+// Use the compiler's own glob semantics against snapshot-only directory entries.
+type CompilerMatcher = (directory: string, extensions: readonly string[] | undefined,
+  excludes: readonly string[] | undefined, includes: readonly string[] | undefined,
+  caseSensitive: boolean, cwd: string, depth: number | undefined,
+  entries: (directory: string) => DirectoryEntries, realpath: (file: string) => string) => string[];
+
+function snapshotReadDirectory(snapshot: SourceSnapshot): NonNullable<ts.LanguageServiceHost["readDirectory"]> {
+  const entries = new Map<string, { files: Set<string>; directories: Set<string> }>();
+  const key = (directory: string) => {
+    const absolute = resolve(snapshot.root, directory);
+    return ts.sys.useCaseSensitiveFileNames ? absolute : absolute.toLowerCase();
+  };
+  const entry = (directory: string) => {
+    const name = key(directory);
+    let value = entries.get(name);
+    if (!value) { value = { files: new Set(), directories: new Set() }; entries.set(name, value); }
+    return value;
+  };
+  for (const file of snapshot.projectFiles()) {
+    const absolute = snapshot.absolutePath(file);
+    let directory = dirname(absolute);
+    entry(directory).files.add(basename(absolute));
+    while (directory !== snapshot.root && isInside(snapshot.root, directory)) {
+      const parent = dirname(directory);
+      entry(parent).directories.add(basename(directory));
+      directory = parent;
     }
-    if (extensions && extensions.length > 0 && !extensions.some((extension) => absolutePath.endsWith(extension))) {
-      continue;
-    }
-    results.push(absolutePath);
   }
-  return results;
+  const matchFiles = (ts as unknown as { matchFiles: CompilerMatcher }).matchFiles;
+  return (directory, extensions, excludes, includes, depth) => matchFiles(
+    directory, extensions, excludes, includes, ts.sys.useCaseSensitiveFileNames, snapshot.root, depth,
+    (name) => {
+      const value = entries.get(key(name));
+      return { files: [...(value?.files ?? [])], directories: [...(value?.directories ?? [])] };
+    }, (name) => name,
+  );
 }
 
 function makeParseHost(snapshot: SourceSnapshot, maxBytes: number): ts.ParseConfigHost {
@@ -101,7 +129,7 @@ function makeParseHost(snapshot: SourceSnapshot, maxBytes: number): ts.ParseConf
     useCaseSensitiveFileNames: ts.sys.useCaseSensitiveFileNames,
     fileExists: (fileName) => fileExists(root, fileName, snapshot),
     readFile: (fileName) => readPermittedFile(root, fileName, snapshot, maxBytes),
-    readDirectory: (directory, extensions) => virtualReadDirectory(snapshot, root, directory, extensions),
+    readDirectory: snapshotReadDirectory(snapshot),
     realpath: (fileName) => preserveRepositoryPath(root, fileName),
   };
 }
@@ -118,7 +146,7 @@ function makeLanguageServiceHost(snapshot: SourceSnapshot, compilerOptions: ts.C
     getDefaultLibFileName: (options) => ts.getDefaultLibFilePath(options),
     fileExists: (fileName) => fileExists(root, fileName, snapshot),
     readFile: (fileName) => readPermittedFile(root, fileName, snapshot, maxBytes),
-    readDirectory: (directory, extensions) => virtualReadDirectory(snapshot, root, directory, extensions),
+    readDirectory: snapshotReadDirectory(snapshot),
     realpath: (fileName) => preserveRepositoryPath(root, fileName),
     getScriptSnapshot: (fileName) => {
       const content = readPermittedFile(root, fileName, snapshot, maxBytes);

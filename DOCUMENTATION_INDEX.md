@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-10-09. This index assigns document ownership; it is not a
+Last reconciled: 2026-10-11. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |
@@ -45,6 +45,7 @@ second task ledger or a tool release inventory.
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |
+| [Codebase bug review](docs/CODEBASE_BUG_REVIEW.md) | 2026-10-11 reproduced source defects, impact, reproduction conditions, review coverage and repair/regression map |
 | [Tool expansion](docs/TOOL_EXPANSION.md) | Addition rationale, cross-tool boundaries, design reviews and evidence scope |
 | [CFML Check](docs/tools/AGENT_CFML_CHECK.md) | Structural-checking contract, acceptance cases, and independent local feasibility handoff |
 | [CFML Policy Check](docs/tools/AGENT_CFML_POLICY_CHECK.md) | Planned configurable CFML/HTML/project policy contract, boundaries, and acceptance cases |
