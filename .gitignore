@@ -35,3 +35,6 @@ Thumbs.db
 dist-test/
 *.tsbuildinfo
 *.bundle
+
+# Local temporary reference material
+/temp/
