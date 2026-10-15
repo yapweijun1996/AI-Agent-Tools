@@ -1,5 +1,15 @@
 # Task status
 
+## Agent-Native-Git monorepo admission (2026-10-15)
+
+The owner selected immediate migration into `packages/agent-native-git`, correcting the earlier separate-repository interpretation while retaining independent CLI/package/runtime ownership. Source checkpoint `46e46123adaea304884f5e0e0c7ef6235426153e` contributes 472 tracked files with private recovery history retained; generated output and ignored temporary material are excluded. The separate [import record](docs/migration/AGENT_NATIVE_GIT_IMPORT.json) preserves source hashes and explicit metadata/navigation adapters, without changing the ten-repository historical manifest.
+
+Current scope is private MIT `agent-native-git@0.0.0` / `angit`, exact Windows x64/Node 24.21.0, 13/18 native command leaves. Registry admission is Experimental, not full delivery or release completion. Nineteen source packages and twenty registry entries do not imply nineteen tools are complete. AIT remains dependency-free; explicit stateful coordination stays in the package.
+
+Root integration is present. The owner's latest instruction narrows closeout to source migration and immediate local commit/main integration. Full `npm run verify` was started, then explicitly cancelled at that request; it is deferred, not passed. Authoring/import-coverage checks and actual Hub discovery/private-release/host-denial smoke passed. [Migration verification](docs/migration/AGENT_NATIVE_GIT_VERIFICATION.md) owns limits; the next agent must complete full native/Hub acceptance before making readiness claims. Remaining Worker/integration/restore implementation stays outside this migration.
+
+The approved final operation is a scoped local Hub-main merge only. No push/publication, real provider/service, existing ACL repair or deletion of original recovery material is authorized.
+
 ## Local merge integration (2026-10-13)
 
 The owner requested resolution of the active merge between local

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Actual owned native supervision without periodic pulses; same 2000 ms watchdog and 5000 ms process budget before/after",
+  "command": "Node24 --test --test-reporter=tap --test-name-pattern=\"^authenticated resume refreshes\" tests/execution.test.mjs",
+  "before": { "result": "FAIL", "tests": 1, "passed": 0, "failed": 1, "skipped": 0, "caseDurationMs": 11494.4445, "suiteDurationMs": 14306.6217, "expectedReason": "stop", "actualReason": "heartbeat" },
+  "change": "After successful durable-start callback, send one nonce-authenticated pulse before resume; preserve no-resume-on-failure and all watchdog/process/lease budgets",
+  "after": { "result": "PASS", "tests": 1, "passed": 1, "failed": 0, "skipped": 0, "caseDurationMs": 10701.0299, "suiteDurationMs": 11426.63, "verifiedReason": "stop", "stopOperationId": "op_resume_heartbeat", "fullWriterTreeTerminationAndByteExactArtifacts": true },
+  "limits": [ "This is an isolated before/after behavior proof; full parallel/lifecycle/installed-consumer acceptance remains pending", "Compiler reference search returned partial TIMEOUT; no absence or complete impact claim", "Production deadlines/permissions unchanged; whole-suite and full-foreground test observation ceilings are separate" ]
+}

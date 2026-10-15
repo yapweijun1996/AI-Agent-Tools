@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_worker_start",
+  "command": "worker start",
+  "options": {
+    "detach": true,
+    "parallel": 3,
+    "autoIntegrate": false,
+    "recover": false
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-worker-start-v1"
+}

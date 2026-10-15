@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_status",
+  "command": "status",
+  "options": {
+    "format": "json",
+    "limit": 100,
+    "cursor": {
+      "projectId": "prj_demo",
+      "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "historyIdentity": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "afterEventId": 1,
+      "snapshotHighWatermark": 1
+    }
+  },
+  "projectId": "prj_demo"
+}

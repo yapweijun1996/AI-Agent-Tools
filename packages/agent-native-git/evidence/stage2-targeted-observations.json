@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "angit-stage2-targeted-evidence/v1",
+  "observedDate": "2026-10-14",
+  "node": "24.21.0",
+  "fullStageAcceptance": false,
+  "checks": [
+    { "category": "Stage1 behavioral regressions", "tests": 16, "passed": 16, "failed": 0, "skipped": 0, "exit": 0, "durationMs": 283326.2987 },
+    { "category": "Pre-aborted admission, final output backpressure, retained artifact quota", "tests": 3, "passed": 3, "failed": 0, "skipped": 0, "exit": 0, "durationMs": 139248.3459 },
+    { "category": "Latest standalone native lifecycle and broker challenge", "tests": 8, "passed": 7, "failed": 1, "skipped": 0, "exit": 1, "durationMs": 27086.8187,
+      "passedBoundaries": ["suspended durable-start ordering", "stdout cap", "stderr cap", "timeout", "heartbeat descendant termination", "exact receipt/launch/artifact binding", "failed callback before fixture code"],
+      "failure": "Restricted-token access denial passed; invalid scope was denied but native client misclassified the server denial envelope as INVALID_NATIVE_REQUEST" },
+    { "category": "Build/typecheck and offline representations", "exit": 0, "schemas": 42, "schemaFixtures": 276, "publicCommandContracts": 18, "sqlCases": 90, "sqlNegativeRejections": 70, "pythonSqliteVersion": "3.50.4" },
+    { "category": "Earlier clean/native batch", "durationMs": 567943.9581, "tests": 8, "passed": 6, "failed": 1, "cancelled": 1, "exit": 1,
+      "failure": "Clean scenario hit the then-loaded 360-second test deadline; the subsequent suspended-start fixture timed out awaiting provider observation. [INFERENCE] The still-running clean continuation interfered with that fixture. Current test-only deadlines are larger; isolated native verification subsequently passed." }
+  ],
+  "limits": ["These are separately exercised subsets, not a full-suite PASS", "No real providers", "Default-host AppData admission remains denied", "Unknown owned fixtures stay preserved"]
+}

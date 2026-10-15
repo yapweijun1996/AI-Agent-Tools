@@ -1,0 +1,21 @@
+{
+  "observationId": "obs_33",
+  "operationId": "op_undo",
+  "projectId": "prj_demo",
+  "kind": "undo",
+  "observationType": "finalization",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "snapshotId": "id_demo",
+    "evidenceId": "id_demo",
+    "eventId": 1
+  }
+}

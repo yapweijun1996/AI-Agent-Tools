@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/command-catalog.schema.json",
+  "title": "Exactly eighteen public command leaves",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-command-catalog/v1"
+    },
+    "commandCount": {
+      "const": 18
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 18
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 80
+          },
+          "slug": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 80
+          },
+          "synopsis": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500
+          },
+          "capability": {
+            "enum": [
+              "project.register",
+              "project.read",
+              "task.create",
+              "task.message",
+              "task.cancel",
+              "attempt.start",
+              "attempt.stop",
+              "coordinator.start",
+              "coordinator.stop",
+              "integration.plan",
+              "integration.apply",
+              "snapshot.restore",
+              "maintenance.backup"
+            ]
+          },
+          "effects": {
+            "enum": [
+              "read",
+              "metadata-write",
+              "managed-write",
+              "planning-write",
+              "planning-or-managed-write"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "success": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 80
+            },
+            "minItems": 0,
+            "maxItems": 30
+          },
+          "example": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2000
+          },
+          "requestSchema": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+          },
+          "options": {
+            "type": "object"
+          },
+          "requiredOptions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "minItems": 0,
+            "maxItems": 50
+          }
+        },
+        "required": [
+          "number",
+          "name",
+          "slug",
+          "synopsis",
+          "capability",
+          "effects",
+          "purpose",
+          "success",
+          "errors",
+          "example",
+          "requestSchema",
+          "reference",
+          "options",
+          "requiredOptions"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 18,
+      "maxItems": 18
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "commandCount",
+    "commands"
+  ],
+  "additionalProperties": false
+}

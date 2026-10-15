@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Readonly retained owned fixture public status versus fresh readonly SQLite projection; no state writes, approvals skipped or production caches; parallel lifecycle trace may add host contention",
+  "observations": [
+    {
+      "publicElapsedMs": 4583.4267,
+      "readonlyProjectionElapsedMs": 33.833700000000135,
+      "attempts": [
+        {
+          "status": "orphaned",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "publicElapsedMs": 4846.8004,
+      "readonlyProjectionElapsedMs": 25.666400000000067,
+      "attempts": [
+        {
+          "status": "orphaned",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "publicElapsedMs": 4539.504499999999,
+      "readonlyProjectionElapsedMs": 30.089899999999034,
+      "attempts": [
+        {
+          "status": "orphaned",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

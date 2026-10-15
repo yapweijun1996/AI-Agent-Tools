@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "angit-backup/v1",
+  "backupId": "backup_demo",
+  "projectId": "prj_demo",
+  "contentEpoch": 0,
+  "eventHighWatermark": 0,
+  "databaseSchemaVersion": 1,
+  "gitObjectFormat": "sha1",
+  "refs": [
+    {
+      "name": "fixture_name",
+      "oid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    }
+  ],
+  "files": [
+    {
+      "artifactId": "id_demo",
+      "relativePath": "fixture_relativePath",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "bytes": 0
+    },
+    {
+      "artifactId": "id_demo",
+      "relativePath": "fixture_relativePath",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "bytes": 0
+    }
+  ],
+  "dirtyWorktreesIncluded": false,
+  "verifiedRestoreDrill": false,
+  "createdAtMs": 0,
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "historyIdentity": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/broker-admission.schema.json",
+  "type": "object",
+  "properties": {
+    "authority": {
+      "$ref": "authority.schema.json"
+    },
+    "scopeId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "stablePrincipalId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "command": {
+      "enum": [
+        "init",
+        "doctor",
+        "status",
+        "task add",
+        "task list",
+        "task show",
+        "task message",
+        "task cancel",
+        "agent start",
+        "agent stop",
+        "run",
+        "worker start",
+        "worker stop",
+        "worktree list",
+        "integrate plan",
+        "integrate apply",
+        "snapshot list",
+        "snapshot restore"
+      ]
+    },
+    "expectedVersion": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expectedContentEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expectedIntegrationOid": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "requestKeyHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "semanticRequestHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "authority",
+    "scopeId",
+    "stablePrincipalId",
+    "command",
+    "expectedVersion",
+    "expectedContentEpoch",
+    "expectedIntegrationOid",
+    "requestKeyHash",
+    "semanticRequestHash"
+  ],
+  "additionalProperties": false
+}

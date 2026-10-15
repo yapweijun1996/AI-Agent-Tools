@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/commands/task-message.schema.json",
+  "title": "07. angit task message request",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-request/v1"
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "command": {
+      "const": "task message"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[!-~]+$"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "https://schemas.example.invalid/angit/v1/message-input.schema.json"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "command",
+    "options",
+    "projectId",
+    "idempotencyKey"
+  ],
+  "additionalProperties": false
+}

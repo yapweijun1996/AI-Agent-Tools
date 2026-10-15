@@ -13,6 +13,24 @@ const MAX_PROCESS_BYTES = MAX_SOURCE_BYTES + MAX_FILES * 100;
 const TIMEOUT_MS = 120_000;
 const HASH = /^[a-f0-9]{40}$/;
 
+// Standard package host declarations plus exact Node pins. Range-based engines
+// retain the installer's existing Node 22/24 admission; no semver dependency.
+function packageHostMismatch(manifest, { platform = process.platform, arch = process.arch, node = process.versions.node } = {}) {
+  for (const [field, actual] of [['os', platform], ['cpu', arch]]) {
+    const declared = manifest[field];
+    if (!Array.isArray(declared)) continue;
+    const allowed = declared.filter(value => !value.startsWith('!'));
+    if (declared.includes(`!${actual}`) || (allowed.length && !allowed.includes(actual) && !allowed.includes('any'))) {
+      return `${manifest.name} requires ${field} ${declared.join(', ')}; observed ${actual}`;
+    }
+  }
+  const exactNode = manifest.engines?.node;
+  if (typeof exactNode === 'string' && /^\d+\.\d+\.\d+$/.test(exactNode) && exactNode !== node) {
+    return `${manifest.name} requires exact Node ${exactNode}; observed ${node}`;
+  }
+  return null;
+}
+
 function installAll(options, { AitError, spawn = spawnSync } = {}) {
   const fail = (message, code = 'INVALID_SOURCE', exitCode = 4) => {
     throw new AitError(message, exitCode, code);
@@ -209,6 +227,8 @@ function installAll(options, { AitError, spawn = spawnSync } = {}) {
     const identities = new Set();
     for (const item of inventory) {
       const { manifest } = item;
+      const mismatch = packageHostMismatch(manifest);
+      if (mismatch) fail(`install-all cannot install every CLI: ${mismatch}`, 'UNSUPPORTED_PACKAGE_HOST', 2);
       if (!/^(?:@[a-z0-9._-]+\/)?[a-z0-9][a-z0-9._-]*$/.test(manifest.name) || !/^\d+\.\d+\.\d+(?:-[A-Za-z0-9.-]+)?$/.test(manifest.version) || identities.has(manifest.name)) fail('Unsafe or duplicate package identity', 'PACKAGE_IDENTITY_MISMATCH');
       identities.add(manifest.name);
       item.bins = typeof manifest.bin === 'string' ? { [manifest.name.split('/').pop()]: manifest.bin } : manifest.bin;
@@ -374,4 +394,4 @@ function findNodeLicense(nodeExecutable) {
   return null;
 }
 
-module.exports = { installAll, findNpmCli, findNodeLicense, REPOSITORY, MAX_FILES, MAX_SOURCE_BYTES };
+module.exports = { installAll, findNpmCli, findNodeLicense, packageHostMismatch, REPOSITORY, MAX_FILES, MAX_SOURCE_BYTES };

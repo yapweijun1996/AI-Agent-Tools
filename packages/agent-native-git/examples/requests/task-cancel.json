@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_task_cancel",
+  "command": "task cancel",
+  "options": {
+    "taskId": "tsk_frontend",
+    "reason": "Requirements changed.",
+    "waitMs": 0
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-task-cancel-v1"
+}

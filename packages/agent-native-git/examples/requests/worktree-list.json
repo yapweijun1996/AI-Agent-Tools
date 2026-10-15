@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_worktree_list",
+  "command": "worktree list",
+  "options": {
+    "includePreserved": true,
+    "limit": 100
+  },
+  "projectId": "prj_demo"
+}

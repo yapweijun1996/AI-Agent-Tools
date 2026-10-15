@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Exact byte verification over specialized-tool bounded inventory; not lifecycle or release acceptance",
+  "checkedTechnicalFiles": 450,
+  "trailingWhitespaceFailures": [],
+  "localLinksChecked": 105,
+  "missingLocalLinks": [],
+  "invalidJson": [],
+  "readerLimit": "Initial reader display elision caused apparent JSON parse failures; actual complete file-byte checks below do not reproduce those display errors",
+  "staticImpactLimit": "agent-impact returned NOT_A_REPOSITORY; authorized workspace remains without Git initialization; bounded source/caller inspection used"
+}

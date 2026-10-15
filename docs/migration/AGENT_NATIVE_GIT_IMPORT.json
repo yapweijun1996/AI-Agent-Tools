@@ -1,0 +1,3346 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at": "2026-10-15T05:50:24.496768+00:00",
+  "source_commit": "46e46123adaea304884f5e0e0c7ef6235426153e",
+  "hub_base_commit": "837b48939321bc1f746f8a1587dc5b87363a2208",
+  "source_repository_url": null,
+  "source_local_recovery_path": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "canonical_package_path": "packages/agent-native-git",
+  "history_recovery": {
+    "bundle_path": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git\\.git\\agent-native-git-pre-monorepo-46e4612.bundle",
+    "sha256": "c053049950a3d6622629a53efd0f066472c3ee936c6955a09d66330c1bbcf16d",
+    "bytes": 610323,
+    "git_bundle_verify": "passed; complete history and four refs",
+    "public_history_imported": false
+  },
+  "snapshot": {
+    "method": "git archive exact committed checkpoint; tracked regular files only",
+    "archive_sha256": "9cfa1ce9049dd78dd495915efef5990ba2c903f77ff322a4ff54eae9d5a5ce18",
+    "files": 472,
+    "source_directory_deleted": false,
+    "excluded": "Nested Git metadata, ignored cache/temp/dependencies/generated output were not copied."
+  },
+  "identity": {
+    "name": "agent-native-git",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "cli": "angit",
+    "node": "24.21.0",
+    "os": "win32",
+    "cpu": "x64",
+    "lock_unchanged": true,
+    "license_unchanged": true
+  },
+  "files": [
+    {
+      "source": ".gitignore",
+      "destination": "packages/agent-native-git/.gitignore",
+      "imported_sha256": "94eeba57e446ae12d1309c8dd671fb4c436b172e206ce3b78583cc8c4fb1e4cf",
+      "current_sha256": "94eeba57e446ae12d1309c8dd671fb4c436b172e206ce3b78583cc8c4fb1e4cf",
+      "reason": null
+    },
+    {
+      "source": "CHANGELOG.md",
+      "destination": "packages/agent-native-git/CHANGELOG.md",
+      "imported_sha256": "08e824a07d5e29764b9e5c1bc1e7ac205dd11b030c777ef58b7cf288c596c5eb",
+      "current_sha256": "9e7fd4eb6a06ca0898d0ede15286b8c1d8b8117ebb7a6a8313be98246ce2fe42",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "LICENSE",
+      "destination": "packages/agent-native-git/LICENSE",
+      "imported_sha256": "c39537250e10c7174aa1fb8852caeb081f00ad8ed312be7b501c4b49f06f6f7e",
+      "current_sha256": "c39537250e10c7174aa1fb8852caeb081f00ad8ed312be7b501c4b49f06f6f7e",
+      "reason": null
+    },
+    {
+      "source": "README.md",
+      "destination": "packages/agent-native-git/README.md",
+      "imported_sha256": "cdee9b64b4762bc2626086e620f1a497ec2c70e67927e45ab323dd22173a4f86",
+      "current_sha256": "c6ba0ec6ac0c208cc074a3c4ee501d26df90c29aca150023469200842df174c4",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "TASK.md",
+      "destination": "packages/agent-native-git/TASK.md",
+      "imported_sha256": "4f6345ebf1d01b7d96f5fa466e364c026642eaf36295c9bf7335bc90b0daa897",
+      "current_sha256": "60d56b2e2424b2fef198de3003286363fc3c709a8606e60c6ac78277bee00311",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "VALIDATION.md",
+      "destination": "packages/agent-native-git/VALIDATION.md",
+      "imported_sha256": "e428641127e1559b1d2cb9ba7fee04fea6e654b6aebb1bc4ed9d8a66834ed66f",
+      "current_sha256": "d909c0d19559c1cb83a57ecc1e229713b1f41b888ea02b45d86d98c6cfe09644",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "assets/empty-hooks/README.txt",
+      "destination": "packages/agent-native-git/assets/empty-hooks/README.txt",
+      "imported_sha256": "3fb38c704d2818f6701fda5d2ae56dbb464727b5214fd3f028fec5830c51ac03",
+      "current_sha256": "3fb38c704d2818f6701fda5d2ae56dbb464727b5214fd3f028fec5830c51ac03",
+      "reason": null
+    },
+    {
+      "source": "bin/angit.js",
+      "destination": "packages/agent-native-git/bin/angit.js",
+      "imported_sha256": "5c452d3c15dd43badd1e09e5daf6a4b1a92099fdb6702b13d5fd0c21c8ae1935",
+      "current_sha256": "5c452d3c15dd43badd1e09e5daf6a4b1a92099fdb6702b13d5fd0c21c8ae1935",
+      "reason": null
+    },
+    {
+      "source": "contracts/commands.json",
+      "destination": "packages/agent-native-git/contracts/commands.json",
+      "imported_sha256": "5c05119b3795e0b80b6c55a33c12eadd9262bfb04078ff74d597be175c7a902d",
+      "current_sha256": "5c05119b3795e0b80b6c55a33c12eadd9262bfb04078ff74d597be175c7a902d",
+      "reason": null
+    },
+    {
+      "source": "contracts/identity.json",
+      "destination": "packages/agent-native-git/contracts/identity.json",
+      "imported_sha256": "118d4743a2a273ecb46721fd9e3032ac532c43a3d593399558959c0eac43ac1e",
+      "current_sha256": "118d4743a2a273ecb46721fd9e3032ac532c43a3d593399558959c0eac43ac1e",
+      "reason": null
+    },
+    {
+      "source": "contracts/lifecycles.json",
+      "destination": "packages/agent-native-git/contracts/lifecycles.json",
+      "imported_sha256": "7d73c4501e3ae3dd3f5965fbe795816bd8ffa62a11c09db16324b6a801b54bca",
+      "current_sha256": "7d73c4501e3ae3dd3f5965fbe795816bd8ffa62a11c09db16324b6a801b54bca",
+      "reason": null
+    },
+    {
+      "source": "docs/CLI_REFERENCE.md",
+      "destination": "packages/agent-native-git/docs/CLI_REFERENCE.md",
+      "imported_sha256": "8cdf322857a4d91a642389432de8473c9d61b118fab031118d8153c403d694eb",
+      "current_sha256": "2320e25958ad366f0b44984ff2b52e6993eebd5ac4bc0686d9810ce150ae5e09",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "docs/CONTRACT.md",
+      "destination": "packages/agent-native-git/docs/CONTRACT.md",
+      "imported_sha256": "6e24da7adffef36605a7255b81e0cc7ba8a9fc208af911961923c52760086b2d",
+      "current_sha256": "6e24da7adffef36605a7255b81e0cc7ba8a9fc208af911961923c52760086b2d",
+      "reason": null
+    },
+    {
+      "source": "docs/HANDOFF.md",
+      "destination": "packages/agent-native-git/docs/HANDOFF.md",
+      "imported_sha256": "e3075877b4af419a411ad390fb736a4f4ab44b235eca622c09cc1493ad4b809c",
+      "current_sha256": "1b006d48485d81c52fc6f5889889a49f3ab5384331eec33a06d3c0b8b02d8588",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "docs/STAGE0_PREFLIGHT.md",
+      "destination": "packages/agent-native-git/docs/STAGE0_PREFLIGHT.md",
+      "imported_sha256": "67f661f66007103fc39f1abb39e455d474ed2549215c4b99dbd35fe49ca12fdf",
+      "current_sha256": "67f661f66007103fc39f1abb39e455d474ed2549215c4b99dbd35fe49ca12fdf",
+      "reason": null
+    },
+    {
+      "source": "docs/STAGE1.md",
+      "destination": "packages/agent-native-git/docs/STAGE1.md",
+      "imported_sha256": "1afaf861c50d102ec0575132cb8fa1aab83189ad21408c92095be87332f7c81d",
+      "current_sha256": "1afaf861c50d102ec0575132cb8fa1aab83189ad21408c92095be87332f7c81d",
+      "reason": null
+    },
+    {
+      "source": "docs/STAGE1_PLAN.md",
+      "destination": "packages/agent-native-git/docs/STAGE1_PLAN.md",
+      "imported_sha256": "195e318e6850b4ed177ddac9d847678aee3d5da858c6f1b343d903d4cb5417d6",
+      "current_sha256": "195e318e6850b4ed177ddac9d847678aee3d5da858c6f1b343d903d4cb5417d6",
+      "reason": null
+    },
+    {
+      "source": "docs/STAGE2.md",
+      "destination": "packages/agent-native-git/docs/STAGE2.md",
+      "imported_sha256": "d9c00d41dc1090bb5cbffe4267c3218162d49a4bbe0f8b907f04087bbf8ed4cf",
+      "current_sha256": "d9c00d41dc1090bb5cbffe4267c3218162d49a4bbe0f8b907f04087bbf8ed4cf",
+      "reason": null
+    },
+    {
+      "source": "docs/STAGE2_PLAN.md",
+      "destination": "packages/agent-native-git/docs/STAGE2_PLAN.md",
+      "imported_sha256": "96aa0dddae757ec2879130e4d5d3b8e140cabc74155fc5634cb91006f49e5e99",
+      "current_sha256": "96aa0dddae757ec2879130e4d5d3b8e140cabc74155fc5634cb91006f49e5e99",
+      "reason": null
+    },
+    {
+      "source": "docs/STAGE3_PLAN.md",
+      "destination": "packages/agent-native-git/docs/STAGE3_PLAN.md",
+      "imported_sha256": "2ffd7258d38b7539ede219d2eb780b3f4daf6d368b1ade62c2274e376b7af1a0",
+      "current_sha256": "dee9a5be4cf085f8a5324edaab12fd83de713657a77ef86261b4bfb5585dd36d",
+      "reason": "Current canonical monorepo location, authorization/navigation and historical-versus-migrated evidence clarification; product behavior and historical receipts unchanged."
+    },
+    {
+      "source": "docs/STAGE3_PREFLIGHT.md",
+      "destination": "packages/agent-native-git/docs/STAGE3_PREFLIGHT.md",
+      "imported_sha256": "7a963504b0e26369241c57db1012f4ec1fc0def1e4e782665849c73cc5841830",
+      "current_sha256": "7a963504b0e26369241c57db1012f4ec1fc0def1e4e782665849c73cc5841830",
+      "reason": null
+    },
+    {
+      "source": "docs/WINDOWS_METADATA_BACKEND.md",
+      "destination": "packages/agent-native-git/docs/WINDOWS_METADATA_BACKEND.md",
+      "imported_sha256": "b12b1afe661424d6654464a52b8de584530e90f7e379a5778dfc7105a1d7025d",
+      "current_sha256": "b12b1afe661424d6654464a52b8de584530e90f7e379a5778dfc7105a1d7025d",
+      "reason": null
+    },
+    {
+      "source": "evidence/contract-review-resolution.json",
+      "destination": "packages/agent-native-git/evidence/contract-review-resolution.json",
+      "imported_sha256": "4bb2d58e4b68cb48bc6a39b9889d1292a88e27b70a5dae4e83ab58e586692bd0",
+      "current_sha256": "4bb2d58e4b68cb48bc6a39b9889d1292a88e27b70a5dae4e83ab58e586692bd0",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-before-review-validation.json",
+      "destination": "packages/agent-native-git/evidence/contracts-before-review-validation.json",
+      "imported_sha256": "cee9be0314cf70d041066b11997a20ef2ad4196952b7157b05b992aeb10b04d5",
+      "current_sha256": "cee9be0314cf70d041066b11997a20ef2ad4196952b7157b05b992aeb10b04d5",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-initial-failure.json",
+      "destination": "packages/agent-native-git/evidence/contracts-initial-failure.json",
+      "imported_sha256": "32bb6bb37a94288c75b7aa51036cb99edcad475d17d443ade96d6b300d146232",
+      "current_sha256": "32bb6bb37a94288c75b7aa51036cb99edcad475d17d443ade96d6b300d146232",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-review-after.json",
+      "destination": "packages/agent-native-git/evidence/contracts-review-after.json",
+      "imported_sha256": "ef1652c420a88183aaa5b5e830c4850ed225a247e4bffadf2b6b33b2c59213cf",
+      "current_sha256": "ef1652c420a88183aaa5b5e830c4850ed225a247e4bffadf2b6b33b2c59213cf",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-review-before.json",
+      "destination": "packages/agent-native-git/evidence/contracts-review-before.json",
+      "imported_sha256": "3f357190866faf7540fae205585adafcdd2177e35f5d780b3ea412a3dd4d20ea",
+      "current_sha256": "3f357190866faf7540fae205585adafcdd2177e35f5d780b3ea412a3dd4d20ea",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-state-review-before.json",
+      "destination": "packages/agent-native-git/evidence/contracts-state-review-before.json",
+      "imported_sha256": "52e98fc4dd52d8c9d615f4e7677690d25f88f4ebd0d2fb8699a7613c4c0472f5",
+      "current_sha256": "52e98fc4dd52d8c9d615f4e7677690d25f88f4ebd0d2fb8699a7613c4c0472f5",
+      "reason": null
+    },
+    {
+      "source": "evidence/contracts-validation.json",
+      "destination": "packages/agent-native-git/evidence/contracts-validation.json",
+      "imported_sha256": "7b6531e665717a79240c73439d08824208629761a9764d1de411f43e19619409",
+      "current_sha256": "7b6531e665717a79240c73439d08824208629761a9764d1de411f43e19619409",
+      "reason": null
+    },
+    {
+      "source": "evidence/end-of-day-handoff.json",
+      "destination": "packages/agent-native-git/evidence/end-of-day-handoff.json",
+      "imported_sha256": "935a1c79d1023eb5e5d79c06b6e29cfd29bc6a541b00f727424cc62f301e1725",
+      "current_sha256": "935a1c79d1023eb5e5d79c06b6e29cfd29bc6a541b00f727424cc62f301e1725",
+      "reason": null
+    },
+    {
+      "source": "evidence/end-of-day-schema-completeness.json",
+      "destination": "packages/agent-native-git/evidence/end-of-day-schema-completeness.json",
+      "imported_sha256": "9d6597d523c5e79e1840161e85f5ef885499a37388b4891b78ff262a5be8445f",
+      "current_sha256": "9d6597d523c5e79e1840161e85f5ef885499a37388b4891b78ff262a5be8445f",
+      "reason": null
+    },
+    {
+      "source": "evidence/final-consistency.json",
+      "destination": "packages/agent-native-git/evidence/final-consistency.json",
+      "imported_sha256": "959ad8def4814e8a6566274db19967e7dfe1febbd5f6a05fe55d9bc90323bcd0",
+      "current_sha256": "959ad8def4814e8a6566274db19967e7dfe1febbd5f6a05fe55d9bc90323bcd0",
+      "reason": null
+    },
+    {
+      "source": "evidence/node-sql-contracts-before-review.json",
+      "destination": "packages/agent-native-git/evidence/node-sql-contracts-before-review.json",
+      "imported_sha256": "0328086f568bafc9d86a1a93958546469e499ef6c4d1d8cf6ce526a1623cdcee",
+      "current_sha256": "0328086f568bafc9d86a1a93958546469e499ef6c4d1d8cf6ce526a1623cdcee",
+      "reason": null
+    },
+    {
+      "source": "evidence/node-sql-contracts.json",
+      "destination": "packages/agent-native-git/evidence/node-sql-contracts.json",
+      "imported_sha256": "e7423abd40f7d6e36fee6dcbf7d0286e10ea7e69099c4e33b44941b918cb268c",
+      "current_sha256": "e7423abd40f7d6e36fee6dcbf7d0286e10ea7e69099c4e33b44941b918cb268c",
+      "reason": null
+    },
+    {
+      "source": "evidence/probe-reviews.json",
+      "destination": "packages/agent-native-git/evidence/probe-reviews.json",
+      "imported_sha256": "84d16be465300e84ae3a89b8b5f527606dbf2ee35becaae26c2223356e5c9155",
+      "current_sha256": "84d16be465300e84ae3a89b8b5f527606dbf2ee35becaae26c2223356e5c9155",
+      "reason": null
+    },
+    {
+      "source": "evidence/source-manifest.json",
+      "destination": "packages/agent-native-git/evidence/source-manifest.json",
+      "imported_sha256": "67f69318e00a42db266c8cf3ed6ad408ec350fa8763624f774daa5873e2b1ad2",
+      "current_sha256": "67f69318e00a42db266c8cf3ed6ad408ec350fa8763624f774daa5873e2b1ad2",
+      "reason": null
+    },
+    {
+      "source": "evidence/sqlite-initial-failure.json",
+      "destination": "packages/agent-native-git/evidence/sqlite-initial-failure.json",
+      "imported_sha256": "debd1117e14781113147075525532a59c221cc7bd014a0162a128fbe27967846",
+      "current_sha256": "debd1117e14781113147075525532a59c221cc7bd014a0162a128fbe27967846",
+      "reason": null
+    },
+    {
+      "source": "evidence/sqlite-node25-rejection.json",
+      "destination": "packages/agent-native-git/evidence/sqlite-node25-rejection.json",
+      "imported_sha256": "27d2cee691a3cd35d5103576a7d7175fddeb84194fc149bca7b7fd03ed0dbb8e",
+      "current_sha256": "27d2cee691a3cd35d5103576a7d7175fddeb84194fc149bca7b7fd03ed0dbb8e",
+      "reason": null
+    },
+    {
+      "source": "evidence/sqlite-primitives.json",
+      "destination": "packages/agent-native-git/evidence/sqlite-primitives.json",
+      "imported_sha256": "57e6c9d70776ffcf1ae6f073a8574a8a4e6435c0f59176ed66238f8c487b276f",
+      "current_sha256": "57e6c9d70776ffcf1ae6f073a8574a8a4e6435c0f59176ed66238f8c487b276f",
+      "reason": null
+    },
+    {
+      "source": "evidence/sqlite-shutdown-failure.json",
+      "destination": "packages/agent-native-git/evidence/sqlite-shutdown-failure.json",
+      "imported_sha256": "00ed0db892b93b742142680253c952bdf12140e2b46b10f40fd314fcfb90aff7",
+      "current_sha256": "00ed0db892b93b742142680253c952bdf12140e2b46b10f40fd314fcfb90aff7",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-contracts-final.json",
+      "destination": "packages/agent-native-git/evidence/stage1-contracts-final.json",
+      "imported_sha256": "9415c0ec02995b5a60e8389d8d9e44ae74dccd7179f7504a65e57bb5750387a7",
+      "current_sha256": "9415c0ec02995b5a60e8389d8d9e44ae74dccd7179f7504a65e57bb5750387a7",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-default-host.json",
+      "destination": "packages/agent-native-git/evidence/stage1-default-host.json",
+      "imported_sha256": "dbb8aba246113b9c949e1ebdefb8ac9ac6e475e9ed644240dbda1e1a8b5089e1",
+      "current_sha256": "dbb8aba246113b9c949e1ebdefb8ac9ac6e475e9ed644240dbda1e1a8b5089e1",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-lease-quota.json",
+      "destination": "packages/agent-native-git/evidence/stage1-lease-quota.json",
+      "imported_sha256": "41a1038037045b3e851b411ec14ce5c70ddea3a6f6cbafbb85e9aa39649a57b8",
+      "current_sha256": "41a1038037045b3e851b411ec14ce5c70ddea3a6f6cbafbb85e9aa39649a57b8",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-pack.json",
+      "destination": "packages/agent-native-git/evidence/stage1-pack.json",
+      "imported_sha256": "963085c89bc1884a345f75fc1a03e373ff5f83a29349ea64db13edd790f2499f",
+      "current_sha256": "963085c89bc1884a345f75fc1a03e373ff5f83a29349ea64db13edd790f2499f",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-review-resolution.json",
+      "destination": "packages/agent-native-git/evidence/stage1-review-resolution.json",
+      "imported_sha256": "3aa6643f7ae0f2756d8c3d7118bcf0f054de2812b51714bf47b6819ee6682446",
+      "current_sha256": "3aa6643f7ae0f2756d8c3d7118bcf0f054de2812b51714bf47b6819ee6682446",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-source-manifest.json",
+      "destination": "packages/agent-native-git/evidence/stage1-source-manifest.json",
+      "imported_sha256": "36e44db4a1e685bb2a10364520a9298e0d7cac86beaccbd3882582da117e9e16",
+      "current_sha256": "36e44db4a1e685bb2a10364520a9298e0d7cac86beaccbd3882582da117e9e16",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage1-verification.json",
+      "destination": "packages/agent-native-git/evidence/stage1-verification.json",
+      "imported_sha256": "83064a8cfd5bc4c9a4cc42ee0824d0509f7f19e3d400c03b30182100f86d5b3e",
+      "current_sha256": "83064a8cfd5bc4c9a4cc42ee0824d0509f7f19e3d400c03b30182100f86d5b3e",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-admission-cost.json",
+      "destination": "packages/agent-native-git/evidence/stage2-admission-cost.json",
+      "imported_sha256": "0e2312e57abfbcafb67c9afaec93c4942141ff0a7d0ea058363d4a7dee2895df",
+      "current_sha256": "0e2312e57abfbcafb67c9afaec93c4942141ff0a7d0ea058363d4a7dee2895df",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-capabilities.json",
+      "destination": "packages/agent-native-git/evidence/stage2-capabilities.json",
+      "imported_sha256": "017278041fa1163a17923933e7ebd30855534c0a0626cd87d740eb799dacc483",
+      "current_sha256": "017278041fa1163a17923933e7ebd30855534c0a0626cd87d740eb799dacc483",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-consumer-after.json",
+      "destination": "packages/agent-native-git/evidence/stage2-consumer-after.json",
+      "imported_sha256": "ef4efc032c58f17d0c0d4b64f466a03c04f76b1194c4d51b0c010547a10878bb",
+      "current_sha256": "ef4efc032c58f17d0c0d4b64f466a03c04f76b1194c4d51b0c010547a10878bb",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-consumer-before.json",
+      "destination": "packages/agent-native-git/evidence/stage2-consumer-before.json",
+      "imported_sha256": "0b6e69c14607f95cea48df372d94c486006aafbe123156304e7622a3ebcacfd6",
+      "current_sha256": "0b6e69c14607f95cea48df372d94c486006aafbe123156304e7622a3ebcacfd6",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-core-review-resolution.json",
+      "destination": "packages/agent-native-git/evidence/stage2-core-review-resolution.json",
+      "imported_sha256": "1fefcaa0faefb4440f7341ac05f7ef21bec567606f1131ad7ca727b93ad6b1ab",
+      "current_sha256": "1fefcaa0faefb4440f7341ac05f7ef21bec567606f1131ad7ca727b93ad6b1ab",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-default-read.json",
+      "destination": "packages/agent-native-git/evidence/stage2-default-read.json",
+      "imported_sha256": "b6c3521db44fee86535fa0899aa6b572b6dc2fec0dd9823dab999924f69c8a6f",
+      "current_sha256": "b6c3521db44fee86535fa0899aa6b572b6dc2fec0dd9823dab999924f69c8a6f",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-eof-recovery.json",
+      "destination": "packages/agent-native-git/evidence/stage2-eof-recovery.json",
+      "imported_sha256": "660ac20f3dc47f264ae5f83101a581e81e55e49d5f2946ba956677181bddfbe1",
+      "current_sha256": "660ac20f3dc47f264ae5f83101a581e81e55e49d5f2946ba956677181bddfbe1",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-final-consistency.json",
+      "destination": "packages/agent-native-git/evidence/stage2-final-consistency.json",
+      "imported_sha256": "75a5821ef280ccecd89f5550990a2e9fd3562ea6a64f2c917e30c701d61a2da4",
+      "current_sha256": "75a5821ef280ccecd89f5550990a2e9fd3562ea6a64f2c917e30c701d61a2da4",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-final-summary.json",
+      "destination": "packages/agent-native-git/evidence/stage2-final-summary.json",
+      "imported_sha256": "f9eef8dce371965ecfa94c9ca914a29f6274c7d519f144a0535420f67341a6dd",
+      "current_sha256": "f9eef8dce371965ecfa94c9ca914a29f6274c7d519f144a0535420f67341a6dd",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-full-initial.json",
+      "destination": "packages/agent-native-git/evidence/stage2-full-initial.json",
+      "imported_sha256": "e1f3192750420fd68f3c2a77fef472771657578027150f3604f3c6dbb9544fb4",
+      "current_sha256": "e1f3192750420fd68f3c2a77fef472771657578027150f3604f3c6dbb9544fb4",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-git-deadline-after.json",
+      "destination": "packages/agent-native-git/evidence/stage2-git-deadline-after.json",
+      "imported_sha256": "40c2a661bf0654b7f302754259fbef7975c86d1eba528323b666a299c7ddaede",
+      "current_sha256": "40c2a661bf0654b7f302754259fbef7975c86d1eba528323b666a299c7ddaede",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-git-deadline-before.json",
+      "destination": "packages/agent-native-git/evidence/stage2-git-deadline-before.json",
+      "imported_sha256": "df1cba5d9984dc3e20bc23dbe48ab56f7a7f40821e500109d211191899465c54",
+      "current_sha256": "df1cba5d9984dc3e20bc23dbe48ab56f7a7f40821e500109d211191899465c54",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-git-deadline-runners.json",
+      "destination": "packages/agent-native-git/evidence/stage2-git-deadline-runners.json",
+      "imported_sha256": "1772409da588783caad7924effaba807d0e034d1472a8ff9fc097828b2c07400",
+      "current_sha256": "1772409da588783caad7924effaba807d0e034d1472a8ff9fc097828b2c07400",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-heartbeat-progress-before.json",
+      "destination": "packages/agent-native-git/evidence/stage2-heartbeat-progress-before.json",
+      "imported_sha256": "ad161cddfe4780c0dd4522e87a92da4ab48c6702aa8277448669d8883ff2848b",
+      "current_sha256": "ad161cddfe4780c0dd4522e87a92da4ab48c6702aa8277448669d8883ff2848b",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-hub-ignore-checks.json",
+      "destination": "packages/agent-native-git/evidence/stage2-hub-ignore-checks.json",
+      "imported_sha256": "f730803e69eb117b1a84f79faeabe1d9eaacd5a90560d2ff6da7a283261288c7",
+      "current_sha256": "f730803e69eb117b1a84f79faeabe1d9eaacd5a90560d2ff6da7a283261288c7",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-initial-failures.json",
+      "destination": "packages/agent-native-git/evidence/stage2-initial-failures.json",
+      "imported_sha256": "b9acc331e734aef522c61a7ef37ac73edec659603f35de47a7fec83bb008a084",
+      "current_sha256": "b9acc331e734aef522c61a7ef37ac73edec659603f35de47a7fec83bb008a084",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-lifecycle-progress.json",
+      "destination": "packages/agent-native-git/evidence/stage2-lifecycle-progress.json",
+      "imported_sha256": "cb6081c49bca5718869f26f26670399070c0e9b26eb33f10369d63a65c056782",
+      "current_sha256": "cb6081c49bca5718869f26f26670399070c0e9b26eb33f10369d63a65c056782",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-lightweight-observer-failure.json",
+      "destination": "packages/agent-native-git/evidence/stage2-lightweight-observer-failure.json",
+      "imported_sha256": "d406c1022f602e01bea30e2f39eab5b4e9859568157dc0b2f0677b55b65fb263",
+      "current_sha256": "d406c1022f602e01bea30e2f39eab5b4e9859568157dc0b2f0677b55b65fb263",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-long-lease.json",
+      "destination": "packages/agent-native-git/evidence/stage2-long-lease.json",
+      "imported_sha256": "dacbb52b70db0bc086eb0b663e03617c774986e49241ad8d2fbe8f1ab1c9717e",
+      "current_sha256": "dacbb52b70db0bc086eb0b663e03617c774986e49241ad8d2fbe8f1ab1c9717e",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-native-review.json",
+      "destination": "packages/agent-native-git/evidence/stage2-native-review.json",
+      "imported_sha256": "ff043320c1d598bbc5a0ef4fc1aa1b27dd92824459cf21693b22fe2d2c334b61",
+      "current_sha256": "ff043320c1d598bbc5a0ef4fc1aa1b27dd92824459cf21693b22fe2d2c334b61",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-observer-cost.json",
+      "destination": "packages/agent-native-git/evidence/stage2-observer-cost.json",
+      "imported_sha256": "0d0abfe237e1952f64429d418b9ddfa4c717f277b2879ca49d94e86a85c01362",
+      "current_sha256": "0d0abfe237e1952f64429d418b9ddfa4c717f277b2879ca49d94e86a85c01362",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-pack-interrupted.json",
+      "destination": "packages/agent-native-git/evidence/stage2-pack-interrupted.json",
+      "imported_sha256": "7afe9548d4abfbc3e30aa19d1406b6b66723a548a4426e8fd920aff581e798b1",
+      "current_sha256": "7afe9548d4abfbc3e30aa19d1406b6b66723a548a4426e8fd920aff581e798b1",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-pack.json",
+      "destination": "packages/agent-native-git/evidence/stage2-pack.json",
+      "imported_sha256": "d0d128727d39d41d75428b223b453148fd2485a441a1e2f58d2df629f8716dc0",
+      "current_sha256": "d0d128727d39d41d75428b223b453148fd2485a441a1e2f58d2df629f8716dc0",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-parallel-slot-regressions.json",
+      "destination": "packages/agent-native-git/evidence/stage2-parallel-slot-regressions.json",
+      "imported_sha256": "84e1edb64bb87fbeda37a42d53548178117731c5ab91cddcf482cb86e608a74e",
+      "current_sha256": "84e1edb64bb87fbeda37a42d53548178117731c5ab91cddcf482cb86e608a74e",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-post-deadline-lifecycle-failure.json",
+      "destination": "packages/agent-native-git/evidence/stage2-post-deadline-lifecycle-failure.json",
+      "imported_sha256": "4f03f9b0f3b9114554d7db34d048cd00f71a6e44937a519ee39b6fdb07acc281",
+      "current_sha256": "4f03f9b0f3b9114554d7db34d048cd00f71a6e44937a519ee39b6fdb07acc281",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-progress-runners.json",
+      "destination": "packages/agent-native-git/evidence/stage2-progress-runners.json",
+      "imported_sha256": "11c6a7a0fa6022343cec5be76463f89d2420bdb3ca362cdb24465aee3a450a5c",
+      "current_sha256": "11c6a7a0fa6022343cec5be76463f89d2420bdb3ca362cdb24465aee3a450a5c",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-resume-heartbeat-regression.json",
+      "destination": "packages/agent-native-git/evidence/stage2-resume-heartbeat-regression.json",
+      "imported_sha256": "1eb5ee175dab59b47637d6ee04e1ea3abfd436e2a304182ba0d45711d6f94658",
+      "current_sha256": "1eb5ee175dab59b47637d6ee04e1ea3abfd436e2a304182ba0d45711d6f94658",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-runtime-boundary.json",
+      "destination": "packages/agent-native-git/evidence/stage2-runtime-boundary.json",
+      "imported_sha256": "c48e76851a5c2eee642492d7836504b30cdcecb455d05e1ea710c5c09b3cc95b",
+      "current_sha256": "c48e76851a5c2eee642492d7836504b30cdcecb455d05e1ea710c5c09b3cc95b",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-source-manifest.json",
+      "destination": "packages/agent-native-git/evidence/stage2-source-manifest.json",
+      "imported_sha256": "9dbe09d622a6541969e7aff5a312d22ebf9ecd25d3e418f75518e3ab18fa948b",
+      "current_sha256": "9dbe09d622a6541969e7aff5a312d22ebf9ecd25d3e418f75518e3ab18fa948b",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-start-capture-regression.json",
+      "destination": "packages/agent-native-git/evidence/stage2-start-capture-regression.json",
+      "imported_sha256": "d7b6f5df0cffc16480332759c95e544433504f367ae8615c8bcc82e845359b1c",
+      "current_sha256": "d7b6f5df0cffc16480332759c95e544433504f367ae8615c8bcc82e845359b1c",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-targeted-observations.json",
+      "destination": "packages/agent-native-git/evidence/stage2-targeted-observations.json",
+      "imported_sha256": "783607846cc668224daf6b496103b889e2933b24fab6c6789224fcb87118d4cd",
+      "current_sha256": "783607846cc668224daf6b496103b889e2933b24fab6c6789224fcb87118d4cd",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-verification-five-hour-failure.json",
+      "destination": "packages/agent-native-git/evidence/stage2-verification-five-hour-failure.json",
+      "imported_sha256": "3a624bbc797ec61f2663001b6155dc1d14064db823060e60d153a90bbd7ec700",
+      "current_sha256": "3a624bbc797ec61f2663001b6155dc1d14064db823060e60d153a90bbd7ec700",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-verification-runner.json",
+      "destination": "packages/agent-native-git/evidence/stage2-verification-runner.json",
+      "imported_sha256": "bcea57060ecc1ee690bc069685b93dae23a21347795746a8bf987ba0c15f1085",
+      "current_sha256": "bcea57060ecc1ee690bc069685b93dae23a21347795746a8bf987ba0c15f1085",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-verification-second-failure.json",
+      "destination": "packages/agent-native-git/evidence/stage2-verification-second-failure.json",
+      "imported_sha256": "f3bae0e9de32e8a1181fedbd1d61bd1d02ac68496a8f3eb8d33fa9fca899b966",
+      "current_sha256": "f3bae0e9de32e8a1181fedbd1d61bd1d02ac68496a8f3eb8d33fa9fca899b966",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-verification.json",
+      "destination": "packages/agent-native-git/evidence/stage2-verification.json",
+      "imported_sha256": "7d8d35d8367f65250a86519c1b8232ac8389e47b6a076c76351a6b0b6184ca65",
+      "current_sha256": "7d8d35d8367f65250a86519c1b8232ac8389e47b6a076c76351a6b0b6184ca65",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage2-working-consistency.json",
+      "destination": "packages/agent-native-git/evidence/stage2-working-consistency.json",
+      "imported_sha256": "c7a659162ec05b15d38c39c42f022497fe1090b344596841784a5866304c8bae",
+      "current_sha256": "c7a659162ec05b15d38c39c42f022497fe1090b344596841784a5866304c8bae",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage3-capabilities.json",
+      "destination": "packages/agent-native-git/evidence/stage3-capabilities.json",
+      "imported_sha256": "da859de601d03ca4f4b80a77155c98f206447dcb78eab03f60985d0c82633132",
+      "current_sha256": "da859de601d03ca4f4b80a77155c98f206447dcb78eab03f60985d0c82633132",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage3-final-consistency.json",
+      "destination": "packages/agent-native-git/evidence/stage3-final-consistency.json",
+      "imported_sha256": "f72a925a2d0fcc1af41aaafe8a7c5842ec52bdb8e50895f594142dd12ba70262",
+      "current_sha256": "f72a925a2d0fcc1af41aaafe8a7c5842ec52bdb8e50895f594142dd12ba70262",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage3-impact.json",
+      "destination": "packages/agent-native-git/evidence/stage3-impact.json",
+      "imported_sha256": "bd91523aaf46903026f08ecd0e4c76bc71a7ab7ffc82084522c5d08352d35321",
+      "current_sha256": "bd91523aaf46903026f08ecd0e4c76bc71a7ab7ffc82084522c5d08352d35321",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage3-worker-preflight-negative.json",
+      "destination": "packages/agent-native-git/evidence/stage3-worker-preflight-negative.json",
+      "imported_sha256": "177b3f840eb4032007b0846711a4812511b1abb893651493db62053e25d6b36d",
+      "current_sha256": "177b3f840eb4032007b0846711a4812511b1abb893651493db62053e25d6b36d",
+      "reason": null
+    },
+    {
+      "source": "evidence/stage3-worker-preflight.json",
+      "destination": "packages/agent-native-git/evidence/stage3-worker-preflight.json",
+      "imported_sha256": "020cf4e7af573989aeaba438f83ff0243c631480b524c97c54a2601657e2e5f7",
+      "current_sha256": "020cf4e7af573989aeaba438f83ff0243c631480b524c97c54a2601657e2e5f7",
+      "reason": null
+    },
+    {
+      "source": "evidence/windows-cleanup-race.json",
+      "destination": "packages/agent-native-git/evidence/windows-cleanup-race.json",
+      "imported_sha256": "67e6a8569a80a63ed44213ed1be57172efe21e174a012fd9cff6449512a08f53",
+      "current_sha256": "67e6a8569a80a63ed44213ed1be57172efe21e174a012fd9cff6449512a08f53",
+      "reason": null
+    },
+    {
+      "source": "evidence/windows-compiler-failure.json",
+      "destination": "packages/agent-native-git/evidence/windows-compiler-failure.json",
+      "imported_sha256": "b190af92ef561bc8c75f5951c434ba06c4ac93399733b1f5a659d308ca48abdc",
+      "current_sha256": "b190af92ef561bc8c75f5951c434ba06c4ac93399733b1f5a659d308ca48abdc",
+      "reason": null
+    },
+    {
+      "source": "evidence/windows-invocation-failure.json",
+      "destination": "packages/agent-native-git/evidence/windows-invocation-failure.json",
+      "imported_sha256": "83052b57ebde35ba44b6782e3ff8035c633808f8167add9ed03f20ede7365b73",
+      "current_sha256": "83052b57ebde35ba44b6782e3ff8035c633808f8167add9ed03f20ede7365b73",
+      "reason": null
+    },
+    {
+      "source": "evidence/windows-primitives.json",
+      "destination": "packages/agent-native-git/evidence/windows-primitives.json",
+      "imported_sha256": "8e3295e116cd13d08c430cd3110f7cd92cf408ca57ef5528be7524c3edfc6f4f",
+      "current_sha256": "8e3295e116cd13d08c430cd3110f7cd92cf408ca57ef5528be7524c3edfc6f4f",
+      "reason": null
+    },
+    {
+      "source": "examples/README.md",
+      "destination": "packages/agent-native-git/examples/README.md",
+      "imported_sha256": "d8f8b7ec2283e2b96c7dc089989955c23083fab3a411cb57cac48b1e412ab613",
+      "current_sha256": "d8f8b7ec2283e2b96c7dc089989955c23083fab3a411cb57cac48b1e412ab613",
+      "reason": null
+    },
+    {
+      "source": "examples/attempt.json",
+      "destination": "packages/agent-native-git/examples/attempt.json",
+      "imported_sha256": "164cf020ba2025be72777501369f45e4b5617852189e989af2af9e6eb421ef63",
+      "current_sha256": "164cf020ba2025be72777501369f45e4b5617852189e989af2af9e6eb421ef63",
+      "reason": null
+    },
+    {
+      "source": "examples/authority.json",
+      "destination": "packages/agent-native-git/examples/authority.json",
+      "imported_sha256": "76c109036a31cb24b94e855a9d6cc06e76240806c06eb1928dee63d3732e8bf6",
+      "current_sha256": "76c109036a31cb24b94e855a9d6cc06e76240806c06eb1928dee63d3732e8bf6",
+      "reason": null
+    },
+    {
+      "source": "examples/backup-manifest.json",
+      "destination": "packages/agent-native-git/examples/backup-manifest.json",
+      "imported_sha256": "80f6b8bfa31c34e86d5662f164fe1beeeb9e44d212fb918536cfd0f172a02f12",
+      "current_sha256": "80f6b8bfa31c34e86d5662f164fe1beeeb9e44d212fb918536cfd0f172a02f12",
+      "reason": null
+    },
+    {
+      "source": "examples/baseline-snapshot.json",
+      "destination": "packages/agent-native-git/examples/baseline-snapshot.json",
+      "imported_sha256": "ef695b72d304a92dbe21fa80be44c66907554c441fc674e65edf8935729b6caf",
+      "current_sha256": "ef695b72d304a92dbe21fa80be44c66907554c441fc674e65edf8935729b6caf",
+      "reason": null
+    },
+    {
+      "source": "examples/broker-admission.json",
+      "destination": "packages/agent-native-git/examples/broker-admission.json",
+      "imported_sha256": "61b43bc98048ed6ad760cfdd1a3058cb4714d97fc17bec77200f18fe85dfbca0",
+      "current_sha256": "61b43bc98048ed6ad760cfdd1a3058cb4714d97fc17bec77200f18fe85dfbca0",
+      "reason": null
+    },
+    {
+      "source": "examples/event-cursor.json",
+      "destination": "packages/agent-native-git/examples/event-cursor.json",
+      "imported_sha256": "51baca57d072f715c225bc29a9322ddb96b0a3f2c3037790066c3d0b4e1484d1",
+      "current_sha256": "51baca57d072f715c225bc29a9322ddb96b0a3f2c3037790066c3d0b4e1484d1",
+      "reason": null
+    },
+    {
+      "source": "examples/event.json",
+      "destination": "packages/agent-native-git/examples/event.json",
+      "imported_sha256": "9a03c273a4638724c7492e1e2e68d5dd6ab192574fa396265975f8f7f87a8e21",
+      "current_sha256": "9a03c273a4638724c7492e1e2e68d5dd6ab192574fa396265975f8f7f87a8e21",
+      "reason": null
+    },
+    {
+      "source": "examples/evidence.json",
+      "destination": "packages/agent-native-git/examples/evidence.json",
+      "imported_sha256": "fc9af0f9ba42a0f14eac7cdcc606feda526e70b51a9a4ed2ff2c06f05484a543",
+      "current_sha256": "fc9af0f9ba42a0f14eac7cdcc606feda526e70b51a9a4ed2ff2c06f05484a543",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/abbreviated-oid.json",
+      "destination": "packages/agent-native-git/examples/invalid/abbreviated-oid.json",
+      "imported_sha256": "cd1b8469fab52c82ae0345cd050a7ad41dce98210a3a18d8da76c028daa24730",
+      "current_sha256": "cd1b8469fab52c82ae0345cd050a7ad41dce98210a3a18d8da76c028daa24730",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/attempt-needs_review.json",
+      "destination": "packages/agent-native-git/examples/invalid/attempt-needs_review.json",
+      "imported_sha256": "3a66a86760cd85a281913e625d2cb61cd9f1104af5b9f81bcb9d25a048a7f42e",
+      "current_sha256": "3a66a86760cd85a281913e625d2cb61cd9f1104af5b9f81bcb9d25a048a7f42e",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/attempt-succeeded.json",
+      "destination": "packages/agent-native-git/examples/invalid/attempt-succeeded.json",
+      "imported_sha256": "21cbf07a8669984bba0169224fbab8fca0d9b561245f1ca0956e58b2b431ac91",
+      "current_sha256": "21cbf07a8669984bba0169224fbab8fca0d9b561245f1ca0956e58b2b431ac91",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/completed-task-create.json",
+      "destination": "packages/agent-native-git/examples/invalid/completed-task-create.json",
+      "imported_sha256": "e75b4b5ee8774c46078e3ca5d86dd87334a76c82d9650bd9a2a9803ac75f49b2",
+      "current_sha256": "e75b4b5ee8774c46078e3ca5d86dd87334a76c82d9650bd9a2a9803ac75f49b2",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/contradictory-integrate-plan.json",
+      "destination": "packages/agent-native-git/examples/invalid/contradictory-integrate-plan.json",
+      "imported_sha256": "98ec719962b6dcc7cf895c24910d079d0b577f61e2903f7af200a1676808e722",
+      "current_sha256": "98ec719962b6dcc7cf895c24910d079d0b577f61e2903f7af200a1676808e722",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/contradictory-snapshot-restore.json",
+      "destination": "packages/agent-native-git/examples/invalid/contradictory-snapshot-restore.json",
+      "imported_sha256": "5a18f79d02664202b6915f6c0687c23d30364426ab9a37a199376f684951c63d",
+      "current_sha256": "5a18f79d02664202b6915f6c0687c23d30364426ab9a37a199376f684951c63d",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/contradictory-status.json",
+      "destination": "packages/agent-native-git/examples/invalid/contradictory-status.json",
+      "imported_sha256": "02afdb91865edd1fbc3628aecff8184f0f672b1998b49dfc5b3b46d7ec868be7",
+      "current_sha256": "02afdb91865edd1fbc3628aecff8184f0f672b1998b49dfc5b3b46d7ec868be7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/empty-required-tests.json",
+      "destination": "packages/agent-native-git/examples/invalid/empty-required-tests.json",
+      "imported_sha256": "412023e9c07a6df9ecc798c0f0dc1acce2899df334915b9bc7a153389e3b616b",
+      "current_sha256": "412023e9c07a6df9ecc798c0f0dc1acce2899df334915b9bc7a153389e3b616b",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/false-success-envelope.json",
+      "destination": "packages/agent-native-git/examples/invalid/false-success-envelope.json",
+      "imported_sha256": "d79610f0455538ce4ae23b2ad3613e21949f1dbc0d5438e976b173e183682811",
+      "current_sha256": "d79610f0455538ce4ae23b2ad3613e21949f1dbc0d5438e976b173e183682811",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-extra-payload.json",
+      "imported_sha256": "5617079d7fc18d2f269a1ea0d0346a7339a5745ab082becbf688bacaac7822a7",
+      "current_sha256": "5617079d7fc18d2f269a1ea0d0346a7339a5745ab082becbf688bacaac7822a7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-approvalReference.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-approvalReference.json",
+      "imported_sha256": "21e8c0fd1cdc63b8dd7660f2d673445f4a38cf87f7206be3343e0cd58c2a63ad",
+      "current_sha256": "21e8c0fd1cdc63b8dd7660f2d673445f4a38cf87f7206be3343e0cd58c2a63ad",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-contentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-contentEpoch.json",
+      "imported_sha256": "b0a25b41a37cbd960d838bb9f72668354749eed825c617b2c84be51a78133af0",
+      "current_sha256": "b0a25b41a37cbd960d838bb9f72668354749eed825c617b2c84be51a78133af0",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-eventWatermark.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-eventWatermark.json",
+      "imported_sha256": "6c41cc4c6f3cab180b8a228c56eff74645a02908c2d3c9bfcc585799a3b08af5",
+      "current_sha256": "6c41cc4c6f3cab180b8a228c56eff74645a02908c2d3c9bfcc585799a3b08af5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-excludedWork.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-excludedWork.json",
+      "imported_sha256": "eb36829e29d85b9b19eeb4e2dbd1d16f28d07f5b36949f3e9e7533fd17a95bc2",
+      "current_sha256": "eb36829e29d85b9b19eeb4e2dbd1d16f28d07f5b36949f3e9e7533fd17a95bc2",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-integrationOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-integrationOid.json",
+      "imported_sha256": "36eab87e7a85a586590442116686f2e6628bfd425e8ef8a072b207253f5038db",
+      "current_sha256": "36eab87e7a85a586590442116686f2e6628bfd425e8ef8a072b207253f5038db",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-lastFinalizedOperationId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-lastFinalizedOperationId.json",
+      "imported_sha256": "08c2eb62fc2c9dbcae21d00133547a3e1620a9422ee88b1c31acbbc9cfbfa6a0",
+      "current_sha256": "08c2eb62fc2c9dbcae21d00133547a3e1620a9422ee88b1c31acbbc9cfbfa6a0",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-manifestSchemaHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-manifestSchemaHash.json",
+      "imported_sha256": "618f8786b4361043890590846701304db02553e756fcf98acc43fc99d9485ae4",
+      "current_sha256": "618f8786b4361043890590846701304db02553e756fcf98acc43fc99d9485ae4",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-quiescentBarrierId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-quiescentBarrierId.json",
+      "imported_sha256": "ce00bd258f8fcd13a8a88fc7135d1af198922c850a23f0d78a7a27f31f73ef3c",
+      "current_sha256": "ce00bd258f8fcd13a8a88fc7135d1af198922c850a23f0d78a7a27f31f73ef3c",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-requiredMembers.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-requiredMembers.json",
+      "imported_sha256": "b0e8523fab589ca3d06dd4be0c7160bcfc16904c8b75f913332b13e773014ff5",
+      "current_sha256": "b0e8523fab589ca3d06dd4be0c7160bcfc16904c8b75f913332b13e773014ff5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-targetOwnershipId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-targetOwnershipId.json",
+      "imported_sha256": "b1037b4115eaca30d7b8f161a4cce488e9abfe3298f67b3adcdfd47e4daa9172",
+      "current_sha256": "b1037b4115eaca30d7b8f161a4cce488e9abfe3298f67b3adcdfd47e4daa9172",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-missing-targetPath.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-missing-targetPath.json",
+      "imported_sha256": "ea3fdcb76fba1eb47ab64ad73fd32eddb8dbd51f8e9409ae783a8b4395ce804a",
+      "current_sha256": "ea3fdcb76fba1eb47ab64ad73fd32eddb8dbd51f8e9409ae783a8b4395ce804a",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/backup-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/backup-wrong-lifecycle.json",
+      "imported_sha256": "ac0a60de9f2fa456075ad1033dca9f30b0b25f14f87e77b61ed3c964be48e248",
+      "current_sha256": "ac0a60de9f2fa456075ad1033dca9f30b0b25f14f87e77b61ed3c964be48e248",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-extra-payload.json",
+      "imported_sha256": "0f38ef62544ffcc90c3b5174105f387e793ca1202b6fc40c73f73f6694a75590",
+      "current_sha256": "0f38ef62544ffcc90c3b5174105f387e793ca1202b6fc40c73f73f6694a75590",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-approvedBaseOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-approvedBaseOid.json",
+      "imported_sha256": "3db286809060b188c0cb7570e37d18ef3f39de6f182c809c1ca905264780e7da",
+      "current_sha256": "3db286809060b188c0cb7570e37d18ef3f39de6f182c809c1ca905264780e7da",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-approvedBaseTreeOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-approvedBaseTreeOid.json",
+      "imported_sha256": "494ded929e317e2a68a153984f6c887ff32d2e8e231ec7919494456c0ca1905b",
+      "current_sha256": "494ded929e317e2a68a153984f6c887ff32d2e8e231ec7919494456c0ca1905b",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-baselineExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-baselineExpectedAbsent.json",
+      "imported_sha256": "8f1b54c503117200834f6d6d44e5240a097bc788c4ee6465cb397404db86d612",
+      "current_sha256": "8f1b54c503117200834f6d6d44e5240a097bc788c4ee6465cb397404db86d612",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-baselineRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-baselineRef.json",
+      "imported_sha256": "74a7179ea0f7463f0058ecc534976e2bcc5b39a2a4cc9a8f600f1cf00ca246c6",
+      "current_sha256": "74a7179ea0f7463f0058ecc534976e2bcc5b39a2a4cc9a8f600f1cf00ca246c6",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-canonicalCommonDir.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-canonicalCommonDir.json",
+      "imported_sha256": "e02993968f844a568ba296f964af86695a25d1ee8c4dc809b135e311180a956b",
+      "current_sha256": "e02993968f844a568ba296f964af86695a25d1ee8c4dc809b135e311180a956b",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-canonicalRepositoryPath.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-canonicalRepositoryPath.json",
+      "imported_sha256": "7d11a2de9a44d15da55b682f62db10a3a2d08a47d822d1bc13a07929c027f806",
+      "current_sha256": "7d11a2de9a44d15da55b682f62db10a3a2d08a47d822d1bc13a07929c027f806",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-integrationExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-integrationExpectedAbsent.json",
+      "imported_sha256": "0b42cd38d59d3501bc8b747bbec2c0c625fb4ebb0f272f02729dc02ab80787a5",
+      "current_sha256": "0b42cd38d59d3501bc8b747bbec2c0c625fb4ebb0f272f02729dc02ab80787a5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-integrationRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-integrationRef.json",
+      "imported_sha256": "4ff61c17dc2fbf5f6d38faebb9f8c8c0b67bc20c468ed185211c10570e4d52da",
+      "current_sha256": "4ff61c17dc2fbf5f6d38faebb9f8c8c0b67bc20c468ed185211c10570e4d52da",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-objectFormat.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-objectFormat.json",
+      "imported_sha256": "38ff97a24e23010aaee896c61cb2439d8f95f6a4b9ca08883e1f70e374a42748",
+      "current_sha256": "38ff97a24e23010aaee896c61cb2439d8f95f6a4b9ca08883e1f70e374a42748",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-policyHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-policyHash.json",
+      "imported_sha256": "0d271684b2e75f967ac2b5b1e810ef32f2cd24a44e44a51eefaab03c51d9846f",
+      "current_sha256": "0d271684b2e75f967ac2b5b1e810ef32f2cd24a44e44a51eefaab03c51d9846f",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-profilesHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-profilesHash.json",
+      "imported_sha256": "ef4ffc5a5ffe3ee4791a9cc6d07fbb8ce10aa89bf6360f68be0341f801899834",
+      "current_sha256": "ef4ffc5a5ffe3ee4791a9cc6d07fbb8ce10aa89bf6360f68be0341f801899834",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-registrationId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-registrationId.json",
+      "imported_sha256": "c028f75ce376393376f760e90e90c4cba26aed8189471f707cf33e7ab548be93",
+      "current_sha256": "c028f75ce376393376f760e90e90c4cba26aed8189471f707cf33e7ab548be93",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-repositoryIdentity.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-repositoryIdentity.json",
+      "imported_sha256": "4fddc5938935961bb3e0d4718ead6234a810b1e50bac24029fb6a01b4149beee",
+      "current_sha256": "4fddc5938935961bb3e0d4718ead6234a810b1e50bac24029fb6a01b4149beee",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-missing-stateSchemaHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-missing-stateSchemaHash.json",
+      "imported_sha256": "b1ae0fd8bba4ec5df369140c8ba1e46e14b9097458a8f70606b412b79e358347",
+      "current_sha256": "b1ae0fd8bba4ec5df369140c8ba1e46e14b9097458a8f70606b412b79e358347",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/init-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/init-wrong-lifecycle.json",
+      "imported_sha256": "b392a83f34504257f8218d5d298f7b800d2d4feaa78051c12ee5bb95297512a1",
+      "current_sha256": "b392a83f34504257f8218d5d298f7b800d2d4feaa78051c12ee5bb95297512a1",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-extra-payload.json",
+      "imported_sha256": "033964a47fce3271bb01d40c804e381acf280a2c8a23fe6253ed6e09cf8eb575",
+      "current_sha256": "033964a47fce3271bb01d40c804e381acf280a2c8a23fe6253ed6e09cf8eb575",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-candidateOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-candidateOid.json",
+      "imported_sha256": "82824cea661fc13bfb94ed9ea1860330e5fc14d896957b62010ce37587e726fb",
+      "current_sha256": "82824cea661fc13bfb94ed9ea1860330e5fc14d896957b62010ce37587e726fb",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-candidateRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-candidateRef.json",
+      "imported_sha256": "fbf6da690b42658547bc1971ed9e9e48c7b2dad34b79e613cc7572e146f84127",
+      "current_sha256": "fbf6da690b42658547bc1971ed9e9e48c7b2dad34b79e613cc7572e146f84127",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-candidateTreeOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-candidateTreeOid.json",
+      "imported_sha256": "e33c2a398528ff2da033acf74ff34039593f8801c2db53480c55e3c5c93ccd91",
+      "current_sha256": "e33c2a398528ff2da033acf74ff34039593f8801c2db53480c55e3c5c93ccd91",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-environmentHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-environmentHash.json",
+      "imported_sha256": "3b0221460b9c7dabe21164722c52ae39fcb3ff0312e6306a69ded807530a5193",
+      "current_sha256": "3b0221460b9c7dabe21164722c52ae39fcb3ff0312e6306a69ded807530a5193",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-expectedContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-expectedContentEpoch.json",
+      "imported_sha256": "40ffe76598b4f12356d05371beab9763416dfecb220e252242f25cb70379bce7",
+      "current_sha256": "40ffe76598b4f12356d05371beab9763416dfecb220e252242f25cb70379bce7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-expectedIntegrationOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-expectedIntegrationOid.json",
+      "imported_sha256": "11f8fdc1e8b33d5b74ad3ff1e158b4dedf1bb6d13658b1d076680b7af94276fe",
+      "current_sha256": "11f8fdc1e8b33d5b74ad3ff1e158b4dedf1bb6d13658b1d076680b7af94276fe",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-integrationRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-integrationRef.json",
+      "imported_sha256": "875e74136cd126c4e0f0f743022cdc296f09c573bb6b66520d8c2ea2d249654f",
+      "current_sha256": "875e74136cd126c4e0f0f743022cdc296f09c573bb6b66520d8c2ea2d249654f",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-nextContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-nextContentEpoch.json",
+      "imported_sha256": "bd5012c002787394f1a9776bf91034515ec621dd9536c978c6ae92f7ac2b2825",
+      "current_sha256": "bd5012c002787394f1a9776bf91034515ec621dd9536c978c6ae92f7ac2b2825",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-planHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-planHash.json",
+      "imported_sha256": "99668e1027cbd04f6c8c9beac0814441190191db8df6c483eedb5e4e103d0ebc",
+      "current_sha256": "99668e1027cbd04f6c8c9beac0814441190191db8df6c483eedb5e4e103d0ebc",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-planId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-planId.json",
+      "imported_sha256": "15ca833f86df6e8d786c4ca2ae830622ef965e568fb2fea5aff630df9ae34c2a",
+      "current_sha256": "15ca833f86df6e8d786c4ca2ae830622ef965e568fb2fea5aff630df9ae34c2a",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-policyHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-policyHash.json",
+      "imported_sha256": "b074e7d61f0481b49f4607b3892f97fdfe156af697983fedbf031caa24d43298",
+      "current_sha256": "b074e7d61f0481b49f4607b3892f97fdfe156af697983fedbf031caa24d43298",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-profilesHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-profilesHash.json",
+      "imported_sha256": "463af47368e6e882422b696fac2ac12c911448b02129ef36fb45aee9faa10330",
+      "current_sha256": "463af47368e6e882422b696fac2ac12c911448b02129ef36fb45aee9faa10330",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-requiredChecks.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-requiredChecks.json",
+      "imported_sha256": "b378b9d23ccd28b9dea0082fa39c308e9c831e14772cc935510b536f0dba8ea5",
+      "current_sha256": "b378b9d23ccd28b9dea0082fa39c308e9c831e14772cc935510b536f0dba8ea5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-snapshotExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-snapshotExpectedAbsent.json",
+      "imported_sha256": "7381dca8406a8bb75313efb548c3e0784e8a5be84e8c9adae25ae519a03591f6",
+      "current_sha256": "7381dca8406a8bb75313efb548c3e0784e8a5be84e8c9adae25ae519a03591f6",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-snapshotRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-snapshotRef.json",
+      "imported_sha256": "22e652add16353b09b414072ca4ac97da5206340c5770198849854d2c6908dff",
+      "current_sha256": "22e652add16353b09b414072ca4ac97da5206340c5770198849854d2c6908dff",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-sources.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-sources.json",
+      "imported_sha256": "4d49abfd7b1c9736cf80a1f00fc7e8f2f144ccef5ec755f79929c1b1d75d18ad",
+      "current_sha256": "4d49abfd7b1c9736cf80a1f00fc7e8f2f144ccef5ec755f79929c1b1d75d18ad",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-missing-taskMembership.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-missing-taskMembership.json",
+      "imported_sha256": "044c8c045a8a0f76df50d831da1b29b29d2ba4e7e9b0ca2f73eb1853cb6eacf5",
+      "current_sha256": "044c8c045a8a0f76df50d831da1b29b29d2ba4e7e9b0ca2f73eb1853cb6eacf5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/merge-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/merge-wrong-lifecycle.json",
+      "imported_sha256": "3b336373ae202c60346f5606b51de2902c4f0d20422661f7027b1045c66954cd",
+      "current_sha256": "3b336373ae202c60346f5606b51de2902c4f0d20422661f7027b1045c66954cd",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-extra-payload.json",
+      "imported_sha256": "6a5ff020ffc052f10f17437fbe451a5af4c22572c8c73e99e8354aa6a05e1d5d",
+      "current_sha256": "6a5ff020ffc052f10f17437fbe451a5af4c22572c8c73e99e8354aa6a05e1d5d",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-candidateOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-candidateOid.json",
+      "imported_sha256": "560bf2218aeca68cbd51e3bd809e024a3b3bd796044cf2c6e25036fcf7ceaacc",
+      "current_sha256": "560bf2218aeca68cbd51e3bd809e024a3b3bd796044cf2c6e25036fcf7ceaacc",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-candidateRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-candidateRef.json",
+      "imported_sha256": "ba6e6617fb509de53e8e24ae08364050c6a67b5843c7f72fef2617229a196adf",
+      "current_sha256": "ba6e6617fb509de53e8e24ae08364050c6a67b5843c7f72fef2617229a196adf",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-candidateTreeOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-candidateTreeOid.json",
+      "imported_sha256": "b401bbeb0b773d68275990859c17e597b515f0b0ccb64e0fb05211c4983742de",
+      "current_sha256": "b401bbeb0b773d68275990859c17e597b515f0b0ccb64e0fb05211c4983742de",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-environmentHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-environmentHash.json",
+      "imported_sha256": "43754a548322f4864512efe221ec5a284afcfb96074e205ec90a1c8e0270984e",
+      "current_sha256": "43754a548322f4864512efe221ec5a284afcfb96074e205ec90a1c8e0270984e",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-expectedContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-expectedContentEpoch.json",
+      "imported_sha256": "494717f631d55ac228c4cb2169024f9ec611c09ef0e4c3f3110d43e1b8f6b8f8",
+      "current_sha256": "494717f631d55ac228c4cb2169024f9ec611c09ef0e4c3f3110d43e1b8f6b8f8",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-expectedIntegrationOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-expectedIntegrationOid.json",
+      "imported_sha256": "15f2bf129fb7327d9b09b1491bf179db5f9f3139d5d2de60a1af32a6dc6ecddc",
+      "current_sha256": "15f2bf129fb7327d9b09b1491bf179db5f9f3139d5d2de60a1af32a6dc6ecddc",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-integrationRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-integrationRef.json",
+      "imported_sha256": "285dfe6d65745cf82fc792befcd155034961c953b9e238a73dbe9379f085e87c",
+      "current_sha256": "285dfe6d65745cf82fc792befcd155034961c953b9e238a73dbe9379f085e87c",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-nextContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-nextContentEpoch.json",
+      "imported_sha256": "3f95807dcc90f68c9f98f33293529456c54e0fb56940f20921b3caf931a24e25",
+      "current_sha256": "3f95807dcc90f68c9f98f33293529456c54e0fb56940f20921b3caf931a24e25",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-planHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-planHash.json",
+      "imported_sha256": "8d742367d3596a27d993bb1c7a4e2526a997ac386bf49ea4650507f4ae7055e5",
+      "current_sha256": "8d742367d3596a27d993bb1c7a4e2526a997ac386bf49ea4650507f4ae7055e5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-planId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-planId.json",
+      "imported_sha256": "130a8ba6528ed02c0de6f9e791a12154b8397a2ae0942f2ac7cc5152c378e165",
+      "current_sha256": "130a8ba6528ed02c0de6f9e791a12154b8397a2ae0942f2ac7cc5152c378e165",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-policyHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-policyHash.json",
+      "imported_sha256": "4e5aa9ed1c13ae12da8787528de07879414319a5fb4a6793b731998fd56fdeb0",
+      "current_sha256": "4e5aa9ed1c13ae12da8787528de07879414319a5fb4a6793b731998fd56fdeb0",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-profilesHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-profilesHash.json",
+      "imported_sha256": "48eaac354e3ad1fe71fc3b8103fe6adaa2810b940bacdd8b25ab0f2f6c886a06",
+      "current_sha256": "48eaac354e3ad1fe71fc3b8103fe6adaa2810b940bacdd8b25ab0f2f6c886a06",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-requiredChecks.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-requiredChecks.json",
+      "imported_sha256": "cc2921664f9772f54f9f0dc707535e7bdf88a53dfe5ed4d8e178f11e8b6ba525",
+      "current_sha256": "cc2921664f9772f54f9f0dc707535e7bdf88a53dfe5ed4d8e178f11e8b6ba525",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-snapshotExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-snapshotExpectedAbsent.json",
+      "imported_sha256": "6c31313b4664085fc34221bdb426c641bc5cbc54526a1fb699e0464f52a057c5",
+      "current_sha256": "6c31313b4664085fc34221bdb426c641bc5cbc54526a1fb699e0464f52a057c5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-snapshotRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-snapshotRef.json",
+      "imported_sha256": "00b786ed21bc4a44e4418d4c18d2ccd12b1de5e67c6ae4416992746af7cbccdc",
+      "current_sha256": "00b786ed21bc4a44e4418d4c18d2ccd12b1de5e67c6ae4416992746af7cbccdc",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-sources.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-sources.json",
+      "imported_sha256": "58ccf5d8ef6533ab79525918983bca186feb93c2958ceb676f5ebbafe1f3943f",
+      "current_sha256": "58ccf5d8ef6533ab79525918983bca186feb93c2958ceb676f5ebbafe1f3943f",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-targetVerifiedSnapshotId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-targetVerifiedSnapshotId.json",
+      "imported_sha256": "116a008e5be9bcc57b2636579f789b320ff90b18c61253c212cd21bda4f159a4",
+      "current_sha256": "116a008e5be9bcc57b2636579f789b320ff90b18c61253c212cd21bda4f159a4",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-missing-taskMembership.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-missing-taskMembership.json",
+      "imported_sha256": "b0cf5313ef6436cc1fb651565be6a4290da12f330fcdf041af4a0fd238b42e59",
+      "current_sha256": "b0cf5313ef6436cc1fb651565be6a4290da12f330fcdf041af4a0fd238b42e59",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/restore-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/restore-wrong-lifecycle.json",
+      "imported_sha256": "3a72c2f489a525d347b27a53b7cb0fab3b7a6801d2ee1f53e7be674d682a79d7",
+      "current_sha256": "3a72c2f489a525d347b27a53b7cb0fab3b7a6801d2ee1f53e7be674d682a79d7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-extra-payload.json",
+      "imported_sha256": "85b867898684837a3e44baa10dcdeb1db37c27bc6394e845ef69b3a7d8472e43",
+      "current_sha256": "85b867898684837a3e44baa10dcdeb1db37c27bc6394e845ef69b3a7d8472e43",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-approvedExecutable.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-approvedExecutable.json",
+      "imported_sha256": "021cb3086041acbdd8fecee7a5a4b23767f9c37fbec982d5c27cf4dfa334b390",
+      "current_sha256": "021cb3086041acbdd8fecee7a5a4b23767f9c37fbec982d5c27cf4dfa334b390",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-argumentDigest.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-argumentDigest.json",
+      "imported_sha256": "f7a181f22bd5d3d326fca104c47f4b3728d1b9f09a21f13b2e591f738c58d9e4",
+      "current_sha256": "f7a181f22bd5d3d326fca104c47f4b3728d1b9f09a21f13b2e591f738c58d9e4",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-attemptId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-attemptId.json",
+      "imported_sha256": "17d9e47b7f2c1e46ceb1ae273286b13418785c0c5a21e2f12413d2796d7bc5d9",
+      "current_sha256": "17d9e47b7f2c1e46ceb1ae273286b13418785c0c5a21e2f12413d2796d7bc5d9",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-budget.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-budget.json",
+      "imported_sha256": "3882ca4ec0e38ed51c9219982e93ed33afc90c03be9a3d61a5c1e82211769e90",
+      "current_sha256": "3882ca4ec0e38ed51c9219982e93ed33afc90c03be9a3d61a5c1e82211769e90",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-cwd.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-cwd.json",
+      "imported_sha256": "2219b6037831ee181c27074fc47f17ec665cc88e7a589e33f7bde3531ae29060",
+      "current_sha256": "2219b6037831ee181c27074fc47f17ec665cc88e7a589e33f7bde3531ae29060",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-environmentProfileHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-environmentProfileHash.json",
+      "imported_sha256": "b0f856e96476dec460b7dbbe8521ab74bb8871477f9fe9bcd0a0f7a600f5410d",
+      "current_sha256": "b0f856e96476dec460b7dbbe8521ab74bb8871477f9fe9bcd0a0f7a600f5410d",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-executableHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-executableHash.json",
+      "imported_sha256": "b0eba0888dfe1d1995ad6a387d01bfe65c774a40211d91204eff4b5611799d77",
+      "current_sha256": "b0eba0888dfe1d1995ad6a387d01bfe65c774a40211d91204eff4b5611799d77",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-launchIdentity.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-launchIdentity.json",
+      "imported_sha256": "37a5a10a32311bb2d0ab476f2b0fd379c3569fa8787a664b4ed9ddb9fe77deeb",
+      "current_sha256": "37a5a10a32311bb2d0ab476f2b0fd379c3569fa8787a664b4ed9ddb9fe77deeb",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-requestDigest.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-requestDigest.json",
+      "imported_sha256": "d9f6d7be00bf7e9f5dc5ecacef9e2420c9fe6a84630603a1a5e8cc0ee79efe45",
+      "current_sha256": "d9f6d7be00bf7e9f5dc5ecacef9e2420c9fe6a84630603a1a5e8cc0ee79efe45",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-runtimeProfileHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-runtimeProfileHash.json",
+      "imported_sha256": "4037bcf1254926403d2449fa44036b56faca143f8bb31635e27be92ca28ec308",
+      "current_sha256": "4037bcf1254926403d2449fa44036b56faca143f8bb31635e27be92ca28ec308",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-supervisorId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-supervisorId.json",
+      "imported_sha256": "c7511eeca0c037cd8238338329a5ff2a0322342ee948dcde759007971f821fd8",
+      "current_sha256": "c7511eeca0c037cd8238338329a5ff2a0322342ee948dcde759007971f821fd8",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-missing-worktreeId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-missing-worktreeId.json",
+      "imported_sha256": "f5d086a158b1947793da65650ef94e8f9d7489a92d94ff728015c1f89a360682",
+      "current_sha256": "f5d086a158b1947793da65650ef94e8f9d7489a92d94ff728015c1f89a360682",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/spawn-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/spawn-wrong-lifecycle.json",
+      "imported_sha256": "b0c4aff43919dfd3a807f752dacbd32ffdeddc2e74da1a7b1a2779eb83aa7781",
+      "current_sha256": "b0c4aff43919dfd3a807f752dacbd32ffdeddc2e74da1a7b1a2779eb83aa7781",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-extra-payload.json",
+      "imported_sha256": "6e5c27332c9ca6793d6263b3cb7cac04c6a467ebb21321697b2d0d03a88bc5dc",
+      "current_sha256": "6e5c27332c9ca6793d6263b3cb7cac04c6a467ebb21321697b2d0d03a88bc5dc",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-missing-attemptId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-missing-attemptId.json",
+      "imported_sha256": "40d826b8c3336ad601a18fc148554d1e6902eb439f0758bea3d07f2e555cf0f3",
+      "current_sha256": "40d826b8c3336ad601a18fc148554d1e6902eb439f0758bea3d07f2e555cf0f3",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-missing-finalDeadlineMs.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-missing-finalDeadlineMs.json",
+      "imported_sha256": "2845b8de303a9df48dfc0a1f80063333446711fb54c2decc5b842d72959eea06",
+      "current_sha256": "2845b8de303a9df48dfc0a1f80063333446711fb54c2decc5b842d72959eea06",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-missing-graceDeadlineMs.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-missing-graceDeadlineMs.json",
+      "imported_sha256": "f4853a13ffb1eef192c7a91f955e7c1cdc1c46af34b57e82bfb5eb3bcc3d34a7",
+      "current_sha256": "f4853a13ffb1eef192c7a91f955e7c1cdc1c46af34b57e82bfb5eb3bcc3d34a7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-missing-stopMode.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-missing-stopMode.json",
+      "imported_sha256": "ef78f41d516a85b06593193906768dd08afae8006f2af79a55a108b7d6b319bf",
+      "current_sha256": "ef78f41d516a85b06593193906768dd08afae8006f2af79a55a108b7d6b319bf",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-missing-targetProcess.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-missing-targetProcess.json",
+      "imported_sha256": "ef5a07092f1ed64f1dc69a1a2cd457b80f97af88a255a87fee23e082cec8d94a",
+      "current_sha256": "ef5a07092f1ed64f1dc69a1a2cd457b80f97af88a255a87fee23e082cec8d94a",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/stop-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/stop-wrong-lifecycle.json",
+      "imported_sha256": "3d542c1a952b8ad052f7f0b732b825f124dca03224b399fa016279f73276e070",
+      "current_sha256": "3d542c1a952b8ad052f7f0b732b825f124dca03224b399fa016279f73276e070",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-extra-payload.json",
+      "imported_sha256": "a8ff7829adc860bf90be9cf9aa38a70af59511b60c14f8715c67602c228b4ac4",
+      "current_sha256": "a8ff7829adc860bf90be9cf9aa38a70af59511b60c14f8715c67602c228b4ac4",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-candidateOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-candidateOid.json",
+      "imported_sha256": "0bf08adab4294d0a70c578174b54f0ef9ad402071b02a499fcd1045ad72b1461",
+      "current_sha256": "0bf08adab4294d0a70c578174b54f0ef9ad402071b02a499fcd1045ad72b1461",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-candidateRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-candidateRef.json",
+      "imported_sha256": "9ec43c698c1cb2221959d75a221cad7f43c7e54a61a5b0af70ebdaa688c964c1",
+      "current_sha256": "9ec43c698c1cb2221959d75a221cad7f43c7e54a61a5b0af70ebdaa688c964c1",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-candidateTreeOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-candidateTreeOid.json",
+      "imported_sha256": "68910c7b9d495073f2e7f0c129c57617725ba6956ab645dd528222c6e56d6a97",
+      "current_sha256": "68910c7b9d495073f2e7f0c129c57617725ba6956ab645dd528222c6e56d6a97",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-environmentHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-environmentHash.json",
+      "imported_sha256": "00d0bb0dbf4d119f730a79f20216fd9f437406376a36a0857386aa9504fa7590",
+      "current_sha256": "00d0bb0dbf4d119f730a79f20216fd9f437406376a36a0857386aa9504fa7590",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-expectedContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-expectedContentEpoch.json",
+      "imported_sha256": "07765fe209cdbcf44054b761ff4735cdd426e3c2388c8e42c06a95d9c67956e9",
+      "current_sha256": "07765fe209cdbcf44054b761ff4735cdd426e3c2388c8e42c06a95d9c67956e9",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-expectedIntegrationOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-expectedIntegrationOid.json",
+      "imported_sha256": "74b5ee16cdcca8fc3eb4ef5a9b35ec03e224fbd3f38e54f959107783dba2f965",
+      "current_sha256": "74b5ee16cdcca8fc3eb4ef5a9b35ec03e224fbd3f38e54f959107783dba2f965",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-integrationRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-integrationRef.json",
+      "imported_sha256": "ee5687934e499d3cb6eed7bc0a9b5e0f6c7eb549f72024908af3d0d0a08a8f2c",
+      "current_sha256": "ee5687934e499d3cb6eed7bc0a9b5e0f6c7eb549f72024908af3d0d0a08a8f2c",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-nextContentEpoch.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-nextContentEpoch.json",
+      "imported_sha256": "5d612d2fcefe5d866b82e2485935f07a4aae998d6d64d7d3fd83e9df27d0d694",
+      "current_sha256": "5d612d2fcefe5d866b82e2485935f07a4aae998d6d64d7d3fd83e9df27d0d694",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-originalBatchOperationId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-originalBatchOperationId.json",
+      "imported_sha256": "b33e694ca4b69fc5776d9aed257f9a75642a69e82b9aa01325c99ee14ef37b24",
+      "current_sha256": "b33e694ca4b69fc5776d9aed257f9a75642a69e82b9aa01325c99ee14ef37b24",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-planHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-planHash.json",
+      "imported_sha256": "ebecde59a3653d5c8f5f30550cac2c4b3b3af25b8d4c0c09c42ef5078bd6d79e",
+      "current_sha256": "ebecde59a3653d5c8f5f30550cac2c4b3b3af25b8d4c0c09c42ef5078bd6d79e",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-planId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-planId.json",
+      "imported_sha256": "c43002cac2eed700478c4e1c4ab7d0833bdfa613ea87d46e91a4a1767637891e",
+      "current_sha256": "c43002cac2eed700478c4e1c4ab7d0833bdfa613ea87d46e91a4a1767637891e",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-policyHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-policyHash.json",
+      "imported_sha256": "a8b2c5bfcc68da543ba87be2259b7c2eaadc330d32ed8eeeb4e23e907cba2030",
+      "current_sha256": "a8b2c5bfcc68da543ba87be2259b7c2eaadc330d32ed8eeeb4e23e907cba2030",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-profilesHash.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-profilesHash.json",
+      "imported_sha256": "15af26252a4539332107002410d424162448b0732186afff659e7c762e136252",
+      "current_sha256": "15af26252a4539332107002410d424162448b0732186afff659e7c762e136252",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-requiredChecks.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-requiredChecks.json",
+      "imported_sha256": "a82b52fe62bd1ee6de624c5ceeb54ae28539202b1b805eb8086ada482f904638",
+      "current_sha256": "a82b52fe62bd1ee6de624c5ceeb54ae28539202b1b805eb8086ada482f904638",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-snapshotExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-snapshotExpectedAbsent.json",
+      "imported_sha256": "1a9a0ba70e12fdedf84e2430adfe4a4fc80353448269180ee404eeb8bb46b1d0",
+      "current_sha256": "1a9a0ba70e12fdedf84e2430adfe4a4fc80353448269180ee404eeb8bb46b1d0",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-snapshotRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-snapshotRef.json",
+      "imported_sha256": "30a2599a2a843bdfcc7663b3c704881ca7c11233a9a4ff4571b5d85090c88699",
+      "current_sha256": "30a2599a2a843bdfcc7663b3c704881ca7c11233a9a4ff4571b5d85090c88699",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-sources.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-sources.json",
+      "imported_sha256": "7e0d8010d7b2dab2b1840db65d63740caf80dab3d5c6107280f6c81a9ffa8761",
+      "current_sha256": "7e0d8010d7b2dab2b1840db65d63740caf80dab3d5c6107280f6c81a9ffa8761",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-missing-taskMembership.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-missing-taskMembership.json",
+      "imported_sha256": "dc1de4f558c83ac0408479e58f8eb0a385ab3263ba0eb4e7c4730449f5c5c494",
+      "current_sha256": "dc1de4f558c83ac0408479e58f8eb0a385ab3263ba0eb4e7c4730449f5c5c494",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/undo-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/undo-wrong-lifecycle.json",
+      "imported_sha256": "ee7f17fb0f23d806f3f26aad654a3cf3308a5f15d989a305e6a310a9e067ff41",
+      "current_sha256": "ee7f17fb0f23d806f3f26aad654a3cf3308a5f15d989a305e6a310a9e067ff41",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-extra-payload.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-extra-payload.json",
+      "imported_sha256": "50bf8b68f225b18a0552bf005eea444e24d68966d88a25e8f0f7fcab70ec6686",
+      "current_sha256": "50bf8b68f225b18a0552bf005eea444e24d68966d88a25e8f0f7fcab70ec6686",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-attemptId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-attemptId.json",
+      "imported_sha256": "cbdae043b71dd7824063d7cff9a1f64fd4e921c5569475be896b99d3b07661f5",
+      "current_sha256": "cbdae043b71dd7824063d7cff9a1f64fd4e921c5569475be896b99d3b07661f5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-baseOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-baseOid.json",
+      "imported_sha256": "4b2cec71a93877090a0d7bdbf843abd4f91c4ff7a3f9f4bab0972f9ff53f0101",
+      "current_sha256": "4b2cec71a93877090a0d7bdbf843abd4f91c4ff7a3f9f4bab0972f9ff53f0101",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-baseTreeOid.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-baseTreeOid.json",
+      "imported_sha256": "96ae8a5449c4b4cd1190c247564cd3679e0238b47456195e1a07a316b5964fa1",
+      "current_sha256": "96ae8a5449c4b4cd1190c247564cd3679e0238b47456195e1a07a316b5964fa1",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-branchExpectedAbsent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-branchExpectedAbsent.json",
+      "imported_sha256": "e0efa0afb6bb3ca61cb8d213a69031926f1a364c347f8f188380edc8139fbbc8",
+      "current_sha256": "e0efa0afb6bb3ca61cb8d213a69031926f1a364c347f8f188380edc8139fbbc8",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-branchRef.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-branchRef.json",
+      "imported_sha256": "c43da684df8dc78ed3a27960fe51b8f9e7c13cd4b6b15ed768785d95b0527aef",
+      "current_sha256": "c43da684df8dc78ed3a27960fe51b8f9e7c13cd4b6b15ed768785d95b0527aef",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-canonicalPath.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-canonicalPath.json",
+      "imported_sha256": "050f3b5c016baece6056f932f256e8c37e498011d44f46944cef6b6c61dd1f98",
+      "current_sha256": "050f3b5c016baece6056f932f256e8c37e498011d44f46944cef6b6c61dd1f98",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-managedParent.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-managedParent.json",
+      "imported_sha256": "0d860d7e9bbfe277bcd32d96f0ef481c2e794952d4f318d37123bad698eea07b",
+      "current_sha256": "0d860d7e9bbfe277bcd32d96f0ef481c2e794952d4f318d37123bad698eea07b",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-operationOwnerId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-operationOwnerId.json",
+      "imported_sha256": "b27cdc1b5806f8a34a01f2d629cf34ec591c5e5456a7ade92a8c8dba567536ee",
+      "current_sha256": "b27cdc1b5806f8a34a01f2d629cf34ec591c5e5456a7ade92a8c8dba567536ee",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-ownershipMarkerId.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-ownershipMarkerId.json",
+      "imported_sha256": "0415501c6a0446257624556a21a5943e32f538305a79b542cf421ea8111c5073",
+      "current_sha256": "0415501c6a0446257624556a21a5943e32f538305a79b542cf421ea8111c5073",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-missing-role.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-missing-role.json",
+      "imported_sha256": "66d7dc5f43efc99cd009928d7fa2397f30564955835b76b8721f74d516b160c0",
+      "current_sha256": "66d7dc5f43efc99cd009928d7fa2397f30564955835b76b8721f74d516b160c0",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/journals/worktree_create-wrong-lifecycle.json",
+      "destination": "packages/agent-native-git/examples/invalid/journals/worktree_create-wrong-lifecycle.json",
+      "imported_sha256": "d129ea2252e8d1046fef43a42102c93370eb58543d5be49ab7f857a48b2a3b07",
+      "current_sha256": "d129ea2252e8d1046fef43a42102c93370eb58543d5be49ab7f857a48b2a3b07",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/merge-acceptance-missing-digest.json",
+      "destination": "packages/agent-native-git/examples/invalid/merge-acceptance-missing-digest.json",
+      "imported_sha256": "dfba4cf2ebfa5e615c20fce7609077bfdb53e931985e70bc52bc069f040fa7b7",
+      "current_sha256": "dfba4cf2ebfa5e615c20fce7609077bfdb53e931985e70bc52bc069f040fa7b7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/missing-idempotency-key.json",
+      "destination": "packages/agent-native-git/examples/invalid/missing-idempotency-key.json",
+      "imported_sha256": "bb5010c90de8535c6dd88fb96806d748bb9d124a3e6243462f8e9448f5a15fd7",
+      "current_sha256": "bb5010c90de8535c6dd88fb96806d748bb9d124a3e6243462f8e9448f5a15fd7",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/orphan-ended.json",
+      "destination": "packages/agent-native-git/examples/invalid/orphan-ended.json",
+      "imported_sha256": "a832a797e2ac9a7aabc133f29ed55b6cc495022e06dcf47cf5730788ab241730",
+      "current_sha256": "a832a797e2ac9a7aabc133f29ed55b6cc495022e06dcf47cf5730788ab241730",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/remote-write-enabled.json",
+      "destination": "packages/agent-native-git/examples/invalid/remote-write-enabled.json",
+      "imported_sha256": "9f1dd8a0ee738224ae2f5423be0606b140b054196d735d628f58f6ce1c3573d2",
+      "current_sha256": "9f1dd8a0ee738224ae2f5423be0606b140b054196d735d628f58f6ce1c3573d2",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/restore-acceptance-missing-digest.json",
+      "destination": "packages/agent-native-git/examples/invalid/restore-acceptance-missing-digest.json",
+      "imported_sha256": "305420e6749f159c7d946619e7c9c64bd13e47806eeb655a6e5c036666263f71",
+      "current_sha256": "305420e6749f159c7d946619e7c9c64bd13e47806eeb655a6e5c036666263f71",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/sandbox-required-but-disabled.json",
+      "destination": "packages/agent-native-git/examples/invalid/sandbox-required-but-disabled.json",
+      "imported_sha256": "00ae73e5ed2d5519db92a7f47e678246ff21ed1fc768cd051e7a3f9c3f067e8f",
+      "current_sha256": "00ae73e5ed2d5519db92a7f47e678246ff21ed1fc768cd051e7a3f9c3f067e8f",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/too-many-agent-slots.json",
+      "destination": "packages/agent-native-git/examples/invalid/too-many-agent-slots.json",
+      "imported_sha256": "6d4768ebd280dbe4e77a4a1ae8863e4a23a0dd38084b5acae0fdf8764fe250d5",
+      "current_sha256": "6d4768ebd280dbe4e77a4a1ae8863e4a23a0dd38084b5acae0fdf8764fe250d5",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/undo-acceptance-missing-digest.json",
+      "destination": "packages/agent-native-git/examples/invalid/undo-acceptance-missing-digest.json",
+      "imported_sha256": "60303a687d4cac6c200528c0846975388f864c330866a2a41298a67aba853fc8",
+      "current_sha256": "60303a687d4cac6c200528c0846975388f864c330866a2a41298a67aba853fc8",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/unknown-policy-field.json",
+      "destination": "packages/agent-native-git/examples/invalid/unknown-policy-field.json",
+      "imported_sha256": "640361089561d8e2416b13b3120e40ad40223a232508229d2a99c9dc152f0e99",
+      "current_sha256": "640361089561d8e2416b13b3120e40ad40223a232508229d2a99c9dc152f0e99",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/unsafe-task-path.json",
+      "destination": "packages/agent-native-git/examples/invalid/unsafe-task-path.json",
+      "imported_sha256": "ae04d1cbe44ff0c816c812422e8133f7788f9c3b9258b7dfb79e83127ae5db82",
+      "current_sha256": "ae04d1cbe44ff0c816c812422e8133f7788f9c3b9258b7dfb79e83127ae5db82",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/untrusted-message-sender.json",
+      "destination": "packages/agent-native-git/examples/invalid/untrusted-message-sender.json",
+      "imported_sha256": "12718d7945ddd190fded1b740ba0100d1131f2e4cd14520d00b18e8e7d8d5fbe",
+      "current_sha256": "12718d7945ddd190fded1b740ba0100d1131f2e4cd14520d00b18e8e7d8d5fbe",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/verified-without-evidence.json",
+      "destination": "packages/agent-native-git/examples/invalid/verified-without-evidence.json",
+      "imported_sha256": "da9a4528cde1d6db953c8e474109ce2f737e96854acc80af8199e323ee782cd8",
+      "current_sha256": "da9a4528cde1d6db953c8e474109ce2f737e96854acc80af8199e323ee782cd8",
+      "reason": null
+    },
+    {
+      "source": "examples/invalid/worker-promote-scope.json",
+      "destination": "packages/agent-native-git/examples/invalid/worker-promote-scope.json",
+      "imported_sha256": "41f061efacf4762ee247e8872bb0c1956dacd33658ea77b467eb7513f292be61",
+      "current_sha256": "41f061efacf4762ee247e8872bb0c1956dacd33658ea77b467eb7513f292be61",
+      "reason": null
+    },
+    {
+      "source": "examples/ipc-hello.json",
+      "destination": "packages/agent-native-git/examples/ipc-hello.json",
+      "imported_sha256": "7231f6aa98c7b52a2759c7223925e07feced806c0f662fa28e1e1b5aea0b3e3c",
+      "current_sha256": "7231f6aa98c7b52a2759c7223925e07feced806c0f662fa28e1e1b5aea0b3e3c",
+      "reason": null
+    },
+    {
+      "source": "examples/ipc-scope.json",
+      "destination": "packages/agent-native-git/examples/ipc-scope.json",
+      "imported_sha256": "b5314cc36d21a23a339273ac6fbc3e91624dc80956667e3b93570af529e5fc7b",
+      "current_sha256": "b5314cc36d21a23a339273ac6fbc3e91624dc80956667e3b93570af529e5fc7b",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/backup.json",
+      "destination": "packages/agent-native-git/examples/journals/backup.json",
+      "imported_sha256": "f0d3c3dae8340c6a2460573fb2b197a36267b21e17af1a6cb58e589a9b12cafd",
+      "current_sha256": "f0d3c3dae8340c6a2460573fb2b197a36267b21e17af1a6cb58e589a9b12cafd",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/init.json",
+      "destination": "packages/agent-native-git/examples/journals/init.json",
+      "imported_sha256": "3789bb386d5b054acc579aee82b2f38e827515fe279aec13da01bcec1ecf2245",
+      "current_sha256": "3789bb386d5b054acc579aee82b2f38e827515fe279aec13da01bcec1ecf2245",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/merge.json",
+      "destination": "packages/agent-native-git/examples/journals/merge.json",
+      "imported_sha256": "135504307cea6abb728a4dd1a979764e70cf4af338826e4db7a97651eeaef287",
+      "current_sha256": "135504307cea6abb728a4dd1a979764e70cf4af338826e4db7a97651eeaef287",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/restore.json",
+      "destination": "packages/agent-native-git/examples/journals/restore.json",
+      "imported_sha256": "6fcc22d5b60acf07f26d5bac14542388c42339dbf885ef01f860edaa0f9674b7",
+      "current_sha256": "6fcc22d5b60acf07f26d5bac14542388c42339dbf885ef01f860edaa0f9674b7",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/spawn.json",
+      "destination": "packages/agent-native-git/examples/journals/spawn.json",
+      "imported_sha256": "07bed0cd8fd32f71c773805d12eaf2a254d6804a8a336304e49252ce838a5b69",
+      "current_sha256": "07bed0cd8fd32f71c773805d12eaf2a254d6804a8a336304e49252ce838a5b69",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/stop.json",
+      "destination": "packages/agent-native-git/examples/journals/stop.json",
+      "imported_sha256": "ee4880e4d98d7e0f22df19d19f2dfce402849ccdfaa8572138149c6556514ebd",
+      "current_sha256": "ee4880e4d98d7e0f22df19d19f2dfce402849ccdfaa8572138149c6556514ebd",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/undo.json",
+      "destination": "packages/agent-native-git/examples/journals/undo.json",
+      "imported_sha256": "a94cfc45a8b452b9a5961dd2d15c81f9d9bd46f47fb640c51530128c0fbf77a1",
+      "current_sha256": "a94cfc45a8b452b9a5961dd2d15c81f9d9bd46f47fb640c51530128c0fbf77a1",
+      "reason": null
+    },
+    {
+      "source": "examples/journals/worktree_create.json",
+      "destination": "packages/agent-native-git/examples/journals/worktree_create.json",
+      "imported_sha256": "87cd9db46bee46c987004631277f666b4ab14d41c794e113c80f939447516b43",
+      "current_sha256": "87cd9db46bee46c987004631277f666b4ab14d41c794e113c80f939447516b43",
+      "reason": null
+    },
+    {
+      "source": "examples/lease-grant.json",
+      "destination": "packages/agent-native-git/examples/lease-grant.json",
+      "imported_sha256": "6a5d5fbd13ec3c491e42db4c71ec864cb19c1bca394ebe20e85862fe10295190",
+      "current_sha256": "6a5d5fbd13ec3c491e42db4c71ec864cb19c1bca394ebe20e85862fe10295190",
+      "reason": null
+    },
+    {
+      "source": "examples/messages/contract.json",
+      "destination": "packages/agent-native-git/examples/messages/contract.json",
+      "imported_sha256": "e7ed7bced288ef8e4ec01b3846a3ea0740e0c81ab3b3392d90762a23b1da33ed",
+      "current_sha256": "e7ed7bced288ef8e4ec01b3846a3ea0740e0c81ab3b3392d90762a23b1da33ed",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/backup-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/backup-abandonment.json",
+      "imported_sha256": "5cbb1cc6ea768b5d915b66e867d06ddf47d9ea489269167712424cd54c0dba12",
+      "current_sha256": "5cbb1cc6ea768b5d915b66e867d06ddf47d9ea489269167712424cd54c0dba12",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/backup-effect_complete.json",
+      "destination": "packages/agent-native-git/examples/observations/backup-effect_complete.json",
+      "imported_sha256": "baf7bc4d4591964e0b2be6305b07ddce00b79176e2c416ddf6efc0c79a873577",
+      "current_sha256": "baf7bc4d4591964e0b2be6305b07ddce00b79176e2c416ddf6efc0c79a873577",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/backup-member_written.json",
+      "destination": "packages/agent-native-git/examples/observations/backup-member_written.json",
+      "imported_sha256": "ad1d5686303b0eb4c3c890b85b231989c905250ed8f5d10bdb7ee8077358a1d3",
+      "current_sha256": "ad1d5686303b0eb4c3c890b85b231989c905250ed8f5d10bdb7ee8077358a1d3",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/backup-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/backup-reconciliation.json",
+      "imported_sha256": "73b43398ac4405495d612e3d8c702718b013cf080fa38a89421cc8112aa5f885",
+      "current_sha256": "73b43398ac4405495d612e3d8c702718b013cf080fa38a89421cc8112aa5f885",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/backup-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/backup-safe_failure.json",
+      "imported_sha256": "78049e4a15cecab40ac15c13a6fa671d190a450b077f4cfb3cd2c3c50c9b487e",
+      "current_sha256": "78049e4a15cecab40ac15c13a6fa671d190a450b077f4cfb3cd2c3c50c9b487e",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/init-abandonment.json",
+      "imported_sha256": "d9ce842730d6ae22680715df7b05f898fa0d86f325bbfec3510481a831ef3444",
+      "current_sha256": "d9ce842730d6ae22680715df7b05f898fa0d86f325bbfec3510481a831ef3444",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-effect_complete.json",
+      "destination": "packages/agent-native-git/examples/observations/init-effect_complete.json",
+      "imported_sha256": "9ccafc268cb84c513c93e36fee26aa3b6ba2736ff09466a15917d5c390f765b4",
+      "current_sha256": "9ccafc268cb84c513c93e36fee26aa3b6ba2736ff09466a15917d5c390f765b4",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/init-reconciliation.json",
+      "imported_sha256": "d6583d5966b7bb478fe11bb19009ccfce9ce732c584decb9fa6999239af7ab84",
+      "current_sha256": "d6583d5966b7bb478fe11bb19009ccfce9ce732c584decb9fa6999239af7ab84",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-refs_initialized.json",
+      "destination": "packages/agent-native-git/examples/observations/init-refs_initialized.json",
+      "imported_sha256": "f3ef9a837bf8ab10e955ade0b9cee8fcf22adc24b867dc131c662f05c95b00f2",
+      "current_sha256": "f3ef9a837bf8ab10e955ade0b9cee8fcf22adc24b867dc131c662f05c95b00f2",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/init-safe_failure.json",
+      "imported_sha256": "aef1b5d7bdab873c897af96695db52c756087750cc8a30f7c4d14e182993c891",
+      "current_sha256": "aef1b5d7bdab873c897af96695db52c756087750cc8a30f7c4d14e182993c891",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/init-storage_initialized.json",
+      "destination": "packages/agent-native-git/examples/observations/init-storage_initialized.json",
+      "imported_sha256": "668707477ee70f4862aa9f554cd9684c1a5e1a0636ca78c45083c001f4e19069",
+      "current_sha256": "668707477ee70f4862aa9f554cd9684c1a5e1a0636ca78c45083c001f4e19069",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-abandonment.json",
+      "imported_sha256": "f840223bd9bc60eb9e89b411f0725f9961e5accc6f0d53ec84d2811d2381960d",
+      "current_sha256": "f840223bd9bc60eb9e89b411f0725f9961e5accc6f0d53ec84d2811d2381960d",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-acceptance.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-acceptance.json",
+      "imported_sha256": "39eaac69806d8a3a9788c02ff2eedd1aca5a3a0f9eb8f153e8fa0776adfab5e2",
+      "current_sha256": "39eaac69806d8a3a9788c02ff2eedd1aca5a3a0f9eb8f153e8fa0776adfab5e2",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-candidate_pinned.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-candidate_pinned.json",
+      "imported_sha256": "02efdaa8a2346a6d26547a4c7f9a02ab8cfc443477c66eb7e28e9bc68fba76a2",
+      "current_sha256": "02efdaa8a2346a6d26547a4c7f9a02ab8cfc443477c66eb7e28e9bc68fba76a2",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-finalization.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-finalization.json",
+      "imported_sha256": "2ba4699d1162f5dc6336f9487bedabea2adebf753601f7cbb32602aef14dccd5",
+      "current_sha256": "2ba4699d1162f5dc6336f9487bedabea2adebf753601f7cbb32602aef14dccd5",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-promotion.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-promotion.json",
+      "imported_sha256": "7f960a3e8276b0d2d4868b07161dd90557890b79238382fb5fd3fe8903555499",
+      "current_sha256": "7f960a3e8276b0d2d4868b07161dd90557890b79238382fb5fd3fe8903555499",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-reconciliation.json",
+      "imported_sha256": "71cf88accf586d7e07e6b2655bf17d593f45539d306a8f22e5922288a640d9f6",
+      "current_sha256": "71cf88accf586d7e07e6b2655bf17d593f45539d306a8f22e5922288a640d9f6",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-safe_failure.json",
+      "imported_sha256": "f2e0bc6b6986f2ba4f7492a724370bc8d6800fa910efb67c8c70d838652854c1",
+      "current_sha256": "f2e0bc6b6986f2ba4f7492a724370bc8d6800fa910efb67c8c70d838652854c1",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/merge-testing_started.json",
+      "destination": "packages/agent-native-git/examples/observations/merge-testing_started.json",
+      "imported_sha256": "f4910d97fc676600ef7d3364bac084b1c49ed836f75b45c7ad378ae5dfaca7a8",
+      "current_sha256": "f4910d97fc676600ef7d3364bac084b1c49ed836f75b45c7ad378ae5dfaca7a8",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-abandonment.json",
+      "imported_sha256": "262fdc1222d481f0c7d1b56f3d4f8d5029294a73b2dbb9941f1d3f8904f8ffa2",
+      "current_sha256": "262fdc1222d481f0c7d1b56f3d4f8d5029294a73b2dbb9941f1d3f8904f8ffa2",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-acceptance.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-acceptance.json",
+      "imported_sha256": "a26d92f37dac4c9ca6d12357acab8d0ef3a6bb45d251af5765b95909de701518",
+      "current_sha256": "a26d92f37dac4c9ca6d12357acab8d0ef3a6bb45d251af5765b95909de701518",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-candidate_pinned.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-candidate_pinned.json",
+      "imported_sha256": "723882dcb27db835792d279f97f94277b1d48c81a33e12336eb16d495608e75c",
+      "current_sha256": "723882dcb27db835792d279f97f94277b1d48c81a33e12336eb16d495608e75c",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-finalization.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-finalization.json",
+      "imported_sha256": "84ae6c041009e7a47c7860d6b850183b29800b5c3377c39571dbff17f6df7179",
+      "current_sha256": "84ae6c041009e7a47c7860d6b850183b29800b5c3377c39571dbff17f6df7179",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-promotion.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-promotion.json",
+      "imported_sha256": "3b3862880bf2b808ad331ffb41f3db986e6f9d6767cf977f390be5b04bfa67c1",
+      "current_sha256": "3b3862880bf2b808ad331ffb41f3db986e6f9d6767cf977f390be5b04bfa67c1",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-reconciliation.json",
+      "imported_sha256": "1a22b8989ee05bc283bf874fc15277d1ed8a9f23e8b2f5ccd37feab13db462f9",
+      "current_sha256": "1a22b8989ee05bc283bf874fc15277d1ed8a9f23e8b2f5ccd37feab13db462f9",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-safe_failure.json",
+      "imported_sha256": "7c2d6440ceaa6e437b479bee85fb9ca6753bb4af8da3f8cab16b36b31bb871c8",
+      "current_sha256": "7c2d6440ceaa6e437b479bee85fb9ca6753bb4af8da3f8cab16b36b31bb871c8",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/restore-testing_started.json",
+      "destination": "packages/agent-native-git/examples/observations/restore-testing_started.json",
+      "imported_sha256": "05639dadf2b1bffce93a40f916cc3f2823b84d57c8f1266973f378457517afd9",
+      "current_sha256": "05639dadf2b1bffce93a40f916cc3f2823b84d57c8f1266973f378457517afd9",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/spawn-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/spawn-abandonment.json",
+      "imported_sha256": "f5b202fef00a9b04d6a894188123da12e8b35246dc4195e65604a0c5e85218eb",
+      "current_sha256": "f5b202fef00a9b04d6a894188123da12e8b35246dc4195e65604a0c5e85218eb",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/spawn-effect_complete.json",
+      "destination": "packages/agent-native-git/examples/observations/spawn-effect_complete.json",
+      "imported_sha256": "1e7f5be3df5d4f8367c2e896e82516fac615376f68bc882355d8b9b7eafca7d4",
+      "current_sha256": "1e7f5be3df5d4f8367c2e896e82516fac615376f68bc882355d8b9b7eafca7d4",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/spawn-process_start.json",
+      "destination": "packages/agent-native-git/examples/observations/spawn-process_start.json",
+      "imported_sha256": "b96df9f21b08611b91b2f91bb1232e21ef7facb9221ad8eaac29f58e2bf03699",
+      "current_sha256": "b96df9f21b08611b91b2f91bb1232e21ef7facb9221ad8eaac29f58e2bf03699",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/spawn-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/spawn-reconciliation.json",
+      "imported_sha256": "ccab4dcdca46bf1a0b45769eda15b654588c4b8a9a99e22c51127b12a792bd5a",
+      "current_sha256": "ccab4dcdca46bf1a0b45769eda15b654588c4b8a9a99e22c51127b12a792bd5a",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/spawn-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/spawn-safe_failure.json",
+      "imported_sha256": "44028e1ee5e4c12079e6e8f9bfe8f7a51a863d7cd2521a5891d51e9fa209acc0",
+      "current_sha256": "44028e1ee5e4c12079e6e8f9bfe8f7a51a863d7cd2521a5891d51e9fa209acc0",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/stop-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/stop-abandonment.json",
+      "imported_sha256": "59670f42a5d952178e813726be0b4d1f3e2808342d510f945b30792d3e558b9a",
+      "current_sha256": "59670f42a5d952178e813726be0b4d1f3e2808342d510f945b30792d3e558b9a",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/stop-effect_complete.json",
+      "destination": "packages/agent-native-git/examples/observations/stop-effect_complete.json",
+      "imported_sha256": "d0f5e195f3abfe738b1c08099f669c9d1b3c5347ec39f617dd412a07dc20d21c",
+      "current_sha256": "d0f5e195f3abfe738b1c08099f669c9d1b3c5347ec39f617dd412a07dc20d21c",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/stop-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/stop-reconciliation.json",
+      "imported_sha256": "47b7f9830dcab190273ce4a88057a91770e7242c36ed40dfc9472962b4570ee3",
+      "current_sha256": "47b7f9830dcab190273ce4a88057a91770e7242c36ed40dfc9472962b4570ee3",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/stop-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/stop-safe_failure.json",
+      "imported_sha256": "e5042530f44e8a76dd69b0d4c1c76d590aa2a3eaf1d7cdbd66d6e3e7b668feaa",
+      "current_sha256": "e5042530f44e8a76dd69b0d4c1c76d590aa2a3eaf1d7cdbd66d6e3e7b668feaa",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/stop-stop_requested.json",
+      "destination": "packages/agent-native-git/examples/observations/stop-stop_requested.json",
+      "imported_sha256": "b5cfa12458cdbe833fbe92b3b71b8fd8db133a82622e91ce57fa31526a74e4ec",
+      "current_sha256": "b5cfa12458cdbe833fbe92b3b71b8fd8db133a82622e91ce57fa31526a74e4ec",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-abandonment.json",
+      "imported_sha256": "483c05fd235bb3cd9da868192c33ad610c615d98ac49cd1cc79ba94d690da776",
+      "current_sha256": "483c05fd235bb3cd9da868192c33ad610c615d98ac49cd1cc79ba94d690da776",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-acceptance.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-acceptance.json",
+      "imported_sha256": "1e17bab2ba25d5aa1ffb69b48c876fe1b323a09dd3964431d6c9c6185681ed8c",
+      "current_sha256": "1e17bab2ba25d5aa1ffb69b48c876fe1b323a09dd3964431d6c9c6185681ed8c",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-candidate_pinned.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-candidate_pinned.json",
+      "imported_sha256": "7b8036c848e694e1982aa72418acce1c9764674e66955fb03fc76a1994a854c5",
+      "current_sha256": "7b8036c848e694e1982aa72418acce1c9764674e66955fb03fc76a1994a854c5",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-finalization.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-finalization.json",
+      "imported_sha256": "f156b5cf29e6a983d509910794f35774bf9b55d2f9603fe666db28be06e426f7",
+      "current_sha256": "f156b5cf29e6a983d509910794f35774bf9b55d2f9603fe666db28be06e426f7",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-promotion.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-promotion.json",
+      "imported_sha256": "ddd9683d5e5d7a1e5f8e09ee6f08d21b248833bc104d844d4640b7173bab3eaa",
+      "current_sha256": "ddd9683d5e5d7a1e5f8e09ee6f08d21b248833bc104d844d4640b7173bab3eaa",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-reconciliation.json",
+      "imported_sha256": "3a3fb2dcd33d7ecae7e2b67f1b14c3703c42a1e206119ed97ee72167722a324b",
+      "current_sha256": "3a3fb2dcd33d7ecae7e2b67f1b14c3703c42a1e206119ed97ee72167722a324b",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-safe_failure.json",
+      "imported_sha256": "a1743515ec579d8de3ade79ad396d1a9a6ceb5803b7ecc04d193224746ccaf21",
+      "current_sha256": "a1743515ec579d8de3ade79ad396d1a9a6ceb5803b7ecc04d193224746ccaf21",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/undo-testing_started.json",
+      "destination": "packages/agent-native-git/examples/observations/undo-testing_started.json",
+      "imported_sha256": "504bb4309fd3eee80fd34b5546d0ed0671859cac244c102bb984423b655c79c2",
+      "current_sha256": "504bb4309fd3eee80fd34b5546d0ed0671859cac244c102bb984423b655c79c2",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/worktree_create-abandonment.json",
+      "destination": "packages/agent-native-git/examples/observations/worktree_create-abandonment.json",
+      "imported_sha256": "748a4cc464a7d62ce9e2791333d26abda84d533d94292137e4df7870c2d3f8a8",
+      "current_sha256": "748a4cc464a7d62ce9e2791333d26abda84d533d94292137e4df7870c2d3f8a8",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/worktree_create-effect_complete.json",
+      "destination": "packages/agent-native-git/examples/observations/worktree_create-effect_complete.json",
+      "imported_sha256": "9969dbf1f910a3353b6e67ec545ebf894d635513b1eb6709b532e1598376329b",
+      "current_sha256": "9969dbf1f910a3353b6e67ec545ebf894d635513b1eb6709b532e1598376329b",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/worktree_create-path_allocated.json",
+      "destination": "packages/agent-native-git/examples/observations/worktree_create-path_allocated.json",
+      "imported_sha256": "d1f3192d2d194cc6ea249f4391f697828834feb8989f52492144f60240d6fdcc",
+      "current_sha256": "d1f3192d2d194cc6ea249f4391f697828834feb8989f52492144f60240d6fdcc",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/worktree_create-reconciliation.json",
+      "destination": "packages/agent-native-git/examples/observations/worktree_create-reconciliation.json",
+      "imported_sha256": "55e15fefdf05c0897ddbca0eaa2f99d248d41619126fb4b7e25472aa90a0326a",
+      "current_sha256": "55e15fefdf05c0897ddbca0eaa2f99d248d41619126fb4b7e25472aa90a0326a",
+      "reason": null
+    },
+    {
+      "source": "examples/observations/worktree_create-safe_failure.json",
+      "destination": "packages/agent-native-git/examples/observations/worktree_create-safe_failure.json",
+      "imported_sha256": "52e4027925558154d5651818ddb43cbce69b2604564108257f43f18257354fc3",
+      "current_sha256": "52e4027925558154d5651818ddb43cbce69b2604564108257f43f18257354fc3",
+      "reason": null
+    },
+    {
+      "source": "examples/plan.json",
+      "destination": "packages/agent-native-git/examples/plan.json",
+      "imported_sha256": "db3f666c30243f7d0b63610e3d45db23f24fa2efe99338c1f4ac5667d1185253",
+      "current_sha256": "db3f666c30243f7d0b63610e3d45db23f24fa2efe99338c1f4ac5667d1185253",
+      "reason": null
+    },
+    {
+      "source": "examples/policies/managed-local.json",
+      "destination": "packages/agent-native-git/examples/policies/managed-local.json",
+      "imported_sha256": "2f4a02e814c0c1967f8cbdd6fd8b9bde9c98da5effaa4b905f9637a3dd03e89d",
+      "current_sha256": "2f4a02e814c0c1967f8cbdd6fd8b9bde9c98da5effaa4b905f9637a3dd03e89d",
+      "reason": null
+    },
+    {
+      "source": "examples/policies/observe-only.json",
+      "destination": "packages/agent-native-git/examples/policies/observe-only.json",
+      "imported_sha256": "37e15b05d1c4ef45a2657994dcbc74347bad5ca34ed32f14784ed574c2e44e59",
+      "current_sha256": "37e15b05d1c4ef45a2657994dcbc74347bad5ca34ed32f14784ed574c2e44e59",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/agent-start.json",
+      "destination": "packages/agent-native-git/examples/requests/agent-start.json",
+      "imported_sha256": "94cba2d251e6ea44371cf20c73a4cce5b68b7468b5351dc02691311a4f41defa",
+      "current_sha256": "94cba2d251e6ea44371cf20c73a4cce5b68b7468b5351dc02691311a4f41defa",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/agent-stop.json",
+      "destination": "packages/agent-native-git/examples/requests/agent-stop.json",
+      "imported_sha256": "4242340a279e5edbf214e2436bff3ce918161dd3a80466812e06f8b0aa62a71e",
+      "current_sha256": "4242340a279e5edbf214e2436bff3ce918161dd3a80466812e06f8b0aa62a71e",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/doctor.json",
+      "destination": "packages/agent-native-git/examples/requests/doctor.json",
+      "imported_sha256": "e5c9a9c0b14176583bb8ae15173f4cdc0ae44e62212a488437d3a87663a54c09",
+      "current_sha256": "e5c9a9c0b14176583bb8ae15173f4cdc0ae44e62212a488437d3a87663a54c09",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/init.json",
+      "destination": "packages/agent-native-git/examples/requests/init.json",
+      "imported_sha256": "eecce83d2b478b9fee9d9e1d8a077c157ae3374be18c4ffc40625f0bdc05afad",
+      "current_sha256": "eecce83d2b478b9fee9d9e1d8a077c157ae3374be18c4ffc40625f0bdc05afad",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/integrate-apply.json",
+      "destination": "packages/agent-native-git/examples/requests/integrate-apply.json",
+      "imported_sha256": "c6ebddb2e6c512459ca691a55a82d293467f02630ca7bf4942bdb7a4a12c36da",
+      "current_sha256": "c6ebddb2e6c512459ca691a55a82d293467f02630ca7bf4942bdb7a4a12c36da",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/integrate-plan.json",
+      "destination": "packages/agent-native-git/examples/requests/integrate-plan.json",
+      "imported_sha256": "e79e6a094f1b2c68d5abf5719ca7fdc1fa1d3637746aec2a8b79931c5c8eb63a",
+      "current_sha256": "e79e6a094f1b2c68d5abf5719ca7fdc1fa1d3637746aec2a8b79931c5c8eb63a",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/run.json",
+      "destination": "packages/agent-native-git/examples/requests/run.json",
+      "imported_sha256": "f92e9f8c2962ece8d563271eed9f7ebfd37e3f8ae570f63397917bb481dd8b9a",
+      "current_sha256": "f92e9f8c2962ece8d563271eed9f7ebfd37e3f8ae570f63397917bb481dd8b9a",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/snapshot-list.json",
+      "destination": "packages/agent-native-git/examples/requests/snapshot-list.json",
+      "imported_sha256": "bbb06a543a72225c012a46313daad35a417dd31006e7aece3cdc3c256a1d89ed",
+      "current_sha256": "bbb06a543a72225c012a46313daad35a417dd31006e7aece3cdc3c256a1d89ed",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/snapshot-restore.json",
+      "destination": "packages/agent-native-git/examples/requests/snapshot-restore.json",
+      "imported_sha256": "ac676591f762e0c6766a7083b1577282e05b7dd8238677b23167ad02c614ec64",
+      "current_sha256": "ac676591f762e0c6766a7083b1577282e05b7dd8238677b23167ad02c614ec64",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/status.json",
+      "destination": "packages/agent-native-git/examples/requests/status.json",
+      "imported_sha256": "3d6fd1ac4ba269a9eef7187eed11c9267fd9fae62d0b7582b50eae82a3716ee8",
+      "current_sha256": "3d6fd1ac4ba269a9eef7187eed11c9267fd9fae62d0b7582b50eae82a3716ee8",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/task-add.json",
+      "destination": "packages/agent-native-git/examples/requests/task-add.json",
+      "imported_sha256": "40fcc7a0bfe8094b6afeedcd917c907b2c697a0d2d4d47caece69ff4596f3d59",
+      "current_sha256": "40fcc7a0bfe8094b6afeedcd917c907b2c697a0d2d4d47caece69ff4596f3d59",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/task-cancel.json",
+      "destination": "packages/agent-native-git/examples/requests/task-cancel.json",
+      "imported_sha256": "5f7a24cdfe2595a8534160d2198c11949e346348725e3acaf6e8bd2849b78b8e",
+      "current_sha256": "5f7a24cdfe2595a8534160d2198c11949e346348725e3acaf6e8bd2849b78b8e",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/task-list.json",
+      "destination": "packages/agent-native-git/examples/requests/task-list.json",
+      "imported_sha256": "3bbf3b705f49ad362c565c7f545606550c14d1e514e7fea66c1e7fbde8fba7ea",
+      "current_sha256": "3bbf3b705f49ad362c565c7f545606550c14d1e514e7fea66c1e7fbde8fba7ea",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/task-message.json",
+      "destination": "packages/agent-native-git/examples/requests/task-message.json",
+      "imported_sha256": "3781517775e89cb5f05c226a7921ab7380e4b7825965c775ddfc4a3ffee8451c",
+      "current_sha256": "3781517775e89cb5f05c226a7921ab7380e4b7825965c775ddfc4a3ffee8451c",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/task-show.json",
+      "destination": "packages/agent-native-git/examples/requests/task-show.json",
+      "imported_sha256": "40fd7614961b6fdc431f0bb7e3fb880e3136eccd9e5ce01736c3bd8ebdfebfb4",
+      "current_sha256": "40fd7614961b6fdc431f0bb7e3fb880e3136eccd9e5ce01736c3bd8ebdfebfb4",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/worker-start.json",
+      "destination": "packages/agent-native-git/examples/requests/worker-start.json",
+      "imported_sha256": "8471e906bf03095dff96dd71247dbaf36e9bdfd6da6d9f567d909ea71fa2ee6a",
+      "current_sha256": "8471e906bf03095dff96dd71247dbaf36e9bdfd6da6d9f567d909ea71fa2ee6a",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/worker-stop.json",
+      "destination": "packages/agent-native-git/examples/requests/worker-stop.json",
+      "imported_sha256": "d2aa99e07dfd46fb6d5f63ea2ab8c85ba613b27283da7da448f57d560681719d",
+      "current_sha256": "d2aa99e07dfd46fb6d5f63ea2ab8c85ba613b27283da7da448f57d560681719d",
+      "reason": null
+    },
+    {
+      "source": "examples/requests/worktree-list.json",
+      "destination": "packages/agent-native-git/examples/requests/worktree-list.json",
+      "imported_sha256": "934c83077760ce875f1075377b093ee25fb15d16f5f9e05e611dc4aace39498c",
+      "current_sha256": "934c83077760ce875f1075377b093ee25fb15d16f5f9e05e611dc4aace39498c",
+      "reason": null
+    },
+    {
+      "source": "examples/results/checks-failed.json",
+      "destination": "packages/agent-native-git/examples/results/checks-failed.json",
+      "imported_sha256": "7c13698a62e883598ae8ab8e29ee58a8c93cf575650f967e2b56303934a5cf7e",
+      "current_sha256": "7c13698a62e883598ae8ab8e29ee58a8c93cf575650f967e2b56303934a5cf7e",
+      "reason": null
+    },
+    {
+      "source": "examples/results/plan-ready.json",
+      "destination": "packages/agent-native-git/examples/results/plan-ready.json",
+      "imported_sha256": "79bdb6be8af5722bc774f43368179adad7fecb3d7edf10cf08329efab13b20bf",
+      "current_sha256": "79bdb6be8af5722bc774f43368179adad7fecb3d7edf10cf08329efab13b20bf",
+      "reason": null
+    },
+    {
+      "source": "examples/review/cancelled-no-process-with-pid.json",
+      "destination": "packages/agent-native-git/examples/review/cancelled-no-process-with-pid.json",
+      "imported_sha256": "f604e15118609dc28cd46c3db90607c0dc00769763877765b3ddd7ca3725dabb",
+      "current_sha256": "f604e15118609dc28cd46c3db90607c0dc00769763877765b3ddd7ca3725dabb",
+      "reason": null
+    },
+    {
+      "source": "examples/review/cancelled-no-process-with-processIdentity.json",
+      "destination": "packages/agent-native-git/examples/review/cancelled-no-process-with-processIdentity.json",
+      "imported_sha256": "3cedce1c2a7886908f2cf3f29f705dc6d3cb83a477c63d12e5af466802d7fbca",
+      "current_sha256": "3cedce1c2a7886908f2cf3f29f705dc6d3cb83a477c63d12e5af466802d7fbca",
+      "reason": null
+    },
+    {
+      "source": "examples/review/cancelled-no-process-with-startedAtMs.json",
+      "destination": "packages/agent-native-git/examples/review/cancelled-no-process-with-startedAtMs.json",
+      "imported_sha256": "cf6a0c1f8a15ba1bd02da26cb96eabe805795f9461dfe40510403836f8d9f9f2",
+      "current_sha256": "cf6a0c1f8a15ba1bd02da26cb96eabe805795f9461dfe40510403836f8d9f9f2",
+      "reason": null
+    },
+    {
+      "source": "examples/review/failed-no-process-with-pid.json",
+      "destination": "packages/agent-native-git/examples/review/failed-no-process-with-pid.json",
+      "imported_sha256": "7a82acd6a283a582c43d45a06ca6af68bdda11fd2009d02b9de33cd181a7dcfd",
+      "current_sha256": "7a82acd6a283a582c43d45a06ca6af68bdda11fd2009d02b9de33cd181a7dcfd",
+      "reason": null
+    },
+    {
+      "source": "examples/review/failed-no-process-with-processIdentity.json",
+      "destination": "packages/agent-native-git/examples/review/failed-no-process-with-processIdentity.json",
+      "imported_sha256": "537bf946401c8975926feb9210b55d966a128e2a4051304dd21645a1a25d900f",
+      "current_sha256": "537bf946401c8975926feb9210b55d966a128e2a4051304dd21645a1a25d900f",
+      "reason": null
+    },
+    {
+      "source": "examples/review/failed-no-process-with-startedAtMs.json",
+      "destination": "packages/agent-native-git/examples/review/failed-no-process-with-startedAtMs.json",
+      "imported_sha256": "52fdaaee861b1a02faa422dcc3747a0cb39017085046d0fffcdf36d592e14dae",
+      "current_sha256": "52fdaaee861b1a02faa422dcc3747a0cb39017085046d0fffcdf36d592e14dae",
+      "reason": null
+    },
+    {
+      "source": "examples/review/no-process-cancelled.json",
+      "destination": "packages/agent-native-git/examples/review/no-process-cancelled.json",
+      "imported_sha256": "59f49090273abdb917aa86761946dc4f1fbb8d6e5ef976a5cd4ef72de99bab10",
+      "current_sha256": "59f49090273abdb917aa86761946dc4f1fbb8d6e5ef976a5cd4ef72de99bab10",
+      "reason": null
+    },
+    {
+      "source": "examples/review/no-process-failed.json",
+      "destination": "packages/agent-native-git/examples/review/no-process-failed.json",
+      "imported_sha256": "d1a2966b4e4edd7d9244bde8890d517b124b51bbf47faa47db376cd64100e2fb",
+      "current_sha256": "d1a2966b4e4edd7d9244bde8890d517b124b51bbf47faa47db376cd64100e2fb",
+      "reason": null
+    },
+    {
+      "source": "examples/review/shared-attempt-retired.json",
+      "destination": "packages/agent-native-git/examples/review/shared-attempt-retired.json",
+      "imported_sha256": "62b8bf8af3f068dd17fd0c0371a041860b8fa2f9586e7b848fe5705926cc2301",
+      "current_sha256": "62b8bf8af3f068dd17fd0c0371a041860b8fa2f9586e7b848fe5705926cc2301",
+      "reason": null
+    },
+    {
+      "source": "examples/review/shared-attempt-review.json",
+      "destination": "packages/agent-native-git/examples/review/shared-attempt-review.json",
+      "imported_sha256": "195bd4a209539651b99a8cab6c3df84dc03ab19094cd8ebc60c9c89f1039eeb0",
+      "current_sha256": "195bd4a209539651b99a8cab6c3df84dc03ab19094cd8ebc60c9c89f1039eeb0",
+      "reason": null
+    },
+    {
+      "source": "examples/review/shared-attempt-submitted.json",
+      "destination": "packages/agent-native-git/examples/review/shared-attempt-submitted.json",
+      "imported_sha256": "2fd39f23f0a043d55a5ec2ee45b743f9a26c2ad7a1449a994a7ea8900783b641",
+      "current_sha256": "2fd39f23f0a043d55a5ec2ee45b743f9a26c2ad7a1449a994a7ea8900783b641",
+      "reason": null
+    },
+    {
+      "source": "examples/review/started-submission-no-process.json",
+      "destination": "packages/agent-native-git/examples/review/started-submission-no-process.json",
+      "imported_sha256": "cf135a5ef7e4ca013d4954ef871bf9fe5ac5a80e226d8d0148bf481fa1224af6",
+      "current_sha256": "cf135a5ef7e4ca013d4954ef871bf9fe5ac5a80e226d8d0148bf481fa1224af6",
+      "reason": null
+    },
+    {
+      "source": "examples/review/started-submission-terminated.json",
+      "destination": "packages/agent-native-git/examples/review/started-submission-terminated.json",
+      "imported_sha256": "7e31cc93eefebb37c9f3f6dcd7f75d83c970b83ca6aeb0de742f743d8d59a577",
+      "current_sha256": "7e31cc93eefebb37c9f3f6dcd7f75d83c970b83ca6aeb0de742f743d8d59a577",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-bound-cursor.json",
+      "destination": "packages/agent-native-git/examples/review/status-bound-cursor.json",
+      "imported_sha256": "b61bae066b3bed53527cc7d0391d13176aeecee001ee57092ef490a070c8f189",
+      "current_sha256": "b61bae066b3bed53527cc7d0391d13176aeecee001ee57092ef490a070c8f189",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-cursor-missing-afterEventId.json",
+      "destination": "packages/agent-native-git/examples/review/status-cursor-missing-afterEventId.json",
+      "imported_sha256": "e95c4dfcc11a52512288c3350dc9e1aa3741ea6d071e98dd5ad583e86126cec9",
+      "current_sha256": "e95c4dfcc11a52512288c3350dc9e1aa3741ea6d071e98dd5ad583e86126cec9",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-cursor-missing-authorityIncarnation.json",
+      "destination": "packages/agent-native-git/examples/review/status-cursor-missing-authorityIncarnation.json",
+      "imported_sha256": "5ed4361c316e9db120708322514372392bb39bd49160475a17921684b8c6b560",
+      "current_sha256": "5ed4361c316e9db120708322514372392bb39bd49160475a17921684b8c6b560",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-cursor-missing-historyIdentity.json",
+      "destination": "packages/agent-native-git/examples/review/status-cursor-missing-historyIdentity.json",
+      "imported_sha256": "6b3c3c6f0ff13c4e32eb42a1f61d04cd2db32b7d697bac2730fc52ff31d2f089",
+      "current_sha256": "6b3c3c6f0ff13c4e32eb42a1f61d04cd2db32b7d697bac2730fc52ff31d2f089",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-cursor-missing-projectId.json",
+      "destination": "packages/agent-native-git/examples/review/status-cursor-missing-projectId.json",
+      "imported_sha256": "77f1c6f37c462088d0d3fdc358d144be21970869570b64d774d38ef7c6372f49",
+      "current_sha256": "77f1c6f37c462088d0d3fdc358d144be21970869570b64d774d38ef7c6372f49",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-cursor-missing-snapshotHighWatermark.json",
+      "destination": "packages/agent-native-git/examples/review/status-cursor-missing-snapshotHighWatermark.json",
+      "imported_sha256": "257e67223527844a175662375572257c8a28b41adf2fcbc90a8fd29be4679e86",
+      "current_sha256": "257e67223527844a175662375572257c8a28b41adf2fcbc90a8fd29be4679e86",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-fresh-snapshot.json",
+      "destination": "packages/agent-native-git/examples/review/status-fresh-snapshot.json",
+      "imported_sha256": "8adde1ca395e4892641833aa80ee9872d6a701ca841de75b047e1e2c8d530713",
+      "current_sha256": "8adde1ca395e4892641833aa80ee9872d6a701ca841de75b047e1e2c8d530713",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-numeric-cursor.json",
+      "destination": "packages/agent-native-git/examples/review/status-numeric-cursor.json",
+      "imported_sha256": "b8e96956d90a98ccfc6c6a6f0584b7c23e4ca5de254ebf3ada7ba22456cd554f",
+      "current_sha256": "b8e96956d90a98ccfc6c6a6f0584b7c23e4ca5de254ebf3ada7ba22456cd554f",
+      "reason": null
+    },
+    {
+      "source": "examples/review/status-unbound-number.json",
+      "destination": "packages/agent-native-git/examples/review/status-unbound-number.json",
+      "imported_sha256": "b7873d837767aedb398409662a42c63f1f42b481fdc16478b5f81907f58e5a6a",
+      "current_sha256": "b7873d837767aedb398409662a42c63f1f42b481fdc16478b5f81907f58e5a6a",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-bound-cursor.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-bound-cursor.json",
+      "imported_sha256": "ee57e512b05df1395bef289ed3f5536294a54d8c35b42818958e099829058c88",
+      "current_sha256": "ee57e512b05df1395bef289ed3f5536294a54d8c35b42818958e099829058c88",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-missing-afterEventId.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-missing-afterEventId.json",
+      "imported_sha256": "2e67fb40401dab3089a3e832f26be45080e40d1a0699fae0e78536b82ba70e0e",
+      "current_sha256": "2e67fb40401dab3089a3e832f26be45080e40d1a0699fae0e78536b82ba70e0e",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-missing-authorityIncarnation.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-missing-authorityIncarnation.json",
+      "imported_sha256": "4c179d1f003a5978dd7573122a24015f4c3a3f9af7750f3e1dc1f10e456b523a",
+      "current_sha256": "4c179d1f003a5978dd7573122a24015f4c3a3f9af7750f3e1dc1f10e456b523a",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-missing-historyIdentity.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-missing-historyIdentity.json",
+      "imported_sha256": "5ecd4a6251d1e806c84dcb5f900656601c69e4a0641a0a6972bae6d7a91c7152",
+      "current_sha256": "5ecd4a6251d1e806c84dcb5f900656601c69e4a0641a0a6972bae6d7a91c7152",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-missing-projectId.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-missing-projectId.json",
+      "imported_sha256": "d21baef51e5f882f79f693af90186d2b30341125a276c2d767f5908cebbd8adb",
+      "current_sha256": "d21baef51e5f882f79f693af90186d2b30341125a276c2d767f5908cebbd8adb",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-missing-snapshotHighWatermark.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-missing-snapshotHighWatermark.json",
+      "imported_sha256": "d40b54069fdaf39b595fd612fce33667fb4b540a59cdd050c663e5d272cc1683",
+      "current_sha256": "d40b54069fdaf39b595fd612fce33667fb4b540a59cdd050c663e5d272cc1683",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-cursor-without-history.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-cursor-without-history.json",
+      "imported_sha256": "c7a5075671c3976efada41a60c407a8b50f08484e7279f9b400467c76ab526f9",
+      "current_sha256": "c7a5075671c3976efada41a60c407a8b50f08484e7279f9b400467c76ab526f9",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-fresh-snapshot.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-fresh-snapshot.json",
+      "imported_sha256": "619ca6017eb40ce72fe8bb9b1227a43af43af0691e35d408823e55802e07244a",
+      "current_sha256": "619ca6017eb40ce72fe8bb9b1227a43af43af0691e35d408823e55802e07244a",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-numeric-cursor.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-numeric-cursor.json",
+      "imported_sha256": "17f7316c58e255e2dd12a26e0a785c98b1cf3ca2fc7fc2eede8a00b9643aa58e",
+      "current_sha256": "17f7316c58e255e2dd12a26e0a785c98b1cf3ca2fc7fc2eede8a00b9643aa58e",
+      "reason": null
+    },
+    {
+      "source": "examples/review/task-show-unbound-number.json",
+      "destination": "packages/agent-native-git/examples/review/task-show-unbound-number.json",
+      "imported_sha256": "8ae55a89daa847f3ebb3525bff2abf61ed87d93000b6886d28a16c9c791cdb0d",
+      "current_sha256": "8ae55a89daa847f3ebb3525bff2abf61ed87d93000b6886d28a16c9c791cdb0d",
+      "reason": null
+    },
+    {
+      "source": "examples/runtime-profiles.json",
+      "destination": "packages/agent-native-git/examples/runtime-profiles.json",
+      "imported_sha256": "66546f1c3422139fe31c2097102faa4c0619102f4c761a3a853f86f67629012a",
+      "current_sha256": "66546f1c3422139fe31c2097102faa4c0619102f4c761a3a853f86f67629012a",
+      "reason": null
+    },
+    {
+      "source": "examples/snapshot.json",
+      "destination": "packages/agent-native-git/examples/snapshot.json",
+      "imported_sha256": "67ff13d3bbd8f3ce40f19a4cf4372bf5769d3e2aca4f3bd63b005fc6622f6efe",
+      "current_sha256": "67ff13d3bbd8f3ce40f19a4cf4372bf5769d3e2aca4f3bd63b005fc6622f6efe",
+      "reason": null
+    },
+    {
+      "source": "examples/supervisor-report.json",
+      "destination": "packages/agent-native-git/examples/supervisor-report.json",
+      "imported_sha256": "2da190a2a69f46935f77114498ac87a60f3df8935d5f37d50139170134652540",
+      "current_sha256": "2da190a2a69f46935f77114498ac87a60f3df8935d5f37d50139170134652540",
+      "reason": null
+    },
+    {
+      "source": "examples/task-create.json",
+      "destination": "packages/agent-native-git/examples/task-create.json",
+      "imported_sha256": "4ae0aa021f52af9562303fc056d1da77179d2178b887c407c9cb1a5957df50a4",
+      "current_sha256": "4ae0aa021f52af9562303fc056d1da77179d2178b887c407c9cb1a5957df50a4",
+      "reason": null
+    },
+    {
+      "source": "examples/tasks/backend.json",
+      "destination": "packages/agent-native-git/examples/tasks/backend.json",
+      "imported_sha256": "97fb9e43f84921bac0cf5f73e3c635b4b342a376e4abb89e56c530d45fc480ba",
+      "current_sha256": "97fb9e43f84921bac0cf5f73e3c635b4b342a376e4abb89e56c530d45fc480ba",
+      "reason": null
+    },
+    {
+      "source": "examples/tasks/frontend.json",
+      "destination": "packages/agent-native-git/examples/tasks/frontend.json",
+      "imported_sha256": "da8ccb968750976157b21ef5f04069e6042734b4f0ab4b950daded4dc699dc1c",
+      "current_sha256": "da8ccb968750976157b21ef5f04069e6042734b4f0ab4b950daded4dc699dc1c",
+      "reason": null
+    },
+    {
+      "source": "examples/tasks/tests.json",
+      "destination": "packages/agent-native-git/examples/tasks/tests.json",
+      "imported_sha256": "6da08c43a2e3c8962286995befe395c279ce111114102536f88001b9f6a9e6bd",
+      "current_sha256": "6da08c43a2e3c8962286995befe395c279ce111114102536f88001b9f6a9e6bd",
+      "reason": null
+    },
+    {
+      "source": "native/Execution.cs",
+      "destination": "packages/agent-native-git/native/Execution.cs",
+      "imported_sha256": "43411addde33aaed1476031dc6322b71dac2458a3be0f2e8c50c821715734059",
+      "current_sha256": "43411addde33aaed1476031dc6322b71dac2458a3be0f2e8c50c821715734059",
+      "reason": null
+    },
+    {
+      "source": "native/Platform.cs",
+      "destination": "packages/agent-native-git/native/Platform.cs",
+      "imported_sha256": "8856d06d7d35d33aaba322fbcff1e0d80749eb7fb2345e5745f3c04a32e9c02d",
+      "current_sha256": "8856d06d7d35d33aaba322fbcff1e0d80749eb7fb2345e5745f3c04a32e9c02d",
+      "reason": null
+    },
+    {
+      "source": "native/fixtures/ExecutionFixture.cs",
+      "destination": "packages/agent-native-git/native/fixtures/ExecutionFixture.cs",
+      "imported_sha256": "daacfcbe9609c227819e49dc7299761d1f13d0cc8ef91d6ea09952b9f6903eaa",
+      "current_sha256": "daacfcbe9609c227819e49dc7299761d1f13d0cc8ef91d6ea09952b9f6903eaa",
+      "reason": null
+    },
+    {
+      "source": "package-lock.json",
+      "destination": "packages/agent-native-git/package-lock.json",
+      "imported_sha256": "80d59ef8a429ca3496aa985e6fc731289099257f5cdab4ecc390d66704678358",
+      "current_sha256": "80d59ef8a429ca3496aa985e6fc731289099257f5cdab4ecc390d66704678358",
+      "reason": null
+    },
+    {
+      "source": "package.json",
+      "destination": "packages/agent-native-git/package.json",
+      "imported_sha256": "81c709665e697edde34ac0da658c7e3f5be0bfe92e51e03841fb3c0a4424c4c9",
+      "current_sha256": "e5756695200e934455b5a2ec41a4fb59465cc48780e4007bca96b25fe9f260de",
+      "reason": "Owning-monorepo repository/bugs/homepage metadata, existing Windows-x64 support declarations, and prepared-test/packed-consumer script adapters; native identity/version/private/license/runtime/lock/dependency contracts unchanged."
+    },
+    {
+      "source": "schemas/README.md",
+      "destination": "packages/agent-native-git/schemas/README.md",
+      "imported_sha256": "25a3a1381c8a64a0ccec2f727ae150a9a68b955f4fdff9cbc467cc80ec1aa2cb",
+      "current_sha256": "25a3a1381c8a64a0ccec2f727ae150a9a68b955f4fdff9cbc467cc80ec1aa2cb",
+      "reason": null
+    },
+    {
+      "source": "schemas/attempt.schema.json",
+      "destination": "packages/agent-native-git/schemas/attempt.schema.json",
+      "imported_sha256": "45aea4bef182431d4bbb3471bc48dff014ee98dd6c487a2e2d0b6622729d135d",
+      "current_sha256": "45aea4bef182431d4bbb3471bc48dff014ee98dd6c487a2e2d0b6622729d135d",
+      "reason": null
+    },
+    {
+      "source": "schemas/authority.schema.json",
+      "destination": "packages/agent-native-git/schemas/authority.schema.json",
+      "imported_sha256": "7ebf0a18078c2249af8f59e88842353a25d42c6cc1337feeaf2067bc2816cf76",
+      "current_sha256": "7ebf0a18078c2249af8f59e88842353a25d42c6cc1337feeaf2067bc2816cf76",
+      "reason": null
+    },
+    {
+      "source": "schemas/backup-manifest.schema.json",
+      "destination": "packages/agent-native-git/schemas/backup-manifest.schema.json",
+      "imported_sha256": "df6f9fc140a6e1615ecec01221c76e532da44989efa74a33296b4b67619a1117",
+      "current_sha256": "df6f9fc140a6e1615ecec01221c76e532da44989efa74a33296b4b67619a1117",
+      "reason": null
+    },
+    {
+      "source": "schemas/broker-admission.schema.json",
+      "destination": "packages/agent-native-git/schemas/broker-admission.schema.json",
+      "imported_sha256": "33a06faaf4e44a5be8963220690aff518db569141a458b9374f4a9b44c3b58c9",
+      "current_sha256": "33a06faaf4e44a5be8963220690aff518db569141a458b9374f4a9b44c3b58c9",
+      "reason": null
+    },
+    {
+      "source": "schemas/command-catalog.schema.json",
+      "destination": "packages/agent-native-git/schemas/command-catalog.schema.json",
+      "imported_sha256": "99a8366c497dd8f0b645649bca118f218f668deb225b60ff07addd3ea576c2d6",
+      "current_sha256": "99a8366c497dd8f0b645649bca118f218f668deb225b60ff07addd3ea576c2d6",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/agent-start.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/agent-start.schema.json",
+      "imported_sha256": "7f024c1ed8d94ba3bd2198acb661ae71e7cdafe9f59b8f6509c30be2e1b92c6d",
+      "current_sha256": "7f024c1ed8d94ba3bd2198acb661ae71e7cdafe9f59b8f6509c30be2e1b92c6d",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/agent-stop.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/agent-stop.schema.json",
+      "imported_sha256": "915d929c1aa568677e65bb83b96c79eab8da83c88f85578c52350bf7b932e653",
+      "current_sha256": "915d929c1aa568677e65bb83b96c79eab8da83c88f85578c52350bf7b932e653",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/doctor.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/doctor.schema.json",
+      "imported_sha256": "01cb794a2624ef3b9b8f461b86d4ea7f51b669745413a2743ae1dd0ee3570644",
+      "current_sha256": "01cb794a2624ef3b9b8f461b86d4ea7f51b669745413a2743ae1dd0ee3570644",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/init.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/init.schema.json",
+      "imported_sha256": "71321daa89138a941668ecdaca8d8a8b2a524e88e9babd6b31201b070d3121e4",
+      "current_sha256": "71321daa89138a941668ecdaca8d8a8b2a524e88e9babd6b31201b070d3121e4",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/integrate-apply.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/integrate-apply.schema.json",
+      "imported_sha256": "496937e7ecf1c71ffb0f99d020812fb36b82752539d3dcc679bf2e8539ebb0a7",
+      "current_sha256": "496937e7ecf1c71ffb0f99d020812fb36b82752539d3dcc679bf2e8539ebb0a7",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/integrate-plan.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/integrate-plan.schema.json",
+      "imported_sha256": "8238f9000b916ed757e38aa4be84847419b840ebb8ab7989d893ef5717dc8ade",
+      "current_sha256": "8238f9000b916ed757e38aa4be84847419b840ebb8ab7989d893ef5717dc8ade",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/run.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/run.schema.json",
+      "imported_sha256": "fe695bcbacfe12951b70ea3d85b9d508f0c1dd7619eaaf0fa8676626d3556b81",
+      "current_sha256": "fe695bcbacfe12951b70ea3d85b9d508f0c1dd7619eaaf0fa8676626d3556b81",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/snapshot-list.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/snapshot-list.schema.json",
+      "imported_sha256": "254097111b7878b0a82d221fe66d373ad7c936f43750bd3d51be960c70e3e1a5",
+      "current_sha256": "254097111b7878b0a82d221fe66d373ad7c936f43750bd3d51be960c70e3e1a5",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/snapshot-restore.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/snapshot-restore.schema.json",
+      "imported_sha256": "9f7a7d7cab922d203cb28024447c6c4257deda0f8642765e4789836e0cdf79a9",
+      "current_sha256": "9f7a7d7cab922d203cb28024447c6c4257deda0f8642765e4789836e0cdf79a9",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/status.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/status.schema.json",
+      "imported_sha256": "9df87938396b86e66b64db73c3aa93c05b031cb061d25368d2bf05ea8344f63c",
+      "current_sha256": "9df87938396b86e66b64db73c3aa93c05b031cb061d25368d2bf05ea8344f63c",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/task-add.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/task-add.schema.json",
+      "imported_sha256": "3b7230e854c6e15923393c6c0cce9a37924f6bc9b2f4f36300a69bb5e9c5565e",
+      "current_sha256": "3b7230e854c6e15923393c6c0cce9a37924f6bc9b2f4f36300a69bb5e9c5565e",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/task-cancel.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/task-cancel.schema.json",
+      "imported_sha256": "38a2d2f21ae2ebfc88720ef698c00e782a9025f22bb5a407259bd40364eb7e92",
+      "current_sha256": "38a2d2f21ae2ebfc88720ef698c00e782a9025f22bb5a407259bd40364eb7e92",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/task-list.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/task-list.schema.json",
+      "imported_sha256": "1f4532fe540c41cd3bba2ef14e95a549f9d760234662606f5404f0985726b33f",
+      "current_sha256": "1f4532fe540c41cd3bba2ef14e95a549f9d760234662606f5404f0985726b33f",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/task-message.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/task-message.schema.json",
+      "imported_sha256": "7991ec7efe4b3dfafa5cf47f2b462f8718c8f8dd6e2171cb776a6df2cbce5c4c",
+      "current_sha256": "7991ec7efe4b3dfafa5cf47f2b462f8718c8f8dd6e2171cb776a6df2cbce5c4c",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/task-show.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/task-show.schema.json",
+      "imported_sha256": "0da59fb13df839f3d2c01f42e004cf5f272ece9bc9a7ffe2c9107e362b554530",
+      "current_sha256": "0da59fb13df839f3d2c01f42e004cf5f272ece9bc9a7ffe2c9107e362b554530",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/worker-start.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/worker-start.schema.json",
+      "imported_sha256": "ad65fc5694740f76e751e2fc07d959a24d67ab9452bd54ca2ab300c09b2ac4d9",
+      "current_sha256": "ad65fc5694740f76e751e2fc07d959a24d67ab9452bd54ca2ab300c09b2ac4d9",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/worker-stop.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/worker-stop.schema.json",
+      "imported_sha256": "9e8c1243a6fded44f09b8ad4461a44331414f2085aaa254bc66f06851d758c6d",
+      "current_sha256": "9e8c1243a6fded44f09b8ad4461a44331414f2085aaa254bc66f06851d758c6d",
+      "reason": null
+    },
+    {
+      "source": "schemas/commands/worktree-list.schema.json",
+      "destination": "packages/agent-native-git/schemas/commands/worktree-list.schema.json",
+      "imported_sha256": "e74bde043d0225e02884dbe5f173859d6a3349fd9656cff404c86579d9932895",
+      "current_sha256": "e74bde043d0225e02884dbe5f173859d6a3349fd9656cff404c86579d9932895",
+      "reason": null
+    },
+    {
+      "source": "schemas/common.schema.json",
+      "destination": "packages/agent-native-git/schemas/common.schema.json",
+      "imported_sha256": "c8abc4dab0a6057aded7248e874ffa4d87ace48a3b93542e34aba672dd5aea43",
+      "current_sha256": "c8abc4dab0a6057aded7248e874ffa4d87ace48a3b93542e34aba672dd5aea43",
+      "reason": null
+    },
+    {
+      "source": "schemas/event-cursor.schema.json",
+      "destination": "packages/agent-native-git/schemas/event-cursor.schema.json",
+      "imported_sha256": "d39cb0081e965988f65b01b093392c54a739ae59610ec93c06fe5175ed242fdc",
+      "current_sha256": "d39cb0081e965988f65b01b093392c54a739ae59610ec93c06fe5175ed242fdc",
+      "reason": null
+    },
+    {
+      "source": "schemas/event.schema.json",
+      "destination": "packages/agent-native-git/schemas/event.schema.json",
+      "imported_sha256": "65ecd605b35a7bb32b8e4f3b04b1dbd41017d851685d054b073cfdbc6b8e35f0",
+      "current_sha256": "65ecd605b35a7bb32b8e4f3b04b1dbd41017d851685d054b073cfdbc6b8e35f0",
+      "reason": null
+    },
+    {
+      "source": "schemas/evidence.schema.json",
+      "destination": "packages/agent-native-git/schemas/evidence.schema.json",
+      "imported_sha256": "9a64229720b36007e4b2866cdfddce464e091c1a54ac000e26e4976a7b38dae9",
+      "current_sha256": "9a64229720b36007e4b2866cdfddce464e091c1a54ac000e26e4976a7b38dae9",
+      "reason": null
+    },
+    {
+      "source": "schemas/integration-plan.schema.json",
+      "destination": "packages/agent-native-git/schemas/integration-plan.schema.json",
+      "imported_sha256": "b0144d725d7ef728e1b9b9466b5b420e3a19d3b86d8b8cf1ac10d7564b7b3f97",
+      "current_sha256": "b0144d725d7ef728e1b9b9466b5b420e3a19d3b86d8b8cf1ac10d7564b7b3f97",
+      "reason": null
+    },
+    {
+      "source": "schemas/ipc-hello.schema.json",
+      "destination": "packages/agent-native-git/schemas/ipc-hello.schema.json",
+      "imported_sha256": "c718aa26a88c0cc2d813283bd41e9ec0e974ed8f8951dca9b6bc19e95252d2fc",
+      "current_sha256": "c718aa26a88c0cc2d813283bd41e9ec0e974ed8f8951dca9b6bc19e95252d2fc",
+      "reason": null
+    },
+    {
+      "source": "schemas/ipc-scope.schema.json",
+      "destination": "packages/agent-native-git/schemas/ipc-scope.schema.json",
+      "imported_sha256": "451d6ecc13aa5f51e60cdfe7ace347f38aae042be50659f78f391c89aad0c195",
+      "current_sha256": "451d6ecc13aa5f51e60cdfe7ace347f38aae042be50659f78f391c89aad0c195",
+      "reason": null
+    },
+    {
+      "source": "schemas/lease-action.schema.json",
+      "destination": "packages/agent-native-git/schemas/lease-action.schema.json",
+      "imported_sha256": "71a50a7d3e56a97edb0f5d9db5d81ecdf7fc1eeb894cb987927dd09bd3e23df2",
+      "current_sha256": "71a50a7d3e56a97edb0f5d9db5d81ecdf7fc1eeb894cb987927dd09bd3e23df2",
+      "reason": null
+    },
+    {
+      "source": "schemas/message-input.schema.json",
+      "destination": "packages/agent-native-git/schemas/message-input.schema.json",
+      "imported_sha256": "28331a84a3cd2706c06d313a7eaf17a0d750d80fc46b7239a06af3840c68d41d",
+      "current_sha256": "28331a84a3cd2706c06d313a7eaf17a0d750d80fc46b7239a06af3840c68d41d",
+      "reason": null
+    },
+    {
+      "source": "schemas/operation-journal.schema.json",
+      "destination": "packages/agent-native-git/schemas/operation-journal.schema.json",
+      "imported_sha256": "76645ac9d8ff692753ed43b93c1ed6c103b6c72cf6d3cb82fa73db28eeb5421e",
+      "current_sha256": "76645ac9d8ff692753ed43b93c1ed6c103b6c72cf6d3cb82fa73db28eeb5421e",
+      "reason": null
+    },
+    {
+      "source": "schemas/operation-observation.schema.json",
+      "destination": "packages/agent-native-git/schemas/operation-observation.schema.json",
+      "imported_sha256": "557d323359637c21a63ae86ce2735666e75dd489272fb9ee8fdcd7a27b725cb7",
+      "current_sha256": "557d323359637c21a63ae86ce2735666e75dd489272fb9ee8fdcd7a27b725cb7",
+      "reason": null
+    },
+    {
+      "source": "schemas/policy.schema.json",
+      "destination": "packages/agent-native-git/schemas/policy.schema.json",
+      "imported_sha256": "f4e0aace7aa690ea9e352f05fcc58e0dc7bde904bb01bc93e6724fb544d1766e",
+      "current_sha256": "f4e0aace7aa690ea9e352f05fcc58e0dc7bde904bb01bc93e6724fb544d1766e",
+      "reason": null
+    },
+    {
+      "source": "schemas/result.schema.json",
+      "destination": "packages/agent-native-git/schemas/result.schema.json",
+      "imported_sha256": "04636f31955f99d93399f70db940cc06953c4f9612cdfa16d5786be7ad133cd2",
+      "current_sha256": "04636f31955f99d93399f70db940cc06953c4f9612cdfa16d5786be7ad133cd2",
+      "reason": null
+    },
+    {
+      "source": "schemas/runtime-profiles.schema.json",
+      "destination": "packages/agent-native-git/schemas/runtime-profiles.schema.json",
+      "imported_sha256": "181dbba1e97ce2b3ee607e22177e6f5c4cfea464f9506ca63677cac42accb708",
+      "current_sha256": "181dbba1e97ce2b3ee607e22177e6f5c4cfea464f9506ca63677cac42accb708",
+      "reason": null
+    },
+    {
+      "source": "schemas/snapshot.schema.json",
+      "destination": "packages/agent-native-git/schemas/snapshot.schema.json",
+      "imported_sha256": "252937797a882d7bafbabb60567ae8ab39c2c41d3ce3428bf8f83eb9529ce99f",
+      "current_sha256": "252937797a882d7bafbabb60567ae8ab39c2c41d3ce3428bf8f83eb9529ce99f",
+      "reason": null
+    },
+    {
+      "source": "schemas/supervisor-report.schema.json",
+      "destination": "packages/agent-native-git/schemas/supervisor-report.schema.json",
+      "imported_sha256": "0fdaf8f0b634427740afdf622860df1962ea070ffe5a0e144f206fa59ceed63c",
+      "current_sha256": "0fdaf8f0b634427740afdf622860df1962ea070ffe5a0e144f206fa59ceed63c",
+      "reason": null
+    },
+    {
+      "source": "schemas/task-create.schema.json",
+      "destination": "packages/agent-native-git/schemas/task-create.schema.json",
+      "imported_sha256": "76c923d5b7d01d39a4fa08dbcbe561d5dd2f1172bfd9ae0f65d7f10f77252dba",
+      "current_sha256": "76c923d5b7d01d39a4fa08dbcbe561d5dd2f1172bfd9ae0f65d7f10f77252dba",
+      "reason": null
+    },
+    {
+      "source": "schemas/task-input.schema.json",
+      "destination": "packages/agent-native-git/schemas/task-input.schema.json",
+      "imported_sha256": "844773f11fc54cb1065f3010089f9abfd2786b515b812d67d1b88a685bb8570a",
+      "current_sha256": "844773f11fc54cb1065f3010089f9abfd2786b515b812d67d1b88a685bb8570a",
+      "reason": null
+    },
+    {
+      "source": "schemas/task.schema.json",
+      "destination": "packages/agent-native-git/schemas/task.schema.json",
+      "imported_sha256": "ec260592c9c8ec2074b3f3cc7ee77fdce007bcbbc12e40d41138636424782aac",
+      "current_sha256": "ec260592c9c8ec2074b3f3cc7ee77fdce007bcbbc12e40d41138636424782aac",
+      "reason": null
+    },
+    {
+      "source": "scripts/build-fixture.mjs",
+      "destination": "packages/agent-native-git/scripts/build-fixture.mjs",
+      "imported_sha256": "a3bdbfe70aa6b7d07132f79ac142f8d913457cb6181665e9c8ab76ba241f92ee",
+      "current_sha256": "a3bdbfe70aa6b7d07132f79ac142f8d913457cb6181665e9c8ab76ba241f92ee",
+      "reason": null
+    },
+    {
+      "source": "scripts/build-native.mjs",
+      "destination": "packages/agent-native-git/scripts/build-native.mjs",
+      "imported_sha256": "ed3958bb5333c32a573908702a48cb2719491eb978d89c4cf95f60d50d764bb8",
+      "current_sha256": "ed3958bb5333c32a573908702a48cb2719491eb978d89c4cf95f60d50d764bb8",
+      "reason": null
+    },
+    {
+      "source": "scripts/build.mjs",
+      "destination": "packages/agent-native-git/scripts/build.mjs",
+      "imported_sha256": "c15b1feb08d42e44350b2d96036c86de0ddbc4071320f9d1d67788f16b877d40",
+      "current_sha256": "c15b1feb08d42e44350b2d96036c86de0ddbc4071320f9d1d67788f16b877d40",
+      "reason": null
+    },
+    {
+      "source": "scripts/pack-check.mjs",
+      "destination": "packages/agent-native-git/scripts/pack-check.mjs",
+      "imported_sha256": "2e6f81e474dd491e1e3208a1668cfba2401cd8858f70b1bb7de5ba3b674394a1",
+      "current_sha256": "2e6f81e474dd491e1e3208a1668cfba2401cd8858f70b1bb7de5ba3b674394a1",
+      "reason": null
+    },
+    {
+      "source": "scripts/sqlite-primitives.mjs",
+      "destination": "packages/agent-native-git/scripts/sqlite-primitives.mjs",
+      "imported_sha256": "09827685c6836d764c4330096403e76cca19009b11bc9a72683176297fdf90fa",
+      "current_sha256": "09827685c6836d764c4330096403e76cca19009b11bc9a72683176297fdf90fa",
+      "reason": null
+    },
+    {
+      "source": "scripts/test.mjs",
+      "destination": "packages/agent-native-git/scripts/test.mjs",
+      "imported_sha256": "999b07cd3ac508ab87c459a6dac056ff2b78840da3be4068460931a12953eb2e",
+      "current_sha256": "999b07cd3ac508ab87c459a6dac056ff2b78840da3be4068460931a12953eb2e",
+      "reason": null
+    },
+    {
+      "source": "scripts/tooling.mjs",
+      "destination": "packages/agent-native-git/scripts/tooling.mjs",
+      "imported_sha256": "0cadb747fdb1367cbcaf887abaec7fde32063635997f7a26969089a37c23686b",
+      "current_sha256": "0cadb747fdb1367cbcaf887abaec7fde32063635997f7a26969089a37c23686b",
+      "reason": null
+    },
+    {
+      "source": "scripts/validate-contracts.py",
+      "destination": "packages/agent-native-git/scripts/validate-contracts.py",
+      "imported_sha256": "31375187007f581d47fc71e6f5718794e8000b6c49b1c787635310d1c55bfb3b",
+      "current_sha256": "31375187007f581d47fc71e6f5718794e8000b6c49b1c787635310d1c55bfb3b",
+      "reason": null
+    },
+    {
+      "source": "scripts/verify.mjs",
+      "destination": "packages/agent-native-git/scripts/verify.mjs",
+      "imported_sha256": "01a20e110bef9aad638505a09fa59b279d09c60e832270cbb274d4c320a4413e",
+      "current_sha256": "01a20e110bef9aad638505a09fa59b279d09c60e832270cbb274d4c320a4413e",
+      "reason": null
+    },
+    {
+      "source": "scripts/windows-primitives.cs",
+      "destination": "packages/agent-native-git/scripts/windows-primitives.cs",
+      "imported_sha256": "bd9ba87931767b6575ff63cbf30c960dc4d7d6da7c282413c88e036c21ae96c0",
+      "current_sha256": "bd9ba87931767b6575ff63cbf30c960dc4d7d6da7c282413c88e036c21ae96c0",
+      "reason": null
+    },
+    {
+      "source": "scripts/windows-primitives.ps1",
+      "destination": "packages/agent-native-git/scripts/windows-primitives.ps1",
+      "imported_sha256": "53fcc5229e773e18800b56d84cc81d0bb754e90da5688b437f71df59cdde5758",
+      "current_sha256": "53fcc5229e773e18800b56d84cc81d0bb754e90da5688b437f71df59cdde5758",
+      "reason": null
+    },
+    {
+      "source": "scripts/worker-handoff-host.cs",
+      "destination": "packages/agent-native-git/scripts/worker-handoff-host.cs",
+      "imported_sha256": "00a659a4c341f7d7b01806dc75afe742172d8a2b72e15230c00f1e0b0520c2b8",
+      "current_sha256": "00a659a4c341f7d7b01806dc75afe742172d8a2b72e15230c00f1e0b0520c2b8",
+      "reason": null
+    },
+    {
+      "source": "scripts/worker-handoff-probe.mjs",
+      "destination": "packages/agent-native-git/scripts/worker-handoff-probe.mjs",
+      "imported_sha256": "1edd1e4ee2a5708ceb6816871fb1f39c1531903705e0ca289ccb578aeae12457",
+      "current_sha256": "1edd1e4ee2a5708ceb6816871fb1f39c1531903705e0ca289ccb578aeae12457",
+      "reason": null
+    },
+    {
+      "source": "sql/001_initial.sql",
+      "destination": "packages/agent-native-git/sql/001_initial.sql",
+      "imported_sha256": "11434e83acb2991f4e9674f40a8587079e8e5f3638d2a9e6cefa4a2d0e519a16",
+      "current_sha256": "11434e83acb2991f4e9674f40a8587079e8e5f3638d2a9e6cefa4a2d0e519a16",
+      "reason": null
+    },
+    {
+      "source": "sql/002_runtime_metadata.sql",
+      "destination": "packages/agent-native-git/sql/002_runtime_metadata.sql",
+      "imported_sha256": "01b1bd64eb4e474b2250604eb4fdddec469894a608f73652cf2e9f3bb97d4040",
+      "current_sha256": "01b1bd64eb4e474b2250604eb4fdddec469894a608f73652cf2e9f3bb97d4040",
+      "reason": null
+    },
+    {
+      "source": "sql/README.md",
+      "destination": "packages/agent-native-git/sql/README.md",
+      "imported_sha256": "42f06ce7232d7b5e362034d2cf753287893c05d596d465aca59fde13a17632ca",
+      "current_sha256": "42f06ce7232d7b5e362034d2cf753287893c05d596d465aca59fde13a17632ca",
+      "reason": null
+    },
+    {
+      "source": "sql/connection.sql",
+      "destination": "packages/agent-native-git/sql/connection.sql",
+      "imported_sha256": "bde2238a02560100fe688bb234a7af69d77bc8a5f0d8c101b6083d90b4784b89",
+      "current_sha256": "bde2238a02560100fe688bb234a7af69d77bc8a5f0d8c101b6083d90b4784b89",
+      "reason": null
+    },
+    {
+      "source": "sql/guard.sql",
+      "destination": "packages/agent-native-git/sql/guard.sql",
+      "imported_sha256": "dbdde32697a5b0b279eba7a98dd30bf7d18ed3d634d464f07d40e0178ddc6e96",
+      "current_sha256": "dbdde32697a5b0b279eba7a98dd30bf7d18ed3d634d464f07d40e0178ddc6e96",
+      "reason": null
+    },
+    {
+      "source": "sql/registry.sql",
+      "destination": "packages/agent-native-git/sql/registry.sql",
+      "imported_sha256": "9437968efbc6e13500dc04885f791a6fee1e429509722cf7a6e8487eaaf614f4",
+      "current_sha256": "9437968efbc6e13500dc04885f791a6fee1e429509722cf7a6e8487eaaf614f4",
+      "reason": null
+    },
+    {
+      "source": "sql/registry_runtime.sql",
+      "destination": "packages/agent-native-git/sql/registry_runtime.sql",
+      "imported_sha256": "a3a6160c71e7baa894383f45cb5b79bcde415d06117037a12c760ff2a129a032",
+      "current_sha256": "a3a6160c71e7baa894383f45cb5b79bcde415d06117037a12c760ff2a129a032",
+      "reason": null
+    },
+    {
+      "source": "src/cli.ts",
+      "destination": "packages/agent-native-git/src/cli.ts",
+      "imported_sha256": "ede2046081127e1d2b0568146b9097bebaf32ca13a74be211a1bad29ab9f6752",
+      "current_sha256": "ede2046081127e1d2b0568146b9097bebaf32ca13a74be211a1bad29ab9f6752",
+      "reason": null
+    },
+    {
+      "source": "src/core.ts",
+      "destination": "packages/agent-native-git/src/core.ts",
+      "imported_sha256": "29c9b115e5bbb537dd0b6e98e24df665881e8d6b32dca2913df02dcdd272db1f",
+      "current_sha256": "29c9b115e5bbb537dd0b6e98e24df665881e8d6b32dca2913df02dcdd272db1f",
+      "reason": null
+    },
+    {
+      "source": "src/core/execution.ts",
+      "destination": "packages/agent-native-git/src/core/execution.ts",
+      "imported_sha256": "6136965356af1e9aac2ae12cad58aed197044c80cce851b4a4043c840e46c2e3",
+      "current_sha256": "6136965356af1e9aac2ae12cad58aed197044c80cce851b4a4043c840e46c2e3",
+      "reason": null
+    },
+    {
+      "source": "src/core/git-process.ts",
+      "destination": "packages/agent-native-git/src/core/git-process.ts",
+      "imported_sha256": "a2edcccf393dd27aad3363d7b45898ecb3158d797cbbbe28709c6d2f097a6ee3",
+      "current_sha256": "a2edcccf393dd27aad3363d7b45898ecb3158d797cbbbe28709c6d2f097a6ee3",
+      "reason": null
+    },
+    {
+      "source": "src/core/git.ts",
+      "destination": "packages/agent-native-git/src/core/git.ts",
+      "imported_sha256": "bbdd843cf7b13809554c875e8bf3a5256b98daa613b80f21a66f80adb5ff736d",
+      "current_sha256": "bbdd843cf7b13809554c875e8bf3a5256b98daa613b80f21a66f80adb5ff736d",
+      "reason": null
+    },
+    {
+      "source": "src/core/policy.ts",
+      "destination": "packages/agent-native-git/src/core/policy.ts",
+      "imported_sha256": "bdbed51de0ab43b221345645f95cc3834b4a4ce5d2753483f0730b1e6b8527e5",
+      "current_sha256": "bdbed51de0ab43b221345645f95cc3834b4a4ce5d2753483f0730b1e6b8527e5",
+      "reason": null
+    },
+    {
+      "source": "src/core/store.ts",
+      "destination": "packages/agent-native-git/src/core/store.ts",
+      "imported_sha256": "7bcd138cc3947e22e221661e0d4babc38362f6f2a93bc7718dc2acf4c5b9d2ab",
+      "current_sha256": "7bcd138cc3947e22e221661e0d4babc38362f6f2a93bc7718dc2acf4c5b9d2ab",
+      "reason": null
+    },
+    {
+      "source": "src/core/values.ts",
+      "destination": "packages/agent-native-git/src/core/values.ts",
+      "imported_sha256": "7e07b83ba7fbcf3211ed70b1f30cdf15c9e3397c3f177d7086a1d3ff05b8d6ac",
+      "current_sha256": "7e07b83ba7fbcf3211ed70b1f30cdf15c9e3397c3f177d7086a1d3ff05b8d6ac",
+      "reason": null
+    },
+    {
+      "source": "src/core/worktrees.ts",
+      "destination": "packages/agent-native-git/src/core/worktrees.ts",
+      "imported_sha256": "d65af8f9c31d1f47646933866b08f08159efc13fcc5061e6bd3e6363b8a75ad1",
+      "current_sha256": "d65af8f9c31d1f47646933866b08f08159efc13fcc5061e6bd3e6363b8a75ad1",
+      "reason": null
+    },
+    {
+      "source": "src/execution-native.ts",
+      "destination": "packages/agent-native-git/src/execution-native.ts",
+      "imported_sha256": "240ca371ecc15ef167fbb6e6e86a0e12dff9207e462548f4c698f588c45e6c12",
+      "current_sha256": "240ca371ecc15ef167fbb6e6e86a0e12dff9207e462548f4c698f588c45e6c12",
+      "reason": null
+    },
+    {
+      "source": "src/index.ts",
+      "destination": "packages/agent-native-git/src/index.ts",
+      "imported_sha256": "7c90d2c710983370c7e9677a04526a3a342887cdf4955d115245f88b51d669da",
+      "current_sha256": "7c90d2c710983370c7e9677a04526a3a342887cdf4955d115245f88b51d669da",
+      "reason": null
+    },
+    {
+      "source": "src/json.ts",
+      "destination": "packages/agent-native-git/src/json.ts",
+      "imported_sha256": "b43c7e8e97e7009942d96e969e1c3e90e3aa57d76594c1dcfdfb6e0a6e4471c1",
+      "current_sha256": "b43c7e8e97e7009942d96e969e1c3e90e3aa57d76594c1dcfdfb6e0a6e4471c1",
+      "reason": null
+    },
+    {
+      "source": "src/platform.ts",
+      "destination": "packages/agent-native-git/src/platform.ts",
+      "imported_sha256": "8f041c12e96ea7b1a87d8130f98618d3bc5d95653957c52d6fbb14e6c23ae696",
+      "current_sha256": "8f041c12e96ea7b1a87d8130f98618d3bc5d95653957c52d6fbb14e6c23ae696",
+      "reason": null
+    },
+    {
+      "source": "src/shared.ts",
+      "destination": "packages/agent-native-git/src/shared.ts",
+      "imported_sha256": "8ad3930684d81ab469d9cc3cd93d17f60b4fe9ad658ff6a0b0ab6901315c48d0",
+      "current_sha256": "8ad3930684d81ab469d9cc3cd93d17f60b4fe9ad658ff6a0b0ab6901315c48d0",
+      "reason": null
+    },
+    {
+      "source": "tests/FAULT_INJECTION.md",
+      "destination": "packages/agent-native-git/tests/FAULT_INJECTION.md",
+      "imported_sha256": "5cdf6628ff1e670f68bc414864db4ad9ecd3ecde956b8815f9ad4b3c34fd4cca",
+      "current_sha256": "5cdf6628ff1e670f68bc414864db4ad9ecd3ecde956b8815f9ad4b3c34fd4cca",
+      "reason": null
+    },
+    {
+      "source": "tests/README.md",
+      "destination": "packages/agent-native-git/tests/README.md",
+      "imported_sha256": "c9745c9bc5ab293f083f8358b0ec037fae5d64f2698275734d0d3c75b480947c",
+      "current_sha256": "c9745c9bc5ab293f083f8358b0ec037fae5d64f2698275734d0d3c75b480947c",
+      "reason": null
+    },
+    {
+      "source": "tests/acceptance-map.json",
+      "destination": "packages/agent-native-git/tests/acceptance-map.json",
+      "imported_sha256": "3aa33e4ce1043c79ead0c80380bea3f2877a10ff2a56d3157c727d071377e455",
+      "current_sha256": "3aa33e4ce1043c79ead0c80380bea3f2877a10ff2a56d3157c727d071377e455",
+      "reason": null
+    },
+    {
+      "source": "tests/channel-loss.test.mjs",
+      "destination": "packages/agent-native-git/tests/channel-loss.test.mjs",
+      "imported_sha256": "a7911562c203eadff713acdd71f7635d423bcb58e5e1f9918eed3e45d0c33438",
+      "current_sha256": "a7911562c203eadff713acdd71f7635d423bcb58e5e1f9918eed3e45d0c33438",
+      "reason": null
+    },
+    {
+      "source": "tests/cli.test.mjs",
+      "destination": "packages/agent-native-git/tests/cli.test.mjs",
+      "imported_sha256": "b1eeb94b75f38a7341e6e093073105e3b3ad2e50465335ebd858dd613152e8bc",
+      "current_sha256": "b1eeb94b75f38a7341e6e093073105e3b3ad2e50465335ebd858dd613152e8bc",
+      "reason": null
+    },
+    {
+      "source": "tests/execution-consumer.mjs",
+      "destination": "packages/agent-native-git/tests/execution-consumer.mjs",
+      "imported_sha256": "f5270c6208b388929613d7454bc02890b89e3bd7a0f581fba663bc0d9b6f6a6a",
+      "current_sha256": "f5270c6208b388929613d7454bc02890b89e3bd7a0f581fba663bc0d9b6f6a6a",
+      "reason": null
+    },
+    {
+      "source": "tests/execution-fixture.mjs",
+      "destination": "packages/agent-native-git/tests/execution-fixture.mjs",
+      "imported_sha256": "938a307b560cfeb50e78416cc93107bb09d339a9980ecbaed3ed2388a4d76095",
+      "current_sha256": "938a307b560cfeb50e78416cc93107bb09d339a9980ecbaed3ed2388a4d76095",
+      "reason": null
+    },
+    {
+      "source": "tests/execution.test.mjs",
+      "destination": "packages/agent-native-git/tests/execution.test.mjs",
+      "imported_sha256": "4b45d2a308a35e68fa30b662eaebbbe997c93a65f2a3c5705816a910e35b628b",
+      "current_sha256": "4b45d2a308a35e68fa30b662eaebbbe997c93a65f2a3c5705816a910e35b628b",
+      "reason": null
+    },
+    {
+      "source": "tests/git.test.mjs",
+      "destination": "packages/agent-native-git/tests/git.test.mjs",
+      "imported_sha256": "9a5d1d29f31eb7c90bfa4c799363bc10cf6fdb0ca24210e7b5e6d9bc252c375d",
+      "current_sha256": "9a5d1d29f31eb7c90bfa4c799363bc10cf6fdb0ca24210e7b5e6d9bc252c375d",
+      "reason": null
+    },
+    {
+      "source": "tests/json.test.mjs",
+      "destination": "packages/agent-native-git/tests/json.test.mjs",
+      "imported_sha256": "8ac82000ea4c402ab419fc11464ab142227d14dc1ccb39f9c6537870c1db0591",
+      "current_sha256": "8ac82000ea4c402ab419fc11464ab142227d14dc1ccb39f9c6537870c1db0591",
+      "reason": null
+    },
+    {
+      "source": "tests/live-slot.test.mjs",
+      "destination": "packages/agent-native-git/tests/live-slot.test.mjs",
+      "imported_sha256": "8623539e41b051af34ac9bd5ed972ff1d0e9889685ccb73203adb94830768429",
+      "current_sha256": "8623539e41b051af34ac9bd5ed972ff1d0e9889685ccb73203adb94830768429",
+      "reason": null
+    },
+    {
+      "source": "tests/metadata.test.mjs",
+      "destination": "packages/agent-native-git/tests/metadata.test.mjs",
+      "imported_sha256": "29e3400b3721b3179d43f0378d7f4f8e205b9be206f24a550925e05cbc1f3e45",
+      "current_sha256": "29e3400b3721b3179d43f0378d7f4f8e205b9be206f24a550925e05cbc1f3e45",
+      "reason": null
+    },
+    {
+      "source": "tests/native.test.mjs",
+      "destination": "packages/agent-native-git/tests/native.test.mjs",
+      "imported_sha256": "b506480eea923f47c60a2518186ed4f099bd9f18ccab1d6231cb2367060455d3",
+      "current_sha256": "b506480eea923f47c60a2518186ed4f099bd9f18ccab1d6231cb2367060455d3",
+      "reason": null
+    },
+    {
+      "source": "tests/schema-fixtures.json",
+      "destination": "packages/agent-native-git/tests/schema-fixtures.json",
+      "imported_sha256": "85ac917a72fbbc267266b6423053558f3f210c1fb7e7ff4afd235ecb6ad86a22",
+      "current_sha256": "85ac917a72fbbc267266b6423053558f3f210c1fb7e7ff4afd235ecb6ad86a22",
+      "reason": null
+    },
+    {
+      "source": "tests/schema-review-fixtures.json",
+      "destination": "packages/agent-native-git/tests/schema-review-fixtures.json",
+      "imported_sha256": "f7db1ed3e373fc7005cff1903cecc880216270ef56192f42654fce511cbedf92",
+      "current_sha256": "f7db1ed3e373fc7005cff1903cecc880216270ef56192f42654fce511cbedf92",
+      "reason": null
+    },
+    {
+      "source": "tests/sql-fixtures.json",
+      "destination": "packages/agent-native-git/tests/sql-fixtures.json",
+      "imported_sha256": "b3e1a35c6bf28c2ae95caef81d4f675520bb3e8e3772b8824fd34a023456af8e",
+      "current_sha256": "b3e1a35c6bf28c2ae95caef81d4f675520bb3e8e3772b8824fd34a023456af8e",
+      "reason": null
+    },
+    {
+      "source": "tests/sql-review-fixtures.json",
+      "destination": "packages/agent-native-git/tests/sql-review-fixtures.json",
+      "imported_sha256": "b298aeb3b520013bb7984a7c9a268fda692220464afc9237de62ef2ef7f6b99a",
+      "current_sha256": "b298aeb3b520013bb7984a7c9a268fda692220464afc9237de62ef2ef7f6b99a",
+      "reason": null
+    },
+    {
+      "source": "tests/stage1-fixture.mjs",
+      "destination": "packages/agent-native-git/tests/stage1-fixture.mjs",
+      "imported_sha256": "7b42da6decac7c2c6bdf4edcd3a4009015f465e2048a4f2b32aded045829422e",
+      "current_sha256": "7b42da6decac7c2c6bdf4edcd3a4009015f465e2048a4f2b32aded045829422e",
+      "reason": null
+    },
+    {
+      "source": "tests/start-capture.test.mjs",
+      "destination": "packages/agent-native-git/tests/start-capture.test.mjs",
+      "imported_sha256": "2412363888be37d64eda6797c96cf231debdd11d390327f80bd686702f8db29c",
+      "current_sha256": "2412363888be37d64eda6797c96cf231debdd11d390327f80bd686702f8db29c",
+      "reason": null
+    },
+    {
+      "source": "tests/storage.test.mjs",
+      "destination": "packages/agent-native-git/tests/storage.test.mjs",
+      "imported_sha256": "afa5d8eb7e4ce4998214719147fb03f8ed76b7dbe1d61a73477c5517d7204a65",
+      "current_sha256": "afa5d8eb7e4ce4998214719147fb03f8ed76b7dbe1d61a73477c5517d7204a65",
+      "reason": null
+    },
+    {
+      "source": "tests/test-cases.json",
+      "destination": "packages/agent-native-git/tests/test-cases.json",
+      "imported_sha256": "3ad465c6fbc714121975a6504a0de852dbf03846fc25ab74710dc26be5580539",
+      "current_sha256": "3ad465c6fbc714121975a6504a0de852dbf03846fc25ab74710dc26be5580539",
+      "reason": null
+    },
+    {
+      "source": "tsconfig.json",
+      "destination": "packages/agent-native-git/tsconfig.json",
+      "imported_sha256": "bf3c6105f6df590f3e0a623d7dfad9578b8cdca9baa1332ddac8bdf15f7e8e69",
+      "current_sha256": "bf3c6105f6df590f3e0a623d7dfad9578b8cdca9baa1332ddac8bdf15f7e8e69",
+      "reason": null
+    }
+  ],
+  "limits": [
+    "Source admission only; original Stage2/Stage3 receipts are historical, not migrated-tree test results.",
+    "No Worker/integration/restore implementation, real provider, service, ACL repair, release or push.",
+    "The intended remote package homepage is not yet published by this local import."
+  ]
+}

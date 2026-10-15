@@ -1,0 +1,870 @@
+{
+  "contractSource": "docs/CONTRACT.md",
+  "productTestsExecuted": false,
+  "baselineScenarioCount": 64,
+  "contractAdditionCount": 18,
+  "baseline": [
+    {
+      "id": "CLI-01",
+      "invariants": [
+        "INV-12",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-02",
+      "invariants": [
+        "INV-12"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-03",
+      "invariants": [
+        "INV-12",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-04",
+      "invariants": [
+        "INV-12"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-05",
+      "invariants": [
+        "INV-08",
+        "INV-12"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-06",
+      "invariants": [
+        "INV-03",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-01",
+      "invariants": [
+        "INV-01"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-02",
+      "invariants": [
+        "INV-01",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-03",
+      "invariants": [
+        "INV-02",
+        "INV-05"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-04",
+      "invariants": [
+        "INV-05",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-05",
+      "invariants": [
+        "INV-05",
+        "INV-06"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-06",
+      "invariants": [
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-01",
+      "invariants": [
+        "INV-01",
+        "INV-08"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-02",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-03",
+      "invariants": [
+        "INV-11",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-04",
+      "invariants": [
+        "INV-06",
+        "INV-07",
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-01",
+      "invariants": [
+        "INV-02",
+        "INV-03"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-02",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-03",
+      "invariants": [
+        "INV-05",
+        "INV-07"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-04",
+      "invariants": [
+        "INV-06"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-05",
+      "invariants": [
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-01",
+      "invariants": [
+        "INV-06",
+        "INV-07",
+        "INV-08"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-02",
+      "invariants": [
+        "INV-03",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-03",
+      "invariants": [
+        "INV-06",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-04",
+      "invariants": [
+        "INV-06",
+        "INV-07"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-05",
+      "invariants": [
+        "INV-07",
+        "INV-08"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-06",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-07",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-01",
+      "invariants": [
+        "INV-07"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-02",
+      "invariants": [
+        "INV-07",
+        "INV-08"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-03",
+      "invariants": [
+        "INV-07",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-04",
+      "invariants": [
+        "INV-07"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-05",
+      "invariants": [
+        "INV-08"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-01",
+      "invariants": [
+        "INV-04",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-02",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-03",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-04",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-05",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-06",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-07",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-08",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-01",
+      "invariants": [
+        "INV-10",
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-02",
+      "invariants": [
+        "INV-05",
+        "INV-10"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-03",
+      "invariants": [
+        "INV-10"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-04",
+      "invariants": [
+        "INV-07",
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-01",
+      "invariants": [
+        "INV-05",
+        "INV-09",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-02",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-03",
+      "invariants": [
+        "INV-05",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-04",
+      "invariants": [
+        "INV-02",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-05",
+      "invariants": [
+        "INV-06",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-06",
+      "invariants": [
+        "INV-07",
+        "INV-09"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-07",
+      "invariants": [
+        "INV-09",
+        "INV-10"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-08",
+      "invariants": [
+        "INV-09",
+        "INV-11"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-09",
+      "invariants": [
+        "INV-09",
+        "INV-10"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-01",
+      "invariants": [
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-02",
+      "invariants": [
+        "INV-11",
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-03",
+      "invariants": [
+        "INV-14"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-01",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-02",
+      "invariants": [
+        "INV-05",
+        "INV-07"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-03",
+      "invariants": [
+        "INV-13"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-01",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-02",
+      "invariants": [
+        "INV-12",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-03",
+      "invariants": [
+        "INV-01",
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DOC-01",
+      "invariants": [
+        "INV-15"
+      ],
+      "contract": "docs/CONTRACT.md",
+      "status": "not_run_product_test"
+    }
+  ],
+  "additions": [
+    {
+      "id": "CR-T01",
+      "expected": "Unknown child/expired heartbeat leaves attempt orphaned with no end timestamp; another attempt is refused.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-03",
+        "CON-04",
+        "REC-04"
+      ],
+      "offlineSqlFixtureIds": [
+        "orphan-end-negative",
+        "orphan-holds-slot"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Unknown child detection/heartbeat truth needs actual supervised processes."
+    },
+    {
+      "id": "CR-T02",
+      "expected": "Dirty terminated output is preserved, task enters review, and no submission or completion is manufactured.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "EV-04",
+        "EV-05",
+        "SEC-08"
+      ],
+      "offlineSqlFixtureIds": [],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Dirty-output preservation and task review require capture/Core runtime."
+    },
+    {
+      "id": "CR-T03",
+      "expected": "Terminal attempt cannot reopen; retry uses new attempt/fence/worktree; succeeded and attempt needs_review inputs are rejected.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-03",
+        "REC-04"
+      ],
+      "offlineSqlFixtureIds": [
+        "terminal-cannot-reopen",
+        "attempt-reject-succeeded",
+        "attempt-reject-needs_review"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Actual retry allocation/fence/worktree execution remains unimplemented."
+    },
+    {
+      "id": "CR-T04",
+      "expected": "Invalid lifecycle transition is rejected through CLI, IPC and persistence boundary; fast exit retains observed start/termination facts.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "DB-02",
+        "CON-03"
+      ],
+      "offlineSqlFixtureIds": [
+        "attempt-illegal-jump",
+        "fast-exit-ordered-proof",
+        "review-no-process-failed",
+        "review-no-process-cancelled",
+        "review-started-submission-no-process",
+        "review-started-submission-terminated"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "CLI/IPC entry-path and observed process receipts remain runtime gates."
+    },
+    {
+      "id": "CR-T05",
+      "expected": "Cancellation before submission/promotion prevents it; after commit point returns already-integrated and finalizes once.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "INT-06",
+        "REC-01"
+      ],
+      "offlineSqlFixtureIds": [
+        "cannot-fail-after-promotion",
+        "review-promotion-review-cannot-failed",
+        "review-promotion-review-cannot-abandoned",
+        "review-promotion-review-finalizes",
+        "review-promoted-review-cannot-regress-prepared"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Cancellation/capture/promotion races need runtime schedules."
+    },
+    {
+      "id": "CR-T06",
+      "expected": "Each operation kind rejects missing recovery intent; changed immutable intent/hash is rejected.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "REC-03",
+        "INT-04"
+      ],
+      "offlineSqlFixtureIds": [
+        "immutable-intent-mutation",
+        "review-mismatched-planId",
+        "review-mismatched-planHash",
+        "review-plan-identity-agrees"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "All eight intent required fields are also schema negatives; actual persistence/crash recovery is not run."
+    },
+    {
+      "id": "CR-T07",
+      "expected": "Fault at every non-integration sub-effect preserves partial state and cannot finalize partial proof.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "REC-03",
+        "BK-01"
+      ],
+      "offlineSqlFixtureIds": [
+        "partial-effect-cannot-finalize",
+        "nonintegration-lifecycle-positive"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Each real sub-effect fault boundary still needs external fault injection."
+    },
+    {
+      "id": "CR-T08",
+      "expected": "Required evidence digest/profile/environment/ref identities are recoverable after a crash at every integration boundary.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "EV-01",
+        "EV-03",
+        "REC-03"
+      ],
+      "offlineSqlFixtureIds": [
+        "acceptance-digest-mismatch",
+        "restart-keeps-origin-accepts-new-grant",
+        "review-split-evidence-not-union",
+        "review-all-checks-in-selected-evidence",
+        "review-candidate-phase-wrong-candidateOid",
+        "review-testing-phase-wrong-environmentHash",
+        "review-exact-candidate-and-testing-phases"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Crash recovery durability and current authorization truth are not proven."
+    },
+    {
+      "id": "CR-T09",
+      "expected": "Evidence/snapshot from operation A cannot complete operation B, even when commit/tree/policy match.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "EV-01",
+        "DB-03"
+      ],
+      "offlineSqlFixtureIds": [
+        "cross-operation-evidence-negative",
+        "cross-operation-task-snapshot-negative",
+        "review-cross-operation-evidence-admissible-context",
+        "review-snapshot-cannot-switch-selected-evidence"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Same-operation relational guard adopted; actual finalization transaction still needs Core."
+    },
+    {
+      "id": "CR-T10",
+      "expected": "Task insertion cannot start completed; updates require exact version and same-operation provenance.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "DB-02",
+        "EV-05"
+      ],
+      "offlineSqlFixtureIds": [
+        "completed-insert-negative",
+        "completion-positive-provenance",
+        "nonmember-task-negative",
+        "review-omitted-source",
+        "review-reordered-sources",
+        "review-omitted-task-member",
+        "review-ordered-source-and-task-set",
+        "review-complete-exact-two-task-set"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Expected-version SQL pattern adopted; Core transaction/event atomicity remains future."
+    },
+    {
+      "id": "CR-T11",
+      "expected": "New lease grant increases fence; renewal cannot change owner/token; expiry alone cannot authorize replacement.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-04",
+        "CON-05"
+      ],
+      "offlineSqlFixtureIds": [
+        "grant-unchanged-token-negative",
+        "renew-token-change-negative",
+        "expiry-not-replacement",
+        "renew-preserves-token-positive",
+        "review-old-observation-after-regrant",
+        "review-new-observation-after-regrant",
+        "review-old-fence-after-same-owner-regrant",
+        "review-renewal-reuses-same-grant"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Timing monotonicity/reboot/suspend and real writer termination still need platform execution."
+    },
+    {
+      "id": "CR-T12",
+      "expected": "Claimed owner role, bare nonce, stale scope, wrong resource, wrong project and provider-origin control are denied.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "SEC-03",
+        "SEC-04",
+        "CON-05"
+      ],
+      "offlineSqlFixtureIds": [
+        "stale-incarnation-same-numbers"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Scope/hello are closed; real peer/ACL/bootstrap/revocation/resource permission checks are future."
+    },
+    {
+      "id": "CR-T13",
+      "expected": "Worker reporting channel cannot promote; provider does not inherit it; revoked scopes cannot act on an existing connection.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-02",
+        "SEC-04"
+      ],
+      "offlineSqlFixtureIds": [],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Worker scope shape cannot promote; actual channel noninheritance/revocation needs verified Windows adapter."
+    },
+    {
+      "id": "CR-T14",
+      "expected": "Restore an older backup with repeated numeric epochs/fences: every pre-restore authority tuple/plan/handle/report is rejected.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-05",
+        "RB-02",
+        "BK-02"
+      ],
+      "offlineSqlFixtureIds": [
+        "stale-incarnation-same-numbers",
+        "review-settled-activation-retains-old-domain"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Full tuple stored/enforced; actual older-backup activation remains a runtime drill."
+    },
+    {
+      "id": "CR-T15",
+      "expected": "Crash between registry and DB activation blocks admission until exact activation intent is reconciled; ordinary mismatch never rotates identity.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "REC-02",
+        "BK-02"
+      ],
+      "offlineSqlFixtureIds": [
+        "ordinary-start-cannot-rotate",
+        "review-unsettled-operation-blocks-activation",
+        "review-owned-grant-blocks-activation",
+        "review-settled-activation-retains-old-domain"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Registry/workflow two-store crash reconciliation remains runtime implementation."
+    },
+    {
+      "id": "CR-T16",
+      "expected": "Old live writer prevents activation despite a fresh incarnation; unknown process identity cannot be bypassed.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-04",
+        "BK-02"
+      ],
+      "offlineSqlFixtureIds": [
+        "review-unsettled-attempt-blocks-activation",
+        "review-unsettled-operation-blocks-activation",
+        "review-owned-grant-blocks-activation"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Receipt field is required but proving old namespace no live writer needs OS supervision."
+    },
+    {
+      "id": "CR-T17",
+      "expected": "Identical requests replay one operation after dropped responses/restart; changed payload conflicts; records are not silently pruned.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CON-06",
+        "CLI-05"
+      ],
+      "offlineSqlFixtureIds": [
+        "idempotency-payload-conflict",
+        "idempotency-namespace-replay"
+      ],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Namespace retention constraints adopted; dropped-response/restart effects need Core."
+    },
+    {
+      "id": "CR-T18",
+      "expected": "Restored event cursor requests a fresh snapshot; historical verification is not promoted as current-environment proof.",
+      "status": "not_run_product_test",
+      "baselineScenarioIds": [
+        "CLI-04",
+        "BK-03",
+        "EV-01"
+      ],
+      "offlineSqlFixtureIds": [],
+      "source": "docs/CONTRACT.md",
+      "runtimeGate": "Bound cursor objects are mandatory replay request inputs via --cursor-file; scalar/unbound/missing-history inputs are schema negatives in schema-review-fixtures.json. Actual current-history equality, replay and fresh-environment acceptance still require Core/CLI runtime."
+    }
+  ],
+  "countMeaning": "64 retained scenarios and 18 mapped requirements; overlap is allowed, not 82 executed/distinct product tests",
+  "fixtureBoundary": "Offline schema/SQL fixtures are structural/relational only; runtime CLI, IPC, Core and fault behavior remain NOT RUN."
+}

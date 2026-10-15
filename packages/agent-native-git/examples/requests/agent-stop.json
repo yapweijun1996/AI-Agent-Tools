@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_agent_stop",
+  "command": "agent stop",
+  "options": {
+    "attemptId": "att_frontend_1",
+    "reason": "Pause for inspection.",
+    "waitMs": 0
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-agent-stop-v1"
+}

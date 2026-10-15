@@ -1,0 +1,16 @@
+{
+  "status": "passed_offline_contract_checks",
+  "schemas": 42,
+  "schemaFixtures": 276,
+  "publicCommandContracts": 18,
+  "baselineAcceptanceScenariosMapped": 64,
+  "contractAdditionsMapped": 18,
+  "sqlFixtureCases": 90,
+  "sqlNegativeRejections": 70,
+  "temporarySqlFixturesCleaned": true,
+  "productTestsExecuted": false,
+  "platformRuntimeProviderGates": "not_established_by_this_validator",
+  "pythonSqliteVersion": "3.50.4",
+  "observedAt": "2026-10-14T05:49:19.901947+00:00",
+  "followup": "After final documentation and explicit future-command presence declarations; all 42 strict Ajv schema compilers also exercised successfully"
+}

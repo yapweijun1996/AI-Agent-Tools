@@ -1,0 +1,657 @@
+{
+  "schemaVersion": "angit-command-catalog/v1",
+  "commandCount": 18,
+  "commands": [
+    {
+      "number": 1,
+      "name": "init",
+      "slug": "init",
+      "synopsis": "angit init --repo PATH --base FULL_OID --policy-file PATH",
+      "capability": "project.register",
+      "effects": "managed-write",
+      "purpose": "Register an existing repository without editing its main checkout.",
+      "success": "projectId, repo identity, baseline OID, policy hash; baseline verification=unverified",
+      "errors": [
+        "REPOSITORY_UNSUPPORTED",
+        "POLICY_NOT_APPROVED",
+        "REPOSITORY_IDENTITY_CHANGED"
+      ],
+      "example": "angit init --repo C:/Disposable/demo --base aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --policy-file C:/Disposable/owner-policy.json",
+      "requestSchema": "schemas/commands/init.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#init",
+      "options": {
+        "repoPath": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 4096,
+          "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+        },
+        "approvedBase": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "policyFile": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 4096,
+          "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+        }
+      },
+      "requiredOptions": [
+        "repoPath",
+        "approvedBase",
+        "policyFile"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "doctor",
+      "slug": "doctor",
+      "synopsis": "angit doctor [--deep]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "Inspect runtime capabilities, state integrity, identity, protected refs and stale operations.",
+      "success": "verdict=healthy|attention|unsupported; diagnostics with evidence, no auto-repair",
+      "errors": [
+        "PROJECT_NOT_FOUND",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "example": "angit doctor --repo C:/Disposable/demo --deep --json",
+      "requestSchema": "schemas/commands/doctor.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#doctor",
+      "options": {
+        "deep": {
+          "type": "boolean"
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 3,
+      "name": "status",
+      "slug": "status",
+      "synopsis": "angit status [--follow --format ndjson] [--cursor-file CURSOR_JSON]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "Read project/queue/attempt/operation status or a resumable event stream.",
+      "success": "counts, integration OID, verification, content epoch; history-bound cursor and bounded replay, NDJSON events in follow mode",
+      "errors": [
+        "CURSOR_HISTORY_MISMATCH",
+        "PROJECT_NOT_FOUND"
+      ],
+      "example": "angit status --repo C:/Disposable/demo --json",
+      "requestSchema": "schemas/commands/status.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#status",
+      "options": {
+        "follow": {
+          "type": "boolean"
+        },
+        "format": {
+          "enum": [
+            "human",
+            "json",
+            "ndjson"
+          ]
+        },
+        "cursor": {
+          "$ref": "https://schemas.example.invalid/angit/v1/event-cursor.schema.json"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 4,
+      "name": "task add",
+      "slug": "task-add",
+      "synopsis": "angit task add --file TASK_JSON",
+      "capability": "task.create",
+      "effects": "metadata-write",
+      "purpose": "Create one immutable task spec with dependencies, scope and checks.",
+      "success": "taskId, initial version=0, status=queued; eligibility projection may transition to blocked/review",
+      "errors": [
+        "TASK_EXISTS",
+        "DEPENDENCY_CYCLE",
+        "CROSS_PROJECT_DEPENDENCY",
+        "STALE_CONTENT_EPOCH"
+      ],
+      "example": "angit task add --repo C:/Disposable/demo --file examples/tasks/frontend.json",
+      "requestSchema": "schemas/commands/task-add.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#task-add",
+      "options": {
+        "spec": {
+          "$ref": "https://schemas.example.invalid/angit/v1/task-input.schema.json"
+        }
+      },
+      "requiredOptions": [
+        "spec"
+      ]
+    },
+    {
+      "number": 5,
+      "name": "task list",
+      "slug": "task-list",
+      "synopsis": "angit task list [--status STATUS] [--limit N] [--after-task-id ID]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "List bounded task summaries with stable ID pagination.",
+      "success": "items, nextCursor; task completion history separate from current effectiveness",
+      "errors": [
+        "PROJECT_NOT_FOUND"
+      ],
+      "example": "angit task list --repo C:/Disposable/demo --status submitted --json",
+      "requestSchema": "schemas/commands/task-list.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#task-list",
+      "options": {
+        "status": {
+          "enum": [
+            "queued",
+            "blocked",
+            "leased",
+            "running",
+            "submitted",
+            "validating",
+            "integrating",
+            "completed",
+            "failed",
+            "cancelled",
+            "needs_review"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "afterTaskId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 6,
+      "name": "task show",
+      "slug": "task-show",
+      "synopsis": "angit task show TASK_ID [--history [--cursor-file CURSOR_JSON]]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "Read one task, attempts, dependencies, messages and evidence locators.",
+      "success": "task projection and bounded history with project/incarnation/history-bound continuation cursor",
+      "errors": [
+        "TASK_NOT_FOUND",
+        "CURSOR_HISTORY_MISMATCH"
+      ],
+      "example": "angit task show tsk_frontend --repo C:/Disposable/demo --history --json",
+      "requestSchema": "schemas/commands/task-show.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#task-show",
+      "options": {
+        "taskId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "history": {
+          "type": "boolean"
+        },
+        "cursor": {
+          "$ref": "https://schemas.example.invalid/angit/v1/event-cursor.schema.json"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "requiredOptions": [
+        "taskId"
+      ]
+    },
+    {
+      "number": 7,
+      "name": "task message",
+      "slug": "task-message",
+      "synopsis": "angit task message --file MESSAGE_JSON",
+      "capability": "task.message",
+      "effects": "metadata-write",
+      "purpose": "Append a bounded advisory message; broker supplies sender identity.",
+      "success": "messageId and eventId; never changes task completion or authority",
+      "errors": [
+        "TASK_NOT_FOUND",
+        "MESSAGE_SCOPE_DENIED",
+        "INPUT_TOO_LARGE"
+      ],
+      "example": "angit task message --repo C:/Disposable/demo --file examples/messages/contract.json",
+      "requestSchema": "schemas/commands/task-message.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#task-message",
+      "options": {
+        "message": {
+          "$ref": "https://schemas.example.invalid/angit/v1/message-input.schema.json"
+        }
+      },
+      "requiredOptions": [
+        "message"
+      ]
+    },
+    {
+      "number": 8,
+      "name": "task cancel",
+      "slug": "task-cancel",
+      "synopsis": "angit task cancel TASK_ID --reason TEXT [--wait-ms N]",
+      "capability": "task.cancel",
+      "effects": "managed-write",
+      "purpose": "Cancel queued work or request stop of an active attempt.",
+      "success": "accepted operationId or completed cancellation; no implicit undo after promotion",
+      "errors": [
+        "ALREADY_INTEGRATED",
+        "PROCESS_IDENTITY_UNKNOWN"
+      ],
+      "example": "angit task cancel tsk_frontend --repo C:/Disposable/demo --reason \"Scope changed\"",
+      "requestSchema": "schemas/commands/task-cancel.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#task-cancel",
+      "options": {
+        "taskId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "waitMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600000
+        }
+      },
+      "requiredOptions": [
+        "taskId",
+        "reason"
+      ]
+    },
+    {
+      "number": 9,
+      "name": "agent start",
+      "slug": "agent-start",
+      "synopsis": "angit agent start --task ID --profile ID [--retry]",
+      "capability": "attempt.start",
+      "effects": "managed-write",
+      "purpose": "Reserve a new attempt, provision an owned worktree and start one approved CLI.",
+      "success": "attemptId/worktreeId/operationId; starting is not proof of running or completion",
+      "errors": [
+        "TASK_NOT_READY",
+        "ATTEMPT_STILL_ACTIVE",
+        "PROFILE_NOT_APPROVED",
+        "SANDBOX_UNAVAILABLE"
+      ],
+      "example": "angit agent start --repo C:/Disposable/demo --task tsk_frontend --profile codex_local",
+      "requestSchema": "schemas/commands/agent-start.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#agent-start",
+      "options": {
+        "taskId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "runtimeProfileId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "retry": {
+          "type": "boolean"
+        },
+        "waitMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600000
+        }
+      },
+      "requiredOptions": [
+        "taskId",
+        "runtimeProfileId"
+      ]
+    },
+    {
+      "number": 10,
+      "name": "agent stop",
+      "slug": "agent-stop",
+      "synopsis": "angit agent stop ATTEMPT_ID --reason TEXT [--wait-ms N]",
+      "capability": "attempt.stop",
+      "effects": "managed-write",
+      "purpose": "Signal only the verified attempt process group and reconcile termination.",
+      "success": "stop operation ID; preserve dirty worktree and unresolved process identity",
+      "errors": [
+        "PROCESS_IDENTITY_UNKNOWN",
+        "ATTEMPT_NOT_FOUND"
+      ],
+      "example": "angit agent stop att_frontend_1 --repo C:/Disposable/demo --reason \"Pause for review\"",
+      "requestSchema": "schemas/commands/agent-stop.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#agent-stop",
+      "options": {
+        "attemptId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "waitMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600000
+        }
+      },
+      "requiredOptions": [
+        "attemptId",
+        "reason"
+      ]
+    },
+    {
+      "number": 11,
+      "name": "run",
+      "slug": "run",
+      "synopsis": "angit run [--parallel N] [--auto-integrate] [--recover] [--until idle|stopped]",
+      "capability": "coordinator.start",
+      "effects": "managed-write",
+      "purpose": "Run the sole foreground Coordinator and bounded local agent slots.",
+      "success": "terminal queue summary after orderly shutdown; auto-integration needs separate grants",
+      "errors": [
+        "COORDINATOR_ALREADY_RUNNING",
+        "RECOVERY_REQUIRED",
+        "POLICY_DENIED"
+      ],
+      "example": "angit run --repo C:/Disposable/demo --parallel 3",
+      "requestSchema": "schemas/commands/run.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#run",
+      "options": {
+        "parallel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "autoIntegrate": {
+          "type": "boolean"
+        },
+        "recover": {
+          "type": "boolean"
+        },
+        "until": {
+          "enum": [
+            "idle",
+            "stopped"
+          ]
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 12,
+      "name": "worker start",
+      "slug": "worker-start",
+      "synopsis": "angit worker start --detach [--parallel N] [--recover]",
+      "capability": "coordinator.start",
+      "effects": "managed-write",
+      "purpose": "Explicitly start the same Coordinator in the background without installing a login service.",
+      "success": "verified startup receipt only after guard, DB recovery and IPC readiness",
+      "errors": [
+        "COORDINATOR_ALREADY_RUNNING",
+        "STARTUP_FAILED",
+        "RECOVERY_REQUIRED"
+      ],
+      "example": "angit worker start --repo C:/Disposable/demo --detach --parallel 3",
+      "requestSchema": "schemas/commands/worker-start.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#worker-start",
+      "options": {
+        "detach": {
+          "const": true
+        },
+        "parallel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "autoIntegrate": {
+          "type": "boolean"
+        },
+        "recover": {
+          "type": "boolean"
+        }
+      },
+      "requiredOptions": [
+        "detach"
+      ]
+    },
+    {
+      "number": 13,
+      "name": "worker stop",
+      "slug": "worker-stop",
+      "synopsis": "angit worker stop --drain|--cancel [--timeout-seconds N]",
+      "capability": "coordinator.stop",
+      "effects": "managed-write",
+      "purpose": "Stop admission and drain or request cancellation of managed attempts.",
+      "success": "completed after process reconciliation; timeout does not authorize force deletion",
+      "errors": [
+        "DRAIN_TIMEOUT",
+        "PROCESS_IDENTITY_UNKNOWN"
+      ],
+      "example": "angit worker stop --repo C:/Disposable/demo --drain --timeout-seconds 300",
+      "requestSchema": "schemas/commands/worker-stop.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#worker-stop",
+      "options": {
+        "mode": {
+          "enum": [
+            "drain",
+            "cancel"
+          ]
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        }
+      },
+      "requiredOptions": [
+        "mode"
+      ]
+    },
+    {
+      "number": 14,
+      "name": "worktree list",
+      "slug": "worktree-list",
+      "synopsis": "angit worktree list [--include-preserved]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "Compare registered worktrees with Git porcelain observations.",
+      "success": "items with ownership, branch, dirty status and unknown flags",
+      "errors": [
+        "WORKTREE_IDENTITY_CHANGED"
+      ],
+      "example": "angit worktree list --repo C:/Disposable/demo --include-preserved --json",
+      "requestSchema": "schemas/commands/worktree-list.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#worktree-list",
+      "options": {
+        "includePreserved": {
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 15,
+      "name": "integrate plan",
+      "slug": "integrate-plan",
+      "synopsis": "angit integrate plan --tasks ID[,ID...] | --undo-integration OP_ID",
+      "capability": "integration.plan",
+      "effects": "planning-write",
+      "purpose": "Freeze source OIDs and produce a candidate plan; no builds or tests.",
+      "success": "planId/hash, expected OID/epoch, candidate OID, verdict and conflict paths",
+      "errors": [
+        "SOURCE_NOT_SUBMITTED",
+        "UNSUPPORTED_DIFF",
+        "STALE_CONTENT_EPOCH"
+      ],
+      "example": "angit integrate plan --repo C:/Disposable/demo --tasks tsk_frontend,tsk_backend --json",
+      "requestSchema": "schemas/commands/integrate-plan.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#integrate-plan",
+      "options": {
+        "taskIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+          },
+          "minItems": 1,
+          "maxItems": 30,
+          "uniqueItems": true
+        },
+        "undoOperationId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 16,
+      "name": "integrate apply",
+      "slug": "integrate-apply",
+      "synopsis": "angit integrate apply --plan PLAN_ID [--wait-ms N]",
+      "capability": "integration.apply",
+      "effects": "managed-write",
+      "purpose": "Validate an immutable merge/undo plan and conditionally promote verified refs.",
+      "success": "operation ID accepted, or new verified snapshot after checks and ref/DB finalization",
+      "errors": [
+        "PLAN_STALE",
+        "CHECKS_FAILED",
+        "CAS_CONFLICT",
+        "PLAN_KIND_MISMATCH"
+      ],
+      "example": "angit integrate apply --repo C:/Disposable/demo --plan plan_demo --wait-ms 600000",
+      "requestSchema": "schemas/commands/integrate-apply.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#integrate-apply",
+      "options": {
+        "planId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "waitMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600000
+        }
+      },
+      "requiredOptions": [
+        "planId"
+      ]
+    },
+    {
+      "number": 17,
+      "name": "snapshot list",
+      "slug": "snapshot-list",
+      "synopsis": "angit snapshot list [--include-unverified] [--limit N]",
+      "capability": "project.read",
+      "effects": "read",
+      "purpose": "Read pinned snapshots, evidence and restore lineage.",
+      "success": "snapshot list with verification labels; never infer verification from a ref alone",
+      "errors": [
+        "PROJECT_NOT_FOUND"
+      ],
+      "example": "angit snapshot list --repo C:/Disposable/demo --json",
+      "requestSchema": "schemas/commands/snapshot-list.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#snapshot-list",
+      "options": {
+        "includeUnverified": {
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "afterSnapshotId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        }
+      },
+      "requiredOptions": []
+    },
+    {
+      "number": 18,
+      "name": "snapshot restore",
+      "slug": "snapshot-restore",
+      "synopsis": "angit snapshot restore --to ID [--dry-run] | --apply --plan PLAN_ID",
+      "capability": "snapshot.restore",
+      "effects": "planning-or-managed-write",
+      "purpose": "Plan or apply a history-preserving restoration to a verified snapshot tree.",
+      "success": "preview plan or completed new snapshot; current history and task worktrees retained",
+      "errors": [
+        "SNAPSHOT_NOT_VERIFIED",
+        "PLAN_STALE",
+        "CHECKS_FAILED",
+        "PLAN_KIND_MISMATCH"
+      ],
+      "example": "angit snapshot restore --repo C:/Disposable/demo --to snap_previous --dry-run --json",
+      "requestSchema": "schemas/commands/snapshot-restore.schema.json",
+      "reference": "docs/CLI_REFERENCE.md#snapshot-restore",
+      "options": {
+        "targetSnapshotId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "dryRun": {
+          "type": "boolean"
+        },
+        "apply": {
+          "type": "boolean"
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        "waitMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600000
+        }
+      },
+      "requiredOptions": []
+    }
+  ]
+}

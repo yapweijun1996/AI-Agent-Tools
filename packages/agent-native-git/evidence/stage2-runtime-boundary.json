@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "angit-stage2-runtime-boundary/v1",
+  "processExit": 0,
+  "stdout": "{\"node\":\"v25.2.1\",\"code\":\"UNSUPPORTED_RUNTIME\",\"exitCode\":3}\n",
+  "stderr": "(node:10248) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

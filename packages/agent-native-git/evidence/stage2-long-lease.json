@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "angit-stage2-long-lease-evidence/v1",
+  "observedAt": "2026-10-14T08:33:54.788Z",
+  "node": "v24.21.0",
+  "approvedLeaseMs": 120000,
+  "heartbeatIntervalMs": 1000,
+  "durationMs": 295131,
+  "resultStatus": "failed",
+  "taskStatus": "needs_review",
+  "terminationProof": {
+    "kind": "writer_tree_terminated",
+    "receiptHash": "da0fd555bd80a8675e7c1abaa1ba00efb7d93086d33249f8a32a402233f76f95"
+  },
+  "taskCompleted": false,
+  "ownerHeadPreserved": true,
+  "provider": "owned inert nonzero native fixture"
+}

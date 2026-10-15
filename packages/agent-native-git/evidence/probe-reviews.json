@@ -1,0 +1,22 @@
+{
+  "scope": "Read-only review of Stage 0 probes and observed receipts, not product acceptance",
+  "reviews": [
+    {
+      "agent": "NativeProbeReview",
+      "result": "PASS",
+      "materialFindings": [],
+      "files": ["scripts/windows-primitives.cs", "scripts/windows-primitives.ps1", "evidence/windows-primitives.json"],
+      "conclusion": "Retained owned handles are awaited after kill-on-job-close; source and receipt support bounded ACL, peer identity, process ownership and cleanup claims. Cross-host challenge remains optional and unsupported.",
+      "executedChecks": false
+    },
+    {
+      "agent": "SqliteProbeReview",
+      "result": "PASS",
+      "materialFindings": [],
+      "files": ["scripts/sqlite-primitives.mjs", "evidence/sqlite-primitives.json", "evidence/sqlite-initial-failure.json", "evidence/sqlite-shutdown-failure.json"],
+      "conclusion": "Independent process exclusion/release, between-backup-step commit and exact row hashes, dedicated worker heartbeat and runtime rejection match the observed evidence. Cleanup proves executor termination before removing the fixture.",
+      "executedChecks": false
+    }
+  ],
+  "limitations": ["Review is not OS security certification", "No Coordinator, real provider or product CLI was tested"]
+}

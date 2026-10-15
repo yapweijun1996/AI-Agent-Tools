@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/build.mjs && C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe .cache/git-deadline-worker-smoke.mjs",
+  "exitCode": 0,
+  "wallTimeSeconds": 61.61,
+  "node": "v24.21.0",
+  "deadlineMs": 15000,
+  "fixtureReadOnly": true,
+  "approvedExecutableHash": "ee3d2a38093c3680745a5c973488f5bb78a16f010145d5cdc7470a7395c9e7e8",
+  "method": "Actual approved Git hash-object --no-filters on finite owner-only named-pipe input; retained exact native process handle observer and finite internal worker. No -w, repository mutations or provider invocation.",
+  "records": [
+    { "case": "baseline", "inputDelayMs": 300, "parentBlockMs": 0, "nativeElapsedMs": 731.035, "nativeExitCode": 0, "result": "success", "stdoutBytes": 41, "stdoutSha256": "e142400b68161cac30520a361c7875bef5d92090d2331e6587cf549a9a15a660", "workerExitAtMs": 1791992067236, "promiseAtMs": 1791992067239 },
+    { "case": "early-exit-blocked", "inputDelayMs": 300, "parentBlockMs": 17000, "nativeElapsedMs": 648.829, "nativeExitCode": 0, "result": "success", "stdoutBytes": 41, "stdoutSha256": "e142400b68161cac30520a361c7875bef5d92090d2331e6587cf549a9a15a660", "workerExitAtMs": 1791992086588, "promiseAtMs": 1791992086588 },
+    { "case": "slow-input-blocked", "inputDelayMs": 18000, "parentBlockMs": 17000, "nativeElapsedMs": 15002.8949, "nativeExitCode": 1, "result": "GIT_TIMEOUT", "nativeError": "ETIMEDOUT", "workerSignal": "SIGTERM", "stdoutBytes": 0, "stderrBytes": 0, "workerExitAtMs": 1791992106070, "promiseAtMs": 1791992106071 }
+  ],
+  "otherExercisedBoundaries": ["absent ref returns null", "nonzero stderr remains bounded internal Buffer and is not included in public message", "result settles only after actual worker exit"],
+  "limits": ["Direct boundary proof, not full Stage2 acceptance", "Specific earlier suite GIT_TIMEOUT attribution remains INFERENCE", "No timeout grace/increase, permission/proof relaxation, persistent worker service or dependencies"]
+}

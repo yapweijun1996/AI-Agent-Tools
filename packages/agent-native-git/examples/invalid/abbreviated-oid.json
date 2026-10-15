@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "angit-plan/v1",
+  "planId": "plan_demo",
+  "projectId": "prj_demo",
+  "kind": "merge",
+  "expectedOid": "abc1234",
+  "expectedContentEpoch": 0,
+  "sources": [
+    {
+      "taskId": "tsk_frontend",
+      "attemptId": "att_frontend_1",
+      "baseOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "submissionOid": "cccccccccccccccccccccccccccccccccccccccc",
+      "patchSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "candidateOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "candidateTreeOid": "ffffffffffffffffffffffffffffffffffffffff",
+  "targetSnapshotId": null,
+  "undoOpId": null,
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "requiredChecks": [
+    "check_unit"
+  ],
+  "verdict": "ready",
+  "conflictPaths": [],
+  "createdAtMs": 1791939600000,
+  "expiresAtMs": 1791940500000,
+  "planHash": "3333333333333333333333333333333333333333333333333333333333333333",
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "originAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "environmentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+  "operationId": "op_demo"
+}

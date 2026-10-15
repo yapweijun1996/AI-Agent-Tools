@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Readonly actual discover/loadPolicy heartbeat workload and approved Git progress; no grants/provider/repository mutations",
+  "heartbeatIntervalMs": 1000,
+  "leaseDurationMs": 30000,
+  "records": [
+    {
+      "schedule": "interval",
+      "elapsedMs": 11658.8941,
+      "inspections": 3,
+      "inspectionMs": 6946.2561,
+      "results": [
+        {
+          "elapsedMs": 3969.6512,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        },
+        {
+          "elapsedMs": 3866.2300999999998,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        },
+        {
+          "elapsedMs": 3822.4534000000003,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        }
+      ]
+    },
+    {
+      "schedule": "completion-spaced",
+      "elapsedMs": 11187.21,
+      "inspections": 3,
+      "inspectionMs": 6923.1816,
+      "results": [
+        {
+          "elapsedMs": 3650.645800000002,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        },
+        {
+          "elapsedMs": 3914.528000000002,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        },
+        {
+          "elapsedMs": 3621.8634999999995,
+          "oid": "f72ee23cd012c13e3920b7400ad88195c79548f0"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Specific earlier stalled coordinator attribution is inference",
+    "No policy/identity/lease/deadline checks weakened"
+  ]
+}

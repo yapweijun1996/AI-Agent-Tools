@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/runtime-profiles.schema.json",
+  "title": "Trusted runtime profile catalog; disabled examples are not installed executables",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-profiles/v1"
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+          },
+          "kind": {
+            "enum": [
+              "coding-agent",
+              "check"
+            ]
+          },
+          "provider": {
+            "enum": [
+              "codex",
+              "claude",
+              "pi",
+              "mock",
+              "custom-check"
+            ]
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "executable": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 4096,
+            "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+          },
+          "executableSha256": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64,
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 4096
+            },
+            "minItems": 0,
+            "maxItems": 80
+          },
+          "cwdMode": {
+            "const": "managed-worktree"
+          },
+          "envAllow": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[A-Z_][A-Z0-9_]*$"
+            },
+            "minItems": 0,
+            "maxItems": 40,
+            "uniqueItems": true
+          },
+          "networkMode": {
+            "enum": [
+              "deny",
+              "provider-only"
+            ]
+          },
+          "sandboxBackend": {
+            "enum": [
+              "none",
+              "external-verified"
+            ]
+          },
+          "timeoutSeconds": {
+            "type": "integer",
+            "minimum": 30,
+            "maximum": 86400
+          },
+          "maxOutputBytes": {
+            "type": "integer",
+            "minimum": 1024,
+            "maximum": 1073741824
+          },
+          "versionProbeArgs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 128
+            },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "completionMode": {
+            "enum": [
+              "clean-commit-after-exit",
+              "process-and-test-evidence"
+            ]
+          },
+          "requiresApproval": {
+            "const": true
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "provider",
+          "enabled",
+          "executable",
+          "executableSha256",
+          "args",
+          "cwdMode",
+          "envAllow",
+          "networkMode",
+          "sandboxBackend",
+          "timeoutSeconds",
+          "maxOutputBytes",
+          "versionProbeArgs",
+          "completionMode",
+          "requiresApproval"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 30
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "profiles"
+  ],
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
 # Documentation index
 
-Last reconciled: 2026-10-11. This index assigns document ownership; it is not a
+Last reconciled: 2026-10-15. This index assigns document ownership; it is not a
 second task ledger or a tool release inventory.
 
 | Document | Owns |
@@ -64,7 +64,7 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 
 ## Monorepo source ownership (2026-09-30)
 
-[Tool index](migration-tools.md) maps all ten package folders. [Migration](docs/migration/README.md) owns import coverage and deletion gates; [decision](docs/migration/DECISION.md) owns the superseding source-location decision. Package READMEs and local AGENTS own tool behavior. Historical Hub audits remain dated evidence.
+[Tool index](migration-tools.md) maps the independent source packages; the original ten-repository import remains a dated snapshot. [Migration](docs/migration/README.md) owns import coverage and deletion gates; [decision](docs/migration/DECISION.md) owns the superseding source-location decision. Package READMEs and local rules own tool behavior. Historical Hub audits remain dated evidence.
 
 - [Environment Doctor implementation and usage](packages/environment-doctor/README.md)
 - [Contract Check implementation and limitations](packages/contract-check/README.md)
@@ -85,3 +85,7 @@ Do not use an old review or a mutable sibling checkout as evidence of a new rele
 - [Context Pack manifest, budget accounting, duplicates and limits](packages/context-pack/README.md)
 
 - [Test Evidence request, unified/Node captures, strict acceptance, schemas and optional pilot](packages/test-evidence/README.md)
+- [Agent-Native-Git package scope and native CLI](packages/agent-native-git/README.md)
+- [Agent-Native-Git committed-source import provenance](docs/migration/AGENT_NATIVE_GIT_IMPORT.json)
+- [Agent-Native-Git migration verification and limitations](docs/migration/AGENT_NATIVE_GIT_VERIFICATION.md)
+- [Agent-Native-Git next-agent implementation handoff](packages/agent-native-git/docs/HANDOFF.md)

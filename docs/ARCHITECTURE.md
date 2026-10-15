@@ -10,6 +10,8 @@
 
 The normal flow is: a consumer reads the local registry snapshot, explicitly installs a pinned independently released package with `ait install`, invokes it with an explicit execution approval through `ait dispatch`, and evaluates the wrapped output and native exit status. AIT is a local process, not a hosted service or agent reasoning layer. Tool source, tests and documentation live in package folders in this repository; packages retain independent versions, interfaces and release approval.
 
+Agent-Native-Git is an owner-approved independent stateful package, not a new Hub runtime. Its explicit local task/Git/SQLite/process effects and native approvals/recovery remain package-owned. The Hub may discover/install its CLI, but does not import its scheduler, share its workflow database, control agent reasoning or claim that source registration completes its unavailable Worker/integration/restore commands. Full native acceptance requires that package's exact Windows x64/Node 24.21.0 host; unsupported orchestration entries are labelled not applicable rather than passed.
+
 ## Sources of truth
 
 - [Registry](../TOOL_REGISTRY.json): tool identity, lifecycle, confirmed locations, and recorded verification snapshot.

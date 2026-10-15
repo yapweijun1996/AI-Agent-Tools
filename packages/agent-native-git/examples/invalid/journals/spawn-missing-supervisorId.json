@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "angit-operation/v1",
+  "projectId": "prj_demo",
+  "repositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "operationId": "op_spawn",
+  "kind": "spawn",
+  "originAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "principalScopeId": "scope_demo",
+  "requestKeyHash": "6666666666666666666666666666666666666666666666666666666666666666",
+  "semanticRequestHash": "7777777777777777777777777777777777777777777777777777777777777777",
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "createdAtMs": 1,
+  "intentHash": "a73994edb3c83d6d1569eb5f41f6a3222b9db3119d28ced3f028069e961b78cf",
+  "intent": {
+    "attemptId": "id_demo",
+    "worktreeId": "id_demo",
+    "approvedExecutable": "fixture_approvedExecutable",
+    "executableHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "runtimeProfileHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "launchIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "argumentDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "requestDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "cwd": "fixture_cwd",
+    "environmentProfileHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "budget": {
+      "timeoutMs": 1,
+      "stdoutBytes": 1,
+      "stderrBytes": 1,
+      "maxProcesses": 1
+    }
+  },
+  "phase": "prepared",
+  "version": 0,
+  "lastObservationId": null,
+  "updatedAtMs": 1
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "angit-operation/v1",
+  "projectId": "prj_demo",
+  "repositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "operationId": "op_backup",
+  "kind": "backup",
+  "originAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "principalScopeId": "scope_demo",
+  "requestKeyHash": "6666666666666666666666666666666666666666666666666666666666666666",
+  "semanticRequestHash": "7777777777777777777777777777777777777777777777777777777777777777",
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "createdAtMs": 1,
+  "intentHash": "7c4a16c68c6aaf30f08cd7014955680ad2034ff98c75e9ebf38a04719f5be2db",
+  "intent": {
+    "approvalReference": "fixture_approvalReference",
+    "quiescentBarrierId": "id_demo",
+    "integrationOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "eventWatermark": 0,
+    "lastFinalizedOperationId": "id_demo",
+    "requiredMembers": [
+      {
+        "kind": "database",
+        "identity": "fixture_identity",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 0
+      }
+    ],
+    "targetPath": "fixture_targetPath",
+    "targetOwnershipId": "id_demo",
+    "manifestSchemaHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "excludedWork": []
+  },
+  "phase": "prepared",
+  "version": 0,
+  "lastObservationId": null,
+  "updatedAtMs": 1
+}

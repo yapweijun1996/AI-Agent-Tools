@@ -31,5 +31,8 @@ There are no mandatory inter-tool source dependencies. Dependencies resolve with
 | [agent-rules-resolve](packages/rules-resolve/README.md) | agent-rules-resolve resolve | agent-rules-resolve | Experimental, private source |
 | [agent-context-pack](packages/context-pack/README.md) | agent-context-pack pack | agent-context-pack | Experimental, private source |
 | [ai-agent-tool-test-evidence](packages/test-evidence/README.md) | agent-test-evidence summarize / verify | agent-test-evidence | Experimental, private source 0.1.0 |
+| [agent-native-git](packages/agent-native-git/README.md) | angit | agent-native-git | Experimental, private MIT source 0.0.0; Windows x64/exact Node 24.21.0, 13/18 native leaves |
 
 Optional source installation: [local CLI workflow](docs/workflow/LOCAL_CLI.md). Release Guard additionally supports bounded explicit evidence collection; see its package README.
+
+Agent-Native-Git is an independent tool package, not an AIT runtime module or a separate GitHub repository requirement. Its explicit approved local effects remain package-owned. [Import provenance](docs/migration/AGENT_NATIVE_GIT_IMPORT.json), [current migration observations](docs/migration/AGENT_NATIVE_GIT_VERIFICATION.md) and [next-agent handoff](packages/agent-native-git/docs/HANDOFF.md) distinguish relocation from production Worker completion, supported-provider approval or publication.

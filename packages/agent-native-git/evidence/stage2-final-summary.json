@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Completed scoped local Stage 2 verification, not full product/provider/default-host/release certification",
+  "result": "PASS",
+  "exitCode": 0,
+  "elapsedMs": 11713933,
+  "nodeExecutable": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe",
+  "behavioralTests": {
+    "tests": 53,
+    "passed": 53,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 11125994.6198
+  },
+  "contracts": {
+    "schemas": 42,
+    "schemaFixtures": 276,
+    "publicCommandContracts": 18,
+    "sqlFixtureCases": 90,
+    "sqlNegativeRejections": 70
+  },
+  "pack": {
+    "schemaVersion": "angit-stage2-pack-evidence/v1",
+    "observedAt": "2026-10-15T04:20:46.583Z",
+    "node": "v24.21.0",
+    "packageVersion": "0.0.0",
+    "published": false,
+    "offlineInstall": true,
+    "installerScripts": false,
+    "tarballSha256": "21ca20ea0dafc096a8cbe49b7f2bcbd4911d2bf9b2f41055c8df89feed6e43aa",
+    "packedFiles": 111,
+    "utilityLeaves": 18,
+    "metadataCommands": [
+      {
+        "command": "init",
+        "ok": true
+      },
+      {
+        "command": "doctor",
+        "ok": true
+      },
+      {
+        "command": "status",
+        "ok": true
+      },
+      {
+        "command": "task add",
+        "ok": true
+      },
+      {
+        "command": "task list",
+        "ok": true
+      },
+      {
+        "command": "task show",
+        "ok": true
+      },
+      {
+        "command": "task message",
+        "ok": true
+      },
+      {
+        "command": "task cancel",
+        "ok": true
+      },
+      {
+        "command": "worktree list",
+        "ok": true
+      },
+      {
+        "command": "snapshot list",
+        "ok": true
+      }
+    ],
+    "baselineVerification": "unverified",
+    "stateRoot": "internal isolated owner-private fixture; not default host AppData",
+    "alternateRuntime": {
+      "version": "v24.21.0",
+      "exercised": false
+    },
+    "execution": {
+      "command": "agent start",
+      "taskStatus": "submitted",
+      "ownerHeadPreserved": true,
+      "provider": "owned inert native fixture; no Coding Agent or network"
+    }
+  },
+  "limits": [
+    "Private local development acceptance only",
+    "No real provider/service/integration/restore/release",
+    "Installed consumer uses owner-private fixture seam, not default-host ACL certification"
+  ],
+  "receipts": {
+    "aggregate": "stage2-verification.json",
+    "installedConsumer": "stage2-pack.json"
+  }
+}

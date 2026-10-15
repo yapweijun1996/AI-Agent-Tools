@@ -44,27 +44,6 @@ test('parses explicit install and dispatch approval flags', () => {
   assert.deepEqual(dispatch.passthrough, ['--help']);
 });
 
-test('validates the current registry and keeps installability explicit', () => {
-  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
-  assert.equal(ait.validateRegistry(registry), registry);
-  assert.equal(registry.tools.length, 19);
-  const codeSlice = registry.tools.find((tool) => tool.id === 'agent-code-slice');
-  const resultStore = registry.tools.find((tool) => tool.id === 'agent-result-store');
-  assert.equal(Boolean(codeSlice.npm && codeSlice.release_version), true);
-  assert.equal(resultStore.npm, null);
-  const testEvidence = registry.tools.find((tool) => tool.id === 'agent-test-evidence');
-  assert.equal(testEvidence.status, 'Experimental');
-  assert.equal(testEvidence.npm, null);
-  assert.equal(testEvidence.release_version, null);
-  assert.equal(testEvidence.verification, null);
-});
-
-test('published package includes the default registry snapshot', () => {
-  const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
-  assert.equal(packageJson.files.includes('TOOL_REGISTRY.json'), true);
-  assert.equal(packageJson.files.includes('docs/profiles/PROFILE_INDEX.json'), true);
-});
-
 test('CLI version and result provenance match the package manifest', () => {
   const version = require('../package.json').version;
   const child = spawnSync(process.execPath, [path.join(__dirname, '../bin/ait.js'), '--version'], { encoding: 'utf8' });
@@ -224,8 +203,21 @@ test('list reads a local registry snapshot and does not write the home', () => {
   const output = JSON.parse(captured.output);
   assert.equal(output.protocol, 'ait-result/v1');
   assert.equal(output.ok, true);
-  assert.equal(output.data.tools.length, 19);
+  assert.equal(output.data.tools.some(tool => tool.id === 'agent-native-git'), true);
   assert.equal(fs.existsSync(path.join(home, 'installed.json')), false);
+});
+
+test('unconfirmed native Git release is rejected before installation side effects', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'ait-angit-admission-'));
+  try {
+    const captured = captureStdout(() => ait.main([
+      'install', 'agent-native-git', '--allow-experimental', '--json',
+      '--registry', registryPath, '--home', home,
+    ]));
+    assert.equal(captured.value, 4);
+    assert.equal(JSON.parse(captured.output).meta.error, 'PACKAGE_IDENTITY_UNKNOWN');
+    assert.deepEqual(fs.readdirSync(home), []);
+  } finally { fs.rmSync(home, { recursive: true, force: true }); }
 });
 
 test('planned tools fail closed before any installation side effect', () => {

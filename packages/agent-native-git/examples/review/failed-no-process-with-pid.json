@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "angit-attempt/v1",
+  "attemptId": "att_demo",
+  "projectId": "prj_demo",
+  "taskId": "tsk_demo",
+  "number": 1,
+  "status": "failed",
+  "baseOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "baseEpoch": 0,
+  "coordinatorEpoch": 1,
+  "fencingToken": 1,
+  "worktreeId": "wt_demo",
+  "runtimeProfileHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "pid": 17,
+  "processIdentity": null,
+  "startedAtMs": null,
+  "endedAtMs": 2,
+  "submissionOid": null,
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "resourceKey": "task:tsk_demo",
+  "ownerId": "owner_demo",
+  "version": 1,
+  "spawnIntentId": null,
+  "terminationProof": {
+    "kind": "no_process_created",
+    "receiptHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "observedAtMs": 2
+  },
+  "submissionTreeOid": null,
+  "submissionRef": null
+}

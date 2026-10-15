@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "angit-result/v1",
+  "requestId": "req_plan",
+  "command": "integrate plan",
+  "ok": true,
+  "status": "failed",
+  "data": {
+    "planId": "plan_demo",
+    "verdict": "ready",
+    "candidateOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "checksExecuted": false
+  },
+  "warnings": [
+    "Synthetic example; no actual candidate exists."
+  ],
+  "error": null,
+  "meta": {
+    "durationMs": 42,
+    "coordinatorEpoch": 1,
+    "truncated": false
+  }
+}

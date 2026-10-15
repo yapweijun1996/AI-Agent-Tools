@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "angit-snapshot/v1",
+  "snapshotId": "snap_baseline",
+  "projectId": "prj_demo",
+  "operationId": "op_init",
+  "commitOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "treeOid": "ffffffffffffffffffffffffffffffffffffffff",
+  "parentOid": null,
+  "refName": "refs/angit/snapshots/prj_demo/snap_baseline",
+  "kind": "baseline",
+  "verification": "unverified",
+  "evidenceId": null,
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "contentEpoch": 0,
+  "createdAtMs": 1791939611000,
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "environmentHash": null
+}

@@ -1,0 +1,21 @@
+{
+  "observationId": "obs_34",
+  "operationId": "op_undo",
+  "projectId": "prj_demo",
+  "kind": "undo",
+  "observationType": "safe_failure",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "reasonCode": "id_demo",
+    "noUnresolvedEffect": true,
+    "proofReceiptHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_integrate_apply",
+  "command": "integrate apply",
+  "options": {
+    "planId": "plan_demo",
+    "waitMs": 600000
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-integrate-apply-v1"
+}

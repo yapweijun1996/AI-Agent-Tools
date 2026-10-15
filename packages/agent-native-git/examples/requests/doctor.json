@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_doctor",
+  "command": "doctor",
+  "options": {
+    "deep": true
+  },
+  "projectId": "prj_demo"
+}

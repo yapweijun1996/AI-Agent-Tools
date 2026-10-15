@@ -1,0 +1,364 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/policy.schema.json",
+  "title": "Owner-reviewed effective policy; no remote-write capability in v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-policy/v1"
+    },
+    "policyId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "repoRoot": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 4096,
+      "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+    },
+    "trustMode": {
+      "enum": [
+        "cooperative-local",
+        "sandbox-required"
+      ]
+    },
+    "grants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "principal": {
+            "enum": [
+              "owner",
+              "supervisor",
+              "task_agent",
+              "worker"
+            ]
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "project.register",
+                "project.read",
+                "task.create",
+                "task.message",
+                "task.cancel",
+                "attempt.start",
+                "attempt.stop",
+                "coordinator.start",
+                "coordinator.stop",
+                "integration.plan",
+                "integration.apply",
+                "snapshot.restore",
+                "maintenance.backup"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 20,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "principal",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 4
+    },
+    "workspace": {
+      "type": "object",
+      "properties": {
+        "allowedPaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+          },
+          "minItems": 1,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "protectedPaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+          },
+          "minItems": 1,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "allowDeletion": {
+          "type": "boolean"
+        },
+        "allowBinary": {
+          "type": "boolean"
+        },
+        "allowSymlinks": {
+          "const": false
+        },
+        "allowSubmodules": {
+          "const": false
+        },
+        "allowLockfileChange": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "allowedPaths",
+        "protectedPaths",
+        "allowDeletion",
+        "allowBinary",
+        "allowSymlinks",
+        "allowSubmodules",
+        "allowLockfileChange"
+      ],
+      "additionalProperties": false
+    },
+    "git": {
+      "type": "object",
+      "properties": {
+        "executable": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 4096,
+              "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": ["path", "sha256"],
+          "additionalProperties": false
+        },
+        "protectedRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "minItems": 1,
+          "maxItems": 50,
+          "uniqueItems": true
+        },
+        "allowRemote": {
+          "const": false
+        },
+        "allowForcePush": {
+          "const": false
+        },
+        "allowHardReset": {
+          "const": false
+        },
+        "allowForcedWorktreeRemoval": {
+          "const": false
+        }
+      },
+      "required": [
+        "executable",
+        "protectedRefs",
+        "allowRemote",
+        "allowForcePush",
+        "allowHardReset",
+        "allowForcedWorktreeRemoval"
+      ],
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "lease": {
+          "type": "object",
+          "properties": {
+            "heartbeatIntervalMs": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+            "durationMs": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 }
+          },
+          "required": ["heartbeatIntervalMs", "durationMs"],
+          "additionalProperties": false
+        },
+        "profilesFile": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 4096,
+          "pattern": "^(?:/|[A-Za-z]:[\\\\/]).+$"
+        },
+        "allowedProfiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+          },
+          "minItems": 0,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "allowDependencyInstall": {
+          "const": false
+        },
+        "requireSandbox": {
+          "type": "boolean"
+        },
+        "maxParallelAgents": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "maxProcessesPerAttempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 30,
+          "maximum": 86400
+        },
+        "maxAttemptsPerTask": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "required": [
+        "lease",
+        "allowedProfiles",
+        "allowDependencyInstall",
+        "requireSandbox",
+        "maxParallelAgents",
+        "timeoutSeconds",
+        "maxAttemptsPerTask"
+      ],
+      "additionalProperties": false
+    },
+    "integration": {
+      "type": "object",
+      "properties": {
+        "requiredChecks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+          },
+          "minItems": 1,
+          "maxItems": 30,
+          "uniqueItems": true
+        },
+        "allowAutoPromotion": {
+          "type": "boolean"
+        },
+        "rejectSkippedRequiredChecks": {
+          "const": true
+        },
+        "rejectDirtySource": {
+          "const": true
+        },
+        "maxPlanAgeSeconds": {
+          "type": "integer",
+          "minimum": 30,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "requiredChecks",
+        "allowAutoPromotion",
+        "rejectSkippedRequiredChecks",
+        "rejectDirtySource",
+        "maxPlanAgeSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "maxJsonBytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 1048576
+        },
+        "maxEventBytes": {
+          "type": "integer",
+          "minimum": 512,
+          "maximum": 65536
+        },
+        "maxArtifactBytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 1073741824
+        },
+        "maxStoredBytes": {
+          "type": "integer",
+          "minimum": 1048576,
+          "maximum": 1099511627776
+        }
+      },
+      "required": [
+        "maxJsonBytes",
+        "maxEventBytes",
+        "maxArtifactBytes",
+        "maxStoredBytes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "policyId",
+    "revision",
+    "repoRoot",
+    "trustMode",
+    "grants",
+    "workspace",
+    "git",
+    "execution",
+    "integration",
+    "limits"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "trustMode": {
+            "const": "sandbox-required"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "type": "object",
+            "properties": {
+              "requireSandbox": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

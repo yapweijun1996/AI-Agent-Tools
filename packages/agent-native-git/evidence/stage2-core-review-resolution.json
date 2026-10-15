@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "review": "FinalCoreLifecycleReview",
+  "method": "Read-only source inspection; no commands/tests/builds/edits performed by reviewer",
+  "findings": [
+    {
+      "priority": "P2",
+      "boundary": "Queued candidate cancellation or advisory update during asynchronous base inspection",
+      "observedSource": "Task version conflict escaped run admission and session-close stopped unrelated active slots.",
+      "correction": "A run-only pre-effect version mismatch returns no reservation and rescans current candidates without artifact, lease, attempt or external effect. Explicit agent start retains version-conflict rejection.",
+      "regression": "Real two-task foreground run; delay a real Git base result, mutate selected queued candidate through actual authenticated external broker, assert unrelated owned attempt remains running and candidate cancellation is effect-free or advisory allows fresh admission.",
+      "verification": "Actual cancellation and advisory regressions passed; see stage2-consumer-before.json and stage2-consumer-after.json. Full current-source acceptance pending."
+    },
+    {
+      "priority": "P2",
+      "boundary": "Applied agent-stop receipt after coordinator/broker shutdown",
+      "observedSource": "Routing required a live broker before consulting the durable semantic idempotency receipt.",
+      "correction": "Authorized read-only context replays the existing semantic receipt or detects conflicting reuse before live owner routing. New stop requests still require the authenticated live owner; no PID-only fallback.",
+      "regression": "Actual root/descendant stop, foreground completion, identical stop replay and conflicting key reuse after broker closure, with no second attempt or provider start.",
+      "verification": "Actual stop/replay/conflicting-key regression passed; see stage2-consumer-before.json and stage2-consumer-after.json. Full current-source acceptance pending."
+    }
+  ],
+  "limits": ["No post-fix reviewer PASS claimed", "Source corrections alone are not acceptance", "Full current-source verification and offline installed-consumer smoke remain required"]
+}

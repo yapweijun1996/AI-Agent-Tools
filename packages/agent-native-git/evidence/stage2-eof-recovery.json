@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/build.mjs && C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe --test --test-reporter=tap --test-name-pattern=\"^real parent loss\" tests/execution.test.mjs",
+  "exitCode": 0,
+  "tests": 1,
+  "passed": 1,
+  "failed": 0,
+  "durationMs": 325032.1064,
+  "scenario": "real parent loss and missing native receipt preserve unknown ownership until exact restored EOF recovery",
+  "nativeHelperSha256": "56242fb9d135327a94a09978217b0d6ab222b9a5078f7e2238c9827a1ab4e23e",
+  "nativeSourceSha256": "43411addde33aaed1476031dc6322b71dac2458a3be0f2e8c50c821715734059",
+  "exercised": ["owned Node CLI process killed after actual root/descendant start", "native supervisor survives Node parent Job exit to persist exact termination receipt", "missing receipt leaves original attempt orphaned with no ended timestamp or submission", "unsafe retry denied without second fixture start", "restored receipt is reconciled without reattachment, spawn replay or PID-only termination", "owned worktree and history retained"],
+  "limits": ["This is one Core path, not full Stage2 acceptance", "No provider/version certification", "Independent stop replay and pre-effect admission review findings remain under correction", "Earlier unknown fixtures remain preserved"]
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_task_list",
+  "command": "task list",
+  "options": {
+    "status": "submitted",
+    "limit": 50
+  },
+  "projectId": "prj_demo"
+}

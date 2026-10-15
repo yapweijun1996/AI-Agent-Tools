@@ -1,0 +1,338 @@
+{
+  "command": [
+    "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "-NoProfile",
+    "-File",
+    "scripts/windows-primitives.ps1"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 1,
+  "stderr": "",
+  "report": {
+    "schemaVersion": 1,
+    "probe": "windows-primitives",
+    "status": "fail",
+    "checks": [
+      {
+        "id": "canonical_directory_identity",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "direct": {
+            "volumeSerial": 1759659074,
+            "fileId": "009600000006424a",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory"
+          },
+          "junction": {
+            "volumeSerial": 1759659074,
+            "fileId": "009600000006424a",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory"
+          },
+          "caseAlias": {
+            "volumeSerial": 1759659074,
+            "fileId": "009600000006424a",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory"
+          }
+        }
+      },
+      {
+        "id": "canonical_file_identity",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "direct": {
+            "volumeSerial": 1759659074,
+            "fileId": "004900000006427d",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory\\Identity File.txt"
+          },
+          "junction": {
+            "volumeSerial": 1759659074,
+            "fileId": "004900000006427d",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory\\Identity File.txt"
+          },
+          "caseAlias": {
+            "volumeSerial": 1759659074,
+            "fileId": "004900000006427d",
+            "finalPath": "\\\\?\\C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\Mixed Case Directory\\Identity File.txt"
+          }
+        }
+      },
+      {
+        "id": "pipe_remote_rejection_enabled",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "pipeMode": "PIPE_TYPE_BYTE | PIPE_REJECT_REMOTE_CLIENTS",
+          "nativeCreateAccepted": true,
+          "remoteHostChallenge": "not performed; no remote host or network service is authorized"
+        }
+      },
+      {
+        "id": "pipe_remote_host_challenge",
+        "status": "unsupported",
+        "required": false,
+        "details": "No authorized remote fixture host; enabling the native reject flag is proven, a cross-host negative challenge is not."
+      },
+      {
+        "id": "pipe_acl_readback",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "expectedOwnerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "observedOwnerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "sddl": "O:S-1-5-21-376930242-3054947748-2114188170-1002D:P(A;;FA;;;S-1-5-21-376930242-3054947748-2114188170-1002)",
+          "onlyOwnerAllowAce": true
+        }
+      },
+      {
+        "id": "pipe_nonowner_restricted_token_denied",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "win32Error": 5,
+          "restrictionSid": "S-1-1-0",
+          "actualAccountSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "scope": "Actual denied CreateFile under a restricting non-owner SID; no second account was created."
+        }
+      },
+      {
+        "id": "pipe_owner_admission",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "pid": 24680,
+          "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002"
+        }
+      },
+      {
+        "id": "pipe_connected_peer_identity",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "clientPid": 24680,
+          "expectedFixturePid": 24680,
+          "processTokenSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "impersonatedSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+          "creationFileTime": "134364179818931292",
+          "readMarker": 65
+        }
+      },
+      {
+        "id": "pipe_fixture_cleanup",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "message": "cleanup TerminateProcess owned fixture",
+          "exception": "System.ComponentModel.Win32Exception",
+          "win32Error": 5
+        }
+      },
+      {
+        "id": "job_limits_no_breakaway",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "flags": 8192,
+          "killOnClose": true,
+          "breakawayAllowed": false,
+          "silentBreakawayAllowed": false
+        }
+      },
+      {
+        "id": "process_created_before_execution",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "pid": 22884,
+          "creationFileTime": "134364179819542783",
+          "creationFlags": "CREATE_SUSPENDED",
+          "executionMarkerAbsent": true,
+          "processAlive": true
+        }
+      },
+      {
+        "id": "job_assigned_before_resume",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "pid": 22884,
+          "jobPids": [
+            22884
+          ],
+          "executionMarkerAbsent": true
+        }
+      },
+      {
+        "id": "launch_arguments_roundtrip",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "executablePathHasSpaces": true,
+          "argument": "argument with spaces \"quoted\" Unicode-Ω trailing\\",
+          "exactMatch": true,
+          "shell": false,
+          "lpApplicationName": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit windows primitives b85cc224670d46e191a62a49e1522892\\inert fixture with spaces.exe"
+        }
+      },
+      {
+        "id": "job_breakaway_denied",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "win32Error": 5,
+          "requestedFlags": "CREATE_SUSPENDED | CREATE_BREAKAWAY_FROM_JOB",
+          "fixtureExecuted": false
+        }
+      },
+      {
+        "id": "descendant_job_ownership",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "rootPid": 22884,
+          "descendantPid": 18128,
+          "descendantCreationFileTime": "134364179819974048",
+          "jobPids": [
+            22884,
+            18128
+          ],
+          "handleOpenedOnlyAfterJobMembership": true
+        }
+      },
+      {
+        "id": "identity_mismatch_rejected",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "wrongPidRejected": true,
+          "wrongCreationTimeRejected": true,
+          "outsideJobRejected": true,
+          "signalIssued": false,
+          "unrelatedFixturePid": 28052
+        }
+      },
+      {
+        "id": "root_exit_distinct_from_creation",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "pid": 22884,
+          "creationObservedFirst": true,
+          "exitedHandleSignaled": true,
+          "exitCode": 0
+        }
+      },
+      {
+        "id": "descendant_retained_after_root_exit",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "rootExited": true,
+          "descendantStillAlive": true,
+          "jobPids": [
+            18128
+          ]
+        }
+      },
+      {
+        "id": "kill_on_job_close_descendant_exit",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "retainedDescendantHandleSignaled": true,
+          "rootHandleSignaled": true,
+          "finalJobHandleClosed": true
+        }
+      },
+      {
+        "id": "job_stop_root_and_descendant",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "bothObservedAliveBeforeStop": true,
+          "rootHandleSignaled": true,
+          "descendantHandleSignaled": true,
+          "jobPidsAfterStop": []
+        }
+      },
+      {
+        "id": "unrelated_fixture_survives",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "unrelatedFixturePid": 28052,
+          "stillAlive": true,
+          "distinctOwnedCleanupJob": true
+        }
+      },
+      {
+        "id": "owned_process_cleanup",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "message": "cleanup TerminateProcess owned fixture",
+          "exception": "System.ComponentModel.Win32Exception",
+          "win32Error": 5
+        }
+      },
+      {
+        "id": "fixture_cleanup",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "ownedProcessHandlesOnly": true,
+          "descendantSignalsViaOwnedJobsOnly": true,
+          "junctionRemovedBeforeDirectoryCleanup": true,
+          "disposableDirectoryCleanup": "PowerShell wrapper finally; reported separately"
+        }
+      },
+      {
+        "id": "fixture_compilation",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "platform": "x64"
+        }
+      },
+      {
+        "id": "disposable_directory_cleanup",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "onlyCreatedDirectoryDeleted": true,
+          "directoryAbsent": true
+        }
+      }
+    ],
+    "runtime": {
+      "framework": "4.0.30319.42000",
+      "processArchitecture": "x64",
+      "osVersionApi": "RtlGetVersion",
+      "osQueryStatus": 0,
+      "windowsMajor": 10,
+      "windowsMinor": 0,
+      "windowsBuild": 26200,
+      "powershell": "5.1.26100.9444",
+      "compiler": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "platform": "x64"
+      }
+    },
+    "limitations": [
+      "NOT PRODUCT SECURITY CERTIFICATION",
+      "Cooperative same-account model only; Job Objects are not filesystem/network sandboxes.",
+      "No hostile same-SID isolation, persistent reattachment, crash recovery, product CLI, real provider, remote host or second-account challenge is established.",
+      "File identities are handle observations on this disposable filesystem, not a concurrent-replacement defense."
+    ]
+  }
+}

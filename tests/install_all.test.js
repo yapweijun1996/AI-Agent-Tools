@@ -112,11 +112,44 @@ test('install-all rejects arbitrary repositories/ref injection and unrelated opt
   } finally { f.cleanup(); }
 });
 
+test('install-all rejects incompatible declared hosts before any npm operation or package build', { skip: !supportedNode }, () => {
+  for (const declaration of [
+    { os: [process.platform === 'win32' ? 'linux' : 'win32'] },
+    { cpu: [process.arch === 'x64' ? 'arm64' : 'x64'] },
+    { engines: { node: process.versions.node.replace(/\d+$/, patch => String(Number(patch) + 1)) } },
+  ]) {
+    const f = fixture();
+    try {
+      const filename = path.join(f.source, 'packages/fixture/package.json');
+      const manifest = { ...JSON.parse(fs.readFileSync(filename)), ...declaration };
+      fs.writeFileSync(filename, JSON.stringify(manifest));
+      let npmCalls = 0;
+      const spawn = (command, args, config) => {
+        if (command !== 'git') { npmCalls++; throw new Error('Admission must precede npm'); }
+        return spawnSync(command, args, config);
+      };
+      assert.throws(() => installAll(options(f.source, f.prefix), { AitError, spawn }), error => {
+        assert.equal(error.code, 'UNSUPPORTED_PACKAGE_HOST');
+        assert.match(error.message, /cannot install every CLI: ait-install-fixture requires/);
+        return true;
+      });
+      assert.equal(npmCalls, 0);
+      assert.equal(fs.existsSync(path.join(f.source, 'packages/fixture/dist')), false);
+      assert.equal(fs.existsSync(path.join(f.prefix, 'INSTALLATION.json')), false);
+      assert.equal(fs.existsSync(path.join(f.prefix, '.work')), false);
+    } finally { f.cleanup(); }
+  }
+});
+
 test('install-all builds and installs a copied source fixture without lifecycle hooks or source writes', { skip: !supportedNode }, () => {
   const f = fixture();
   try {
     write(f.source, 'unrelated-private.txt', 'do not include');
     write(f.source, 'packages/fixture/authorized-new-source.txt', 'explicit source addition');
+    const manifestPath = path.join(f.source, 'packages/fixture/package.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestPath));
+    Object.assign(manifest, { os: [process.platform], cpu: [process.arch], engines: { node: process.versions.node } });
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest));
     const result = installAll(options(f.source, f.prefix), { AitError });
     assert.equal(result.packages, 2);
     assert.deepEqual(result.bins, ['ait', 'fixture-tool']);

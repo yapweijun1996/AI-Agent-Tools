@@ -12,7 +12,7 @@ documentation, registry, and the explicitly authorized dependency-free `agent-to
 | H-02 | Register each tool with one unique stable ID, intended purpose, lifecycle, and confirmed or explicitly unknown identity fields | Registry validation and source review; V-02 |
 | H-03 | Separate Planned, Experimental, Verified, Stable, and Deprecated using evidence gates | Tool standard and registry gate checks; V-02 |
 | H-04 | Preserve the original ten-tool order, appending explicitly reviewed additions without imposing execution dependencies | Roadmap/registry comparison; V-03 |
-| H-05 | Define local-first, bounded, read-only, deterministic target CLI/JSON/security/release contracts | Standards and manual consistency review; V-05 |
+| H-05 | Define local-first, bounded, deterministic target CLI/JSON/security/release contracts, with read-only observation by default and explicitly authorized stateful modes governed by their owning contract | Standards and manual consistency review; V-05 |
 | H-06 | Distinguish implementation, local tests, published artifacts, and Hub standards conformance | TASK/VALIDATION and release-specific registry metadata; V-05, V-06 |
 | H-07 | Give design, architecture, requirements, work packages, task state, and evidence explicit owners | Documentation index and link checks; V-04 |
 | H-08 | Provide repeatable dependency-free authoring validation | `python3 scripts/validate_hub.py`; V-02 through V-04 |
@@ -24,6 +24,7 @@ documentation, registry, and the explicitly authorized dependency-free `agent-to
 | H-13 | Document the three additions with explicit scope, contracts, failure states, budgets and acceptance cases; register them as Planned | Expansion and three tool designs; V-07; CFML local feasibility tests exist, while engine admission and the other two tools remain pending |
 | H-14 | Synchronize changed ecosystem facts and detailed designs to the existing Company KB and verify readback | KB synchronization record map and source digests; V-08 |
 | H-16 | Keep configurable CFML/HTML/project policy checking independently scoped from CFML structural checking | CFML Policy Check handoff, registry/roadmap entry, boundary review, and V-31; implementation and release evidence remain owned by its package folder |
+| H-17 | Preserve the owner-approved stateful Agent-Native-Git package's independent native contracts, exact host, effect approvals and recovery while keeping its scheduler/state out of AIT | Package contract/handoff, committed-source import record and fresh scoped migration acceptance; no Worker or release completion inferred |
 
 Evidence definitions are in [VALIDATION.md](VALIDATION.md). Requirements for future
 behavior are not marked implemented merely because prose exists.

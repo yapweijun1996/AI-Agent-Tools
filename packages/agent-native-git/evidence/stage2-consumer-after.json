@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/build.mjs && C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe --test --test-reporter=tap --test-name-pattern=\"^(separate real consumer stops attempt|brokered (cancellation|advisory) during)\" tests/execution.test.mjs",
+  "exitCode": 0,
+  "tests": 3,
+  "passed": 3,
+  "failed": 0,
+  "durationMs": 1173391.2619,
+  "scenarios": [
+    { "name": "separate real consumer stops attempt through authenticated broker and kills the owned descendants", "durationMs": 291340.4077, "exercised": ["actual suspended native root/descendant lifecycle", "durable stop and exact full-tree proof", "stored identical stop replay after foreground/broker closure", "conflicting key reuse rejected after closure", "no second attempt or fixture start"] },
+    { "name": "brokered cancellation during queued admission does not stop unrelated owned work", "durationMs": 380345.3333, "exercised": ["real Git result delayed before effect admission", "selected queued candidate cancelled through actual external authenticated broker", "unrelated actual owned attempt stays running", "cancelled candidate has no attempt/provider start", "owner interruption ends original writer with proof"] },
+    { "name": "brokered advisory during queued admission does not stop unrelated owned work", "durationMs": 501390.8733, "exercised": ["real queued-candidate advisory version change through actual external broker", "fresh eligible attempt admission", "unrelated actual owned attempt remains running", "orderly owner interruption including pending provisioning"] }
+  ],
+  "limits": ["Subset, not full acceptance", "Coalesced spare-slot wake was added after this build and needs its own execution proof", "No post-fix reviewer PASS", "No real provider/service/integration/restore/release"]
+}

@@ -1,0 +1,4624 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/operation-observation.schema.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "storage_initialized"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "registrationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "storageSchemaHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "registrationId",
+            "storageSchemaHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "refs_initialized"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "baselineRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "baselineOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            }
+          },
+          "required": [
+            "baselineRef",
+            "baselineOid",
+            "integrationRef",
+            "integrationOid"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "effect_complete"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "registeredRepositoryIdentity": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "registrationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "storageSchemaHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "baselineRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "baselineOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            }
+          },
+          "required": [
+            "registeredRepositoryIdentity",
+            "registrationId",
+            "storageSchemaHash",
+            "baselineRef",
+            "baselineOid",
+            "integrationRef",
+            "integrationOid"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "init"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "effect_observed",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "worktree_create"
+        },
+        "observationType": {
+          "const": "path_allocated"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "canonicalPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "ownershipMarkerId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "canonicalPath",
+            "ownershipMarkerId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "worktree_create"
+        },
+        "observationType": {
+          "const": "effect_complete"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "canonicalPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "ownershipMarkerId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "baseOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "baseTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "branchRef": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "enum": [
+                "task",
+                "candidate"
+              ]
+            }
+          },
+          "required": [
+            "canonicalPath",
+            "ownershipMarkerId",
+            "baseOid",
+            "baseTreeOid",
+            "branchRef",
+            "role"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "worktree_create"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "worktree_create"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "worktree_create"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "effect_observed",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "spawn"
+        },
+        "observationType": {
+          "const": "process_start"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "process": {
+              "type": "object",
+              "properties": {
+                "supervisorId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                "launchIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "executableHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "descendantScopeHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "supervisorId",
+                "launchIdentity",
+                "pid",
+                "startIdentity",
+                "executableHash",
+                "descendantScopeHash"
+              ],
+              "additionalProperties": false
+            },
+            "observedStartAtMs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "process",
+            "observedStartAtMs"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "spawn"
+        },
+        "observationType": {
+          "const": "effect_complete"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "process": {
+              "type": "object",
+              "properties": {
+                "supervisorId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                "launchIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "executableHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "descendantScopeHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "supervisorId",
+                "launchIdentity",
+                "pid",
+                "startIdentity",
+                "executableHash",
+                "descendantScopeHash"
+              ],
+              "additionalProperties": false
+            },
+            "observedStartAtMs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "startAndExitReceiptHash": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "process",
+            "observedStartAtMs",
+            "startAndExitReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "spawn"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "spawn"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "spawn"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "effect_observed",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "stop"
+        },
+        "observationType": {
+          "const": "stop_requested"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "process": {
+              "type": "object",
+              "properties": {
+                "supervisorId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                "launchIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "executableHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "descendantScopeHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "supervisorId",
+                "launchIdentity",
+                "pid",
+                "startIdentity",
+                "executableHash",
+                "descendantScopeHash"
+              ],
+              "additionalProperties": false
+            },
+            "requestedAtMs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "process",
+            "requestedAtMs"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "stop"
+        },
+        "observationType": {
+          "const": "effect_complete"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "process": {
+              "type": "object",
+              "properties": {
+                "supervisorId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                "launchIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "executableHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "descendantScopeHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "supervisorId",
+                "launchIdentity",
+                "pid",
+                "startIdentity",
+                "executableHash",
+                "descendantScopeHash"
+              ],
+              "additionalProperties": false
+            },
+            "writerTreeTerminated": {
+              "const": true
+            },
+            "terminationReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "process",
+            "writerTreeTerminated",
+            "terminationReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "stop"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "stop"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "stop"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "effect_observed",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "candidate_pinned"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          },
+          "required": [
+            "candidateOid",
+            "treeOid",
+            "candidateRef"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "testing_started"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "candidateOid",
+            "environmentHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "acceptance"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "checkId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "runId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "status": {
+                    "const": "passed"
+                  },
+                  "exitCode": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "signal": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 32
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "completed": {
+                    "type": "boolean"
+                  },
+                  "passed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "failed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "skipped": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "todo": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cancelled": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "runtimeProfileHash": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "startedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "endedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "artifacts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "artifactId": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 64,
+                          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                        },
+                        "relativePath": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 4096,
+                          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "minLength": 64,
+                          "maxLength": 64,
+                          "pattern": "^[0-9a-f]{64}$"
+                        },
+                        "bytes": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1073741824
+                        }
+                      },
+                      "required": [
+                        "artifactId",
+                        "relativePath",
+                        "sha256",
+                        "bytes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  }
+                },
+                "required": [
+                  "checkId",
+                  "runId",
+                  "status",
+                  "exitCode",
+                  "signal",
+                  "completed",
+                  "passed",
+                  "failed",
+                  "skipped",
+                  "todo",
+                  "cancelled",
+                  "runtimeProfileHash",
+                  "startedAtMs",
+                  "endedAtMs",
+                  "artifacts"
+                ],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "status": {
+                          "const": "passed"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "completed": {
+                          "const": true
+                        },
+                        "exitCode": {
+                          "const": 0
+                        },
+                        "signal": {
+                          "type": "null"
+                        },
+                        "failed": {
+                          "const": 0
+                        },
+                        "skipped": {
+                          "const": 0
+                        },
+                        "todo": {
+                          "const": 0
+                        },
+                        "cancelled": {
+                          "const": 0
+                        },
+                        "passed": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 9007199254740991
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "minItems": 1,
+              "maxItems": 30
+            },
+            "artifacts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "database",
+                      "schema",
+                      "ref",
+                      "object",
+                      "artifact"
+                    ]
+                  },
+                  "identity": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "kind",
+                  "identity",
+                  "sha256",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            }
+          },
+          "required": [
+            "evidenceId",
+            "evidenceSha256",
+            "candidateOid",
+            "treeOid",
+            "policyHash",
+            "profilesHash",
+            "environmentHash",
+            "requiredChecks",
+            "checks",
+            "artifacts"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "promotion"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "acceptanceEvidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "acceptanceEvidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "integrationRef",
+            "integrationOid",
+            "snapshotRef",
+            "snapshotOid",
+            "acceptanceEvidenceId",
+            "acceptanceEvidenceSha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "finalization"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "snapshotId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "eventId": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "snapshotId",
+            "evidenceId",
+            "eventId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "merge"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "candidate_created",
+                "testing",
+                "tests_passed",
+                "git_promoted",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "candidate_pinned"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          },
+          "required": [
+            "candidateOid",
+            "treeOid",
+            "candidateRef"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "testing_started"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "candidateOid",
+            "environmentHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "acceptance"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "checkId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "runId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "status": {
+                    "const": "passed"
+                  },
+                  "exitCode": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "signal": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 32
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "completed": {
+                    "type": "boolean"
+                  },
+                  "passed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "failed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "skipped": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "todo": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cancelled": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "runtimeProfileHash": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "startedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "endedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "artifacts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "artifactId": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 64,
+                          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                        },
+                        "relativePath": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 4096,
+                          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "minLength": 64,
+                          "maxLength": 64,
+                          "pattern": "^[0-9a-f]{64}$"
+                        },
+                        "bytes": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1073741824
+                        }
+                      },
+                      "required": [
+                        "artifactId",
+                        "relativePath",
+                        "sha256",
+                        "bytes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  }
+                },
+                "required": [
+                  "checkId",
+                  "runId",
+                  "status",
+                  "exitCode",
+                  "signal",
+                  "completed",
+                  "passed",
+                  "failed",
+                  "skipped",
+                  "todo",
+                  "cancelled",
+                  "runtimeProfileHash",
+                  "startedAtMs",
+                  "endedAtMs",
+                  "artifacts"
+                ],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "status": {
+                          "const": "passed"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "completed": {
+                          "const": true
+                        },
+                        "exitCode": {
+                          "const": 0
+                        },
+                        "signal": {
+                          "type": "null"
+                        },
+                        "failed": {
+                          "const": 0
+                        },
+                        "skipped": {
+                          "const": 0
+                        },
+                        "todo": {
+                          "const": 0
+                        },
+                        "cancelled": {
+                          "const": 0
+                        },
+                        "passed": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 9007199254740991
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "minItems": 1,
+              "maxItems": 30
+            },
+            "artifacts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "database",
+                      "schema",
+                      "ref",
+                      "object",
+                      "artifact"
+                    ]
+                  },
+                  "identity": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "kind",
+                  "identity",
+                  "sha256",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            }
+          },
+          "required": [
+            "evidenceId",
+            "evidenceSha256",
+            "candidateOid",
+            "treeOid",
+            "policyHash",
+            "profilesHash",
+            "environmentHash",
+            "requiredChecks",
+            "checks",
+            "artifacts"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "promotion"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "acceptanceEvidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "acceptanceEvidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "integrationRef",
+            "integrationOid",
+            "snapshotRef",
+            "snapshotOid",
+            "acceptanceEvidenceId",
+            "acceptanceEvidenceSha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "finalization"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "snapshotId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "eventId": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "snapshotId",
+            "evidenceId",
+            "eventId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "undo"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "candidate_created",
+                "testing",
+                "tests_passed",
+                "git_promoted",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "candidate_pinned"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          },
+          "required": [
+            "candidateOid",
+            "treeOid",
+            "candidateRef"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "testing_started"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "candidateOid",
+            "environmentHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "acceptance"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "treeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "checkId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "runId": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                  },
+                  "status": {
+                    "const": "passed"
+                  },
+                  "exitCode": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "signal": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 32
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "completed": {
+                    "type": "boolean"
+                  },
+                  "passed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "failed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "skipped": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "todo": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cancelled": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "runtimeProfileHash": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "startedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "endedAtMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "artifacts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "artifactId": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 64,
+                          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+                        },
+                        "relativePath": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 4096,
+                          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*[\\u0000-\\u001f]).+$"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "minLength": 64,
+                          "maxLength": 64,
+                          "pattern": "^[0-9a-f]{64}$"
+                        },
+                        "bytes": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1073741824
+                        }
+                      },
+                      "required": [
+                        "artifactId",
+                        "relativePath",
+                        "sha256",
+                        "bytes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  }
+                },
+                "required": [
+                  "checkId",
+                  "runId",
+                  "status",
+                  "exitCode",
+                  "signal",
+                  "completed",
+                  "passed",
+                  "failed",
+                  "skipped",
+                  "todo",
+                  "cancelled",
+                  "runtimeProfileHash",
+                  "startedAtMs",
+                  "endedAtMs",
+                  "artifacts"
+                ],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "status": {
+                          "const": "passed"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "completed": {
+                          "const": true
+                        },
+                        "exitCode": {
+                          "const": 0
+                        },
+                        "signal": {
+                          "type": "null"
+                        },
+                        "failed": {
+                          "const": 0
+                        },
+                        "skipped": {
+                          "const": 0
+                        },
+                        "todo": {
+                          "const": 0
+                        },
+                        "cancelled": {
+                          "const": 0
+                        },
+                        "passed": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 9007199254740991
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "minItems": 1,
+              "maxItems": 30
+            },
+            "artifacts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "database",
+                      "schema",
+                      "ref",
+                      "object",
+                      "artifact"
+                    ]
+                  },
+                  "identity": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "kind",
+                  "identity",
+                  "sha256",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            }
+          },
+          "required": [
+            "evidenceId",
+            "evidenceSha256",
+            "candidateOid",
+            "treeOid",
+            "policyHash",
+            "profilesHash",
+            "environmentHash",
+            "requiredChecks",
+            "checks",
+            "artifacts"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "promotion"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "acceptanceEvidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "acceptanceEvidenceSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "integrationRef",
+            "integrationOid",
+            "snapshotRef",
+            "snapshotOid",
+            "acceptanceEvidenceId",
+            "acceptanceEvidenceSha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "finalization"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "snapshotId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "evidenceId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "eventId": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "snapshotId",
+            "evidenceId",
+            "eventId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "restore"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "candidate_created",
+                "testing",
+                "tests_passed",
+                "git_promoted",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "backup"
+        },
+        "observationType": {
+          "const": "member_written"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "member": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "database",
+                    "schema",
+                    "ref",
+                    "object",
+                    "artifact"
+                  ]
+                },
+                "identity": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "kind",
+                "identity",
+                "sha256",
+                "bytes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "member"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "backup"
+        },
+        "observationType": {
+          "const": "effect_complete"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "manifestSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "manifestBytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "database",
+                      "schema",
+                      "ref",
+                      "object",
+                      "artifact"
+                    ]
+                  },
+                  "identity": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "kind",
+                  "identity",
+                  "sha256",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 1000,
+              "allOf": [
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "database"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "schema"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "ref"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "object"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "artifact"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                }
+              ]
+            },
+            "allMembersDurableAndVerified": {
+              "const": true
+            },
+            "barrierId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "manifestSha256",
+            "manifestBytes",
+            "members",
+            "allMembersDurableAndVerified",
+            "barrierId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "backup"
+        },
+        "observationType": {
+          "const": "safe_failure"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reasonCode",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "backup"
+        },
+        "observationType": {
+          "const": "abandonment"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "noUnresolvedEffect": {
+              "const": true
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "approvalReference",
+            "noUnresolvedEffect",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        "kind": {
+          "const": "backup"
+        },
+        "observationType": {
+          "const": "reconciliation"
+        },
+        "observerAuthority": {
+          "$ref": "authority.schema.json"
+        },
+        "observedAtMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "resumePhase": {
+              "enum": [
+                "prepared",
+                "effect_observed",
+                "finalized"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "proofReceiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "resumePhase",
+            "reasonCode",
+            "proofReceiptHash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observationId",
+        "operationId",
+        "projectId",
+        "kind",
+        "observationType",
+        "observerAuthority",
+        "observedAtMs",
+        "data"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

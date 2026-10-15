@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "command": "Node24 --test --test-reporter=tap --test-name-pattern=\"^until-stopped foreground\" tests/execution.test.mjs",
+  "scope": "Actual current finite-worker source with fresh read-only owned-fixture polling and unchanged production deadlines and checks",
+  "result": "FAIL",
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "skipped": 0,
+  "durationMs": 782282.2433,
+  "caseDurationMs": 781251.4028,
+  "failure": "Timed out awaiting foreground admission after initial quiescence",
+  "lastObservedTask": { "status": "leased", "cancelRequested": 0 },
+  "lastObservedAttempt": { "id": "att_4ce0be096c7eaa7b6d1b498bd126e734", "status": "reserved", "ended_at_ms": null },
+  "limits": [
+    "Heavy observer cost was independently measured; removing it did not resolve this recorded pre-spawn progress failure",
+    "No timer-starvation or native-deadline attribution established",
+    "Concurrent separate two-task trace may add host contention",
+    "No acceptance, provider or release claim"
+  ]
+}

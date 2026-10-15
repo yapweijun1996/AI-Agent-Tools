@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/ipc-hello.schema.json",
+  "type": "object",
+  "properties": {
+    "wireVersion": {
+      "const": 1
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "authorityIncarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "coordinatorEpoch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "clientNonce": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "serverNonce": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scopeId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "wireVersion",
+    "projectId",
+    "authorityIncarnation",
+    "coordinatorEpoch",
+    "clientNonce",
+    "serverNonce",
+    "scopeId"
+  ],
+  "additionalProperties": false
+}

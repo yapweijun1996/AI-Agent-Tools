@@ -1,0 +1,19 @@
+{
+  "scope": "Read-only review findings followed by parent-exercised offline contract corrections; not a product audit",
+  "initialReviews": {"SchemaContractReview": "three material findings", "StateContractReview": "seven material findings"},
+  "resolutions": [
+    "Started/submitted attempts require writer-tree termination; no-process proof cannot release a started execution.",
+    "Shared attempt enum no longer accepts succeeded.",
+    "Status/task-show consume history-bound cursor via cursor-file normalization; unbound numeric replay removed.",
+    "Durable promotion history blocks failure/abandonment even after needs_review.",
+    "Projection updates require the current observer grant's complete tuple, separate from immutable origin.",
+    "Backup incarnation install requires prior settlement of open operations, attempts and grants.",
+    "Ordered source equality and exact task membership enforced against frozen relational source rows.",
+    "One selected complete acceptance evidence ID/digest carried through promotion and snapshot.",
+    "Intent plan ID equals relational plan ID.",
+    "Candidate/testing phases require corresponding exact typed observations."
+  ],
+  "parentEvidence": ["contracts-review-before.json", "contracts-state-review-before.json", "contracts-review-after.json", "contracts-validation.json", "node-sql-contracts.json"],
+  "finalVerification": {"schemas": 42, "schemaFixtures": 276, "sqlFixtureCases": 90, "sqlNegativeRejections": 70, "pythonSqlite": "3.50.4", "nodeSqlite": "3.53.4", "productTestsExecuted": 0},
+  "limits": ["No post-fix independent reviewer PASS is claimed", "Core external truth, real provider behavior, persistent host recovery and full product acceptance remain unimplemented"]
+}

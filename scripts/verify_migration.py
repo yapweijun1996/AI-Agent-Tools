@@ -1,9 +1,74 @@
 """Verify imported coverage and explicit source updates without rewriting history."""
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
+
+
+def verify_native_import(root):
+    """Keep the independent import record separate from the historical snapshot."""
+    package = root / 'packages/agent-native-git'
+    record = root / 'docs/migration/AGENT_NATIVE_GIT_IMPORT.json'
+    if not package.exists() and not record.exists():
+        return 0, 0
+    if not record.is_file():
+        raise ValueError('Agent Native Git import record is required')
+    data = json.loads(record.read_text(encoding='utf-8'))
+    if (not isinstance(data, dict) or data.get('schema_version') != '1.0.0'
+            or not isinstance(data.get('source_commit'), str)
+            or not re.fullmatch(r'[0-9a-f]{40}', data['source_commit'])
+            or not isinstance(data.get('files'), list) or not data['files']):
+        raise ValueError('Invalid Agent Native Git import record')
+    expected = set()
+    updates = 0
+    for item in data['files']:
+        if not isinstance(item, dict) or set(item) != {
+                'source', 'destination', 'imported_sha256', 'current_sha256', 'reason'}:
+            raise ValueError('Invalid Agent Native Git import file fields')
+        source = item['source']
+        if (not isinstance(source, str) or not source
+                or '\\' in source or ':' in source
+                or any(part in {'', '.', '..'} for part in source.split('/'))):
+            raise ValueError('Unsafe Agent Native Git import source')
+        destination = 'packages/agent-native-git/' + source
+        if item['destination'] != destination or source in expected:
+            raise ValueError('Unknown or duplicate Agent Native Git destination')
+        for field in ['imported_sha256', 'current_sha256']:
+            if not isinstance(item[field], str) or not re.fullmatch(r'[0-9a-f]{64}', item[field]):
+                raise ValueError('Invalid Agent Native Git import digest: ' + destination)
+        changed = item['imported_sha256'] != item['current_sha256']
+        if ((changed and (not isinstance(item['reason'], str) or not item['reason'].strip()))
+                or (not changed and item['reason'] is not None)):
+            raise ValueError('Agent Native Git import disposition mismatch: ' + destination)
+        path = package / source
+        if (path.is_symlink() or not path.is_file()
+                or hashlib.sha256(path.read_bytes()).hexdigest() != item['current_sha256']):
+            raise ValueError('Agent Native Git migration coverage mismatch: ' + destination)
+        expected.add(source)
+        updates += int(changed)
+    actual = set()
+    generated = {'node_modules', 'dist', '.cache', 'build', '__pycache__', 'temp'}
+    for directory, folders, filenames in os.walk(package, followlinks=False):
+        relative = Path(directory).relative_to(package)
+        folders[:] = [name for name in folders if name not in generated
+                      and not (relative == Path('tests') and name == '.native')]
+        for name in folders + filenames:
+            path = Path(directory) / name
+            if path.is_symlink():
+                raise ValueError('Unsupported symlink in Agent Native Git import: ' + str(path))
+        for name in filenames:
+            if (name.endswith(('.pyc', '.pyo', '.pyd', '.sqlite', '.sqlite-wal',
+                               '.sqlite-shm', '.tgz', '.tsbuildinfo'))
+                    or name.startswith('npm-debug.log')):
+                continue
+            actual.add((relative / name).as_posix())
+    if actual != expected:
+        raise ValueError('Agent Native Git import inventory mismatch; unrecorded files: '
+                         + ', '.join(sorted(actual - expected)) + '; missing files: '
+                         + ', '.join(sorted(expected - actual)))
+    return len(expected), updates
 
 
 def verify_imports(root):
@@ -51,7 +116,9 @@ def verify_imports(root):
             failures.append(destination)
     if failures:
         raise ValueError('Migration coverage mismatch: ' + ', '.join(failures))
-    return len(baselines), len(manifest), len(updates)
+    native_count, native_updates = verify_native_import(root)
+    return (len(baselines) + native_count, len(manifest) + int(native_count > 0),
+            len(updates) + native_updates)
 
 
 def main():

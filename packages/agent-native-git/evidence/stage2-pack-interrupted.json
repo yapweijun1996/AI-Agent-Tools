@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/pack-check.mjs --evidence",
+  "result": "interrupted_before_final_report",
+  "externalCommandDeadlineSeconds": 1200,
+  "observedWallSeconds": 1200.24,
+  "observedError": "Command timed out after 1200 seconds",
+  "retainedConsumerWorkspace": "C:/Users/tno/Documents/GitHub/Agent-Native-Git/.cache/packed-consumer-EznwUM",
+  "snapshot": "Compiled pre-independent-Git-worker distribution; not current final acceptance",
+  "limits": ["No final package smoke PASS inferred", "Which behavioral stage was reached is not established by this output", "No publication or production deployment", "Unknown owned fixtures/receipts are preserved, never deleted on a deadline"]
+}

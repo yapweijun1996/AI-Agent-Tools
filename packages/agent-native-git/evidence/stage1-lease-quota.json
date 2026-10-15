@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "angit-stage1-lease-quota/v1",
+  "node": "v24.21.0",
+  "leaseDurationMs": 3000,
+  "heartbeatIntervalMs": 1000,
+  "preparedToFinalizedMs": 14062,
+  "initialized": true,
+  "mainDatabaseBytes": 471040,
+  "ownerBoundBytes": 1048576,
+  "additionalBytes": 446463,
+  "reservedGrowthBytes": 131072,
+  "withinBoundAccepted": true,
+  "twoBytesOverDenied": "STORAGE_LIMIT_REACHED"
+}

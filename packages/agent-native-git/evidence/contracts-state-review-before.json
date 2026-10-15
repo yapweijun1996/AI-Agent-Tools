@@ -1,0 +1,16 @@
+{
+  "scope": "Independent disposable SQL review reproductions, not product execution",
+  "migrationSha256": "dbd091bafc1ccd1ce575e5b68e3df4835ac3728fa4b27cd715d9a6b4654e6ef2",
+  "promotionReviewFailedAccepted": "failed",
+  "oldObservationNewGrantAccepted": "finalized",
+  "rotationWithUnresolvedOperationAccepted": [
+    [
+      "prepared",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+      "prepared",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+  ]
+}

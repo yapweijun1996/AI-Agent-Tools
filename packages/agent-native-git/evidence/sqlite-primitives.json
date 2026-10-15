@@ -1,0 +1,533 @@
+{
+  "command": [
+    "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe",
+    "scripts/sqlite-primitives.mjs"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 0,
+  "stderr": "",
+  "report": {
+    "probe": "sqlite-primitives",
+    "stage": 0,
+    "runtime": {
+      "node": "v24.21.0",
+      "execPath": "C:\\Users\\tno\\.omp\\ai-agent-tools-20261014\\runtime\\node.exe",
+      "platform": "win32",
+      "arch": "x64"
+    },
+    "startedAt": "2026-10-14T02:15:45.185Z",
+    "productTests": "NOT RUN",
+    "scope": "New file only; self-launched disposable OS children and one dedicated DB worker; no exported product API or existing callers.",
+    "limits": [
+      "Observed temporary local filesystem only; no network/sync filesystem, alias identity or product authority claim.",
+      "FULL is an observed SQLite setting, not power-loss, storage-controller or cross-system durability proof.",
+      "Backup covers one fixture database, not a complete Git/artifact backup set or restoration activation.",
+      "The concurrent commit is scheduled between live backup steps, not claimed to overlap an individual page-copy instruction.",
+      "Heartbeat is one bounded schedule, not a Coordinator load/latency SLA.",
+      "node:sqlite remains a release-candidate API in this Node line; driver selection is not finalized by this probe.",
+      "The reviewed executable does not expose StatementSync.close despite official latest-v24 documentation showing it; statements use connection-owned lifecycle and DatabaseSync.close."
+    ],
+    "checks": [
+      {
+        "id": "runtime-and-driver",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "sqlite": {
+            "version": "3.53.4",
+            "sourceId": "2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc"
+          },
+          "driver": {
+            "module": "node:sqlite",
+            "databaseSync": "function",
+            "backup": "function",
+            "databaseMethods": [
+              "aggregate",
+              "applyChangeset",
+              "close",
+              "constructor",
+              "createSession",
+              "createTagStore",
+              "deserialize",
+              "enableDefensive",
+              "enableLoadExtension",
+              "exec",
+              "function",
+              "loadExtension",
+              "location",
+              "open",
+              "prepare",
+              "serialize",
+              "setAuthorizer"
+            ],
+            "statementMethods": [
+              "all",
+              "columns",
+              "constructor",
+              "get",
+              "iterate",
+              "run",
+              "setAllowBareNamedParameters",
+              "setAllowUnknownNamedParameters",
+              "setReadBigInts",
+              "setReturnArrays"
+            ],
+            "statementLifecycle": "connection-owned; released by DatabaseSync.close"
+          },
+          "compileOptions": [
+            "ATOMIC_INTRINSICS=1",
+            "COMPILER=clang-19.1.5",
+            "DEFAULT_AUTOVACUUM",
+            "DEFAULT_CACHE_SIZE=-2000",
+            "DEFAULT_FILE_FORMAT=4",
+            "DEFAULT_JOURNAL_SIZE_LIMIT=-1",
+            "DEFAULT_MEMSTATUS=0",
+            "DEFAULT_MMAP_SIZE=0",
+            "DEFAULT_PAGE_SIZE=4096",
+            "DEFAULT_PCACHE_INITSZ=20",
+            "DEFAULT_RECURSIVE_TRIGGERS",
+            "DEFAULT_SECTOR_SIZE=4096",
+            "DEFAULT_SYNCHRONOUS=2",
+            "DEFAULT_WAL_AUTOCHECKPOINT=1000",
+            "DEFAULT_WAL_SYNCHRONOUS=2",
+            "DEFAULT_WORKER_THREADS=0",
+            "DIRECT_OVERFLOW_READ",
+            "ENABLE_COLUMN_METADATA",
+            "ENABLE_DBSTAT_VTAB",
+            "ENABLE_FTS3",
+            "ENABLE_FTS3_PARENTHESIS",
+            "ENABLE_FTS5",
+            "ENABLE_GEOPOLY",
+            "ENABLE_MATH_FUNCTIONS",
+            "ENABLE_PERCENTILE",
+            "ENABLE_PREUPDATE_HOOK",
+            "ENABLE_RBU",
+            "ENABLE_RTREE",
+            "ENABLE_SESSION",
+            "MALLOC_SOFT_LIMIT=1024",
+            "MAX_ATTACHED=10",
+            "MAX_COLUMN=2000",
+            "MAX_COMPOUND_SELECT=500",
+            "MAX_DEFAULT_PAGE_SIZE=8192",
+            "MAX_EXPR_DEPTH=1000",
+            "MAX_FUNCTION_ARG=1000",
+            "MAX_LENGTH=1000000000",
+            "MAX_LIKE_PATTERN_LENGTH=50000",
+            "MAX_MMAP_SIZE=0x7fff0000",
+            "MAX_PAGE_COUNT=0xfffffffe",
+            "MAX_PAGE_SIZE=65536",
+            "MAX_SQL_LENGTH=1000000000",
+            "MAX_TRIGGER_DEPTH=1000",
+            "MAX_VARIABLE_NUMBER=32766",
+            "MAX_VDBE_OP=250000000",
+            "MAX_WORKER_THREADS=8",
+            "MUTEX_W32",
+            "SYSTEM_MALLOC",
+            "TEMP_STORE=1",
+            "THREADSAFE=1"
+          ]
+        },
+        "elapsedMs": 1.2006999999999977
+      },
+      {
+        "id": "foreign-keys-strict-wal-full",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "effective": {
+            "foreignKeys": 1,
+            "journalMode": "wal",
+            "synchronous": 2,
+            "busyTimeoutMs": 200
+          },
+          "foreignKeyRejection": {
+            "name": "Error",
+            "code": "ERR_SQLITE_ERROR",
+            "errcode": 787,
+            "errstr": "constraint failed",
+            "message": "FOREIGN KEY constraint failed"
+          },
+          "strictRejection": {
+            "name": "Error",
+            "code": "ERR_SQLITE_ERROR",
+            "errcode": 3091,
+            "errstr": "constraint failed",
+            "message": "cannot store TEXT value in INTEGER column child.parent_id"
+          },
+          "strictTables": [
+            {
+              "schema": "main",
+              "name": "fixture_rows",
+              "type": "table",
+              "ncol": 2,
+              "wr": 0,
+              "strict": 1
+            },
+            {
+              "schema": "main",
+              "name": "child",
+              "type": "table",
+              "ncol": 2,
+              "wr": 0,
+              "strict": 1
+            },
+            {
+              "schema": "main",
+              "name": "parent",
+              "type": "table",
+              "ncol": 1,
+              "wr": 0,
+              "strict": 1
+            }
+          ],
+          "rows": {
+            "count": 512,
+            "payloadBytes": 4609940,
+            "rowsSha256": "e28e3c47b14eae3ada4ffbe326a14cf364a6e9885ff5e0d4294e58265692dc39"
+          },
+          "walBytes": 4787472,
+          "foreignKeyCheck": [],
+          "integrity": [
+            {
+              "integrity_check": "ok"
+            }
+          ],
+          "guardEffective": {
+            "foreignKeys": 1,
+            "journalMode": "delete",
+            "synchronous": 2,
+            "busyTimeoutMs": 0
+          }
+        },
+        "elapsedMs": 93.83269999999999
+      },
+      {
+        "id": "cross-process-exclusive-lifetime-guard",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "contender": {
+            "type": "ready",
+            "pid": 36768,
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "delete",
+              "synchronous": 2,
+              "busyTimeoutMs": 0
+            }
+          },
+          "holder": {
+            "type": "held",
+            "pid": 28220,
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "delete",
+              "synchronous": 2,
+              "busyTimeoutMs": 0
+            },
+            "transaction": "BEGIN EXCLUSIVE"
+          },
+          "whileHeld": {
+            "type": "attempt-result",
+            "index": 0,
+            "pid": 36768,
+            "admitted": false,
+            "elapsedMs": 13.790999999999997,
+            "error": {
+              "name": "Error",
+              "code": "ERR_SQLITE_ERROR",
+              "errcode": 5,
+              "errstr": "database is locked",
+              "message": "database is locked"
+            },
+            "readCount": null
+          },
+          "release": {
+            "type": "released",
+            "pid": 28220
+          },
+          "holderExit": {
+            "code": 0,
+            "signal": null
+          },
+          "afterRelease": {
+            "type": "attempt-result",
+            "index": 1,
+            "pid": 36768,
+            "admitted": true,
+            "elapsedMs": 0.11029999999999518,
+            "error": null,
+            "readCount": null
+          },
+          "contenderExit": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        "elapsedMs": 217.69740000000002
+      },
+      {
+        "id": "workflow-wal-bounded-busy",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "contender": {
+            "type": "ready",
+            "pid": 31864,
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "wal",
+              "synchronous": 2,
+              "busyTimeoutMs": 200
+            }
+          },
+          "holder": {
+            "type": "held",
+            "pid": 6252,
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "wal",
+              "synchronous": 2,
+              "busyTimeoutMs": 0
+            },
+            "transaction": "BEGIN IMMEDIATE"
+          },
+          "whileHeld": {
+            "type": "attempt-result",
+            "index": 0,
+            "pid": 31864,
+            "admitted": false,
+            "elapsedMs": 287.3084,
+            "error": {
+              "name": "Error",
+              "code": "ERR_SQLITE_ERROR",
+              "errcode": 5,
+              "errstr": "database is locked",
+              "message": "database is locked"
+            },
+            "readCount": 512
+          },
+          "release": {
+            "type": "released",
+            "pid": 6252
+          },
+          "holderExit": {
+            "code": 0,
+            "signal": null
+          },
+          "afterRelease": {
+            "type": "attempt-result",
+            "index": 1,
+            "pid": 31864,
+            "admitted": true,
+            "elapsedMs": 0.07459999999997535,
+            "error": null,
+            "readCount": 512
+          },
+          "contenderExit": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        "elapsedMs": 470.4743
+      },
+      {
+        "id": "online-backup-committed-wal-and-concurrent-write",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "before": {
+            "count": 512,
+            "payloadBytes": 4609940,
+            "rowsSha256": "e28e3c47b14eae3ada4ffbe326a14cf364a6e9885ff5e0d4294e58265692dc39"
+          },
+          "walBytesBefore": 4787472,
+          "writer": {
+            "type": "ready",
+            "pid": 27324,
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "wal",
+              "synchronous": 2,
+              "busyTimeoutMs": 2000
+            }
+          },
+          "inProgress": {
+            "type": "backup-barrier",
+            "pid": 3216,
+            "progress": {
+              "totalPages": 1156,
+              "remainingPages": 1140
+            }
+          },
+          "commit": {
+            "type": "committed",
+            "pid": 27324,
+            "elapsedMs": 2.7334000000000174,
+            "rowId": 513
+          },
+          "copy": {
+            "type": "backup-done",
+            "pid": 3216,
+            "pages": 1156,
+            "steps": 73,
+            "firstProgress": {
+              "totalPages": 1156,
+              "remainingPages": 1140
+            },
+            "lastProgress": {
+              "totalPages": 1156,
+              "remainingPages": 4
+            },
+            "barrier": {
+              "remainingPages": 1140,
+              "totalPages": 1156,
+              "waitMs": 18.66980000000001
+            },
+            "before": {
+              "count": 512,
+              "payloadBytes": 4609940,
+              "rowsSha256": "e28e3c47b14eae3ada4ffbe326a14cf364a6e9885ff5e0d4294e58265692dc39"
+            },
+            "elapsedMs": 48.231899999999996
+          },
+          "writerExit": {
+            "code": 0,
+            "signal": null
+          },
+          "copierExit": {
+            "code": 0,
+            "signal": null
+          },
+          "source": {
+            "count": 513,
+            "payloadBytes": 4609963,
+            "rowsSha256": "74a791d16e9604d477d973b72dc75d25194b4e6df5194544be144b9fe542407b"
+          },
+          "backup": {
+            "count": 513,
+            "payloadBytes": 4609963,
+            "rowsSha256": "74a791d16e9604d477d973b72dc75d25194b4e6df5194544be144b9fe542407b"
+          },
+          "sourceIntegrity": [
+            {
+              "integrity_check": "ok"
+            }
+          ],
+          "backupIntegrity": [
+            {
+              "integrity_check": "ok"
+            }
+          ],
+          "backupForeignKeys": [],
+          "concurrentRow": [
+            {
+              "id": 513,
+              "payload": "committed-during-backup"
+            }
+          ],
+          "backupFileBytes": 4734976,
+          "backupFileSha256": "6a4e8764c6e6c54a70bb040df55c62eea5c65150251bbbbe580c35ed35960083",
+          "schedule": "First non-final backup progress callback pauses between steps until a separate OS process commits row 513; copying then resumes."
+        },
+        "elapsedMs": 307.7594
+      },
+      {
+        "id": "dedicated-db-worker-responsive-heartbeat",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "started": {
+            "type": "work-start",
+            "threadId": 1
+          },
+          "database": {
+            "effective": {
+              "foreignKeys": 1,
+              "journalMode": "wal",
+              "synchronous": 2,
+              "busyTimeoutMs": 0
+            },
+            "passes": 14,
+            "sum": 31250125000,
+            "rowCount": 5000,
+            "integrity": [
+              {
+                "integrity_check": "ok"
+              }
+            ],
+            "workElapsedMs": 535.9579999999999
+          },
+          "heartbeat": {
+            "intervalMs": 10,
+            "beatsDuringSynchronousDbWork": 35,
+            "maxGapMs": 23.67970000000014,
+            "allowedMaxGapMs": 250
+          },
+          "workerExitCode": 0
+        },
+        "elapsedMs": 592.8448000000001
+      },
+      {
+        "id": "owned-fixture-cleanup",
+        "required": true,
+        "passed": true,
+        "evidence": {
+          "children": [
+            {
+              "pid": 36768,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            },
+            {
+              "pid": 28220,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            },
+            {
+              "pid": 31864,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            },
+            {
+              "pid": 6252,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            },
+            {
+              "pid": 27324,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            },
+            {
+              "pid": 3216,
+              "exitCode": 0,
+              "signalCode": null,
+              "stopped": true
+            }
+          ],
+          "workers": [
+            {
+              "stopped": true
+            }
+          ],
+          "allOwnedExecutorsStopped": true,
+          "tempDirectoryRemoved": true,
+          "failures": []
+        },
+        "elapsedMs": 20.21369999999979
+      }
+    ],
+    "fixture": {
+      "name": "angit-stage0-sqlite-DCaj58",
+      "disposable": true
+    },
+    "passed": true,
+    "finishedAt": "2026-10-14T02:15:46.892Z"
+  }
+}

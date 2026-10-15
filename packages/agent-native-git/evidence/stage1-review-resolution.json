@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "angit-stage1-review-resolution/v1",
+  "date": "2026-10-14",
+  "reviewMode": "Two independent read-only source reviews; reviewers did not run tests",
+  "parentVerification": "stage1-verification.json",
+  "findings": [
+    {"boundary":"CLI task input", "before":"Static review found --file normalized to task while schema/Core require spec", "change":"Normalize to spec", "after":"Packed consumer task add and immutable metadata regression passed"},
+    {"boundary":"Public API runtime", "before":"Static review found execute bypassed CLI Node gate", "change":"Enforce Node24.21.0 before native/Core construction", "after":"Installed public API rejected actual Node25.2.1"},
+    {"boundary":"Consumer stream failure", "before":"Parent regression observed success returned before small asynchronous EPIPE", "change":"Await completion/backpressure and retain error handling; report broken stdout through stderr without retrying it", "after":"Asynchronous output failure regression passed"},
+    {"boundary":"Follow framing", "before":"Parent regression observed malformed cursor emitted an ordinary result on stdout", "change":"Select explicit NDJSON error framing before fallible setup", "after":"Initialization error regression and actual event replay/backpressure passed"},
+    {"boundary":"Managed symbolic refs", "before":"Static review identified dangling symbolic-ref routing to owner branches", "change":"Reject symbolic refs including dangling ones; use create-only --no-deref transaction", "after":"Dangling managed-ref regression preserved owner refs and denied initialization"},
+    {"boundary":"Init result quota", "before":"Static review identified predictable budget failure only after Git effects", "change":"Preflight complete receipt before prepared intent/ref effects; retain stable operation-derived snapshot identity", "after":"1024-byte policy regression rejected with OUTPUT_LIMIT and no managed ref creation"},
+    {"boundary":"Init lease heartbeat", "before":"Static review identified expiration during asynchronous Git work", "change":"Guarded heartbeat with latched failure, admission checks and timer cleanup; expired grants never revived", "after":"Real 3000ms lease completed a 14062ms prepared-to-finalized interval; see stage1-lease-quota.json"},
+    {"boundary":"Storage accounting", "before":"Static review identified duplicate charging of main DB", "change":"Charge max(logical pages, physical main) once plus WAL and explicit growth reserve", "after":"Actual checkpointed 471040-byte DB accepted within-bound allowance and denied two-byte overrun; see stage1-lease-quota.json"}
+  ],
+  "additionalObservedCorrections": [
+    "Strict integer accumulation parenthesizes the digit before adding; valid safe-integer boundary no longer fails schema loading",
+    "Normative migration trailing line comments remain supported without rewriting historical SQL bytes",
+    "Valid conditional schema predicates/refinements explicitly declare local properties/types; Ajv strict settings remain enabled",
+    "Owner context observes location rather than approving ACLs; noncreating private-directory inspection revalidates existing registry roots",
+    "Authorization and guard resource failures use the documented exit categories"
+  ],
+  "limits": [
+    "No post-fix independent reviewer PASS is claimed; acceptance uses parent-run evidence",
+    "No provider, worker, integration/restore, whole-project crash matrix, sandbox or release evidence is implied",
+    "Current public default-host registration is denied because its KnownFolder anchor has non-owner write grants"
+  ]
+}

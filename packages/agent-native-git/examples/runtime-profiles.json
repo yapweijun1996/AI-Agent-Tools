@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "angit-profiles/v1",
+  "profiles": [
+    {
+      "id": "mock_local",
+      "kind": "coding-agent",
+      "provider": "mock",
+      "enabled": false,
+      "executable": "/OWNER_MUST_CONFIGURE/mock_local",
+      "executableSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "args": [],
+      "cwdMode": "managed-worktree",
+      "envAllow": [
+        "PATH",
+        "LANG"
+      ],
+      "networkMode": "deny",
+      "sandboxBackend": "none",
+      "timeoutSeconds": 1800,
+      "maxOutputBytes": 10485760,
+      "versionProbeArgs": [
+        "--version"
+      ],
+      "completionMode": "clean-commit-after-exit",
+      "requiresApproval": true
+    },
+    {
+      "id": "check_unit",
+      "kind": "check",
+      "provider": "custom-check",
+      "enabled": false,
+      "executable": "/OWNER_MUST_CONFIGURE/check_unit",
+      "executableSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "args": [],
+      "cwdMode": "managed-worktree",
+      "envAllow": [
+        "PATH",
+        "LANG"
+      ],
+      "networkMode": "deny",
+      "sandboxBackend": "none",
+      "timeoutSeconds": 1800,
+      "maxOutputBytes": 10485760,
+      "versionProbeArgs": [
+        "--version"
+      ],
+      "completionMode": "process-and-test-evidence",
+      "requiresApproval": true
+    },
+    {
+      "id": "codex_local",
+      "kind": "coding-agent",
+      "provider": "codex",
+      "enabled": false,
+      "executable": "/OWNER_MUST_CONFIGURE/codex_local",
+      "executableSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "args": [],
+      "cwdMode": "managed-worktree",
+      "envAllow": [
+        "PATH",
+        "LANG"
+      ],
+      "networkMode": "provider-only",
+      "sandboxBackend": "none",
+      "timeoutSeconds": 1800,
+      "maxOutputBytes": 10485760,
+      "versionProbeArgs": [
+        "--version"
+      ],
+      "completionMode": "clean-commit-after-exit",
+      "requiresApproval": true
+    },
+    {
+      "id": "claude_local",
+      "kind": "coding-agent",
+      "provider": "claude",
+      "enabled": false,
+      "executable": "/OWNER_MUST_CONFIGURE/claude_local",
+      "executableSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "args": [],
+      "cwdMode": "managed-worktree",
+      "envAllow": [
+        "PATH",
+        "LANG"
+      ],
+      "networkMode": "provider-only",
+      "sandboxBackend": "none",
+      "timeoutSeconds": 1800,
+      "maxOutputBytes": 10485760,
+      "versionProbeArgs": [
+        "--version"
+      ],
+      "completionMode": "clean-commit-after-exit",
+      "requiresApproval": true
+    },
+    {
+      "id": "pi_local",
+      "kind": "coding-agent",
+      "provider": "pi",
+      "enabled": false,
+      "executable": "/OWNER_MUST_CONFIGURE/pi_local",
+      "executableSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "args": [],
+      "cwdMode": "managed-worktree",
+      "envAllow": [
+        "PATH",
+        "LANG"
+      ],
+      "networkMode": "provider-only",
+      "sandboxBackend": "none",
+      "timeoutSeconds": 1800,
+      "maxOutputBytes": 10485760,
+      "versionProbeArgs": [
+        "--version"
+      ],
+      "completionMode": "clean-commit-after-exit",
+      "requiresApproval": true
+    }
+  ]
+}

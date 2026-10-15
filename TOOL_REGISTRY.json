@@ -228,6 +228,17 @@
       "release_version": null,
       "verification": null,
       "deprecation": null
+    },
+    {
+      "id": "agent-native-git",
+      "name": "Agent-Native-Git",
+      "description": "Windows x64 local task coordination and controlled foreground execution through angit; exact Node 24.21.0, with Worker, integration and restore commands unavailable.",
+      "status": "Experimental",
+      "repository_url": "https://github.com/yapweijun1996/AI-Agent-Tools",
+      "npm": null,
+      "release_version": null,
+      "verification": null,
+      "deprecation": null
     }
   ]
 }

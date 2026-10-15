@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.cache/
+/temp/
+__pycache__/
+*.py[cod]
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+tests/.native/

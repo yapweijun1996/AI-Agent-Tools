@@ -1,0 +1,13 @@
+{
+  "scope": "Independent disposable reproduction of review findings; not product execution",
+  "contradictoryStartedSubmissionAcceptedBySchema": true,
+  "contradictorySqlRow": [
+    "submitted",
+    1,
+    2,
+    "no_process_created"
+  ],
+  "retiredStateAcceptedBySharedSchema": true,
+  "numericReplayAccepted": true,
+  "historyBoundReplayAccepted": false
+}

@@ -1,10 +1,10 @@
 # AI-Agent-Tools
 
-Owned source for eighteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
+Owned source for nineteen bounded AI coding tools, plus the dependency-free `ait` discovery, installation and dispatch CLI. Tool packages keep independent names, versions, native CLI/JSON contracts and releases.
 
 ## Install all CLIs
 
-Use Node 22.13+ or Node 24, npm and Git. The source installer builds and installs every implemented CLI, including private source MVPs, into a new isolated directory:
+The complete source inventory now includes Windows-x64-only Agent-Native-Git, which requires exactly Node 24.21.0, npm, Git and the documented Windows build/runtime prerequisites. Use that host for installing all nineteen tool CLIs; incompatible declared package hosts are rejected before package builds, not silently omitted. AIT and the previously supported tools retain their own broader runtime contracts.
 
 ```sh
 npm exec --yes --ignore-scripts --package=git+https://github.com/yapweijun1996/AI-Agent-Tools.git -- ait install-all --github https://github.com/yapweijun1996/AI-Agent-Tools --prefix ./ai-agent-tools-cli --allow-build --allow-experimental
@@ -26,7 +26,7 @@ The agent should inspect each tool's help/capabilities and native contract befor
 
 ## Develop
 
-Use Node 22.13+ or Node 24 and Python 3.9+. From a fresh clone:
+For the full nineteen-package gate, use Windows x64 with exactly Node 24.21.0 and Python 3.9+. AIT and compatible packages still support their own declared hosts; root orchestration reports unsupported package hosts as explicitly not applicable, not passed native acceptance. From a fresh clone:
 
 ```sh
 npm run bootstrap
@@ -72,6 +72,13 @@ workspace. The declaration does not install dependencies, hoist packages or
 change their independent lockfiles. Undeclared repositories are not scanned for
 guessed package-folder conventions.
 
+## Agent-Native-Git source import (2026-10-15)
+
+[Agent-Native-Git](packages/agent-native-git/README.md) is an independent private MIT `angit` package at source version `0.0.0`. The owner authorized its committed source import into this monorepo, not a new AIT reasoning/runtime layer or an independent GitHub publication. It owns explicit approved Git/SQLite/process effects; AIT remains dependency-free discovery/install/dispatch. Current product scope is thirteen of eighteen native command leaves; Worker, integration and restore remain unavailable.
+
+Start the next assignment at [the package handoff](packages/agent-native-git/docs/HANDOFF.md). [Import provenance](docs/migration/AGENT_NATIVE_GIT_IMPORT.json) binds the original source checkpoint and metadata/documentation changes; [migration evidence](docs/migration/AGENT_NATIVE_GIT_VERIFICATION.md) distinguishes fresh migrated-tree observations from historical package receipts. The original workspace and private all-ref bundle are recovery material, not a second active source. This local import has not been pushed or published.
+
+
 ## Contracts and releases
 
 The current source includes compatible CLI usability fixes: all eighteen package
@@ -97,7 +104,7 @@ MIT notices remain with their packages. CFML Linkage remains private with no pac
 
 [Registry](TOOL_REGISTRY.json) records ecosystem lifecycle and published evidence; [source manifest](docs/migration/SOURCE_MANIFEST.json) records imported source versions. Lifecycle conformance, owner-confirmed delivery and publication are distinct. The previous Hub observations remain in Git history and dated [validation](VALIDATION.md).
 
-[Architecture](docs/ARCHITECTURE.md), [documentation index](DOCUMENTATION_INDEX.md), [task status](TASK.md), [roadmap](ROADMAP.md), and [AGENTS.md](AGENTS.md) describe repository responsibilities. Tools remain local-first, bounded and read-only within their declared scopes; no LLM, API key or agent reasoning runtime is introduced.
+[Architecture](docs/ARCHITECTURE.md), [documentation index](DOCUMENTATION_INDEX.md), [task status](TASK.md), [roadmap](ROADMAP.md), and [AGENTS.md](AGENTS.md) describe repository responsibilities. Tools remain local-first and bounded; observation is read-only by default, while explicitly approved stateful tool effects stay within their owning package contracts. No LLM, API key or agent reasoning runtime is introduced into the Hub.
 
 ## Two additional source MVPs
 

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/message-input.schema.json",
+  "title": "Agent messages are advisory, not state-change or permission evidence",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-message-input/v1"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "kind": {
+      "enum": [
+        "progress",
+        "contract.updated",
+        "dependency.hint",
+        "review.requested",
+        "submission.hint"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "relatedTaskIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 64,
+        "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+      },
+      "minItems": 0,
+      "maxItems": 20,
+      "uniqueItems": true
+    },
+    "artifactIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 64,
+        "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+      },
+      "minItems": 0,
+      "maxItems": 20,
+      "uniqueItems": true
+    },
+    "commitOid": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "kind",
+    "summary",
+    "relatedTaskIds",
+    "artifactIds",
+    "commitOid"
+  ],
+  "additionalProperties": false
+}

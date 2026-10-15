@@ -1,5 +1,17 @@
 # Validation and evidence
 
+## Agent-Native-Git monorepo migration (2026-10-15)
+
+The owner authorized committed-source import into `packages/agent-native-git`, native contract preservation, Hub integration, fresh verification and local main merge. The original source checkpoint is `46e46123adaea304884f5e0e0c7ef6235426153e`; Hub base is `837b48939321bc1f746f8a1587dc5b87363a2208`. [Import provenance](docs/migration/AGENT_NATIVE_GIT_IMPORT.json) maps all 472 tracked members and current metadata/documentation dispositions. The private all-ref recovery bundle verified complete; source implementation/native/public schemas/SQL/evidence, package lock and MIT license remain unchanged.
+
+[The migration verification ledger](docs/migration/AGENT_NATIVE_GIT_VERIFICATION.md) owns the fresh run results and unresolved limits; historical Stage 2/Stage 3 receipts inside the imported package are not substituted for relocated-tree proof. New package dependency provisioning succeeded offline with scripts disabled. Bounded root JavaScript impact became usable through a temporary four-file project and remains partial for dynamic/unresolved/external relationships; the temporary config was removed, and no LSP server is configured.
+
+The integration retains all existing package identities/native interfaces and the eight prior packed-consumer scopes, adding only angit's prepared contract/native gate and native packed consumer. Declared unsupported hosts are explicitly not applicable in root orchestration, not native acceptance; install-all rejects them before dependency installation/build. Full native acceptance requires exact Windows x64/Node 24.21.0. Registration/source admission does not establish Hub protocol conformance, complete the unavailable Worker/integration/restore leaves or publish any package.
+
+No remote push, real provider/model/service execution, existing ACL repair, original-workspace deletion, installed-tool cutover or npm release is included.
+
+Latest owner scope reduction: move the logic and commit immediately. The full background verification job was cancelled, not completed or passed. Completed checks are Hub authoring (20 tools/56 documents/530 links), import coverage (1170 mapped files/103 explicit updates), offline dependency provisioning and actual Hub CLI discovery/private-release denial/incompatible-host pre-build denial. Full migrated native tests, packed consumer and relocated preflight remain deferred for the next agent. Partial logs and any interrupted fixture state remain preserved; no clean writer-tree termination is inferred from cancelling the controller.
+
 ## Local merge integration (2026-10-13)
 
 The active Git merge combines local

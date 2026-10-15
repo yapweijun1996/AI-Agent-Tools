@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "angit-end-of-day-handoff/v1",
+  "observedAt": "2026-10-15T05:18:19.536891+00:00",
+  "scope": "Documentation/local Git closeout only; remaining implementation assigned to another AI agent.",
+  "git": {
+    "initialState": "No Git repository before owner closeout authorization",
+    "baselineCommit": "29f8a3ac0a8b929aba3db87fc10ec02889f15c43",
+    "handoffBranch": "docs/end-of-day-handoff-2026-10-15",
+    "integrationTarget": "main",
+    "integrationProof": "Actual commit/merge IDs and parentage are in Git history, created after this precommit receipt.",
+    "remotePushPerformed": false
+  },
+  "documentation": {
+    "handoff": "docs/HANDOFF.md",
+    "remainingImplementationStarted": false,
+    "files": [
+      "CHANGELOG.md",
+      "README.md",
+      "TASK.md",
+      "VALIDATION.md",
+      "docs/HANDOFF.md",
+      "docs/STAGE3_PLAN.md",
+      "docs/STAGE3_PREFLIGHT.md"
+    ],
+    "localLinksChecked": 182,
+    "brokenLocalLinks": []
+  },
+  "checks": {
+    "baselineStagedWhitespace": "passed after removing one extra EOF blank line from CLI_REFERENCE.md",
+    "handoffStagedWhitespace": "passed",
+    "trailingWhitespace": [],
+    "jsonParsing": "passed for explicit tracked inventory",
+    "offlineContracts": {
+      "command": "python scripts/validate-contracts.py",
+      "exitCode": 0,
+      "schemas": 42,
+      "schemaFixtures": 276,
+      "publicCommandContracts": 18,
+      "sqlFixtureCases": 90,
+      "sqlNegativeRejections": 70,
+      "temporarySqlFixturesCleaned": true,
+      "productTestsExecuted": false
+    },
+    "actualCapabilities": {
+      "stage": 2,
+      "runtime": "Node 24.21.0, Windows x64",
+      "commandCount": 18,
+      "commands": [
+        {
+          "name": "init",
+          "available": true,
+          "capability": "project.register",
+          "effects": "managed-write"
+        },
+        {
+          "name": "doctor",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "status",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task add",
+          "available": true,
+          "capability": "task.create",
+          "effects": "metadata-write"
+        },
+        {
+          "name": "task list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task show",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task message",
+          "available": true,
+          "capability": "task.message",
+          "effects": "metadata-write"
+        },
+        {
+          "name": "task cancel",
+          "available": true,
+          "capability": "task.cancel",
+          "effects": "managed-write"
+        },
+        {
+          "name": "agent start",
+          "available": true,
+          "capability": "attempt.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "agent stop",
+          "available": true,
+          "capability": "attempt.stop",
+          "effects": "managed-write"
+        },
+        {
+          "name": "run",
+          "available": true,
+          "capability": "coordinator.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worker start",
+          "available": false,
+          "capability": "coordinator.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worker stop",
+          "available": false,
+          "capability": "coordinator.stop",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worktree list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "integrate plan",
+          "available": false,
+          "capability": "integration.plan",
+          "effects": "planning-write"
+        },
+        {
+          "name": "integrate apply",
+          "available": false,
+          "capability": "integration.apply",
+          "effects": "managed-write"
+        },
+        {
+          "name": "snapshot list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "snapshot restore",
+          "available": false,
+          "capability": "snapshot.restore",
+          "effects": "planning-or-managed-write"
+        }
+      ],
+      "limits": {
+        "jsonBytes": 1048576,
+        "eventBytes": 65536,
+        "depth": 32
+      },
+      "exclusions": [
+        "provider compatibility certification",
+        "background host",
+        "integration",
+        "snapshot restoration",
+        "strong sandbox"
+      ]
+    }
+  },
+  "credentialScan": {
+    "package": "@secretlint/quick-start",
+    "version": "13.0.5",
+    "provisioning": "existing offline cache; no installation",
+    "baselineExplicitFiles": 426,
+    "baselineBatches": 5,
+    "baselineExitCodes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "baselineFormat": "mask-result",
+    "handoffExplicitDocuments": 7,
+    "handoffFormat": "json, default secret masking, literal paths",
+    "handoffExitCode": 0,
+    "sourceWrites": false,
+    "networkOrUpload": false,
+    "limit": "Bounded recommended-rule scan, not certification of absent credentials or ignored runtime data."
+  },
+  "preservation": {
+    "runtimeAndPublicContractEntriesMatchedHistoricalHashes": 74,
+    "nativeAssetsMatchedHistoricalHashes": 4,
+    "priorEvidenceEntriesMatchedHistoricalHashes": 61,
+    "standalonePreflightSourcesMatchExecutedReceipt": true,
+    "intentionalCloseoutMetadataEdits": [
+      ".gitignore: exclude tests/.native/",
+      "docs/CLI_REFERENCE.md: remove extra EOF blank line",
+      "current Markdown handoff/status/authorization updates"
+    ],
+    "ignored": [
+      "/temp/",
+      ".cache/",
+      "node_modules/",
+      "dist/",
+      "tests/.native/",
+      "SQLite working files"
+    ],
+    "failedAndUnknownFixtures": "preserved, not adopted/deleted/PID-killed"
+  },
+  "limits": [
+    "Product stays Stage2 13/18; no Worker/integration/restore enablement.",
+    "Stage2 full suite/installed consumer and Stage3 probes remain prior exercised evidence, not rerun for Markdown closeout.",
+    "No real provider, service/autostart, existing ACL repair, remote write, release or Hub modification."
+  ]
+}

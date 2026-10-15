@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "result": "failed_incomplete",
+  "command": "npm run verify",
+  "runtime": { "npmWrapper": "Node25.2.1 from PATH", "checkedChildRuntime": "Node24.21.0" },
+  "observedDurationSeconds": 7221.93,
+  "aggregateTimeoutMs": 7200000,
+  "observedFailures": ["explicit retry lifecycle", "separate consumer attempt stop", "separate consumer task cancellation", "parent loss / exact EOF recovery"],
+  "observedPasses": ["CLI framing/output", "clean submission and immutable replay", "dirty/untracked/outscope/nonzero rejection", "cancel before capture", "root-exited descendant retains slot", "bounded three-task foreground run", "denied implicit integration and missing process budget", "pre-aborted admission", "final output backpressure", "physical artifact quota", "seven native supervision/receipt boundaries", "restricted-token broker denial and invalid-scope denial"],
+  "notReached": ["complete behavioral suite summary", "installed consumer packaging smoke"],
+  "followupObservations": [
+    { "scenario": "isolated separate-consumer stop, unchanged source", "result": "passed", "durationMs": 311884 },
+    { "scenario": "isolated explicit retry, unchanged source", "result": "passed", "durationMs": 618975 },
+    { "scenario": "native channel-loss regression after control-path fixes", "result": "passed", "tests": 5, "failed": 0, "durationMs": 32536.6197 },
+    { "scenario": "native lifecycle / receipt / broker boundaries after control-path fixes", "result": "passed", "tests": 8, "failed": 0, "durationMs": 18977.4894 },
+    { "scenario": "Core parent loss after control-path fixes, before supervisor parent-Job separation", "result": "failed", "durationMs": 340075.0925, "preservedFixture": "C:/Users/tno/AppData/Local/Temp/angit stage1 PsG5r9", "observedState": "running attempt; ended_at_ms NULL; no termination.json", "reportedError": "Preserved fixture with unresolved owned attempts/effects" }
+  ],
+  "sourceEvidence": {
+    "nodeWindowsProcessSource": "https://raw.githubusercontent.com/nodejs/node/v24.21.0/deps/uv/src/win/process.c",
+    "observedContract": "Non-detached uv_spawn children are assigned to a Node-owned Windows kill-on-close Job; parent exit kills those helpers before their own EOF cleanup can persist proof.",
+    "implementedCorrection": "Only --supervisor-v1 is detached from that parent Job; referenced pipes, foreground completion, heartbeat and its native provider Job remain required.",
+    "verification": "Post-correction Core EOF recovery and full current-source verification are pending. Attribution of earlier stop/retry/cancel failures to transport races remains INFERENCE."
+  },
+  "limits": ["Not Stage2 acceptance", "No provider certification", "No release", "No PID-only cleanup", "Unknown owned fixtures preserved", "Historical evidence is not rewritten as current PASS"]
+}

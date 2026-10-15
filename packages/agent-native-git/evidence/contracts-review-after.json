@@ -1,0 +1,23 @@
+{
+  "scope": "Independent after-fix checks of the previously reproduced contract defects; not product execution",
+  "contradictoryStartedSubmissionRejectedBySchema": true,
+  "retiredStateRejectedBySharedSchema": true,
+  "numericReplayRejected": true,
+  "historyBoundReplayAccepted": true,
+  "contradictorySqlSubmission": {
+    "rejected": true,
+    "reason": "CHECK constraint failed: termination_kind IS NOT 'no_process_created' OR\n    (status IN ('failed','cancelled') AND pid IS NULL AND process_identity IS NULL AND started_at_ms IS NULL)"
+  },
+  "promotionReviewFailed": {
+    "rejected": true,
+    "reason": "PROMOTED_OPERATION_MUST_FINALIZE"
+  },
+  "oldObservationNewGrant": {
+    "rejected": true,
+    "reason": "STALE_EXECUTION_GRANT"
+  },
+  "rotationWithUnresolvedOperations": {
+    "rejected": true,
+    "reason": "EXPLICIT_BACKUP_ACTIVATION_REQUIRED"
+  }
+}

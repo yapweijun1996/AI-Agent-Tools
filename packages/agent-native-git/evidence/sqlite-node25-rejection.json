@@ -1,0 +1,32 @@
+{
+  "command": [
+    "node",
+    "scripts/sqlite-primitives.mjs"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 1,
+  "stderr": "",
+  "report": {
+    "probe": "sqlite-primitives",
+    "passed": false,
+    "runtime": {
+      "node": "v25.2.1",
+      "execPath": "C:\\Program Files\\nodejs\\node.exe",
+      "platform": "win32",
+      "arch": "x64"
+    },
+    "requiredNode": "v24.21.0",
+    "productTests": "NOT RUN",
+    "checks": [
+      {
+        "id": "supported-runtime",
+        "required": true,
+        "passed": false,
+        "failure": {
+          "code": "UNSUPPORTED_NODE_RUNTIME",
+          "message": "Use the reviewed Node 24.21.0 executable; Node 25 and all other patches are rejected before SQLite import or fixture creation."
+        }
+      }
+    ]
+  }
+}

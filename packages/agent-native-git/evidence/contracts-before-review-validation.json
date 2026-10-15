@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python",
+    "scripts/validate-contracts.py"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 0,
+  "stdout": "{\n  \"status\": \"passed_offline_contract_checks\",\n  \"schemas\": 42,\n  \"schemaFixtures\": 244,\n  \"publicCommandContracts\": 18,\n  \"baselineAcceptanceScenariosMapped\": 64,\n  \"contractAdditionsMapped\": 18,\n  \"sqlFixtureCases\": 41,\n  \"sqlNegativeRejections\": 32,\n  \"temporarySqlFixturesCleaned\": true,\n  \"productTestsExecuted\": false,\n  \"platformRuntimeProviderGates\": \"not_established_by_this_validator\",\n  \"pythonSqliteVersion\": \"3.50.4\"\n}\n",
+  "stderr": ""
+}

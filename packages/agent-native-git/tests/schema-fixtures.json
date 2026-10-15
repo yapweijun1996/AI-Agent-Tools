@@ -1,0 +1,1469 @@
+{
+  "fixtures": [
+    {
+      "path": "examples/requests/init.json",
+      "schema": "schemas/commands/init.schema.json",
+      "valid": true,
+      "label": "examples/requests/init.json"
+    },
+    {
+      "path": "examples/requests/doctor.json",
+      "schema": "schemas/commands/doctor.schema.json",
+      "valid": true,
+      "label": "examples/requests/doctor.json"
+    },
+    {
+      "path": "examples/requests/status.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": true,
+      "label": "examples/requests/status.json"
+    },
+    {
+      "path": "examples/requests/task-add.json",
+      "schema": "schemas/commands/task-add.schema.json",
+      "valid": true,
+      "label": "examples/requests/task-add.json"
+    },
+    {
+      "path": "examples/requests/task-list.json",
+      "schema": "schemas/commands/task-list.schema.json",
+      "valid": true,
+      "label": "examples/requests/task-list.json"
+    },
+    {
+      "path": "examples/requests/task-show.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": true,
+      "label": "examples/requests/task-show.json"
+    },
+    {
+      "path": "examples/requests/task-message.json",
+      "schema": "schemas/commands/task-message.schema.json",
+      "valid": true,
+      "label": "examples/requests/task-message.json"
+    },
+    {
+      "path": "examples/requests/task-cancel.json",
+      "schema": "schemas/commands/task-cancel.schema.json",
+      "valid": true,
+      "label": "examples/requests/task-cancel.json"
+    },
+    {
+      "path": "examples/requests/agent-start.json",
+      "schema": "schemas/commands/agent-start.schema.json",
+      "valid": true,
+      "label": "examples/requests/agent-start.json"
+    },
+    {
+      "path": "examples/requests/agent-stop.json",
+      "schema": "schemas/commands/agent-stop.schema.json",
+      "valid": true,
+      "label": "examples/requests/agent-stop.json"
+    },
+    {
+      "path": "examples/requests/run.json",
+      "schema": "schemas/commands/run.schema.json",
+      "valid": true,
+      "label": "examples/requests/run.json"
+    },
+    {
+      "path": "examples/requests/worker-start.json",
+      "schema": "schemas/commands/worker-start.schema.json",
+      "valid": true,
+      "label": "examples/requests/worker-start.json"
+    },
+    {
+      "path": "examples/requests/worker-stop.json",
+      "schema": "schemas/commands/worker-stop.schema.json",
+      "valid": true,
+      "label": "examples/requests/worker-stop.json"
+    },
+    {
+      "path": "examples/requests/worktree-list.json",
+      "schema": "schemas/commands/worktree-list.schema.json",
+      "valid": true,
+      "label": "examples/requests/worktree-list.json"
+    },
+    {
+      "path": "examples/requests/integrate-plan.json",
+      "schema": "schemas/commands/integrate-plan.schema.json",
+      "valid": true,
+      "label": "examples/requests/integrate-plan.json"
+    },
+    {
+      "path": "examples/requests/integrate-apply.json",
+      "schema": "schemas/commands/integrate-apply.schema.json",
+      "valid": true,
+      "label": "examples/requests/integrate-apply.json"
+    },
+    {
+      "path": "examples/requests/snapshot-list.json",
+      "schema": "schemas/commands/snapshot-list.schema.json",
+      "valid": true,
+      "label": "examples/requests/snapshot-list.json"
+    },
+    {
+      "path": "examples/requests/snapshot-restore.json",
+      "schema": "schemas/commands/snapshot-restore.schema.json",
+      "valid": true,
+      "label": "examples/requests/snapshot-restore.json"
+    },
+    {
+      "path": "examples/policies/managed-local.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": true,
+      "label": "examples/policies/managed-local.json"
+    },
+    {
+      "path": "examples/policies/observe-only.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": true,
+      "label": "examples/policies/observe-only.json"
+    },
+    {
+      "path": "examples/runtime-profiles.json",
+      "schema": "schemas/runtime-profiles.schema.json",
+      "valid": true,
+      "label": "examples/runtime-profiles.json"
+    },
+    {
+      "path": "examples/messages/contract.json",
+      "schema": "schemas/message-input.schema.json",
+      "valid": true,
+      "label": "examples/messages/contract.json"
+    },
+    {
+      "path": "examples/tasks/frontend.json",
+      "schema": "schemas/task-input.schema.json",
+      "valid": true,
+      "label": "examples/tasks/frontend.json"
+    },
+    {
+      "path": "examples/tasks/backend.json",
+      "schema": "schemas/task-input.schema.json",
+      "valid": true,
+      "label": "examples/tasks/backend.json"
+    },
+    {
+      "path": "examples/tasks/tests.json",
+      "schema": "schemas/task-input.schema.json",
+      "valid": true,
+      "label": "examples/tasks/tests.json"
+    },
+    {
+      "path": "examples/plan.json",
+      "schema": "schemas/integration-plan.schema.json",
+      "valid": true,
+      "label": "examples/plan.json"
+    },
+    {
+      "path": "examples/evidence.json",
+      "schema": "schemas/evidence.schema.json",
+      "valid": true,
+      "label": "examples/evidence.json"
+    },
+    {
+      "path": "examples/snapshot.json",
+      "schema": "schemas/snapshot.schema.json",
+      "valid": true,
+      "label": "examples/snapshot.json"
+    },
+    {
+      "path": "examples/results/plan-ready.json",
+      "schema": "schemas/result.schema.json",
+      "valid": true,
+      "label": "examples/results/plan-ready.json"
+    },
+    {
+      "path": "examples/results/checks-failed.json",
+      "schema": "schemas/result.schema.json",
+      "valid": true,
+      "label": "examples/results/checks-failed.json"
+    },
+    {
+      "path": "examples/event.json",
+      "schema": "schemas/event.schema.json",
+      "valid": true,
+      "label": "examples/event.json"
+    },
+    {
+      "path": "contracts/commands.json",
+      "schema": "schemas/command-catalog.schema.json",
+      "valid": true,
+      "label": "Exactly 18 commands"
+    },
+    {
+      "path": "examples/invalid/remote-write-enabled.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": false,
+      "label": "remote-write-enabled"
+    },
+    {
+      "path": "examples/invalid/unknown-policy-field.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": false,
+      "label": "unknown-policy-field"
+    },
+    {
+      "path": "examples/invalid/unsafe-task-path.json",
+      "schema": "schemas/task-input.schema.json",
+      "valid": false,
+      "label": "unsafe-task-path"
+    },
+    {
+      "path": "examples/invalid/abbreviated-oid.json",
+      "schema": "schemas/integration-plan.schema.json",
+      "valid": false,
+      "label": "abbreviated-oid"
+    },
+    {
+      "path": "examples/invalid/false-success-envelope.json",
+      "schema": "schemas/result.schema.json",
+      "valid": false,
+      "label": "false-success-envelope"
+    },
+    {
+      "path": "examples/invalid/verified-without-evidence.json",
+      "schema": "schemas/snapshot.schema.json",
+      "valid": false,
+      "label": "verified-without-evidence"
+    },
+    {
+      "path": "examples/invalid/untrusted-message-sender.json",
+      "schema": "schemas/message-input.schema.json",
+      "valid": false,
+      "label": "untrusted-message-sender"
+    },
+    {
+      "path": "examples/invalid/sandbox-required-but-disabled.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": false,
+      "label": "sandbox-required-but-disabled"
+    },
+    {
+      "path": "examples/invalid/empty-required-tests.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": false,
+      "label": "empty-required-tests"
+    },
+    {
+      "path": "examples/invalid/too-many-agent-slots.json",
+      "schema": "schemas/policy.schema.json",
+      "valid": false,
+      "label": "too-many-agent-slots"
+    },
+    {
+      "path": "examples/invalid/contradictory-integrate-plan.json",
+      "schema": "schemas/commands/integrate-plan.schema.json",
+      "valid": false,
+      "label": "contradictory-integrate-plan"
+    },
+    {
+      "path": "examples/invalid/contradictory-snapshot-restore.json",
+      "schema": "schemas/commands/snapshot-restore.schema.json",
+      "valid": false,
+      "label": "contradictory-snapshot-restore"
+    },
+    {
+      "path": "examples/invalid/contradictory-status.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "contradictory-status"
+    },
+    {
+      "path": "examples/invalid/missing-idempotency-key.json",
+      "schema": "schemas/commands/agent-start.schema.json",
+      "valid": false,
+      "label": "missing-idempotency-key"
+    },
+    {
+      "path": "examples/baseline-snapshot.json",
+      "schema": "schemas/snapshot.schema.json",
+      "valid": true,
+      "label": "baseline has no angit predecessor"
+    },
+    {
+      "path": "examples/journals/init.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/init.json"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-canonicalRepositoryPath.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing canonicalRepositoryPath"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-canonicalCommonDir.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing canonicalCommonDir"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-repositoryIdentity.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing repositoryIdentity"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-registrationId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing registrationId"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-approvedBaseOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing approvedBaseOid"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-approvedBaseTreeOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing approvedBaseTreeOid"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-objectFormat.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing objectFormat"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-baselineRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing baselineRef"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-integrationRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing integrationRef"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-baselineExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing baselineExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-integrationExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing integrationExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-stateSchemaHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing stateSchemaHash"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-policyHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing policyHash"
+    },
+    {
+      "path": "examples/invalid/journals/init-missing-profilesHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 init missing profilesHash"
+    },
+    {
+      "path": "examples/invalid/journals/init-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent init"
+    },
+    {
+      "path": "examples/invalid/journals/init-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle init"
+    },
+    {
+      "path": "examples/journals/worktree_create.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/worktree_create.json"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-attemptId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing attemptId"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-operationOwnerId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing operationOwnerId"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-managedParent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing managedParent"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-canonicalPath.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing canonicalPath"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-role.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing role"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-branchRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing branchRef"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-branchExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing branchExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-baseOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing baseOid"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-baseTreeOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing baseTreeOid"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-missing-ownershipMarkerId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 worktree_create missing ownershipMarkerId"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent worktree_create"
+    },
+    {
+      "path": "examples/invalid/journals/worktree_create-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle worktree_create"
+    },
+    {
+      "path": "examples/journals/spawn.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/spawn.json"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-attemptId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing attemptId"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-worktreeId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing worktreeId"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-approvedExecutable.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing approvedExecutable"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-executableHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing executableHash"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-runtimeProfileHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing runtimeProfileHash"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-supervisorId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing supervisorId"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-launchIdentity.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing launchIdentity"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-argumentDigest.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing argumentDigest"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-requestDigest.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing requestDigest"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-cwd.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing cwd"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-environmentProfileHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing environmentProfileHash"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-missing-budget.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 spawn missing budget"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent spawn"
+    },
+    {
+      "path": "examples/invalid/journals/spawn-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle spawn"
+    },
+    {
+      "path": "examples/journals/stop.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/stop.json"
+    },
+    {
+      "path": "examples/invalid/journals/stop-missing-attemptId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 stop missing attemptId"
+    },
+    {
+      "path": "examples/invalid/journals/stop-missing-targetProcess.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 stop missing targetProcess"
+    },
+    {
+      "path": "examples/invalid/journals/stop-missing-stopMode.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 stop missing stopMode"
+    },
+    {
+      "path": "examples/invalid/journals/stop-missing-graceDeadlineMs.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 stop missing graceDeadlineMs"
+    },
+    {
+      "path": "examples/invalid/journals/stop-missing-finalDeadlineMs.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 stop missing finalDeadlineMs"
+    },
+    {
+      "path": "examples/invalid/journals/stop-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent stop"
+    },
+    {
+      "path": "examples/invalid/journals/stop-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle stop"
+    },
+    {
+      "path": "examples/journals/merge.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/merge.json"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-planId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing planId"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-planHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing planHash"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-expectedIntegrationOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing expectedIntegrationOid"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-candidateOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing candidateOid"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-candidateTreeOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing candidateTreeOid"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-sources.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing sources"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-integrationRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing integrationRef"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-candidateRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing candidateRef"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-snapshotRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing snapshotRef"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-snapshotExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing snapshotExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-policyHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing policyHash"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-profilesHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing profilesHash"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-requiredChecks.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing requiredChecks"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-environmentHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing environmentHash"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-expectedContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing expectedContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-nextContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing nextContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/merge-missing-taskMembership.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 merge missing taskMembership"
+    },
+    {
+      "path": "examples/invalid/journals/merge-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent merge"
+    },
+    {
+      "path": "examples/invalid/journals/merge-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle merge"
+    },
+    {
+      "path": "examples/journals/undo.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/undo.json"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-planId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing planId"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-planHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing planHash"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-expectedIntegrationOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing expectedIntegrationOid"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-candidateOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing candidateOid"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-candidateTreeOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing candidateTreeOid"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-sources.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing sources"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-integrationRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing integrationRef"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-candidateRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing candidateRef"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-snapshotRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing snapshotRef"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-snapshotExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing snapshotExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-policyHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing policyHash"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-profilesHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing profilesHash"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-requiredChecks.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing requiredChecks"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-environmentHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing environmentHash"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-expectedContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing expectedContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-nextContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing nextContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-taskMembership.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing taskMembership"
+    },
+    {
+      "path": "examples/invalid/journals/undo-missing-originalBatchOperationId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 undo missing originalBatchOperationId"
+    },
+    {
+      "path": "examples/invalid/journals/undo-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent undo"
+    },
+    {
+      "path": "examples/invalid/journals/undo-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle undo"
+    },
+    {
+      "path": "examples/journals/restore.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/restore.json"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-planId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing planId"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-planHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing planHash"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-expectedIntegrationOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing expectedIntegrationOid"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-candidateOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing candidateOid"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-candidateTreeOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing candidateTreeOid"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-sources.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing sources"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-integrationRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing integrationRef"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-candidateRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing candidateRef"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-snapshotRef.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing snapshotRef"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-snapshotExpectedAbsent.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing snapshotExpectedAbsent"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-policyHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing policyHash"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-profilesHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing profilesHash"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-requiredChecks.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing requiredChecks"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-environmentHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing environmentHash"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-expectedContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing expectedContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-nextContentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing nextContentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-taskMembership.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing taskMembership"
+    },
+    {
+      "path": "examples/invalid/journals/restore-missing-targetVerifiedSnapshotId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 restore missing targetVerifiedSnapshotId"
+    },
+    {
+      "path": "examples/invalid/journals/restore-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent restore"
+    },
+    {
+      "path": "examples/invalid/journals/restore-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle restore"
+    },
+    {
+      "path": "examples/journals/backup.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": true,
+      "label": "examples/journals/backup.json"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-approvalReference.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing approvalReference"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-quiescentBarrierId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing quiescentBarrierId"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-integrationOid.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing integrationOid"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-contentEpoch.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing contentEpoch"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-eventWatermark.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing eventWatermark"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-lastFinalizedOperationId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing lastFinalizedOperationId"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-requiredMembers.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing requiredMembers"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-targetPath.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing targetPath"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-targetOwnershipId.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing targetOwnershipId"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-manifestSchemaHash.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing manifestSchemaHash"
+    },
+    {
+      "path": "examples/invalid/journals/backup-missing-excludedWork.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 backup missing excludedWork"
+    },
+    {
+      "path": "examples/invalid/journals/backup-extra-payload.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T06 closed intent backup"
+    },
+    {
+      "path": "examples/invalid/journals/backup-wrong-lifecycle.json",
+      "schema": "schemas/operation-journal.schema.json",
+      "valid": false,
+      "label": "CR-T07 kind lifecycle backup"
+    },
+    {
+      "path": "examples/observations/init-storage_initialized.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-storage_initialized.json"
+    },
+    {
+      "path": "examples/observations/init-refs_initialized.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-refs_initialized.json"
+    },
+    {
+      "path": "examples/observations/init-effect_complete.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-effect_complete.json"
+    },
+    {
+      "path": "examples/observations/init-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/init-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-abandonment.json"
+    },
+    {
+      "path": "examples/observations/init-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/init-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/worktree_create-path_allocated.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/worktree_create-path_allocated.json"
+    },
+    {
+      "path": "examples/observations/worktree_create-effect_complete.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/worktree_create-effect_complete.json"
+    },
+    {
+      "path": "examples/observations/worktree_create-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/worktree_create-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/worktree_create-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/worktree_create-abandonment.json"
+    },
+    {
+      "path": "examples/observations/worktree_create-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/worktree_create-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/spawn-process_start.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/spawn-process_start.json"
+    },
+    {
+      "path": "examples/observations/spawn-effect_complete.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/spawn-effect_complete.json"
+    },
+    {
+      "path": "examples/observations/spawn-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/spawn-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/spawn-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/spawn-abandonment.json"
+    },
+    {
+      "path": "examples/observations/spawn-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/spawn-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/stop-stop_requested.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/stop-stop_requested.json"
+    },
+    {
+      "path": "examples/observations/stop-effect_complete.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/stop-effect_complete.json"
+    },
+    {
+      "path": "examples/observations/stop-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/stop-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/stop-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/stop-abandonment.json"
+    },
+    {
+      "path": "examples/observations/stop-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/stop-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/merge-candidate_pinned.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-candidate_pinned.json"
+    },
+    {
+      "path": "examples/observations/merge-testing_started.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-testing_started.json"
+    },
+    {
+      "path": "examples/observations/merge-acceptance.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-acceptance.json"
+    },
+    {
+      "path": "examples/observations/merge-promotion.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-promotion.json"
+    },
+    {
+      "path": "examples/observations/merge-finalization.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-finalization.json"
+    },
+    {
+      "path": "examples/observations/merge-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/merge-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-abandonment.json"
+    },
+    {
+      "path": "examples/observations/merge-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/merge-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/undo-candidate_pinned.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-candidate_pinned.json"
+    },
+    {
+      "path": "examples/observations/undo-testing_started.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-testing_started.json"
+    },
+    {
+      "path": "examples/observations/undo-acceptance.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-acceptance.json"
+    },
+    {
+      "path": "examples/observations/undo-promotion.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-promotion.json"
+    },
+    {
+      "path": "examples/observations/undo-finalization.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-finalization.json"
+    },
+    {
+      "path": "examples/observations/undo-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/undo-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-abandonment.json"
+    },
+    {
+      "path": "examples/observations/undo-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/undo-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/restore-candidate_pinned.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-candidate_pinned.json"
+    },
+    {
+      "path": "examples/observations/restore-testing_started.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-testing_started.json"
+    },
+    {
+      "path": "examples/observations/restore-acceptance.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-acceptance.json"
+    },
+    {
+      "path": "examples/observations/restore-promotion.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-promotion.json"
+    },
+    {
+      "path": "examples/observations/restore-finalization.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-finalization.json"
+    },
+    {
+      "path": "examples/observations/restore-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/restore-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-abandonment.json"
+    },
+    {
+      "path": "examples/observations/restore-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/restore-reconciliation.json"
+    },
+    {
+      "path": "examples/observations/backup-member_written.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/backup-member_written.json"
+    },
+    {
+      "path": "examples/observations/backup-effect_complete.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/backup-effect_complete.json"
+    },
+    {
+      "path": "examples/observations/backup-safe_failure.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/backup-safe_failure.json"
+    },
+    {
+      "path": "examples/observations/backup-abandonment.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/backup-abandonment.json"
+    },
+    {
+      "path": "examples/observations/backup-reconciliation.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": true,
+      "label": "examples/observations/backup-reconciliation.json"
+    },
+    {
+      "path": "examples/authority.json",
+      "schema": "schemas/authority.schema.json",
+      "valid": true,
+      "label": "examples/authority.json"
+    },
+    {
+      "path": "examples/ipc-scope.json",
+      "schema": "schemas/ipc-scope.schema.json",
+      "valid": true,
+      "label": "examples/ipc-scope.json"
+    },
+    {
+      "path": "examples/invalid/worker-promote-scope.json",
+      "schema": "schemas/ipc-scope.schema.json",
+      "valid": false,
+      "label": "CR-T13 worker cannot promote"
+    },
+    {
+      "path": "examples/ipc-hello.json",
+      "schema": "schemas/ipc-hello.schema.json",
+      "valid": true,
+      "label": "examples/ipc-hello.json"
+    },
+    {
+      "path": "examples/task-create.json",
+      "schema": "schemas/task-create.schema.json",
+      "valid": true,
+      "label": "examples/task-create.json"
+    },
+    {
+      "path": "examples/invalid/completed-task-create.json",
+      "schema": "schemas/task-create.schema.json",
+      "valid": false,
+      "label": "CR-T10 initial queued"
+    },
+    {
+      "path": "examples/attempt.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": true,
+      "label": "examples/attempt.json"
+    },
+    {
+      "path": "examples/invalid/attempt-succeeded.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "CR-T03 removed attempt state succeeded"
+    },
+    {
+      "path": "examples/invalid/attempt-needs_review.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "CR-T03 removed attempt state needs_review"
+    },
+    {
+      "path": "examples/invalid/orphan-ended.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "CR-T01 no orphan end"
+    },
+    {
+      "path": "examples/lease-grant.json",
+      "schema": "schemas/lease-action.schema.json",
+      "valid": true,
+      "label": "examples/lease-grant.json"
+    },
+    {
+      "path": "examples/backup-manifest.json",
+      "schema": "schemas/backup-manifest.schema.json",
+      "valid": true,
+      "label": "examples/backup-manifest.json"
+    },
+    {
+      "path": "examples/invalid/merge-acceptance-missing-digest.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": false,
+      "label": "CR-T08 acceptance digest required merge"
+    },
+    {
+      "path": "examples/invalid/undo-acceptance-missing-digest.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": false,
+      "label": "CR-T08 acceptance digest required undo"
+    },
+    {
+      "path": "examples/invalid/restore-acceptance-missing-digest.json",
+      "schema": "schemas/operation-observation.schema.json",
+      "valid": false,
+      "label": "CR-T08 acceptance digest required restore"
+    },
+    {
+      "path": "examples/broker-admission.json",
+      "schema": "schemas/broker-admission.schema.json",
+      "valid": true,
+      "label": "examples/broker-admission.json"
+    },
+    {
+      "path": "examples/supervisor-report.json",
+      "schema": "schemas/supervisor-report.schema.json",
+      "valid": true,
+      "label": "examples/supervisor-report.json"
+    },
+    {
+      "path": "examples/event-cursor.json",
+      "schema": "schemas/event-cursor.schema.json",
+      "valid": true,
+      "label": "examples/event-cursor.json"
+    }
+  ],
+  "note": "All positive data is synthetic. Offline schema validation proves shape constraints only; no OS/Git/provider authority, object existence or business success is implied."
+}

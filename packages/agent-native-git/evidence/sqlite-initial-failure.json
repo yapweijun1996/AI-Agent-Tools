@@ -1,0 +1,14 @@
+{
+  "scope": "Stage 0 primitive probe, not a product test",
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/sqlite-primitives.mjs",
+  "cwd": "C:/Users/tno/Documents/GitHub/Agent-Native-Git",
+  "startedAt": "2026-10-14T02:13:53.070Z",
+  "finishedAt": "2026-10-14T02:13:53.208Z",
+  "exitCode": 1,
+  "node": "v24.21.0",
+  "failure": "statement.close is not a function",
+  "failedChecks": ["runtime-and-driver", "foreign-keys-strict-wal-full", "cross-process-exclusive-lifetime-guard", "workflow-wal-bounded-busy", "online-backup-committed-wal-and-concurrent-write", "dedicated-db-worker-responsive-heartbeat"],
+  "cleanup": {"allOwnedExecutorsStopped": true, "tempDirectoryRemoved": true, "failures": []},
+  "interpretation": "Probe assumed a StatementSync API absent from the actual target executable. Dependent fixture failures are not proof that lock/backup primitives are unsupported.",
+  "productTestsExecuted": 0
+}

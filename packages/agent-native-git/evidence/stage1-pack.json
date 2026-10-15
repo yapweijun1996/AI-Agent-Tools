@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "angit-stage1-pack-evidence/v1",
+  "observedAt": "2026-10-14T05:29:43.777Z",
+  "node": "v24.21.0",
+  "packageVersion": "0.0.0",
+  "published": false,
+  "offlineInstall": true,
+  "installerScripts": false,
+  "tarballSha256": "bf349c1320138794588747cf015ea7710ddacf0459811277139d9fa96bccbd3d",
+  "packedFiles": 95,
+  "utilityLeaves": 18,
+  "metadataCommands": [
+    {
+      "command": "init",
+      "ok": true
+    },
+    {
+      "command": "doctor",
+      "ok": true
+    },
+    {
+      "command": "status",
+      "ok": true
+    },
+    {
+      "command": "task add",
+      "ok": true
+    },
+    {
+      "command": "task list",
+      "ok": true
+    },
+    {
+      "command": "task show",
+      "ok": true
+    },
+    {
+      "command": "task message",
+      "ok": true
+    },
+    {
+      "command": "task cancel",
+      "ok": true
+    },
+    {
+      "command": "worktree list",
+      "ok": true
+    },
+    {
+      "command": "snapshot list",
+      "ok": true
+    }
+  ],
+  "baselineVerification": "unverified",
+  "stateRoot": "internal isolated owner-private fixture; not default host AppData",
+  "alternateRuntime": {
+    "version": "v25.2.1",
+    "exercised": true
+  }
+}
