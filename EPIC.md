@@ -21,6 +21,7 @@ authoritative execution ledger.
 | E-07 | Three-tool design and KB handoff | HUB-09 | Owner request; HUB-03 | Three detailed draft contracts, registry/roadmap additions, KB status/design synchronization and verified readback |
 | E-08 | Independent feasibility and delivery of the three additions | HUB-10, HUB-11, HUB-12 | HUB-09; independent repositories and owners | CFML lexical fixtures, Result Store persistence/integration fixtures, Trace event/readback fixtures; no Hub implementation |
 | E-09 | CFML Policy Check handoff | HUB-13 | Owner request; HUB-03; independent repository | Configurable CFML/HTML/project policy contract and boundary evidence; implementation and fixtures live in the package folder; release approval remains independent |
+| E-10 | Agent-Native-Git independent-package source admission | H-17 | Owner's explicit 2026-10-15 migration authorization; existing committed source | Complete tracked snapshot/provenance, package-local lock/license/runtime/native contracts, honest host admission, fresh native/Hub gates and next-agent handoff; no Worker feature, push or publication |
 
 ## Scope and handoff rules
 

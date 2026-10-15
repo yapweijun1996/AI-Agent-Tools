@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "runtime": "Node24.21.0",
+  "method": "Actual CLI/Core/native Git/Job/broker consumers. Compiled pre-correction implementation retained while source corrections were prepared; no rebuild during owned-helper scenarios.",
+  "observations": [
+    {
+      "scenario": "separate real consumer stops attempt through authenticated broker and kills the owned descendants; replay after closure",
+      "result": "failed_before_fix",
+      "durationMs": 280732.6574,
+      "errorCode": "RECOVERY_REQUIRED",
+      "errorMessage": "No live authenticated owner coordinator owns this stop target; PID-only termination is unavailable",
+      "boundary": "Committed identical stop request could not replay after successful owned-tree termination and broker shutdown."
+    },
+    {
+      "scenario": "brokered cancellation during queued admission does not stop unrelated owned work",
+      "result": "failed_before_fix",
+      "durationMs": 324619.9136,
+      "expectedUnrelatedAttemptStatus": "running",
+      "observedUnrelatedAttemptStatus": "stopping",
+      "boundary": "Real Git base result delayed before reservation; selected queued target cancelled through actual authenticated external broker."
+    },
+    {
+      "scenario": "live brokered work occupies a free run slot without waiting for an unrelated writer to exit",
+      "result": "failed_before_wake_fix",
+      "durationMs": 341025.6895,
+      "admissionObservationBoundMs": 60000,
+      "observedLateTaskStatus": "queued",
+      "observedLateAttempts": 0,
+      "error": "Timed out awaiting new independent work admitted into the already free parallel slot",
+      "boundary": "Successful live task-add did not wake a run waiting only on an unrelated slot completion."
+    }
+  ],
+  "corrections": ["Read-only authorized semantic replay before owner routing", "Rescan run-only pre-effect candidate version conflicts without global shutdown", "Coalesced broker task-add/message wake while run has spare parallel capacity"],
+  "verification": "Post-correction regressions and full acceptance pending; no PASS inferred from source changes."
+}

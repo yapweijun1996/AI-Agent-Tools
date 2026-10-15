@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_task_add",
+  "command": "task add",
+  "options": {
+    "spec": {
+      "schemaVersion": "angit-task-input/v1",
+      "taskId": "tsk_frontend",
+      "title": "Frontend task",
+      "instructions": "Build the client view against the frozen API contract.",
+      "runtimeProfileId": "mock_local",
+      "dependsOn": [],
+      "scopePaths": [
+        "src/",
+        "test/"
+      ],
+      "requiredChecks": [
+        "check_unit"
+      ],
+      "acceptance": [
+        "Required checks pass on the integrated candidate.",
+        "No out-of-scope changes."
+      ],
+      "priority": 50,
+      "baseEpoch": 0,
+      "contractRefs": [
+        {
+          "path": "contracts/api.json",
+          "commitOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      ]
+    }
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-task-add-v1"
+}

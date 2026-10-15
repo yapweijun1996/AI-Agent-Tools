@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "angit-stage3-preflight-consistency/v1",
+  "observedAt": "2026-10-15T05:02:40.094294+00:00",
+  "result": "passed-scoped-preflight-consistency-not-product-worker",
+  "scope": "Authorized isolated probes, English plan/review and documentation/evidence only; no product runtime cutover.",
+  "positiveProbe": {
+    "path": "evidence/stage3-worker-preflight.json",
+    "exitCode": 0,
+    "casesPassed": 6,
+    "executedSourceHashesMatch": true
+  },
+  "negativeProbe": {
+    "path": "evidence/stage3-worker-preflight-negative.json",
+    "exitCode": 1,
+    "expectedFailureRejected": true,
+    "fixtureRetentionObserved": true,
+    "confirmedCoordinatorExitCode": 1
+  },
+  "availability": {
+    "path": "evidence/stage3-capabilities.json",
+    "stage": 2,
+    "available": 13,
+    "total": 18,
+    "workerStartAvailable": false,
+    "workerStopAvailable": false
+  },
+  "preservation": {
+    "stage2SourceManifestSha256": "9dbe09d622a6541969e7aff5a312d22ebf9ecd25d3e418f75518e3ab18fa948b",
+    "unchangedKnownSourceFiles": 393,
+    "unchangedPriorEvidenceFiles": 61,
+    "unchangedNativeAssets": 4,
+    "byteMismatches": [],
+    "intentionallyUpdatedExistingDocuments": [
+      "CHANGELOG.md",
+      "README.md",
+      "TASK.md",
+      "VALIDATION.md"
+    ]
+  },
+  "checks": {
+    "technicalFilesCheckedBeforeThisGeneratedReceipt": 470,
+    "invalidJson": [],
+    "trailingWhitespace": [],
+    "localLinksChecked": 160,
+    "brokenLocalLinks": [],
+    "directoryLinksAccepted": true
+  },
+  "staticImpact": {
+    "path": "evidence/stage3-impact.json",
+    "status": "unavailable-NOT_A_REPOSITORY",
+    "completeGraph": false
+  },
+  "artifacts": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 6607,
+      "sha256": "fd7e667f7ef7a079e59f021642ae22acc64424347f96fa7428f23d026a9fb16c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4265,
+      "sha256": "91936572de7b5c040d856a4546390653f5ab065928be3b0b22102061090aa7a2"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 7145,
+      "sha256": "ec3ab89d561b5ee20c082c9e5343a8dae8f7823bfec86e5a19516e725599abf6"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 30713,
+      "sha256": "0c0e95970d3077976cd9d68957819e82498c2993adfb190a89b1c2e8487bb043"
+    },
+    {
+      "path": "docs/STAGE3_PLAN.md",
+      "bytes": 41296,
+      "sha256": "e6ad117434dd416ac693b1c0bdfe170caf0f5ccfe35c3b91d5b98e966c26a0d2"
+    },
+    {
+      "path": "docs/STAGE3_PREFLIGHT.md",
+      "bytes": 10499,
+      "sha256": "b409299363fbf57327f21b22d6e97b7da327263e1ad86d9790b7c51803ff9859"
+    },
+    {
+      "path": "evidence/stage3-capabilities.json",
+      "bytes": 3789,
+      "sha256": "da859de601d03ca4f4b80a77155c98f206447dcb78eab03f60985d0c82633132"
+    },
+    {
+      "path": "evidence/stage3-impact.json",
+      "bytes": 1362,
+      "sha256": "bd91523aaf46903026f08ecd0e4c76bc71a7ab7ffc82084522c5d08352d35321"
+    },
+    {
+      "path": "evidence/stage3-worker-preflight-negative.json",
+      "bytes": 1720,
+      "sha256": "177b3f840eb4032007b0846711a4812511b1abb893651493db62053e25d6b36d"
+    },
+    {
+      "path": "evidence/stage3-worker-preflight.json",
+      "bytes": 3904,
+      "sha256": "020cf4e7af573989aeaba438f83ff0243c631480b524c97c54a2601657e2e5f7"
+    },
+    {
+      "path": "scripts/worker-handoff-host.cs",
+      "bytes": 13542,
+      "sha256": "00a659a4c341f7d7b01806dc75afe742172d8a2b72e15230c00f1e0b0520c2b8"
+    },
+    {
+      "path": "scripts/worker-handoff-probe.mjs",
+      "bytes": 25522,
+      "sha256": "1edd1e4ee2a5708ceb6816871fb1f39c1531903705e0ca289ccb578aeae12457"
+    }
+  ],
+  "limits": [
+    "Synthetic SQLite does not prove production Core authority, public Worker API, migration or broker readiness.",
+    "No true drain/cancel/stop-target replay, Host-loss or restrictive ancestor-Job exercise.",
+    "No delayed/corrupt/missing native proof or storage/power-loss/clock injection in this preflight.",
+    "Existing Stage2 full verification is historical, not rerun.",
+    "No real provider, service, Git initialization/commit/push, release or Hub change.",
+    "Negative/initial failed fixtures retained; successful probe fixture removed only after exact closure proof."
+  ]
+}

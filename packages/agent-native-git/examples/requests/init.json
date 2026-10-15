@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_init",
+  "command": "init",
+  "options": {
+    "repoPath": "/work/demo",
+    "approvedBase": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "policyFile": "/work/owner-policy.json"
+  },
+  "idempotencyKey": "example-init-v1"
+}

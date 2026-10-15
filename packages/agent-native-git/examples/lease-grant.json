@@ -1,0 +1,19 @@
+{
+  "action": "grant",
+  "authority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "expectedOwnerId": null,
+  "expectedFencingToken": 0,
+  "expectedCoordinatorEpoch": 1,
+  "expectedAuthorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "expiresAtMs": 100,
+  "heartbeatIntervalMs": 10,
+  "leaseDurationMs": 30,
+  "priorWriterResolvedReceipt": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

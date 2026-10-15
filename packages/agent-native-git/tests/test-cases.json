@@ -1,0 +1,1270 @@
+{
+  "schemaVersion": "angit-test-spec/v1",
+  "productTestsExecuted": false,
+  "tests": [
+    {
+      "id": "CLI-01",
+      "category": "CLI",
+      "title": "Exactly eighteen command leaves",
+      "priority": "P0",
+      "setup": "Fresh packed consumer with no project or credentials",
+      "action": "Enumerate --help/--capabilities and command schemas",
+      "expected": "Exactly the catalog leaves; help has no repo/DB/service mutations",
+      "invariants": [
+        "INV-12",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-02",
+      "category": "CLI",
+      "title": "Strict JSON framing and exits",
+      "priority": "P0",
+      "setup": "Run query, denied write, failed check and asynchronous operation",
+      "action": "Capture stdout, stderr and exit independently",
+      "expected": "One JSON result for --json; correct status/verdict/exit; no banners",
+      "invariants": [
+        "INV-12"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-03",
+      "category": "CLI",
+      "title": "Invalid input and option conflicts",
+      "priority": "P0",
+      "setup": "Duplicate JSON keys, unknown flags, bad OIDs and mutually exclusive modes",
+      "action": "Invoke each leaf with positive/negative schema fixtures",
+      "expected": "Reject before side effects; no silent coercion or unsupported mode",
+      "invariants": [
+        "INV-12",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-04",
+      "category": "CLI",
+      "title": "Events resume and output bounds",
+      "priority": "P0",
+      "setup": "Persist more events than one response limit; disconnect a reader; retain a full project/incarnation/history-bound JSON cursor",
+      "action": "Resume status/task history via --cursor-file; reject bare numeric replay and missing identity fields; activate an older backup then try the retained cursor; exceed output budgets",
+      "expected": "Stable sequence, explicit bound cursor/gaps/withheld body; wrong history requires a fresh snapshot handshake; all cursor identity fields are consumed; no numeric-only fallback or silent evidence truncation",
+      "invariants": [
+        "INV-12"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-05",
+      "category": "CLI",
+      "title": "Accepted is not completed",
+      "priority": "P0",
+      "setup": "Slow provider and slow required test profile",
+      "action": "Start with waitMs=0 and reissue same request",
+      "expected": "Stable operation ID, accepted status, final result only after authoritative evidence",
+      "invariants": [
+        "INV-08",
+        "INV-12"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CLI-06",
+      "category": "CLI",
+      "title": "Read-only observation never repairs",
+      "priority": "P0",
+      "setup": "Dirty/missing worktree, stale socket and old migration receipt",
+      "action": "Run doctor/status/list commands without active host",
+      "expected": "No auto-delete, service start, migration, reset or candidate promotion",
+      "invariants": [
+        "INV-03",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-01",
+      "category": "Concurrency",
+      "title": "One host wins a startup race",
+      "priority": "P0",
+      "setup": "One canonical project addressed through equivalent paths",
+      "action": "Launch 100 concurrent startup requests",
+      "expected": "One live Coordinator and one guard owner; other clients connect or receive bounded conflict",
+      "invariants": [
+        "INV-01"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-02",
+      "category": "Concurrency",
+      "title": "Worker does not write the DB",
+      "priority": "P0",
+      "setup": "Multiple fake providers under isolated test identities",
+      "action": "Trace file opens and issue concurrent task progress",
+      "expected": "Only authorized Core mutation path writes workflow state",
+      "invariants": [
+        "INV-01",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-03",
+      "category": "Concurrency",
+      "title": "Task claim and attempt uniqueness",
+      "priority": "P0",
+      "setup": "One runnable task, 100 competing starts",
+      "action": "Schedule concurrently and inspect attempts/processes",
+      "expected": "One unresolved attempt; one worktree/branch; no duplicate spawn",
+      "invariants": [
+        "INV-02",
+        "INV-05"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-04",
+      "category": "Concurrency",
+      "title": "Expired heartbeat with surviving writer",
+      "priority": "P0",
+      "setup": "Pause heartbeat while provider remains writable",
+      "action": "Expire lease and request retry",
+      "expected": "No second writer; mark unresolved/preserve; reconcile process identity first",
+      "invariants": [
+        "INV-05",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-05",
+      "category": "Concurrency",
+      "title": "Stale fence/epoch replay",
+      "priority": "P0",
+      "setup": "Retain an old worker channel across Coordinator restart",
+      "action": "Send completion and promotion requests with prior epoch/fence",
+      "expected": "Rejected; no ref advancement or task completion",
+      "invariants": [
+        "INV-05",
+        "INV-06"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "CON-06",
+      "category": "Concurrency",
+      "title": "Idempotency replay versus conflict",
+      "priority": "P0",
+      "setup": "Accepted request whose response is lost",
+      "action": "Retry same key/payload, then same key/different payload",
+      "expected": "Same operation for exact retry; explicit conflict for different payload",
+      "invariants": [
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-01",
+      "category": "Database",
+      "title": "Migrations and ownership constraints",
+      "priority": "P0",
+      "setup": "Fresh temporary SQLite DB plus mismatched-project rows",
+      "action": "Apply migration; test cross-project FKs, status/version and DAG cycle rules",
+      "expected": "Schema loads; illegal data rejected; valid transition and DAG admitted",
+      "invariants": [
+        "INV-01",
+        "INV-08"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-02",
+      "category": "Database",
+      "title": "WAL contention is bounded",
+      "priority": "P0",
+      "setup": "Long reader and competing short metadata writes",
+      "action": "Hold/release DB locks while host performs independent supervision",
+      "expected": "Busy timeout is bounded; no long agent execution inside state transaction",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-03",
+      "category": "Database",
+      "title": "No silent migration downgrade",
+      "priority": "P0",
+      "setup": "A DB with newer user_version and a changed migration checksum",
+      "action": "Start old executable then attempt repair",
+      "expected": "Refuse writes; preserve files; require approved recovery path",
+      "invariants": [
+        "INV-11",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DB-04",
+      "category": "Database",
+      "title": "Immutable evidence and planned state",
+      "priority": "P0",
+      "setup": "Persist a plan and associated event/snapshot",
+      "action": "Attempt forbidden overwrites or fence counter deletion",
+      "expected": "Protected contracts rejected; legal state updates remain versioned",
+      "invariants": [
+        "INV-06",
+        "INV-07",
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-01",
+      "category": "Git",
+      "title": "Worktree and branch ownership",
+      "priority": "P0",
+      "setup": "Three tasks from one full approved base OID",
+      "action": "Create task worktrees and edit different files concurrently",
+      "expected": "Distinct branch/HEAD/index; original main checkout and staged data unchanged",
+      "invariants": [
+        "INV-02",
+        "INV-03"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-02",
+      "category": "Git",
+      "title": "Repository admission and identity",
+      "priority": "P0",
+      "setup": "Shallow/unborn/sparse/submodule repos and altered common-dir identity",
+      "action": "Register or operate after identity change",
+      "expected": "Explicit unsupported/identity failure before mutation",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-03",
+      "category": "Git",
+      "title": "Source submission cannot race writer",
+      "priority": "P0",
+      "setup": "Provider returns while child keeps editing",
+      "action": "Attempt capture and source pinning",
+      "expected": "No submission accepted until writer tree stops and clean state verified",
+      "invariants": [
+        "INV-05",
+        "INV-07"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-04",
+      "category": "Git",
+      "title": "OID format support",
+      "priority": "P0",
+      "setup": "Disposable SHA-1 and SHA-256 repos on supported Git",
+      "action": "Create plan, refs, snapshot and restore for each",
+      "expected": "Full OIDs preserved without hardcoded 40-char parsing; absent capability is unsupported",
+      "invariants": [
+        "INV-06"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "GIT-05",
+      "category": "Git",
+      "title": "Dirty artifacts are never swept",
+      "priority": "P0",
+      "setup": "Untracked files, ignored secrets and partially staged changes",
+      "action": "Fail/stop/retry and maintenance inspection",
+      "expected": "Retain original worktree; no git add -A, clean -fdx or blanket secret backup",
+      "invariants": [
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-01",
+      "category": "Integration",
+      "title": "Clean merge candidate",
+      "priority": "P0",
+      "setup": "Two compatible submissions from recorded base",
+      "action": "Plan, run required checks and apply immutable candidate",
+      "expected": "Expected-old ref transaction succeeds; verified snapshot and finalized task records agree",
+      "invariants": [
+        "INV-06",
+        "INV-07",
+        "INV-08"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-02",
+      "category": "Integration",
+      "title": "Text conflict is contained",
+      "priority": "P0",
+      "setup": "Two branches modify the same base line incompatibly",
+      "action": "Plan integration",
+      "expected": "Conflicts reported; sources and current integration unchanged; no ours/theirs default",
+      "invariants": [
+        "INV-03",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-03",
+      "category": "Integration",
+      "title": "External ref changes before promotion",
+      "priority": "P0",
+      "setup": "Passing candidate against expectedOid A",
+      "action": "Move integration through a fixture helper before CAS",
+      "expected": "CAS fails; newer ref remains; operation does not report success",
+      "invariants": [
+        "INV-06",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-04",
+      "category": "Integration",
+      "title": "Stale plan input",
+      "priority": "P0",
+      "setup": "Ready plan then mutate policy/profile hash, source pin or content epoch",
+      "action": "Apply prior plan",
+      "expected": "Fail closed; do not silently rebuild and approve a different candidate",
+      "invariants": [
+        "INV-06",
+        "INV-07"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-05",
+      "category": "Integration",
+      "title": "Semantic conflict despite clean merge",
+      "priority": "P0",
+      "setup": "Independent files compile but violate auth API contract",
+      "action": "Apply and run contract tests",
+      "expected": "Candidate rejected; no snapshot promotion",
+      "invariants": [
+        "INV-07",
+        "INV-08"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-06",
+      "category": "Integration",
+      "title": "One integration pipeline",
+      "priority": "P0",
+      "setup": "Two ready plans and an unresolved promoted operation",
+      "action": "Request both applies concurrently",
+      "expected": "Serialized pipeline; needs_review blocks subsequent promotions",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "INT-07",
+      "category": "Integration",
+      "title": "Planning has declared side effects",
+      "priority": "P0",
+      "setup": "Registered project with no test permission",
+      "action": "Run integrate plan",
+      "expected": "Managed objects/refs/state only; no test execution or integration promotion",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-01",
+      "category": "Evidence",
+      "title": "Exact candidate binding",
+      "priority": "P0",
+      "setup": "Passing artifact from a different candidate or tree",
+      "action": "Attempt verified snapshot creation",
+      "expected": "Evidence withheld/rejected; hashes and identity mismatch visible",
+      "invariants": [
+        "INV-07"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-02",
+      "category": "Evidence",
+      "title": "Skipped/incomplete tests do not pass",
+      "priority": "P0",
+      "setup": "Required test exits zero with skip/todo/cancelled or missing end/exit",
+      "action": "Apply integration",
+      "expected": "CHECKS_FAILED or incomplete; no verified snapshot",
+      "invariants": [
+        "INV-07",
+        "INV-08"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-03",
+      "category": "Evidence",
+      "title": "Tampered or stale artifact",
+      "priority": "P0",
+      "setup": "Hash-bound artifact altered after capture",
+      "action": "Verify or recover apply",
+      "expected": "Refuse completion; preserve receipt and surface mismatch",
+      "invariants": [
+        "INV-07",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-04",
+      "category": "Evidence",
+      "title": "Tests mutate tracked candidate files",
+      "priority": "P0",
+      "setup": "Approved test profile changes source or stages files",
+      "action": "Collect results after exit zero",
+      "expected": "Candidate dirty/hash mismatch invalidates evidence",
+      "invariants": [
+        "INV-07"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "EV-05",
+      "category": "Evidence",
+      "title": "Agent summary is not test proof",
+      "priority": "P0",
+      "setup": "Provider says tests passed but no producer evidence exists",
+      "action": "Collect submission and request apply",
+      "expected": "Task remains submitted/needs_review; no completed inference",
+      "invariants": [
+        "INV-08"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-01",
+      "category": "Security",
+      "title": "Remote and destructive actions absent",
+      "priority": "P0",
+      "setup": "Owner policy contains remote/hardreset/forcecleanup true",
+      "action": "Validate then attempt unregistered action",
+      "expected": "Policy/schema rejection; no v1 path performs remote writes or destructive reset",
+      "invariants": [
+        "INV-04",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-02",
+      "category": "Security",
+      "title": "Repository instructions cannot elevate",
+      "priority": "P0",
+      "setup": "Malicious AGENTS.md/message requests shell/push and forges identity",
+      "action": "Run scoped operation",
+      "expected": "Only owner policy/caller identity grants capabilities; text treated as data",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-03",
+      "category": "Security",
+      "title": "Traversal, symlink and root substitution",
+      "priority": "P0",
+      "setup": "Out-of-root paths, symlink descendants and replaced project inode",
+      "action": "Attempt artifact read/worktree operation",
+      "expected": "Deny on canonical/path identity checks; preserve unrelated paths",
+      "invariants": [
+        "INV-03",
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-04",
+      "category": "Security",
+      "title": "Sandbox-required must be real",
+      "priority": "P0",
+      "setup": "sandbox-required policy with missing/unverified backend",
+      "action": "Start provider",
+      "expected": "Deny before execution; no fallback to cooperative-local",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-05",
+      "category": "Security",
+      "title": "Git execution extensions",
+      "priority": "P0",
+      "setup": "Malicious hook, external diff, filter, merge driver and env injection",
+      "action": "Plan/capture/checkout with canary helpers",
+      "expected": "No unapproved helper runs; unsupported repository blocks",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-06",
+      "category": "Security",
+      "title": "Secrets and authority remain outside",
+      "priority": "P0",
+      "setup": "Provider process, profile storage and event/artifact redaction fixtures",
+      "action": "Inspect inherited environment, logs and worker commands",
+      "expected": "No broker credential disclosed; write tokens absent from argv/logs; limits explicit",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-07",
+      "category": "Security",
+      "title": "Same-UID limitation is not misrepresented",
+      "priority": "P0",
+      "setup": "Cooperative-local provider with unrestricted same-user shell",
+      "action": "Attempt bypass in isolated adversarial test only",
+      "expected": "Record bypass risk; never certify OS containment from worktree/policy-only checks",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "SEC-08",
+      "category": "Security",
+      "title": "Unauthorized policy file replacement",
+      "priority": "P0",
+      "setup": "Agent-writable policy path and changed approval/hash",
+      "action": "Start/apply after replacement",
+      "expected": "Refuse unapproved revision; no self-approval through flags",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-01",
+      "category": "Rollback",
+      "title": "Restore is a new commit",
+      "priority": "P0",
+      "setup": "Verified versions A-B-C",
+      "action": "Plan restore B, test and apply",
+      "expected": "D tree equals B; D parent is C; A/B/C remain referenced; epoch increments",
+      "invariants": [
+        "INV-10",
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-02",
+      "category": "Rollback",
+      "title": "In-flight task cannot undo restore",
+      "priority": "P0",
+      "setup": "Task based on pre-restore epoch remains unresolved",
+      "action": "Restore then attempt old submission/apply",
+      "expected": "Old task stale/needs_review; source preserved; no reintroduction without new reviewed task",
+      "invariants": [
+        "INV-05",
+        "INV-10"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-03",
+      "category": "Rollback",
+      "title": "Undo has unambiguous batch scope",
+      "priority": "P0",
+      "setup": "One operation integrated two tasks",
+      "action": "Request undo of operation",
+      "expected": "Plan describes complete batch reversal; no invented single-task split",
+      "invariants": [
+        "INV-10"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "RB-04",
+      "category": "Rollback",
+      "title": "Baseline not automatically verified",
+      "priority": "P0",
+      "setup": "Registration at arbitrary existing commit",
+      "action": "Inspect baseline then request verified-only restore",
+      "expected": "Baseline unverified; restore cannot masquerade as a prior tested version",
+      "invariants": [
+        "INV-07",
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-01",
+      "category": "Recovery",
+      "title": "Foreground/daemon interruption",
+      "priority": "P0",
+      "setup": "Running tasks and tracked supervisor identities",
+      "action": "Kill Coordinator without running cleanup",
+      "expected": "Restart enters reconciliation; no automatic duplicate start; worktrees retained",
+      "invariants": [
+        "INV-05",
+        "INV-09",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-02",
+      "category": "Recovery",
+      "title": "Guard identity or lock lost",
+      "priority": "P0",
+      "setup": "Live host holds original guard connection",
+      "action": "Inject lock failure or replace guard pathname in isolated fixture",
+      "expected": "Admission/promotion stops; old host does not continue writing under false exclusivity",
+      "invariants": [
+        "INV-01",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-03",
+      "category": "Recovery",
+      "title": "PID reuse and unknown descendants",
+      "priority": "P0",
+      "setup": "Replace dead PID with unrelated process or hide child liveness",
+      "action": "Run recovery/cancel",
+      "expected": "No signal to unrelated process; unresolved attempt quarantined",
+      "invariants": [
+        "INV-05",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-04",
+      "category": "Recovery",
+      "title": "Worktree creation interrupted",
+      "priority": "P0",
+      "setup": "Journal reserved before/after git worktree add",
+      "action": "Kill at each checkpoint and restart",
+      "expected": "Discover ownership by receipt/path/ref; preserve ambiguity, never adopt another worktree",
+      "invariants": [
+        "INV-02",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-05",
+      "category": "Recovery",
+      "title": "Crash before Git promotion",
+      "priority": "P0",
+      "setup": "Checks passed journal exists, refs unchanged",
+      "action": "Kill before update-ref and restart",
+      "expected": "Only resume valid frozen candidate with fresh authorization, else abort/preserve",
+      "invariants": [
+        "INV-06",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-06",
+      "category": "Recovery",
+      "title": "Crash after Git promotion",
+      "priority": "P0",
+      "setup": "Ref transaction committed, DB not finalized",
+      "action": "Restart at exact injected point",
+      "expected": "Observe matching candidate+snapshot and prior evidence; finalize once before new promotions",
+      "invariants": [
+        "INV-07",
+        "INV-09"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-07",
+      "category": "Recovery",
+      "title": "Restore promotion before epoch finalization",
+      "priority": "P0",
+      "setup": "Restore ref committed but DB epoch old",
+      "action": "Restart before any task claim",
+      "expected": "Reconcile restore and advance epoch atomically before accepting old task work",
+      "invariants": [
+        "INV-09",
+        "INV-10"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-08",
+      "category": "Recovery",
+      "title": "Disk full and partial write",
+      "priority": "P0",
+      "setup": "Bounded filesystem fault-injection volume",
+      "action": "Fail journal/artifact/DB/ref writes separately",
+      "expected": "No fabricated completed result; preserve previous verified refs; recovery_required with evidence",
+      "invariants": [
+        "INV-09",
+        "INV-11"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "REC-09",
+      "category": "Recovery",
+      "title": "Cancellation during integration",
+      "priority": "P0",
+      "setup": "Operation testing or already CAS-promoted",
+      "action": "Cancel task/stop worker concurrently",
+      "expected": "Before CAS stop safely; after CAS reconcile/finalize, never undo invisibly",
+      "invariants": [
+        "INV-09",
+        "INV-10"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-01",
+      "category": "Backup",
+      "title": "Consistent backup set",
+      "priority": "P0",
+      "setup": "Quiesced promotion barrier and pinned refs",
+      "action": "Create DB backup, explicit Git bundle and artifacts manifest",
+      "expected": "Same checkpoint identities, all hashes verify; no copy-main-DB-only shortcut",
+      "invariants": [
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-02",
+      "category": "Backup",
+      "title": "Restore into fresh location",
+      "priority": "P0",
+      "setup": "Valid backup plus a live original installation",
+      "action": "Restore/reconcile under a different state root fixture",
+      "expected": "Original untouched; imported identity requires explicit admission before activation",
+      "invariants": [
+        "INV-11",
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "BK-03",
+      "category": "Backup",
+      "title": "Missing ref/artifact or corrupted backup",
+      "priority": "P0",
+      "setup": "Remove one evidence artifact or snapshot ref from backup set",
+      "action": "Verify backup restore",
+      "expected": "Reject incomplete coverage; no latest-success guess or silent omission",
+      "invariants": [
+        "INV-14"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-01",
+      "category": "Adapters",
+      "title": "Provider capability probe",
+      "priority": "P0",
+      "setup": "Installed known version plus unknown version/profile mismatch",
+      "action": "Probe and request supported/unsupported modes",
+      "expected": "Allow only verified capability mapping; no fabricated provider flag",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-02",
+      "category": "Adapters",
+      "title": "Cancellation/stdio/exit differences",
+      "priority": "P0",
+      "setup": "Mock and two actual provider adapters with delayed child exit",
+      "action": "Start, timeout, cancel and collect",
+      "expected": "Correct actual signal/exit, output bound and descendant containment",
+      "invariants": [
+        "INV-05",
+        "INV-07"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "ADP-03",
+      "category": "Adapters",
+      "title": "Tool is local; provider may use network",
+      "priority": "P0",
+      "setup": "Offline mock and separately approved online provider",
+      "action": "Run under explicit network/credential profile",
+      "expected": "No implicit tool dependency on LLM; provider needs declared and approved",
+      "invariants": [
+        "INV-13"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-01",
+      "category": "Packaging",
+      "title": "Packed isolated consumer",
+      "priority": "P0",
+      "setup": "Built artifact, clean npm prefix, scripts disabled",
+      "action": "Install tarball and execute help/version/schema discovery",
+      "expected": "No service start, shell config edit, repo write or silent download",
+      "invariants": [
+        "INV-13",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-02",
+      "category": "Packaging",
+      "title": "Independent package boundary",
+      "priority": "P0",
+      "setup": "Existing ait unchanged and native angit consumer",
+      "action": "Invoke CLI directly; separately evaluate optional short-command dispatch",
+      "expected": "No mandatory hub import/runtime duplication; native output semantics retained",
+      "invariants": [
+        "INV-12",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "PKG-03",
+      "category": "Packaging",
+      "title": "Exact runtime/driver portability",
+      "priority": "P0",
+      "setup": "Reviewed Node/SQLite driver matrix on Windows; Linux/macOS are separate unverified future gates",
+      "action": "Run pack, migrations, lock and cancellation tests",
+      "expected": "Evidence states exact versions and limitations; unsupported platforms not certified",
+      "invariants": [
+        "INV-01",
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    },
+    {
+      "id": "DOC-01",
+      "category": "Documentation",
+      "title": "Claims and executable contracts agree",
+      "priority": "P0",
+      "setup": "This documentation archive and validation scripts",
+      "action": "Run offline schema/SQL/link/command checks and Git primitives separately",
+      "expected": "Report only actual checks; product tests remain not_run until implementation exists",
+      "invariants": [
+        "INV-15"
+      ],
+      "evidenceRequired": [
+        "source revision and toolchain",
+        "invocation and actual exit/signal",
+        "before/after Git refs and state digest",
+        "structured assertions; redacted artifact hashes"
+      ],
+      "status": "not_run_product_test"
+    }
+  ]
+}

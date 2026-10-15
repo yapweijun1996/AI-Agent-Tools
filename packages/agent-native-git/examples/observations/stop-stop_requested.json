@@ -1,0 +1,27 @@
+{
+  "observationId": "obs_16",
+  "operationId": "op_stop",
+  "projectId": "prj_demo",
+  "kind": "stop",
+  "observationType": "stop_requested",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "process": {
+      "supervisorId": "id_demo",
+      "launchIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pid": 1,
+      "startIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "executableHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "descendantScopeHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "requestedAtMs": 0
+  }
+}

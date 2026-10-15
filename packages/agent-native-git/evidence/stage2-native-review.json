@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "stage": 2,
+  "review": "FinalNativeBoundaryReview",
+  "method": "Read-only source review; no tests/build/lint/format/install/Git commands",
+  "scope": ["src/execution-native.ts", "native/Execution.cs", "tests/channel-loss.test.mjs", "necessary native/Platform.cs identity/ACL helpers", "relevant Core receipt consumers"],
+  "materialFindings": [],
+  "inspectedBoundaries": ["supervisor-only detached native launch with retained foreground stdio", "durable observed start before resume", "queued-control obsolescence", "outbound delivery loss versus inbound protocol faults", "root exit and zero active owned Job processes before receipt", "exact native process/authority binding, helper absence, MAC and output hashes"],
+  "limits": ["Source review is not execution evidence", "Pending Core EOF recovery is not certified", "Initial full verification failures are not resolved by this review", "No provider/platform/release certification"]
+}

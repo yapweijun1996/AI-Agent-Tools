@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "angit-stage2-default-read-evidence/v1",
+  "observedAt": "2026-10-14T08:20:49.558585+00:00",
+  "command": "angit status --repo <existing Hub> --json",
+  "readOnly": true,
+  "exit": 2,
+  "stdout": "{\"schemaVersion\":\"angit-result/v1\",\"requestId\":\"req_18fc13e4060b0433d817ca98eaea734d\",\"command\":\"status\",\"ok\":false,\"status\":\"invalid_input\",\"data\":null,\"warnings\":[],\"error\":{\"code\":\"PROJECT_NOT_FOUND\",\"message\":\"Canonical project registry has not been initialized\",\"retryable\":false,\"operationId\":null},\"meta\":{\"durationMs\":712,\"coordinatorEpoch\":null,\"truncated\":false}}\n",
+  "stderr": "",
+  "publicStateRootOverride": false
+}

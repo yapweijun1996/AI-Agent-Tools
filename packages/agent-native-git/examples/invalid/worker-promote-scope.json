@@ -1,0 +1,20 @@
+{
+  "scopeId": "scope_demo",
+  "handleDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "projectId": "prj_demo",
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "coordinatorEpoch": 1,
+  "principalId": "owner_demo",
+  "allowedMethods": [
+    "apply_plan"
+  ],
+  "allowedResources": [
+    "integration:prj_demo"
+  ],
+  "expiresAtMs": 1000,
+  "revoked": false,
+  "ownerApprovalReference": "fixture-owner-review",
+  "channelKind": "supervisor_report",
+  "attemptId": "att_demo",
+  "launchIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Actual Node24 Core/CLI regressions after fresh authenticated resume pulse and complete foreground observation fixes",
+  "command": "node --test --test-reporter=tap --test-name-pattern=\"^(root exit while|foreground run admits)\" tests/execution.test.mjs",
+  "result": "PASS",
+  "tests": 2,
+  "passed": 2,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "suiteDurationMs": 4845443.5307,
+  "cases": [
+    { "name": "root exit while a descendant lives does not free a bounded run slot or allow duplicate admission", "durationMs": 2022941.2957 },
+    { "name": "foreground run admits bounded independent work but not a submitted dependency or implicit integration", "durationMs": 2821385.8163 }
+  ],
+  "verified": [
+    "A real surviving descendant retains its task slot until authenticated stop and full writer-tree termination",
+    "A separate start cannot duplicate an owned attempt",
+    "Next queued task submits only after prior slot release",
+    "Two actual gated independent roots run within the declared parallel bound",
+    "A third task waits for a free slot",
+    "Submitted dependencies do not unblock a dependent task or become completed integration",
+    "Owner checkout/index/refs remain unchanged"
+  ],
+  "limits": [
+    "Aggregate lifecycle/contract/installed-consumer acceptance remains pending",
+    "No production process, Git, native watchdog or lease budgets increased",
+    "No real provider, service, integration, restore or release claim"
+  ]
+}

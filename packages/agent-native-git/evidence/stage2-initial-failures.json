@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "angit-stage2-initial-observations/v1",
+  "observedDate": "2026-10-14",
+  "node": "24.21.0",
+  "acceptance": false,
+  "observations": [
+    {
+      "path": "clean foreground execution before managed Git audit correction",
+      "result": "GIT_EXECUTION_FAILED",
+      "gitExit": 128,
+      "cause": "git config --worktree requires worktreeConfig when multiple worktrees exist; that extension is deliberately denied",
+      "correction": "Audit effective common --local configuration without changing owner configuration",
+      "retainedFixture": "C:/Users/tno/AppData/Local/Temp/angit stage1 YFnpAP",
+      "terminalProof": false
+    },
+    {
+      "path": "clean lifecycle test after managed Git audit correction",
+      "durationMs": 224458.0417,
+      "result": "Unresolved attempt preserved; native receipt reason heartbeat",
+      "cause": "Native loss deadline incorrectly used heartbeat send interval 1000ms instead of approved lease duration",
+      "correction": "Use lease duration for loss deadline, retain heartbeat interval for send cadence",
+      "retainedFixture": "C:/Users/tno/AppData/Local/Temp/angit stage1 ns90oU",
+      "terminalProjection": false
+    },
+    {
+      "path": "Seven standalone native supervision scenarios",
+      "durationMs": 19988.2488,
+      "exit": 1,
+      "passed": 6,
+      "failed": 1,
+      "passedBoundaries": ["suspended-before-durable-resume", "combined stdout cap", "combined stderr cap", "timeout", "heartbeat descendant termination", "durable callback refusal before provider code"],
+      "failure": "Wrong launch binding rejected with NATIVE_PROTOCOL_ERROR instead of NATIVE_EXECUTION_UNKNOWN",
+      "correction": "Preserve unknown-outcome classification when validating retained receipt process identity"
+    },
+    {
+      "path": "Earlier broad test-name selection",
+      "result": "Lifecycle cases exceeded old 60000ms case deadlines; outer command stopped after 300 seconds",
+      "acceptance": false
+    }
+  ],
+  "limits": ["No real Coding Agent", "No product Git initialization or publication", "Unknown owned fixtures are not deleted", "Post-fix acceptance is separate evidence"]
+}

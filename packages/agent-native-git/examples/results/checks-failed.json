@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "angit-result/v1",
+  "requestId": "req_plan",
+  "command": "integrate apply",
+  "ok": false,
+  "status": "failed",
+  "data": null,
+  "warnings": [
+    "Synthetic example; no actual candidate exists."
+  ],
+  "error": {
+    "code": "CHECKS_FAILED",
+    "message": "A required check failed.",
+    "retryable": false,
+    "operationId": "op_demo"
+  },
+  "meta": {
+    "durationMs": 42,
+    "coordinatorEpoch": 1,
+    "truncated": false
+  }
+}

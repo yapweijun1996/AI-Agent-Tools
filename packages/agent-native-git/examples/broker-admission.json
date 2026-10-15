@@ -1,0 +1,18 @@
+{
+  "authority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "scopeId": "id_demo",
+  "stablePrincipalId": "id_demo",
+  "command": "status",
+  "expectedVersion": 0,
+  "expectedContentEpoch": 0,
+  "expectedIntegrationOid": null,
+  "requestKeyHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "semanticRequestHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

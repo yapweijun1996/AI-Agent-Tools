@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/attempt.schema.json",
+  "title": "Attempt identity and process lifecycle; PID alone is not identity",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-attempt/v1"
+    },
+    "attemptId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "status": {
+      "enum": [
+        "reserved",
+        "starting",
+        "running",
+        "stopping",
+        "orphaned",
+        "submitted",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "baseOid": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 64,
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "baseEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "coordinatorEpoch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "fencingToken": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "worktreeId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "runtimeProfileHash": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "pid": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "processIdentity": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "startedAtMs": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "endedAtMs": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "submissionOid": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "authorityIncarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "resourceKey": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "ownerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "spawnIntentId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "terminationProof": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "no_process_created",
+                "writer_tree_terminated"
+              ]
+            },
+            "receiptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "observedAtMs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "kind",
+            "receiptHash",
+            "observedAtMs"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "submissionTreeOid": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "submissionRef": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "attemptId",
+    "projectId",
+    "taskId",
+    "number",
+    "status",
+    "baseOid",
+    "baseEpoch",
+    "coordinatorEpoch",
+    "fencingToken",
+    "worktreeId",
+    "runtimeProfileHash",
+    "pid",
+    "processIdentity",
+    "startedAtMs",
+    "endedAtMs",
+    "submissionOid",
+    "authorityIncarnation",
+    "resourceKey",
+    "ownerId",
+    "version",
+    "spawnIntentId",
+    "terminationProof",
+    "submissionTreeOid",
+    "submissionRef"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "reserved",
+              "starting",
+              "running",
+              "stopping",
+              "orphaned"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "endedAtMs": {
+            "type": "null"
+          },
+          "terminationProof": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "submitted",
+              "failed",
+              "cancelled"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "endedAtMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "terminationProof": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "no_process_created",
+                  "writer_tree_terminated"
+                ]
+              },
+              "receiptHash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "observedAtMs": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "kind",
+              "receiptHash",
+              "observedAtMs"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "submitted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "submissionOid": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "submissionTreeOid": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "submissionRef": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "processIdentity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "startedAtMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "running",
+              "stopping"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "processIdentity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "startedAtMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "spawnIntentId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+            "maxLength": 64
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "starting"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spawnIntentId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+            "maxLength": 64
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "allOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": ["submitted", "failed", "cancelled"]
+              }
+            }
+          },
+          {
+            "anyOf": [
+              {"properties": {"status": {"const": "submitted"}}},
+              {"properties": {"pid": {"type": "integer"}}},
+              {"properties": {"processIdentity": {"type": "string"}}},
+              {"properties": {"startedAtMs": {"type": "integer"}}}
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "terminationProof": {
+            "type": "object",
+            "properties": {
+              "kind": {"const": "writer_tree_terminated"}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

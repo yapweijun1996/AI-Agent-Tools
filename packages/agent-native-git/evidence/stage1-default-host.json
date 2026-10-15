@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "angit-stage1-default-host/v1",
+  "node": "v24.21.0",
+  "exit": 4,
+  "errorCode": "INSECURE_STATE",
+  "namespaceCreated": false,
+  "ownerHeadUnchanged": true,
+  "scope": "actual public bin; unsafe current KnownFolder anchor denied; existing ACLs unchanged"
+}

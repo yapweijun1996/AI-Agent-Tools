@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_task_message",
+  "command": "task message",
+  "options": {
+    "message": {
+      "schemaVersion": "angit-message-input/v1",
+      "taskId": "tsk_frontend",
+      "kind": "contract.updated",
+      "summary": "The frozen contract is available; verify artifact and source identity before use.",
+      "relatedTaskIds": [
+        "tsk_backend"
+      ],
+      "artifactIds": [
+        "art_contract"
+      ],
+      "commitOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-task-message-v1"
+}

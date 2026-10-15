@@ -6,6 +6,13 @@ Every source tracked path has its SHA-256, import destination/disposition and de
 
 The historical `SOURCE_MANIFEST.json` remains the import snapshot. [Explicit source updates](SOURCE_UPDATES.json) record each evolved imported file's original import hash, exact current hash and reason. The coverage verifier rejects unrecorded changes, mismatched original hashes, unknown/duplicate destinations and later tampering with an updated file. Updates require an intentional reviewed manifest change; they do not replace historical migration evidence or establish a new package release.
 
+## Agent-Native-Git additional import (2026-10-15)
+
+The owner's later explicit authorization adds `packages/agent-native-git` from independent checkpoint `46e46123adaea304884f5e0e0c7ef6235426153e`. [Its separate import record](AGENT_NATIVE_GIT_IMPORT.json) maps all 472 committed source members to original/current hashes and explicit metadata/documentation dispositions. This does not rewrite the original ten-repository manifest or infer a new public release. The coverage verifier checks the additional record and exact handwritten package inventory while excluding declared generated outputs.
+
+[Fresh migration observations](AGENT_NATIVE_GIT_VERIFICATION.md) own current checks and limitations. The original standalone workspace and its verified all-ref bundle remain private recovery material. Source-package independence does not require a second public repository, and the native Coordinator does not become part of AIT.
+
+
 ## History recovery
 
 Recovery bundles for all ten repositories are stored locally beside this checkout in `../history/`. The source manifest records their full paths, SHA-256 values, imported heads and tags. Each bundle contains all fetched Git refs, not merely the default branch. Verify with `git bundle verify PATH` and restore with `git clone PATH.bundle restored-tool`. These files are deliberately excluded from public Git. Preserve them in durable private storage before deleting any original repository. The Hub history remains in this repository; its migration base is `d28ffa6`.

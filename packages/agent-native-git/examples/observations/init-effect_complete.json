@@ -1,0 +1,25 @@
+{
+  "observationId": "obs_2",
+  "operationId": "op_init",
+  "projectId": "prj_demo",
+  "kind": "init",
+  "observationType": "effect_complete",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "registeredRepositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "registrationId": "id_demo",
+    "storageSchemaHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "baselineRef": "fixture_baselineRef",
+    "baselineOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "integrationRef": "fixture_integrationRef",
+    "integrationOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  }
+}

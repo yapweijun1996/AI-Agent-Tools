@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Read-only static capabilities after isolated preflight; not product Worker execution.",
+  "exitCode": 0,
+  "stdout": {
+    "schemaVersion": "angit-result/v1",
+    "requestId": "req_6c14ceb3b7fdc7ab5a48574afb821c2c",
+    "command": "capabilities",
+    "ok": true,
+    "status": "completed",
+    "data": {
+      "stage": 2,
+      "runtime": "Node 24.21.0, Windows x64",
+      "commandCount": 18,
+      "commands": [
+        {
+          "name": "init",
+          "available": true,
+          "capability": "project.register",
+          "effects": "managed-write"
+        },
+        {
+          "name": "doctor",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "status",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task add",
+          "available": true,
+          "capability": "task.create",
+          "effects": "metadata-write"
+        },
+        {
+          "name": "task list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task show",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "task message",
+          "available": true,
+          "capability": "task.message",
+          "effects": "metadata-write"
+        },
+        {
+          "name": "task cancel",
+          "available": true,
+          "capability": "task.cancel",
+          "effects": "managed-write"
+        },
+        {
+          "name": "agent start",
+          "available": true,
+          "capability": "attempt.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "agent stop",
+          "available": true,
+          "capability": "attempt.stop",
+          "effects": "managed-write"
+        },
+        {
+          "name": "run",
+          "available": true,
+          "capability": "coordinator.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worker start",
+          "available": false,
+          "capability": "coordinator.start",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worker stop",
+          "available": false,
+          "capability": "coordinator.stop",
+          "effects": "managed-write"
+        },
+        {
+          "name": "worktree list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "integrate plan",
+          "available": false,
+          "capability": "integration.plan",
+          "effects": "planning-write"
+        },
+        {
+          "name": "integrate apply",
+          "available": false,
+          "capability": "integration.apply",
+          "effects": "managed-write"
+        },
+        {
+          "name": "snapshot list",
+          "available": true,
+          "capability": "project.read",
+          "effects": "read"
+        },
+        {
+          "name": "snapshot restore",
+          "available": false,
+          "capability": "snapshot.restore",
+          "effects": "planning-or-managed-write"
+        }
+      ],
+      "limits": {
+        "jsonBytes": 1048576,
+        "eventBytes": 65536,
+        "depth": 32
+      },
+      "exclusions": [
+        "provider compatibility certification",
+        "background host",
+        "integration",
+        "snapshot restoration",
+        "strong sandbox"
+      ]
+    },
+    "warnings": [],
+    "error": null,
+    "meta": {
+      "durationMs": 6,
+      "coordinatorEpoch": null,
+      "truncated": false
+    }
+  }
+}

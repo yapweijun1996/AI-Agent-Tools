@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/snapshot.schema.json",
+  "title": "Pinned snapshot; baseline is not automatically verified",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-snapshot/v1"
+    },
+    "snapshotId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "operationId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "commitOid": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 64,
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "treeOid": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 64,
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "parentOid": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "refName": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 256,
+      "pattern": "^refs/angit/"
+    },
+    "kind": {
+      "enum": [
+        "integration",
+        "undo",
+        "restore",
+        "baseline"
+      ]
+    },
+    "verification": {
+      "enum": [
+        "verified",
+        "unverified"
+      ]
+    },
+    "evidenceId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "policyHash": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "contentEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "createdAtMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "authorityIncarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "profilesHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "environmentHash": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "projectId",
+    "operationId",
+    "commitOid",
+    "treeOid",
+    "parentOid",
+    "refName",
+    "kind",
+    "verification",
+    "evidenceId",
+    "policyHash",
+    "contentEpoch",
+    "createdAtMs",
+    "authorityIncarnation",
+    "profilesHash",
+    "environmentHash"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidenceId": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+          },
+          "environmentHash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "baseline"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "const": "unverified"
+          },
+          "evidenceId": {
+            "type": "null"
+          },
+          "parentOid": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "parentOid": {
+            "type": "string",
+            "minLength": 40,
+            "maxLength": 64,
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          }
+        }
+      }
+    }
+  ]
+}

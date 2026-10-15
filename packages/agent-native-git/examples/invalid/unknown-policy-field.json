@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "angit-policy/v1",
+  "policyId": "policy_local",
+  "revision": 1,
+  "repoRoot": "/work/demo",
+  "trustMode": "cooperative-local",
+  "grants": [
+    {
+      "principal": "owner",
+      "capabilities": [
+        "project.register",
+        "project.read",
+        "task.create",
+        "task.message",
+        "task.cancel",
+        "attempt.start",
+        "attempt.stop",
+        "coordinator.start",
+        "coordinator.stop",
+        "integration.plan",
+        "integration.apply",
+        "snapshot.restore",
+        "maintenance.backup"
+      ]
+    },
+    {
+      "principal": "supervisor",
+      "capabilities": [
+        "project.read",
+        "task.create",
+        "task.message",
+        "task.cancel",
+        "attempt.start",
+        "attempt.stop",
+        "coordinator.start",
+        "coordinator.stop",
+        "integration.plan"
+      ]
+    },
+    {
+      "principal": "task_agent",
+      "capabilities": [
+        "project.read",
+        "task.message"
+      ]
+    },
+    {
+      "principal": "worker",
+      "capabilities": [
+        "project.read",
+        "task.message"
+      ]
+    }
+  ],
+  "workspace": {
+    "allowedPaths": [
+      "src/",
+      "test/",
+      "contracts/"
+    ],
+    "protectedPaths": [
+      ".git/",
+      ".env",
+      "package-lock.json"
+    ],
+    "allowDeletion": false,
+    "allowBinary": false,
+    "allowSymlinks": false,
+    "allowSubmodules": false,
+    "allowLockfileChange": false
+  },
+  "git": {
+    "executable": {
+      "path": "/OWNER_MUST_CONFIGURE/git.exe",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "protectedRefs": [
+      "refs/heads/main",
+      "refs/heads/master"
+    ],
+    "allowRemote": false,
+    "allowForcePush": false,
+    "allowHardReset": false,
+    "allowForcedWorktreeRemoval": false
+  },
+  "execution": {
+    "lease": { "heartbeatIntervalMs": 1000, "durationMs": 30000 },
+    "profilesFile": "/OWNER_MUST_CONFIGURE/runtime-profiles.json",
+    "allowedProfiles": [
+      "mock_local",
+      "check_unit"
+    ],
+    "allowDependencyInstall": false,
+    "requireSandbox": false,
+    "maxParallelAgents": 3,
+    "timeoutSeconds": 1800,
+    "maxAttemptsPerTask": 2
+  },
+  "integration": {
+    "requiredChecks": [
+      "check_unit"
+    ],
+    "allowAutoPromotion": false,
+    "rejectSkippedRequiredChecks": true,
+    "rejectDirtySource": true,
+    "maxPlanAgeSeconds": 900
+  },
+  "limits": {
+    "maxJsonBytes": 262144,
+    "maxEventBytes": 16384,
+    "maxArtifactBytes": 10485760,
+    "maxStoredBytes": 1073741824
+  },
+  "allowEverything": true
+}

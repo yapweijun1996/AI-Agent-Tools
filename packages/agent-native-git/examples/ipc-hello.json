@@ -1,0 +1,9 @@
+{
+  "wireVersion": 1,
+  "projectId": "prj_demo",
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "coordinatorEpoch": 1,
+  "clientNonce": "8888888888888888888888888888888888888888888888888888888888888888",
+  "serverNonce": "9999999999999999999999999999999999999999999999999999999999999999",
+  "scopeId": "scope_demo"
+}

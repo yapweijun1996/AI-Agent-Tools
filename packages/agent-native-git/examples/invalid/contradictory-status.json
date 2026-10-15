@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_status",
+  "command": "status",
+  "options": {
+    "format": "json",
+    "limit": 100,
+    "follow": true
+  },
+  "projectId": "prj_demo"
+}

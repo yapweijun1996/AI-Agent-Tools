@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "angit-snapshot/v1",
+  "snapshotId": "snap_demo",
+  "projectId": "prj_demo",
+  "operationId": "op_demo",
+  "commitOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "treeOid": "ffffffffffffffffffffffffffffffffffffffff",
+  "parentOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "refName": "refs/angit/prj_demo/snapshots/snap_demo",
+  "kind": "integration",
+  "verification": "verified",
+  "evidenceId": "ev_demo",
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "contentEpoch": 0,
+  "createdAtMs": 1791939611000,
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "environmentHash": "3333333333333333333333333333333333333333333333333333333333333333"
+}

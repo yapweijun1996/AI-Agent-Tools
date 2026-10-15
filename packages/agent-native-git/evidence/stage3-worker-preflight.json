@@ -1,0 +1,104 @@
+{
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/worker-handoff-probe.mjs --explicit-isolated-probe",
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 0,
+  "wallTimeMs": 29875.522999987006,
+  "report": {
+    "schemaVersion": "angit-worker-preflight-evidence/v1",
+    "startedAt": "2026-10-15T04:59:43.471Z",
+    "finishedAt": "2026-10-15T05:00:12.988Z",
+    "platform": "win32-x64",
+    "node": "24.21.0",
+    "sqlite": "3.53.4",
+    "status": "passed-isolated-preflight-not-production-worker",
+    "cases": [
+      {
+        "mode": "normal",
+        "passed": true,
+        "parentExitObserved": true,
+        "heldAfterParentExit": true,
+        "contenderBlocked": true,
+        "childBlockedBeforeRelease": true,
+        "epoch": 2,
+        "wrongTokenRejectedWithoutStop": true,
+        "repeatedInvalidControlsRejected": 3,
+        "guardReleasedAfterExactExit": true
+      },
+      {
+        "mode": "before-handoff-loss",
+        "passed": true,
+        "creatorTerminatedByRetainedHandle": true,
+        "bootstrapChildExitObserved": true,
+        "childWorkflowWrites": 0,
+        "readyPublished": false,
+        "epoch": 1
+      },
+      {
+        "mode": "handoff-creator-crash",
+        "passed": true,
+        "parentExitObserved": true,
+        "heldAfterParentExit": true,
+        "contenderBlocked": true,
+        "childBlockedBeforeRelease": false,
+        "epoch": 2,
+        "creatorKilledAtCommittedHandoff": true,
+        "recoveredWithoutReleaseMarker": true,
+        "sameKeyObserverReusedOneLaunch": true,
+        "guardReleasedAfterExactExit": true
+      },
+      {
+        "mode": "handoff-marker-crash",
+        "passed": true,
+        "parentExitObserved": true,
+        "heldAfterParentExit": true,
+        "contenderBlocked": true,
+        "childBlockedBeforeRelease": true,
+        "epoch": 2,
+        "creatorKilledAtCommittedHandoff": true,
+        "recoveredWithoutReleaseMarker": true,
+        "sameKeyObserverReusedOneLaunch": true,
+        "guardReleasedAfterExactExit": true
+      },
+      {
+        "mode": "reply-loss",
+        "passed": true,
+        "parentExitObserved": true,
+        "heldAfterParentExit": true,
+        "contenderBlocked": true,
+        "childBlockedBeforeRelease": true,
+        "epoch": 2,
+        "sameKeyObserverReusedOneLaunch": true,
+        "guardReleasedAfterExactExit": true
+      },
+      {
+        "mode": "coordinator-crash",
+        "passed": true,
+        "parentExitObserved": true,
+        "heldAfterParentExit": true,
+        "contenderBlocked": true,
+        "childBlockedBeforeRelease": true,
+        "epoch": 2,
+        "nativeReadOnlyReconciliationRetries": 0,
+        "nativeProof": {
+          "reason": "parent_eof",
+          "writerTreeTerminated": true,
+          "terminationReceiptHash": "3a782b4884b8021d51042eaa8a1f180bb59bb6c557be115928c2f22489378954",
+          "realNativeReconciliation": true,
+          "actualProviderProcesses": 2
+        },
+        "guardReleasedAfterExactExit": true
+      }
+    ],
+    "protectedRuntimeFiles": 73,
+    "protectedRuntimeUnchanged": true,
+    "scope": "Synthetic SQLite handoff; inert retained-handle Host; real native attempt proof only. No production Core/schema/broker/Worker acceptance.",
+    "hashes": {
+      "scriptSha256": "1edd1e4ee2a5708ceb6816871fb1f39c1531903705e0ca289ccb578aeae12457",
+      "hostSourceSha256": "00a659a4c341f7d7b01806dc75afe742172d8a2b72e15230c00f1e0b0520c2b8",
+      "hostExeSha256": "b115879876a5cd4427edf9bbf76d3d490928bdceaaa23eb4d5f84afbecead789",
+      "platformSourceSha256": "8856d06d7d35d33aaba322fbcff1e0d80749eb7fb2345e5745f3c04a32e9c02d",
+      "inertExeSha256": "dcf2a3ff9eaf7470718ab1fb21a9223697b3bb79b58679430d0eb64e152898e8"
+    },
+    "cleanup": "all exact Host/Coordinator exits and native writer-tree proof observed; owned private fixture removed"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "fixtures": [
+    {
+      "path": "examples/review/shared-attempt-submitted.json",
+      "schema": "schemas/common.schema.json",
+      "valid": true,
+      "label": "review shared-attempt-submitted",
+      "schemaFragment": "/$defs/attemptStatus"
+    },
+    {
+      "path": "examples/review/shared-attempt-retired.json",
+      "schema": "schemas/common.schema.json",
+      "valid": false,
+      "label": "review shared-attempt-retired",
+      "schemaFragment": "/$defs/attemptStatus"
+    },
+    {
+      "path": "examples/review/shared-attempt-review.json",
+      "schema": "schemas/common.schema.json",
+      "valid": false,
+      "label": "review shared-attempt-review",
+      "schemaFragment": "/$defs/attemptStatus"
+    },
+    {
+      "path": "examples/review/no-process-failed.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": true,
+      "label": "review no-process-failed"
+    },
+    {
+      "path": "examples/review/failed-no-process-with-pid.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review failed-no-process-with-pid"
+    },
+    {
+      "path": "examples/review/failed-no-process-with-processIdentity.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review failed-no-process-with-processIdentity"
+    },
+    {
+      "path": "examples/review/failed-no-process-with-startedAtMs.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review failed-no-process-with-startedAtMs"
+    },
+    {
+      "path": "examples/review/no-process-cancelled.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": true,
+      "label": "review no-process-cancelled"
+    },
+    {
+      "path": "examples/review/cancelled-no-process-with-pid.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review cancelled-no-process-with-pid"
+    },
+    {
+      "path": "examples/review/cancelled-no-process-with-processIdentity.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review cancelled-no-process-with-processIdentity"
+    },
+    {
+      "path": "examples/review/cancelled-no-process-with-startedAtMs.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review cancelled-no-process-with-startedAtMs"
+    },
+    {
+      "path": "examples/review/started-submission-terminated.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": true,
+      "label": "review started-submission-terminated"
+    },
+    {
+      "path": "examples/review/started-submission-no-process.json",
+      "schema": "schemas/attempt.schema.json",
+      "valid": false,
+      "label": "review started-submission-no-process"
+    },
+    {
+      "path": "examples/review/status-bound-cursor.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": true,
+      "label": "review status-bound-cursor"
+    },
+    {
+      "path": "examples/review/status-fresh-snapshot.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": true,
+      "label": "review status-fresh-snapshot"
+    },
+    {
+      "path": "examples/review/status-unbound-number.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-unbound-number"
+    },
+    {
+      "path": "examples/review/status-numeric-cursor.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-numeric-cursor"
+    },
+    {
+      "path": "examples/review/status-cursor-missing-projectId.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-cursor-missing-projectId"
+    },
+    {
+      "path": "examples/review/status-cursor-missing-authorityIncarnation.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-cursor-missing-authorityIncarnation"
+    },
+    {
+      "path": "examples/review/status-cursor-missing-historyIdentity.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-cursor-missing-historyIdentity"
+    },
+    {
+      "path": "examples/review/status-cursor-missing-afterEventId.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-cursor-missing-afterEventId"
+    },
+    {
+      "path": "examples/review/status-cursor-missing-snapshotHighWatermark.json",
+      "schema": "schemas/commands/status.schema.json",
+      "valid": false,
+      "label": "review status-cursor-missing-snapshotHighWatermark"
+    },
+    {
+      "path": "examples/review/task-show-bound-cursor.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": true,
+      "label": "review task-show-bound-cursor"
+    },
+    {
+      "path": "examples/review/task-show-fresh-snapshot.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": true,
+      "label": "review task-show-fresh-snapshot"
+    },
+    {
+      "path": "examples/review/task-show-unbound-number.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-unbound-number"
+    },
+    {
+      "path": "examples/review/task-show-numeric-cursor.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-numeric-cursor"
+    },
+    {
+      "path": "examples/review/task-show-cursor-missing-projectId.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-missing-projectId"
+    },
+    {
+      "path": "examples/review/task-show-cursor-missing-authorityIncarnation.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-missing-authorityIncarnation"
+    },
+    {
+      "path": "examples/review/task-show-cursor-missing-historyIdentity.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-missing-historyIdentity"
+    },
+    {
+      "path": "examples/review/task-show-cursor-missing-afterEventId.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-missing-afterEventId"
+    },
+    {
+      "path": "examples/review/task-show-cursor-missing-snapshotHighWatermark.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-missing-snapshotHighWatermark"
+    },
+    {
+      "path": "examples/review/task-show-cursor-without-history.json",
+      "schema": "schemas/commands/task-show.schema.json",
+      "valid": false,
+      "label": "review task-show-cursor-without-history"
+    }
+  ],
+  "note": "Synthetic schema boundary regressions; current-history equality, OS termination truth and Core behavior are NOT RUN."
+}

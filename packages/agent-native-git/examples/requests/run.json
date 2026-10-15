@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_run",
+  "command": "run",
+  "options": {
+    "parallel": 3,
+    "autoIntegrate": false,
+    "recover": false,
+    "until": "idle"
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-run-v1"
+}

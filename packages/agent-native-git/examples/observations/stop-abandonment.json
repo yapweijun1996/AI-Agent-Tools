@@ -1,0 +1,21 @@
+{
+  "observationId": "obs_19",
+  "operationId": "op_stop",
+  "projectId": "prj_demo",
+  "kind": "stop",
+  "observationType": "abandonment",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "approvalReference": "fixture_approvalReference",
+    "noUnresolvedEffect": true,
+    "proofReceiptHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

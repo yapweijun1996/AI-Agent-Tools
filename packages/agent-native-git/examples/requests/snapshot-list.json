@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_snapshot_list",
+  "command": "snapshot list",
+  "options": {
+    "includeUnverified": false,
+    "limit": 100
+  },
+  "projectId": "prj_demo"
+}

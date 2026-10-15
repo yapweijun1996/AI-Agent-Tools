@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/task.schema.json",
+  "title": "Persisted task projection",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-task/v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "status": {
+      "enum": [
+        "queued",
+        "blocked",
+        "leased",
+        "running",
+        "submitted",
+        "validating",
+        "integrating",
+        "completed",
+        "failed",
+        "cancelled",
+        "needs_review"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "spec": {
+      "$ref": "task-input.schema.json"
+    },
+    "activeAttemptId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "completionOpId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effectiveInCurrentSnapshot": {
+      "enum": [
+        "yes",
+        "no",
+        "unknown"
+      ]
+    },
+    "updatedAtMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "taskId",
+    "status",
+    "version",
+    "spec",
+    "activeAttemptId",
+    "completionOpId",
+    "effectiveInCurrentSnapshot",
+    "updatedAtMs"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "completionOpId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+            "maxLength": 64
+          }
+        }
+      }
+    }
+  ]
+}

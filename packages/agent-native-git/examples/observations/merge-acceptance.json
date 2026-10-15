@@ -1,0 +1,62 @@
+{
+  "observationId": "obs_23",
+  "operationId": "op_merge",
+  "projectId": "prj_demo",
+  "kind": "merge",
+  "observationType": "acceptance",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "evidenceId": "id_demo",
+    "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "candidateOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "treeOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "policyHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "profilesHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "environmentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "requiredChecks": [
+      "id_demo"
+    ],
+    "checks": [
+      {
+        "checkId": "id_demo",
+        "runId": "id_demo",
+        "status": "passed",
+        "exitCode": 0,
+        "signal": null,
+        "completed": true,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0,
+        "runtimeProfileHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "startedAtMs": 0,
+        "endedAtMs": 0,
+        "artifacts": [
+          {
+            "artifactId": "id_demo",
+            "relativePath": "fixture_relativePath",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bytes": 0
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "kind": "database",
+        "identity": "fixture_identity",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 0
+      }
+    ]
+  }
+}

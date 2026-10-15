@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "angit-task-input/v1",
+  "taskId": "tsk_tests",
+  "title": "Tests task",
+  "instructions": "Add tests against the frozen public contract.",
+  "runtimeProfileId": "mock_local",
+  "dependsOn": [],
+  "scopePaths": [
+    "src/",
+    "test/"
+  ],
+  "requiredChecks": [
+    "check_unit"
+  ],
+  "acceptance": [
+    "Required checks pass on the integrated candidate.",
+    "No out-of-scope changes."
+  ],
+  "priority": 50,
+  "baseEpoch": 0,
+  "contractRefs": [
+    {
+      "path": "contracts/api.json",
+      "commitOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ]
+}

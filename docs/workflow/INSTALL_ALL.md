@@ -7,9 +7,9 @@ separate package installation roots. Planned registry entries without source
 packages are not installed. Source installation does not publish packages or
 change their recorded npm releases, licenses, private flags, or native contracts.
 
-Use Node 22.13+ or Node 24, npm, and Git. The prefix's parent directory must already
-exist, and the prefix itself must not exist. Public GitHub/npm network access is
-required for the GitHub source and uncached dependencies.
+The full source inventory includes Agent-Native-Git, whose declared host is Windows x64 with exactly Node 24.21.0 and its documented native build prerequisites. Use that host, npm and Git to install all tool CLIs. AIT itself retains Node 22.13+/24 support; that does not override an individual source package's narrower host. The installer rejects an incompatible declared package host before package dependency installation/build, rather than silently omitting that CLI.
+
+The prefix's parent directory must already exist, and the prefix itself must not exist. Public GitHub/npm network access is required for the GitHub source and uncached dependencies. The local Agent-Native-Git import is not present on GitHub until a separately authorized push; a source command only installs packages actually present at its selected revision.
 
 ## One npm command
 

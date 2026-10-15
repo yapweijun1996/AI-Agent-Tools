@@ -1,0 +1,5908 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Actual two-task foreground run with real inert native profiles; duration trace only, unchanged permissions/deadlines/leases and no status-query polling during execution",
+  "durationMs": 1627430.8853,
+  "result": {
+    "exit": 3,
+    "output": "{\"schemaVersion\":\"angit-result/v1\",\"requestId\":\"req_fc46cce616ab9f5c5700c5df020f5e7c\",\"command\":\"run\",\"ok\":false,\"status\":\"incomplete\",\"data\":null,\"warnings\":[],\"error\":{\"code\":\"RECOVERY_REQUIRED\",\"message\":\"Exact full writer-tree termination receipt is required before capture or slot release\",\"retryable\":false,\"operationId\":null},\"meta\":{\"durationMs\":1535100,\"coordinatorEpoch\":null,\"truncated\":false}}\n",
+    "errors": "",
+    "result": {
+      "schemaVersion": "angit-result/v1",
+      "requestId": "req_fc46cce616ab9f5c5700c5df020f5e7c",
+      "command": "run",
+      "ok": false,
+      "status": "incomplete",
+      "data": null,
+      "warnings": [],
+      "error": {
+        "code": "RECOVERY_REQUIRED",
+        "message": "Exact full writer-tree termination receipt is required before capture or slot release",
+        "retryable": false,
+        "operationId": null
+      },
+      "meta": {
+        "durationMs": 1535100,
+        "coordinatorEpoch": null,
+        "truncated": false
+      }
+    }
+  },
+  "states": [
+    {
+      "task": {
+        "schemaVersion": "angit-task/v1",
+        "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+        "taskId": "tsk_a",
+        "status": "submitted",
+        "version": 3,
+        "spec": {
+          "acceptance": [
+            "Required behavior must be verified before integration."
+          ],
+          "baseEpoch": 0,
+          "contractRefs": [],
+          "dependsOn": [],
+          "instructions": "Immutable task text; $(not-a-shell-command) & exit 91. Execute only the approved fixed native fixture.",
+          "priority": 50,
+          "requiredChecks": [
+            "check_required"
+          ],
+          "runtimeProfileId": "profile_commit",
+          "schemaVersion": "angit-task-input/v1",
+          "scopePaths": [
+            "src/index.ts"
+          ],
+          "taskId": "tsk_a",
+          "title": "Inert execution tsk_a"
+        },
+        "activeAttemptId": null,
+        "completionOpId": null,
+        "effectiveInCurrentSnapshot": "unknown",
+        "updatedAtMs": 1791999846588
+      },
+      "executionEligibility": {
+        "runtimeProfileId": "profile_commit",
+        "declarationEnabled": true,
+        "execution": "unverified",
+        "availableInStage1": false,
+        "executableValidated": false,
+        "providerCompatibility": "unknown"
+      },
+      "dependencies": [],
+      "attempts": [
+        {
+          "project_id": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "id": "att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+          "task_id": "tsk_a",
+          "number": 1,
+          "status": "submitted",
+          "authority_incarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "resource_key": "task:tsk_a",
+          "owner_id": "owner_d170d4917a83d0a22785cd713b5886bc",
+          "version": 3,
+          "spawn_intent_id": "op_cdbfdff6bbafc22418f487355f8f4779",
+          "termination_kind": "writer_tree_terminated",
+          "termination_receipt_hash": "b53fddc1f66fd27e9cfa7d06adc963d6456cb0af84227fa7c52810b0a32bb89c",
+          "submission_tree_oid": "42350f9f7fecca89bf8958325fb0814775ed172e",
+          "submission_ref": "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+          "base_oid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+          "base_epoch": 0,
+          "coordinator_epoch": 4,
+          "fencing_token": 1,
+          "runtime_profile_hash": "a2575e89960a4cba01540b74fc1dc3aefb2e68977f2c398619b3c8bfaf0d568c",
+          "pid": 20708,
+          "process_identity": "{\"descendantScopeHash\":\"1ca71ba406d99d5f39443079e93f8a39fe6c6f1d7236946e25def342a250f1d8\",\"executableHash\":\"2a57049c89e9200c9802c306b237dad60a34a4c2e5481c2ea7af210a623b41b4\",\"launchIdentity\":\"131291786762ade6523a364f6f515a532904fbb1a32a8a12d3c21bb9b73a7339\",\"pid\":20708,\"startIdentity\":\"f42a75d1af28c23824f6c2da49f0e3f90a2a22bdf75a2e7f66baddf73135ad66\",\"supervisorId\":\"sup_1ffd501857a2079282f98169afac1ac6\"}",
+          "started_at_ms": 1791999381744,
+          "heartbeat_at_ms": 1791999381744,
+          "ended_at_ms": 1791999383659,
+          "submission_oid": "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999",
+          "worktree_id": "wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+          "attemptId": "att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+          "taskId": "tsk_a",
+          "worktreeId": "wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+          "baseOid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+          "baseEpoch": 0,
+          "spawnIntentId": "op_cdbfdff6bbafc22418f487355f8f4779",
+          "processIdentity": {
+            "descendantScopeHash": "1ca71ba406d99d5f39443079e93f8a39fe6c6f1d7236946e25def342a250f1d8",
+            "executableHash": "2a57049c89e9200c9802c306b237dad60a34a4c2e5481c2ea7af210a623b41b4",
+            "launchIdentity": "131291786762ade6523a364f6f515a532904fbb1a32a8a12d3c21bb9b73a7339",
+            "pid": 20708,
+            "startIdentity": "f42a75d1af28c23824f6c2da49f0e3f90a2a22bdf75a2e7f66baddf73135ad66",
+            "supervisorId": "sup_1ffd501857a2079282f98169afac1ac6"
+          },
+          "terminationProof": {
+            "kind": "writer_tree_terminated",
+            "receiptHash": "b53fddc1f66fd27e9cfa7d06adc963d6456cb0af84227fa7c52810b0a32bb89c"
+          },
+          "terminationReceipt": {
+            "authority": {
+              "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+              "coordinatorEpoch": 4,
+              "fencingToken": 1,
+              "ownerId": "owner_d170d4917a83d0a22785cd713b5886bc",
+              "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+              "resourceKey": "task:tsk_a"
+            },
+            "helperHash": "e0742f81dae27b47c7ea621a9266d664485d9d5b75cd2978e4e1c5b0c6ced6b8",
+            "helperProcess": {
+              "instanceName": "Local\\angit-supervisor-8c0e4405cc945bf5a5e01a73f638c5fd4cfd56e54bafbf6cbf3c7360aac2c89c",
+              "pid": 37460,
+              "startIdentity": "44a39440124a9a1a0ebfa10e2ff7717cd075913b672c45355eca30271e9bf8a2"
+            },
+            "observedAtMs": 1791999383659,
+            "process": {
+              "descendantScopeHash": "1ca71ba406d99d5f39443079e93f8a39fe6c6f1d7236946e25def342a250f1d8",
+              "executableHash": "2a57049c89e9200c9802c306b237dad60a34a4c2e5481c2ea7af210a623b41b4",
+              "launchIdentity": "131291786762ade6523a364f6f515a532904fbb1a32a8a12d3c21bb9b73a7339",
+              "pid": 20708,
+              "startIdentity": "f42a75d1af28c23824f6c2da49f0e3f90a2a22bdf75a2e7f66baddf73135ad66",
+              "supervisorId": "sup_1ffd501857a2079282f98169afac1ac6"
+            },
+            "reason": "exit",
+            "receiptMac": "6a381c8f86768f04d34105f036e4830b5806d26ee8201638ab7fbbea3c9dfcf3",
+            "receiptPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_ffc7b0bc449a6c1007ded6b65ee99b1f\\termination.json",
+            "rootExitCode": 0,
+            "stderr": {
+              "bytes": 0,
+              "path": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_ffc7b0bc449a6c1007ded6b65ee99b1f\\stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stdout": {
+              "bytes": 0,
+              "path": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_ffc7b0bc449a6c1007ded6b65ee99b1f\\stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stopOperationId": null,
+            "terminationReceiptHash": "b53fddc1f66fd27e9cfa7d06adc963d6456cb0af84227fa7c52810b0a32bb89c",
+            "writerTreeTerminated": true
+          },
+          "submissionOid": "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999",
+          "submissionTreeOid": "42350f9f7fecca89bf8958325fb0814775ed172e",
+          "submissionRef": "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+          "artifactDirectory": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+          "receiptPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_ffc7b0bc449a6c1007ded6b65ee99b1f\\termination.json",
+          "worktreeReceipt": {
+            "attemptId": "att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+            "baseOid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+            "baseTreeOid": "6c55d74a7f5ba790c87dd436945331d8833c347e",
+            "branchRef": "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f",
+            "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+            "commonDirectoryIdentity": "win:e868e27768e24442:0000000000000000003300000012f51a",
+            "gitDirectory": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\repository with spaces\\.git\\worktrees\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+              "directory": true,
+              "identity": "win:e868e27768e24442:0000000000000000003c000000140b96",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "gitPointer": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3\\.git",
+              "directory": false,
+              "identity": "win:e868e27768e24442:00000000000000000008000000140b99",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "managedParent": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees",
+            "markerFileIdentity": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktree-ownership\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3.json",
+              "directory": false,
+              "identity": "win:e868e27768e24442:0000000000000000000f000000140b89",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "markerHash": "54bd0577331054d2e9f29a25f10f613f6a8f7cb7fb1b2334f188bba45f3de87d",
+            "markerPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktree-ownership\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3.json",
+            "ownerCheckout": {
+              "headHash": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80",
+              "indexHash": "fed1bf8832c02ef49a0707b094f083cdebeca3696336a8c110fedaf4b1dbe688",
+              "refs": "refs/heads/main 775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+            },
+            "ownerSourceHash": "390feabc786e369e55b904251d643b52b52b691c60eb74a498ef7c6df993bf12",
+            "ownershipMarkerId": "own_fcd532761e04dcd46c77c37023dee0098af9606e7757e20e",
+            "pathIdentity": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+              "directory": true,
+              "identity": "win:e868e27768e24442:00000000000000000016000000140b88",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "worktreeId": "wt_338bd6b6c1cd829fc1b5ac3b641f12c3"
+          }
+        }
+      ],
+      "messages": [],
+      "evidenceLocators": [],
+      "history": [
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 3,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.created",
+          "entityId": "tsk_a",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 2,
+          "createdAtMs": 1791998309281,
+          "summary": "Immutable task specification created; provider compatibility is unknown",
+          "payload": {
+            "runtimeExecutableValidated": false,
+            "specSha256": "8048abd94efe40cc92f3ae8a7636b6ac510393401e2eb45f22315ace5c501644",
+            "status": "queued",
+            "taskId": "tsk_a",
+            "version": 0
+          }
+        },
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 7,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.leased",
+          "entityId": "tsk_a",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 4,
+          "createdAtMs": 1791998367497,
+          "summary": "Task lifecycle projection changed without claiming completed integration",
+          "payload": {
+            "cancelRequested": false,
+            "status": "leased",
+            "taskId": "tsk_a",
+            "version": 1
+          }
+        },
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 15,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.running",
+          "entityId": "tsk_a",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 4,
+          "createdAtMs": 1791999382886,
+          "summary": "Task lifecycle projection changed without claiming completed integration",
+          "payload": {
+            "cancelRequested": false,
+            "status": "running",
+            "taskId": "tsk_a",
+            "version": 2
+          }
+        },
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 19,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.submitted",
+          "entityId": "tsk_a",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 4,
+          "createdAtMs": 1791999846588,
+          "summary": "Task lifecycle projection changed without claiming completed integration",
+          "payload": {
+            "cancelRequested": false,
+            "status": "submitted",
+            "taskId": "tsk_a",
+            "version": 3
+          }
+        }
+      ],
+      "cursor": {
+        "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+        "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+        "historyIdentity": "211517f80d20d5bcd6b9de9d3f97b3ba5e8a79503abacf0a1a2cfed4e762bf6f",
+        "afterEventId": 23,
+        "snapshotHighWatermark": 23
+      },
+      "hasMore": false
+    },
+    {
+      "task": {
+        "schemaVersion": "angit-task/v1",
+        "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+        "taskId": "tsk_b",
+        "status": "needs_review",
+        "version": 2,
+        "spec": {
+          "acceptance": [
+            "Required behavior must be verified before integration."
+          ],
+          "baseEpoch": 0,
+          "contractRefs": [],
+          "dependsOn": [],
+          "instructions": "Immutable task text; $(not-a-shell-command) & exit 91. Execute only the approved fixed native fixture.",
+          "priority": 50,
+          "requiredChecks": [
+            "check_required"
+          ],
+          "runtimeProfileId": "profile_commit",
+          "schemaVersion": "angit-task-input/v1",
+          "scopePaths": [
+            "src/index.ts"
+          ],
+          "taskId": "tsk_b",
+          "title": "Inert execution tsk_b"
+        },
+        "activeAttemptId": "att_851e80f3c9f8ed0616814015e4aa019f",
+        "completionOpId": null,
+        "effectiveInCurrentSnapshot": "unknown",
+        "updatedAtMs": 1791999851026
+      },
+      "executionEligibility": {
+        "runtimeProfileId": "profile_commit",
+        "declarationEnabled": true,
+        "execution": "unverified",
+        "availableInStage1": false,
+        "executableValidated": false,
+        "providerCompatibility": "unknown"
+      },
+      "dependencies": [],
+      "attempts": [
+        {
+          "project_id": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "id": "att_851e80f3c9f8ed0616814015e4aa019f",
+          "task_id": "tsk_b",
+          "number": 1,
+          "status": "orphaned",
+          "authority_incarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "resource_key": "task:tsk_b",
+          "owner_id": "owner_d170d4917a83d0a22785cd713b5886bc",
+          "version": 2,
+          "spawn_intent_id": "op_49df48953115a621698c6c0c12d00c9a",
+          "termination_kind": null,
+          "termination_receipt_hash": null,
+          "submission_tree_oid": null,
+          "submission_ref": null,
+          "base_oid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+          "base_epoch": 0,
+          "coordinator_epoch": 4,
+          "fencing_token": 1,
+          "runtime_profile_hash": "a2575e89960a4cba01540b74fc1dc3aefb2e68977f2c398619b3c8bfaf0d568c",
+          "pid": null,
+          "process_identity": null,
+          "started_at_ms": null,
+          "heartbeat_at_ms": null,
+          "ended_at_ms": null,
+          "submission_oid": null,
+          "worktree_id": "wt_4c7e9237d98bcdc07630baf65269505a",
+          "attemptId": "att_851e80f3c9f8ed0616814015e4aa019f",
+          "taskId": "tsk_b",
+          "worktreeId": "wt_4c7e9237d98bcdc07630baf65269505a",
+          "baseOid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+          "baseEpoch": 0,
+          "spawnIntentId": "op_49df48953115a621698c6c0c12d00c9a",
+          "processIdentity": null,
+          "terminationProof": null,
+          "terminationReceipt": null,
+          "submissionOid": null,
+          "submissionTreeOid": null,
+          "submissionRef": null,
+          "artifactDirectory": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_851e80f3c9f8ed0616814015e4aa019f",
+          "receiptPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\execution\\att_851e80f3c9f8ed0616814015e4aa019f\\termination.json",
+          "worktreeReceipt": {
+            "attemptId": "att_851e80f3c9f8ed0616814015e4aa019f",
+            "baseOid": "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+            "baseTreeOid": "6c55d74a7f5ba790c87dd436945331d8833c347e",
+            "branchRef": "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f",
+            "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_4c7e9237d98bcdc07630baf65269505a",
+            "commonDirectoryIdentity": "win:e868e27768e24442:0000000000000000003300000012f51a",
+            "gitDirectory": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\repository with spaces\\.git\\worktrees\\wt_4c7e9237d98bcdc07630baf65269505a",
+              "directory": true,
+              "identity": "win:e868e27768e24442:00000000000000000153000000140af4",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "gitPointer": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_4c7e9237d98bcdc07630baf65269505a\\.git",
+              "directory": false,
+              "identity": "win:e868e27768e24442:0000000000000000000c000000140baa",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "managedParent": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees",
+            "markerFileIdentity": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktree-ownership\\wt_4c7e9237d98bcdc07630baf65269505a.json",
+              "directory": false,
+              "identity": "win:e868e27768e24442:0000000000000000001f000000140b8e",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "markerHash": "fc48a476b6ca82d3a73d7a157cadc5858d14aac20bb3059b8a27085f136e1d42",
+            "markerPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktree-ownership\\wt_4c7e9237d98bcdc07630baf65269505a.json",
+            "ownerCheckout": {
+              "headHash": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80",
+              "indexHash": "fed1bf8832c02ef49a0707b094f083cdebeca3696336a8c110fedaf4b1dbe688",
+              "refs": "refs/heads/main 775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+            },
+            "ownerSourceHash": "390feabc786e369e55b904251d643b52b52b691c60eb74a498ef7c6df993bf12",
+            "ownershipMarkerId": "own_6df6bf869c9a92c76dd8948c667c7c30a5cc8740bcc89ff5",
+            "pathIdentity": {
+              "canonicalPath": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_4c7e9237d98bcdc07630baf65269505a",
+              "directory": true,
+              "identity": "win:e868e27768e24442:00000000000000000049000000140b8d",
+              "localDisk": true,
+              "ownerSid": "S-1-5-21-376930242-3054947748-2114188170-1002",
+              "reparsePoint": false
+            },
+            "worktreeId": "wt_4c7e9237d98bcdc07630baf65269505a"
+          }
+        }
+      ],
+      "messages": [],
+      "evidenceLocators": [],
+      "history": [
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 4,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.created",
+          "entityId": "tsk_b",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 3,
+          "createdAtMs": 1791998316157,
+          "summary": "Immutable task specification created; provider compatibility is unknown",
+          "payload": {
+            "runtimeExecutableValidated": false,
+            "specSha256": "a182e15b52797bcfd3d60201955c5822a8ebd9a442ae08dc45798e5a236cb376",
+            "status": "queued",
+            "taskId": "tsk_b",
+            "version": 0
+          }
+        },
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 10,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.leased",
+          "entityId": "tsk_b",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 4,
+          "createdAtMs": 1791998444357,
+          "summary": "Task lifecycle projection changed without claiming completed integration",
+          "payload": {
+            "cancelRequested": false,
+            "status": "leased",
+            "taskId": "tsk_b",
+            "version": 1
+          }
+        },
+        {
+          "schemaVersion": "angit-event/v1",
+          "eventId": 21,
+          "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+          "type": "task.needs_review",
+          "entityId": "tsk_b",
+          "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+          "coordinatorEpoch": 4,
+          "createdAtMs": 1791999851026,
+          "summary": "Task lifecycle projection changed without claiming completed integration",
+          "payload": {
+            "cancelRequested": false,
+            "status": "needs_review",
+            "taskId": "tsk_b",
+            "version": 2
+          }
+        }
+      ],
+      "cursor": {
+        "projectId": "prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40",
+        "authorityIncarnation": "00fd38d783c3b4a6129642acfece7d9a6ec4304c8ad7384030d35362bfffa3cc",
+        "historyIdentity": "211517f80d20d5bcd6b9de9d3f97b3ba5e8a79503abacf0a1a2cfed4e762bf6f",
+        "afterEventId": 23,
+        "snapshotHighWatermark": 23
+      },
+      "hasMore": false
+    }
+  ],
+  "cleanup": "Preserved fixture with unresolved owned attempts/effects: C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf",
+  "records": [
+    {
+      "atMs": 3348.7855999999997,
+      "phase": "fixture-ready",
+      "ownedFixture": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf"
+    },
+    {
+      "atMs": 9738.749,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 10975.9259,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1237.1841000000004
+    },
+    {
+      "atMs": 10978.065999999999,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 12297.307799999999,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1319.2855999999992
+    },
+    {
+      "atMs": 12299.1475,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 14005.097899999999,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1705.9719000000005
+    },
+    {
+      "atMs": 14006.569599999999,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 15612.171599999998,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1605.6167999999998
+    },
+    {
+      "atMs": 15618.0163,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 17497.7299,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1879.7784000000029
+    },
+    {
+      "atMs": 17499.4428,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 19186.8224,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1687.3935999999994
+    },
+    {
+      "atMs": 19187.7659,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823^{tree}"
+      ]
+    },
+    {
+      "atMs": 21017.5643,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1829.804
+    },
+    {
+      "atMs": 21018.4999,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 22502.3515,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1483.870500000001
+    },
+    {
+      "atMs": 24182.5842,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/baseline"
+      ]
+    },
+    {
+      "atMs": 26119.4372,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1936.855300000003
+    },
+    {
+      "atMs": 27591.2914,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/integration"
+      ]
+    },
+    {
+      "atMs": 29375.6332,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1784.3672000000006
+    },
+    {
+      "atMs": 29377.9403,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 31227.8872,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1849.9403999999995
+    },
+    {
+      "atMs": 34652.0164,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 36127.76040000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1475.808299999997
+    },
+    {
+      "atMs": 36659.717800000006,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 38703.115600000005,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 2043.4658999999956
+    },
+    {
+      "atMs": 39236.806500000006,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 41532.6442,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 2295.8640000000014
+    },
+    {
+      "atMs": 42135.405900000005,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 44224.952300000004,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 2089.546300000002
+    },
+    {
+      "atMs": 46441.8023,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/baseline"
+      ]
+    },
+    {
+      "atMs": 48374.2765,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1932.4786999999997
+    },
+    {
+      "atMs": 49972.432700000005,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/integration"
+      ]
+    },
+    {
+      "atMs": 51781.1367,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1808.7084000000032
+    },
+    {
+      "atMs": 52610.3943,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "update-ref",
+        "--no-deref",
+        "--stdin"
+      ]
+    },
+    {
+      "atMs": 54057.161,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1446.7717000000048
+    },
+    {
+      "atMs": 56261.312900000004,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/baseline"
+      ]
+    },
+    {
+      "atMs": 57890.780000000006,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1629.4672999999966
+    },
+    {
+      "atMs": 59968.138000000006,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/integration"
+      ]
+    },
+    {
+      "atMs": 61951.678400000004,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1983.5426999999981
+    },
+    {
+      "atMs": 62555.821800000005,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 64008.111500000006,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 1452.2934999999998
+    },
+    {
+      "atMs": 78555.97039999999,
+      "phase": "run-begin"
+    },
+    {
+      "atMs": 88723.0787,
+      "method": "assertLive",
+      "durationMs": 2302.8761000000086
+    },
+    {
+      "atMs": 91054.1543,
+      "method": "assertLive",
+      "durationMs": 2327.1802000000025
+    },
+    {
+      "atMs": 91467.1626,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 93974.4467,
+      "method": "assertLive",
+      "durationMs": 2506.3447999999917
+    },
+    {
+      "atMs": 97793.94279999999,
+      "method": "assertLive",
+      "durationMs": 2250.526700000002
+    },
+    {
+      "atMs": 99931.4895,
+      "method": "assertLive",
+      "durationMs": 2132.1860000000015
+    },
+    {
+      "atMs": 99935.6381,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8468.474000000002
+    },
+    {
+      "atMs": 99936.62509999999,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 102042.5118,
+      "method": "assertLive",
+      "durationMs": 2105.227700000003
+    },
+    {
+      "atMs": 105699.8096,
+      "method": "assertLive",
+      "durationMs": 1994.7966000000015
+    },
+    {
+      "atMs": 107881.4322,
+      "method": "assertLive",
+      "durationMs": 2176.3631999999925
+    },
+    {
+      "atMs": 107885.21639999999,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7948.5916
+    },
+    {
+      "atMs": 107885.9876,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823^{tree}"
+      ]
+    },
+    {
+      "atMs": 110085.04819999999,
+      "method": "assertLive",
+      "durationMs": 2197.895700000008
+    },
+    {
+      "atMs": 114204.7319,
+      "method": "assertLive",
+      "durationMs": 2414.883600000001
+    },
+    {
+      "atMs": 116704.25,
+      "method": "assertLive",
+      "durationMs": 2494.4995000000054
+    },
+    {
+      "atMs": 116708.1105,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8822.11940000001
+    },
+    {
+      "atMs": 116709.41339999999,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 118582.3911,
+      "method": "assertLive",
+      "durationMs": 1871.6062000000093
+    },
+    {
+      "atMs": 121887.71269999999,
+      "method": "assertLive",
+      "durationMs": 1890.3392000000022
+    },
+    {
+      "atMs": 124336.95349999999,
+      "method": "assertLive",
+      "durationMs": 2444.1555999999982
+    },
+    {
+      "atMs": 124341.3094,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7631.894899999999
+    },
+    {
+      "atMs": 126782.77249999999,
+      "method": "assertLive",
+      "durationMs": 2439.873099999997
+    },
+    {
+      "atMs": 129299.71269999999,
+      "method": "assertLive",
+      "durationMs": 2513.769499999995
+    },
+    {
+      "atMs": 129893.14439999999,
+      "method": "provision",
+      "phase": "begin"
+    },
+    {
+      "atMs": 130094.2335,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 132486.13689999998,
+      "method": "assertLive",
+      "durationMs": 2390.585100000011
+    },
+    {
+      "atMs": 136399.7823,
+      "method": "assertLive",
+      "durationMs": 2429.046400000021
+    },
+    {
+      "atMs": 136716.3196,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 139211.0341,
+      "method": "assertLive",
+      "durationMs": 2493.9954000000143
+    },
+    {
+      "atMs": 142711.3922,
+      "method": "assertLive",
+      "durationMs": 2245.8840999999957
+    },
+    {
+      "atMs": 142714.7235,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12620.493000000017
+    },
+    {
+      "atMs": 142715.9258,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 145091.8094,
+      "method": "assertLive",
+      "durationMs": 2375.221499999985
+    },
+    {
+      "atMs": 149105.5219,
+      "method": "assertLive",
+      "durationMs": 2673.083099999989
+    },
+    {
+      "atMs": 151255.6008,
+      "method": "assertLive",
+      "durationMs": 2144.9054999999935
+    },
+    {
+      "atMs": 153462.2498,
+      "method": "assertLive",
+      "durationMs": 2203.085300000006
+    },
+    {
+      "atMs": 153465.59769999998,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16749.27840000001
+    },
+    {
+      "atMs": 153466.3539,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10750.429800000013
+    },
+    {
+      "atMs": 153467.1092,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 156456.1448,
+      "method": "assertLive",
+      "durationMs": 2988.509699999995
+    },
+    {
+      "atMs": 157811.2563,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 160301.0182,
+      "method": "assertLive",
+      "durationMs": 2488.615699999995
+    },
+    {
+      "atMs": 164934.147,
+      "method": "assertLive",
+      "durationMs": 2810.938200000004
+    },
+    {
+      "atMs": 164937.1873,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11470.07680000001
+    },
+    {
+      "atMs": 164938.24229999998,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823^{tree}"
+      ]
+    },
+    {
+      "atMs": 167630.5011,
+      "method": "assertLive",
+      "durationMs": 2691.190100000007
+    },
+    {
+      "atMs": 171661.4796,
+      "method": "assertLive",
+      "durationMs": 2226.4685000000172
+    },
+    {
+      "atMs": 173814.1009,
+      "method": "assertLive",
+      "durationMs": 2148.778900000005
+    },
+    {
+      "atMs": 176295.8032,
+      "method": "assertLive",
+      "durationMs": 2478.299699999974
+    },
+    {
+      "atMs": 176299.0056,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18487.73120000001
+    },
+    {
+      "atMs": 176300.69269999999,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11362.449999999983
+    },
+    {
+      "atMs": 176302.2409,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 178509.5742,
+      "method": "assertLive",
+      "durationMs": 2206.2128000000084
+    },
+    {
+      "atMs": 180045.36359999998,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 182750.3167,
+      "method": "assertLive",
+      "durationMs": 2703.644899999985
+    },
+    {
+      "atMs": 186655.7124,
+      "method": "assertLive",
+      "durationMs": 2671.458899999998
+    },
+    {
+      "atMs": 186660.7702,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10358.528300000005
+    },
+    {
+      "atMs": 186662.9124,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 188969.15899999999,
+      "method": "assertLive",
+      "durationMs": 2304.8679999999877
+    },
+    {
+      "atMs": 192445.5441,
+      "method": "assertLive",
+      "durationMs": 1852.321100000001
+    },
+    {
+      "atMs": 194713.4942,
+      "method": "assertLive",
+      "durationMs": 2262.7897999999986
+    },
+    {
+      "atMs": 196947.369,
+      "method": "assertLive",
+      "durationMs": 2232.2207000000053
+    },
+    {
+      "atMs": 196951.9882,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16906.62459999998
+    },
+    {
+      "atMs": 196953.1315,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10290.221899999975
+    },
+    {
+      "atMs": 196954.9195,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 199325.4539,
+      "method": "assertLive",
+      "durationMs": 2368.978999999992
+    },
+    {
+      "atMs": 203368.1103,
+      "method": "assertLive",
+      "durationMs": 2511.8108000000066
+    },
+    {
+      "atMs": 205505.848,
+      "method": "assertLive",
+      "durationMs": 2135.862999999983
+    },
+    {
+      "atMs": 206750.3456,
+      "method": "provision",
+      "phase": "begin"
+    },
+    {
+      "atMs": 207011.461,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 209493.9373,
+      "method": "assertLive",
+      "durationMs": 2481.741399999999
+    },
+    {
+      "atMs": 213142.6021,
+      "method": "assertLive",
+      "durationMs": 2277.3006999999925
+    },
+    {
+      "atMs": 213146.4746,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16191.5576
+    },
+    {
+      "atMs": 213147.6023,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823^{tree}"
+      ]
+    },
+    {
+      "atMs": 215357.0178,
+      "method": "assertLive",
+      "durationMs": 2208.3635000000068
+    },
+    {
+      "atMs": 219446.0198,
+      "method": "assertLive",
+      "durationMs": 2520.910599999974
+    },
+    {
+      "atMs": 221846.856,
+      "method": "assertLive",
+      "durationMs": 2393.8516999999993
+    },
+    {
+      "atMs": 223753.3251,
+      "method": "assertLive",
+      "durationMs": 1902.9635000000126
+    },
+    {
+      "atMs": 223757.1579,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16745.694300000003
+    },
+    {
+      "atMs": 223758.3139,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10610.71179999999
+    },
+    {
+      "atMs": 223759.57749999998,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 226417.7188,
+      "method": "assertLive",
+      "durationMs": 2656.730500000005
+    },
+    {
+      "atMs": 228001.642,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 230283.1871,
+      "method": "assertLive",
+      "durationMs": 2280.101400000014
+    },
+    {
+      "atMs": 234057.2571,
+      "method": "assertLive",
+      "durationMs": 2462.5859000000055
+    },
+    {
+      "atMs": 234060.3778,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10300.800300000003
+    },
+    {
+      "atMs": 234061.8233,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 236654.8132,
+      "method": "assertLive",
+      "durationMs": 2591.880599999975
+    },
+    {
+      "atMs": 240473.2452,
+      "method": "assertLive",
+      "durationMs": 2076.4621000000043
+    },
+    {
+      "atMs": 242706.8129,
+      "method": "assertLive",
+      "durationMs": 2228.0650000000023
+    },
+    {
+      "atMs": 245464.4324,
+      "method": "assertLive",
+      "durationMs": 2753.3448999999964
+    },
+    {
+      "atMs": 245467.6092,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 17465.965800000005
+    },
+    {
+      "atMs": 245468.8331,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11407.010099999985
+    },
+    {
+      "atMs": 245470.494,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 247671.1477,
+      "method": "assertLive",
+      "durationMs": 2199.368699999992
+    },
+    {
+      "atMs": 251151.608,
+      "method": "assertLive",
+      "durationMs": 2131.7220999999845
+    },
+    {
+      "atMs": 254473.93349999998,
+      "method": "assertLive",
+      "durationMs": 2093.912400000001
+    },
+    {
+      "atMs": 254478.2182,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9007.726599999995
+    },
+    {
+      "atMs": 254479.9093,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 256409.7407,
+      "method": "assertLive",
+      "durationMs": 1928.6545000000042
+    },
+    {
+      "atMs": 260005.1625,
+      "method": "assertLive",
+      "durationMs": 2243.976399999985
+    },
+    {
+      "atMs": 261992.7892,
+      "method": "assertLive",
+      "durationMs": 1981.70729999998
+    },
+    {
+      "atMs": 263938.9034,
+      "method": "assertLive",
+      "durationMs": 1941.919899999979
+    },
+    {
+      "atMs": 263942.5019,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 266277.8578,
+      "method": "assertLive",
+      "durationMs": 2334.0629999999655
+    },
+    {
+      "atMs": 267778.7993,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13298.89340000003
+    },
+    {
+      "atMs": 267779.8083,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 270025.4806,
+      "method": "assertLive",
+      "durationMs": 2244.9403000000166
+    },
+    {
+      "atMs": 275140.9437,
+      "method": "assertLive",
+      "durationMs": 3772.8804000000237
+    },
+    {
+      "atMs": 275149.8177,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11207.314899999998
+    },
+    {
+      "atMs": 279611.9039,
+      "method": "assertLive",
+      "durationMs": 4460.502800000017
+    },
+    {
+      "atMs": 283348.132,
+      "method": "assertLive",
+      "durationMs": 2503.3764000000083
+    },
+    {
+      "atMs": 286049.3889,
+      "method": "assertLive",
+      "durationMs": 2696.4135999999708
+    },
+    {
+      "atMs": 289096.571,
+      "method": "assertLive",
+      "durationMs": 3042.8629000000074
+    },
+    {
+      "atMs": 289101.5179,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 291409.61089999997,
+      "method": "assertLive",
+      "durationMs": 2306.435200000007
+    },
+    {
+      "atMs": 293023.7465,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 25243.93949999998
+    },
+    {
+      "atMs": 293025.0661,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823^{tree}"
+      ]
+    },
+    {
+      "atMs": 295429.8582,
+      "method": "assertLive",
+      "durationMs": 2403.591299999971
+    },
+    {
+      "atMs": 299067.31919999997,
+      "method": "assertLive",
+      "durationMs": 2525.3279999999795
+    },
+    {
+      "atMs": 299071.1988,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9969.684899999993
+    },
+    {
+      "atMs": 299072.4323,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "worktree",
+        "list",
+        "--porcelain",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 301721.8896,
+      "method": "assertLive",
+      "durationMs": 2648.275800000003
+    },
+    {
+      "atMs": 306164.7678,
+      "method": "assertLive",
+      "durationMs": 2803.7363999999943
+    },
+    {
+      "atMs": 308915.4645,
+      "method": "assertLive",
+      "durationMs": 2744.7655999999843
+    },
+    {
+      "atMs": 311344.6738,
+      "method": "assertLive",
+      "durationMs": 2424.9717999999993
+    },
+    {
+      "atMs": 311349.1308,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18324.060799999977
+    },
+    {
+      "atMs": 311350.6577,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12278.224400000006
+    },
+    {
+      "atMs": 311352.3051,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 314060.3763,
+      "method": "assertLive",
+      "durationMs": 2706.7113000000245
+    },
+    {
+      "atMs": 317090.9104,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 319732.83879999997,
+      "method": "assertLive",
+      "durationMs": 2640.6263000000035
+    },
+    {
+      "atMs": 324406.8466,
+      "method": "assertLive",
+      "durationMs": 2926.677800000005
+    },
+    {
+      "atMs": 324410.5589,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13058.25589999999
+    },
+    {
+      "atMs": 326985.7095,
+      "method": "assertLive",
+      "durationMs": 2573.314399999974
+    },
+    {
+      "atMs": 331293.2234,
+      "method": "assertLive",
+      "durationMs": 2618.018700000015
+    },
+    {
+      "atMs": 333810.6683,
+      "method": "assertLive",
+      "durationMs": 2510.690100000007
+    },
+    {
+      "atMs": 336609.1821,
+      "method": "assertLive",
+      "durationMs": 2794.5869999999995
+    },
+    {
+      "atMs": 336614.3722,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 339209.083,
+      "method": "assertLive",
+      "durationMs": 2592.618699999992
+    },
+    {
+      "atMs": 341193.2593,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 24102.350800000015
+    },
+    {
+      "atMs": 341195.5308,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 344082.2399,
+      "method": "assertLive",
+      "durationMs": 2885.4496999999974
+    },
+    {
+      "atMs": 348113.7945,
+      "method": "assertLive",
+      "durationMs": 2908.3613999999943
+    },
+    {
+      "atMs": 348118.359,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11503.991900000023
+    },
+    {
+      "atMs": 350841.7298,
+      "method": "assertLive",
+      "durationMs": 2721.7651999999653
+    },
+    {
+      "atMs": 354769.8087,
+      "method": "assertLive",
+      "durationMs": 2417.093200000003
+    },
+    {
+      "atMs": 357478.47969999997,
+      "method": "assertLive",
+      "durationMs": 2703.6103000000003
+    },
+    {
+      "atMs": 360262.2124,
+      "method": "assertLive",
+      "durationMs": 2780.4280000000144
+    },
+    {
+      "atMs": 360266.2657,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 362902.4415,
+      "method": "assertLive",
+      "durationMs": 2634.773999999976
+    },
+    {
+      "atMs": 364605.411,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 23409.883700000006
+    },
+    {
+      "atMs": 364606.7494,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 367363.4252,
+      "method": "assertLive",
+      "durationMs": 2755.3472000000183
+    },
+    {
+      "atMs": 372474.6134,
+      "method": "assertLive",
+      "durationMs": 3347.207300000009
+    },
+    {
+      "atMs": 372476.2925,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12210.028799999971
+    },
+    {
+      "atMs": 372477.4418,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "worktree",
+        "list",
+        "--porcelain",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 374161.2577,
+      "method": "assertLive",
+      "durationMs": 1682.6229000000167
+    },
+    {
+      "atMs": 378117.1259,
+      "method": "assertLive",
+      "durationMs": 2707.621700000018
+    },
+    {
+      "atMs": 380767.377,
+      "method": "assertLive",
+      "durationMs": 2645.0918999999994
+    },
+    {
+      "atMs": 383546.3582,
+      "method": "assertLive",
+      "durationMs": 2774.807700000005
+    },
+    {
+      "atMs": 383550.514,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18943.765799999994
+    },
+    {
+      "atMs": 383551.6753,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11074.235699999961
+    },
+    {
+      "atMs": 383552.6849,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 385789.3982,
+      "method": "assertLive",
+      "durationMs": 2235.7966000000015
+    },
+    {
+      "atMs": 388433.1212,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 391135.5603,
+      "method": "assertLive",
+      "durationMs": 2701.392199999944
+    },
+    {
+      "atMs": 395285.1251,
+      "method": "assertLive",
+      "durationMs": 2416.684100000013
+    },
+    {
+      "atMs": 395289.2934,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11736.604599999962
+    },
+    {
+      "atMs": 398758.6424,
+      "method": "assertLive",
+      "durationMs": 2714.800199999998
+    },
+    {
+      "atMs": 404727.3592,
+      "method": "assertLive",
+      "durationMs": 2858.6959999999963
+    },
+    {
+      "atMs": 408891.1505,
+      "method": "assertLive",
+      "durationMs": 2722.336499999976
+    },
+    {
+      "atMs": 411605.1483,
+      "method": "assertLive",
+      "durationMs": 2709.5458999999682
+    },
+    {
+      "atMs": 414272.5236,
+      "method": "assertLive",
+      "durationMs": 2662.506400000013
+    },
+    {
+      "atMs": 414277.75669999997,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 416832.2679,
+      "method": "assertLive",
+      "durationMs": 2552.58130000002
+    },
+    {
+      "atMs": 418513.2442,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 30080.125299999956
+    },
+    {
+      "atMs": 418514.0343,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 421200.6216,
+      "method": "assertLive",
+      "durationMs": 2686.0589000000036
+    },
+    {
+      "atMs": 425921.7623,
+      "method": "assertLive",
+      "durationMs": 2958.551299999992
+    },
+    {
+      "atMs": 425925.7339,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11647.983300000022
+    },
+    {
+      "atMs": 425929.5303,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 428481.7495,
+      "method": "assertLive",
+      "durationMs": 2550.8976000000257
+    },
+    {
+      "atMs": 432804.8776,
+      "method": "assertLive",
+      "durationMs": 2694.7358999999706
+    },
+    {
+      "atMs": 435517.3264,
+      "method": "assertLive",
+      "durationMs": 2708.0524999999907
+    },
+    {
+      "atMs": 438261.66359999997,
+      "method": "assertLive",
+      "durationMs": 2740.122000000032
+    },
+    {
+      "atMs": 438267.9489,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19753.910000000033
+    },
+    {
+      "atMs": 438269.6347,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12340.104400000011
+    },
+    {
+      "atMs": 438270.9705,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 440862.9288,
+      "method": "assertLive",
+      "durationMs": 2590.424100000004
+    },
+    {
+      "atMs": 442471.1044,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 444823.0369,
+      "method": "assertLive",
+      "durationMs": 2351.16320000001
+    },
+    {
+      "atMs": 449049.17949999997,
+      "method": "assertLive",
+      "durationMs": 2543.2888000000385
+    },
+    {
+      "atMs": 449053.5404,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10782.573499999999
+    },
+    {
+      "atMs": 449054.78729999997,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 451706.6334,
+      "method": "assertLive",
+      "durationMs": 2650.6898999999976
+    },
+    {
+      "atMs": 456149.9913,
+      "method": "assertLive",
+      "durationMs": 2657.794799999974
+    },
+    {
+      "atMs": 458753.7074,
+      "method": "assertLive",
+      "durationMs": 2595.9562999999616
+    },
+    {
+      "atMs": 461352.1719,
+      "method": "assertLive",
+      "durationMs": 2593.744000000006
+    },
+    {
+      "atMs": 461356.21009999997,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18885.10440000001
+    },
+    {
+      "atMs": 461357.659,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12302.866099999985
+    },
+    {
+      "atMs": 461359.2899,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 464027.2079,
+      "method": "assertLive",
+      "durationMs": 2666.375400000019
+    },
+    {
+      "atMs": 468914.3577,
+      "method": "assertLive",
+      "durationMs": 2527.1992999999784
+    },
+    {
+      "atMs": 474484.2855,
+      "method": "assertLive",
+      "durationMs": 2520.503100000031
+    },
+    {
+      "atMs": 478379.7629,
+      "method": "assertLive",
+      "durationMs": 2373.133999999962
+    },
+    {
+      "atMs": 478383.3592,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 17024.07170000003
+    },
+    {
+      "atMs": 478384.9863,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 481134.94,
+      "method": "assertLive",
+      "durationMs": 2748.668000000005
+    },
+    {
+      "atMs": 485437.4199,
+      "method": "assertLive",
+      "durationMs": 2681.8148999999976
+    },
+    {
+      "atMs": 488030.9809,
+      "method": "assertLive",
+      "durationMs": 2587.9993999999715
+    },
+    {
+      "atMs": 490650.5274,
+      "method": "assertLive",
+      "durationMs": 2617.347999999998
+    },
+    {
+      "atMs": 490654.4444,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 493275.02019999997,
+      "method": "assertLive",
+      "durationMs": 2619.2062999999616
+    },
+    {
+      "atMs": 494640.74929999997,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16255.767699999968
+    },
+    {
+      "atMs": 494641.8685,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 497242.0788,
+      "method": "assertLive",
+      "durationMs": 2599.3172000000486
+    },
+    {
+      "atMs": 501586.4653,
+      "method": "assertLive",
+      "durationMs": 2637.726800000004
+    },
+    {
+      "atMs": 501590.7766,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10936.333199999994
+    },
+    {
+      "atMs": 501593.8308,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 504396.7696,
+      "method": "assertLive",
+      "durationMs": 2801.778799999971
+    },
+    {
+      "atMs": 509002.543,
+      "method": "assertLive",
+      "durationMs": 2918.7318000000087
+    },
+    {
+      "atMs": 511741.0697,
+      "method": "assertLive",
+      "durationMs": 2733.2868000000017
+    },
+    {
+      "atMs": 514465.5982,
+      "method": "assertLive",
+      "durationMs": 2718.0790999999736
+    },
+    {
+      "atMs": 514469.2988,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19827.428199999966
+    },
+    {
+      "atMs": 514470.5499,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12876.719899999967
+    },
+    {
+      "atMs": 514471.847,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 517310.7486,
+      "method": "assertLive",
+      "durationMs": 2837.6708999999682
+    },
+    {
+      "atMs": 518950.4592,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 521699.3021,
+      "method": "assertLive",
+      "durationMs": 2748.1278000000166
+    },
+    {
+      "atMs": 526293.4854,
+      "method": "assertLive",
+      "durationMs": 2741.056899999967
+    },
+    {
+      "atMs": 526297.5113,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11825.664899999974
+    },
+    {
+      "atMs": 526298.562,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 529033.1536000001,
+      "method": "assertLive",
+      "durationMs": 2733.9444999999832
+    },
+    {
+      "atMs": 533451.559,
+      "method": "assertLive",
+      "durationMs": 2764.360900000087
+    },
+    {
+      "atMs": 536401.1407000001,
+      "method": "assertLive",
+      "durationMs": 2944.438300000038
+    },
+    {
+      "atMs": 539518.0574,
+      "method": "assertLive",
+      "durationMs": 3112.068800000008
+    },
+    {
+      "atMs": 539521.6919000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 20571.2304
+    },
+    {
+      "atMs": 539522.5381,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13223.97530000005
+    },
+    {
+      "atMs": 539523.0841000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 542520.4903000001,
+      "method": "assertLive",
+      "durationMs": 2996.562799999956
+    },
+    {
+      "atMs": 544238.9827,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 547094.9846000001,
+      "method": "assertLive",
+      "durationMs": 2855.2643999999855
+    },
+    {
+      "atMs": 551850.6345,
+      "method": "assertLive",
+      "durationMs": 2991.920700000017
+    },
+    {
+      "atMs": 551855.0376,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12331.948700000066
+    },
+    {
+      "atMs": 551856.3807000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 554509.4594,
+      "method": "assertLive",
+      "durationMs": 2651.8753999999026
+    },
+    {
+      "atMs": 559205.8306000001,
+      "method": "assertLive",
+      "durationMs": 3245.4601999999722
+    },
+    {
+      "atMs": 562461.2187000001,
+      "method": "assertLive",
+      "durationMs": 3248.9120999999577
+    },
+    {
+      "atMs": 565585.2348000001,
+      "method": "assertLive",
+      "durationMs": 3121.3122999999905
+    },
+    {
+      "atMs": 565589.9199000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 21350.933099999907
+    },
+    {
+      "atMs": 565591.1432,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13734.763999999966
+    },
+    {
+      "atMs": 565592.3283,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "update-ref",
+        "--no-deref",
+        "--stdin"
+      ]
+    },
+    {
+      "atMs": 568468.2717,
+      "method": "assertLive",
+      "durationMs": 2875.0864000000292
+    },
+    {
+      "atMs": 570313.3392,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 572265.6353000001,
+      "method": "assertLive",
+      "durationMs": 1950.4991000000155
+    },
+    {
+      "atMs": 576822.9369000001,
+      "method": "assertLive",
+      "durationMs": 2968.4561000000685
+    },
+    {
+      "atMs": 576827.3269000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11234.994699999923
+    },
+    {
+      "atMs": 582131.4410000001,
+      "method": "assertLive",
+      "durationMs": 3029.9440000000177
+    },
+    {
+      "atMs": 586516.5398,
+      "method": "assertLive",
+      "durationMs": 2570.643400000059
+    },
+    {
+      "atMs": 589535.5757,
+      "method": "assertLive",
+      "durationMs": 3014.5060999999987
+    },
+    {
+      "atMs": 592271.2146000001,
+      "method": "assertLive",
+      "durationMs": 2731.1318999999203
+    },
+    {
+      "atMs": 592275.5813000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 595041.4090000001,
+      "method": "assertLive",
+      "durationMs": 2764.9747000000207
+    },
+    {
+      "atMs": 596768.3038000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 26454.967900000047
+    },
+    {
+      "atMs": 596769.1440000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 599641.7506,
+      "method": "assertLive",
+      "durationMs": 2872.031699999934
+    },
+    {
+      "atMs": 604461.1863000001,
+      "method": "assertLive",
+      "durationMs": 2979.6713000000454
+    },
+    {
+      "atMs": 604465.9116000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12190.329400000046
+    },
+    {
+      "atMs": 604467.8394,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "worktree",
+        "add",
+        "--detach",
+        "--",
+        "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_338bd6b6c1cd829fc1b5ac3b641f12c3",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 607321.1218000001,
+      "method": "assertLive",
+      "durationMs": 2852.110400000005
+    },
+    {
+      "atMs": 611897.2071,
+      "method": "assertLive",
+      "durationMs": 2839.2273999999743
+    },
+    {
+      "atMs": 614824.9180000001,
+      "method": "assertLive",
+      "durationMs": 2922.5358000000706
+    },
+    {
+      "atMs": 617467.2501000001,
+      "method": "assertLive",
+      "durationMs": 2639.8847000000533
+    },
+    {
+      "atMs": 617470.6565,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 20701.511000000057
+    },
+    {
+      "atMs": 617471.7903000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13003.952200000058
+    },
+    {
+      "atMs": 617473.1357000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 620269.2899000001,
+      "method": "assertLive",
+      "durationMs": 2794.758700000006
+    },
+    {
+      "atMs": 623202.7087000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 625976.0522,
+      "method": "assertLive",
+      "durationMs": 2771.9218999999575
+    },
+    {
+      "atMs": 630500.7299,
+      "method": "assertLive",
+      "durationMs": 2655.422300000093
+    },
+    {
+      "atMs": 630503.9990000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13030.864599999972
+    },
+    {
+      "atMs": 630505.5725,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 633436.4143000001,
+      "method": "assertLive",
+      "durationMs": 2929.554600000032
+    },
+    {
+      "atMs": 638172.3369000001,
+      "method": "assertLive",
+      "durationMs": 2939.9031999999424
+    },
+    {
+      "atMs": 641260.3168,
+      "method": "assertLive",
+      "durationMs": 3084.1759999999776
+    },
+    {
+      "atMs": 644564.0842,
+      "method": "assertLive",
+      "durationMs": 3299.408999999985
+    },
+    {
+      "atMs": 644569.8485000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 21367.139599999995
+    },
+    {
+      "atMs": 644571.2025,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 14065.629199999967
+    },
+    {
+      "atMs": 644572.603,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 647517.6491,
+      "method": "assertLive",
+      "durationMs": 2943.5684999999357
+    },
+    {
+      "atMs": 649183.1206,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "update-ref",
+        "--no-deref",
+        "--stdin"
+      ]
+    },
+    {
+      "atMs": 652139.6762000001,
+      "method": "assertLive",
+      "durationMs": 2955.19430000009
+    },
+    {
+      "atMs": 656661.1269,
+      "method": "assertLive",
+      "durationMs": 2854.081600000034
+    },
+    {
+      "atMs": 656666.5678000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12093.962999999989
+    },
+    {
+      "atMs": 656668.8409000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 659430.8399,
+      "method": "assertLive",
+      "durationMs": 2760.1929000000237
+    },
+    {
+      "atMs": 664082.5566,
+      "method": "assertLive",
+      "durationMs": 2963.295599999954
+    },
+    {
+      "atMs": 666635.2748,
+      "method": "assertLive",
+      "durationMs": 2547.9971999999834
+    },
+    {
+      "atMs": 669482.689,
+      "method": "assertLive",
+      "durationMs": 2844.1747000000905
+    },
+    {
+      "atMs": 669486.4941,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 20303.37540000002
+    },
+    {
+      "atMs": 669488.1344000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12819.293700000038
+    },
+    {
+      "atMs": 674453.15,
+      "method": "assertLive",
+      "durationMs": 2786.0320000000065
+    },
+    {
+      "atMs": 676077.6290000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 678945.8057,
+      "method": "assertLive",
+      "durationMs": 2866.432700000005
+    },
+    {
+      "atMs": 683601.9225000001,
+      "method": "assertLive",
+      "durationMs": 2932.7706999999937
+    },
+    {
+      "atMs": 683606.1414000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 686571.9172,
+      "method": "assertLive",
+      "durationMs": 2963.8768000000855
+    },
+    {
+      "atMs": 691103.265,
+      "method": "assertLive",
+      "durationMs": 2748.482699999935
+    },
+    {
+      "atMs": 693711.2619,
+      "method": "assertLive",
+      "durationMs": 2603.7846000000136
+    },
+    {
+      "atMs": 696616.4257,
+      "method": "assertLive",
+      "durationMs": 2902.276899999939
+    },
+    {
+      "atMs": 696621.1633,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 20543.53370000003
+    },
+    {
+      "atMs": 696622.4645,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13016.324999999953
+    },
+    {
+      "atMs": 696624.6346000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 699634.2832000001,
+      "method": "assertLive",
+      "durationMs": 3007.8545999999624
+    },
+    {
+      "atMs": 701140.9065,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "worktree",
+        "add",
+        "--detach",
+        "--",
+        "C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BTKQvf\\owner private\\state\\projects\\prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40\\worktrees\\wt_4c7e9237d98bcdc07630baf65269505a",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823"
+      ]
+    },
+    {
+      "atMs": 704083.1378,
+      "method": "assertLive",
+      "durationMs": 2941.1119999999646
+    },
+    {
+      "atMs": 708411.4677,
+      "method": "assertLive",
+      "durationMs": 2666.984300000011
+    },
+    {
+      "atMs": 708414.5258000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11789.89480000001
+    },
+    {
+      "atMs": 708415.8232000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "HEAD",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 711047.1994,
+      "method": "assertLive",
+      "durationMs": 2630.262999999919
+    },
+    {
+      "atMs": 715302.5321000001,
+      "method": "assertLive",
+      "durationMs": 2715.971499999985
+    },
+    {
+      "atMs": 717991.2665,
+      "method": "assertLive",
+      "durationMs": 2683.323999999906
+    },
+    {
+      "atMs": 720627.0892,
+      "method": "assertLive",
+      "durationMs": 2631.3884000000544
+    },
+    {
+      "atMs": 720631.5932,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19490.685899999924
+    },
+    {
+      "atMs": 720633.1598,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12217.336099999957
+    },
+    {
+      "atMs": 721542.5085,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 724325.5859000001,
+      "method": "assertLive",
+      "durationMs": 2781.6045999999624
+    },
+    {
+      "atMs": 729326.7333000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 731981.6471000001,
+      "method": "assertLive",
+      "durationMs": 2653.464900000021
+    },
+    {
+      "atMs": 736448.5843000001,
+      "method": "assertLive",
+      "durationMs": 2819.5566999999573
+    },
+    {
+      "atMs": 736452.0713000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 14909.563300000038
+    },
+    {
+      "atMs": 736453.1443,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 738860.533,
+      "method": "assertLive",
+      "durationMs": 2406.5132999999914
+    },
+    {
+      "atMs": 742888.7905,
+      "method": "assertLive",
+      "durationMs": 2351.8731000000844
+    },
+    {
+      "atMs": 745271.9467000001,
+      "method": "assertLive",
+      "durationMs": 2378.0997000000207
+    },
+    {
+      "atMs": 748147.3245000001,
+      "method": "assertLive",
+      "durationMs": 2871.7895000000717
+    },
+    {
+      "atMs": 748151.6362000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18824.90399999998
+    },
+    {
+      "atMs": 748152.8352000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11699.690900000045
+    },
+    {
+      "atMs": 748154.0549000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 750765.2195,
+      "method": "assertLive",
+      "durationMs": 2609.826699999976
+    },
+    {
+      "atMs": 752401.6852000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 754996.8199,
+      "method": "assertLive",
+      "durationMs": 2594.43889999995
+    },
+    {
+      "atMs": 759141.9422,
+      "method": "assertLive",
+      "durationMs": 2464.105199999991
+    },
+    {
+      "atMs": 759146.2442000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10992.18869999994
+    },
+    {
+      "atMs": 759147.9496,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 761808.8943,
+      "method": "assertLive",
+      "durationMs": 2659.734300000011
+    },
+    {
+      "atMs": 765921.2027,
+      "method": "assertLive",
+      "durationMs": 2533.3329000000376
+    },
+    {
+      "atMs": 768812.746,
+      "method": "assertLive",
+      "durationMs": 2887.6877000000095
+    },
+    {
+      "atMs": 771412.4004,
+      "method": "assertLive",
+      "durationMs": 2594.532899999991
+    },
+    {
+      "atMs": 771417.0255000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19015.337900000042
+    },
+    {
+      "atMs": 771418.3091000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12270.361599999946
+    },
+    {
+      "atMs": 771419.6435,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 773796.5073,
+      "method": "assertLive",
+      "durationMs": 2375.57500000007
+    },
+    {
+      "atMs": 775172.0082,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 777893.2002000001,
+      "method": "assertLive",
+      "durationMs": 2719.6485000000102
+    },
+    {
+      "atMs": 781998.7087000001,
+      "method": "assertLive",
+      "durationMs": 2496.2072000000626
+    },
+    {
+      "atMs": 782002.5064000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10582.861900000018
+    },
+    {
+      "atMs": 782004.3594000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 784616.7114,
+      "method": "assertLive",
+      "durationMs": 2611.2097000000067
+    },
+    {
+      "atMs": 788940.3469,
+      "method": "assertLive",
+      "durationMs": 2741.021300000022
+    },
+    {
+      "atMs": 791659.3527,
+      "method": "assertLive",
+      "durationMs": 2714.59719999996
+    },
+    {
+      "atMs": 794199.4402000001,
+      "method": "assertLive",
+      "durationMs": 2536.031100000022
+    },
+    {
+      "atMs": 794202.5766,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19030.56660000002
+    },
+    {
+      "atMs": 794203.4365000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12199.079799999949
+    },
+    {
+      "atMs": 794204.5023,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "HEAD",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 796726.4297000001,
+      "method": "assertLive",
+      "durationMs": 2520.488699999987
+    },
+    {
+      "atMs": 798240.6832000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 800872.4303,
+      "method": "assertLive",
+      "durationMs": 2630.435899999924
+    },
+    {
+      "atMs": 805262.6223,
+      "method": "assertLive",
+      "durationMs": 2689.2519999999786
+    },
+    {
+      "atMs": 805266.3353,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11061.830100000021
+    },
+    {
+      "atMs": 808743.1196000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 811045.8127,
+      "method": "assertLive",
+      "durationMs": 2301.0064999999013
+    },
+    {
+      "atMs": 815270.7959,
+      "method": "assertLive",
+      "durationMs": 2562.5010000000475
+    },
+    {
+      "atMs": 817850.6283000001,
+      "method": "assertLive",
+      "durationMs": 2575.6226000000024
+    },
+    {
+      "atMs": 820509.7206,
+      "method": "assertLive",
+      "durationMs": 2655.3294999999925
+    },
+    {
+      "atMs": 820513.2467,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 22272.562799999956
+    },
+    {
+      "atMs": 820514.5711000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11771.461499999976
+    },
+    {
+      "atMs": 820515.7484,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 823283.3579000001,
+      "method": "assertLive",
+      "durationMs": 2766.469999999972
+    },
+    {
+      "atMs": 824748.0132,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 827601.3875000001,
+      "method": "assertLive",
+      "durationMs": 2852.551600000006
+    },
+    {
+      "atMs": 831834.1177000001,
+      "method": "assertLive",
+      "durationMs": 2577.5266999999294
+    },
+    {
+      "atMs": 831838.6917000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11322.942600000068
+    },
+    {
+      "atMs": 834306.2420000001,
+      "method": "assertLive",
+      "durationMs": 2465.841000000015
+    },
+    {
+      "atMs": 838773.7511000001,
+      "method": "assertLive",
+      "durationMs": 2767.9173000000883
+    },
+    {
+      "atMs": 841483.1345,
+      "method": "assertLive",
+      "durationMs": 2705.5781000000425
+    },
+    {
+      "atMs": 844356.0779,
+      "method": "assertLive",
+      "durationMs": 2869.525799999945
+    },
+    {
+      "atMs": 844359.973,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 846740.9605,
+      "method": "assertLive",
+      "durationMs": 2380.163500000024
+    },
+    {
+      "atMs": 848215.6410000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 23467.627600000007
+    },
+    {
+      "atMs": 848216.9805000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 850913.6398,
+      "method": "assertLive",
+      "durationMs": 2695.4298999999883
+    },
+    {
+      "atMs": 855201.6263,
+      "method": "assertLive",
+      "durationMs": 2645.918500000029
+    },
+    {
+      "atMs": 855205.2203,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10845.246100000106
+    },
+    {
+      "atMs": 855208.8037,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 857747.3645,
+      "method": "assertLive",
+      "durationMs": 2537.2005000000354
+    },
+    {
+      "atMs": 862088.8885,
+      "method": "assertLive",
+      "durationMs": 2818.3833999999333
+    },
+    {
+      "atMs": 864612.4316,
+      "method": "assertLive",
+      "durationMs": 2518.9093000000576
+    },
+    {
+      "atMs": 867067.2717,
+      "method": "assertLive",
+      "durationMs": 2450.371299999999
+    },
+    {
+      "atMs": 867070.9133,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18853.93180000002
+    },
+    {
+      "atMs": 867072.2573,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11863.491200000048
+    },
+    {
+      "atMs": 867073.6131000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 869710.8831000001,
+      "method": "assertLive",
+      "durationMs": 2635.7669999999925
+    },
+    {
+      "atMs": 871372.9521000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 875277.1209000001,
+      "method": "assertLive",
+      "durationMs": 3902.725300000049
+    },
+    {
+      "atMs": 881086.7508,
+      "method": "assertLive",
+      "durationMs": 2290.5555000000168
+    },
+    {
+      "atMs": 881092.6272000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 14019.014399999985
+    },
+    {
+      "atMs": 881094.3697,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 884181.6542000001,
+      "method": "assertLive",
+      "durationMs": 3086.3545999999624
+    },
+    {
+      "atMs": 889028.0388000001,
+      "method": "assertLive",
+      "durationMs": 3052.075300000026
+    },
+    {
+      "atMs": 891816.5567000001,
+      "method": "assertLive",
+      "durationMs": 2782.1940999999642
+    },
+    {
+      "atMs": 894528.9133,
+      "method": "assertLive",
+      "durationMs": 2707.7478999999585
+    },
+    {
+      "atMs": 894532.9486,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 23159.9902
+    },
+    {
+      "atMs": 894534.6406,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13440.267299999949
+    },
+    {
+      "atMs": 894535.9605,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 897239.5224,
+      "method": "assertLive",
+      "durationMs": 2702.9401999999536
+    },
+    {
+      "atMs": 898918.7979,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 901538.4327,
+      "method": "assertLive",
+      "durationMs": 2618.288900000043
+    },
+    {
+      "atMs": 906261.3690000001,
+      "method": "assertLive",
+      "durationMs": 2770.4524999998976
+    },
+    {
+      "atMs": 906263.6236,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11727.661800000002
+    },
+    {
+      "atMs": 906264.8753000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 909006.1633,
+      "method": "assertLive",
+      "durationMs": 2740.066499999957
+    },
+    {
+      "atMs": 913665.0397000001,
+      "method": "assertLive",
+      "durationMs": 2874.6659999999683
+    },
+    {
+      "atMs": 916301.449,
+      "method": "assertLive",
+      "durationMs": 2630.9836999999825
+    },
+    {
+      "atMs": 918793.4152,
+      "method": "assertLive",
+      "durationMs": 2488.1942999999737
+    },
+    {
+      "atMs": 918797.4638,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19878.66319999995
+    },
+    {
+      "atMs": 918798.9197000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12534.04269999999
+    },
+    {
+      "atMs": 921293.4587000001,
+      "method": "assertLive",
+      "durationMs": 2492.7569999999832
+    },
+    {
+      "atMs": 922949.8877000001,
+      "method": "provision",
+      "phase": "end",
+      "durationMs": 793056.7474
+    },
+    {
+      "atMs": 925741.9441000001,
+      "method": "assertLive",
+      "durationMs": 2790.7452999999514
+    },
+    {
+      "atMs": 930609.4009,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 933279.8866000001,
+      "method": "assertLive",
+      "durationMs": 2669.3878999999724
+    },
+    {
+      "atMs": 937736.9996000001,
+      "method": "assertLive",
+      "durationMs": 2802.173499999917
+    },
+    {
+      "atMs": 937740.4323000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 940719.376,
+      "method": "assertLive",
+      "durationMs": 2977.919600000023
+    },
+    {
+      "atMs": 945942.1445,
+      "method": "assertLive",
+      "durationMs": 3154.7859999999637
+    },
+    {
+      "atMs": 948787.6588000001,
+      "method": "assertLive",
+      "durationMs": 2839.0940999999875
+    },
+    {
+      "atMs": 951462.0700000001,
+      "method": "assertLive",
+      "durationMs": 2670.398199999938
+    },
+    {
+      "atMs": 951466.1381000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 20856.73490000004
+    },
+    {
+      "atMs": 951467.6011000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 13727.168400000082
+    },
+    {
+      "atMs": 951468.9087,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 953947.1276,
+      "method": "assertLive",
+      "durationMs": 2476.9276000000536
+    },
+    {
+      "atMs": 955519.6346000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 958190.8245000001,
+      "method": "assertLive",
+      "durationMs": 2669.724399999948
+    },
+    {
+      "atMs": 962403.8912000001,
+      "method": "assertLive",
+      "durationMs": 2556.504399999976
+    },
+    {
+      "atMs": 962408.0151000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10939.108400000026
+    },
+    {
+      "atMs": 962409.5051000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 965409.282,
+      "method": "assertLive",
+      "durationMs": 2998.5266999999294
+    },
+    {
+      "atMs": 969617.2167000001,
+      "method": "assertLive",
+      "durationMs": 2694.678900000057
+    },
+    {
+      "atMs": 972306.0915000001,
+      "method": "assertLive",
+      "durationMs": 2684.2992000000086
+    },
+    {
+      "atMs": 974914.2565,
+      "method": "assertLive",
+      "durationMs": 2605.0259999999544
+    },
+    {
+      "atMs": 974919.7156,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19400.078600000008
+    },
+    {
+      "atMs": 974921.3634,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12511.858299999963
+    },
+    {
+      "atMs": 974922.8566,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 977567.7811,
+      "method": "assertLive",
+      "durationMs": 2643.4747000000207
+    },
+    {
+      "atMs": 979118.4984,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 981885.7399,
+      "method": "assertLive",
+      "durationMs": 2765.850700000068
+    },
+    {
+      "atMs": 986242.8635000001,
+      "method": "assertLive",
+      "durationMs": 2739.468700000085
+    },
+    {
+      "atMs": 986247.0276,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11324.171299999929
+    },
+    {
+      "atMs": 986248.7598,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 988880.6270000001,
+      "method": "assertLive",
+      "durationMs": 2630.48749999993
+    },
+    {
+      "atMs": 993087.6745000001,
+      "method": "assertLive",
+      "durationMs": 2553.8535000000848
+    },
+    {
+      "atMs": 995686.804,
+      "method": "assertLive",
+      "durationMs": 2594.6628999999957
+    },
+    {
+      "atMs": 998360.0067,
+      "method": "assertLive",
+      "durationMs": 2670.137100000051
+    },
+    {
+      "atMs": 998363.7243,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19245.132400000002
+    },
+    {
+      "atMs": 998364.9247000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12116.167999999947
+    },
+    {
+      "atMs": 998366.1154,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1000945.1292000001,
+      "method": "assertLive",
+      "durationMs": 2577.7528000000166
+    },
+    {
+      "atMs": 1002611.4961000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1005402.7608,
+      "method": "assertLive",
+      "durationMs": 2789.7961999999825
+    },
+    {
+      "atMs": 1009817.611,
+      "method": "assertLive",
+      "durationMs": 2707.2456999999704
+    },
+    {
+      "atMs": 1009821.594,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11455.481199999922
+    },
+    {
+      "atMs": 1009822.2962000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1012114.7567,
+      "method": "assertLive",
+      "durationMs": 2291.9660999999614
+    },
+    {
+      "atMs": 1016694.3196,
+      "method": "assertLive",
+      "durationMs": 2923.320399999968
+    },
+    {
+      "atMs": 1019343.2904,
+      "method": "assertLive",
+      "durationMs": 2641.438400000101
+    },
+    {
+      "atMs": 1021966.248,
+      "method": "assertLive",
+      "durationMs": 2619.2485999999335
+    },
+    {
+      "atMs": 1021969.9671,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19358.46989999991
+    },
+    {
+      "atMs": 1021970.9025000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12148.604999999981
+    },
+    {
+      "atMs": 1024745.5581,
+      "method": "assertLive",
+      "durationMs": 2773.1019000000088
+    },
+    {
+      "atMs": 1026464.7725000001,
+      "method": "provision",
+      "phase": "end",
+      "durationMs": 819714.4316
+    },
+    {
+      "atMs": 1029073.2064,
+      "method": "assertLive",
+      "durationMs": 2606.869799999986
+    },
+    {
+      "atMs": 1033488.7756,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 1036020.1217,
+      "method": "assertLive",
+      "durationMs": 2530.6633000000147
+    },
+    {
+      "atMs": 1040293.1451000001,
+      "method": "assertLive",
+      "durationMs": 2477.874499999918
+    },
+    {
+      "atMs": 1040298.6721000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1042655.5277000001,
+      "method": "assertLive",
+      "durationMs": 2355.208699999959
+    },
+    {
+      "atMs": 1046805.8147000001,
+      "method": "assertLive",
+      "durationMs": 2392.3727000000654
+    },
+    {
+      "atMs": 1049325.5394000001,
+      "method": "assertLive",
+      "durationMs": 2515.0247000000672
+    },
+    {
+      "atMs": 1051640.3554,
+      "method": "assertLive",
+      "durationMs": 2311.0860000001267
+    },
+    {
+      "atMs": 1051645.4714000002,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18156.69160000002
+    },
+    {
+      "atMs": 1051646.7386,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11348.07520000008
+    },
+    {
+      "atMs": 1051647.9006,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 1054264.7427,
+      "method": "assertLive",
+      "durationMs": 2615.784100000048
+    },
+    {
+      "atMs": 1056094.8682000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 1059040.6606,
+      "method": "assertLive",
+      "durationMs": 2944.370399999898
+    },
+    {
+      "atMs": 1063113.3826000001,
+      "method": "assertLive",
+      "durationMs": 2583.27780000004
+    },
+    {
+      "atMs": 1063118.4011000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11470.497100000037
+    },
+    {
+      "atMs": 1063120.5601000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 1065796.6495,
+      "method": "assertLive",
+      "durationMs": 2674.6736000000965
+    },
+    {
+      "atMs": 1069979.0655,
+      "method": "assertLive",
+      "durationMs": 2530.2361000000965
+    },
+    {
+      "atMs": 1072660.4823,
+      "method": "assertLive",
+      "durationMs": 2675.127499999944
+    },
+    {
+      "atMs": 1075534.806,
+      "method": "assertLive",
+      "durationMs": 2869.845399999991
+    },
+    {
+      "atMs": 1075539.5002000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 19444.63280000002
+    },
+    {
+      "atMs": 1075541.065,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 12420.461699999869
+    },
+    {
+      "atMs": 1075542.6138000002,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1078260.6862,
+      "method": "assertLive",
+      "durationMs": 2716.780100000091
+    },
+    {
+      "atMs": 1080064.9846,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1082663.1197000002,
+      "method": "assertLive",
+      "durationMs": 2596.7329000001773
+    },
+    {
+      "atMs": 1087457.9343,
+      "method": "assertLive",
+      "durationMs": 2854.8846999998204
+    },
+    {
+      "atMs": 1087462.0964000002,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11919.482700000051
+    },
+    {
+      "atMs": 1087464.0197,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 1089791.6082000001,
+      "method": "assertLive",
+      "durationMs": 2326.4246000000276
+    },
+    {
+      "atMs": 1093979.213,
+      "method": "assertLive",
+      "durationMs": 2600.256700000027
+    },
+    {
+      "atMs": 1096169.8933,
+      "method": "assertLive",
+      "durationMs": 2185.808200000087
+    },
+    {
+      "atMs": 1098458.2833,
+      "method": "assertLive",
+      "durationMs": 2284.2685000000056
+    },
+    {
+      "atMs": 1098460.0138,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 18395.03019999992
+    },
+    {
+      "atMs": 1098461.352,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 10997.333800000139
+    },
+    {
+      "atMs": 1098462.3794,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1100966.702,
+      "method": "assertLive",
+      "durationMs": 2503.2090000000317
+    },
+    {
+      "atMs": 1102098.4297,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1104312.5608,
+      "method": "assertLive",
+      "durationMs": 2212.7931000001263
+    },
+    {
+      "atMs": 1107866.2248,
+      "method": "assertLive",
+      "durationMs": 2324.684000000125
+    },
+    {
+      "atMs": 1107870.7403,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9408.361999999965
+    },
+    {
+      "atMs": 1107871.8994,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1110472.6195,
+      "method": "assertLive",
+      "durationMs": 2599.566799999913
+    },
+    {
+      "atMs": 1114269.8447,
+      "method": "assertLive",
+      "durationMs": 2384.6184000000358
+    },
+    {
+      "atMs": 1116480.5217000002,
+      "method": "assertLive",
+      "durationMs": 2204.783899999922
+    },
+    {
+      "atMs": 1119018.6264,
+      "method": "assertLive",
+      "durationMs": 2533.8623999999836
+    },
+    {
+      "atMs": 1119021.4586,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 16923.031399999978
+    },
+    {
+      "atMs": 1119022.1125,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11150.217799999984
+    },
+    {
+      "atMs": 1121059.1123000002,
+      "method": "assertLive",
+      "durationMs": 2036.3177000000142
+    },
+    {
+      "atMs": 1125177.8831,
+      "method": "assertLive",
+      "durationMs": 2539.15699999989
+    },
+    {
+      "atMs": 1128793.041,
+      "method": "assertLive",
+      "durationMs": 2392.215999999782
+    },
+    {
+      "atMs": 1128796.3535,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_851e80f3c9f8ed0616814015e4aa019f"
+      ]
+    },
+    {
+      "atMs": 1131516.9292000001,
+      "method": "assertLive",
+      "durationMs": 2719.150200000033
+    },
+    {
+      "atMs": 1135176.1444,
+      "method": "assertLive",
+      "durationMs": 2540.4187000000384
+    },
+    {
+      "atMs": 1138027.0150000001,
+      "method": "assertLive",
+      "durationMs": 2846.00270000007
+    },
+    {
+      "atMs": 1138032.5126,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9236.160200000042
+    },
+    {
+      "atMs": 1138036.6016000002,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 1139839.1117,
+      "method": "assertLive",
+      "durationMs": 1801.0853000001516
+    },
+    {
+      "atMs": 1143386.3695,
+      "method": "assertLive",
+      "durationMs": 2214.129500000039
+    },
+    {
+      "atMs": 1147775.9651000001,
+      "method": "assertLive",
+      "durationMs": 2476.7436000001617
+    },
+    {
+      "atMs": 1147780.5418,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9743.940799999982
+    },
+    {
+      "atMs": 1147782.1707000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1150367.1236,
+      "method": "assertLive",
+      "durationMs": 2583.8841999999713
+    },
+    {
+      "atMs": 1154113.2958,
+      "method": "assertLive",
+      "durationMs": 2348.497300000163
+    },
+    {
+      "atMs": 1156470.9341,
+      "method": "assertLive",
+      "durationMs": 2352.7593999998644
+    },
+    {
+      "atMs": 1156475.0934000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8692.923600000096
+    },
+    {
+      "atMs": 1156476.2387,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1158668.3085,
+      "method": "assertLive",
+      "durationMs": 2190.9569999999367
+    },
+    {
+      "atMs": 1163461.1908,
+      "method": "assertLive",
+      "durationMs": 2492.398599999957
+    },
+    {
+      "atMs": 1163464.2333,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 6987.998000000138
+    },
+    {
+      "atMs": 1163464.9627,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1165574.6696000001,
+      "method": "assertLive",
+      "durationMs": 2109.2605999999214
+    },
+    {
+      "atMs": 1170319.2305,
+      "method": "assertLive",
+      "durationMs": 2628.15410000016
+    },
+    {
+      "atMs": 1170323.5917,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 6858.625400000019
+    },
+    {
+      "atMs": 1172685.4272,
+      "method": "assertLive",
+      "durationMs": 2360.249000000069
+    },
+    {
+      "atMs": 1176492.0977,
+      "method": "assertLive",
+      "durationMs": 2559.095500000054
+    },
+    {
+      "atMs": 1179752.9932000001,
+      "method": "assertLive",
+      "durationMs": 2321.4579999998678
+    },
+    {
+      "atMs": 1180518.2147000001,
+      "method": "capture",
+      "phase": "begin"
+    },
+    {
+      "atMs": 1183363.9035,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 1185887.3575000002,
+      "method": "assertLive",
+      "durationMs": 2522.308199999854
+    },
+    {
+      "atMs": 1189477.4023,
+      "method": "assertLive",
+      "durationMs": 2280.649099999806
+    },
+    {
+      "atMs": 1191974.5393,
+      "method": "assertLive",
+      "durationMs": 2491.833299999824
+    },
+    {
+      "atMs": 1191978.4511,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8614.54740000004
+    },
+    {
+      "atMs": 1191979.8378,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 1194582.999,
+      "method": "assertLive",
+      "durationMs": 2601.871400000062
+    },
+    {
+      "atMs": 1198394.8783,
+      "method": "assertLive",
+      "durationMs": 2413.6720000000205
+    },
+    {
+      "atMs": 1201272.1936,
+      "method": "assertLive",
+      "durationMs": 2873.4502000000793
+    },
+    {
+      "atMs": 1201274.4122000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9294.572999999858
+    },
+    {
+      "atMs": 1201276.2477,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 1203914.5911,
+      "method": "assertLive",
+      "durationMs": 2636.9801999998745
+    },
+    {
+      "atMs": 1207715.9116,
+      "method": "assertLive",
+      "durationMs": 2093.711899999995
+    },
+    {
+      "atMs": 1209845.1344,
+      "method": "assertLive",
+      "durationMs": 2123.651199999964
+    },
+    {
+      "atMs": 1209848.0393,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8571.796499999939
+    },
+    {
+      "atMs": 1209849.5457000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1211939.3159,
+      "method": "assertLive",
+      "durationMs": 2088.4955000001937
+    },
+    {
+      "atMs": 1215824.4621000001,
+      "method": "assertLive",
+      "durationMs": 2463.623400000157
+    },
+    {
+      "atMs": 1218418.3484,
+      "method": "assertLive",
+      "durationMs": 2589.906799999997
+    },
+    {
+      "atMs": 1218422.2471,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8572.703699999955
+    },
+    {
+      "atMs": 1218423.1034000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 1220549.2846000001,
+      "method": "assertLive",
+      "durationMs": 2125.6710000000894
+    },
+    {
+      "atMs": 1224806.6128,
+      "method": "assertLive",
+      "durationMs": 2677.656599999871
+    },
+    {
+      "atMs": 1226980.9452,
+      "method": "assertLive",
+      "durationMs": 2168.999699999811
+    },
+    {
+      "atMs": 1226984.4191,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8561.311600000132
+    },
+    {
+      "atMs": 1226986.1163,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1229594.173,
+      "method": "assertLive",
+      "durationMs": 2606.7072000000626
+    },
+    {
+      "atMs": 1233238.8878000001,
+      "method": "assertLive",
+      "durationMs": 2410.0826000000816
+    },
+    {
+      "atMs": 1235774.4181000001,
+      "method": "assertLive",
+      "durationMs": 2530.3315000000875
+    },
+    {
+      "atMs": 1235779.1596000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8793.046400000108
+    },
+    {
+      "atMs": 1238081.7933,
+      "method": "assertLive",
+      "durationMs": 2300.9939000001177
+    },
+    {
+      "atMs": 1242792.4593,
+      "method": "assertLive",
+      "durationMs": 3138.973299999954
+    },
+    {
+      "atMs": 1244687.4784000001,
+      "method": "assertLive",
+      "durationMs": 1889.1496999999508
+    },
+    {
+      "atMs": 1244690.0064,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1247070.291,
+      "method": "assertLive",
+      "durationMs": 2378.999300000025
+    },
+    {
+      "atMs": 1250483.2942000001,
+      "method": "assertLive",
+      "durationMs": 2227.815699999919
+    },
+    {
+      "atMs": 1252677.0161000001,
+      "method": "assertLive",
+      "durationMs": 2189.0845000001136
+    },
+    {
+      "atMs": 1252681.1504000002,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7991.146399999969
+    },
+    {
+      "atMs": 1252683.9688000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 1255172.1581000001,
+      "method": "assertLive",
+      "durationMs": 2487.2715000000317
+    },
+    {
+      "atMs": 1259425.0315,
+      "method": "assertLive",
+      "durationMs": 2642.530800000066
+    },
+    {
+      "atMs": 1261972.7413,
+      "method": "assertLive",
+      "durationMs": 2542.976500000106
+    },
+    {
+      "atMs": 1261976.5326,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9292.563099999912
+    },
+    {
+      "atMs": 1261977.799,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1264816.013,
+      "method": "assertLive",
+      "durationMs": 2837.12369999988
+    },
+    {
+      "atMs": 1268399.3193,
+      "method": "assertLive",
+      "durationMs": 2094.7069000001065
+    },
+    {
+      "atMs": 1270499.0586,
+      "method": "assertLive",
+      "durationMs": 2092.962899999926
+    },
+    {
+      "atMs": 1270503.2341,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8525.432100000093
+    },
+    {
+      "atMs": 1270504.4388000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1272553.4165,
+      "method": "assertLive",
+      "durationMs": 2047.8522999999113
+    },
+    {
+      "atMs": 1275940.4321,
+      "method": "assertLive",
+      "durationMs": 2253.152200000128
+    },
+    {
+      "atMs": 1278091.3032,
+      "method": "assertLive",
+      "durationMs": 2145.0193999998737
+    },
+    {
+      "atMs": 1278095.4507000002,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7591.012600000016
+    },
+    {
+      "atMs": 1278097.1963,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1280055.3957,
+      "method": "assertLive",
+      "durationMs": 1956.8342999999877
+    },
+    {
+      "atMs": 1283925.1748000002,
+      "method": "assertLive",
+      "durationMs": 2613.841500000097
+    },
+    {
+      "atMs": 1286374.6147,
+      "method": "assertLive",
+      "durationMs": 2444.7061000000685
+    },
+    {
+      "atMs": 1286379.0067,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8281.81299999985
+    },
+    {
+      "atMs": 1288988.9505,
+      "method": "assertLive",
+      "durationMs": 2608.2404000000097
+    },
+    {
+      "atMs": 1292150.8207,
+      "method": "assertLive",
+      "durationMs": 1981.8913000000175
+    },
+    {
+      "atMs": 1294077.9326,
+      "method": "assertLive",
+      "durationMs": 1920.378600000171
+    },
+    {
+      "atMs": 1294081.1570000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1296491.4971,
+      "method": "assertLive",
+      "durationMs": 2408.9737999998033
+    },
+    {
+      "atMs": 1300501.1006,
+      "method": "assertLive",
+      "durationMs": 2457.718499999959
+    },
+    {
+      "atMs": 1303052.4127,
+      "method": "assertLive",
+      "durationMs": 2547.437099999981
+    },
+    {
+      "atMs": 1303056.5975000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8975.443900000071
+    },
+    {
+      "atMs": 1304930.2774,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1307461.6019000001,
+      "method": "assertLive",
+      "durationMs": 2530.625899999868
+    },
+    {
+      "atMs": 1310634.8108,
+      "method": "assertLive",
+      "durationMs": 1924.6409999998286
+    },
+    {
+      "atMs": 1313013.6899,
+      "method": "assertLive",
+      "durationMs": 2374.37630000012
+    },
+    {
+      "atMs": 1313018.0961,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8087.816700000083
+    },
+    {
+      "atMs": 1313019.4337000002,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "-v",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1315561.2431,
+      "method": "assertLive",
+      "durationMs": 2540.690500000026
+    },
+    {
+      "atMs": 1319437.1452000001,
+      "method": "assertLive",
+      "durationMs": 2337.745799999917
+    },
+    {
+      "atMs": 1321738.0435000001,
+      "method": "assertLive",
+      "durationMs": 2295.5419000000693
+    },
+    {
+      "atMs": 1321742.6817,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8723.251200000057
+    },
+    {
+      "atMs": 1321744.503,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1324369.494,
+      "method": "assertLive",
+      "durationMs": 2622.032099999953
+    },
+    {
+      "atMs": 1328309.8013000002,
+      "method": "assertLive",
+      "durationMs": 2596.7363999998197
+    },
+    {
+      "atMs": 1330770.8523000001,
+      "method": "assertLive",
+      "durationMs": 2455.3031999999657
+    },
+    {
+      "atMs": 1330775.2008,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9030.700999999885
+    },
+    {
+      "atMs": 1330776.3847,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 1333219.4806000001,
+      "method": "assertLive",
+      "durationMs": 2441.899399999995
+    },
+    {
+      "atMs": 1337517.6266,
+      "method": "assertLive",
+      "durationMs": 2587.6445999999996
+    },
+    {
+      "atMs": 1339926.868,
+      "method": "assertLive",
+      "durationMs": 2402.5838999999687
+    },
+    {
+      "atMs": 1339928.6904,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9152.308600000106
+    },
+    {
+      "atMs": 1339929.3878000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "-t",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999"
+      ]
+    },
+    {
+      "atMs": 1342254.9803000002,
+      "method": "assertLive",
+      "durationMs": 2325.1126999999397
+    },
+    {
+      "atMs": 1346028.933,
+      "method": "assertLive",
+      "durationMs": 2428.6829000001308
+    },
+    {
+      "atMs": 1348308.9813,
+      "method": "assertLive",
+      "durationMs": 2274.872500000056
+    },
+    {
+      "atMs": 1348311.9223,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8382.531600000104
+    },
+    {
+      "atMs": 1348313.2061,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999^{tree}"
+      ]
+    },
+    {
+      "atMs": 1350953.0736,
+      "method": "assertLive",
+      "durationMs": 2638.5790999999736
+    },
+    {
+      "atMs": 1355031.0164,
+      "method": "assertLive",
+      "durationMs": 2485.4851999999955
+    },
+    {
+      "atMs": 1357098.4268,
+      "method": "assertLive",
+      "durationMs": 2062.4137999999803
+    },
+    {
+      "atMs": 1357102.1224,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8788.917299999855
+    },
+    {
+      "atMs": 1357103.5091000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-tree",
+        "-r",
+        "-z",
+        "--full-tree",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999"
+      ]
+    },
+    {
+      "atMs": 1359393.3623000002,
+      "method": "assertLive",
+      "durationMs": 2288.747800000012
+    },
+    {
+      "atMs": 1363391.23,
+      "method": "assertLive",
+      "durationMs": 2454.537800000049
+    },
+    {
+      "atMs": 1365547.3783,
+      "method": "assertLive",
+      "durationMs": 2148.9222999999765
+    },
+    {
+      "atMs": 1365551.5306,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8448.021799999988
+    },
+    {
+      "atMs": 1365552.7837,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "merge-base",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999"
+      ]
+    },
+    {
+      "atMs": 1368116.2113,
+      "method": "assertLive",
+      "durationMs": 2562.366699999897
+    },
+    {
+      "atMs": 1371803.3661,
+      "method": "assertLive",
+      "durationMs": 2055.778600000078
+    },
+    {
+      "atMs": 1374104.4069,
+      "method": "assertLive",
+      "durationMs": 2296.152699999977
+    },
+    {
+      "atMs": 1374108.8582000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8556.074299999978
+    },
+    {
+      "atMs": 1374109.6706,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff-tree",
+        "--no-commit-id",
+        "-r",
+        "--raw",
+        "-z",
+        "--no-abbrev",
+        "--no-ext-diff",
+        "--no-textconv",
+        "-M",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1376646.6478000002,
+      "method": "assertLive",
+      "durationMs": 2536.4913000001106
+    },
+    {
+      "atMs": 1380565.0743,
+      "method": "assertLive",
+      "durationMs": 2506.903300000122
+    },
+    {
+      "atMs": 1382527.7745,
+      "method": "assertLive",
+      "durationMs": 1957.8177000000142
+    },
+    {
+      "atMs": 1382531.7489,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8422.07520000008
+    },
+    {
+      "atMs": 1382534.4892,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "blob",
+        "728313c5528c2d10088e2fe83982914d464ab9c9"
+      ]
+    },
+    {
+      "atMs": 1384951.7197,
+      "method": "assertLive",
+      "durationMs": 2415.7650999999605
+    },
+    {
+      "atMs": 1388192.1167000001,
+      "method": "assertLive",
+      "durationMs": 2091.3896999999415
+    },
+    {
+      "atMs": 1390864.9856,
+      "method": "assertLive",
+      "durationMs": 2667.190600000089
+    },
+    {
+      "atMs": 1390869.6751,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8335.185299999779
+    },
+    {
+      "atMs": 1390871.5,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "cat-file",
+        "blob",
+        "7f9cc25c41ada374e5c62513ad31e24d90f2fe66"
+      ]
+    },
+    {
+      "atMs": 1392807.7949,
+      "method": "assertLive",
+      "durationMs": 1934.9484000001103
+    },
+    {
+      "atMs": 1396875.5739,
+      "method": "assertLive",
+      "durationMs": 2638.1052000001073
+    },
+    {
+      "atMs": 1398865.1232,
+      "method": "assertLive",
+      "durationMs": 1984.7081999999937
+    },
+    {
+      "atMs": 1398869.0926,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7997.59580000001
+    },
+    {
+      "atMs": 1398869.9131,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--numstat",
+        "-z",
+        "--no-ext-diff",
+        "--no-textconv",
+        "775e386508f08a7a2ceca7953cd24a9f1b1f7823",
+        "2fbfb989b9e4f9dbd82e3e4acfdfe0da9cf79999",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1401464.642,
+      "method": "assertLive",
+      "durationMs": 2594.1122000000905
+    },
+    {
+      "atMs": 1404904.3328,
+      "method": "assertLive",
+      "durationMs": 2180.2053000000305
+    },
+    {
+      "atMs": 1406821.8126,
+      "method": "assertLive",
+      "durationMs": 1912.276099999901
+    },
+    {
+      "atMs": 1406825.806,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7955.889600000111
+    },
+    {
+      "atMs": 1409448.9639,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "config",
+        "--local",
+        "--no-includes",
+        "--null",
+        "--list"
+      ]
+    },
+    {
+      "atMs": 1412007.6293000001,
+      "method": "assertLive",
+      "durationMs": 2557.967699999921
+    },
+    {
+      "atMs": 1415765.7126,
+      "method": "assertLive",
+      "durationMs": 2441.9782999998424
+    },
+    {
+      "atMs": 1418300.2132,
+      "method": "assertLive",
+      "durationMs": 2530.4464000000153
+    },
+    {
+      "atMs": 1418304.5179,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8855.54879999999
+    },
+    {
+      "atMs": 1418306.0021000002,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--is-shallow-repository"
+      ]
+    },
+    {
+      "atMs": 1420871.7665000001,
+      "method": "assertLive",
+      "durationMs": 2564.310799999861
+    },
+    {
+      "atMs": 1425012.783,
+      "method": "assertLive",
+      "durationMs": 2511.529699999839
+    },
+    {
+      "atMs": 1427485.6048,
+      "method": "assertLive",
+      "durationMs": 2467.660399999935
+    },
+    {
+      "atMs": 1427489.8479000002,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9183.84440000006
+    },
+    {
+      "atMs": 1427491.3292,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--show-object-format"
+      ]
+    },
+    {
+      "atMs": 1429842.2040000001,
+      "method": "assertLive",
+      "durationMs": 2349.7996999998577
+    },
+    {
+      "atMs": 1434053.1739,
+      "method": "assertLive",
+      "durationMs": 2634.7992000000086
+    },
+    {
+      "atMs": 1436739.4648,
+      "method": "assertLive",
+      "durationMs": 2680.8898000000045
+    },
+    {
+      "atMs": 1436743.4314000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9252.102999999886
+    },
+    {
+      "atMs": 1436744.7072,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1439406.2313,
+      "method": "assertLive",
+      "durationMs": 2660.3662000000477
+    },
+    {
+      "atMs": 1443599.2416,
+      "method": "assertLive",
+      "durationMs": 2764.0445000000764
+    },
+    {
+      "atMs": 1445889.6783,
+      "method": "assertLive",
+      "durationMs": 2284.43479999993
+    },
+    {
+      "atMs": 1445892.2964,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9147.593499999959
+    },
+    {
+      "atMs": 1445893.0992,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "symbolic-ref",
+        "--no-recurse",
+        "HEAD"
+      ]
+    },
+    {
+      "atMs": 1447837.5839,
+      "method": "assertLive",
+      "durationMs": 1943.9550999999046
+    },
+    {
+      "atMs": 1450983.4445,
+      "method": "assertLive",
+      "durationMs": 1943.8469999998342
+    },
+    {
+      "atMs": 1453282.8075,
+      "method": "assertLive",
+      "durationMs": 2293.070100000128
+    },
+    {
+      "atMs": 1453285.9572,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7392.856800000183
+    },
+    {
+      "atMs": 1453286.7668,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1455372.2119,
+      "method": "assertLive",
+      "durationMs": 2084.8962000000756
+    },
+    {
+      "atMs": 1459309.3611,
+      "method": "assertLive",
+      "durationMs": 2464.600900000194
+    },
+    {
+      "atMs": 1461761.5207,
+      "method": "assertLive",
+      "durationMs": 2447.0087999999523
+    },
+    {
+      "atMs": 1461764.7674,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8478.000300000189
+    },
+    {
+      "atMs": 1464017.2165,
+      "method": "assertLive",
+      "durationMs": 2251.6102999998257
+    },
+    {
+      "atMs": 1468080.6234000002,
+      "method": "assertLive",
+      "durationMs": 2697.155800000066
+    },
+    {
+      "atMs": 1470833.6115,
+      "method": "assertLive",
+      "durationMs": 2749.0100000000093
+    },
+    {
+      "atMs": 1470837.9141000002,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/tasks/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1473861.1163,
+      "method": "assertLive",
+      "durationMs": 3021.661899999948
+    },
+    {
+      "atMs": 1480356.1146,
+      "method": "assertLive",
+      "durationMs": 2481.9151999999303
+    },
+    {
+      "atMs": 1482589.1160000002,
+      "method": "assertLive",
+      "durationMs": 2228.1114000000525
+    },
+    {
+      "atMs": 1482593.1584,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 11755.25139999995
+    },
+    {
+      "atMs": 1482595.3514,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 1485353.6311,
+      "method": "assertLive",
+      "durationMs": 2757.6721000000834
+    },
+    {
+      "atMs": 1490446.3286000001,
+      "method": "assertLive",
+      "durationMs": 2242.9905000000726
+    },
+    {
+      "atMs": 1490450.0711,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7854.718600000022
+    },
+    {
+      "atMs": 1490451.4483,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1492307.318,
+      "method": "assertLive",
+      "durationMs": 1854.344600000186
+    },
+    {
+      "atMs": 1496601.2305,
+      "method": "assertLive",
+      "durationMs": 2412.2681000002194
+    },
+    {
+      "atMs": 1496604.7873,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 6153.339100000216
+    },
+    {
+      "atMs": 1496605.9525000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1499267.4609,
+      "method": "assertLive",
+      "durationMs": 2660.3669000000227
+    },
+    {
+      "atMs": 1502959.0753000001,
+      "method": "assertLive",
+      "durationMs": 2515.352300000144
+    },
+    {
+      "atMs": 1505142.6774000002,
+      "method": "assertLive",
+      "durationMs": 2178.6658999999054
+    },
+    {
+      "atMs": 1505146.51,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8540.557400000049
+    },
+    {
+      "atMs": 1505148.1171000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1507242.3832,
+      "method": "assertLive",
+      "durationMs": 2093.05700000003
+    },
+    {
+      "atMs": 1511233.4154,
+      "method": "assertLive",
+      "durationMs": 2562.305199999828
+    },
+    {
+      "atMs": 1513714.6464,
+      "method": "assertLive",
+      "durationMs": 2476.7615000000224
+    },
+    {
+      "atMs": 1513717.6351,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8569.517999999924
+    },
+    {
+      "atMs": 1513718.9594,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "rev-parse",
+        "--verify",
+        "HEAD^{commit}"
+      ]
+    },
+    {
+      "atMs": 1516225.9239,
+      "method": "assertLive",
+      "durationMs": 2505.7434000000358
+    },
+    {
+      "atMs": 1519361.3071,
+      "method": "assertLive",
+      "durationMs": 1828.5722999998834
+    },
+    {
+      "atMs": 1521611.5903,
+      "method": "assertLive",
+      "durationMs": 2245.684200000018
+    },
+    {
+      "atMs": 1521613.7049,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7894.746899999911
+    },
+    {
+      "atMs": 1521614.3515,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1524179.6282000002,
+      "method": "assertLive",
+      "durationMs": 2564.8019000000786
+    },
+    {
+      "atMs": 1528067.3201000001,
+      "method": "assertLive",
+      "durationMs": 2219.86950000003
+    },
+    {
+      "atMs": 1530446.9685,
+      "method": "assertLive",
+      "durationMs": 2375.1147000000346
+    },
+    {
+      "atMs": 1530451.3963000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8837.040899999905
+    },
+    {
+      "atMs": 1532622.6297000002,
+      "method": "assertLive",
+      "durationMs": 2169.3018000000156
+    },
+    {
+      "atMs": 1536244.7086,
+      "method": "assertLive",
+      "durationMs": 2461.8282999999356
+    },
+    {
+      "atMs": 1539054.1224,
+      "method": "assertLive",
+      "durationMs": 2805.000100000063
+    },
+    {
+      "atMs": 1539058.9878,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1541878.7485,
+      "method": "assertLive",
+      "durationMs": 2818.4540999999736
+    },
+    {
+      "atMs": 1545588.6884,
+      "method": "assertLive",
+      "durationMs": 2228.2939999999944
+    },
+    {
+      "atMs": 1547704.3563,
+      "method": "assertLive",
+      "durationMs": 2110.4847999999765
+    },
+    {
+      "atMs": 1547707.5802,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8648.596399999922
+    },
+    {
+      "atMs": 1547708.2991,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "update-ref",
+        "--no-deref",
+        "--stdin"
+      ]
+    },
+    {
+      "atMs": 1549673.2474,
+      "method": "assertLive",
+      "durationMs": 1964.3892999999225
+    },
+    {
+      "atMs": 1553516.9416,
+      "method": "assertLive",
+      "durationMs": 2359.1806000000797
+    },
+    {
+      "atMs": 1555823.7933,
+      "method": "assertLive",
+      "durationMs": 2299.3919999999925
+    },
+    {
+      "atMs": 1555827.1791,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8118.878599999938
+    },
+    {
+      "atMs": 1558492.8802,
+      "method": "assertLive",
+      "durationMs": 2664.3538999999873
+    },
+    {
+      "atMs": 1562378.2777,
+      "method": "assertLive",
+      "durationMs": 2288.338100000052
+    },
+    {
+      "atMs": 1564788.2579,
+      "method": "assertLive",
+      "durationMs": 2404.936699999962
+    },
+    {
+      "atMs": 1564792.2472,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname) %(symref)",
+        "refs/angit/prj_ae1922e146a92d26421e898812be66b230d88e720cf40e40/submissions/att_ffc7b0bc449a6c1007ded6b65ee99b1f"
+      ]
+    },
+    {
+      "atMs": 1567408.0186,
+      "method": "assertLive",
+      "durationMs": 2614.432400000049
+    },
+    {
+      "atMs": 1570665.7622,
+      "method": "assertLive",
+      "durationMs": 2140.3833999999333
+    },
+    {
+      "atMs": 1572585.4736000001,
+      "method": "assertLive",
+      "durationMs": 1916.6716000000015
+    },
+    {
+      "atMs": 1572590.2550000001,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 7798.0135999999475
+    },
+    {
+      "atMs": 1572591.6241000001,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ]
+    },
+    {
+      "atMs": 1574690.1683,
+      "method": "assertLive",
+      "durationMs": 2097.750699999975
+    },
+    {
+      "atMs": 1578840.3449000001,
+      "method": "assertLive",
+      "durationMs": 2596.2731000001077
+    },
+    {
+      "atMs": 1580660.4455000001,
+      "method": "assertLive",
+      "durationMs": 1814.125600000145
+    },
+    {
+      "atMs": 1580665.8581,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8074.228700000094
+    },
+    {
+      "atMs": 1580667.6042,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ]
+    },
+    {
+      "atMs": 1583330.7647,
+      "method": "assertLive",
+      "durationMs": 2661.711699999869
+    },
+    {
+      "atMs": 1587185.2040000001,
+      "method": "assertLive",
+      "durationMs": 2581.503899999894
+    },
+    {
+      "atMs": 1589494.0753000001,
+      "method": "assertLive",
+      "durationMs": 2303.9793000000063
+    },
+    {
+      "atMs": 1589497.5832,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 8829.9804
+    },
+    {
+      "atMs": 1589498.7531,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "diff",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--binary",
+        "--"
+      ]
+    },
+    {
+      "atMs": 1592087.4114,
+      "method": "assertLive",
+      "durationMs": 2587.4858000001404
+    },
+    {
+      "atMs": 1595947.7097,
+      "method": "assertLive",
+      "durationMs": 2606.4517999999225
+    },
+    {
+      "atMs": 1598588.2613000001,
+      "method": "assertLive",
+      "durationMs": 2637.0068999999203
+    },
+    {
+      "atMs": 1598592.0193,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9093.26689999993
+    },
+    {
+      "atMs": 1598593.3084,
+      "method": "runBytes",
+      "phase": "begin",
+      "args": [
+        "ls-files",
+        "--others",
+        "-z"
+      ]
+    },
+    {
+      "atMs": 1601247.855,
+      "method": "assertLive",
+      "durationMs": 2653.4207999999635
+    },
+    {
+      "atMs": 1605458.9516,
+      "method": "assertLive",
+      "durationMs": 2569.4163999999873
+    },
+    {
+      "atMs": 1608149.2946000001,
+      "method": "assertLive",
+      "durationMs": 2688.1692000001203
+    },
+    {
+      "atMs": 1608153.5223,
+      "method": "runBytes",
+      "phase": "end",
+      "durationMs": 9560.21350000007
+    },
+    {
+      "atMs": 1608154.8942,
+      "method": "capture",
+      "phase": "end",
+      "durationMs": 427636.68460000004
+    },
+    {
+      "atMs": 1611226.1967,
+      "method": "assertLive",
+      "durationMs": 2235.9439999999013
+    },
+    {
+      "atMs": 1613410.5515,
+      "method": "assertLive",
+      "durationMs": 2182.0401000001
+    },
+    {
+      "atMs": 1613657.1629,
+      "phase": "run-end",
+      "exit": 3,
+      "result": {
+        "schemaVersion": "angit-result/v1",
+        "requestId": "req_fc46cce616ab9f5c5700c5df020f5e7c",
+        "command": "run",
+        "ok": false,
+        "status": "incomplete",
+        "data": null,
+        "warnings": [],
+        "error": {
+          "code": "RECOVERY_REQUIRED",
+          "message": "Exact full writer-tree termination receipt is required before capture or slot release",
+          "retryable": false,
+          "operationId": null
+        },
+        "meta": {
+          "durationMs": 1535100,
+          "coordinatorEpoch": null,
+          "truncated": false
+        }
+      }
+    }
+  ]
+}

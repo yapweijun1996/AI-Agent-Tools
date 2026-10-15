@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python",
+    "scripts/validate-contracts.py"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "{\"status\": \"failed_offline_contract_checks\", \"error\": \"immutable-intent-mutation: unexpected SQL rejection: OPERATION_OBSERVATION_REQUIRED\", \"productTestsExecuted\": false}\n"
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_snapshot_restore",
+  "command": "snapshot restore",
+  "options": {
+    "targetSnapshotId": "snap_previous",
+    "dryRun": true
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-snapshot-restore-v1"
+}

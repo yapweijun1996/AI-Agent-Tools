@@ -1,0 +1,17 @@
+{
+  "project": "Agent-Native-Git",
+  "stage": 0,
+  "private": true,
+  "publicationAuthorized": false,
+  "platformTarget": "windows",
+  "licenseSelection": "MIT",
+  "runtimeTarget": "Node.js 24.x",
+  "productVersion": null,
+  "packageNameReservation": null,
+  "repositoryRemote": null,
+  "contractSource": "docs/CONTRACT.md",
+  "contractRevision": "stage0-2026-10-14",
+  "sourceArchive": "../AI-Agent-Tools/temp/Agent-Native-Git-CLI-v1.0-Architecture",
+  "implementationOverlay": "../AI-Agent-Tools/temp/Agent-Native-Git-Implementation-Contract.md",
+  "developmentSelection": "../AI-Agent-Tools/temp/Agent-Native-Git-Development-Plan.md"
+}

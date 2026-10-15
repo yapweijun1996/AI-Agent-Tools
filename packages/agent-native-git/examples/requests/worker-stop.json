@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_worker_stop",
+  "command": "worker stop",
+  "options": {
+    "mode": "drain",
+    "timeoutSeconds": 300
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-worker-stop-v1"
+}

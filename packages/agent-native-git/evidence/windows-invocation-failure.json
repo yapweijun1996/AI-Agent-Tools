@@ -1,0 +1,47 @@
+{
+  "command": [
+    "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "-NoProfile",
+    "-File",
+    "scripts/windows-primitives.ps1"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 1,
+  "stderr": "",
+  "report": {
+    "schemaVersion": 1,
+    "probe": "windows-primitives",
+    "status": "fail",
+    "checks": [
+      {
+        "id": "wrapper_failure",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "message": "Exception calling \"Invoke\" with \"2\" argument(s): \"Object of type 'System.Management.Automation.PSObject' cannot be converted to type 'System.String'.\"",
+          "exception": "System.Management.Automation.MethodInvocationException",
+          "innerMessage": "Object of type 'System.Management.Automation.PSObject' cannot be converted to type 'System.String'.",
+          "innerException": "System.ArgumentException"
+        }
+      },
+      {
+        "id": "disposable_directory_cleanup",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "onlyCreatedDirectoryDeleted": true,
+          "directoryAbsent": true
+        }
+      }
+    ],
+    "runtime": {
+      "powershell": "5.1.26100.9444",
+      "framework": "4.0.30319.42000",
+      "processArchitecture": "x64"
+    },
+    "limitations": [
+      "NOT PRODUCT SECURITY CERTIFICATION",
+      "Disposable native feasibility, not product acceptance or hostile same-account isolation."
+    ]
+  }
+}

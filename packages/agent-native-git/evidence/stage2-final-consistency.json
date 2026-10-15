@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "observedAt": "2026-10-15T04:26:00.365227+00:00",
+  "scope": "Final owned untracked technical byte/JSON/local-link/native-pair checks after completed Stage 2 runtime gate; no release or default-host approval",
+  "result": "PASS",
+  "technicalFilesChecked": 460,
+  "sourceFilesHashed": 397,
+  "evidenceFilesHashed": 61,
+  "nativeAssetsHashed": 4,
+  "sourceManifestSha256": "9dbe09d622a6541969e7aff5a312d22ebf9ecd25d3e418f75518e3ab18fa948b",
+  "trailingWhitespaceFailures": [],
+  "invalidJson": [],
+  "brokenLocalLinks": [],
+  "localLinksChecked": 129,
+  "nativeSourceBinaryPairing": "Both current packaged helper identities match their actual source and executable hashes",
+  "temporaryCleanup": "Completed verification wrapper archived verbatim then removed; earlier owned diagnostic runners removed after evidence capture; interrupted/unknown fixtures and packed-consumer-EznwUM preserved",
+  "hubTempIgnore": "Historical actual check-ignore receipt: .gitignore:40:/temp/; Hub verify/validator/diff-check all exit 0",
+  "limits": [
+    "No product-workspace Git repository was initialized or commit/push/publication performed",
+    "No new external link or external release claim added during final status updates",
+    "Runtime source unchanged after completed gate; final documentation/status hashes differ from the disposable tarball snapshot",
+    "Static impact/reference incompleteness is recorded in the source manifest"
+  ]
+}

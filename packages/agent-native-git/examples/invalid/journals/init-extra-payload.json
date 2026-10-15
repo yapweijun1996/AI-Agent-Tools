@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "angit-operation/v1",
+  "projectId": "prj_demo",
+  "repositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "operationId": "op_init",
+  "kind": "init",
+  "originAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "principalScopeId": "scope_demo",
+  "requestKeyHash": "6666666666666666666666666666666666666666666666666666666666666666",
+  "semanticRequestHash": "7777777777777777777777777777777777777777777777777777777777777777",
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "createdAtMs": 1,
+  "intentHash": "c7bc092413bef3d10c0b1ddea145e194eb2dd19e87ac6c5460ca4959d3e4d5e5",
+  "intent": {
+    "canonicalRepositoryPath": "fixture_canonicalRepositoryPath",
+    "canonicalCommonDir": "fixture_canonicalCommonDir",
+    "repositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "registrationId": "id_demo",
+    "approvedBaseOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "approvedBaseTreeOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "objectFormat": "sha1",
+    "baselineRef": "fixture_baselineRef",
+    "integrationRef": "fixture_integrationRef",
+    "baselineExpectedAbsent": true,
+    "integrationExpectedAbsent": true,
+    "stateSchemaHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "policyHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "profilesHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "untypedRecoveryPayload": {}
+  },
+  "phase": "prepared",
+  "version": 0,
+  "lastObservationId": null,
+  "updatedAtMs": 1
+}

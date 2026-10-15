@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, readdirSync, realpathSync, statSync, writeFileSync } from 'node:fs';
 import { basename, delimiter, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import installer from '../bin/install-all.js';
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const action = process.argv[2];
 const preparedTests = action === 'test' && process.argv[3] === '--prepared';
@@ -49,8 +50,18 @@ if (action === 'test' || action === 'test:hub') {
 for (const folder of action === 'test:hub' ? [] : readdirSync(join(root, 'packages')).sort()) {
   const cwd = join(root, 'packages', folder);
   const manifest = JSON.parse(readFileSync(join(cwd, 'package.json'), 'utf8'));
+  const mismatch = installer.packageHostMismatch(manifest);
+  if (mismatch) {
+    results.push({ package: manifest.name, action, status: 'not-applicable', reason: `Unsupported host: ${mismatch}; native acceptance still required on the declared host` });
+    continue;
+  }
   if (action === 'bootstrap') run(manifest.name, cwd, npm, ['ci', '--ignore-scripts', '--no-audit', '--no-fund']);
-  else if (action === 'pack') { run(manifest.name, cwd, npm, ['pack', '--dry-run', '--ignore-scripts', '--json']); if (['environment-doctor','contract-check','release-guard','runtime-trace','patch-guard','rules-resolve','context-pack','test-evidence'].includes(folder)) run(manifest.name + '-packed-consumer', cwd, npm, ['run','smoke:pack']); }
+  else if (action === 'pack') {
+    run(manifest.name, cwd, npm, ['pack', '--dry-run', '--ignore-scripts', '--json']);
+    if (['environment-doctor','contract-check','release-guard','runtime-trace','patch-guard','rules-resolve','context-pack','test-evidence','agent-native-git'].includes(folder)) {
+      run(manifest.name + '-packed-consumer', cwd, npm, ['run', 'smoke:pack']);
+    }
+  }
   else if (manifest.scripts?.[action]) {
     const script = preparedTests && manifest.scripts['test:prepared'] ? 'test:prepared' : action;
     run(manifest.name, cwd, npm, ['run', script]);
@@ -58,5 +69,5 @@ for (const folder of action === 'test:hub' ? [] : readdirSync(join(root, 'packag
   else results.push({ package: manifest.name, action, status: 'not-applicable', reason: `No ${action} script in source package` });
 }
 writeFileSync(join(cache, `${action}-results.json`), JSON.stringify({ node: process.version, results }, null, 2) + '\n');
-console.log('\n' + results.map(r => `${r.package}: ${r.status}`).join('\n'));
+console.log('\n' + results.map(r => `${r.package}: ${r.status}${r.reason ? ` (${r.reason})` : ''}`).join('\n'));
 process.exit(results.some(r => r.status === 'failed') ? 1 : 0);

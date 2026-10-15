@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "angit-worker-preflight-impact/v1",
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/bin/agent-impact.cmd file scripts/worker-handoff-probe.mjs --root C:/Users/tno/Documents/GitHub/Agent-Native-Git --project tsconfig.json --max-files 100 --max-total-file-bytes 1048576 --json",
+  "exitCode": 1,
+  "result": {
+    "schemaVersion": "0.1-draft",
+    "ok": false,
+    "error": {
+      "code": "NOT_A_REPOSITORY",
+      "message": "No Git repository found at or above C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git"
+    },
+    "warnings": []
+  },
+  "disposition": "No Git initialization authorized or performed. This is an error, not an empty or complete impact graph.",
+  "fallbackScope": [
+    "New standalone probe script and fixture Host, excluded by the unchanged package files allowlist.",
+    "Existing dist/platform.js filesystem admission and dist/execution-native.js supervision/reconciliation are called only by isolated fixture roles.",
+    "Synthetic guard/workflow SQLite files only; no production Core startup or public schemas/SQL migration.",
+    "Known Stage 2 source/native asset/evidence identities checked separately in stage3-final-consistency.json."
+  ],
+  "verificationLimit": "No complete static graph, language-server refactor analysis, production regression rerun or product Worker safety certification."
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "Stage0 document/source consistency and original-input preservation",
+  "textFilesChecked": 364,
+  "whitespaceErrors": [],
+  "brokenLocalLinks": [],
+  "sourceFilesHashed": 348,
+  "originalBundleHashMatches": 161,
+  "gitInitialized": false,
+  "productTestsExecuted": 0
+}

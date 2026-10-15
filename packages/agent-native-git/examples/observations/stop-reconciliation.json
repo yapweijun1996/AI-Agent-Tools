@@ -1,0 +1,21 @@
+{
+  "observationId": "obs_20",
+  "operationId": "op_stop",
+  "projectId": "prj_demo",
+  "kind": "stop",
+  "observationType": "reconciliation",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "resumePhase": "prepared",
+    "reasonCode": "id_demo",
+    "proofReceiptHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

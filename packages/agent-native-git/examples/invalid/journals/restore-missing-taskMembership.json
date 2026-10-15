@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "angit-operation/v1",
+  "projectId": "prj_demo",
+  "repositoryIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "operationId": "op_restore",
+  "kind": "restore",
+  "originAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "principalScopeId": "scope_demo",
+  "requestKeyHash": "6666666666666666666666666666666666666666666666666666666666666666",
+  "semanticRequestHash": "7777777777777777777777777777777777777777777777777777777777777777",
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "createdAtMs": 1,
+  "intentHash": "dea7b1b12eb42f308154a9cbfc1743bd407e5e1f49de4c9dd16fc891a6a2e7ad",
+  "intent": {
+    "planId": "plan_demo",
+    "planHash": "4444444444444444444444444444444444444444444444444444444444444444",
+    "expectedIntegrationOid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "candidateOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "candidateTreeOid": "ffffffffffffffffffffffffffffffffffffffff",
+    "sources": [],
+    "integrationRef": "refs/angit/prj_demo/integration",
+    "candidateRef": "refs/angit/prj_demo/candidates/plan_demo",
+    "snapshotRef": "refs/angit/prj_demo/snapshots/snap_demo",
+    "snapshotExpectedAbsent": true,
+    "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+    "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+    "requiredChecks": [
+      "id_demo"
+    ],
+    "environmentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+    "expectedContentEpoch": 0,
+    "nextContentEpoch": 1,
+    "targetVerifiedSnapshotId": "id_demo"
+  },
+  "phase": "prepared",
+  "version": 0,
+  "lastObservationId": null,
+  "updatedAtMs": 1
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "angit-git-deadline-smoke/v1",
+  "stage": "before",
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe .cache/git-deadline-cause-smoke.mjs",
+  "exitCode": 0,
+  "wallTimeSeconds": 47.53,
+  "originalSuiteAttribution": "INFERENCE: original failing Git native exit timestamp and command were not recorded",
+  "observer": "Separate PowerShell .NET Process.GetProcessById; retained native Handle, StartTime, WaitForExit, ExitTime, ExitCode. Block begins only after child stdin close for completed control.",
+  "discardedControls": "Earlier end/finish-callback blocks delayed real stdin EOF and did not demonstrate a false timeout. Initial observer failed on PowerShell progress CLIXML; corrected by SilentlyContinue.",
+  "sources": ["src/core/git.ts:112-138", "src/core/execution.ts:137-152,585-593", "src/platform.ts:109-129", "https://raw.githubusercontent.com/nodejs/node/v24.21.0/src/spawn_sync.cc"],
+  "stdout": {
+    "node": "v24.21.0",
+    "fixtureReadOnly": true,
+    "approvedExecutableHash": "ee3d2a38093c3680745a5c973488f5bb78a16f010145d5cdc7470a7395c9e7e8",
+    "admission": {
+      "elapsedMs": 3521.2538999999997,
+      "callCount": 11,
+      "calls": [
+        {"operation":"assertPrivateFile","elapsedMs":294.2323999999999},
+        {"operation":"identify","elapsedMs":244.1177},
+        {"operation":"identify","elapsedMs":248.48040000000003},
+        {"operation":"identify","elapsedMs":256.51409999999987},
+        {"operation":"assertPrivateFile","elapsedMs":302.9388000000001},
+        {"operation":"assertPrivateFile","elapsedMs":462.2314000000001},
+        {"operation":"identify","elapsedMs":221.54449999999997},
+        {"operation":"identify","elapsedMs":237.6956},
+        {"operation":"identify","elapsedMs":244.74270000000024},
+        {"operation":"assertPrivateFile","elapsedMs":282.16010000000006},
+        {"operation":"assertPrivateFile","elapsedMs":279.6403}
+      ]
+    },
+    "deadlineMs": 15000,
+    "records": [
+      {
+        "kind":"baseline", "blockMs":0, "pid":27032, "spawnAtMs":1791990739245,
+        "arguments":["--no-pager","-c","core.hooksPath=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\owner private\\state\\projects\\prj_b9c7e84cc550284fb2133cc3ec9b088397ed1216aa949515\\hooks","-c","core.fsmonitor=false","-c","core.untrackedCache=false","-c","core.attributesFile=NUL","-c","credential.helper=","-c","core.askPass=","-c","protocol.allow=never","-c","gc.auto=0","-c","maintenance.auto=false","--git-dir=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces\\.git","--work-tree=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces","cat-file","--batch"],
+        "releaseAtMs":1791990739767, "blockBeginAtMs":1791990739772, "blockEndAtMs":1791990739772,
+        "nodeExit":{"atMs":1791990739782,"code":0,"signal":null},
+        "nodeClose":{"atMs":1791990739782,"code":0,"signal":null},
+        "result":{"status":"success","bytes":261,"sha256":"ce2bb10a61876a49559e7c1ae7fd08e322ad6ea8ea1f218e096f9a099e17e53b"},
+        "promiseAtMs":1791990739783,
+        "native":{"nativeElapsedMs":541.4918,"exitCode":0,"pid":27032,"exitAtMs":1791990739781,"startAtMs":1791990739239},
+        "nativeToNodeCloseLagMs":1, "nativeExitBeforeMetadataDeadline":true
+      },
+      {
+        "kind":"completed-blocked", "blockMs":17000, "pid":14016, "spawnAtMs":1791990742193,
+        "arguments":["--no-pager","-c","core.hooksPath=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\owner private\\state\\projects\\prj_b9c7e84cc550284fb2133cc3ec9b088397ed1216aa949515\\hooks","-c","core.fsmonitor=false","-c","core.untrackedCache=false","-c","core.attributesFile=NUL","-c","credential.helper=","-c","core.askPass=","-c","protocol.allow=never","-c","gc.auto=0","-c","maintenance.auto=false","--git-dir=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces\\.git","--work-tree=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces","cat-file","--batch"],
+        "releaseAtMs":1791990742992, "blockBeginAtMs":1791990742993, "blockEndAtMs":1791990759994,
+        "nodeExit":{"atMs":1791990759997,"code":0,"signal":null},
+        "native":{"nativeElapsedMs":826.6995000000001,"exitCode":0,"pid":14016,"exitAtMs":1791990743014,"startAtMs":1791990742187},
+        "nodeClose":{"atMs":1791990759999,"code":0,"signal":null},
+        "result":{"status":"error","code":"GIT_TIMEOUT","message":"Git exceeded its metadata deadline"},
+        "promiseAtMs":1791990759999, "nativeToNodeCloseLagMs":16985, "nativeExitBeforeMetadataDeadline":true
+      },
+      {
+        "kind":"pending-blocked", "blockMs":17000, "pid":14300, "spawnAtMs":1791990761859,
+        "arguments":["--no-pager","-c","core.hooksPath=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\owner private\\state\\projects\\prj_b9c7e84cc550284fb2133cc3ec9b088397ed1216aa949515\\hooks","-c","core.fsmonitor=false","-c","core.untrackedCache=false","-c","core.attributesFile=NUL","-c","credential.helper=","-c","core.askPass=","-c","protocol.allow=never","-c","gc.auto=0","-c","maintenance.auto=false","--git-dir=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces\\.git","--work-tree=C:\\Users\\tno\\AppData\\Local\\Temp\\angit stage1 BPqzUG\\repository with spaces","cat-file","--batch"],
+        "releaseAtMs":1791990762571, "blockBeginAtMs":1791990762571, "blockEndAtMs":1791990779581,
+        "nodeExit":{"atMs":1791990779653,"code":null,"signal":"SIGTERM"},
+        "nodeClose":{"atMs":1791990779782,"code":null,"signal":"SIGTERM"},
+        "result":{"status":"error","code":"GIT_TIMEOUT","message":"Git exceeded its metadata deadline"},
+        "promiseAtMs":1791990779782,
+        "native":{"nativeElapsedMs":17770.0927,"exitCode":1,"pid":14300,"exitAtMs":1791990779624,"startAtMs":1791990761854},
+        "nativeToNodeCloseLagMs":158, "nativeExitBeforeMetadataDeadline":false
+      }
+    ]
+  },
+  "stderr": ""
+}

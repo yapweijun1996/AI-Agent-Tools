@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/commands/snapshot-list.schema.json",
+  "title": "17. angit snapshot list request",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-request/v1"
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "command": {
+      "const": "snapshot list"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[!-~]+$"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "includeUnverified": {
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "afterSnapshotId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "command",
+    "options",
+    "projectId"
+  ],
+  "additionalProperties": false
+}

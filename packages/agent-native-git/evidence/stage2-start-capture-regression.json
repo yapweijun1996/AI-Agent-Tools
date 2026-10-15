@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Actual current-source Core foreground run with two real approved inert native executables; no provider/service/integration/release certification",
+  "runtime": "Node24.21.0",
+  "command": "node --test --test-reporter=tap tests/start-capture.test.mjs",
+  "result": "PASS",
+  "tests": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "caseDurationMs": 1967299.6892,
+  "suiteDurationMs": 1968499.4786,
+  "build": "Actual TypeScript 5.8.2 compile succeeded before invocation; packaged native assets unchanged during run",
+  "verified": [
+    "The first actual submission capture waits on a project-bound gate; its real Git outcome is never replaced",
+    "Another actual native root resumes while that capture remains blocked",
+    "The independent attempt has a durable integer start timestamp, running projection and no fabricated end timestamp",
+    "After gate release both tasks become submitted with full writer_tree_terminated evidence, never completed",
+    "Owner HEAD remains the actual original fixture baseline",
+    "Owned fixture cleanup completed through actual foreground completion"
+  ],
+  "limits": [
+    "This test passed; aggregate lifecycle/installed-consumer acceptance is still pending",
+    "Production Git timeout/output budgets, native execution budgets, leases and permissions were not increased",
+    "Harness observation/case/pack ceilings are distinct from production process deadlines"
+  ]
+}

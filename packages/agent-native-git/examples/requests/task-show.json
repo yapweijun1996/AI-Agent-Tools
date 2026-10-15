@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_task_show",
+  "command": "task show",
+  "options": {
+    "taskId": "tsk_frontend",
+    "history": true,
+    "limit": 100,
+    "cursor": {
+      "projectId": "prj_demo",
+      "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "historyIdentity": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "afterEventId": 1,
+      "snapshotHighWatermark": 1
+    }
+  },
+  "projectId": "prj_demo"
+}

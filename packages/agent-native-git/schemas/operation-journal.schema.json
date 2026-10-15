@@ -1,0 +1,1323 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/operation-journal.schema.json",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "angit-operation/v1"
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "repositoryIdentity": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "operationId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "kind": {
+      "enum": [
+        "init",
+        "worktree_create",
+        "spawn",
+        "stop",
+        "merge",
+        "undo",
+        "restore",
+        "backup"
+      ]
+    },
+    "originAuthority": {
+      "$ref": "authority.schema.json"
+    },
+    "principalScopeId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+      "maxLength": 64
+    },
+    "requestKeyHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "semanticRequestHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "policyHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "profilesHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "createdAtMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "intentHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "intent": {},
+    "phase": {},
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "lastObservationId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "updatedAtMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "repositoryIdentity",
+    "operationId",
+    "kind",
+    "originAuthority",
+    "principalScopeId",
+    "requestKeyHash",
+    "semanticRequestHash",
+    "policyHash",
+    "profilesHash",
+    "createdAtMs",
+    "intentHash",
+    "intent",
+    "phase",
+    "version",
+    "lastObservationId",
+    "updatedAtMs"
+  ],
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "kind": {
+          "const": "init"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "canonicalRepositoryPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "canonicalCommonDir": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "repositoryIdentity": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "registrationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "approvedBaseOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "approvedBaseTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "objectFormat": {
+              "enum": [
+                "sha1",
+                "sha256"
+              ]
+            },
+            "baselineRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "baselineExpectedAbsent": {
+              "const": true
+            },
+            "integrationExpectedAbsent": {
+              "const": true
+            },
+            "stateSchemaHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "canonicalRepositoryPath",
+            "canonicalCommonDir",
+            "repositoryIdentity",
+            "registrationId",
+            "approvedBaseOid",
+            "approvedBaseTreeOid",
+            "objectFormat",
+            "baselineRef",
+            "integrationRef",
+            "baselineExpectedAbsent",
+            "integrationExpectedAbsent",
+            "stateSchemaHash",
+            "policyHash",
+            "profilesHash"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "effect_observed",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "worktree_create"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "attemptId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operationOwnerId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "managedParent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "canonicalPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "role": {
+              "enum": [
+                "task",
+                "candidate"
+              ]
+            },
+            "branchRef": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "branchExpectedAbsent": {
+              "anyOf": [
+                {
+                  "const": true
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "baseOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "baseTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "ownershipMarkerId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "attemptId",
+            "operationOwnerId",
+            "managedParent",
+            "canonicalPath",
+            "role",
+            "branchRef",
+            "branchExpectedAbsent",
+            "baseOid",
+            "baseTreeOid",
+            "ownershipMarkerId"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "role": {
+                    "const": "task"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "attemptId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "operationOwnerId": {
+                    "type": "null"
+                  },
+                  "branchRef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "branchExpectedAbsent": {
+                    "const": true
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "attemptId": {
+                    "type": "null"
+                  },
+                  "operationOwnerId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "branchRef": {
+                    "type": "null"
+                  },
+                  "branchExpectedAbsent": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "effect_observed",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "spawn"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "attemptId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "worktreeId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "approvedExecutable": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "executableHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "runtimeProfileHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "supervisorId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "launchIdentity": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "argumentDigest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requestDigest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "cwd": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "environmentProfileHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "budget": {
+              "type": "object",
+              "properties": {
+                "timeoutMs": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "stdoutBytes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "stderrBytes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "maxProcesses": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "timeoutMs",
+                "stdoutBytes",
+                "stderrBytes",
+                "maxProcesses"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "attemptId",
+            "worktreeId",
+            "approvedExecutable",
+            "executableHash",
+            "runtimeProfileHash",
+            "supervisorId",
+            "launchIdentity",
+            "argumentDigest",
+            "requestDigest",
+            "cwd",
+            "environmentProfileHash",
+            "budget"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "effect_observed",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "stop"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "attemptId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "targetProcess": {
+              "type": "object",
+              "properties": {
+                "supervisorId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                  "maxLength": 64
+                },
+                "launchIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startIdentity": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "executableHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "descendantScopeHash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "supervisorId",
+                "launchIdentity",
+                "pid",
+                "startIdentity",
+                "executableHash",
+                "descendantScopeHash"
+              ],
+              "additionalProperties": false
+            },
+            "stopMode": {
+              "enum": [
+                "graceful_then_force",
+                "graceful_only"
+              ]
+            },
+            "graceDeadlineMs": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "finalDeadlineMs": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "attemptId",
+            "targetProcess",
+            "stopMode",
+            "graceDeadlineMs",
+            "finalDeadlineMs"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "effect_observed",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "merge"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "planId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "planHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedIntegrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "taskId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "attemptId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "baseOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionTreeOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionRef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "patchSha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "taskId",
+                  "attemptId",
+                  "baseOid",
+                  "submissionOid",
+                  "submissionTreeOid",
+                  "submissionRef",
+                  "patchSha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0,
+              "maxItems": 1000
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotExpectedAbsent": {
+              "const": true
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "taskMembership": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "maxItems": 30
+            }
+          },
+          "required": [
+            "planId",
+            "planHash",
+            "expectedIntegrationOid",
+            "candidateOid",
+            "candidateTreeOid",
+            "sources",
+            "integrationRef",
+            "candidateRef",
+            "snapshotRef",
+            "snapshotExpectedAbsent",
+            "policyHash",
+            "profilesHash",
+            "requiredChecks",
+            "environmentHash",
+            "expectedContentEpoch",
+            "nextContentEpoch",
+            "taskMembership"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "candidate_created",
+            "testing",
+            "tests_passed",
+            "git_promoted",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "undo"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "planId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "planHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedIntegrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "taskId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "attemptId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "baseOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionTreeOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionRef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "patchSha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "taskId",
+                  "attemptId",
+                  "baseOid",
+                  "submissionOid",
+                  "submissionTreeOid",
+                  "submissionRef",
+                  "patchSha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0,
+              "maxItems": 1000
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotExpectedAbsent": {
+              "const": true
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "taskMembership": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "maxItems": 30
+            },
+            "originalBatchOperationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "planId",
+            "planHash",
+            "expectedIntegrationOid",
+            "candidateOid",
+            "candidateTreeOid",
+            "sources",
+            "integrationRef",
+            "candidateRef",
+            "snapshotRef",
+            "snapshotExpectedAbsent",
+            "policyHash",
+            "profilesHash",
+            "requiredChecks",
+            "environmentHash",
+            "expectedContentEpoch",
+            "nextContentEpoch",
+            "taskMembership",
+            "originalBatchOperationId"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "candidate_created",
+            "testing",
+            "tests_passed",
+            "git_promoted",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "restore"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "planId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "planHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedIntegrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "candidateTreeOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "taskId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "attemptId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                    "maxLength": 64
+                  },
+                  "baseOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionTreeOid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "submissionRef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "patchSha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "taskId",
+                  "attemptId",
+                  "baseOid",
+                  "submissionOid",
+                  "submissionTreeOid",
+                  "submissionRef",
+                  "patchSha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0,
+              "maxItems": 1000
+            },
+            "integrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "candidateRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "snapshotExpectedAbsent": {
+              "const": true
+            },
+            "policyHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "profilesHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "requiredChecks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 1000
+            },
+            "environmentHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "expectedContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextContentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "taskMembership": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "maxItems": 30
+            },
+            "targetVerifiedSnapshotId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "planId",
+            "planHash",
+            "expectedIntegrationOid",
+            "candidateOid",
+            "candidateTreeOid",
+            "sources",
+            "integrationRef",
+            "candidateRef",
+            "snapshotRef",
+            "snapshotExpectedAbsent",
+            "policyHash",
+            "profilesHash",
+            "requiredChecks",
+            "environmentHash",
+            "expectedContentEpoch",
+            "nextContentEpoch",
+            "taskMembership",
+            "targetVerifiedSnapshotId"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "candidate_created",
+            "testing",
+            "tests_passed",
+            "git_promoted",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "backup"
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "approvalReference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "quiescentBarrierId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "integrationOid": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            },
+            "contentEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "eventWatermark": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "lastFinalizedOperationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "requiredMembers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "database",
+                      "schema",
+                      "ref",
+                      "object",
+                      "artifact"
+                    ]
+                  },
+                  "identity": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "kind",
+                  "identity",
+                  "sha256",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 1000,
+              "allOf": [
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "database"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "schema"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "ref"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "object"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "artifact"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ]
+                  }
+                }
+              ]
+            },
+            "targetPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "targetOwnershipId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+              "maxLength": 64
+            },
+            "manifestSchemaHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "excludedWork": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "minItems": 0,
+              "maxItems": 1000
+            }
+          },
+          "required": [
+            "approvalReference",
+            "quiescentBarrierId",
+            "integrationOid",
+            "contentEpoch",
+            "eventWatermark",
+            "lastFinalizedOperationId",
+            "requiredMembers",
+            "targetPath",
+            "targetOwnershipId",
+            "manifestSchemaHash",
+            "excludedWork"
+          ],
+          "additionalProperties": false
+        },
+        "phase": {
+          "enum": [
+            "prepared",
+            "effect_observed",
+            "finalized",
+            "failed",
+            "abandoned",
+            "needs_review"
+          ]
+        }
+      }
+    }
+  ]
+}

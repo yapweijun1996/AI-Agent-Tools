@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "angit-event/v1",
+  "eventId": 1,
+  "projectId": "prj_demo",
+  "type": "attempt.started",
+  "entityId": "att_frontend_1",
+  "coordinatorEpoch": 1,
+  "createdAtMs": 1791939600000,
+  "summary": "Managed process identity observed.",
+  "payload": {
+    "taskId": "tsk_frontend",
+    "worktreeId": "wt_frontend_1"
+  },
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

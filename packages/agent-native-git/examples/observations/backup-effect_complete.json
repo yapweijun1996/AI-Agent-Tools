@@ -1,0 +1,54 @@
+{
+  "observationId": "obs_backup_complete",
+  "operationId": "op_backup",
+  "projectId": "prj_demo",
+  "kind": "backup",
+  "observationType": "effect_complete",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "manifestSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "manifestBytes": 1,
+    "members": [
+      {
+        "kind": "database",
+        "identity": "fixture-database",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 1
+      },
+      {
+        "kind": "schema",
+        "identity": "fixture-schema",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 1
+      },
+      {
+        "kind": "ref",
+        "identity": "fixture-ref",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 1
+      },
+      {
+        "kind": "object",
+        "identity": "fixture-object",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 1
+      },
+      {
+        "kind": "artifact",
+        "identity": "fixture-artifact",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bytes": 1
+      }
+    ],
+    "allMembersDurableAndVerified": true,
+    "barrierId": "id_demo"
+  }
+}

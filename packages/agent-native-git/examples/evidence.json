@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "angit-evidence/v1",
+  "evidenceId": "ev_demo",
+  "projectId": "prj_demo",
+  "planId": "plan_demo",
+  "candidateOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "treeOid": "ffffffffffffffffffffffffffffffffffffffff",
+  "dirtyBefore": false,
+  "dirtyAfter": false,
+  "policyHash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "profilesHash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "environment": {
+    "os": "windows",
+    "arch": "x64",
+    "nodeVersion": "24.x-EXAMPLE",
+    "gitVersion": "2.x-EXAMPLE",
+    "sqliteVersion": "3.x-EXAMPLE",
+    "dependencyDigest": "4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "producer": {
+    "id": "worker_demo",
+    "kind": "coordinator-supervised-worker",
+    "version": "fixture-only"
+  },
+  "checks": [
+    {
+      "checkId": "check_unit",
+      "runId": "run_unit",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "completed": true,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "cancelled": 0,
+      "runtimeProfileHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "startedAtMs": 1791939601000,
+      "endedAtMs": 1791939610000,
+      "artifacts": [
+        {
+          "artifactId": "art_unit",
+          "relativePath": "artifacts/unit.json",
+          "sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+          "bytes": 200
+        }
+      ]
+    }
+  ],
+  "verdict": "pass",
+  "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "operationId": "op_demo",
+  "environmentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+  "evidenceSha256": "7777777777777777777777777777777777777777777777777777777777777777"
+}

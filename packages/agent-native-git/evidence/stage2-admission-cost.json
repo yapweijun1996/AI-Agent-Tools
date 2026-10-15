@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Actual readonly discover plus loadPolicy on a preserved owned fixture; no guard grant, mutations or executable effects",
+  "synchronousMs": 2893.3643,
+  "zeroDelayTimerObservedMs": 2893.5647000000004,
+  "nativePlatformCalls": {
+    "identify": {
+      "count": 6,
+      "elapsedMs": 1307.9274999999998
+    },
+    "assertPrivateFile": {
+      "count": 4,
+      "elapsedMs": 1048.7542999999998
+    }
+  },
+  "policyLeaseDurationMs": 30000,
+  "heartbeatIntervalMs": 1000,
+  "limits": [
+    "One observation, not a timing guarantee",
+    "Does not itself prove the cause of a Git timeout",
+    "No timeout/approval/proof weakening"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/angit/v1/lease-action.schema.json",
+  "type": "object",
+  "properties": {
+    "action": {
+      "enum": [
+        "grant",
+        "renew",
+        "release"
+      ]
+    },
+    "authority": {
+      "$ref": "authority.schema.json"
+    },
+    "expectedOwnerId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "expectedFencingToken": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expectedCoordinatorEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expectedAuthorityIncarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "expiresAtMs": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "heartbeatIntervalMs": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "leaseDurationMs": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "priorWriterResolvedReceipt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "action",
+    "authority",
+    "expectedOwnerId",
+    "expectedFencingToken",
+    "expectedCoordinatorEpoch",
+    "expectedAuthorityIncarnation",
+    "expiresAtMs",
+    "heartbeatIntervalMs",
+    "leaseDurationMs",
+    "priorWriterResolvedReceipt"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "grant"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "priorWriterResolvedReceipt": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  ]
+}

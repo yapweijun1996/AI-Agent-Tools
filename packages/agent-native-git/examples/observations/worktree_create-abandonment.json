@@ -1,0 +1,21 @@
+{
+  "observationId": "obs_9",
+  "operationId": "op_worktree_create",
+  "projectId": "prj_demo",
+  "kind": "worktree_create",
+  "observationType": "abandonment",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "approvalReference": "fixture_approvalReference",
+    "noUnresolvedEffect": true,
+    "proofReceiptHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

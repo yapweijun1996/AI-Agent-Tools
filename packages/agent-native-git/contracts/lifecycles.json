@@ -1,0 +1,109 @@
+{
+  "contractSource": "docs/CONTRACT.md",
+  "taskTransitions": {
+    "queued": [
+      "blocked",
+      "leased",
+      "cancelled",
+      "needs_review"
+    ],
+    "blocked": [
+      "queued",
+      "cancelled",
+      "needs_review"
+    ],
+    "leased": [
+      "running",
+      "failed",
+      "cancelled",
+      "needs_review"
+    ],
+    "running": [
+      "submitted",
+      "failed",
+      "cancelled",
+      "needs_review"
+    ],
+    "submitted": [
+      "validating",
+      "cancelled",
+      "needs_review"
+    ],
+    "validating": [
+      "integrating",
+      "needs_review",
+      "cancelled"
+    ],
+    "integrating": [
+      "completed",
+      "needs_review"
+    ],
+    "failed": [
+      "queued",
+      "cancelled",
+      "needs_review"
+    ],
+    "needs_review": [
+      "queued",
+      "submitted",
+      "cancelled"
+    ],
+    "completed": [],
+    "cancelled": []
+  },
+  "attemptTransitions": {
+    "reserved": [
+      "starting",
+      "failed",
+      "cancelled",
+      "orphaned"
+    ],
+    "starting": [
+      "running",
+      "stopping",
+      "failed",
+      "cancelled",
+      "orphaned"
+    ],
+    "running": [
+      "stopping",
+      "submitted",
+      "failed",
+      "cancelled",
+      "orphaned"
+    ],
+    "stopping": [
+      "cancelled",
+      "failed",
+      "orphaned"
+    ],
+    "orphaned": [
+      "running",
+      "stopping",
+      "submitted",
+      "failed",
+      "cancelled"
+    ],
+    "submitted": [],
+    "failed": [],
+    "cancelled": []
+  },
+  "integrationPath": [
+    "prepared",
+    "candidate_created",
+    "testing",
+    "tests_passed",
+    "git_promoted",
+    "finalized"
+  ],
+  "effectPath": [
+    "prepared",
+    "effect_observed",
+    "finalized"
+  ],
+  "terminalOperationPhases": [
+    "finalized",
+    "failed",
+    "abandoned"
+  ]
+}

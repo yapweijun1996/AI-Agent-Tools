@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "angit-local-observation/v1",
+  "scope": "Targeted real lifecycle verification after finite Git worker and fixture cleanup/admission gate corrections",
+  "runtime": "Node24.21.0",
+  "command": "node --test --test-reporter=tap --test-name-pattern=\"^(foreground run admits|real parent loss|until-stopped foreground|brokered (cancellation|advisory) during)\" tests/execution.test.mjs",
+  "result": "FAIL",
+  "tests": 5,
+  "passed": 0,
+  "failed": 5,
+  "skipped": 0,
+  "durationMs": 3857789.4385,
+  "cases": [
+    { "name": "foreground run admits bounded independent work but not a submitted dependency or implicit integration", "durationMs": 848732.1565, "failure": "Timed out awaiting two independent native roots running concurrently: 0; primary failure preserved with owned cleanup failure" },
+    { "name": "real parent loss and missing native receipt preserve unknown ownership until exact restored EOF recovery", "durationMs": 752055.5946, "failure": "Initial durably running observation timed out with task leased; parent-loss path not reached" },
+    { "name": "until-stopped foreground admission accepts live brokered metadata and stops only on owner interruption", "durationMs": 764590.2632, "failure": "New task remained leased through initial foreground admission observation; cleanup drained actual in-process foreground completion" },
+    { "name": "brokered cancellation during queued admission does not stop unrelated owned work", "durationMs": 749299.1814, "failure": "Initial unrelated task remained leased; queued-candidate gate/cancellation path not reached" },
+    { "name": "brokered advisory during queued admission does not stop unrelated owned work", "durationMs": 742083.7378, "failure": "Initial unrelated task remained leased; queued-candidate gate/advisory path not reached" }
+  ],
+  "retainedObservation": {
+    "ownedFixture": "C:/Users/tno/AppData/Local/Temp/angit stage1 D38js6",
+    "attempts": "Two reserved attempts with null started/ended timestamps",
+    "effects": "Prepared worktree_create intents; no native termination receipts observed",
+    "preserved": true
+  },
+  "limits": [
+    "Finite-worker Git deadline smoke and permanent real-Git tests passed independently; they do not certify lifecycle acceptance",
+    "No claimed causal attribution for these pre-spawn stalls",
+    "Unknown owned fixtures preserved without PID killing, adoption or fabricated terminal evidence"
+  ]
+}

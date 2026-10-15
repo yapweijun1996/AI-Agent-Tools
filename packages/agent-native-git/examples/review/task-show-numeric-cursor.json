@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_review",
+  "projectId": "prj_demo",
+  "command": "task show",
+  "options": {
+    "taskId": "tsk_frontend",
+    "history": true,
+    "limit": 100,
+    "cursor": 1
+  }
+}

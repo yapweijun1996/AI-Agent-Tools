@@ -1,0 +1,58 @@
+{
+  "command": [
+    "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "-NoProfile",
+    "-File",
+    "scripts/windows-primitives.ps1"
+  ],
+  "cwd": "C:\\Users\\tno\\Documents\\GitHub\\Agent-Native-Git",
+  "exitCode": 1,
+  "stderr": "",
+  "report": {
+    "schemaVersion": 1,
+    "probe": "windows-primitives",
+    "status": "fail",
+    "checks": [
+      {
+        "id": "fixture_compilation",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+          "exitCode": 1,
+          "stdout": "c:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.Web.Extensions.dll: error CS1703: An assembly with the same identity 'System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' has already been imported. Try removing one of the duplicate references.\r\nc:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL\\System.Web.Extensions\\v4.0_4.0.0.0__31bf3856ad364e35\\System.Web.Extensions.dll: (Location of symbol related to previous error)\r\n",
+          "stderr": "",
+          "platform": "x64"
+        }
+      },
+      {
+        "id": "wrapper_failure",
+        "status": "fail",
+        "required": true,
+        "details": {
+          "message": "Owned native fixture compilation failed; see exact compiler diagnostics.",
+          "exception": "System.Management.Automation.RuntimeException"
+        }
+      },
+      {
+        "id": "disposable_directory_cleanup",
+        "status": "pass",
+        "required": true,
+        "details": {
+          "onlyCreatedDirectoryDeleted": true,
+          "directoryAbsent": true
+        }
+      }
+    ],
+    "runtime": {
+      "powershell": "5.1.26100.9444",
+      "framework": "4.0.30319.42000",
+      "processArchitecture": "x64"
+    },
+    "limitations": [
+      "NOT PRODUCT SECURITY CERTIFICATION",
+      "Disposable native feasibility, not product acceptance or hostile same-account isolation."
+    ]
+  }
+}

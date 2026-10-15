@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "angit-worker-preflight-negative/v1",
+  "command": "C:/Users/tno/.omp/ai-agent-tools-20261014/runtime/node.exe scripts/worker-handoff-probe.mjs --explicit-isolated-stop-failure",
+  "exitCode": 1,
+  "expectedOutcome": "runner must reject post-READY graceful Coordinator exit 1 and preserve the fixture",
+  "expectationSatisfied": true,
+  "report": {
+    "status": "failed",
+    "fixturePreserved": "C:\\Users\\tno\\AppData\\Local\\Temp\\angit-worker-preflight-zbx2YB",
+    "allClosed": false,
+    "completedCases": [],
+    "error": "Expected values to be strictly equal:\n\n1 !== 0\n"
+  },
+  "fixtureRetentionObserved": true,
+  "stdoutAndStderr": "{\"status\":\"failed\",\"fixturePreserved\":\"C:\\\\Users\\\\tno\\\\AppData\\\\Local\\\\Temp\\\\angit-worker-preflight-zbx2YB\",\"allClosed\":false,\"completedCases\":[],\"error\":\"Expected values to be strictly equal:\\n\\n1 !== 0\\n\"}\nnode:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at runner (file:///C:/Users/tno/Documents/GitHub/Agent-Native-Git/scripts/worker-handoff-probe.mjs:308:16)\n    at async file:///C:/Users/tno/Documents/GitHub/Agent-Native-Git/scripts/worker-handoff-probe.mjs:337:90 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 1,\n  expected: 0,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.21.0\n\n\nWall time: 6.28 seconds\n\nCommand exited with code 1",
+  "scope": "Intentional inert negative fixture, not a product Worker failure or a successful shutdown.",
+  "diagnosticConfirmed": "Intentional inert post-READY stop failure.",
+  "hostObservedCoordinatorExitCode": 1
+}

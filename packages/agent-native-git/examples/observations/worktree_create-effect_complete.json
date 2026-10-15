@@ -1,0 +1,24 @@
+{
+  "observationId": "obs_7",
+  "operationId": "op_worktree_create",
+  "projectId": "prj_demo",
+  "kind": "worktree_create",
+  "observationType": "effect_complete",
+  "observerAuthority": {
+    "projectId": "prj_demo",
+    "authorityIncarnation": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "coordinatorEpoch": 1,
+    "resourceKey": "integration:prj_demo",
+    "fencingToken": 1,
+    "ownerId": "owner_demo"
+  },
+  "observedAtMs": 0,
+  "data": {
+    "canonicalPath": "fixture_canonicalPath",
+    "ownershipMarkerId": "id_demo",
+    "baseOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "baseTreeOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "branchRef": "fixture_branchRef",
+    "role": "task"
+  }
+}

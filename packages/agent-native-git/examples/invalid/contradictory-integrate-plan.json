@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_integrate_plan",
+  "command": "integrate plan",
+  "options": {
+    "taskIds": [
+      "tsk_frontend",
+      "tsk_backend"
+    ],
+    "undoOperationId": "op_demo"
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-integrate-plan-v1"
+}

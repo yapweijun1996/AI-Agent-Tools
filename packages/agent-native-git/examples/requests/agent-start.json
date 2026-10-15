@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "angit-request/v1",
+  "requestId": "req_agent_start",
+  "command": "agent start",
+  "options": {
+    "taskId": "tsk_frontend",
+    "runtimeProfileId": "mock_local",
+    "retry": false
+  },
+  "projectId": "prj_demo",
+  "idempotencyKey": "example-agent-start-v1"
+}
