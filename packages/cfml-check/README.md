@@ -4,6 +4,8 @@
 
 ## Current status
 
+Version `0.5.0` recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; their closing forms remain incomplete. The checker does not execute tag operations or validate their runtime effects.
+
 Version `0.4.0` recognizes seven additional standalone tags and fixes CFML path strings ending in a backslash. The published `0.3.0` scanner can skip subsequent tags or report false findings after such a string; recheck affected files with a corrected build before relying on its result. Optional-body closing forms of `cffile` and `cfheader` remain incomplete.
 
 Version `0.3.0` extends the structural profile with transaction and switch tags and adds inspection workflows. The implementation checks:
@@ -111,4 +113,4 @@ The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, opti
 - `dist/`: generated package output;
 - `DESIGN.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, `PROGRESS.md`, `GOAL_PROMPT.md`, `CHANGELOG.md`: repository design, planning, status, and maintenance documents.
 
-`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.4.0`.
+`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.5.0`.

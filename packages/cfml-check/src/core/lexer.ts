@@ -24,6 +24,7 @@ export const BRANCH_TAGS = new Set(["cfelseif", "cfelse"]);
 export const BODYLESS_TAGS = new Set([
   "cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam",
   "cfabort", "cfbreak", "cferror", "cfcookie", "cfheader", "cffile", "cfimage",
+  "cflocation", "cfpdf", "cfdirectory", "cfexecute",
 ]);
 
 type TagKind = "open" | "close" | "branch" | "bodyless" | "unknown";

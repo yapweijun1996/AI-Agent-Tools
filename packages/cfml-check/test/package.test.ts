@@ -15,7 +15,7 @@ interface PackageManifest {
 test("package metadata exposes the TypeScript library entry and CLI", () => {
   const manifest = JSON.parse(readFileSync("package.json", "utf8")) as PackageManifest;
   assert.equal(manifest.name, "agent-cfml-check");
-  assert.equal(manifest.version, "0.4.0");
+  assert.equal(manifest.version, "0.5.0");
   assert.equal(manifest.main, "./dist/index.js");
   assert.equal(manifest.types, "./dist/index.d.ts");
   assert.deepEqual(manifest.exports?.["."], {

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { Ajv2020 } from "ajv/dist/2020.js";
@@ -38,7 +38,7 @@ test("inspect reports unsupported tags and later findings without claiming compl
 });
 
 test("optional-body closing forms remain incomplete and later findings provisional", () => {
-  for (const tag of ["cffile", "cfheader"]) {
+  for (const tag of ["cffile", "cfheader", "cflocation", "cfpdf", "cfexecute"]) {
     fixture((root, file) => {
       const target = file("optional.cfm", `<${tag}>body</${tag}>\n<cfelse>`);
       const { result, exit_code } = inspectFiles({ root, files: [target] });
@@ -49,6 +49,18 @@ test("optional-body closing forms remain incomplete and later findings provision
       assert(result.files[0]?.findings.some((item) => item.code === "INVALID_BRANCH" && item.confidence === "provisional"));
     });
   }
+});
+
+test("inspecting execute and directory tags does not run them or write output", () => {
+  fixture((root, file) => {
+    const marker = path.join(root, "output.txt");
+    const target = file("operations.cfm", `<cfexecute name="echo" arguments="test" outputFile="${marker}"><cfdirectory action="create" directory="${root}/created">`);
+    const { result, exit_code } = inspectFiles({ root, files: [target] });
+    assert.equal(exit_code, 0);
+    assert.equal(result.files[0]?.verdict, "pass");
+    assert.equal(existsSync(marker), false);
+    assert.equal(existsSync(path.join(root, "created")), false);
+  });
 });
 
 test("inspect continues beyond bounded CFScript tag islands without claiming a complete check", () => {

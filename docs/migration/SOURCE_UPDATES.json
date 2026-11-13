@@ -4,8 +4,8 @@
     {
       "destination": "packages/cfml-check/SPEC.md",
       "imported_sha256": "b91c14964fa2ae7dfdbdaa79f67353dbf248d13bd76609cc8f054d899efb4ce4",
-      "current_sha256": "657d91336657588069b932b2d346a0d7a93384c22b71a3e08a81fe71db68c8ce",
-      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "b1c3d9b76f7c731c928dd78942afb16449eab3b8f2b704b3277efe481dd12689",
+      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/core/source-reader.ts",
@@ -16,8 +16,8 @@
     {
       "destination": "packages/cfml-check/test/check.test.ts",
       "imported_sha256": "139fc079688cfc6e59e57c76d5238507c451db00764b4ee1f9f14db5fc7dc040",
-      "current_sha256": "ba3feea84cafa1a9eb79fec2ab442c59fdffb65f6ca672b3583294781a2f9b94",
-      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13)."
+      "current_sha256": "ea394c344610ba24f1010ea39ae7688acf46004933f26a51905c4f4bd5d4b040",
+      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13)."
     },
     {
       "destination": "packages/cfml-policy-check/SPEC.md",
@@ -298,14 +298,14 @@
     {
       "destination": "packages/cfml-check/README.md",
       "imported_sha256": "896b5fd45c87e0415a87e6977996e2ed8d2ea738559303fcec1f65250ea9d38c",
-      "current_sha256": "754d5c96c1791fa89a62184d5ee475a097b0e50fe0d37c95e26b20a09a5ec90c",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "a0ab2f4c2ab024bea63d3795997da13845a7d01ef76f37ebae6ebd4060c5dfba",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/core/lexer.ts",
       "imported_sha256": "7f28212ff371aba0315b53ba8c116b9f0ea6d371bc795f834a2524fa2822fb4d",
-      "current_sha256": "fe97d61c6cbd4c454b117a9815d9a1735cf54c31695ec53e77161bf264c33109",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13)."
+      "current_sha256": "f0b815ea7cff3eeeae64e4f7e3792a4fba30d7b60b0caf646968ed6a8ffb3a02",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/test/cli.test.ts",
@@ -460,8 +460,8 @@
     {
       "destination": "packages/cfml-check/package.json",
       "imported_sha256": "47195258a59ff89408cdc2e219a0d11f3782ce7a97b31c5a5733a7b69fddf3bb",
-      "current_sha256": "31acb1713eb2ffc6f35c292dd0e9b9df7130efb43b2cc26a813dcdbd15a2d704",
-      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "85450dacc3cb996f102ed37e69a8bc22455640d80e215c22a63742d752bf962d",
+      "reason": "Owner-selected prepared-test entrypoint preserves independent native verification while avoiding duplicate root preparation (2026-10-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/change-impact/package.json",
@@ -574,32 +574,32 @@
     {
       "destination": "packages/cfml-check/CHANGELOG.md",
       "imported_sha256": "a36de0446216bad5a1f7341599fe14243e189960d1e69c658b61e31581d4a758",
-      "current_sha256": "73d23570194ba42cb1c9d263a030fd0fdc9e8921ff40927b0ed45d7d862dc9dc",
-      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "504b1db1ff0ec63c81b6c5ed41f6d0d4c6012dc731a645c3e3ac5bcf4eee4154",
+      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/DESIGN.md",
       "imported_sha256": "8ff3c44e4951e610ad61d8fe3bf290024dce2908f8164875ead41bdc4d6e92fa",
-      "current_sha256": "92b436382371ded396e595a187a7331062d269b524e84861384bcb3da43854cf",
-      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "1f900522646cfa89815422000951884ad85bb0a93be7c768b6daa8a0c0a7f7ea",
+      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/package-lock.json",
       "imported_sha256": "482151b7c7800e77efbd08eac9c1c06bd9a90a764701c0e14ef2099a4887b595",
-      "current_sha256": "d3c662ddbe99bfe259e42748865c4cf903d6d1d63125e1d02f8971639c1dd043",
-      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "ccc83afc1fe3e683a4e63b0b57d2189047e2cae855fa9eb60be3898ac90684c5",
+      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/schema/types.ts",
       "imported_sha256": "b6bcbb006c214f33b8500a58a75219de8eb64224b2d1f18c5003845b0570a852",
-      "current_sha256": "954c75ab71883a628c900a5fca4312dc764e74e73820ac39ac360b9e4c3348f4",
-      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "2ad6822b8e4efd2ceada13c0ef5083fbe5bbbd3afe41764f90a0323282807632",
+      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/test/package.test.ts",
       "imported_sha256": "040a585d88569feeefd2f08aca2bd3ae687b55eb1004deee608c0e0adcab4f9d",
-      "current_sha256": "5fffed59d031272d9cf1227c55a905d525011a2d907f681a0d51bdc30f34120b",
-      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "df27ff53330c65bc3a5c193d71daca0a34501e6dd2f4f22f1bf427385e451dc6",
+      "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/PROGRESS.md",
@@ -616,8 +616,8 @@
     {
       "destination": "packages/cfml-check/skills/agent-cfml-check/SKILL.md",
       "imported_sha256": "c84c5e3e80aac7a7b1bdb61cb3bdb5492c47cc2dfd7ed3b5a423359bc43cad79",
-      "current_sha256": "893780516cefda3b46429e758d467ab7e7f98abc9e187e2873d0e6402aeadec2",
-      "reason": "Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Document the published scanner limitation (2026-11-13). Prepare the 0.4.0 release (2026-11-13)."
+      "current_sha256": "e035a041bc8306f29197a71dfcf30762a5acbae58e1875748f02f649caddbcae",
+      "reason": "Add bounded inspection, range, comparison, multi-file and tag support (2026-11-13). Prepare the 0.3.0 release (2026-11-13). Document the published scanner limitation (2026-11-13). Prepare the 0.4.0 release (2026-11-13). Prepare the 0.5.0 release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/core/source-index.ts",
@@ -628,8 +628,8 @@
     {
       "destination": "packages/cfml-check/TASK.md",
       "imported_sha256": "4fb01e3f5332cc1a3803e65c826369073317616ed615c66cef8c02ddbcc72112",
-      "current_sha256": "1a30f5ddf14b91dd8f07278d22e093f0def5f5e9746331d35cec97446b4bb7aa",
-      "reason": "Document the unreleased inspection extension and verification status (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13)."
+      "current_sha256": "281fcd43cd9fc7e705707c6c104e34d39665edb2cd6a58d38f6f6ebd02b85751",
+      "reason": "Document the unreleased inspection extension and verification status (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13)."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "agent-cfml-check",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Deterministic, read-only structural checks for a bounded CFML subset.",
   "repository": {
     "type": "git",

@@ -1,5 +1,9 @@
 # Task status
 
+## CFML Check second-level include tags (2026-11-13)
+
+Local source adds standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute` recognition. The owner-selected second-level include files completed bounded structural checks without findings using the local build; this is not runtime evidence. Closing forms remain incomplete, and the change is not yet published. See the [package ledger](packages/cfml-check/TASK.md).
+
 ## CFML Check standalone tags and path strings (2026-11-13)
 
 Version `0.4.0` extends standalone tag coverage and corrects backslash handling that can make published `0.3.0` miss syntax or report false findings. The owner-selected quotation file and its 26 directly referenced include files were rechecked with the corrected build. Registry readback, matching artifact digest and global installation verify the release. This is bounded static evidence, not a runtime or complete-CFML claim. See the [package ledger](packages/cfml-check/TASK.md) and [validation](VALIDATION.md#cfml-check-040-release-2026-11-13).

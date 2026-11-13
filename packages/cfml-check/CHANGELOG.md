@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Recognize standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; closing forms remain incomplete. The checker does not execute tag operations or validate their runtime effects.
+
 ## 0.4.0
 
 - Recognize standalone `cfabort`, `cfbreak`, `cferror`, `cfcookie`, `cfheader`, `cffile`, and `cfimage` in the structural profile; optional-body closing forms remain incomplete.

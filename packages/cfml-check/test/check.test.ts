@@ -116,6 +116,21 @@ test("common standalone tags retain subsequent structural checks", () => {
   }
 });
 
+test("location, PDF, directory and execute standalone tags preserve structural checks", () => {
+  for (const tag of ["cflocation", "cfpdf", "cfdirectory", "cfexecute"]) {
+    const source = `<CFIF ok><${tag.toUpperCase()}\n action="example" /><cfelse></CFIF>`;
+    const result = run(source);
+    assert.equal(result.exit_code, 0, tag);
+    assert.equal(result.envelope.data?.verdict, "pass", tag);
+    assert(capabilities().data?.supported_tags.bodyless.includes(tag));
+    const later = run(`<${tag}><cfelse>`);
+    assert(later.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), tag);
+    const closed = run(`<${tag}></${tag}>`);
+    assert.equal(closed.exit_code, 3, tag);
+    assert.equal(closed.envelope.status, "incomplete", tag);
+  }
+});
+
 test("CF-05 validates branch ownership and order", () => {
   const result = run("<cfelse><cfif ok><cfelse><cfelse><cfelseif later></cfif>");
   const findings = result.envelope.data?.findings.filter((item) => item.code === "INVALID_BRANCH") ?? [];
