@@ -82,6 +82,40 @@ test("CF-04 respects quoted tag values and CFScript strings", () => {
   assert.equal(result.envelope.data?.verdict, "pass");
 });
 
+test("CFML path backslashes do not hide later tag diagnostics", () => {
+  const source = String.raw`<cfif ok><cfset p = "C:\"><cfmystery></cfif><cfunknown>`;
+  const scan = scanCfml(source, DEFAULT_LIMITS, true);
+  assert.equal(scan.incomplete.length, 2);
+  assert.match(scan.incomplete[0]?.message ?? "", /cfmystery/u);
+  assert.match(scan.incomplete[1]?.message ?? "", /cfunknown/u);
+  assert.equal(scan.findings.length, 0);
+  const after = run(String.raw`<cfif ok><cfset p = "C:\"></cfif><cfelse>`);
+  assert.equal(after.envelope.data?.verdict, "violations");
+  assert(after.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"));
+});
+
+test("CFScript path backslashes do not hide subsequent delimiters", () => {
+  const result = run(String.raw`<cfscript>p = "C:\"; (</cfscript>`);
+  assert.equal(result.exit_code, 0);
+  assert(result.envelope.data?.findings.some((item) => item.code === "UNBALANCED_DELIMITER"));
+  const quoted = run(`<cfoutput title="a ""quoted"" value">ok</cfoutput><cfscript>p = "a ""quoted"" value";</cfscript>`);
+  assert.equal(quoted.envelope.data?.verdict, "pass");
+});
+
+test("common standalone tags retain subsequent structural checks", () => {
+  for (const tag of ["cfabort", "cfbreak", "cferror", "cfcookie", "cfheader", "cffile", "cfimage"]) {
+    const result = run(`<${tag}><cfif ok></cfif>`);
+    assert.equal(result.exit_code, 0, tag);
+    assert.equal(result.envelope.data?.verdict, "pass", tag);
+    assert(capabilities().data?.supported_tags.bodyless.includes(tag));
+    const after = run(`<${tag}><cfelse>`);
+    assert(after.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), tag);
+    const closed = run(`<${tag}></${tag}>`);
+    assert.equal(closed.exit_code, 3, tag);
+    assert.equal(closed.envelope.status, "incomplete", tag);
+  }
+});
+
 test("CF-05 validates branch ownership and order", () => {
   const result = run("<cfelse><cfif ok><cfelse><cfelse><cfelseif later></cfif>");
   const findings = result.envelope.data?.findings.filter((item) => item.code === "INVALID_BRANCH") ?? [];

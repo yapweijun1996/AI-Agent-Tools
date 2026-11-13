@@ -1,7 +1,7 @@
 # Agent CFML Check Specification
 
 **Status:** frozen feasibility contract for implementation baseline `c76b8be`, extended by release hardening
-**Tool version:** `0.3.0`
+**Tool version:** `0.4.0`
 **Profile:** `cfml-structure-v1`
 **Envelope schema:** `schema/agent-cfml-check-result-v1.schema.json`
 
@@ -22,7 +22,7 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 
 `capabilities` reports the profile, operations, extensions, tag catalogue, effective default limits, and exclusions. The CLI does not accept a file, root, or check-limit override for this operation.
 
-`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.3.0`; neither may be combined with other options.
+`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.4.0`; neither may be combined with other options.
 
 ### TypeScript interface
 
@@ -37,6 +37,8 @@ The TypeScript `capabilities(limitsInput)` API may receive limit overrides, whil
 Version `0.3.0` additionally recognizes `cftransaction`, `cfswitch`, `cfcase`, and `cfdefaultcase`. A switch case must belong to the directly open switch, which can contain at most one default case. For transactions, absent or literal `begin` action is treated as a paired body; literal `commit`, `rollback`, and `setsavepoint` are treated as bodyless. Dynamic, duplicate, attribute-collection, or otherwise unrecognized transaction attributes return incomplete. This checks tag structure only, not database transaction behavior. These additions are not part of the published `0.2.0` artifact.
 
 The opt-in `inspect` operation uses `schema/agent-cfml-inspect-result-v2.schema.json` and does not alter the v1 `check` envelope. It accepts one to 32 explicitly named source files under one root, an optional `--lines start:end`, or a `--baseline` file plus one current file. Relative file paths are resolved against the selected root; all paths use the existing source reader. Scope is recorded per file; the scanner reads the entire file for surrounding context, then filters findings to the requested range. Unsupported syntax anywhere in the scanned file makes that file incomplete, and its findings are provisional. Recoverable unsupported tags and CFScript tag islands are located and scanning continues; unterminated lexical constructs can stop scanning, reflected by `scan_complete: false`. No incomplete file receives a `pass` verdict.
+
+Version `0.4.0` also recognizes standalone `cfabort`, `cfbreak`, `cferror`, `cfcookie`, `cfheader`, `cffile`, and `cfimage`. The profile checks these as standalone tags; a closing tag returns incomplete, including the optional-body forms of `cffile` and `cfheader`. It does not validate tag attributes, runtime effects, or `cfbreak` loop ownership.
 
 Inspection reports file, position, related opener and a non-automatic hint. It uses the existing per-file byte and nesting limits, a shared time limit, a 16 MiB aggregate source limit, a 32-file cap, and the output limit. When output cannot fit, results are withheld rather than truncated into apparent success. For a baseline comparison, the complete baseline is compared with findings in the current file's requested range; line numbers may have shifted. Unique matches of finding code and normalized source/opening lines are `existing`; findings with a code absent from the complete baseline are `new`; ambiguous or incomplete cases are `uncertain`. The response includes `comparison_basis` to state that these are diagnostic-signature classifications, not proof of semantic identity, causation, or runtime behavior. Baseline and current files must both be explicitly selected under the root; each is read as an individually verified snapshot rather than a simultaneous filesystem snapshot. `0` means inspection completed, including findings; `3` means incomplete, and input/security errors retain their applicable exit code.
 
@@ -59,7 +61,7 @@ Tag names are case-insensitive. Unknown, custom, imported, and unlisted tags are
 ### Comments, attributes, and scripts
 
 - Nested `<!--- ... --->` CFML comments are ignored for tag detection.
-- Quoted tag attributes respect backslash escapes, doubled quote escapes, and CFML comments inside the tag expression.
+- Quoted CFML tag attributes and CFScript strings treat backslashes literally and respect doubled quote escapes. CFML comments inside tag expressions are skipped. The published `0.3.0` scanner treated backslashes as escapes and can miss later syntax or report false findings; version `0.4.0` corrects this behavior.
 - HTML comments do not suppress CFML tag detection.
 - Embedded `cfscript` respects quoted strings, `//` line comments, and `/* ... */` block comments while checking `()`, `[]`, and `{}`.
 - CFML tag islands inside `cfscript` are unsupported.

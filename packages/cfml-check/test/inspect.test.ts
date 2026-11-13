@@ -37,6 +37,20 @@ test("inspect reports unsupported tags and later findings without claiming compl
   });
 });
 
+test("optional-body closing forms remain incomplete and later findings provisional", () => {
+  for (const tag of ["cffile", "cfheader"]) {
+    fixture((root, file) => {
+      const target = file("optional.cfm", `<${tag}>body</${tag}>\n<cfelse>`);
+      const { result, exit_code } = inspectFiles({ root, files: [target] });
+      assert.equal(exit_code, 3, tag);
+      assert.equal(result.files[0]?.verdict, null);
+      assert.equal(result.files[0]?.unsupported[0]?.code, "UNSUPPORTED_SYNTAX");
+      assert.equal(result.files[0]?.unsupported[0]?.location?.start.line, 1);
+      assert(result.files[0]?.findings.some((item) => item.code === "INVALID_BRANCH" && item.confidence === "provisional"));
+    });
+  }
+});
+
 test("inspect continues beyond bounded CFScript tag islands without claiming a complete check", () => {
   fixture((root, file) => {
     const target = file("island.cfm", '<cfscript>\n<cfif ok>\n</cfif>\n</cfscript>\n<cfif ok></cfif></cfif>');

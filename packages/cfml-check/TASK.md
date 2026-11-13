@@ -1,5 +1,9 @@
 # Agent CFML Check Task Ledger
 
+## Unreleased standalone tags and string handling (2026-11-13)
+
+Source work adds `cfabort`, `cfbreak`, `cferror`, `cfcookie`, `cfheader`, `cffile`, and `cfimage` as standalone tags and corrects CFML backslash handling. Version `0.3.0` can skip later tags or report false structural findings after a backslash before a quote. Closing forms of optional-body `cffile` and `cfheader` remain incomplete. Windows tests passed 55 with four platform skips; Ubuntu Node 18 tests passed all 59 with typecheck. Repository `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable. The corrected local build completed bounded structural checks without findings on the selected quotation and its 26 direct includes. This correction is not yet published.
+
 ## 0.3.0 inspection extension (2026-11-13)
 
 Version `0.3.0` adds transaction and switch tags, opt-in v2 partial diagnostics, explicit line ranges, baseline comparison, practical hints, and bounded multi-file inspection. Existing v1 `check` remains available with its original envelope. Incomplete scans never report a pass; recovered findings are provisional, and ambiguous baseline matches are uncertain. Windows package tests passed (51 passed, four platform skips); Ubuntu Node 18 package tests and typecheck passed (55 passed), as did temporary packed and registry consumers. The repository `npm run verify` completed on Node 24.19.0 with Agent-Native-Git not applicable. Registry readback confirms `0.3.0`; these changes are not part of `0.2.0`.

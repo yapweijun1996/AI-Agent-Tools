@@ -21,7 +21,10 @@ export const PAIRED_TAGS = new Set([
   "cfdefaultcase",
 ]);
 export const BRANCH_TAGS = new Set(["cfelseif", "cfelse"]);
-export const BODYLESS_TAGS = new Set(["cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam"]);
+export const BODYLESS_TAGS = new Set([
+  "cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam",
+  "cfabort", "cfbreak", "cferror", "cfcookie", "cfheader", "cffile", "cfimage",
+]);
 
 type TagKind = "open" | "close" | "branch" | "bodyless" | "unknown";
 
@@ -131,10 +134,7 @@ function parseTag(source: string, start: number): { token: TagToken; next: numbe
   while (cursor < source.length) {
     const character = source[cursor];
     if (quote !== null) {
-      if (character === "\\") {
-        cursor += 2;
-        continue;
-      }
+      // CFML doubles quote characters; a backslash is a literal path character.
       if (character === quote) {
         if (source[cursor + 1] === quote) {
           cursor += 2;
@@ -216,10 +216,6 @@ function scanScriptDelimiters(context: ScanContext, start: number, end: number, 
     checkDeadline(context, cursor);
     const character = context.source[cursor];
     if (quote !== null) {
-      if (character === "\\") {
-        cursor += 2;
-        continue;
-      }
       if (character === quote) {
         if (context.source[cursor + 1] === quote) {
           cursor += 2;
@@ -299,10 +295,6 @@ function scanScriptRegion(context: ScanContext, start: number, recover = false):
     checkDeadline(context, cursor);
     const character = context.source[cursor];
     if (quote !== null) {
-      if (character === "\\") {
-        cursor += 2;
-        continue;
-      }
       if (character === quote) {
         if (context.source[cursor + 1] === quote) cursor += 2;
         else {

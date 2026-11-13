@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Recognize standalone `cfabort`, `cfbreak`, `cferror`, `cfcookie`, `cfheader`, `cffile`, and `cfimage` in the structural profile; optional-body closing forms remain incomplete.
+- Treat backslashes literally in CFML tag and CFScript strings instead of consuming a following quote, so later tags and delimiters remain visible. Version `0.3.0` may miss syntax or report false findings for affected input.
+
 ## 0.3.0
 
 - Add bounded transaction and switch/case structural recognition.

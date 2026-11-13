@@ -1,5 +1,9 @@
 # Task status
 
+## CFML Check standalone tags and path strings (2026-11-13)
+
+Local source extends standalone tag coverage and corrects backslash handling that can make published `0.3.0` miss syntax or report false findings. The owner-selected quotation file and its 26 directly referenced include files were rechecked with the corrected local build. This is bounded static evidence, not a runtime or complete-CFML claim. The correction is not yet published; see the [package ledger](packages/cfml-check/TASK.md).
+
 ## CFML Check inspection extension (2026-11-13)
 
 The owner requested publication of `0.3.0`. Release source commit `8f41d26` is on `main`; Windows package tests passed 51 with four platform skips, Ubuntu Node 18 passed all 55 tests and typecheck, and the packed artifact passed a temporary consumer smoke check. The repository `npm run verify` completed on Windows Node 24.19.0 with Agent-Native-Git not applicable. Registry readback, artifact digest and a temporary registry install confirm `0.3.0`; it is recorded as Experimental. See [validation](VALIDATION.md#cfml-check-030-release-2026-11-13).

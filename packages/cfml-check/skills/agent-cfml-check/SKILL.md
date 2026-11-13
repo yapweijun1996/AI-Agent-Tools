@@ -46,6 +46,8 @@ Use `--pretty` only with `--json`. Check limits may be overridden with `--max-so
 
 JSON stdout is the machine-readable envelope. Diagnostics may also appear on stderr. Validate the envelope against `schema/agent-cfml-check-result-v1.schema.json` when schema tooling is available.
 
+Published version `0.3.0` may skip later tags or report false findings when a CFML string ends with a backslash before its closing quote. A `complete` result is not reliable for affected input; use version `0.4.0` or a corrected build and record its provenance.
+
 ## Inspection in version 0.3.0
 
 Version `0.3.0` offers `inspect --root <root> <file> [file ...] --json`, optionally with `--lines <start:end>` or `--baseline <before-file>` and one current file. This is not in the published `0.2.0` artifact. Inspect uses the separate `schema/agent-cfml-inspect-result-v2.schema.json`; check each file's status and scope. Findings are provisional whenever the file is incomplete, and a partial result is never a pass. Range inspection scans the whole source for context and may remain incomplete because of unsupported syntax elsewhere. Baseline classifications are diagnostic-signature matches, not proof of semantic identity; ambiguous or incomplete comparisons are `uncertain`.
