@@ -1,5 +1,9 @@
 # Task status
 
+## CFML Check third-level include tags (2026-11-13)
+
+Local source adds standalone `cfflush`, `cfmodule`, and `cfzip` recognition without resolving custom templates or executing operations. Four selected third-level include files completed bounded structural checks without findings with the local build; this does not establish runtime correctness. Paired forms remain incomplete; the extension is not yet published. See the [package ledger](packages/cfml-check/TASK.md).
+
 ## CFML Check second-level include tags (2026-11-13)
 
 Version `0.5.0` adds standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute` recognition. The owner-selected second-level include files completed bounded structural checks without findings using the registry-installed package; this is not runtime evidence. Closing forms remain incomplete. Registry readback, matching artifact digest and global installation confirm the release. See the [package ledger](packages/cfml-check/TASK.md) and [validation](VALIDATION.md#cfml-check-050-release-2026-11-13).

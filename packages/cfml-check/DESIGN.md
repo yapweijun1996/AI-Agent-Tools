@@ -1,7 +1,7 @@
 # Agent CFML Check Design
 
 **Status:** release hardening complete; external compatibility and canonical admission pending
-**Version:** `0.5.0`
+**Version:** `0.6.0`
 **Implementation baseline:** repository release-hardening commit pending
 
 ## 1. Purpose and authority
@@ -57,6 +57,8 @@ CLI (src/cli/index.ts)
 The published `0.2.0` paired bodies are `cfcatch`, `cfcomponent`, `cffinally`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, `cfsilent`, and `cftry`. Supported branches are `cfelse` and `cfelseif`. Supported bodyless tags are `cfargument`, `cfinclude`, `cfparam`, `cfqueryparam`, `cfreturn`, and `cfset`. Version `0.3.0` extends this catalogue with `cftransaction`, `cfswitch`, `cfcase`, and `cfdefaultcase` as described in the specification. Version `0.4.0` adds seven standalone tags and corrects backslash handling in CFML strings; optional-body closing forms remain incomplete.
 
 Version `0.5.0` adds standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`. It retains the existing fail-closed behavior for closing forms; static recognition does not execute or validate tag actions.
+
+Version `0.6.0` recognizes standalone `cfflush`, `cfmodule`, and `cfzip`. Custom tag resolution and archive operations are outside the checker; closing forms remain incomplete rather than being guessed.
 
 Tag names are case-insensitive. Paired tags require matching closes; self-closing forms return incomplete. Bodyless tags accept ordinary and self-closing spellings but cannot have a closing tag. Branches must belong to the directly open `cfif`; one `cfelse` is allowed and `cfelseif` cannot follow it. A `cftry` must have a directly nested `cfcatch` or `cffinally`; multiple catches are allowed, followed by at most one finally. Each nested try owns its own handler state. This profile does not validate exception types, attributes, or arbitrary statements between handlers.
 

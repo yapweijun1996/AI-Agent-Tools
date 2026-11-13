@@ -131,6 +131,28 @@ test("location, PDF, directory and execute standalone tags preserve structural c
   }
 });
 
+test("flush, module and zip standalone tags preserve later diagnostics", () => {
+  for (const source of [
+    '<cfflush interval="10">',
+    '<cfmodule template="../outside.cfm" attr="#value#">',
+    '<cfmodule template="#dynamicPath#" />',
+    '<cfzip action="readbinary" file="#archive#" entrypath="#entry#" />',
+  ]) {
+    const result = run(`<cfif ok>${source}</cfif><cfelse>`);
+    assert.equal(result.exit_code, 0, source);
+    assert(result.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), source);
+  }
+  for (const tag of ["cfflush", "cfmodule", "cfzip"]) {
+    assert(capabilities().data?.supported_tags.bodyless.includes(tag));
+    const result = run(`<${tag}></${tag}>`);
+    assert.equal(result.exit_code, 3, tag);
+    assert.equal(result.envelope.status, "incomplete", tag);
+  }
+  const custom = run('<cf_customtag value="x">');
+  assert.equal(custom.exit_code, 3);
+  assert.equal(custom.envelope.status, "incomplete");
+});
+
 test("CF-05 validates branch ownership and order", () => {
   const result = run("<cfelse><cfif ok><cfelse><cfelse><cfelseif later></cfif>");
   const findings = result.envelope.data?.findings.filter((item) => item.code === "INVALID_BRANCH") ?? [];

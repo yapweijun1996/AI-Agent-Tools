@@ -25,6 +25,7 @@ export const BODYLESS_TAGS = new Set([
   "cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam",
   "cfabort", "cfbreak", "cferror", "cfcookie", "cfheader", "cffile", "cfimage",
   "cflocation", "cfpdf", "cfdirectory", "cfexecute",
+  "cfflush", "cfmodule", "cfzip",
 ]);
 
 type TagKind = "open" | "close" | "branch" | "bodyless" | "unknown";

@@ -1,7 +1,7 @@
 # Agent CFML Check Specification
 
 **Status:** frozen feasibility contract for implementation baseline `c76b8be`, extended by release hardening
-**Tool version:** `0.5.0`
+**Tool version:** `0.6.0`
 **Profile:** `cfml-structure-v1`
 **Envelope schema:** `schema/agent-cfml-check-result-v1.schema.json`
 
@@ -22,7 +22,7 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 
 `capabilities` reports the profile, operations, extensions, tag catalogue, effective default limits, and exclusions. The CLI does not accept a file, root, or check-limit override for this operation.
 
-`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.5.0`; neither may be combined with other options.
+`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.6.0`; neither may be combined with other options.
 
 ### TypeScript interface
 
@@ -41,6 +41,8 @@ The opt-in `inspect` operation uses `schema/agent-cfml-inspect-result-v2.schema.
 Version `0.4.0` also recognizes standalone `cfabort`, `cfbreak`, `cferror`, `cfcookie`, `cfheader`, `cffile`, and `cfimage`. The profile checks these as standalone tags; a closing tag returns incomplete, including the optional-body forms of `cffile` and `cfheader`. It does not validate tag attributes, runtime effects, or `cfbreak` loop ownership.
 
 Version `0.5.0` additionally recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`. Closing tags remain incomplete, including the optional-body forms of `cflocation`, `cfpdf`, and `cfexecute`. The checker does not validate attributes, PDF extension availability or operation results, and it never executes the commands or filesystem actions in the source.
+
+Version `0.6.0` also recognizes standalone `cfflush`, `cfmodule`, and `cfzip`. Closing forms remain incomplete, including the optional-body forms of `cfmodule` and `cfzip`; `cfzipparam` remains outside the profile. Recognition of `cfmodule` checks only the caller's structure: the custom template is not resolved, read, or executed, regardless of whether its path is literal or dynamic. The checker does not validate custom tag semantics, archive actions, attributes, or extension availability.
 
 Inspection reports file, position, related opener and a non-automatic hint. It uses the existing per-file byte and nesting limits, a shared time limit, a 16 MiB aggregate source limit, a 32-file cap, and the output limit. When output cannot fit, results are withheld rather than truncated into apparent success. For a baseline comparison, the complete baseline is compared with findings in the current file's requested range; line numbers may have shifted. Unique matches of finding code and normalized source/opening lines are `existing`; findings with a code absent from the complete baseline are `new`; ambiguous or incomplete cases are `uncertain`. The response includes `comparison_basis` to state that these are diagnostic-signature classifications, not proof of semantic identity, causation, or runtime behavior. Baseline and current files must both be explicitly selected under the root; each is read as an individually verified snapshot rather than a simultaneous filesystem snapshot. `0` means inspection completed, including findings; `3` means incomplete, and input/security errors retain their applicable exit code.
 

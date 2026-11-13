@@ -109,6 +109,9 @@ and adds seven standalone tags.
 CFML Check `0.5.0` also recognizes standalone `cflocation`, `cfpdf`,
 `cfdirectory`, and `cfexecute`; closing forms remain incomplete.
 
+Unreleased CFML Check source recognizes standalone `cfflush`, `cfmodule`, and
+`cfzip` without resolving custom templates or executing archive operations.
+
 AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
 
 MIT notices remain with their packages. CFML Linkage remains private with no package license declaration, and CFML Policy Check remains private/UNLICENSED. Root Apache-2.0 does not relicense imported source. Error Lens remains private. No package was published during consolidation.

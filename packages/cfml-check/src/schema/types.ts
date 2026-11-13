@@ -1,5 +1,5 @@
 export const TOOL_ID = "agent-cfml-check" as const;
-export const TOOL_VERSION = "0.5.0" as const;
+export const TOOL_VERSION = "0.6.0" as const;
 export const PROFILE_ID = "cfml-structure-v1" as const;
 
 export interface Position {

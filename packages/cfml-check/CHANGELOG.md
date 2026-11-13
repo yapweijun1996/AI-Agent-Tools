@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+- Recognize standalone `cfflush`, `cfmodule`, and `cfzip`. `cfmodule` is structural recognition only: the invoked template is neither resolved nor executed; paired `cfmodule` and `cfzip` remain incomplete.
+
 ## 0.5.0
 
 - Recognize standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; closing forms remain incomplete. The checker does not execute tag operations or validate their runtime effects.

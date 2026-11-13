@@ -38,7 +38,7 @@ test("inspect reports unsupported tags and later findings without claiming compl
 });
 
 test("optional-body closing forms remain incomplete and later findings provisional", () => {
-  for (const tag of ["cffile", "cfheader", "cflocation", "cfpdf", "cfexecute"]) {
+  for (const tag of ["cffile", "cfheader", "cflocation", "cfpdf", "cfexecute", "cfmodule", "cfzip"]) {
     fixture((root, file) => {
       const target = file("optional.cfm", `<${tag}>body</${tag}>\n<cfelse>`);
       const { result, exit_code } = inspectFiles({ root, files: [target] });
@@ -49,6 +49,17 @@ test("optional-body closing forms remain incomplete and later findings provision
       assert(result.files[0]?.findings.some((item) => item.code === "INVALID_BRANCH" && item.confidence === "provisional"));
     });
   }
+});
+
+test("module and zip recognition never resolves templates or executes archive operations", () => {
+  fixture((root, file) => {
+    const marker = path.join(root, "archive.zip");
+    const target = file("operations.cfm", `<cfmodule template="../outside.cfm"><cfzip action="zip" file="${marker}" />`);
+    const { result, exit_code } = inspectFiles({ root, files: [target] });
+    assert.equal(exit_code, 0);
+    assert.equal(result.files[0]?.verdict, "pass");
+    assert.equal(existsSync(marker), false);
+  });
 });
 
 test("inspecting execute and directory tags does not run them or write output", () => {
