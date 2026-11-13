@@ -1,7 +1,7 @@
 # Agent CFML Check Design
 
 **Status:** release hardening complete; external compatibility and canonical admission pending
-**Version:** `0.6.0`
+**Version:** `0.6.1`
 **Implementation baseline:** repository release-hardening commit pending
 
 ## 1. Purpose and authority

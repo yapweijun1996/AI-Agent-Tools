@@ -1,5 +1,9 @@
 # Validation and evidence
 
+## CFML Check 0.6.1 release candidate (2026-11-13)
+
+The source adds standalone `cfsetting` recognition; its optional-body closing form remains incomplete. Windows package tests passed 61 with four platform skips on Node 25.2.1; Hub tests passed on Node 24.19.0. The packed CLI passed a legacy-setting check and rejected the closing form as incomplete, and its library capabilities exposed the tag. The packed artifact SHA-256 is `d126ddf8b5496ce773f10eb3039c4e767cfad5b6fa40cdaba5a45ce6c9e61878`. The root `npm run verify` passed on Node 24.19.0; Agent-Native-Git was not applicable because it requires Node 24.21.0. Publication, registry readback, other platforms, and engine execution are not yet verified.
+
 ## CFML Check 0.6.0 release (2026-11-13)
 
 Release source commit [`871ab51`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/871ab51e7f5b1168d753acd383fa821043a808ce) adds standalone `cfflush`, `cfmodule`, and `cfzip`. Windows package tests passed 59 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 63 tests and typecheck. The exact 30-file artifact passed an offline packed-consumer test of the CLI, library export, new tags, read-only behavior and optional-body incomplete boundary; its SHA-256 is `d829e16084722488fa8474a3b3d3bad738f03d7e9dffddda6a4372d30b3ab283`. The root `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before version metadata was changed; the versioned package was tested separately. macOS and full engine coverage remain unverified.

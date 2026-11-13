@@ -4,6 +4,8 @@
 
 ## Current status
 
+Version `0.6.1` recognizes standalone `cfsetting`, including legacy `showdebugoutput` syntax. Its optional-body closing form remains incomplete; this is a structural check and does not validate attributes or runtime behavior. This change is not in the published `0.6.0` artifact or existing installed snapshots.
+
 Version `0.6.0` recognizes standalone `cfflush`, `cfmodule`, and `cfzip`; closing forms remain incomplete. `cfmodule` recognition does not resolve, read, or execute the custom template, and `cfzip` recognition does not perform archive operations.
 
 Version `0.5.0` recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; their closing forms remain incomplete. The checker does not execute tag operations or validate their runtime effects.
@@ -115,4 +117,4 @@ The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, opti
 - `dist/`: generated package output;
 - `DESIGN.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, `PROGRESS.md`, `GOAL_PROMPT.md`, `CHANGELOG.md`: repository design, planning, status, and maintenance documents.
 
-`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.6.0`.
+`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.6.1`.

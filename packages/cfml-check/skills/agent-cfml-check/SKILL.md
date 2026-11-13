@@ -50,6 +50,8 @@ Published version `0.3.0` may skip later tags or report false findings when a CF
 
 Version `0.5.0` also recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; closing forms remain incomplete. Recognition does not execute or validate tag actions.
 
+Version `0.6.1` recognizes standalone `cfsetting`; optional-body closing forms remain incomplete.
+
 Version `0.6.0` recognizes standalone `cfflush`, `cfmodule`, and `cfzip`; closing forms remain incomplete. `cfmodule` recognition does not resolve or execute the custom template.
 
 ## Inspection in version 0.3.0

@@ -38,7 +38,7 @@ test("inspect reports unsupported tags and later findings without claiming compl
 });
 
 test("optional-body closing forms remain incomplete and later findings provisional", () => {
-  for (const tag of ["cffile", "cfheader", "cflocation", "cfpdf", "cfexecute", "cfmodule", "cfzip"]) {
+  for (const tag of ["cffile", "cfheader", "cflocation", "cfpdf", "cfexecute", "cfmodule", "cfzip", "cfsetting"]) {
     fixture((root, file) => {
       const target = file("optional.cfm", `<${tag}>body</${tag}>\n<cfelse>`);
       const { result, exit_code } = inspectFiles({ root, files: [target] });
@@ -49,6 +49,16 @@ test("optional-body closing forms remain incomplete and later findings provision
       assert(result.files[0]?.findings.some((item) => item.code === "INVALID_BRANCH" && item.confidence === "provisional"));
     });
   }
+});
+
+test("inspect accepts standalone cfsetting and reports later findings as confirmed", () => {
+  fixture((root, file) => {
+    const target = file("setting.cfm", '<cfsetting showdebugoutput="false">\n<cfelse>');
+    const { result, exit_code } = inspectFiles({ root, files: [target] });
+    assert.equal(exit_code, 0);
+    assert.equal(result.files[0]?.verdict, "violations");
+    assert(result.files[0]?.findings.some((item) => item.code === "INVALID_BRANCH" && item.confidence === "confirmed"));
+  });
 });
 
 test("module and zip recognition never resolves templates or executes archive operations", () => {

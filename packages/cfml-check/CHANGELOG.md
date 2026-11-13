@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+- Recognize standalone `cfsetting`, including legacy syntax; closing forms remain incomplete.
+
 ## 0.6.0
 
 - Recognize standalone `cfflush`, `cfmodule`, and `cfzip`. `cfmodule` is structural recognition only: the invoked template is neither resolved nor executed; paired `cfmodule` and `cfzip` remain incomplete.

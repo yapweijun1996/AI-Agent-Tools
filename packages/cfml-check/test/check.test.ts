@@ -153,6 +153,20 @@ test("flush, module and zip standalone tags preserve later diagnostics", () => {
   assert.equal(custom.envelope.status, "incomplete");
 });
 
+test("standalone cfsetting supports legacy syntax without hiding later errors", () => {
+  for (const setting of ['<cfsetting showdebugoutput="false">', '<CFSETTING\n requesttimeout="120" />']) {
+    const valid = run(`<cfif ok>${setting}</cfif>`);
+    assert.equal(valid.exit_code, 0, setting);
+    assert.equal(valid.envelope.data?.verdict, "pass", setting);
+    const invalid = run(`${setting}<cfelse>`);
+    assert(invalid.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), setting);
+  }
+  assert(capabilities().data?.supported_tags.bodyless.includes("cfsetting"));
+  const closed = run('<cfsetting showdebugoutput="false">body</cfsetting>');
+  assert.equal(closed.exit_code, 3);
+  assert.equal(closed.envelope.status, "incomplete");
+});
+
 test("CF-05 validates branch ownership and order", () => {
   const result = run("<cfelse><cfif ok><cfelse><cfelse><cfelseif later></cfif>");
   const findings = result.envelope.data?.findings.filter((item) => item.code === "INVALID_BRANCH") ?? [];
