@@ -604,8 +604,8 @@
     {
       "destination": "packages/cfml-check/PROGRESS.md",
       "imported_sha256": "b75f37c0bea11582da53853f876df1daf36d9125022bc116cbc0a33d16c264b4",
-      "current_sha256": "3906093170e08bc20f09d01e9894d0c581513512b578985264021f0feaff828e",
-      "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Record the 0.4.0 release process (2026-11-13). Record the 0.5.0 release process (2026-11-13). Record the 0.6.0 release process (2026-11-13)."
+      "current_sha256": "3488488e0af0cd8eb7eefc585e305aa22b4d4d31747b3769850e6b1bdee8dd34",
+      "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Record the 0.4.0 release process (2026-11-13). Record the 0.5.0 release process (2026-11-13). Record the 0.6.0 release process (2026-11-13). Record 0.6.1 npm publication and verification (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/index.ts",
@@ -628,8 +628,8 @@
     {
       "destination": "packages/cfml-check/TASK.md",
       "imported_sha256": "4fb01e3f5332cc1a3803e65c826369073317616ed615c66cef8c02ddbcc72112",
-      "current_sha256": "1bec90d2de88769093a0600c7f0a684878a257ada80a819bf31decd2671587b4",
-      "reason": "Document the unreleased inspection extension and verification status (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Recognize standalone third-level include tags (2026-11-13). Record 0.6.1 release preparation (2026-11-13)."
+      "current_sha256": "34c07aa3b3b5b3b940f61e352a5129498aca54041d4f177ad69d2171a9f29be7",
+      "reason": "Document the unreleased inspection extension and verification status (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13). Recognize standalone third-level include tags (2026-11-13). Record 0.6.1 release preparation (2026-11-13). Record 0.6.1 npm publication and verification (2026-11-13)."
     }
   ]
 }

@@ -1,8 +1,8 @@
 # Validation and evidence
 
-## CFML Check 0.6.1 release candidate (2026-11-13)
+## CFML Check 0.6.1 release (2026-11-13)
 
-The source adds standalone `cfsetting` recognition; its optional-body closing form remains incomplete. Windows package tests passed 61 with four platform skips on Node 25.2.1; Hub tests passed on Node 24.19.0. The packed CLI passed a legacy-setting check and rejected the closing form as incomplete, and its library capabilities exposed the tag. The packed artifact SHA-256 is `d126ddf8b5496ce773f10eb3039c4e767cfad5b6fa40cdaba5a45ce6c9e61878`. The root `npm run verify` passed on Node 24.19.0; Agent-Native-Git was not applicable because it requires Node 24.21.0. Publication, registry readback, other platforms, and engine execution are not yet verified.
+The source adds standalone `cfsetting` recognition; its optional-body closing form remains incomplete. Windows package tests passed 61 with four platform skips on Node 25.2.1; Hub tests passed on Node 24.19.0. The packed CLI passed a legacy-setting check and rejected the closing form as incomplete, and its library capabilities exposed the tag. The packed artifact SHA-256 is `d126ddf8b5496ce773f10eb3039c4e767cfad5b6fa40cdaba5a45ce6c9e61878`. The root `npm run verify` passed on Node 24.19.0; Agent-Native-Git was not applicable because it requires Node 24.21.0. npm accepted the upload, and registry readback confirms `0.6.1` as `latest`; the registry tarball SHA-256 matches the tested artifact. Source commit `7d350cd` is on GitHub main. npm metadata initially returned a stale cached response. Other platforms and engine execution are not verified.
 
 ## CFML Check 0.6.0 release (2026-11-13)
 

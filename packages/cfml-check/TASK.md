@@ -2,7 +2,7 @@
 
 ## 0.6.1 cfsetting compatibility (2026-11-13)
 
-The 0.6.1 release candidate recognizes standalone `cfsetting`; optional-body closing forms remain incomplete. Package and inspection tests cover legacy syntax and subsequent findings. Publication and registry readback are pending.
+Version `0.6.1` recognizes standalone `cfsetting`; optional-body closing forms remain incomplete. Package and inspection tests cover legacy syntax and subsequent findings. Registry readback confirms publication and the registry artifact matches the tested package.
 
 ## 0.6.0 third-level include tags (2026-11-13)
 

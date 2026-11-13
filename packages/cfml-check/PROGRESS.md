@@ -1,5 +1,9 @@
 # Agent CFML Check Progress
 
+## 0.6.1 release (2026-11-13)
+
+Source commit `7d350cd` adds standalone `cfsetting`. The packed CLI and library passed focused checks, and the registry artifact matches the tested SHA-256; `0.6.1` is the latest release. Optional-body closing forms and engine semantics remain outside the verified scope.
+
 ## 0.6.0 release (2026-11-13)
 
 Source commit `871ab51` prepares three standalone tags. Windows and Ubuntu package tests and an offline packed-consumer smoke passed. Registry readback confirms `0.6.0` as `latest`; the artifact matches the reviewed digest and the global registry installation passed version and inspection checks. See the Hub validation ledger for evidence and limitations.

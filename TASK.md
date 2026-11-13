@@ -1,5 +1,9 @@
 # Task status
 
+## CFML Check cfsetting compatibility (2026-11-13)
+
+Version `0.6.1` recognizes standalone `cfsetting`; optional-body closing forms remain incomplete. Registry readback confirms publication and the tested artifact digest. See [validation](VALIDATION.md#cfml-check-061-release-2026-11-13).
+
 ## CFML Check third-level include tags (2026-11-13)
 
 Version `0.6.0` adds standalone `cfflush`, `cfmodule`, and `cfzip` recognition without resolving custom templates or executing operations. Four selected third-level include files completed bounded structural checks without findings with the registry-installed package; this does not establish runtime correctness. Paired forms remain incomplete. Registry readback, matching artifact digest and global installation confirm the release. See the [package ledger](packages/cfml-check/TASK.md) and [validation](VALIDATION.md#cfml-check-060-release-2026-11-13).
