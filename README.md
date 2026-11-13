@@ -98,7 +98,7 @@ embedded-language incompleteness. Read the [Policy Check](packages/cfml-policy-c
 [Linkage](packages/cfml-linkage/README.md) contracts before choosing the scope.
 Existing installed snapshots do not acquire these unpublished changes.
 
-Current CFML Check source adds bounded transaction and switch tags plus an opt-in
+CFML Check `0.3.0` adds bounded transaction and switch tags plus an opt-in
 `inspect` v2 interface for partial diagnostics, explicit files, line ranges and
 baseline comparisons. The published `0.2.0` artifact retains the earlier v1
 contract. See the [package specification](packages/cfml-check/SPEC.md) for

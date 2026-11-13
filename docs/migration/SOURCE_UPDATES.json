@@ -604,7 +604,7 @@
     {
       "destination": "packages/cfml-check/PROGRESS.md",
       "imported_sha256": "b75f37c0bea11582da53853f876df1daf36d9125022bc116cbc0a33d16c264b4",
-      "current_sha256": "82c13b64b4beed04df41febf53c94dadb04b7a2cac4f5da040805728f20e70ad",
+      "current_sha256": "b1a6f519a1f059774009391aff11255b91a7e98f27a7d671fb13107d1b2795cb",
       "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13)."
     },
     {
@@ -628,7 +628,7 @@
     {
       "destination": "packages/cfml-check/TASK.md",
       "imported_sha256": "4fb01e3f5332cc1a3803e65c826369073317616ed615c66cef8c02ddbcc72112",
-      "current_sha256": "3a4194ba8757b312bf12bfdd1e08428b158eb547d5e4fedde792e27326b3d1ab",
+      "current_sha256": "cba33034ed4581055db350fd505b5ee1ee19f0a092943a9bf79624e720798ea2",
       "reason": "Document the unreleased inspection extension and verification status (2026-11-13)."
     }
   ]

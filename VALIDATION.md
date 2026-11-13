@@ -1,5 +1,13 @@
 # Validation and evidence
 
+## CFML Check 0.3.0 release (2026-11-13)
+
+Release source commit [`8f41d26`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/8f41d26) prepares the inspection extension. Windows package tests passed 51 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 55 tests and typecheck. A temporary offline consumer installed the exact 30-file packed artifact and passed CLI, incomplete-result, and library-export smoke checks. The artifact SHA-256 is `46fad71b215d7fdbbc432896c4286feca0cf664f0c4b2c82280cd446b0ec4d85`. The root `npm run verify` completed on Node 24.19.0 with Agent-Native-Git not applicable. macOS and full engine coverage remain unverified.
+
+After the registry update, `npm run test:hub` passed with Node 24.19.0. Running that Hub test with the system Node 25 failed the `install-all` existing-prefix assertion because the AIT runtime rejected that Node version before the expected path check; the CFML package's own Windows and Ubuntu tests passed separately.
+
+npm accepted the upload after account verification. Following an initial processing delay, [registry readback](https://registry.npmjs.org/agent-cfml-check/0.3.0) confirmed version `0.3.0` and `latest`. The registry artifact SHA-256 matches the reviewed packed artifact; a fresh temporary registry install passed the version and inspection CLI smoke checks. The Hub records `0.3.0` as Experimental; the exact `0.1.1` AIT consumer profile remains unchanged.
+
 ## CFML Check 0.2.0 release (2026-11-13)
 
 Source commit [`998e3cc`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/998e3cc69918df88447dc3719d08da4a104d6358) adds the published-package version metadata for the parameter and exception tag checks. Windows package tests passed 37 with three platform skips; Ubuntu WSL Node 18.19.1 passed all 40 tests and typecheck. A temporary offline install of the 25-file packed artifact verified the CLI, capabilities, check and library exports. The root `npm run verify` passed on Windows Node 24.19.0 with Agent-Native-Git marked not applicable because it requires Node 24.21.0. Full engine and macOS coverage remain unverified.

@@ -2,11 +2,13 @@
 
 ## CFML Check inspection extension (2026-11-13)
 
-Local source adds bounded transaction and switch recognition and an opt-in v2 `inspect` interface for provisional diagnostics, explicit line ranges, conservative baseline comparison, repair hints and explicit multiple files. The existing v1 `check` envelope remains separate. Windows and Ubuntu package tests and temporary packed-consumer checks pass. Repository verification completed on Node 24.19.0 with Agent-Native-Git not applicable; it started before the final package source edits, which were separately tested. The npm release remains `0.2.0` and does not include these additions. See [the package task ledger](packages/cfml-check/TASK.md).
+The owner requested publication of `0.3.0`. Release source commit `8f41d26` is on `main`; Windows package tests passed 51 with four platform skips, Ubuntu Node 18 passed all 55 tests and typecheck, and the packed artifact passed a temporary consumer smoke check. The repository `npm run verify` completed on Windows Node 24.19.0 with Agent-Native-Git not applicable. Registry readback, artifact digest and a temporary registry install confirm `0.3.0`; it is recorded as Experimental. See [validation](VALIDATION.md#cfml-check-030-release-2026-11-13).
+
+Version `0.3.0` adds bounded transaction and switch recognition and an opt-in v2 `inspect` interface for provisional diagnostics, explicit line ranges, conservative baseline comparison, repair hints and explicit multiple files. The existing v1 `check` envelope remains separate. See [the package task ledger](packages/cfml-check/TASK.md).
 
 ## CFML Check 0.2.0 release (2026-11-13)
 
-The owner requested an npm release of the `cfparam` and exception tag support. Source commit `998e3cc69918df88447dc3719d08da4a104d6358` is on `main`. Package tests and temporary packed-install checks passed on Windows and Ubuntu WSL; the root gate passed with Agent-Native-Git not applicable on Node 24.19.0. npm registry readback and a temporary registry install verify `0.2.0`; the Hub records that release as Experimental. The AIT consumer profile remains specific to `0.1.1`. See [validation](VALIDATION.md#cfml-check-020-release-2026-11-13).
+The owner requested an npm release of the `cfparam` and exception tag support. Source commit `998e3cc69918df88447dc3719d08da4a104d6358` is on `main`. Package tests and temporary packed-install checks passed on Windows and Ubuntu WSL; the root gate passed with Agent-Native-Git not applicable on Node 24.19.0. npm registry readback and a temporary registry install verified `0.2.0`; the Hub recorded that release as Experimental at the time. The AIT consumer profile remains specific to `0.1.1`. See [validation](VALIDATION.md#cfml-check-020-release-2026-11-13).
 
 ## Agent-Native-Git monorepo admission (2026-10-15)
 

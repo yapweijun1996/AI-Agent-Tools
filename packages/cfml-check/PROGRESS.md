@@ -1,5 +1,9 @@
 # Agent CFML Check Progress
 
+## 0.3.0 release (2026-11-13)
+
+Source commit `8f41d26` prepares the inspection extension. Windows and Ubuntu package tests and an offline packed-consumer smoke passed. Registry readback confirms `0.3.0` as `latest`; the registry artifact matches the reviewed digest and a fresh registry install passed CLI smoke checks. See the Hub validation ledger for exact evidence and limitations.
+
 ## 0.2.0 release (2026-11-13)
 
 Source commit `998e3cc69918df88447dc3719d08da4a104d6358` prepares `0.2.0` with `cfparam` and paired exception tags. The Windows package suite passed 37 tests with three platform skips; Ubuntu WSL Node 18.19.1 passed 40 tests and typecheck. npm registry readback confirms `0.2.0` as `latest`; the registry tarball SHA-256 matches the reviewed packed artifact, and a temporary registry install passed CLI, check, capabilities and library smoke tests. Engine and macOS compatibility remain unverified.
