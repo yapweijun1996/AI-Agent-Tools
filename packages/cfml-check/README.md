@@ -17,6 +17,8 @@ Version `0.1.1` contains the first feasibility slice plus executable schema vali
 - explicit-root path safety, source stability checks, input validation, output limits, nesting limits, finding limits, and time limits;
 - deterministic JSON and text CLI output.
 
+Current repository source also recognizes `cfparam` as a bodyless tag and checks paired `cftry`, `cfcatch`, and `cffinally` structure. These changes are not included in the published `0.1.1` artifact or existing installed snapshots. They do not validate tag attributes, exception behavior, or runtime semantics. Self-closing paired tags, including `cfcatch`, return incomplete rather than an engine-validity claim.
+
 The current local source corrects CFScript identifiers containing `cf` being
 misclassified as markup. Ordinary variables and calls remain script text; actual
 CFML tag islands still return `incomplete` with their source position. This fix

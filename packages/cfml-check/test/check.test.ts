@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { checkFile } from "../src/index.js";
+import { capabilities, checkFile } from "../src/index.js";
 import "./source-boundary.test.js";
 
 function withSource(source: string, extension = ".cfm", callback: (root: string, file: string) => void): void {
@@ -88,6 +88,84 @@ test("CF-05 validates branch ownership and order", () => {
 test("CF-06 accepts bodyless and mixed-case paired tags", () => {
   const result = run("<CFIF ok><cfset x=1 /><cfreturn x></cFiF>");
   assert.equal(result.envelope.data?.verdict, "pass");
+});
+
+test("cfparam is a bodyless tag without suppressing later checks", () => {
+  for (const source of [
+    '<cfparam name="emailproc_yn" default="n">',
+    '<CFPARAM name="emailproc_yn" default="n" />',
+    '<cfif ok><cfparam name="emailproc_yn" default="n"></cfif>',
+  ]) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.status, "ok", source);
+    assert.equal(result.envelope.data?.verdict, "pass", source);
+  }
+  assert(capabilities().data?.supported_tags.bodyless.includes("cfparam"));
+  const violation = run('<cfparam name="x" default="n"><cfif ok>');
+  assert.equal(violation.envelope.data?.verdict, "violations");
+  assert(violation.envelope.data?.findings.some((item) => item.code === "UNCLOSED_TAG"));
+  for (const source of ['<cfparam name="x"></cfparam>', '<cfparam name="x"><cfunknown>']) {
+    const result = run(source);
+    assert.equal(result.exit_code, 3, source);
+    assert.equal(result.envelope.status, "incomplete", source);
+    assert.equal(result.envelope.data, null, source);
+    assert.equal(result.envelope.errors[0]?.code, "UNSUPPORTED_SYNTAX", source);
+  }
+});
+
+test("try blocks accept catches, finally, and independently nested handlers", () => {
+  const sources = [
+    '<cftry><cfif fileexists(path)><cfset fileurl=path></cfif><cfcatch type="any"><cfset fileurl=""></cfcatch></cftry>',
+    '<CFTRY><cfcatch type="database"></cfcatch><CFCATCH type="any"></CFCATCH><CFFINALLY></CFFINALLY></CFTRY>',
+    '<cftry><cffinally><cfset x=1></cffinally></cftry>',
+    '<cftry><cfcatch><cftry><cfcatch></cfcatch><cffinally></cffinally></cftry></cfcatch><cffinally></cffinally></cftry>',
+  ];
+  for (const source of sources) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.status, "ok", source);
+    assert.equal(result.envelope.data?.verdict, "pass", source);
+  }
+  const tags = capabilities().data?.supported_tags.paired_bodies ?? [];
+  for (const tag of ["cftry", "cfcatch", "cffinally"]) assert(tags.includes(tag), tag);
+});
+
+test("try handlers report invalid ownership, order, and missing handlers", () => {
+  const sources = [
+    '<cfcatch></cfcatch>',
+    '<cffinally></cffinally>',
+    '<cftry><cfif x><cfcatch></cfcatch></cfif></cftry>',
+    '<cftry><cffinally></cffinally><cfcatch></cfcatch></cftry>',
+    '<cftry><cffinally></cffinally><cffinally></cffinally></cftry>',
+    '<cftry><cfset x=1></cftry>',
+  ];
+  for (const source of sources) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.status, "ok", source);
+    assert.equal(result.envelope.data?.verdict, "violations", source);
+    assert(result.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), source);
+  }
+});
+
+test("try tags preserve mismatch, incomplete syntax, and existing boundaries", () => {
+  const mismatch = run('<cftry><cfcatch></cftry></cfcatch>');
+  assert.equal(mismatch.envelope.data?.verdict, "violations");
+  assert(mismatch.envelope.data?.findings.some((item) => item.code === "MISMATCHED_CLOSE"));
+  const unclosed = run('<cftry><cfcatch></cfcatch>');
+  assert(unclosed.envelope.data?.findings.some((item) => item.code === "UNCLOSED_TAG"));
+  for (const source of [
+    '<cftry><cfcatch /></cftry>',
+    '<cftry><cffinally /></cftry>',
+    '<cftry><cfunknown></cftry>',
+  ]) {
+    const result = run(source);
+    assert.equal(result.exit_code, 3, source);
+    assert.equal(result.envelope.status, "incomplete", source);
+    assert.equal(result.envelope.data, null, source);
+    assert.equal(result.envelope.errors[0]?.code, "UNSUPPORTED_SYNTAX", source);
+  }
 });
 
 test("CF-07 does not hide CFML in an HTML comment or query body", () => {

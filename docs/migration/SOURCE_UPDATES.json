@@ -4,8 +4,8 @@
     {
       "destination": "packages/cfml-check/SPEC.md",
       "imported_sha256": "b91c14964fa2ae7dfdbdaa79f67353dbf248d13bd76609cc8f054d899efb4ce4",
-      "current_sha256": "5fc0ec3d6851999e8df2012a75bb312ed00ad5fc70b5ae8b428ce67218ab2e83",
-      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+      "current_sha256": "c9fe6b4e14e6a9b50a7587e4e1a9281bac1bc1ba8474e4be0c1b88a92154f445",
+      "reason": "Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected descriptor admission, mutation rejection and source-byte read contract (2026-10-08). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/core/source-reader.ts",
@@ -16,8 +16,8 @@
     {
       "destination": "packages/cfml-check/test/check.test.ts",
       "imported_sha256": "139fc079688cfc6e59e57c76d5238507c451db00764b4ee1f9f14db5fc7dc040",
-      "current_sha256": "44f7a3547c13c8776659245a12981fdb86ea2774932c155288107a26f3e0c2a4",
-      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+      "current_sha256": "0069a6b7111af4e770b5cb4269e3fe34073a3cff9e78a79c8c258245792347e8",
+      "reason": "Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected public CLI/API source-boundary regressions included in the native test gate (2026-10-08). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
     },
     {
       "destination": "packages/cfml-policy-check/SPEC.md",
@@ -298,14 +298,14 @@
     {
       "destination": "packages/cfml-check/README.md",
       "imported_sha256": "896b5fd45c87e0415a87e6977996e2ed8d2ea738559303fcec1f65250ea9d38c",
-      "current_sha256": "1d12b310695290e5e0bcbd8ef188491006633b2987384aa996714a6f79168bab",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11)."
+      "current_sha256": "aaae77eee42346e1af90b1deaafdfd1e85e8b0a6620aaa07ef1033adf9276fbc",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Owner-selected repair of BUG-002/009/010, native regressions and corresponding contracts (2026-10-11). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/core/lexer.ts",
       "imported_sha256": "7f28212ff371aba0315b53ba8c116b9f0ea6d371bc795f834a2524fa2822fb4d",
-      "current_sha256": "9f174bd7ddacce72731a61a0fe4140bcabe924bd907c1d72d3d60a57e9cf7c28",
-      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09)."
+      "current_sha256": "a9480024584928c0d886fec16ea2eef82159fc04e10895f8277133795834cb2d",
+      "reason": "Owner-selected CFScript tag-prefix false-positive repair and native API/CLI regressions (2026-10-09). Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/test/cli.test.ts",
@@ -570,6 +570,18 @@
       "imported_sha256": "c1746dc987a737dd61fd1d18c9d06522896a0075fc2b5fcbdf1f7587bfdd20c1",
       "current_sha256": "917348262097464b2eb89c9890f87353d9a6d8d7b4b68a3417e2514604e0e673",
       "reason": "Owner-selected repair of BUG-006, native regressions and corresponding contracts (2026-10-11)."
+    },
+    {
+      "destination": "packages/cfml-check/CHANGELOG.md",
+      "imported_sha256": "a36de0446216bad5a1f7341599fe14243e189960d1e69c658b61e31581d4a758",
+      "current_sha256": "f4fc4f1f49f9002c4a5abe3f85bae629f1cac66dbe58d88e7bef6e6d1cebb072",
+      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
+    },
+    {
+      "destination": "packages/cfml-check/DESIGN.md",
+      "imported_sha256": "8ff3c44e4951e610ad61d8fe3bf290024dce2908f8164875ead41bdc4d6e92fa",
+      "current_sha256": "a15a5becc2d8d3e6bac4fb84c9c678c1236da588d7424d229298aaaefc0d87e6",
+      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13)."
     }
   ]
 }

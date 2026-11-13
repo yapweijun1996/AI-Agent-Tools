@@ -12,9 +12,12 @@ export const PAIRED_TAGS = new Set([
   "cfcomponent",
   "cffunction",
   "cfscript",
+  "cftry",
+  "cfcatch",
+  "cffinally",
 ]);
 export const BRANCH_TAGS = new Set(["cfelseif", "cfelse"]);
-export const BODYLESS_TAGS = new Set(["cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam"]);
+export const BODYLESS_TAGS = new Set(["cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam"]);
 
 type TagKind = "open" | "close" | "branch" | "bodyless" | "unknown";
 
@@ -51,6 +54,8 @@ interface OpenTag {
   start: number;
   end: number;
   branch_else_seen: boolean;
+  try_handler_seen: boolean;
+  try_finally_seen: boolean;
 }
 
 function isNameCharacter(character: string | undefined): boolean {
@@ -343,7 +348,20 @@ function processTag(
   if (token.kind === "open") {
     if (token.self_closing) throw new ToolFailure("UNSUPPORTED_SYNTAX", `Paired tag "${token.name}" cannot be self-closing`, 3);
     if (stack.length >= context.max_nesting) throw new ToolFailure("LIMIT_EXCEEDED", "The tag nesting limit was reached; no partial success is returned", 3);
-    stack.push({ name: token.name, start: token.start, end: token.end, branch_else_seen: false });
+    if (token.name === "cfcatch" || token.name === "cffinally") {
+      const current = stack[stack.length - 1];
+      if (current?.name !== "cftry") {
+        addFinding(context, findings, finding(context, "INVALID_BRANCH", `${token.name} must belong to the directly open cftry`, token.start, token.end));
+      } else {
+        if (current.try_finally_seen) {
+          const message = token.name === "cffinally" ? "cftry cannot contain more than one cffinally" : "cfcatch cannot appear after cffinally";
+          addFinding(context, findings, finding(context, "INVALID_BRANCH", message, token.start, token.end, current));
+        }
+        current.try_handler_seen = true;
+        if (token.name === "cffinally") current.try_finally_seen = true;
+      }
+    }
+    stack.push({ name: token.name, start: token.start, end: token.end, branch_else_seen: false, try_handler_seen: false, try_finally_seen: false });
     return;
   }
   if (token.name === "cfscript" && stack[stack.length - 1]?.name !== "cfscript") {
@@ -361,6 +379,9 @@ function processTag(
   if (current.name !== token.name) {
     addFinding(context, findings, finding(context, "MISMATCHED_CLOSE", `Closing tag "${token.name}" does not match open "${current.name}"`, token.start, token.end, current));
     return;
+  }
+  if (current.name === "cftry" && !current.try_handler_seen) {
+    addFinding(context, findings, finding(context, "INVALID_BRANCH", "cftry must contain a directly nested cfcatch or cffinally", token.start, token.end, current));
   }
   stack.pop();
 }

@@ -34,15 +34,17 @@ The TypeScript `capabilities(limitsInput)` API may receive limit overrides, whil
 
 ### Paired bodies
 
-`cfcomponent`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, and `cfsilent` require matching closing tags and cannot be self-closing.
+`cfcatch`, `cfcomponent`, `cffinally`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, `cfsilent`, and `cftry` require matching closing tags in this profile. Self-closing spellings of paired tags return incomplete; this does not assert that every CFML engine rejects them.
 
 ### Branches
 
 `cfelse` and `cfelseif` must belong to the directly open `cfif`. Only one `cfelse` is accepted, and `cfelseif` cannot follow `cfelse`.
 
+`cfcatch` and `cffinally` must belong to the directly open `cftry`. A closed `cftry` must contain at least one direct `cfcatch` or `cffinally`; multiple catches are allowed, at most one `cffinally` is allowed, and catches cannot follow it. Nested `cftry` blocks have independent handlers. The scanner does not validate catch attributes, exception types, or arbitrary text and statements between handlers. Support for these tags is a source change after the published `0.1.1` artifact.
+
 ### Bodyless tags
 
-`cfargument`, `cfinclude`, `cfqueryparam`, `cfreturn`, and `cfset` are standalone. Ordinary and self-closing spellings are accepted. Closing a bodyless tag is unsupported.
+`cfargument`, `cfinclude`, `cfparam`, `cfqueryparam`, `cfreturn`, and `cfset` are standalone. Ordinary and self-closing spellings are accepted. Closing a bodyless tag is unsupported. `cfparam` support is a source change after the published `0.1.1` artifact; it does not validate attributes or runtime semantics.
 
 Tag names are case-insensitive. Unknown, custom, imported, and unlisted tags are unsupported.
 

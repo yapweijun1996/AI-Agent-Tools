@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Recognize `cfparam` as a bodyless tag in the bounded structural profile.
+- Recognize paired `cftry`, `cfcatch`, and `cffinally` tags and check handler ownership and ordering.
+
 ## 0.1.1 — release hardening
 
 - Added package `main`, `types`, and `exports` metadata with a package self-reference regression test.

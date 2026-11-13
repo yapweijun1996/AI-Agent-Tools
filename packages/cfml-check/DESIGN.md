@@ -52,9 +52,9 @@ CLI (src/cli/index.ts)
 
 ## 4. Structural model
 
-Supported paired bodies are `cfcomponent`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, and `cfsilent`. Supported branches are `cfelse` and `cfelseif`. Supported bodyless tags are `cfargument`, `cfinclude`, `cfqueryparam`, `cfreturn`, and `cfset`.
+Supported paired bodies are `cfcatch`, `cfcomponent`, `cffinally`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, `cfsilent`, and `cftry`. Supported branches are `cfelse` and `cfelseif`. Supported bodyless tags are `cfargument`, `cfinclude`, `cfparam`, `cfqueryparam`, `cfreturn`, and `cfset`. `cfparam` and the try-handler tags are present in current source but not in the published `0.1.1` artifact.
 
-Tag names are case-insensitive. Paired tags require matching closes and cannot be self-closing. Bodyless tags accept ordinary and self-closing spellings but cannot have a closing tag. Branches must belong to the directly open `cfif`; one `cfelse` is allowed and `cfelseif` cannot follow it.
+Tag names are case-insensitive. Paired tags require matching closes; self-closing forms return incomplete. Bodyless tags accept ordinary and self-closing spellings but cannot have a closing tag. Branches must belong to the directly open `cfif`; one `cfelse` is allowed and `cfelseif` cannot follow it. A `cftry` must have a directly nested `cfcatch` or `cffinally`; multiple catches are allowed, followed by at most one finally. Each nested try owns its own handler state. This profile does not validate exception types, attributes, or arbitrary statements between handlers.
 
 Nested CFML comments (`<!--- ... --->`) and quoted attribute values are skipped during tag recognition. HTML comments do not suppress server-side CFML detection. CFScript delimiter checks cover `()`, `[]`, and `{}` while respecting quoted strings, line comments, and block comments. CFML tag islands inside `cfscript` are unsupported. A `.cfc` beginning with `component` or `interface` after an optional BOM is treated as pure script.
 
