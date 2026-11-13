@@ -1,5 +1,11 @@
 # Validation and evidence
 
+## CFML Check 0.6.0 release (2026-11-13)
+
+Release source commit [`871ab51`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/871ab51e7f5b1168d753acd383fa821043a808ce) adds standalone `cfflush`, `cfmodule`, and `cfzip`. Windows package tests passed 59 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 63 tests and typecheck. The exact 30-file artifact passed an offline packed-consumer test of the CLI, library export, new tags, read-only behavior and optional-body incomplete boundary; its SHA-256 is `d829e16084722488fa8474a3b3d3bad738f03d7e9dffddda6a4372d30b3ab283`. The root `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before version metadata was changed; the versioned package was tested separately. macOS and full engine coverage remain unverified.
+
+npm accepted the upload after account verification. [Registry readback](https://registry.npmjs.org/agent-cfml-check/0.6.0) confirms `0.6.0` as `latest`, and the registry artifact SHA-256 matches the reviewed package. The global registry installation reports `0.6.0` and completed bounded structural checks of the four selected third-level includes without findings. The Hub records `0.6.0` as Experimental; the exact `0.1.1` AIT consumer profile remains unchanged.
+
 ## CFML Check 0.5.0 release (2026-11-13)
 
 Release source commit [`019df67`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/019df67325613464245e257b89d398a62db179f2) adds four standalone tags. Windows package tests passed 57 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 61 tests and typecheck. The exact 30-file artifact passed an offline packed-consumer test of the CLI, library export, new tags and the optional-body incomplete boundary; its SHA-256 is `5f07e8ffefe31a54e40b07da85b3fc57ec3b888dfce80666ef8de02dcf92c7e3`. The root `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before version metadata was changed; the versioned package was tested separately. macOS and full engine coverage remain unverified.
