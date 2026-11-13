@@ -2,7 +2,7 @@
 
 ## CFML Check standalone tags and path strings (2026-11-13)
 
-Local source extends standalone tag coverage and corrects backslash handling that can make published `0.3.0` miss syntax or report false findings. The owner-selected quotation file and its 26 directly referenced include files were rechecked with the corrected local build. This is bounded static evidence, not a runtime or complete-CFML claim. The correction is not yet published; see the [package ledger](packages/cfml-check/TASK.md).
+Version `0.4.0` extends standalone tag coverage and corrects backslash handling that can make published `0.3.0` miss syntax or report false findings. The owner-selected quotation file and its 26 directly referenced include files were rechecked with the corrected build. Registry readback, matching artifact digest and global installation verify the release. This is bounded static evidence, not a runtime or complete-CFML claim. See the [package ledger](packages/cfml-check/TASK.md) and [validation](VALIDATION.md#cfml-check-040-release-2026-11-13).
 
 ## CFML Check inspection extension (2026-11-13)
 

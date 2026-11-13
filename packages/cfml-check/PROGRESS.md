@@ -1,5 +1,9 @@
 # Agent CFML Check Progress
 
+## 0.4.0 release (2026-11-13)
+
+Source commit `3a7dba9` prepares standalone tag support and the backslash parsing correction. Windows and Ubuntu package tests and an offline packed-consumer smoke passed. Registry readback confirms `0.4.0` as `latest`; the artifact matches the reviewed digest and the global registry installation passed version and inspection checks. See the Hub validation ledger for evidence and limitations.
+
 ## 0.3.0 release (2026-11-13)
 
 Source commit `8f41d26` prepares the inspection extension. Windows and Ubuntu package tests and an offline packed-consumer smoke passed. Registry readback confirms `0.3.0` as `latest`; the registry artifact matches the reviewed digest and a fresh registry install passed CLI smoke checks. See the Hub validation ledger for exact evidence and limitations.

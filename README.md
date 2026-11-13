@@ -103,8 +103,8 @@ CFML Check `0.3.0` adds bounded transaction and switch tags plus an opt-in
 baseline comparisons. The published `0.2.0` artifact retains the earlier v1
 contract. See the [package specification](packages/cfml-check/SPEC.md) for
 scope and uncertainty limits. Published `0.3.0` can skip syntax or report false
-findings after a backslash before a quote in a CFML string; the correction is
-present in local source and not yet released.
+findings after a backslash before a quote in a CFML string; `0.4.0` corrects this
+and adds seven standalone tags.
 
 AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
 
