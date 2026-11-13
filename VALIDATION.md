@@ -1,10 +1,10 @@
 # Validation and evidence
 
-## CFML Check 0.2.0 release submission (2026-11-13)
+## CFML Check 0.2.0 release (2026-11-13)
 
 Source commit [`998e3cc`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/998e3cc69918df88447dc3719d08da4a104d6358) adds the published-package version metadata for the parameter and exception tag checks. Windows package tests passed 37 with three platform skips; Ubuntu WSL Node 18.19.1 passed all 40 tests and typecheck. A temporary offline install of the 25-file packed artifact verified the CLI, capabilities, check and library exports. The root `npm run verify` passed on Windows Node 24.19.0 with Agent-Native-Git marked not applicable because it requires Node 24.21.0. Full engine and macOS coverage remain unverified.
 
-The npm publish command accepted `agent-cfml-check@0.2.0` but reported that the package was being processed. Registry readback and registry-install verification remain pending; the recorded Hub release stays at `0.1.1` until readback succeeds.
+The npm publish command accepted `agent-cfml-check@0.2.0` for processing. Subsequent [registry readback](https://registry.npmjs.org/agent-cfml-check/0.2.0) confirms version `0.2.0`, `latest`, and SHA-1 `ff415a80838a3851a4ffe926ac2ac30a8e72bc96`; SHA-256 `f68bc7ae44b958b5df735307dfe6f7159d04b64020b7cc6390594738cf563fa2` matches the prepublication artifact. A temporary registry install passed capabilities, sample check, and library import. The existing AIT consumer profile remains scoped to exactly `0.1.1`; the new release has not been added to that profile.
 
 ## Agent-Native-Git monorepo migration (2026-10-15)
 

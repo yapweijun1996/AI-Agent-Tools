@@ -580,8 +580,8 @@
     {
       "destination": "packages/cfml-check/DESIGN.md",
       "imported_sha256": "8ff3c44e4951e610ad61d8fe3bf290024dce2908f8164875ead41bdc4d6e92fa",
-      "current_sha256": "5d978325a73144c8f32391226cd73abaa6044b08d6b9b8237f45e297705f3bb8",
-      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13)."
+      "current_sha256": "90c367e3711c3ae43afdf99fb96513b7109c100ba7efc9637ac5ed5c18e26010",
+      "reason": "Recognize cfparam as a bodyless tag and document and test the source-only change (2026-11-13). Add bounded cftry, cfcatch, and cffinally structure checks (2026-11-13). Prepare independent 0.2.0 release metadata and documentation (2026-11-13). Record verified 0.2.0 npm release (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/package-lock.json",
@@ -604,8 +604,8 @@
     {
       "destination": "packages/cfml-check/PROGRESS.md",
       "imported_sha256": "b75f37c0bea11582da53853f876df1daf36d9125022bc116cbc0a33d16c264b4",
-      "current_sha256": "4c5bca1ca93ead4308a7d6e47f6fdf9d4b610719516237b5c7715eb53cd46c91",
-      "reason": "Record 0.2.0 release submission and verification status (2026-11-13)."
+      "current_sha256": "82c13b64b4beed04df41febf53c94dadb04b7a2cac4f5da040805728f20e70ad",
+      "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13)."
     }
   ]
 }
