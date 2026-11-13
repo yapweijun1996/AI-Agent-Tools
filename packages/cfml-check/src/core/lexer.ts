@@ -15,6 +15,10 @@ export const PAIRED_TAGS = new Set([
   "cftry",
   "cfcatch",
   "cffinally",
+  "cftransaction",
+  "cfswitch",
+  "cfcase",
+  "cfdefaultcase",
 ]);
 export const BRANCH_TAGS = new Set(["cfelseif", "cfelse"]);
 export const BODYLESS_TAGS = new Set(["cfset", "cfreturn", "cfinclude", "cfargument", "cfqueryparam", "cfparam"]);
@@ -34,11 +38,12 @@ interface ScriptRegion {
   content_end: number;
 }
 
-interface ScanResult {
+export interface ScanResult {
   findings: Finding[];
-  incomplete: Array<{ code: string; message: string }>;
+  incomplete: Array<{ code: string; message: string; location?: SourceLocation }>;
   script_regions: ScriptRegion[];
   saw_cfml_tag: boolean;
+  scan_complete: boolean;
 }
 
 interface ScanContext {
@@ -56,6 +61,7 @@ interface OpenTag {
   branch_else_seen: boolean;
   try_handler_seen: boolean;
   try_finally_seen: boolean;
+  switch_default_seen: boolean;
 }
 
 function isNameCharacter(character: string | undefined): boolean {
@@ -88,12 +94,37 @@ function consumeCfmlComment(source: string, start: number): number | null {
   return null;
 }
 
+// Transaction control actions can be bodyless. Only classify literal attributes;
+// dynamic attribute collections and expressions cannot safely establish a form.
+function transactionKind(attributes: string): "open" | "bodyless" | "unknown" {
+  const matcher = /\s*([A-Za-z_][A-Za-z0-9_:.-]*)\s*=\s*("(?:""|[^"])*"|'(?:''|[^'])*'|[^\s"'=<>`]+)\s*/gy;
+  let cursor = 0;
+  let action: string | undefined;
+  while (cursor < attributes.length) {
+    if (/^\s*$/u.test(attributes.slice(cursor))) break;
+    matcher.lastIndex = cursor;
+    const match = matcher.exec(attributes);
+    if (match === null) return "unknown";
+    const name = match[1]?.toLowerCase();
+    const raw = match[2];
+    if (name === undefined || raw === undefined || name === "attributecollection") return "unknown";
+    if (name === "action") {
+      if (action !== undefined) return "unknown";
+      action = (raw.startsWith('"') || raw.startsWith("'") ? raw.slice(1, -1) : raw).toLowerCase();
+    }
+    cursor = matcher.lastIndex;
+  }
+  if (action === undefined || action === "begin") return "open";
+  return action === "commit" || action === "rollback" || action === "setsavepoint" ? "bodyless" : "unknown";
+}
+
 function parseTag(source: string, start: number): { token: TagToken; next: number } | { error: string; at: number } {
   const closing = source[start + 1] === "/";
   let cursor = closing ? start + 2 : start + 1;
   const nameStart = cursor;
   while (isNameCharacter(source[cursor])) cursor += 1;
   const name = source.slice(nameStart, cursor).toLowerCase();
+  const attributesStart = cursor;
   if (!name.startsWith("cf")) return { error: "NOT_CF_TAG", at: start };
 
   let quote: string | null = null;
@@ -131,6 +162,8 @@ function parseTag(source: string, start: number): { token: TagToken; next: numbe
       const selfClosing = source[beforeEnd] === "/";
       const kind: TagKind = closing
         ? "close"
+        : name === "cftransaction"
+          ? transactionKind(source.slice(attributesStart, selfClosing ? beforeEnd : cursor))
         : BRANCH_TAGS.has(name)
           ? "branch"
           : BODYLESS_TAGS.has(name)
@@ -257,10 +290,11 @@ function scanScriptDelimiters(context: ScanContext, start: number, end: number, 
   }
 }
 
-function scanScriptRegion(context: ScanContext, start: number): { close: TagToken | null; content_end: number; incomplete?: { code: string; message: string } } {
+function scanScriptRegion(context: ScanContext, start: number, recover = false): { close: TagToken | null; content_end: number; issues?: Array<{ code: string; message: string; start: number; end: number }>; incomplete?: { code: string; message: string } } {
   let quote: string | null = null;
   let blockCommentStart: number | null = null;
   let cursor = start;
+  const issues: Array<{ code: string; message: string; start: number; end: number }> = [];
   while (cursor < context.source.length) {
     checkDeadline(context, cursor);
     const character = context.source[cursor];
@@ -304,17 +338,23 @@ function scanScriptRegion(context: ScanContext, start: number): { close: TagToke
     }
     if (startsCfTag(context.source, cursor)) {
       const parsed = parseTag(context.source, cursor);
-      if ("error" in parsed) return { close: null, content_end: cursor, incomplete: { code: parsed.error, message: `CFScript region cannot be parsed (${parsed.error})` } };
+      if ("error" in parsed) return { close: null, content_end: cursor, issues, incomplete: { code: parsed.error, message: `CFScript region cannot be parsed (${parsed.error})` } };
       if (parsed.token.name === "cfscript" && parsed.token.kind === "close") {
-        return { close: parsed.token, content_end: cursor };
+        return { close: parsed.token, content_end: cursor, issues };
+      }
+      if (recover) {
+        if (issues.length >= context.max_findings) throw new ToolFailure("LIMIT_EXCEEDED", "The diagnostic limit was reached", 3);
+        issues.push({ code: "UNSUPPORTED_SYNTAX", message: `CFML tag island "${parsed.token.name}" inside cfscript is outside the supported profile`, start: cursor, end: parsed.next });
+        cursor = parsed.next;
+        continue;
       }
       return { close: null, content_end: cursor, incomplete: { code: "UNSUPPORTED_SYNTAX", message: "CFML tag island inside cfscript is outside the supported profile" } };
     }
     cursor += 1;
   }
-  if (quote !== null) return { close: null, content_end: context.source.length, incomplete: { code: "UNTERMINATED_STRING", message: "Unterminated CFScript string" } };
-  if (blockCommentStart !== null) return { close: null, content_end: context.source.length, incomplete: { code: "UNTERMINATED_COMMENT", message: "Unterminated CFScript block comment" } };
-  return { close: null, content_end: context.source.length, incomplete: { code: "UNTERMINATED_TAG", message: "cfscript has no closing tag" } };
+  if (quote !== null) return { close: null, content_end: context.source.length, issues, incomplete: { code: "UNTERMINATED_STRING", message: "Unterminated CFScript string" } };
+  if (blockCommentStart !== null) return { close: null, content_end: context.source.length, issues, incomplete: { code: "UNTERMINATED_COMMENT", message: "Unterminated CFScript block comment" } };
+  return { close: null, content_end: context.source.length, issues, incomplete: { code: "UNTERMINATED_TAG", message: "cfscript has no closing tag" } };
 }
 
 function processTag(
@@ -361,7 +401,18 @@ function processTag(
         if (token.name === "cffinally") current.try_finally_seen = true;
       }
     }
-    stack.push({ name: token.name, start: token.start, end: token.end, branch_else_seen: false, try_handler_seen: false, try_finally_seen: false });
+    if (token.name === "cfcase" || token.name === "cfdefaultcase") {
+      const current = stack[stack.length - 1];
+      if (current?.name !== "cfswitch") {
+        addFinding(context, findings, finding(context, "INVALID_BRANCH", `${token.name} must belong to the directly open cfswitch`, token.start, token.end));
+      } else if (token.name === "cfdefaultcase") {
+        if (current.switch_default_seen) {
+          addFinding(context, findings, finding(context, "INVALID_BRANCH", "cfswitch cannot contain more than one cfdefaultcase", token.start, token.end, current));
+        }
+        current.switch_default_seen = true;
+      }
+    }
+    stack.push({ name: token.name, start: token.start, end: token.end, branch_else_seen: false, try_handler_seen: false, try_finally_seen: false, switch_default_seen: false });
     return;
   }
   if (token.name === "cfscript" && stack[stack.length - 1]?.name !== "cfscript") {
@@ -386,21 +437,23 @@ function processTag(
   stack.pop();
 }
 
-export function scanCfml(source: string, limits: { max_nesting: number; max_findings: number; time_limit_ms: number }): ScanResult {
-  const index = new SourceIndex(source);
+export function scanCfml(source: string, limits: { max_nesting: number; max_findings: number; time_limit_ms: number }, recover = false): ScanResult {
+  const index = new SourceIndex(source, recover);
   const context: ScanContext = { source, index, deadline: Date.now() + limits.time_limit_ms, max_nesting: limits.max_nesting, max_findings: limits.max_findings };
   const findings: Finding[] = [];
-  const incomplete: Array<{ code: string; message: string }> = [];
+  const incomplete: ScanResult["incomplete"] = [];
   const script_regions: ScriptRegion[] = [];
   const stack: OpenTag[] = [];
   let saw_cfml_tag = false;
+  let scan_complete = true;
   let cursor = 0;
   while (cursor < source.length) {
     checkDeadline(context, cursor);
     if (source.startsWith("<!---", cursor)) {
       const end = consumeCfmlComment(source, cursor);
       if (end === null) {
-        incomplete.push({ code: "UNTERMINATED_COMMENT", message: `Unterminated CFML comment at line ${index.position(cursor).line}, column ${index.position(cursor).column}` });
+        incomplete.push({ code: "UNTERMINATED_COMMENT", message: `Unterminated CFML comment at line ${index.position(cursor).line}, column ${index.position(cursor).column}`, ...(recover ? { location: index.location(cursor, Math.min(cursor + 5, source.length)) } : {}) });
+        scan_complete = false;
         break;
       }
       cursor = end;
@@ -413,17 +466,35 @@ export function scanCfml(source: string, limits: { max_nesting: number; max_find
     saw_cfml_tag = true;
     const parsed = parseTag(source, cursor);
     if ("error" in parsed) {
-      incomplete.push({ code: parsed.error, message: `CFML tag cannot be parsed (${parsed.error}) at line ${index.position(parsed.at).line}, column ${index.position(parsed.at).column}` });
+      incomplete.push({ code: parsed.error, message: `CFML tag cannot be parsed (${parsed.error}) at line ${index.position(parsed.at).line}, column ${index.position(parsed.at).column}`, ...(recover ? { location: index.location(parsed.at, Math.min(parsed.at + 1, source.length)) } : {}) });
+      scan_complete = false;
       break;
     }
     const token = parsed.token;
+    if (recover && token.kind === "close" && !PAIRED_TAGS.has(token.name) && !BODYLESS_TAGS.has(token.name) && !BRANCH_TAGS.has(token.name)) {
+      if (incomplete.length >= limits.max_findings) throw new ToolFailure("LIMIT_EXCEEDED", "The diagnostic limit was reached", 3);
+      incomplete.push({ code: "UNSUPPORTED_SYNTAX", message: `Unsupported CFML tag "${token.name}"`, location: index.location(token.start, token.end) });
+      cursor = parsed.next;
+      continue;
+    }
+    if (recover && token.kind === "open" && token.name === "cfscript" && token.self_closing) {
+      if (incomplete.length >= limits.max_findings) throw new ToolFailure("LIMIT_EXCEEDED", "The diagnostic limit was reached", 3);
+      incomplete.push({ code: "UNSUPPORTED_SYNTAX", message: 'Paired tag "cfscript" cannot be self-closing', location: index.location(token.start, token.end) });
+      cursor = parsed.next;
+      continue;
+    }
     if (token.kind === "open" && token.name === "cfscript") {
       processTag(context, token, stack, findings);
-      const script = scanScriptRegion(context, token.end);
+      const script = scanScriptRegion(context, token.end, recover);
       scanScriptDelimiters(context, token.end, script.content_end, findings);
       script_regions.push({ content_start: token.end, content_end: script.content_end });
+      for (const issue of script.issues ?? []) {
+        if (incomplete.length >= limits.max_findings) throw new ToolFailure("LIMIT_EXCEEDED", "The diagnostic limit was reached", 3);
+        incomplete.push({ code: issue.code, message: issue.message, location: index.location(issue.start, issue.end) });
+      }
       if (script.incomplete !== undefined) {
-        incomplete.push({ code: script.incomplete.code, message: `${script.incomplete.message} at line ${index.position(script.content_end).line}, column ${index.position(script.content_end).column}` });
+        incomplete.push({ code: script.incomplete.code, message: `${script.incomplete.message} at line ${index.position(script.content_end).line}, column ${index.position(script.content_end).column}`, ...(recover ? { location: index.location(script.content_end, Math.min(script.content_end + 1, source.length)) } : {}) });
+        scan_complete = false;
         break;
       }
       if (script.close !== null) {
@@ -432,28 +503,34 @@ export function scanCfml(source: string, limits: { max_nesting: number; max_find
         continue;
       }
     }
-    processTag(context, token, stack, findings);
+    try {
+      processTag(context, token, stack, findings);
+    } catch (error) {
+      if (!recover || !(error instanceof ToolFailure) || error.code !== "UNSUPPORTED_SYNTAX") throw error;
+      if (incomplete.length >= limits.max_findings) throw new ToolFailure("LIMIT_EXCEEDED", "The diagnostic limit was reached", 3);
+      incomplete.push({ code: error.code, message: error.message, location: index.location(token.start, token.end) });
+    }
     cursor = parsed.next;
   }
   for (const open of stack.reverse()) {
     addFinding(context, findings, finding(context, "UNCLOSED_TAG", `Unclosed CFML tag "${open.name}"`, open.start, open.end, open));
   }
   findings.sort((left, right) => left.location.start_byte - right.location.start_byte || left.code.localeCompare(right.code));
-  return { findings, incomplete, script_regions, saw_cfml_tag };
+  return { findings, incomplete, script_regions, saw_cfml_tag, scan_complete };
 }
 
-export function checkPureScriptCfc(source: string, extension: string, limits: { max_nesting: number; max_findings: number; time_limit_ms: number }): ScanResult {
+export function checkPureScriptCfc(source: string, extension: string, limits: { max_nesting: number; max_findings: number; time_limit_ms: number }, recover = false): ScanResult {
   const leading = source.replace(/^\uFEFF/u, "").trimStart();
   const pureScript = extension.toLowerCase() === ".cfc" && /^(?:component|interface)\b/iu.test(leading);
   if (pureScript) {
-    const result: ScanResult = { findings: [], incomplete: [], script_regions: [], saw_cfml_tag: false };
-    const index = new SourceIndex(source);
+    const result: ScanResult = { findings: [], incomplete: [], script_regions: [], saw_cfml_tag: false, scan_complete: true };
+    const index = new SourceIndex(source, recover);
     const context: ScanContext = { source, index, deadline: Date.now() + limits.time_limit_ms, max_nesting: limits.max_nesting, max_findings: limits.max_findings };
     scanScriptDelimiters(context, 0, source.length, result.findings);
     result.findings.sort((left, right) => left.location.start_byte - right.location.start_byte || left.code.localeCompare(right.code));
     return result;
   }
-  const result = scanCfml(source, limits);
+  const result = scanCfml(source, limits, recover);
   if (extension.toLowerCase() !== ".cfc" || result.saw_cfml_tag) return result;
   if (!pureScript) {
     result.incomplete.push({ code: "UNSUPPORTED_SYNTAX", message: "The .cfc source does not use a recognized pure-script component entry mode" });

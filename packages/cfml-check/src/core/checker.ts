@@ -31,7 +31,7 @@ export function capabilities(limitsInput?: Partial<CheckLimits>): Envelope<Capab
     complete: true,
     data: {
       profile: PROFILE_ID,
-      operations: ["capabilities", "check"],
+      operations: ["capabilities", "check", "inspect"],
       extensions: [".cfm", ".cfc"],
       supported_tags: {
         paired_bodies: [...PAIRED_TAGS].sort(),

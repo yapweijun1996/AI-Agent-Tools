@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-cfml-check:inspect-result-v2",
+  "type": "object",
+  "required": ["schema_version", "tool", "status", "complete", "mode", "files", "comparison", "comparison_basis", "errors", "limits"],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "tool": {
+      "type": "object", "required": ["id", "version"],
+      "properties": { "id": { "const": "agent-cfml-check" }, "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" } },
+      "additionalProperties": false
+    },
+    "status": { "enum": ["ok", "incomplete", "error"] },
+    "complete": { "type": "boolean" },
+    "mode": { "enum": ["inspect", "compare"] },
+    "files": { "type": "array", "maxItems": 32, "items": { "$ref": "#/$defs/file" } },
+    "comparison": { "anyOf": [{ "type": "null" }, { "type": "array", "items": { "$ref": "#/$defs/comparison" } }] },
+    "comparison_basis": { "type": ["string", "null"] },
+    "errors": { "type": "array", "items": { "$ref": "#/$defs/error" } },
+    "limits": { "$ref": "#/$defs/limits" }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "ok" } } }, "then": { "properties": { "complete": { "const": true }, "errors": { "maxItems": 0 }, "files": { "items": { "properties": { "complete": { "const": true } } } } } } },
+    { "if": { "properties": { "status": { "enum": ["incomplete", "error"] } } }, "then": { "properties": { "complete": { "const": false } } } }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "error": { "type": "object", "required": ["code", "message"], "properties": { "code": { "type": "string" }, "message": { "type": "string" } }, "additionalProperties": false },
+    "position": { "type": "object", "required": ["line", "column"], "properties": { "line": { "type": "integer", "minimum": 1 }, "column": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+    "location": { "type": "object", "required": ["start", "end", "start_byte", "end_byte"], "properties": { "start": { "$ref": "#/$defs/position" }, "end": { "$ref": "#/$defs/position" }, "start_byte": { "type": "integer", "minimum": 0 }, "end_byte": { "type": "integer", "minimum": 0 } }, "additionalProperties": false },
+    "diagnostic": {
+      "type": "object", "required": ["code", "message", "file", "location", "related_open", "hint", "confidence"],
+      "properties": { "code": { "type": "string" }, "message": { "type": "string" }, "file": { "type": "string" }, "location": { "anyOf": [{ "$ref": "#/$defs/location" }, { "type": "null" }] }, "related_open": { "anyOf": [{ "$ref": "#/$defs/location" }, { "type": "null" }] }, "hint": { "type": "string" }, "confidence": { "enum": ["confirmed", "provisional"] } },
+      "additionalProperties": false
+    },
+    "source": { "type": "object", "required": ["path", "sha256", "byte_size", "encoding", "bom"], "properties": { "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "byte_size": { "type": "integer", "minimum": 0 }, "encoding": { "const": "utf-8" }, "bom": { "type": "boolean" } }, "additionalProperties": false },
+    "range": { "type": "object", "required": ["start", "end"], "properties": { "start": { "type": "integer", "minimum": 1 }, "end": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+    "file": {
+      "type": "object", "required": ["path", "status", "complete", "scan_complete", "verdict", "source", "range", "findings", "unsupported", "errors"],
+      "properties": { "path": { "type": "string" }, "status": { "enum": ["ok", "incomplete", "error"] }, "complete": { "type": "boolean" }, "scan_complete": { "type": "boolean" }, "verdict": { "enum": ["pass", "violations", null] }, "source": { "anyOf": [{ "$ref": "#/$defs/source" }, { "type": "null" }] }, "range": { "anyOf": [{ "$ref": "#/$defs/range" }, { "type": "null" }] }, "findings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } }, "unsupported": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } }, "errors": { "type": "array", "items": { "$ref": "#/$defs/error" } } },
+      "allOf": [
+        { "if": { "properties": { "status": { "const": "ok" } } }, "then": { "properties": { "complete": { "const": true }, "verdict": { "enum": ["pass", "violations"] } } } },
+        { "if": { "properties": { "status": { "enum": ["incomplete", "error"] } } }, "then": { "properties": { "complete": { "const": false }, "verdict": { "type": "null" } } } }
+      ],
+      "additionalProperties": false
+    },
+    "comparison": { "type": "object", "required": ["finding", "classification"], "properties": { "finding": { "$ref": "#/$defs/diagnostic" }, "classification": { "enum": ["existing", "new", "uncertain"] } }, "additionalProperties": false },
+    "limits": { "type": "object", "required": ["max_source_bytes", "max_nesting", "max_findings", "max_output_bytes", "time_limit_ms"], "properties": { "max_source_bytes": { "type": "integer", "minimum": 1 }, "max_nesting": { "type": "integer", "minimum": 1 }, "max_findings": { "type": "integer", "minimum": 1 }, "max_output_bytes": { "type": "integer", "minimum": 512 }, "time_limit_ms": { "type": "integer", "minimum": 1 } }, "additionalProperties": false }
+  }
+}

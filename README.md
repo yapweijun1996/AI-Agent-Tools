@@ -98,6 +98,12 @@ embedded-language incompleteness. Read the [Policy Check](packages/cfml-policy-c
 [Linkage](packages/cfml-linkage/README.md) contracts before choosing the scope.
 Existing installed snapshots do not acquire these unpublished changes.
 
+Current CFML Check source adds bounded transaction and switch tags plus an opt-in
+`inspect` v2 interface for partial diagnostics, explicit files, line ranges and
+baseline comparisons. The published `0.2.0` artifact retains the earlier v1
+contract. See the [package specification](packages/cfml-check/SPEC.md) for
+scope and uncertainty limits.
+
 AIT remains `ai-agent-tools@0.1.1` under Apache-2.0. Its published package and root pack allowlist contain AIT and registry/profile data; imported tools are not bundled into AIT. AIT installs explicit pinned registry releases and requires execution approval. It preserves native results and applies only existing exact-version consumer profiles. Importing newer source does not silently change those profiles or the recorded published versions.
 
 MIT notices remain with their packages. CFML Linkage remains private with no package license declaration, and CFML Policy Check remains private/UNLICENSED. Root Apache-2.0 does not relicense imported source. Error Lens remains private. No package was published during consolidation.

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add bounded transaction and switch/case structural recognition.
+- Add opt-in `inspect` v2 diagnostics, explicit multi-file and line-range scopes, and conservative baseline comparisons while retaining the existing `check` envelope.
+
 ## 0.2.0
 
 - Recognize `cfparam` as a bodyless tag in the bounded structural profile.

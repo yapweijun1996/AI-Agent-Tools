@@ -4,7 +4,10 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { capabilities, checkFile } from "../src/index.js";
+import { scanCfml } from "../src/core/lexer.js";
+import { DEFAULT_LIMITS } from "../src/core/limits.js";
 import "./source-boundary.test.js";
+import "./inspect.test.js";
 
 function withSource(source: string, extension = ".cfm", callback: (root: string, file: string) => void): void {
   const root = mkdtempSync(path.join(os.tmpdir(), "agent-cfml-check-"));
@@ -166,6 +169,56 @@ test("try tags preserve mismatch, incomplete syntax, and existing boundaries", (
     assert.equal(result.envelope.data, null, source);
     assert.equal(result.envelope.errors[0]?.code, "UNSUPPORTED_SYNTAX", source);
   }
+});
+
+test("transaction and switch structures accept bounded Globe3 forms", () => {
+  for (const source of [
+    '<cftransaction><cfset x=1><cftransaction action="rollback"></cftransaction>',
+    '<cftransaction action="begin"><cftransaction action="commit" /></cftransaction>',
+    '<cfswitch expression="x"><cfcase value="a"><cfset x=1></cfcase><cfdefaultcase></cfdefaultcase></cfswitch>',
+    '<cfswitch expression="x"><cfcase value="a"><cfswitch expression="y"><cfdefaultcase></cfdefaultcase></cfswitch></cfcase></cfswitch>',
+  ]) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.data?.verdict, "pass", source);
+  }
+  const tags = capabilities().data?.supported_tags.paired_bodies ?? [];
+  for (const tag of ["cftransaction", "cfswitch", "cfcase", "cfdefaultcase"]) assert(tags.includes(tag));
+});
+
+test("switch ownership and uncertain transaction actions do not pass silently", () => {
+  for (const source of [
+    '<cfcase value="a"></cfcase>',
+    '<cfswitch expression="x"><cfdefaultcase></cfdefaultcase><cfdefaultcase></cfdefaultcase></cfswitch>',
+  ]) {
+    const result = run(source);
+    assert.equal(result.envelope.data?.verdict, "violations", source);
+    assert(result.envelope.data?.findings.some((item) => item.code === "INVALID_BRANCH"), source);
+  }
+  for (const source of [
+    '<cftransaction action="#operation#">',
+    '<cftransaction attributeCollection="#attrs#">',
+    '<cftransaction action="begin" action="rollback">',
+    '<cftransaction action="begin" />',
+  ]) {
+    const result = run(source);
+    assert.equal(result.exit_code, 3, source);
+    assert.equal(result.envelope.status, "incomplete", source);
+    assert.equal(result.envelope.data, null, source);
+  }
+  const misleading = run('<cftransaction note=" action=rollback "><cfset x=1></cftransaction>');
+  assert.equal(misleading.envelope.data?.verdict, "pass");
+});
+
+test("recovery reports unsupported tags at their positions and continues provisionally", () => {
+  const source = '<cfunknown>\n<cfif ok></cfif></cfif>\n</cfunknown>';
+  const result = scanCfml(source, DEFAULT_LIMITS, true);
+  assert.equal(result.scan_complete, true);
+  assert.deepEqual(result.incomplete.map((item) => item.location?.start.line), [1, 3]);
+  assert(result.findings.some((item) => item.code === "UNEXPECTED_CLOSE" && item.location.start.line === 2));
+  const legacy = run(source);
+  assert.equal(legacy.exit_code, 3);
+  assert.equal(legacy.envelope.data, null);
 });
 
 test("CF-07 does not hide CFML in an HTML comment or query body", () => {

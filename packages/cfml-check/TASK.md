@@ -1,5 +1,9 @@
 # Agent CFML Check Task Ledger
 
+## Unreleased inspection extension (2026-11-13)
+
+The source adds transaction and switch tags, opt-in v2 partial diagnostics, explicit line ranges, baseline comparison, practical hints, and bounded multi-file inspection. Existing v1 `check` remains available with its original envelope. Incomplete scans never report a pass; recovered findings are provisional, and ambiguous baseline matches are uncertain. Windows package tests passed (51 passed, four platform skips); Ubuntu Node 18 package tests and typecheck passed (55 passed), as did a temporary packed consumer. The repository `npm run verify` completed on Node 24.19.0 with Agent-Native-Git not applicable; that run started before the last package source edits, which were separately tested on Windows and Ubuntu. These changes are local source work, not part of the published `0.2.0` package.
+
 **Ledger baseline:** implementation `0.1.1`, release commit `8e2c4d9`
 **Ledger scope:** repository evidence only; external Hub/release tracking remains separate
 

@@ -7,7 +7,7 @@
 
 ## 1. Scope
 
-The tool performs deterministic, read-only structural checks on exactly one explicitly selected local UTF-8 `.cfm` or `.cfc` file under an explicitly supplied root. It does not execute CFML, resolve includes, inspect a directory as source input, use the network, or modify the inspected source tree.
+The published v1 `check` operation performs deterministic, read-only structural checks on exactly one explicitly selected local UTF-8 `.cfm` or `.cfc` file under an explicitly supplied root. The unreleased `inspect` operation accepts multiple explicitly selected files under one root. Neither operation executes CFML, resolves includes, inspects a directory as source input, uses the network, or modifies the inspected source tree.
 
 A completed result proves only the checks listed in that result. It does not prove Lucee or Adobe ColdFusion execution compatibility.
 
@@ -31,6 +31,14 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 The TypeScript `capabilities(limitsInput)` API may receive limit overrides, while the CLI `capabilities` operation rejects them.
 
 ## 3. Supported structures
+
+### Unreleased source extension
+
+Current repository source additionally recognizes `cftransaction`, `cfswitch`, `cfcase`, and `cfdefaultcase`. A switch case must belong to the directly open switch, which can contain at most one default case. For transactions, absent or literal `begin` action is treated as a paired body; literal `commit`, `rollback`, and `setsavepoint` are treated as bodyless. Dynamic, duplicate, attribute-collection, or otherwise unrecognized transaction attributes return incomplete. This checks tag structure only, not database transaction behavior. These additions are not part of the published `0.2.0` artifact.
+
+The opt-in `inspect` operation uses `schema/agent-cfml-inspect-result-v2.schema.json` and does not alter the v1 `check` envelope. It accepts one to 32 explicitly named source files under one root, an optional `--lines start:end`, or a `--baseline` file plus one current file. Relative file paths are resolved against the selected root; all paths use the existing source reader. Scope is recorded per file; the scanner reads the entire file for surrounding context, then filters findings to the requested range. Unsupported syntax anywhere in the scanned file makes that file incomplete, and its findings are provisional. Recoverable unsupported tags and CFScript tag islands are located and scanning continues; unterminated lexical constructs can stop scanning, reflected by `scan_complete: false`. No incomplete file receives a `pass` verdict.
+
+Inspection reports file, position, related opener and a non-automatic hint. It uses the existing per-file byte and nesting limits, a shared time limit, a 16 MiB aggregate source limit, a 32-file cap, and the output limit. When output cannot fit, results are withheld rather than truncated into apparent success. For a baseline comparison, the complete baseline is compared with findings in the current file's requested range; line numbers may have shifted. Unique matches of finding code and normalized source/opening lines are `existing`; findings with a code absent from the complete baseline are `new`; ambiguous or incomplete cases are `uncertain`. The response includes `comparison_basis` to state that these are diagnostic-signature classifications, not proof of semantic identity, causation, or runtime behavior. Baseline and current files must both be explicitly selected under the root; each is read as an individually verified snapshot rather than a simultaneous filesystem snapshot. `0` means inspection completed, including findings; `3` means incomplete, and input/security errors retain their applicable exit code.
 
 ### Paired bodies
 

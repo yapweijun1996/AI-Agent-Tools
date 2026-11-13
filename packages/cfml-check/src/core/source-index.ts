@@ -5,7 +5,7 @@ export class SourceIndex {
   private readonly byteOffsets: Uint32Array;
   private readonly lineStarts: number[] = [0];
 
-  public constructor(public readonly source: string) {
+  public constructor(public readonly source: string, crAsNewline = false) {
     this.byteOffsets = new Uint32Array(source.length + 1);
     const encoder = new TextEncoder();
     let byteOffset = 0;
@@ -21,6 +21,7 @@ export class SourceIndex {
       index += width;
       this.byteOffsets[index] = byteOffset;
       if (character === "\n") this.lineStarts.push(index);
+      else if (crAsNewline && character === "\r" && source[index] !== "\n") this.lineStarts.push(index);
     }
   }
 

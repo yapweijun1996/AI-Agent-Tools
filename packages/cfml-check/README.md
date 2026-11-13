@@ -69,6 +69,15 @@ agent-cfml-check capabilities [--json] [--pretty]
 agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 ```
 
+Unreleased repository source also provides `inspect` for one or more explicit files, scoped line findings, and an explicit before/after comparison:
+
+```text
+agent-cfml-check inspect --root <directory> <file> [file ...] [--lines <start:end>] --json
+agent-cfml-check inspect --root <directory> --baseline <before-file> <after-file> --json
+```
+
+`inspect` uses its own v2 result schema. It can continue after bounded unsupported tags, but the result remains incomplete and findings are provisional. A line range filters reported findings while the whole file is scanned for context; unsupported syntax elsewhere still makes the result incomplete. Comparison classifications use conservative diagnostic signatures and may be `uncertain`; they do not prove a semantic regression or code identity. This source functionality is not in the published `0.2.0` artifact.
+
 Check limits can be overridden with `--max-source-bytes`, `--max-nesting`, `--max-findings`, `--max-output-bytes`, and `--time-limit-ms`, subject to the hard caps reported by `capabilities`.
 
 `max_output_bytes` must be at least 512, reserving a complete failure envelope.
@@ -76,11 +85,11 @@ CLI ceilings count actual UTF-8 stdout, including indentation and the final
 newline. If pretty output cannot fit, checking returns incomplete/exit 3 and may
 emit its failure envelope as compact JSON. Default fitting output is unchanged.
 
-The checker requires one explicit root and one `.cfm` or `.cfc` file. JSON mode emits one envelope on stdout; diagnostics stay on stderr. A completed check with structural violations still exits `0` and reports `data.verdict: "violations"`. Exit `3` means unsupported syntax, insufficient evidence, or a resource limit. Exit `4` means an explicit-root or access-policy rejection. See [SPEC.md](SPEC.md) for the complete contract.
+The `check` command requires one explicit root and one `.cfm` or `.cfc` file. JSON mode emits one envelope on stdout; diagnostics stay on stderr. A completed check with structural violations still exits `0` and reports `data.verdict: "violations"`. Exit `3` means unsupported syntax, insufficient evidence, or a resource limit. Exit `4` means an explicit-root or access-policy rejection. See [SPEC.md](SPEC.md) for the complete contract.
 
 ## Safety and boundaries
 
-The checker never executes CFML or JavaScript from the inspected source, follows includes, reads directories as input, uses the network, installs packages, or modifies the inspected source tree. It reads exactly one regular UTF-8 source file under the explicit root, rejects symlink escapes, and fails closed when the bounded profile cannot establish a result.
+The checker never executes CFML or JavaScript from the inspected source, follows includes, reads directories as input, uses the network, installs packages, or modifies the inspected source tree. `check` reads exactly one regular UTF-8 source file under the explicit root; unreleased `inspect` reads only the explicitly selected files under that root. Both reject symlink escapes and report incomplete when the bounded profile cannot establish a result.
 
 The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, optional-body semantics outside the catalog, full expression and runtime semantics, SQL/HTML validity, CFML tag islands inside `cfscript`, and engine behavior are outside the profile or explicitly unverified.
 

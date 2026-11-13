@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { capabilities, checkFile, fitOutput } from "../core/checker.js";
+import { inspectMain } from "./inspect.js";
 import { DEFAULT_LIMITS } from "../core/limits.js";
 import { ToolFailure } from "../schema/errors.js";
 import { TOOL_ID, TOOL_VERSION } from "../schema/types.js";
@@ -23,9 +24,11 @@ const HELP = `agent-cfml-check — deterministic, read-only structural checks fo
 Usage:
   agent-cfml-check capabilities [--json] [--pretty]
   agent-cfml-check check --root <directory> <file> [--json] [--pretty]
+  agent-cfml-check inspect --root <directory> <file> [file ...] [--lines <start:end>] [--json] [--pretty]
+  agent-cfml-check inspect --root <directory> --baseline <file> <current-file> [--json] [--pretty]
 
-The checker reads exactly one .cfm or .cfc file under the explicit root. It never
-executes CFML, follows includes, uses the network, or modifies source files.
+Check reads one file; inspect reads only explicitly selected files under the root.
+The tool never executes CFML, follows includes, uses the network, or modifies sources.
 `;
 
 function parseInteger(value: string, name: string): number {
@@ -120,6 +123,7 @@ function renderText(envelope: Envelope<unknown>): string {
 }
 
 export function main(argv: readonly string[] = process.argv.slice(2)): number {
+  if (argv[0] === "inspect") return inspectMain(argv.slice(1));
   try {
     const args = parseArgs(argv);
     if (args.help) {
