@@ -4,7 +4,7 @@
 
 ## Current status
 
-Version `0.2.0` extends the `0.1.1` structural profile with parameter and exception tags. The implementation checks:
+Version `0.3.0` extends the structural profile with transaction and switch tags and adds inspection workflows. The implementation checks:
 
 - paired CFML tag nesting;
 - `cfelse` and `cfelseif` ownership and ordering;
@@ -69,14 +69,14 @@ agent-cfml-check capabilities [--json] [--pretty]
 agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 ```
 
-Unreleased repository source also provides `inspect` for one or more explicit files, scoped line findings, and an explicit before/after comparison:
+Version `0.3.0` provides `inspect` for one or more explicit files, scoped line findings, and an explicit before/after comparison:
 
 ```text
 agent-cfml-check inspect --root <directory> <file> [file ...] [--lines <start:end>] --json
 agent-cfml-check inspect --root <directory> --baseline <before-file> <after-file> --json
 ```
 
-`inspect` uses its own v2 result schema. It can continue after bounded unsupported tags, but the result remains incomplete and findings are provisional. A line range filters reported findings while the whole file is scanned for context; unsupported syntax elsewhere still makes the result incomplete. Comparison classifications use conservative diagnostic signatures and may be `uncertain`; they do not prove a semantic regression or code identity. This source functionality is not in the published `0.2.0` artifact.
+`inspect` uses its own v2 result schema. It can continue after bounded unsupported tags, but the result remains incomplete and findings are provisional. A line range filters reported findings while the whole file is scanned for context; unsupported syntax elsewhere still makes the result incomplete. Comparison classifications use conservative diagnostic signatures and may be `uncertain`; they do not prove a semantic regression or code identity. This functionality is not in the published `0.2.0` artifact.
 
 Check limits can be overridden with `--max-source-bytes`, `--max-nesting`, `--max-findings`, `--max-output-bytes`, and `--time-limit-ms`, subject to the hard caps reported by `capabilities`.
 
@@ -89,7 +89,7 @@ The `check` command requires one explicit root and one `.cfm` or `.cfc` file. JS
 
 ## Safety and boundaries
 
-The checker never executes CFML or JavaScript from the inspected source, follows includes, reads directories as input, uses the network, installs packages, or modifies the inspected source tree. `check` reads exactly one regular UTF-8 source file under the explicit root; unreleased `inspect` reads only the explicitly selected files under that root. Both reject symlink escapes and report incomplete when the bounded profile cannot establish a result.
+The checker never executes CFML or JavaScript from the inspected source, follows includes, reads directories as input, uses the network, installs packages, or modifies the inspected source tree. `check` reads exactly one regular UTF-8 source file under the explicit root; `inspect` reads only the explicitly selected files under that root. Both reject symlink escapes and report incomplete when the bounded profile cannot establish a result.
 
 The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, optional-body semantics outside the catalog, full expression and runtime semantics, SQL/HTML validity, CFML tag islands inside `cfscript`, and engine behavior are outside the profile or explicitly unverified.
 
@@ -109,4 +109,4 @@ The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, opti
 - `dist/`: generated package output;
 - `DESIGN.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, `PROGRESS.md`, `GOAL_PROMPT.md`, `CHANGELOG.md`: repository design, planning, status, and maintenance documents.
 
-`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.2.0`.
+`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.3.0`.

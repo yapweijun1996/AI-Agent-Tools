@@ -1,13 +1,13 @@
 # Agent CFML Check Specification
 
 **Status:** frozen feasibility contract for implementation baseline `c76b8be`, extended by release hardening
-**Tool version:** `0.2.0`
+**Tool version:** `0.3.0`
 **Profile:** `cfml-structure-v1`
 **Envelope schema:** `schema/agent-cfml-check-result-v1.schema.json`
 
 ## 1. Scope
 
-The published v1 `check` operation performs deterministic, read-only structural checks on exactly one explicitly selected local UTF-8 `.cfm` or `.cfc` file under an explicitly supplied root. The unreleased `inspect` operation accepts multiple explicitly selected files under one root. Neither operation executes CFML, resolves includes, inspects a directory as source input, uses the network, or modifies the inspected source tree.
+The v1 `check` operation performs deterministic, read-only structural checks on exactly one explicitly selected local UTF-8 `.cfm` or `.cfc` file under an explicitly supplied root. The `inspect` operation accepts multiple explicitly selected files under one root. Neither operation executes CFML, resolves includes, inspects a directory as source input, uses the network, or modifies the inspected source tree.
 
 A completed result proves only the checks listed in that result. It does not prove Lucee or Adobe ColdFusion execution compatibility.
 
@@ -22,7 +22,7 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 
 `capabilities` reports the profile, operations, extensions, tag catalogue, effective default limits, and exclusions. The CLI does not accept a file, root, or check-limit override for this operation.
 
-`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.2.0`; neither may be combined with other options.
+`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.3.0`; neither may be combined with other options.
 
 ### TypeScript interface
 
@@ -32,9 +32,9 @@ The TypeScript `capabilities(limitsInput)` API may receive limit overrides, whil
 
 ## 3. Supported structures
 
-### Unreleased source extension
+### Inspection extension
 
-Current repository source additionally recognizes `cftransaction`, `cfswitch`, `cfcase`, and `cfdefaultcase`. A switch case must belong to the directly open switch, which can contain at most one default case. For transactions, absent or literal `begin` action is treated as a paired body; literal `commit`, `rollback`, and `setsavepoint` are treated as bodyless. Dynamic, duplicate, attribute-collection, or otherwise unrecognized transaction attributes return incomplete. This checks tag structure only, not database transaction behavior. These additions are not part of the published `0.2.0` artifact.
+Version `0.3.0` additionally recognizes `cftransaction`, `cfswitch`, `cfcase`, and `cfdefaultcase`. A switch case must belong to the directly open switch, which can contain at most one default case. For transactions, absent or literal `begin` action is treated as a paired body; literal `commit`, `rollback`, and `setsavepoint` are treated as bodyless. Dynamic, duplicate, attribute-collection, or otherwise unrecognized transaction attributes return incomplete. This checks tag structure only, not database transaction behavior. These additions are not part of the published `0.2.0` artifact.
 
 The opt-in `inspect` operation uses `schema/agent-cfml-inspect-result-v2.schema.json` and does not alter the v1 `check` envelope. It accepts one to 32 explicitly named source files under one root, an optional `--lines start:end`, or a `--baseline` file plus one current file. Relative file paths are resolved against the selected root; all paths use the existing source reader. Scope is recorded per file; the scanner reads the entire file for surrounding context, then filters findings to the requested range. Unsupported syntax anywhere in the scanned file makes that file incomplete, and its findings are provisional. Recoverable unsupported tags and CFScript tag islands are located and scanning continues; unterminated lexical constructs can stop scanning, reflected by `scan_complete: false`. No incomplete file receives a `pass` verdict.
 

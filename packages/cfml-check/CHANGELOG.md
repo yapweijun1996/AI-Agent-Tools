@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
 
 - Add bounded transaction and switch/case structural recognition.
 - Add opt-in `inspect` v2 diagnostics, explicit multi-file and line-range scopes, and conservative baseline comparisons while retaining the existing `check` envelope.

@@ -46,12 +46,12 @@ Use `--pretty` only with `--json`. Check limits may be overridden with `--max-so
 
 JSON stdout is the machine-readable envelope. Diagnostics may also appear on stderr. Validate the envelope against `schema/agent-cfml-check-result-v1.schema.json` when schema tooling is available.
 
-## Unreleased repository inspection
+## Inspection in version 0.3.0
 
-Current repository source also offers `inspect --root <root> <file> [file ...] --json`, optionally with `--lines <start:end>` or `--baseline <before-file>` and one current file. This is not in the published `0.2.0` artifact. Inspect uses the separate `schema/agent-cfml-inspect-result-v2.schema.json`; check each file's status and scope. Findings are provisional whenever the file is incomplete, and a partial result is never a pass. Range inspection scans the whole source for context and may remain incomplete because of unsupported syntax elsewhere. Baseline classifications are diagnostic-signature matches, not proof of semantic identity; ambiguous or incomplete comparisons are `uncertain`.
+Version `0.3.0` offers `inspect --root <root> <file> [file ...] --json`, optionally with `--lines <start:end>` or `--baseline <before-file>` and one current file. This is not in the published `0.2.0` artifact. Inspect uses the separate `schema/agent-cfml-inspect-result-v2.schema.json`; check each file's status and scope. Findings are provisional whenever the file is incomplete, and a partial result is never a pass. Range inspection scans the whole source for context and may remain incomplete because of unsupported syntax elsewhere. Baseline classifications are diagnostic-signature matches, not proof of semantic identity; ambiguous or incomplete comparisons are `uncertain`.
 
 ## Safety boundary
 
-The published `check` operation reads exactly one regular UTF-8 file. Unreleased `inspect` reads only explicitly selected regular UTF-8 files, with a 32-file cap. Both reject root escapes and invalid input, never execute CFML, do not follow includes, do not access the network or database, and do not modify the inspected source tree. Unsupported/custom/imported tags and CFML tag islands inside `cfscript` prevent a complete result.
+The `check` operation reads exactly one regular UTF-8 file. `inspect` reads only explicitly selected regular UTF-8 files, with a 32-file cap. Both reject root escapes and invalid input, never execute CFML, do not follow includes, do not access the network or database, and do not modify the inspected source tree. Unsupported/custom/imported tags and CFML tag islands inside `cfscript` prevent a complete result.
 
 Record the exact command, root/file scope, tool version, exit code, result status, verdict, finding codes, and any incomplete/error codes in the task evidence. Do not claim Lucee/Adobe compatibility or full-language coverage from this tool alone.
