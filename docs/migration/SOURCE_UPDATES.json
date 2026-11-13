@@ -604,8 +604,8 @@
     {
       "destination": "packages/cfml-check/PROGRESS.md",
       "imported_sha256": "b75f37c0bea11582da53853f876df1daf36d9125022bc116cbc0a33d16c264b4",
-      "current_sha256": "8a35c1cfca0dfa854b2e2114ae7bc1bb3c4adf55ee6ddf015feb0f7b229a3bd6",
-      "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Record the 0.4.0 release process (2026-11-13)."
+      "current_sha256": "b0e86b94887d4732d44f5f9edbc1d7eccf8d0e89ca3cd20a47df65009703ad8a",
+      "reason": "Record 0.2.0 release submission and verification status (2026-11-13). Record verified 0.2.0 npm release (2026-11-13). Record the 0.4.0 release process (2026-11-13). Record the 0.5.0 release process (2026-11-13)."
     },
     {
       "destination": "packages/cfml-check/src/index.ts",
@@ -628,7 +628,7 @@
     {
       "destination": "packages/cfml-check/TASK.md",
       "imported_sha256": "4fb01e3f5332cc1a3803e65c826369073317616ed615c66cef8c02ddbcc72112",
-      "current_sha256": "281fcd43cd9fc7e705707c6c104e34d39665edb2cd6a58d38f6f6ebd02b85751",
+      "current_sha256": "383f167ed15b522fa38a98a16e94e3b525f8177f109c936c2d5fd0fa139b8557",
       "reason": "Document the unreleased inspection extension and verification status (2026-11-13). Add standalone tag coverage and correct CFML string scanning (2026-11-13). Recognize standalone second-level include tags (2026-11-13)."
     }
   ]

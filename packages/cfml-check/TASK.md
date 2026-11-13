@@ -1,8 +1,8 @@
 # Agent CFML Check Task Ledger
 
-## Unreleased second-level include tags (2026-11-13)
+## 0.5.0 second-level include tags (2026-11-13)
 
-Source work recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; paired forms remain incomplete. The checker does not execute source. Two selected second-level include files completed structural checks without findings using the local build. Windows package tests passed 57 with four platform skips; Ubuntu Node 18 passed all 61 tests and typecheck. Repository `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable. This change is not in the published `0.4.0` package.
+Version `0.5.0` recognizes standalone `cflocation`, `cfpdf`, `cfdirectory`, and `cfexecute`; paired forms remain incomplete. The checker does not execute source. Two selected second-level include files completed structural checks without findings using the registry-installed package. Windows package tests passed 57 with four platform skips; Ubuntu Node 18 passed all 61 tests and typecheck. Repository `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before the release metadata change. Registry and global-install readback confirm `0.5.0`; this change is not in `0.4.0`.
 
 ## 0.4.0 standalone tags and string handling (2026-11-13)
 

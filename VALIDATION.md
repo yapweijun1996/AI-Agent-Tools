@@ -1,5 +1,11 @@
 # Validation and evidence
 
+## CFML Check 0.5.0 release (2026-11-13)
+
+Release source commit [`019df67`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/019df67325613464245e257b89d398a62db179f2) adds four standalone tags. Windows package tests passed 57 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 61 tests and typecheck. The exact 30-file artifact passed an offline packed-consumer test of the CLI, library export, new tags and the optional-body incomplete boundary; its SHA-256 is `5f07e8ffefe31a54e40b07da85b3fc57ec3b888dfce80666ef8de02dcf92c7e3`. The root `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before version metadata was changed; the versioned package was tested separately. macOS and full engine coverage remain unverified.
+
+npm accepted the upload after account verification. [Registry readback](https://registry.npmjs.org/agent-cfml-check/0.5.0) confirms `0.5.0` as `latest`, and the registry artifact SHA-256 matches the reviewed package. The global registry installation reports `0.5.0` and completed bounded structural checks of the two selected second-level includes without findings. The Hub records `0.5.0` as Experimental; the exact `0.1.1` AIT consumer profile remains unchanged.
+
 ## CFML Check 0.4.0 release (2026-11-13)
 
 Release source commit [`3a7dba9`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/3a7dba906bd2a7159e1dc5b0e0bfa9bec713013a) adds standalone tags and corrects CFML backslash handling. Windows package tests passed 55 with four platform skips; Ubuntu WSL Node 18.19.1 passed all 59 tests and typecheck. The exact 30-file artifact passed an offline packed-consumer test of the CLI, library export, new tags and backslash handling; its SHA-256 is `85495f1f69fe845e14f38e85df35ba20f53c52ec5545dac49df41299afae8819`. The root `npm run verify` passed on Node 24.19.0 with Agent-Native-Git not applicable before version metadata was changed; the versioned package was tested separately. macOS and full engine coverage remain unverified.
