@@ -1,5 +1,11 @@
 # Validation and evidence
 
+## CFML Check 0.2.0 release submission (2026-11-13)
+
+Source commit [`998e3cc`](https://github.com/yapweijun1996/AI-Agent-Tools/commit/998e3cc69918df88447dc3719d08da4a104d6358) adds the published-package version metadata for the parameter and exception tag checks. Windows package tests passed 37 with three platform skips; Ubuntu WSL Node 18.19.1 passed all 40 tests and typecheck. A temporary offline install of the 25-file packed artifact verified the CLI, capabilities, check and library exports. The root `npm run verify` passed on Windows Node 24.19.0 with Agent-Native-Git marked not applicable because it requires Node 24.21.0. Full engine and macOS coverage remain unverified.
+
+The npm publish command accepted `agent-cfml-check@0.2.0` but reported that the package was being processed. Registry readback and registry-install verification remain pending; the recorded Hub release stays at `0.1.1` until readback succeeds.
+
 ## Agent-Native-Git monorepo migration (2026-10-15)
 
 The owner authorized committed-source import into `packages/agent-native-git`, native contract preservation, Hub integration, fresh verification and local main merge. The original source checkpoint is `46e46123adaea304884f5e0e0c7ef6235426153e`; Hub base is `837b48939321bc1f746f8a1587dc5b87363a2208`. [Import provenance](docs/migration/AGENT_NATIVE_GIT_IMPORT.json) maps all 472 tracked members and current metadata/documentation dispositions. The private all-ref recovery bundle verified complete; source implementation/native/public schemas/SQL/evidence, package lock and MIT license remain unchanged.

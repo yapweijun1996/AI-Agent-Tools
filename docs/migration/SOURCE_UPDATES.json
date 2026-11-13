@@ -600,6 +600,12 @@
       "imported_sha256": "040a585d88569feeefd2f08aca2bd3ae687b55eb1004deee608c0e0adcab4f9d",
       "current_sha256": "a1d0e84b251bdb26cadd0b703efade243858c41c02aca99151761808ead40b37",
       "reason": "Prepare independent 0.2.0 release metadata and documentation (2026-11-13)."
+    },
+    {
+      "destination": "packages/cfml-check/PROGRESS.md",
+      "imported_sha256": "b75f37c0bea11582da53853f876df1daf36d9125022bc116cbc0a33d16c264b4",
+      "current_sha256": "4c5bca1ca93ead4308a7d6e47f6fdf9d4b610719516237b5c7715eb53cd46c91",
+      "reason": "Record 0.2.0 release submission and verification status (2026-11-13)."
     }
   ]
 }

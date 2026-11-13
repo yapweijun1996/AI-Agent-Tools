@@ -4,7 +4,7 @@ Source versions below come from imported manifests. They are not claims of publi
 
 | Package | Source version | Executable | License / visibility | Source and usage |
 | --- | --- | --- | --- | --- |
-| `agent-cfml-check` | 0.1.1 | `agent-cfml-check` | MIT; public package identity | [README](packages/cfml-check/README.md) |
+| `agent-cfml-check` | 0.2.0 | `agent-cfml-check` | MIT; public package identity | [README](packages/cfml-check/README.md) |
 | `agent-cfml-linkage` | 0.1.0 | `agent-cfml-linkage` | No declared package license; private | [README](packages/cfml-linkage/README.md) |
 | `agent-cfml-policy-check` | 0.1.0 | `agent-cfml-policy-check` | UNLICENSED; private | [README](packages/cfml-policy-check/README.md) |
 | `agent-change-impact` | 0.1.1 | `agent-impact` | MIT; public package identity | [README](packages/change-impact/README.md) |

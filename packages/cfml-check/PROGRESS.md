@@ -1,5 +1,11 @@
 # Agent CFML Check Progress
 
+## 0.2.0 release submission (2026-11-13)
+
+Source commit `998e3cc69918df88447dc3719d08da4a104d6358` prepares `0.2.0` with `cfparam` and paired exception tags. The Windows package suite passed 37 tests with three platform skips; Ubuntu WSL Node 18.19.1 passed 40 tests and typecheck. A temporary offline packed consumer verified the CLI and library. The npm publish command accepted the package for processing, but registry readback and registry-install verification are pending. Engine and macOS compatibility remain unverified.
+
+The following status records describe the earlier `0.1.1` release.
+
 **Reviewed against:** release commit `8e2c4d9`; status commit `46b3bc8`
 **Version:** `0.1.1`
 **Working-tree state:** clean; status commit `46b3bc8` is pushed

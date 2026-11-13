@@ -1,5 +1,9 @@
 # Task status
 
+## CFML Check 0.2.0 release (2026-11-13)
+
+The owner requested an npm release of the `cfparam` and exception tag support. Source commit `998e3cc69918df88447dc3719d08da4a104d6358` is on `main`. Package tests and temporary packed-install checks passed on Windows and Ubuntu WSL; the root gate passed with Agent-Native-Git not applicable on Node 24.19.0. The npm publish command accepted `0.2.0` for processing; registry readback, installation verification, and the Hub release update are pending. See [validation](VALIDATION.md#cfml-check-020-release-submission-2026-11-13).
+
 ## Agent-Native-Git monorepo admission (2026-10-15)
 
 The owner selected immediate migration into `packages/agent-native-git`, correcting the earlier separate-repository interpretation while retaining independent CLI/package/runtime ownership. Source checkpoint `46e46123adaea304884f5e0e0c7ef6235426153e` contributes 472 tracked files with private recovery history retained; generated output and ignored temporary material are excluded. The separate [import record](docs/migration/AGENT_NATIVE_GIT_IMPORT.json) preserves source hashes and explicit metadata/navigation adapters, without changing the ten-repository historical manifest.
