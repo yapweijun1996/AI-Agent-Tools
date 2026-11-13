@@ -1,7 +1,7 @@
 # Agent CFML Check Specification
 
 **Status:** frozen feasibility contract for implementation baseline `c76b8be`, extended by release hardening
-**Tool version:** `0.1.1`
+**Tool version:** `0.2.0`
 **Profile:** `cfml-structure-v1`
 **Envelope schema:** `schema/agent-cfml-check-result-v1.schema.json`
 
@@ -22,11 +22,11 @@ agent-cfml-check check --root <directory> <file> [--json] [--pretty]
 
 `capabilities` reports the profile, operations, extensions, tag catalogue, effective default limits, and exclusions. The CLI does not accept a file, root, or check-limit override for this operation.
 
-`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.1.1`; neither may be combined with other options.
+`check` requires exactly one explicit root and one `.cfm` or `.cfc` file. `--pretty` requires `--json`. `--help` prints usage and `--version` prints `0.2.0`; neither may be combined with other options.
 
 ### TypeScript interface
 
-`src/index.ts` exports `capabilities`, `checkFile`, `DEFAULT_LIMITS`, `HARD_LIMITS`, `normalizeLimits`, and schema types. Repository package metadata declares `main: "./dist/index.js"`, `types: "./dist/index.d.ts"`, and an import/types `exports` map. Package-surface tests and a temporary packed-install CLI/library smoke check verify the current `0.1.1` artifact.
+`src/index.ts` exports `capabilities`, `checkFile`, `DEFAULT_LIMITS`, `HARD_LIMITS`, `normalizeLimits`, and schema types. Repository package metadata declares `main: "./dist/index.js"`, `types: "./dist/index.d.ts"`, and an import/types `exports` map. Package-surface tests and a temporary packed-install CLI/library smoke check verified the previously published `0.1.1` artifact.
 
 The TypeScript `capabilities(limitsInput)` API may receive limit overrides, while the CLI `capabilities` operation rejects them.
 
@@ -122,6 +122,6 @@ JSON mode emits one envelope on stdout; failure diagnostics are also written to 
 
 ## 9. Evidence boundary
 
-The profile does not validate full CFML grammar, expression/type/runtime semantics, HTML, SQL, include expansion, directory/project context, Lucee/Adobe execution, unknown/custom/imported tags, or CFML tag islands inside `cfscript`. The `agent-cfml-check@0.1.1` CLI package is prepared for publication; authenticated npm registry readback remains required. Repository package export metadata, executable schema validation, and temporary packed-install verification are complete. A targeted Lucee `6.2.2.91` probe and Ubuntu WSL Node `18.19.1` verification pass, but they do not establish a full engine matrix. Adobe ColdFusion, Hub lifecycle, canonical ownership/admission, and registry parity remain outside current verified evidence.
+The profile does not validate full CFML grammar, expression/type/runtime semantics, HTML, SQL, include expansion, directory/project context, Lucee/Adobe execution, unknown/custom/imported tags, or CFML tag islands inside `cfscript`. The prior `0.1.1` artifact was published and registry-verified. A targeted Lucee `6.2.2.91` probe and Ubuntu WSL Node `18.19.1` verification for prior source do not establish a full engine matrix for `0.2.0`.
 
-The repository tests cover CF-01 through CF-13, pure-script `.cfc` handling, three CLI behaviors, and the package export surface. Current local evidence is 22/22 tests, typecheck pass, package dry-run pass, Windows CLI smoke checks, temporary packed-install CLI/library smoke checks, and JSON Schema validation. The prior immutable `0.1.0` artifact predates this release hardening; `0.1.1` registry readback remains required. Full Lucee/Adobe engine comparison, canonical Hub admission, and registry parity remain pending.
+The repository tests cover CF-01 through CF-13, pure-script `.cfc` handling, CLI behavior, package exports, and the parameter and exception tag additions. Full Lucee/Adobe engine comparison and a broader platform matrix remain unverified.

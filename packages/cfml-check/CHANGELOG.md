@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0
 
 - Recognize `cfparam` as a bodyless tag in the bounded structural profile.
 - Recognize paired `cftry`, `cfcatch`, and `cffinally` tags and check handler ownership and ordering.

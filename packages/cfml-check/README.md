@@ -4,7 +4,7 @@
 
 ## Current status
 
-Version `0.1.1` contains the first feasibility slice plus executable schema validation, package exports, and Agent onboarding. The prior `agent-cfml-check@0.1.0` publication predates these additions. The current implementation is verified for:
+Version `0.2.0` extends the `0.1.1` structural profile with parameter and exception tags. The implementation checks:
 
 - paired CFML tag nesting;
 - `cfelse` and `cfelseif` ownership and ordering;
@@ -22,9 +22,9 @@ Current repository source also recognizes `cfparam` as a bodyless tag and checks
 The current local source corrects CFScript identifiers containing `cf` being
 misclassified as markup. Ordinary variables and calls remain script text; actual
 CFML tag islands still return `incomplete` with their source position. This fix
-does not expand the supported grammar or record a new npm release.
+is included in the `0.2.0` source.
 
-Local verification before this documentation update:
+Historical verification for the `0.1.1` release baseline:
 
 - `npm test`: 22/22 passed;
 - `npm run typecheck`: passed;
@@ -34,7 +34,7 @@ Local verification before this documentation update:
 - targeted Lucee `6.2.2.91` execution probe: passed;
 - Ubuntu WSL Node `18.19.1` `npm ci`, tests, and typecheck: passed.
 
-The prior npm publication of `agent-cfml-check@0.1.0` is immutable and predates this release's schema, package-export, and documentation updates. This release targets `agent-cfml-check@0.1.1`; authenticated registry publication/readback is the final release step. This is not a complete CFML parser or evidence of Adobe ColdFusion compatibility. A targeted Lucee `6.2.2.91` probe and an Ubuntu WSL Node `18.19.1` clean dependency install/test run pass; these do not establish a full engine matrix. Hub lifecycle, canonical ownership, admission, and Adobe compatibility remain outside the current verified evidence.
+This is not a complete CFML parser or evidence of Adobe ColdFusion compatibility. A targeted Lucee `6.2.2.91` probe and an Ubuntu WSL Node `18.19.1` run for prior source do not establish a full engine or platform matrix for `0.2.0`.
 
 ## Install and use
 
@@ -100,4 +100,4 @@ The supported profile is `cfml-structure-v1`. Unknown/custom/imported tags, opti
 - `dist/`: generated package output;
 - `DESIGN.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, `PROGRESS.md`, `GOAL_PROMPT.md`, `CHANGELOG.md`: repository design, planning, status, and maintenance documents.
 
-`package.json` currently publishes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures`; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`, with package-surface and packed-install tests. The release package version is `0.1.1`.
+`package.json` includes `dist`, `README.md`, `SPEC.md`, `schema`, and `fixtures` in the package; the design, planning, progress, goal, prompt, changelog, and Agent Skill documents remain repository-maintainer documentation. The repository exposes the TypeScript library through `main`, `types`, and `exports`. The source package version is `0.2.0`.
