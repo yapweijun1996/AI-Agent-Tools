@@ -6,6 +6,7 @@ second task ledger or a tool release inventory.
 | Document | Owns |
 | --- | --- |
 | [README.md](README.md) | Product entry point and concise current availability |
+| [Tool features map](docs/FEATURES_MAP.md) | Task-to-tool selection, per-tool decision logic, result boundaries, and implementation/test entrypoints |
 | [AGENTS.md](AGENTS.md) | Repository-specific contributor/agent rules |
 | [TASK.md](TASK.md) | Completed/pending Hub tasks, blockers, and next steps |
 | [SPEC.md](SPEC.md) | Hub requirements and acceptance boundaries |

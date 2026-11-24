@@ -14,7 +14,7 @@ This convenience command follows the repository default branch; use the same pin
 
 ## Use from an AI agent
 
-Point the agent to this repository's README, [tool index](migration-tools.md), and [optional workflow skill](skills/ai-agent-tools-workflow/SKILL.md). For example:
+Use the [tool features map](docs/FEATURES_MAP.md) to choose by question and trace how each tool reaches its result. For CLI names and agent usage, see the [tool index](migration-tools.md) and [optional workflow skill](skills/ai-agent-tools-workflow/SKILL.md). For example:
 
 ```text
 Read https://github.com/yapweijun1996/AI-Agent-Tools and its workflow skill.
