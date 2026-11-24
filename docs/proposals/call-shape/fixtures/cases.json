@@ -1,0 +1,17 @@
+{
+  "commonArgs": ["inspect", "--root", ".", "--project", "tsconfig.json", "--field", "tenantId", "--json"],
+  "cases": [
+    {"id":"binding", "files":["orders.ts","barrel.ts","binding.ts"], "declaration":"orders.ts:1:21", "argument":1, "expected":"binding"},
+    {"id":"present", "files":["orders.ts","present.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"present"},
+    {"id":"missing", "files":["orders.ts","missing.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"missing"},
+    {"id":"unknown", "files":["orders.ts","unknown.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"unknown"},
+    {"id":"slot-two", "files":["slots.ts"], "declaration":"slots.ts:1:17", "argument":2, "expected":"slot-two"},
+    {"id":"indirect", "files":["orders.ts","indirect.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"indirect"},
+    {"id":"order-forward", "files":["a.ts","z.ts","orders.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"order"},
+    {"id":"order-reverse", "files":["orders.ts","z.ts","a.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"order"},
+    {"id":"overload", "files":["overload.ts"], "declaration":"overload.ts:3:17", "argument":1, "expected":"overload"},
+    {"id":"unresolved", "files":["orders.ts","unresolved.ts"], "declaration":"orders.ts:1:17", "argument":1, "expected":"unresolved"},
+    {"id":"output-limit", "files":["orders.ts"], "setup":"oversize-report", "declaration":"orders.ts:1:17", "argument":1, "expected":"output-limit"},
+    {"id":"path-escape", "files":["orders.ts"], "setup":"sibling-declaration", "declaration":"../outside.ts:1:17", "argument":1, "expected":"path-escape"}
+  ]
+}

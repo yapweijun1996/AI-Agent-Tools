@@ -1,0 +1,83 @@
+{
+  "binding": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":1,"missing":1,"unknown":0},
+      "calls": [
+        {"path":"binding.ts","line":4,"column":1,"classification":"present","reason":"explicit_key"},
+        {"path":"binding.ts","line":5,"column":1,"classification":"missing","reason":"literal_without_key"}
+      ]
+    }
+  },
+  "present": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":3,"missing":0,"unknown":0},
+      "calls": [
+        {"path":"present.ts","line":4,"column":1,"classification":"present","reason":"explicit_key"},
+        {"path":"present.ts","line":5,"column":1,"classification":"present","reason":"explicit_key"},
+        {"path":"present.ts","line":6,"column":1,"classification":"present","reason":"explicit_key"}
+      ]
+    }
+  },
+  "missing": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":0,"missing":2,"unknown":0},
+      "calls": [
+        {"path":"missing.ts","line":3,"column":1,"classification":"missing","reason":"literal_without_key"},
+        {"path":"missing.ts","line":4,"column":1,"classification":"missing","reason":"argument_omitted"}
+      ]
+    }
+  },
+  "unknown": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":0,"missing":0,"unknown":3},
+      "calls": [
+        {"path":"unknown.ts","line":4,"column":1,"classification":"unknown","reason":"not_object_literal"},
+        {"path":"unknown.ts","line":5,"column":1,"classification":"unknown","reason":"object_spread"},
+        {"path":"unknown.ts","line":6,"column":1,"classification":"unknown","reason":"computed_key"}
+      ]
+    }
+  },
+  "slot-two": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"slots.ts","line":1,"column":17}, "argument": 2, "field": "tenantId",
+      "counts": {"present":0,"missing":2,"unknown":1},
+      "calls": [
+        {"path":"slots.ts","line":4,"column":1,"classification":"unknown","reason":"argument_spread"},
+        {"path":"slots.ts","line":5,"column":1,"classification":"missing","reason":"literal_without_key"},
+        {"path":"slots.ts","line":6,"column":1,"classification":"missing","reason":"argument_omitted"}
+      ]
+    }
+  },
+  "indirect": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":0,"missing":0,"unknown":0}, "calls": []
+    }
+  },
+  "order": {
+    "exitCode": 0, "status": "ok", "complete": true, "errorCodes": [],
+    "data": {
+      "project": "tsconfig.json", "declaration": {"path":"orders.ts","line":1,"column":17}, "argument": 1, "field": "tenantId",
+      "counts": {"present":2,"missing":1,"unknown":0},
+      "calls": [
+        {"path":"a.ts","line":2,"column":1,"classification":"present","reason":"explicit_key"},
+        {"path":"z.ts","line":2,"column":10,"classification":"missing","reason":"literal_without_key"},
+        {"path":"z.ts","line":2,"column":22,"classification":"present","reason":"explicit_key"}
+      ]
+    }
+  },
+  "overload": {"exitCode":3,"status":"incomplete","complete":false,"data":null,"errorCodes":["AMBIGUOUS_TARGET"]},
+  "unresolved": {"exitCode":3,"status":"incomplete","complete":false,"data":null,"errorCodes":["RESOLUTION_INCOMPLETE"]},
+  "output-limit": {"exitCode":3,"status":"incomplete","complete":false,"data":null,"errorCodes":["RESOURCE_LIMIT"]},
+  "path-escape": {"exitCode":4,"status":"error","complete":false,"data":null,"errorCodes":["UNSAFE_PATH"]}
+}

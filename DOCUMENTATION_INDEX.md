@@ -45,6 +45,7 @@ second task ledger or a tool release inventory.
 | [AIT profile catalog](docs/profiles/PROFILE_INDEX.json) | Machine-readable exact package/version/executable profile identities |
 | [Release standard](docs/RELEASE_STANDARD.md) | Independent versioning, packaging, and release evidence |
 | [Adding a tool](docs/ADDING_A_TOOL.md) | Registration and maintenance workflow |
+| [Call Shape proposal](docs/proposals/call-shape/SPEC.md) | Direct-call field inspection contract, fixtures and source-only CLI prototype; not registered or packaged |
 | [Tool function review](docs/TOOL_FUNCTION_REVIEW.md) | Historical functional assessment and integration findings |
 | [Codebase bug review](docs/CODEBASE_BUG_REVIEW.md) | 2026-10-11 reproduced source defects, impact, reproduction conditions, review coverage and repair/regression map |
 | [Tool expansion](docs/TOOL_EXPANSION.md) | Addition rationale, cross-tool boundaries, design reviews and evidence scope |
