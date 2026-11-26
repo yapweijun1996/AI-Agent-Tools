@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Recognize paired `cflock` tags and report missing or mismatched closing tags.
+
 ## 0.6.1
 
 - Recognize standalone `cfsetting`, including legacy syntax; closing forms remain incomplete.

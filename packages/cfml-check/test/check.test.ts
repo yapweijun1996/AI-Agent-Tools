@@ -70,6 +70,29 @@ test("CF-02 reports misnesting even when counts are equal", () => {
   assert.equal(finding.related_open?.start.column, 10);
 });
 
+test("cflock participates in tag nesting and requires a matching close", () => {
+  const lock = '<cflock name="probe" type="exclusive" timeout="5">';
+  const valid = run('<cfif ready><CFLOCK name="probe" timeout="5"><cfset value = 1></cflock></cfif>');
+  assert.equal(valid.exit_code, 0);
+  assert.equal(valid.envelope.data?.verdict, "pass");
+  assert(capabilities().data?.supported_tags.paired_bodies.includes("cflock"));
+
+  for (const [source, code] of [
+    [lock + "<cfset value = 1>", "UNCLOSED_TAG"],
+    ["<cfif ready>" + lock + "</cfif></cflock>", "MISMATCHED_CLOSE"],
+    ["</cflock>", "UNEXPECTED_CLOSE"],
+  ] as const) {
+    const result = run(source);
+    assert.equal(result.exit_code, 0, source);
+    assert.equal(result.envelope.data?.verdict, "violations", source);
+    assert(result.envelope.data?.findings.some((finding) => finding.code === code), source);
+  }
+
+  const selfClosing = run('<cflock name="probe" timeout="5" />');
+  assert.equal(selfClosing.exit_code, 3);
+  assert.equal(selfClosing.envelope.errors[0]?.code, "UNSUPPORTED_SYNTAX");
+});
+
 test("CF-03 ignores nested fake tags in a CFML comment", () => {
   const result = run("<cfif ok><!--- <cfif fake></cfif> <!--- <cfloop fake> ---> ---></cfif>");
   assert.equal(result.exit_code, 0);

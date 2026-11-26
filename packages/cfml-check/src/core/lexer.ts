@@ -5,6 +5,7 @@ import type { Finding, SourceLocation } from "../schema/types.js";
 export const PAIRED_TAGS = new Set([
   "cfif",
   "cfloop",
+  "cflock",
   "cfoutput",
   "cfquery",
   "cfsavecontent",

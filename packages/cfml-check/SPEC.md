@@ -50,6 +50,8 @@ Inspection reports file, position, related opener and a non-automatic hint. It u
 
 ### Paired bodies
 
+The current source also recognizes `cflock` as a paired tag in markup. It checks the matching closing tag and nesting. Lock attributes and runtime behavior are outside the structural profile. This support is not part of the published `0.6.1` artifact.
+
 `cfcatch`, `cfcomponent`, `cffinally`, `cffunction`, `cfif`, `cfloop`, `cfoutput`, `cfquery`, `cfsavecontent`, `cfscript`, `cfsilent`, and `cftry` require matching closing tags in this profile. Self-closing spellings of paired tags return incomplete; this does not assert that every CFML engine rejects them.
 
 ### Branches
